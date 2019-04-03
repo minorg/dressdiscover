@@ -2,205 +2,55 @@ package org.dressdiscover.server.controllers.collection;
 
 @com.google.inject.Singleton
 @SuppressWarnings({ "serial", "unused" })
-public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
+public class CollectionCommandServiceJsonRpcServlet extends org.thryft.waf.server.controllers.AbstractJsonRpcServlet {
     @com.google.inject.Inject
     public CollectionCommandServiceJsonRpcServlet(final org.dressdiscover.api.services.collection.CollectionCommandService service) {
         this.service = service;
     }
 
     @Override
-    protected void doPost(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse) throws java.io.IOException, javax.servlet.ServletException {
-        final String httpServletRequestBody;
-        try (final java.io.Reader httpServletRequestBodyReader = httpServletRequest.getReader()) {
-            final StringBuilder httpServletRequestBodyBuilder = new StringBuilder();
-            final char[] httpServletRequestBodyBuffer = new char[4096];
-            int httpServletRequestBodyBufferReadRet;
-            while ((httpServletRequestBodyBufferReadRet = httpServletRequestBodyReader.read(httpServletRequestBodyBuffer)) != -1) {
-                httpServletRequestBodyBuilder.append(httpServletRequestBodyBuffer, 0, httpServletRequestBodyBufferReadRet);
-            }
-            httpServletRequestBody = httpServletRequestBodyBuilder.toString();
-        }
-
-        org.thryft.protocol.MessageBegin messageBegin = null;
-        try {
-            final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot;
-            try {
-                iprot = new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonInputProtocol(httpServletRequestBody));
-                messageBegin = iprot.readMessageBegin();
-            } catch (final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException e) {
-                throw e;
-            } catch (final org.thryft.protocol.InputProtocolException e) {
-                throw new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException(e, -32600);
-            }
-            if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
-                throw new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException(-32600, "expected request");
-            }
-            if (messageBegin.getName().equals("delete_collection_by_id")) {
-                doPostDeleteCollectionById(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("delete_collections_by_institution_id")) {
-                doPostDeleteCollectionsByInstitutionId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("put_collection")) {
-                doPostPutCollection(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else {
-                __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
-                return;
-            }
-        } catch (final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e), messageBegin != null ? messageBegin.getId() : null);
-            return;
+    protected final org.thryft.Struct _dispatch(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final String methodName) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        switch (methodName) {
+        case "delete_collection_by_id": return __dispatchDeleteCollectionById(iprot);
+        case "delete_collections_by_institution_id": return __dispatchDeleteCollectionsByInstitutionId(iprot);
+        case "put_collection": return __dispatchPutCollection(iprot);
+        default:
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", methodName));
         }
     }
 
-    private void __doPostError(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse jsonRpcErrorResponse, @javax.annotation.Nullable final Object jsonRpcRequestId) throws java.io.IOException {
-        final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+    private Messages.DeleteCollectionByIdResponse __dispatchDeleteCollectionById(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        final Messages.DeleteCollectionByIdRequest serviceRequest = _readRequest(iprot, Messages.DeleteCollectionByIdRequest.Factory.INSTANCE);
         try {
-            final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-            oprot.writeMessageBegin("", org.thryft.protocol.MessageType.EXCEPTION, jsonRpcRequestId);
-            jsonRpcErrorResponse.writeAsStruct(oprot);
-            oprot.writeMessageEnd();
-            oprot.flush();
-        } catch (final org.thryft.protocol.OutputProtocolException e) {
-            logger.error("error serializing service error response: ", e);
-            throw new IllegalStateException(e);
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBodyWriter.toString());
-    }
-
-    private static void __doPostResponse(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final String httpServletResponseBody) throws java.io.IOException {
-        httpServletResponse.setContentType("application/json; charset=utf-8");
-
-        try (final java.io.OutputStream httpServletResponseOutputStream = httpServletResponse.getOutputStream()) {
-            httpServletResponseOutputStream.write(httpServletResponseBody.getBytes("UTF-8"));
+            service.deleteCollectionById(serviceRequest.getId()); return Messages.DeleteCollectionByIdResponse.INSTANCE;
+        } catch (final org.dressdiscover.api.services.IoException | org.dressdiscover.api.services.collection.NoSuchCollectionException | org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e);
         }
     }
 
-    public void doPostDeleteCollectionById(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final Messages.DeleteCollectionByIdRequest serviceRequest;
+    private Messages.DeleteCollectionsByInstitutionIdResponse __dispatchDeleteCollectionsByInstitutionId(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        final Messages.DeleteCollectionsByInstitutionIdRequest serviceRequest = _readRequest(iprot, Messages.DeleteCollectionsByInstitutionIdRequest.Factory.INSTANCE);
         try {
-            serviceRequest = Messages.DeleteCollectionByIdRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
-            return;
+            service.deleteCollectionsByInstitutionId(serviceRequest.getInstitutionId()); return Messages.DeleteCollectionsByInstitutionIdResponse.INSTANCE;
+        } catch (final org.dressdiscover.api.services.IoException | org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e);
         }
-
-        try {
-            service.deleteCollectionById(serviceRequest.getId());
-        } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.collection.NoSuchCollectionException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeStructBegin("response");
-                oprot.writeStructEnd();
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    public void doPostDeleteCollectionsByInstitutionId(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final Messages.DeleteCollectionsByInstitutionIdRequest serviceRequest;
+    private Messages.PutCollectionResponse __dispatchPutCollection(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        final Messages.PutCollectionRequest serviceRequest = _readRequest(iprot, Messages.PutCollectionRequest.Factory.INSTANCE);
         try {
-            serviceRequest = Messages.DeleteCollectionsByInstitutionIdRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
-            return;
+            service.putCollection(serviceRequest.getCollection(), serviceRequest.getId()); return Messages.PutCollectionResponse.INSTANCE;
+        } catch (final org.dressdiscover.api.services.IoException | org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e);
         }
-
-        try {
-            service.deleteCollectionsByInstitutionId(serviceRequest.getInstitutionId());
-        } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeStructBegin("response");
-                oprot.writeStructEnd();
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    public void doPostPutCollection(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final Messages.PutCollectionRequest serviceRequest;
-        try {
-            serviceRequest = Messages.PutCollectionRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
-            return;
-        }
-
-        try {
-            service.putCollection(serviceRequest.getCollection(), serviceRequest.getId());
-        } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeStructBegin("response");
-                oprot.writeStructEnd();
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CollectionCommandServiceJsonRpcServlet.class);
-    private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { @Override public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
     private final org.dressdiscover.api.services.collection.CollectionCommandService service;
 
     private final static class Messages {
         public final static class DeleteCollectionByIdRequest implements org.thryft.Struct {
-            public final static class Builder {
+            public final static class Builder implements org.thryft.CompoundType.Builder<Builder, DeleteCollectionByIdRequest> {
                 public Builder() {
                     id = null;
                 }
@@ -214,7 +64,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 public DeleteCollectionByIdRequest build() {
-                    UncheckedValidator.validate(id);
+                    Validator.validate(id);
 
                     return _build(id);
                 }
@@ -223,43 +73,26 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                     return id;
                 }
 
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readListBegin();
                         try {
-                            id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                            this.setId(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         }
                         iprot.readListEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readStructBegin();
                         while (true) {
@@ -270,7 +103,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                             switch (ifield.getName()) {
                             case "id": {
                                 try {
-                                    id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                                    this.setId(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                                 } catch (final IllegalArgumentException e) {
@@ -279,18 +112,18 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                                 break;
                             }
                             default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
+                                unknownFieldCallback.apply(ifield);
                                 break;
                             }
                             iprot.readFieldEnd();
                         }
                         iprot.readStructEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
                 public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -315,7 +148,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.collection.CollectionId id) {
-                    UncheckedValidator.validateId(id);
+                    Validator.validateId(id);
                     this.id = id;
                     return this;
                 }
@@ -358,16 +191,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<DeleteCollectionByIdRequest> {
-                @Override
-                public DeleteCollectionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionByIdRequest.readAs(iprot, type);
-                }
-
-                @Override
-                public DeleteCollectionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionByIdRequest.readAs(iprot, type, unknownFieldCallback);
-                }
+                public final static Factory INSTANCE = new Factory();
 
                 @Override
                 public DeleteCollectionByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -380,14 +204,13 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 @Override
-                public DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     return DeleteCollectionByIdRequest.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, (short)0, "id", "id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -445,17 +268,13 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -468,26 +287,14 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final org.dressdiscover.api.models.collection.CollectionId id) throws org.thryft.protocol.InputProtocolException {
-                    validateId(id);
-                }
-
-                public static void validateId(final org.dressdiscover.api.models.collection.CollectionId id) throws org.thryft.protocol.InputProtocolException {
-                    if (id == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: id is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final org.dressdiscover.api.models.collection.CollectionId id) {
                     validateId(id);
                 }
 
                 public static void validateId(final org.dressdiscover.api.models.collection.CollectionId id) {
                     if (id == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: id is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest: id is missing");
                     }
                 }
             }
@@ -501,10 +308,9 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected DeleteCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id) {
+            public DeleteCollectionByIdRequest(final org.dressdiscover.api.models.collection.CollectionId id) {
+                Validator.validate(id);
                 this.id = id;
             }
 
@@ -518,14 +324,6 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             public static Builder builder(final com.google.common.base.Optional<DeleteCollectionByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static DeleteCollectionByIdRequest create(final org.dressdiscover.api.models.collection.CollectionId id) {
-                UncheckedValidator.validate(id);
-                return new DeleteCollectionByIdRequest(id);
             }
 
             @Override
@@ -573,93 +371,23 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                hashCode = 31 * hashCode + getId().hashCode();
-                return hashCode;
-            }
-
-            public static DeleteCollectionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static DeleteCollectionByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
+                return getId().hashCode();
             }
 
             public static DeleteCollectionByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.collection.CollectionId id;
-
-                try {
-                    iprot.readListBegin();
-                    try {
-                        id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    }
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(id);
-
-                return new DeleteCollectionByIdRequest(id);
+                return builder().readAsList(iprot).build();
             }
 
             public static DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
             }
 
-            public static DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId id = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "id": {
-                            try {
-                                id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                            } catch (final IllegalArgumentException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                            }
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(id);
-
-                return new DeleteCollectionByIdRequest(id);
+            public static DeleteCollectionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                return builder().readAsStruct(iprot, unknownFieldCallback).build();
             }
 
             public DeleteCollectionByIdRequest replaceId(final org.dressdiscover.api.models.collection.CollectionId id) {
-                UncheckedValidator.validateId(id);
+                Validator.validateId(id);
                 return new DeleteCollectionByIdRequest(id);
             }
 
@@ -671,9 +399,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-                oprot.writeString(getId().toString());
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -682,6 +408,11 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 oprot.writeStructBegin("org.dressdiscover.api.services.collection.DeleteCollectionByIdRequest");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeString(getId().toString());
             }
 
             @Override
@@ -701,35 +432,6 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
         }
 
         public final static class DeleteCollectionByIdResponse implements org.thryft.Struct {
-            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteCollectionByIdResponse> {
-                @Override
-                public DeleteCollectionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionByIdResponse.readAs(iprot, type);
-                }
-
-                @Override
-                public DeleteCollectionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionByIdResponse.readAs(iprot, type, unknownFieldCallback);
-                }
-
-                @Override
-                public DeleteCollectionByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionByIdResponse.readAsList(iprot);
-                }
-
-                @Override
-                public DeleteCollectionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionByIdResponse.readAsStruct(iprot);
-                }
-
-                @Override
-                public DeleteCollectionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionByIdResponse.readAsStruct(iprot, unknownFieldCallback);
-                }
-            }
-
             private DeleteCollectionByIdResponse() {
             }
 
@@ -757,59 +459,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                return hashCode;
-            }
-
-            public static DeleteCollectionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static DeleteCollectionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
-            public static DeleteCollectionByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                try {
-                    iprot.readListBegin();
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                return INSTANCE;
-            }
-
-            public static DeleteCollectionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static DeleteCollectionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                return INSTANCE;
+                return 17;
             }
 
             @Override
@@ -820,6 +470,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -831,6 +482,10 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             }
 
             @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+            }
+
+            @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldStop();
             }
@@ -839,7 +494,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
         }
 
         public final static class DeleteCollectionsByInstitutionIdRequest implements org.thryft.Struct {
-            public final static class Builder {
+            public final static class Builder implements org.thryft.CompoundType.Builder<Builder, DeleteCollectionsByInstitutionIdRequest> {
                 public Builder() {
                     institutionId = null;
                 }
@@ -853,7 +508,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 public DeleteCollectionsByInstitutionIdRequest build() {
-                    UncheckedValidator.validate(institutionId);
+                    Validator.validate(institutionId);
 
                     return _build(institutionId);
                 }
@@ -862,43 +517,26 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                     return institutionId;
                 }
 
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readListBegin();
                         try {
-                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                            this.setInstitutionId(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
                         } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
                         }
                         iprot.readListEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readStructBegin();
                         while (true) {
@@ -909,7 +547,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                             switch (ifield.getName()) {
                             case "institution_id": {
                                 try {
-                                    institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                                    this.setInstitutionId(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
                                 } catch (final IllegalArgumentException e) {
@@ -918,18 +556,18 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                                 break;
                             }
                             default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
+                                unknownFieldCallback.apply(ifield);
                                 break;
                             }
                             iprot.readFieldEnd();
                         }
                         iprot.readStructEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
                 public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -962,7 +600,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                    UncheckedValidator.validateInstitutionId(institutionId);
+                    Validator.validateInstitutionId(institutionId);
                     this.institutionId = institutionId;
                     return this;
                 }
@@ -997,16 +635,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<DeleteCollectionsByInstitutionIdRequest> {
-                @Override
-                public DeleteCollectionsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionsByInstitutionIdRequest.readAs(iprot, type);
-                }
-
-                @Override
-                public DeleteCollectionsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionsByInstitutionIdRequest.readAs(iprot, type, unknownFieldCallback);
-                }
+                public final static Factory INSTANCE = new Factory();
 
                 @Override
                 public DeleteCollectionsByInstitutionIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1019,14 +648,13 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 @Override
-                public DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     return DeleteCollectionsByInstitutionIdRequest.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, (short)0, "institution_id", org.thryft.protocol.Type.STRING);
+                INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, (short)0, "institution_id", "institution_id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -1084,17 +712,13 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -1107,26 +731,14 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.thryft.protocol.InputProtocolException {
-                    validateInstitutionId(institutionId);
-                }
-
-                public static void validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.thryft.protocol.InputProtocolException {
-                    if (institutionId == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, "org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: institutionId is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
                     validateInstitutionId(institutionId);
                 }
 
                 public static void validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
                     if (institutionId == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: institutionId is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest: institutionId is missing");
                     }
                 }
             }
@@ -1140,10 +752,9 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected DeleteCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+            public DeleteCollectionsByInstitutionIdRequest(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+                Validator.validate(institutionId);
                 this.institutionId = institutionId;
             }
 
@@ -1157,14 +768,6 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             public static Builder builder(final com.google.common.base.Optional<DeleteCollectionsByInstitutionIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static DeleteCollectionsByInstitutionIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                UncheckedValidator.validate(institutionId);
-                return new DeleteCollectionsByInstitutionIdRequest(institutionId);
             }
 
             @Override
@@ -1212,93 +815,23 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                hashCode = 31 * hashCode + getInstitutionId().hashCode();
-                return hashCode;
-            }
-
-            public static DeleteCollectionsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static DeleteCollectionsByInstitutionIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
+                return getInstitutionId().hashCode();
             }
 
             public static DeleteCollectionsByInstitutionIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.institution.InstitutionId institutionId;
-
-                try {
-                    iprot.readListBegin();
-                    try {
-                        institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
-                    }
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(institutionId);
-
-                return new DeleteCollectionsByInstitutionIdRequest(institutionId);
+                return builder().readAsList(iprot).build();
             }
 
             public static DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
             }
 
-            public static DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "institution_id": {
-                            try {
-                                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
-                            } catch (final IllegalArgumentException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
-                            }
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(institutionId);
-
-                return new DeleteCollectionsByInstitutionIdRequest(institutionId);
+            public static DeleteCollectionsByInstitutionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                return builder().readAsStruct(iprot, unknownFieldCallback).build();
             }
 
             public DeleteCollectionsByInstitutionIdRequest replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-                UncheckedValidator.validateInstitutionId(institutionId);
+                Validator.validateInstitutionId(institutionId);
                 return new DeleteCollectionsByInstitutionIdRequest(institutionId);
             }
 
@@ -1310,9 +843,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-                oprot.writeString(getInstitutionId().toString());
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -1321,6 +852,11 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 oprot.writeStructBegin("org.dressdiscover.api.services.collection.DeleteCollectionsByInstitutionIdRequest");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeString(getInstitutionId().toString());
             }
 
             @Override
@@ -1340,35 +876,6 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
         }
 
         public final static class DeleteCollectionsByInstitutionIdResponse implements org.thryft.Struct {
-            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteCollectionsByInstitutionIdResponse> {
-                @Override
-                public DeleteCollectionsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionsByInstitutionIdResponse.readAs(iprot, type);
-                }
-
-                @Override
-                public DeleteCollectionsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionsByInstitutionIdResponse.readAs(iprot, type, unknownFieldCallback);
-                }
-
-                @Override
-                public DeleteCollectionsByInstitutionIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionsByInstitutionIdResponse.readAsList(iprot);
-                }
-
-                @Override
-                public DeleteCollectionsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionsByInstitutionIdResponse.readAsStruct(iprot);
-                }
-
-                @Override
-                public DeleteCollectionsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return DeleteCollectionsByInstitutionIdResponse.readAsStruct(iprot, unknownFieldCallback);
-                }
-            }
-
             private DeleteCollectionsByInstitutionIdResponse() {
             }
 
@@ -1396,59 +903,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                return hashCode;
-            }
-
-            public static DeleteCollectionsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static DeleteCollectionsByInstitutionIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
-            public static DeleteCollectionsByInstitutionIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                try {
-                    iprot.readListBegin();
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                return INSTANCE;
-            }
-
-            public static DeleteCollectionsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static DeleteCollectionsByInstitutionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                return INSTANCE;
+                return 17;
             }
 
             @Override
@@ -1459,6 +914,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -1470,6 +926,10 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             }
 
             @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+            }
+
+            @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldStop();
             }
@@ -1478,7 +938,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
         }
 
         public final static class PutCollectionRequest implements org.thryft.Struct {
-            public final static class Builder {
+            public final static class Builder implements org.thryft.CompoundType.Builder<Builder, PutCollectionRequest> {
                 public Builder() {
                     collection = null;
                     id = null;
@@ -1494,7 +954,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 public PutCollectionRequest build() {
-                    UncheckedValidator.validate(collection, id);
+                    Validator.validate(collection, id);
 
                     return _build(collection, id);
                 }
@@ -1507,44 +967,27 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                     return id;
                 }
 
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readListBegin();
-                        collection = org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot);
+                        this.setCollection(org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot));
                         try {
-                            id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                            this.setId(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         }
                         iprot.readListEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readStructBegin();
                         while (true) {
@@ -1554,12 +997,12 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                             }
                             switch (ifield.getName()) {
                             case "collection": {
-                                collection = org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot, unknownFieldCallback);
+                                this.setCollection(org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot, unknownFieldCallback));
                                 break;
                             }
                             case "id": {
                                 try {
-                                    id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                                    this.setId(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                                 } catch (final IllegalArgumentException e) {
@@ -1568,18 +1011,18 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                                 break;
                             }
                             default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
+                                unknownFieldCallback.apply(ifield);
                                 break;
                             }
                             iprot.readFieldEnd();
                         }
                         iprot.readStructEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
                 public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -1605,13 +1048,13 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 public Builder setCollection(final org.dressdiscover.api.models.collection.Collection collection) {
-                    UncheckedValidator.validateCollection(collection);
+                    Validator.validateCollection(collection);
                     this.collection = collection;
                     return this;
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.collection.CollectionId id) {
-                    UncheckedValidator.validateId(id);
+                    Validator.validateId(id);
                     this.id = id;
                     return this;
                 }
@@ -1662,16 +1105,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<PutCollectionRequest> {
-                @Override
-                public PutCollectionRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return PutCollectionRequest.readAs(iprot, type);
-                }
-
-                @Override
-                public PutCollectionRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return PutCollectionRequest.readAs(iprot, type, unknownFieldCallback);
-                }
+                public final static Factory INSTANCE = new Factory();
 
                 @Override
                 public PutCollectionRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1684,15 +1118,14 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 }
 
                 @Override
-                public PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     return PutCollectionRequest.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                COLLECTION("collection", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.Collection>() {}, true, (short)0, "collection", org.thryft.protocol.Type.STRUCT),
-                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING);
+                COLLECTION("collection", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.Collection>() {}, true, (short)0, "collection", "collection", org.thryft.protocol.Type.STRUCT),
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, (short)0, "id", "id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -1752,17 +1185,13 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -1775,26 +1204,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) throws org.thryft.protocol.InputProtocolException {
-                    validateCollection(collection);
-                    validateId(id);
-                }
-
-                public static void validateCollection(final org.dressdiscover.api.models.collection.Collection collection) throws org.thryft.protocol.InputProtocolException {
-                    if (collection == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION, "org.dressdiscover.api.services.collection.PutCollectionRequest: collection is null");
-                    }
-                }
-
-                public static void validateId(final org.dressdiscover.api.models.collection.CollectionId id) throws org.thryft.protocol.InputProtocolException {
-                    if (id == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.collection.PutCollectionRequest: id is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) {
                     validateCollection(collection);
                     validateId(id);
@@ -1802,13 +1212,13 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
                 public static void validateCollection(final org.dressdiscover.api.models.collection.Collection collection) {
                     if (collection == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.collection.PutCollectionRequest: collection is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.collection.PutCollectionRequest: collection is missing");
                     }
                 }
 
                 public static void validateId(final org.dressdiscover.api.models.collection.CollectionId id) {
                     if (id == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.collection.PutCollectionRequest: id is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.collection.PutCollectionRequest: id is missing");
                     }
                 }
             }
@@ -1822,10 +1232,9 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected PutCollectionRequest(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) {
+            public PutCollectionRequest(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) {
+                Validator.validate(collection, id);
                 this.collection = collection;
                 this.id = id;
             }
@@ -1840,14 +1249,6 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             public static Builder builder(final com.google.common.base.Optional<PutCollectionRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static PutCollectionRequest create(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) {
-                UncheckedValidator.validate(collection, id);
-                return new PutCollectionRequest(collection, id);
             }
 
             @Override
@@ -1910,100 +1311,25 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 return hashCode;
             }
 
-            public static PutCollectionRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static PutCollectionRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
             public static PutCollectionRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.collection.Collection collection;
-                org.dressdiscover.api.models.collection.CollectionId id;
-
-                try {
-                    iprot.readListBegin();
-                    collection = org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot);
-                    try {
-                        id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    }
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(collection, id);
-
-                return new PutCollectionRequest(collection, id);
+                return builder().readAsList(iprot).build();
             }
 
             public static PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
             }
 
-            public static PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable org.dressdiscover.api.models.collection.Collection collection = null;
-                @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId id = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "collection": {
-                            collection = org.dressdiscover.api.models.collection.Collection.readAsStruct(iprot, unknownFieldCallback);
-                            break;
-                        }
-                        case "id": {
-                            try {
-                                id = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                            } catch (final IllegalArgumentException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                            }
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(collection, id);
-
-                return new PutCollectionRequest(collection, id);
+            public static PutCollectionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                return builder().readAsStruct(iprot, unknownFieldCallback).build();
             }
 
             public PutCollectionRequest replaceCollection(final org.dressdiscover.api.models.collection.Collection collection) {
-                UncheckedValidator.validateCollection(collection);
+                Validator.validateCollection(collection);
                 return new PutCollectionRequest(collection, this.id);
             }
 
             public PutCollectionRequest replaceId(final org.dressdiscover.api.models.collection.CollectionId id) {
-                UncheckedValidator.validateId(id);
+                Validator.validateId(id);
                 return new PutCollectionRequest(this.collection, id);
             }
 
@@ -2015,11 +1341,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-                getCollection().writeAsStruct(oprot);
-
-                oprot.writeString(getId().toString());
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -2034,6 +1356,12 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 oprot.writeFieldBegin(FieldMetadata.COLLECTION);
                 getCollection().writeAsStruct(oprot);
                 oprot.writeFieldEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                getCollection().writeAsStruct(oprot);
+                oprot.writeString(getId().toString());
             }
 
             @Override
@@ -2057,35 +1385,6 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
         }
 
         public final static class PutCollectionResponse implements org.thryft.Struct {
-            public final static class Factory implements org.thryft.CompoundType.Factory<PutCollectionResponse> {
-                @Override
-                public PutCollectionResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return PutCollectionResponse.readAs(iprot, type);
-                }
-
-                @Override
-                public PutCollectionResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return PutCollectionResponse.readAs(iprot, type, unknownFieldCallback);
-                }
-
-                @Override
-                public PutCollectionResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return PutCollectionResponse.readAsList(iprot);
-                }
-
-                @Override
-                public PutCollectionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return PutCollectionResponse.readAsStruct(iprot);
-                }
-
-                @Override
-                public PutCollectionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return PutCollectionResponse.readAsStruct(iprot, unknownFieldCallback);
-                }
-            }
-
             private PutCollectionResponse() {
             }
 
@@ -2113,59 +1412,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                return hashCode;
-            }
-
-            public static PutCollectionResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static PutCollectionResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
-            public static PutCollectionResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                try {
-                    iprot.readListBegin();
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                return INSTANCE;
-            }
-
-            public static PutCollectionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static PutCollectionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                return INSTANCE;
+                return 17;
             }
 
             @Override
@@ -2176,6 +1423,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -2184,6 +1432,10 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
                 oprot.writeStructBegin("org.dressdiscover.api.services.collection.PutCollectionResponse");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
             }
 
             @Override

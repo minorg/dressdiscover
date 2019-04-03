@@ -1,7 +1,7 @@
 package org.dressdiscover.lib.properties;
 
 public final class StoreProperties implements org.thryft.waf.lib.Properties {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, StoreProperties> {
         public Builder() {
             cacheCollections = true;
             cacheInstitutions = true;
@@ -29,7 +29,7 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
         }
 
         public StoreProperties build() {
-            UncheckedValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+            Validator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
 
             return _build(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
         }
@@ -66,34 +66,19 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
             return resummarizeObjectsBulkRequestSize;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
-                cacheCollections = iprot.readBool();
-                cacheInstitutions = iprot.readBool();
-                dataDirectoryPath = iprot.readString();
+                this.setCacheCollections(iprot.readBool());
+                this.setCacheInstitutions(iprot.readBool());
+                this.setDataDirectoryPath(iprot.readString());
                 try {
-                    elasticSearchHost = com.google.common.net.HostAndPort.fromString(iprot.readString());
+                    this.setElasticSearchHost(com.google.common.net.HostAndPort.fromString(iprot.readString()));
                 } catch (final IllegalArgumentException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELASTIC_SEARCH_HOST, e);
                 }
                 try {
-                    mongoHosts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {
+                    this.setMongoHosts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -112,37 +97,35 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MONGO_HOSTS, e.getCause());
                 }
                 try {
-                    objectSummariesResultCacheSize = iprot.readI32();
+                    this.setObjectSummariesResultCacheSize(iprot.readI32());
                 } catch (final NumberFormatException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_SUMMARIES_RESULT_CACHE_SIZE, e);
                 }
                 try {
-                    objectSummaryCacheSize = iprot.readI32();
+                    this.setObjectSummaryCacheSize(iprot.readI32());
                 } catch (final NumberFormatException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_SUMMARY_CACHE_SIZE, e);
                 }
                 try {
-                    resummarizeObjectsBulkRequestSize = iprot.readI32();
+                    this.setResummarizeObjectsBulkRequestSize(iprot.readI32());
                 } catch (final NumberFormatException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE, e);
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -152,20 +135,20 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
                     }
                     switch (ifield.getName()) {
                     case "cache_collections": {
-                        cacheCollections = iprot.readBool();
+                        this.setCacheCollections(iprot.readBool());
                         break;
                     }
                     case "cache_institutions": {
-                        cacheInstitutions = iprot.readBool();
+                        this.setCacheInstitutions(iprot.readBool());
                         break;
                     }
                     case "data_directory_path": {
-                        dataDirectoryPath = iprot.readString();
+                        this.setDataDirectoryPath(iprot.readString());
                         break;
                     }
                     case "elastic_search_host": {
                         try {
-                            elasticSearchHost = com.google.common.net.HostAndPort.fromString(iprot.readString());
+                            this.setElasticSearchHost(com.google.common.net.HostAndPort.fromString(iprot.readString()));
                         } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELASTIC_SEARCH_HOST, e);
                         }
@@ -173,7 +156,7 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
                     }
                     case "mongo_hosts": {
                         try {
-                            mongoHosts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {
+                            this.setMongoHosts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -192,7 +175,7 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MONGO_HOSTS, e.getCause());
                         }
@@ -200,7 +183,7 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
                     }
                     case "object_summaries_result_cache_size": {
                         try {
-                            objectSummariesResultCacheSize = iprot.readI32();
+                            this.setObjectSummariesResultCacheSize(iprot.readI32());
                         } catch (final NumberFormatException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_SUMMARIES_RESULT_CACHE_SIZE, e);
                         }
@@ -208,7 +191,7 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
                     }
                     case "object_summary_cache_size": {
                         try {
-                            objectSummaryCacheSize = iprot.readI32();
+                            this.setObjectSummaryCacheSize(iprot.readI32());
                         } catch (final NumberFormatException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_SUMMARY_CACHE_SIZE, e);
                         }
@@ -216,25 +199,25 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
                     }
                     case "resummarize_objects_bulk_request_size": {
                         try {
-                            resummarizeObjectsBulkRequestSize = iprot.readI32();
+                            this.setResummarizeObjectsBulkRequestSize(iprot.readI32());
                         } catch (final NumberFormatException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE, e);
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -267,25 +250,25 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
         }
 
         public Builder setCacheCollections(final boolean cacheCollections) {
-            UncheckedValidator.validateCacheCollections(cacheCollections);
+            Validator.validateCacheCollections(cacheCollections);
             this.cacheCollections = cacheCollections;
             return this;
         }
 
         public Builder setCacheInstitutions(final boolean cacheInstitutions) {
-            UncheckedValidator.validateCacheInstitutions(cacheInstitutions);
+            Validator.validateCacheInstitutions(cacheInstitutions);
             this.cacheInstitutions = cacheInstitutions;
             return this;
         }
 
         public Builder setDataDirectoryPath(final String dataDirectoryPath) {
-            UncheckedValidator.validateDataDirectoryPath(dataDirectoryPath);
+            Validator.validateDataDirectoryPath(dataDirectoryPath);
             this.dataDirectoryPath = dataDirectoryPath;
             return this;
         }
 
         public Builder setElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) {
-            UncheckedValidator.validateElasticSearchHost(elasticSearchHost);
+            Validator.validateElasticSearchHost(elasticSearchHost);
             this.elasticSearchHost = elasticSearchHost;
             return this;
         }
@@ -306,25 +289,25 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
         }
 
         public Builder setMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) {
-            UncheckedValidator.validateMongoHosts(mongoHosts);
+            Validator.validateMongoHosts(mongoHosts);
             this.mongoHosts = mongoHosts;
             return this;
         }
 
         public Builder setObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
-            UncheckedValidator.validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
+            Validator.validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
             this.objectSummariesResultCacheSize = objectSummariesResultCacheSize;
             return this;
         }
 
         public Builder setObjectSummaryCacheSize(final int objectSummaryCacheSize) {
-            UncheckedValidator.validateObjectSummaryCacheSize(objectSummaryCacheSize);
+            Validator.validateObjectSummaryCacheSize(objectSummaryCacheSize);
             this.objectSummaryCacheSize = objectSummaryCacheSize;
             return this;
         }
 
         public Builder setResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
-            UncheckedValidator.validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
+            Validator.validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
             this.resummarizeObjectsBulkRequestSize = resummarizeObjectsBulkRequestSize;
             return this;
         }
@@ -409,17 +392,6 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<StoreProperties> {
         @Override
-        public StoreProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return StoreProperties.readAs(iprot, type);
-        }
-
-        @Override
-        public StoreProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return StoreProperties.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public StoreProperties readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return StoreProperties.readAsList(iprot);
         }
@@ -430,22 +402,21 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
         }
 
         @Override
-        public StoreProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public StoreProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return StoreProperties.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        CACHE_COLLECTIONS("cacheCollections", new com.google.common.reflect.TypeToken<Boolean>() {}, true, (short)0, "cache_collections", org.thryft.protocol.Type.BOOL),
-        CACHE_INSTITUTIONS("cacheInstitutions", new com.google.common.reflect.TypeToken<Boolean>() {}, true, (short)0, "cache_institutions", org.thryft.protocol.Type.BOOL),
-        DATA_DIRECTORY_PATH("dataDirectoryPath", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "data_directory_path", org.thryft.protocol.Type.STRING),
-        ELASTIC_SEARCH_HOST("elasticSearchHost", new com.google.common.reflect.TypeToken<com.google.common.net.HostAndPort>() {}, true, (short)0, "elastic_search_host", org.thryft.protocol.Type.STRING),
-        MONGO_HOSTS("mongoHosts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {}, true, (short)0, "mongo_hosts", org.thryft.protocol.Type.LIST),
-        OBJECT_SUMMARIES_RESULT_CACHE_SIZE("objectSummariesResultCacheSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "object_summaries_result_cache_size", org.thryft.protocol.Type.I32),
-        OBJECT_SUMMARY_CACHE_SIZE("objectSummaryCacheSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "object_summary_cache_size", org.thryft.protocol.Type.I32),
-        RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE("resummarizeObjectsBulkRequestSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "resummarize_objects_bulk_request_size", org.thryft.protocol.Type.I32);
+        CACHE_COLLECTIONS("cacheCollections", new com.google.common.reflect.TypeToken<Boolean>() {}, true, (short)0, "cache_collections", "cache_collections", org.thryft.protocol.Type.BOOL),
+        CACHE_INSTITUTIONS("cacheInstitutions", new com.google.common.reflect.TypeToken<Boolean>() {}, true, (short)0, "cache_institutions", "cache_institutions", org.thryft.protocol.Type.BOOL),
+        DATA_DIRECTORY_PATH("dataDirectoryPath", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "data_directory_path", "data_directory_path", org.thryft.protocol.Type.STRING),
+        ELASTIC_SEARCH_HOST("elasticSearchHost", new com.google.common.reflect.TypeToken<com.google.common.net.HostAndPort>() {}, true, (short)0, "elastic_search_host", "elastic_search_host", org.thryft.protocol.Type.STRING),
+        MONGO_HOSTS("mongoHosts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {}, true, (short)0, "mongo_hosts", "mongo_hosts", org.thryft.protocol.Type.LIST),
+        OBJECT_SUMMARIES_RESULT_CACHE_SIZE("objectSummariesResultCacheSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "object_summaries_result_cache_size", "object_summaries_result_cache_size", org.thryft.protocol.Type.I32),
+        OBJECT_SUMMARY_CACHE_SIZE("objectSummaryCacheSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "object_summary_cache_size", "object_summary_cache_size", org.thryft.protocol.Type.I32),
+        RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE("resummarizeObjectsBulkRequestSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "resummarize_objects_bulk_request_size", "resummarize_objects_bulk_request_size", org.thryft.protocol.Type.I32);
 
         @Override
         public String getJavaName() {
@@ -517,17 +488,13 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -540,53 +507,7 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) throws org.thryft.protocol.InputProtocolException {
-            validateCacheCollections(cacheCollections);
-            validateCacheInstitutions(cacheInstitutions);
-            validateDataDirectoryPath(dataDirectoryPath);
-            validateElasticSearchHost(elasticSearchHost);
-            validateMongoHosts(mongoHosts);
-            validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
-            validateObjectSummaryCacheSize(objectSummaryCacheSize);
-            validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
-        }
-
-        public static void validateCacheCollections(final boolean cacheCollections) {
-        }
-
-        public static void validateCacheInstitutions(final boolean cacheInstitutions) {
-        }
-
-        public static void validateDataDirectoryPath(final String dataDirectoryPath) throws org.thryft.protocol.InputProtocolException {
-            if (dataDirectoryPath == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATA_DIRECTORY_PATH, "org.dressdiscover.lib.properties.StoreProperties: dataDirectoryPath is null");
-            }
-        }
-
-        public static void validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) throws org.thryft.protocol.InputProtocolException {
-            if (elasticSearchHost == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ELASTIC_SEARCH_HOST, "org.dressdiscover.lib.properties.StoreProperties: elasticSearchHost is null");
-            }
-        }
-
-        public static void validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) throws org.thryft.protocol.InputProtocolException {
-            if (mongoHosts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MONGO_HOSTS, "org.dressdiscover.lib.properties.StoreProperties: mongoHosts is null");
-            }
-        }
-
-        public static void validateObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
-        }
-
-        public static void validateObjectSummaryCacheSize(final int objectSummaryCacheSize) {
-        }
-
-        public static void validateResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) {
             validateCacheCollections(cacheCollections);
             validateCacheInstitutions(cacheInstitutions);
@@ -606,19 +527,19 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
 
         public static void validateDataDirectoryPath(final String dataDirectoryPath) {
             if (dataDirectoryPath == null) {
-                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: dataDirectoryPath is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.lib.properties.StoreProperties: dataDirectoryPath is missing");
             }
         }
 
         public static void validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) {
             if (elasticSearchHost == null) {
-                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: elasticSearchHost is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.lib.properties.StoreProperties: elasticSearchHost is missing");
             }
         }
 
         public static void validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) {
             if (mongoHosts == null) {
-                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: mongoHosts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.lib.properties.StoreProperties: mongoHosts is missing");
             }
         }
 
@@ -640,11 +561,17 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected StoreProperties(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) {
+    public StoreProperties(final String dataDirectoryPath) {
+        this(true, true, dataDirectoryPath, com.google.common.net.HostAndPort.fromString("elasticsearch:9300"), com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017")), 1024, 1024, 1000);
+    }
+
+    /**
+     * Total constructor
+     */
+    public StoreProperties(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) {
+        Validator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
         this.cacheCollections = cacheCollections;
         this.cacheInstitutions = cacheInstitutions;
         this.dataDirectoryPath = dataDirectoryPath;
@@ -711,30 +638,6 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
 
     public static Builder builder(final com.google.common.base.Optional<StoreProperties> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static StoreProperties create(final String dataDirectoryPath) {
-        UncheckedValidator.validate(true, true, dataDirectoryPath, com.google.common.net.HostAndPort.fromString("elasticsearch:9300"), com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017")), 1024, 1024, 1000);
-        return new StoreProperties(true, true, dataDirectoryPath, com.google.common.net.HostAndPort.fromString("elasticsearch:9300"), com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017")), 1024, 1024, 1000);
-    }
-
-    /**
-     * Total boxed factory method
-     */
-    public static StoreProperties create(Boolean cacheCollections, Boolean cacheInstitutions, String dataDirectoryPath, com.google.common.net.HostAndPort elasticSearchHost, com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, Integer objectSummariesResultCacheSize, Integer objectSummaryCacheSize, Integer resummarizeObjectsBulkRequestSize) {
-        UncheckedValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
-        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static StoreProperties create(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) {
-        UncheckedValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
-        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     @Override
@@ -1017,241 +920,58 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
             throw new RuntimeException("properties file(s) have unknown property " + entry.getKey().toString());
         }
 
-        return StoreProperties.create(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
-    }
-
-    public static StoreProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static StoreProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
+        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     public static StoreProperties readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        boolean cacheCollections;
-        boolean cacheInstitutions;
-        String dataDirectoryPath;
-        com.google.common.net.HostAndPort elasticSearchHost;
-        com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts;
-        int objectSummariesResultCacheSize;
-        int objectSummaryCacheSize;
-        int resummarizeObjectsBulkRequestSize;
-
-        try {
-            iprot.readListBegin();
-            cacheCollections = iprot.readBool();
-            cacheInstitutions = iprot.readBool();
-            dataDirectoryPath = iprot.readString();
-            try {
-                elasticSearchHost = com.google.common.net.HostAndPort.fromString(iprot.readString());
-            } catch (final IllegalArgumentException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELASTIC_SEARCH_HOST, e);
-            }
-            try {
-                mongoHosts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<com.google.common.net.HostAndPort> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                try {
-                                    sequenceBuilder.add(com.google.common.net.HostAndPort.fromString(iprot.readString()));
-                                } catch (final IllegalArgumentException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                            }
-                            iprot.readListEnd();
-                            return sequenceBuilder.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MONGO_HOSTS, e.getCause());
-            }
-            try {
-                objectSummariesResultCacheSize = iprot.readI32();
-            } catch (final NumberFormatException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_SUMMARIES_RESULT_CACHE_SIZE, e);
-            }
-            try {
-                objectSummaryCacheSize = iprot.readI32();
-            } catch (final NumberFormatException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_SUMMARY_CACHE_SIZE, e);
-            }
-            try {
-                resummarizeObjectsBulkRequestSize = iprot.readI32();
-            } catch (final NumberFormatException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE, e);
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
-
-        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+        return builder().readAsList(iprot).build();
     }
 
     public static StoreProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static StoreProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        boolean cacheCollections = true;
-        boolean cacheInstitutions = true;
-        @javax.annotation.Nullable String dataDirectoryPath = null;
-        com.google.common.net.HostAndPort elasticSearchHost = com.google.common.net.HostAndPort.fromString("elasticsearch:9300");
-        com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts = com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017"));
-        int objectSummariesResultCacheSize = 1024;
-        int objectSummaryCacheSize = 1024;
-        int resummarizeObjectsBulkRequestSize = 1000;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "cache_collections": {
-                    cacheCollections = iprot.readBool();
-                    break;
-                }
-                case "cache_institutions": {
-                    cacheInstitutions = iprot.readBool();
-                    break;
-                }
-                case "data_directory_path": {
-                    dataDirectoryPath = iprot.readString();
-                    break;
-                }
-                case "elastic_search_host": {
-                    try {
-                        elasticSearchHost = com.google.common.net.HostAndPort.fromString(iprot.readString());
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELASTIC_SEARCH_HOST, e);
-                    }
-                    break;
-                }
-                case "mongo_hosts": {
-                    try {
-                        mongoHosts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<com.google.common.net.HostAndPort> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        try {
-                                            sequenceBuilder.add(com.google.common.net.HostAndPort.fromString(iprot.readString()));
-                                        } catch (final IllegalArgumentException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                    }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MONGO_HOSTS, e.getCause());
-                    }
-                    break;
-                }
-                case "object_summaries_result_cache_size": {
-                    try {
-                        objectSummariesResultCacheSize = iprot.readI32();
-                    } catch (final NumberFormatException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_SUMMARIES_RESULT_CACHE_SIZE, e);
-                    }
-                    break;
-                }
-                case "object_summary_cache_size": {
-                    try {
-                        objectSummaryCacheSize = iprot.readI32();
-                    } catch (final NumberFormatException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_SUMMARY_CACHE_SIZE, e);
-                    }
-                    break;
-                }
-                case "resummarize_objects_bulk_request_size": {
-                    try {
-                        resummarizeObjectsBulkRequestSize = iprot.readI32();
-                    } catch (final NumberFormatException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE, e);
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
-
-        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+    public static StoreProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public StoreProperties replaceCacheCollections(final boolean cacheCollections) {
-        UncheckedValidator.validateCacheCollections(cacheCollections);
+        Validator.validateCacheCollections(cacheCollections);
         return new StoreProperties(cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceCacheInstitutions(final boolean cacheInstitutions) {
-        UncheckedValidator.validateCacheInstitutions(cacheInstitutions);
+        Validator.validateCacheInstitutions(cacheInstitutions);
         return new StoreProperties(this.cacheCollections, cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceDataDirectoryPath(final String dataDirectoryPath) {
-        UncheckedValidator.validateDataDirectoryPath(dataDirectoryPath);
+        Validator.validateDataDirectoryPath(dataDirectoryPath);
         return new StoreProperties(this.cacheCollections, this.cacheInstitutions, dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) {
-        UncheckedValidator.validateElasticSearchHost(elasticSearchHost);
+        Validator.validateElasticSearchHost(elasticSearchHost);
         return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) {
-        UncheckedValidator.validateMongoHosts(mongoHosts);
+        Validator.validateMongoHosts(mongoHosts);
         return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
-        UncheckedValidator.validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
+        Validator.validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
         return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceObjectSummaryCacheSize(final int objectSummaryCacheSize) {
-        UncheckedValidator.validateObjectSummaryCacheSize(objectSummaryCacheSize);
+        Validator.validateObjectSummaryCacheSize(objectSummaryCacheSize);
         return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
-        UncheckedValidator.validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
+        Validator.validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
         return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
@@ -1276,27 +996,7 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 8);
-
-        oprot.writeBool(getCacheCollections());
-
-        oprot.writeBool(getCacheInstitutions());
-
-        oprot.writeString(getDataDirectoryPath());
-
-        oprot.writeString(getElasticSearchHost().toString());
-
-        oprot.writeListBegin(org.thryft.protocol.Type.STRING, getMongoHosts().size());
-        for (final com.google.common.net.HostAndPort _iter0 : getMongoHosts()) {
-            oprot.writeString(_iter0.toString());
-        }
-        oprot.writeListEnd();
-
-        oprot.writeI32(getObjectSummariesResultCacheSize());
-
-        oprot.writeI32(getObjectSummaryCacheSize());
-
-        oprot.writeI32(getResummarizeObjectsBulkRequestSize());
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -1329,6 +1029,22 @@ public final class StoreProperties implements org.thryft.waf.lib.Properties {
         oprot.writeFieldBegin(FieldMetadata.ELASTIC_SEARCH_HOST);
         oprot.writeString(getElasticSearchHost().toString());
         oprot.writeFieldEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeBool(getCacheCollections());
+        oprot.writeBool(getCacheInstitutions());
+        oprot.writeString(getDataDirectoryPath());
+        oprot.writeString(getElasticSearchHost().toString());
+        oprot.writeListBegin(org.thryft.protocol.Type.STRING, getMongoHosts().size());
+        for (final com.google.common.net.HostAndPort _iter0 : getMongoHosts()) {
+            oprot.writeString(_iter0.toString());
+        }
+        oprot.writeListEnd();
+        oprot.writeI32(getObjectSummariesResultCacheSize());
+        oprot.writeI32(getObjectSummaryCacheSize());
+        oprot.writeI32(getResummarizeObjectsBulkRequestSize());
     }
 
     @Override

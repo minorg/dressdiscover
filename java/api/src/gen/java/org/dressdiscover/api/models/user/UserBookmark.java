@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.user;
 
 public final class UserBookmark implements org.thryft.waf.api.models.Model {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, UserBookmark> {
         public Builder() {
             name = null;
             userId = null;
@@ -23,7 +23,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         }
 
         public UserBookmark build() {
-            UncheckedValidator.validate(name, userId, folder, objectId, objectQuery);
+            Validator.validate(name, userId, folder, objectId, objectQuery);
 
             return _build(name, userId, folder, objectId, objectQuery);
         }
@@ -48,57 +48,40 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
             return userId;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                name = iprot.readString();
+                this.setName(iprot.readString());
                 try {
-                    userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    this.setUserId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                 } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                 } catch (final IllegalArgumentException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                 }
                 if (__list.getSize() > 2) {
-                    folder = com.google.common.base.Optional.of(iprot.readString());
+                    this.setFolder(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 3) {
                     try {
-                        objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                        this.setObjectId(com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString())));
                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                     } catch (final IllegalArgumentException e) {
                     }
                 }
                 if (__list.getSize() > 4) {
-                    objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
+                    this.setObjectQuery(com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot)));
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -108,12 +91,12 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
                     }
                     switch (ifield.getName()) {
                     case "name": {
-                        name = iprot.readString();
+                        this.setName(iprot.readString());
                         break;
                     }
                     case "user_id": {
                         try {
-                            userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            this.setUserId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                         } catch (final IllegalArgumentException e) {
@@ -122,34 +105,34 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
                         break;
                     }
                     case "folder": {
-                        folder = com.google.common.base.Optional.of(iprot.readString());
+                        this.setFolder(com.google.common.base.Optional.of(iprot.readString()));
                         break;
                     }
                     case "object_id": {
                         try {
-                            objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                            this.setObjectId(com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString())));
                         } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                         } catch (final IllegalArgumentException e) {
                         }
                         break;
                     }
                     case "object_query": {
-                        objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot, unknownFieldCallback));
+                        this.setObjectQuery(com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot, unknownFieldCallback)));
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -178,7 +161,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setFolder(final com.google.common.base.Optional<String> folder) {
-            UncheckedValidator.validateFolder(folder);
+            Validator.validateFolder(folder);
             this.folder = folder;
             return this;
         }
@@ -206,13 +189,13 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setName(final String name) {
-            UncheckedValidator.validateName(name);
+            Validator.validateName(name);
             this.name = name;
             return this;
         }
 
         public Builder setObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) {
-            UncheckedValidator.validateObjectId(objectId);
+            Validator.validateObjectId(objectId);
             this.objectId = objectId;
             return this;
         }
@@ -222,7 +205,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-            UncheckedValidator.validateObjectQuery(objectQuery);
+            Validator.validateObjectQuery(objectQuery);
             this.objectQuery = objectQuery;
             return this;
         }
@@ -232,7 +215,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setUserId(final org.dressdiscover.api.models.user.UserId userId) {
-            UncheckedValidator.validateUserId(userId);
+            Validator.validateUserId(userId);
             this.userId = userId;
             return this;
         }
@@ -296,17 +279,6 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<UserBookmark> {
         @Override
-        public UserBookmark readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return UserBookmark.readAs(iprot, type);
-        }
-
-        @Override
-        public UserBookmark readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return UserBookmark.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public UserBookmark readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return UserBookmark.readAsList(iprot);
         }
@@ -317,19 +289,18 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         }
 
         @Override
-        public UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return UserBookmark.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        NAME("name", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "name", org.thryft.protocol.Type.STRING),
-        USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "user_id", org.thryft.protocol.Type.STRING),
-        FOLDER("folder", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "folder", org.thryft.protocol.Type.STRING),
-        OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, (short)0, "object_id", org.thryft.protocol.Type.STRING),
-        OBJECT_QUERY("objectQuery", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectQuery>() {}, false, (short)0, "object_query", org.thryft.protocol.Type.STRUCT);
+        NAME("name", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "name", "name", org.thryft.protocol.Type.STRING),
+        USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "user_id", "user_id", org.thryft.protocol.Type.STRING),
+        FOLDER("folder", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "folder", "folder", org.thryft.protocol.Type.STRING),
+        OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, (short)0, "object_id", "object_id", org.thryft.protocol.Type.STRING),
+        OBJECT_QUERY("objectQuery", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectQuery>() {}, false, (short)0, "object_query", "object_query", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -395,17 +366,13 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -418,55 +385,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) throws org.thryft.protocol.InputProtocolException {
-            validateName(name);
-            validateUserId(userId);
-            validateFolder(folder);
-            validateObjectId(objectId);
-            validateObjectQuery(objectQuery);
-        }
-
-        public static void validateName(final String name) throws org.thryft.protocol.InputProtocolException {
-            if (name == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.UserBookmark: name is null");
-            }
-            if (name.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.UserBookmark: name: less than min length 1");
-            }
-        }
-
-        public static void validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws org.thryft.protocol.InputProtocolException {
-            if (userId == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.USER_ID, "org.dressdiscover.api.models.user.UserBookmark: userId is null");
-            }
-        }
-
-        public static void validateFolder(final com.google.common.base.Optional<String> folder) throws org.thryft.protocol.InputProtocolException {
-            if (folder == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FOLDER, "org.dressdiscover.api.models.user.UserBookmark: folder is null");
-            }
-            if (folder.isPresent()) {
-                if (folder.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FOLDER, "org.dressdiscover.api.models.user.UserBookmark: folder: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) throws org.thryft.protocol.InputProtocolException {
-            if (objectId == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_ID, "org.dressdiscover.api.models.user.UserBookmark: objectId is null");
-            }
-        }
-
-        public static void validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) throws org.thryft.protocol.InputProtocolException {
-            if (objectQuery == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_QUERY, "org.dressdiscover.api.models.user.UserBookmark: objectQuery is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
             validateName(name);
             validateUserId(userId);
@@ -477,39 +396,39 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
 
         public static void validateName(final String name) {
             if (name == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: name is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserBookmark: name is missing");
             }
             if (name.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.user.UserBookmark: name: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserBookmark: name: less than min length 1");
             }
         }
 
         public static void validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
             if (userId == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: userId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserBookmark: userId is missing");
             }
         }
 
         public static void validateFolder(final com.google.common.base.Optional<String> folder) {
             if (folder == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: folder is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserBookmark: folder is missing");
             }
             if (folder.isPresent()) {
                 if (folder.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.user.UserBookmark: folder: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserBookmark: folder: less than min length 1");
                 }
             }
         }
 
         public static void validateObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) {
             if (objectId == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: objectId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserBookmark: objectId is missing");
             }
         }
 
         public static void validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
             if (objectQuery == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: objectQuery is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserBookmark: objectQuery is missing");
             }
         }
     }
@@ -522,16 +441,29 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
+    public UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId) {
+        this(name, userId, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
+        Validator.validate(name, userId, folder, objectId, objectQuery);
         this.name = name;
         this.userId = userId;
         this.folder = folder;
         this.objectId = objectId;
         this.objectQuery = objectQuery;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public UserBookmark(final String name, final org.dressdiscover.api.models.user.UserId userId, @javax.annotation.Nullable final String folder, @javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId objectId, @javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectQuery objectQuery) {
+        this(name, userId, com.google.common.base.Optional.fromNullable(folder), com.google.common.base.Optional.fromNullable(objectId), com.google.common.base.Optional.fromNullable(objectQuery));
     }
 
     public static Builder builder() {
@@ -544,33 +476,6 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
 
     public static Builder builder(final com.google.common.base.Optional<UserBookmark> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId) {
-        UncheckedValidator.validate(name, userId, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent());
-        return new UserBookmark(name, userId, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId, @javax.annotation.Nullable final String folder, @javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId objectId, @javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectQuery objectQuery) {
-        final com.google.common.base.Optional<String> folderOptional = com.google.common.base.Optional.fromNullable(folder);
-        final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectIdOptional = com.google.common.base.Optional.fromNullable(objectId);
-        final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQueryOptional = com.google.common.base.Optional.fromNullable(objectQuery);
-        UncheckedValidator.validate(name, userId, folderOptional, objectIdOptional, objectQueryOptional);
-        return new UserBookmark(name, userId, folderOptional, objectIdOptional, objectQueryOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static UserBookmark create(final String name, final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<String> folder, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-        UncheckedValidator.validate(name, userId, folder, objectId, objectQuery);
-        return new UserBookmark(name, userId, folder, objectId, objectQuery);
     }
 
     @Override
@@ -669,130 +574,20 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         return hashCode;
     }
 
-    public static UserBookmark readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static UserBookmark readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static UserBookmark readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String name;
-        org.dressdiscover.api.models.user.UserId userId;
-        com.google.common.base.Optional<String> folder = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            name = iprot.readString();
-            try {
-                userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-            } catch (final IllegalArgumentException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-            }
-            if (__list.getSize() > 2) {
-                folder = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 3) {
-                try {
-                    objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
-                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                } catch (final IllegalArgumentException e) {
-                }
-            }
-            if (__list.getSize() > 4) {
-                objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(name, userId, folder, objectId, objectQuery);
-
-        return new UserBookmark(name, userId, folder, objectId, objectQuery);
+        return builder().readAsList(iprot).build();
     }
 
     public static UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String name = null;
-        @javax.annotation.Nullable org.dressdiscover.api.models.user.UserId userId = null;
-        com.google.common.base.Optional<String> folder = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "name": {
-                    name = iprot.readString();
-                    break;
-                }
-                case "user_id": {
-                    try {
-                        userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-                    }
-                    break;
-                }
-                case "folder": {
-                    folder = com.google.common.base.Optional.of(iprot.readString());
-                    break;
-                }
-                case "object_id": {
-                    try {
-                        objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
-                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                    } catch (final IllegalArgumentException e) {
-                    }
-                    break;
-                }
-                case "object_query": {
-                    objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot, unknownFieldCallback));
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(name, userId, folder, objectId, objectQuery);
-
-        return new UserBookmark(name, userId, folder, objectId, objectQuery);
+    public static UserBookmark readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public UserBookmark replaceFolder(final com.google.common.base.Optional<String> folder) {
-        UncheckedValidator.validateFolder(folder);
+        Validator.validateFolder(folder);
         return new UserBookmark(this.name, this.userId, folder, this.objectId, this.objectQuery);
     }
 
@@ -801,12 +596,12 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
     }
 
     public UserBookmark replaceName(final String name) {
-        UncheckedValidator.validateName(name);
+        Validator.validateName(name);
         return new UserBookmark(name, this.userId, this.folder, this.objectId, this.objectQuery);
     }
 
     public UserBookmark replaceObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId) {
-        UncheckedValidator.validateObjectId(objectId);
+        Validator.validateObjectId(objectId);
         return new UserBookmark(this.name, this.userId, this.folder, objectId, this.objectQuery);
     }
 
@@ -815,7 +610,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
     }
 
     public UserBookmark replaceObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
-        UncheckedValidator.validateObjectQuery(objectQuery);
+        Validator.validateObjectQuery(objectQuery);
         return new UserBookmark(this.name, this.userId, this.folder, this.objectId, objectQuery);
     }
 
@@ -824,7 +619,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
     }
 
     public UserBookmark replaceUserId(final org.dressdiscover.api.models.user.UserId userId) {
-        UncheckedValidator.validateUserId(userId);
+        Validator.validateUserId(userId);
         return new UserBookmark(this.name, userId, this.folder, this.objectId, this.objectQuery);
     }
 
@@ -836,29 +631,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
-
-        oprot.writeString(getName());
-
-        oprot.writeString(getUserId().toString());
-
-        if (getFolder().isPresent()) {
-            oprot.writeString(getFolder().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getObjectId().isPresent()) {
-            oprot.writeString(getObjectId().get().toString());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getObjectQuery().isPresent()) {
-            getObjectQuery().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -867,6 +640,27 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
         oprot.writeStructBegin("org.dressdiscover.api.models.user.UserBookmark");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getName());
+        oprot.writeString(getUserId().toString());
+        if (getFolder().isPresent()) {
+            oprot.writeString(getFolder().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getObjectId().isPresent()) {
+            oprot.writeString(getObjectId().get().toString());
+        } else {
+            oprot.writeNull();
+        }
+        if (getObjectQuery().isPresent()) {
+            getObjectQuery().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

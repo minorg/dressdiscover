@@ -1,7 +1,7 @@
 package org.dressdiscover.api.vocabularies.dublin_core;
 
 public final class DublinCoreObject implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, DublinCoreObject> {
         public Builder() {
             abstracts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             audiences = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
@@ -61,7 +61,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public DublinCoreObject build() {
-            UncheckedValidator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
+            Validator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
 
             return _build(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
         }
@@ -162,27 +162,12 @@ public final class DublinCoreObject implements org.thryft.Struct {
             return types;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
                     try {
-                        abstracts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setAbstracts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -197,14 +182,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 1) {
                     try {
-                        audiences = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setAudiences(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -219,14 +204,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 2) {
                     try {
-                        contributors = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setContributors(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -241,14 +226,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 3) {
                     try {
-                        coverages = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setCoverages(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -263,14 +248,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 4) {
                     try {
-                        createds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setCreateds(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -285,14 +270,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 5) {
                     try {
-                        creators = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setCreators(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -307,14 +292,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 6) {
                     try {
-                        dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setDates(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -329,14 +314,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 7) {
                     try {
-                        descriptions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setDescriptions(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -351,14 +336,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 8) {
                     try {
-                        extents = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setExtents(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -373,14 +358,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 9) {
                     try {
-                        formats = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setFormats(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -395,14 +380,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 10) {
                     try {
-                        identifiers = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setIdentifiers(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -417,14 +402,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 11) {
                     try {
-                        languages = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setLanguages(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -439,14 +424,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 12) {
                     try {
-                        mediums = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setMediums(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -461,14 +446,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 13) {
                     try {
-                        provenances = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setProvenances(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -483,14 +468,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 14) {
                     try {
-                        publishers = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setPublishers(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -505,14 +490,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 15) {
                     try {
-                        relations = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setRelations(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -527,14 +512,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 16) {
                     try {
-                        rights = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setRights(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -549,14 +534,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 17) {
                     try {
-                        rightsHolders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setRightsHolders(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -571,14 +556,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 18) {
                     try {
-                        sources = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setSources(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -593,14 +578,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 19) {
                     try {
-                        spatials = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setSpatials(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -615,14 +600,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 20) {
                     try {
-                        subjects = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setSubjects(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -637,14 +622,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 21) {
                     try {
-                        temporals = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setTemporals(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -659,14 +644,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 22) {
                     try {
-                        titles = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setTitles(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -681,14 +666,14 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 23) {
                     try {
-                        types = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setTypes(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -703,23 +688,21 @@ public final class DublinCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, e.getCause());
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -730,617 +713,617 @@ public final class DublinCoreObject implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "abstracts": {
                         if (!ifield.hasId() || ifield.getId() == 24) {
-                            try {
-                                abstracts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setAbstracts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "audiences": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            try {
-                                audiences = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setAudiences(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "contributors": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            try {
-                                contributors = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setContributors(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "coverages": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            try {
-                                coverages = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setCoverages(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "createds": {
                         if (!ifield.hasId() || ifield.getId() == 20) {
-                            try {
-                                createds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setCreateds(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "creators": {
                         if (!ifield.hasId() || ifield.getId() == 4) {
-                            try {
-                                creators = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setCreators(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "dates": {
                         if (!ifield.hasId() || ifield.getId() == 5) {
-                            try {
-                                dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setDates(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "descriptions": {
                         if (!ifield.hasId() || ifield.getId() == 6) {
-                            try {
-                                descriptions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setDescriptions(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "extents": {
                         if (!ifield.hasId() || ifield.getId() == 19) {
-                            try {
-                                extents = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setExtents(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "formats": {
                         if (!ifield.hasId() || ifield.getId() == 8) {
-                            try {
-                                formats = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setFormats(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "identifiers": {
                         if (!ifield.hasId() || ifield.getId() == 7) {
-                            try {
-                                identifiers = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setIdentifiers(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "languages": {
                         if (!ifield.hasId() || ifield.getId() == 9) {
-                            try {
-                                languages = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setLanguages(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "mediums": {
                         if (!ifield.hasId() || ifield.getId() == 23) {
-                            try {
-                                mediums = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setMediums(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "provenances": {
                         if (!ifield.hasId() || ifield.getId() == 10) {
-                            try {
-                                provenances = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setProvenances(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "publishers": {
                         if (!ifield.hasId() || ifield.getId() == 11) {
-                            try {
-                                publishers = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setPublishers(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "relations": {
                         if (!ifield.hasId() || ifield.getId() == 12) {
-                            try {
-                                relations = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setRelations(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "rights": {
                         if (!ifield.hasId() || ifield.getId() == 13) {
-                            try {
-                                rights = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setRights(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "rights_holders": {
                         if (!ifield.hasId() || ifield.getId() == 14) {
-                            try {
-                                rightsHolders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setRightsHolders(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "sources": {
                         if (!ifield.hasId() || ifield.getId() == 15) {
-                            try {
-                                sources = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setSources(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "spatials": {
                         if (!ifield.hasId() || ifield.getId() == 21) {
-                            try {
-                                spatials = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setSpatials(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "subjects": {
                         if (!ifield.hasId() || ifield.getId() == 16) {
-                            try {
-                                subjects = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setSubjects(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "temporals": {
                         if (!ifield.hasId() || ifield.getId() == 22) {
-                            try {
-                                temporals = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setTemporals(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "titles": {
                         if (!ifield.hasId() || ifield.getId() == 17) {
-                            try {
-                                titles = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setTitles(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "types": {
                         if (!ifield.hasId() || ifield.getId() == 18) {
-                            try {
-                                types = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(iprot.readString());
+                                try {
+                                    this.setTypes(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(iprot.readString());
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, e.getCause());
+                                }
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -1389,7 +1372,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) {
-            UncheckedValidator.validateAbstracts(abstracts);
+            Validator.validateAbstracts(abstracts);
             this.abstracts = abstracts;
             return this;
         }
@@ -1399,7 +1382,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) {
-            UncheckedValidator.validateAudiences(audiences);
+            Validator.validateAudiences(audiences);
             this.audiences = audiences;
             return this;
         }
@@ -1409,7 +1392,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) {
-            UncheckedValidator.validateContributors(contributors);
+            Validator.validateContributors(contributors);
             this.contributors = contributors;
             return this;
         }
@@ -1419,7 +1402,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) {
-            UncheckedValidator.validateCoverages(coverages);
+            Validator.validateCoverages(coverages);
             this.coverages = coverages;
             return this;
         }
@@ -1429,7 +1412,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) {
-            UncheckedValidator.validateCreateds(createds);
+            Validator.validateCreateds(createds);
             this.createds = createds;
             return this;
         }
@@ -1439,7 +1422,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) {
-            UncheckedValidator.validateCreators(creators);
+            Validator.validateCreators(creators);
             this.creators = creators;
             return this;
         }
@@ -1449,7 +1432,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) {
-            UncheckedValidator.validateDates(dates);
+            Validator.validateDates(dates);
             this.dates = dates;
             return this;
         }
@@ -1459,7 +1442,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) {
-            UncheckedValidator.validateDescriptions(descriptions);
+            Validator.validateDescriptions(descriptions);
             this.descriptions = descriptions;
             return this;
         }
@@ -1469,7 +1452,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) {
-            UncheckedValidator.validateExtents(extents);
+            Validator.validateExtents(extents);
             this.extents = extents;
             return this;
         }
@@ -1479,7 +1462,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) {
-            UncheckedValidator.validateFormats(formats);
+            Validator.validateFormats(formats);
             this.formats = formats;
             return this;
         }
@@ -1489,7 +1472,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) {
-            UncheckedValidator.validateIdentifiers(identifiers);
+            Validator.validateIdentifiers(identifiers);
             this.identifiers = identifiers;
             return this;
         }
@@ -1578,7 +1561,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) {
-            UncheckedValidator.validateLanguages(languages);
+            Validator.validateLanguages(languages);
             this.languages = languages;
             return this;
         }
@@ -1588,7 +1571,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) {
-            UncheckedValidator.validateMediums(mediums);
+            Validator.validateMediums(mediums);
             this.mediums = mediums;
             return this;
         }
@@ -1598,7 +1581,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) {
-            UncheckedValidator.validateProvenances(provenances);
+            Validator.validateProvenances(provenances);
             this.provenances = provenances;
             return this;
         }
@@ -1608,7 +1591,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setPublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) {
-            UncheckedValidator.validatePublishers(publishers);
+            Validator.validatePublishers(publishers);
             this.publishers = publishers;
             return this;
         }
@@ -1618,7 +1601,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) {
-            UncheckedValidator.validateRelations(relations);
+            Validator.validateRelations(relations);
             this.relations = relations;
             return this;
         }
@@ -1628,7 +1611,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) {
-            UncheckedValidator.validateRights(rights);
+            Validator.validateRights(rights);
             this.rights = rights;
             return this;
         }
@@ -1638,7 +1621,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) {
-            UncheckedValidator.validateRightsHolders(rightsHolders);
+            Validator.validateRightsHolders(rightsHolders);
             this.rightsHolders = rightsHolders;
             return this;
         }
@@ -1648,7 +1631,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
-            UncheckedValidator.validateSources(sources);
+            Validator.validateSources(sources);
             this.sources = sources;
             return this;
         }
@@ -1658,7 +1641,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) {
-            UncheckedValidator.validateSpatials(spatials);
+            Validator.validateSpatials(spatials);
             this.spatials = spatials;
             return this;
         }
@@ -1668,7 +1651,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) {
-            UncheckedValidator.validateSubjects(subjects);
+            Validator.validateSubjects(subjects);
             this.subjects = subjects;
             return this;
         }
@@ -1678,7 +1661,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) {
-            UncheckedValidator.validateTemporals(temporals);
+            Validator.validateTemporals(temporals);
             this.temporals = temporals;
             return this;
         }
@@ -1688,7 +1671,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) {
-            UncheckedValidator.validateTitles(titles);
+            Validator.validateTitles(titles);
             this.titles = titles;
             return this;
         }
@@ -1698,7 +1681,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-            UncheckedValidator.validateTypes(types);
+            Validator.validateTypes(types);
             this.types = types;
             return this;
         }
@@ -1899,17 +1882,6 @@ public final class DublinCoreObject implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<DublinCoreObject> {
         @Override
-        public DublinCoreObject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return DublinCoreObject.readAs(iprot, type);
-        }
-
-        @Override
-        public DublinCoreObject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return DublinCoreObject.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public DublinCoreObject readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return DublinCoreObject.readAsList(iprot);
         }
@@ -1920,38 +1892,37 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         @Override
-        public DublinCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public DublinCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return DublinCoreObject.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ABSTRACTS("abstracts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)24, "abstracts", org.thryft.protocol.Type.LIST),
-        AUDIENCES("audiences", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)1, "audiences", org.thryft.protocol.Type.LIST),
-        CONTRIBUTORS("contributors", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)2, "contributors", org.thryft.protocol.Type.LIST),
-        COVERAGES("coverages", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)3, "coverages", org.thryft.protocol.Type.LIST),
-        CREATEDS("createds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)20, "createds", org.thryft.protocol.Type.LIST),
-        CREATORS("creators", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)4, "creators", org.thryft.protocol.Type.LIST),
-        DATES("dates", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)5, "dates", org.thryft.protocol.Type.LIST),
-        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)6, "descriptions", org.thryft.protocol.Type.LIST),
-        EXTENTS("extents", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)19, "extents", org.thryft.protocol.Type.LIST),
-        FORMATS("formats", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)8, "formats", org.thryft.protocol.Type.LIST),
-        IDENTIFIERS("identifiers", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)7, "identifiers", org.thryft.protocol.Type.LIST),
-        LANGUAGES("languages", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)9, "languages", org.thryft.protocol.Type.LIST),
-        MEDIUMS("mediums", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)23, "mediums", org.thryft.protocol.Type.LIST),
-        PROVENANCES("provenances", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)10, "provenances", org.thryft.protocol.Type.LIST),
-        PUBLISHERS("publishers", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)11, "publishers", org.thryft.protocol.Type.LIST),
-        RELATIONS("relations", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)12, "relations", org.thryft.protocol.Type.LIST),
-        RIGHTS("rights", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)13, "rights", org.thryft.protocol.Type.LIST),
-        RIGHTS_HOLDERS("rightsHolders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)14, "rights_holders", org.thryft.protocol.Type.LIST),
-        SOURCES("sources", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)15, "sources", org.thryft.protocol.Type.LIST),
-        SPATIALS("spatials", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)21, "spatials", org.thryft.protocol.Type.LIST),
-        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)16, "subjects", org.thryft.protocol.Type.LIST),
-        TEMPORALS("temporals", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)22, "temporals", org.thryft.protocol.Type.LIST),
-        TITLES("titles", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)17, "titles", org.thryft.protocol.Type.LIST),
-        TYPES("types", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)18, "types", org.thryft.protocol.Type.LIST);
+        ABSTRACTS("abstracts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)24, "abstracts", "24:abstracts", org.thryft.protocol.Type.LIST),
+        AUDIENCES("audiences", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)1, "audiences", "1:audiences", org.thryft.protocol.Type.LIST),
+        CONTRIBUTORS("contributors", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)2, "contributors", "2:contributors", org.thryft.protocol.Type.LIST),
+        COVERAGES("coverages", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)3, "coverages", "3:coverages", org.thryft.protocol.Type.LIST),
+        CREATEDS("createds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)20, "createds", "20:createds", org.thryft.protocol.Type.LIST),
+        CREATORS("creators", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)4, "creators", "4:creators", org.thryft.protocol.Type.LIST),
+        DATES("dates", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)5, "dates", "5:dates", org.thryft.protocol.Type.LIST),
+        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)6, "descriptions", "6:descriptions", org.thryft.protocol.Type.LIST),
+        EXTENTS("extents", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)19, "extents", "19:extents", org.thryft.protocol.Type.LIST),
+        FORMATS("formats", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)8, "formats", "8:formats", org.thryft.protocol.Type.LIST),
+        IDENTIFIERS("identifiers", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)7, "identifiers", "7:identifiers", org.thryft.protocol.Type.LIST),
+        LANGUAGES("languages", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)9, "languages", "9:languages", org.thryft.protocol.Type.LIST),
+        MEDIUMS("mediums", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)23, "mediums", "23:mediums", org.thryft.protocol.Type.LIST),
+        PROVENANCES("provenances", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)10, "provenances", "10:provenances", org.thryft.protocol.Type.LIST),
+        PUBLISHERS("publishers", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)11, "publishers", "11:publishers", org.thryft.protocol.Type.LIST),
+        RELATIONS("relations", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)12, "relations", "12:relations", org.thryft.protocol.Type.LIST),
+        RIGHTS("rights", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)13, "rights", "13:rights", org.thryft.protocol.Type.LIST),
+        RIGHTS_HOLDERS("rightsHolders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)14, "rights_holders", "14:rights_holders", org.thryft.protocol.Type.LIST),
+        SOURCES("sources", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)15, "sources", "15:sources", org.thryft.protocol.Type.LIST),
+        SPATIALS("spatials", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)21, "spatials", "21:spatials", org.thryft.protocol.Type.LIST),
+        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)16, "subjects", "16:subjects", org.thryft.protocol.Type.LIST),
+        TEMPORALS("temporals", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)22, "temporals", "22:temporals", org.thryft.protocol.Type.LIST),
+        TITLES("titles", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)17, "titles", "17:titles", org.thryft.protocol.Type.LIST),
+        TYPES("types", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)18, "types", "18:types", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -2055,17 +2026,13 @@ public final class DublinCoreObject implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -2078,300 +2045,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) throws org.thryft.protocol.InputProtocolException {
-            validateAbstracts(abstracts);
-            validateAudiences(audiences);
-            validateContributors(contributors);
-            validateCoverages(coverages);
-            validateCreateds(createds);
-            validateCreators(creators);
-            validateDates(dates);
-            validateDescriptions(descriptions);
-            validateExtents(extents);
-            validateFormats(formats);
-            validateIdentifiers(identifiers);
-            validateLanguages(languages);
-            validateMediums(mediums);
-            validateProvenances(provenances);
-            validatePublishers(publishers);
-            validateRelations(relations);
-            validateRights(rights);
-            validateRightsHolders(rightsHolders);
-            validateSources(sources);
-            validateSpatials(spatials);
-            validateSubjects(subjects);
-            validateTemporals(temporals);
-            validateTitles(titles);
-            validateTypes(types);
-        }
-
-        public static void validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) throws org.thryft.protocol.InputProtocolException {
-            if (abstracts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ABSTRACTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is null");
-            }
-            if (abstracts.isPresent()) {
-                if (abstracts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) throws org.thryft.protocol.InputProtocolException {
-            if (audiences == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AUDIENCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is null");
-            }
-            if (audiences.isPresent()) {
-                if (audiences.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) throws org.thryft.protocol.InputProtocolException {
-            if (contributors == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is null");
-            }
-            if (contributors.isPresent()) {
-                if (contributors.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) throws org.thryft.protocol.InputProtocolException {
-            if (coverages == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COVERAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is null");
-            }
-            if (coverages.isPresent()) {
-                if (coverages.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) throws org.thryft.protocol.InputProtocolException {
-            if (createds == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CREATEDS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is null");
-            }
-            if (createds.isPresent()) {
-                if (createds.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) throws org.thryft.protocol.InputProtocolException {
-            if (creators == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CREATORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is null");
-            }
-            if (creators.isPresent()) {
-                if (creators.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) throws org.thryft.protocol.InputProtocolException {
-            if (dates == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is null");
-            }
-            if (dates.isPresent()) {
-                if (dates.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) throws org.thryft.protocol.InputProtocolException {
-            if (descriptions == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is null");
-            }
-            if (descriptions.isPresent()) {
-                if (descriptions.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) throws org.thryft.protocol.InputProtocolException {
-            if (extents == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is null");
-            }
-            if (extents.isPresent()) {
-                if (extents.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) throws org.thryft.protocol.InputProtocolException {
-            if (formats == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FORMATS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is null");
-            }
-            if (formats.isPresent()) {
-                if (formats.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) throws org.thryft.protocol.InputProtocolException {
-            if (identifiers == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IDENTIFIERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is null");
-            }
-            if (identifiers.isPresent()) {
-                if (identifiers.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) throws org.thryft.protocol.InputProtocolException {
-            if (languages == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LANGUAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is null");
-            }
-            if (languages.isPresent()) {
-                if (languages.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) throws org.thryft.protocol.InputProtocolException {
-            if (mediums == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MEDIUMS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is null");
-            }
-            if (mediums.isPresent()) {
-                if (mediums.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) throws org.thryft.protocol.InputProtocolException {
-            if (provenances == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PROVENANCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is null");
-            }
-            if (provenances.isPresent()) {
-                if (provenances.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances: less than min length 1");
-                }
-            }
-        }
-
-        public static void validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) throws org.thryft.protocol.InputProtocolException {
-            if (publishers == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PUBLISHERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is null");
-            }
-            if (publishers.isPresent()) {
-                if (publishers.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) throws org.thryft.protocol.InputProtocolException {
-            if (relations == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is null");
-            }
-            if (relations.isPresent()) {
-                if (relations.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) throws org.thryft.protocol.InputProtocolException {
-            if (rights == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is null");
-            }
-            if (rights.isPresent()) {
-                if (rights.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) throws org.thryft.protocol.InputProtocolException {
-            if (rightsHolders == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is null");
-            }
-            if (rightsHolders.isPresent()) {
-                if (rightsHolders.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) throws org.thryft.protocol.InputProtocolException {
-            if (sources == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SOURCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is null");
-            }
-            if (sources.isPresent()) {
-                if (sources.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) throws org.thryft.protocol.InputProtocolException {
-            if (spatials == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SPATIALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is null");
-            }
-            if (spatials.isPresent()) {
-                if (spatials.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) throws org.thryft.protocol.InputProtocolException {
-            if (subjects == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is null");
-            }
-            if (subjects.isPresent()) {
-                if (subjects.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) throws org.thryft.protocol.InputProtocolException {
-            if (temporals == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEMPORALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is null");
-            }
-            if (temporals.isPresent()) {
-                if (temporals.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) throws org.thryft.protocol.InputProtocolException {
-            if (titles == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is null");
-            }
-            if (titles.isPresent()) {
-                if (titles.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) throws org.thryft.protocol.InputProtocolException {
-            if (types == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is null");
-            }
-            if (types.isPresent()) {
-                if (types.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types: less than min length 1");
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
             validateAbstracts(abstracts);
             validateAudiences(audiences);
@@ -2401,264 +2075,264 @@ public final class DublinCoreObject implements org.thryft.Struct {
 
         public static void validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) {
             if (abstracts == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is missing");
             }
             if (abstracts.isPresent()) {
                 if (abstracts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts: less than min length 1");
                 }
             }
         }
 
         public static void validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) {
             if (audiences == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is missing");
             }
             if (audiences.isPresent()) {
                 if (audiences.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences: less than min length 1");
                 }
             }
         }
 
         public static void validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) {
             if (contributors == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is missing");
             }
             if (contributors.isPresent()) {
                 if (contributors.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors: less than min length 1");
                 }
             }
         }
 
         public static void validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) {
             if (coverages == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is missing");
             }
             if (coverages.isPresent()) {
                 if (coverages.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages: less than min length 1");
                 }
             }
         }
 
         public static void validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) {
             if (createds == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is missing");
             }
             if (createds.isPresent()) {
                 if (createds.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds: less than min length 1");
                 }
             }
         }
 
         public static void validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) {
             if (creators == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is missing");
             }
             if (creators.isPresent()) {
                 if (creators.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators: less than min length 1");
                 }
             }
         }
 
         public static void validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) {
             if (dates == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is missing");
             }
             if (dates.isPresent()) {
                 if (dates.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates: less than min length 1");
                 }
             }
         }
 
         public static void validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) {
             if (descriptions == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is missing");
             }
             if (descriptions.isPresent()) {
                 if (descriptions.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions: less than min length 1");
                 }
             }
         }
 
         public static void validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) {
             if (extents == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is missing");
             }
             if (extents.isPresent()) {
                 if (extents.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents: less than min length 1");
                 }
             }
         }
 
         public static void validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) {
             if (formats == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is missing");
             }
             if (formats.isPresent()) {
                 if (formats.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats: less than min length 1");
                 }
             }
         }
 
         public static void validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) {
             if (identifiers == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is missing");
             }
             if (identifiers.isPresent()) {
                 if (identifiers.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers: less than min length 1");
                 }
             }
         }
 
         public static void validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) {
             if (languages == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is missing");
             }
             if (languages.isPresent()) {
                 if (languages.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages: less than min length 1");
                 }
             }
         }
 
         public static void validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) {
             if (mediums == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is missing");
             }
             if (mediums.isPresent()) {
                 if (mediums.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums: less than min length 1");
                 }
             }
         }
 
         public static void validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) {
             if (provenances == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is missing");
             }
             if (provenances.isPresent()) {
                 if (provenances.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances: less than min length 1");
                 }
             }
         }
 
         public static void validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) {
             if (publishers == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is missing");
             }
             if (publishers.isPresent()) {
                 if (publishers.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers: less than min length 1");
                 }
             }
         }
 
         public static void validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) {
             if (relations == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is missing");
             }
             if (relations.isPresent()) {
                 if (relations.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations: less than min length 1");
                 }
             }
         }
 
         public static void validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) {
             if (rights == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is missing");
             }
             if (rights.isPresent()) {
                 if (rights.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights: less than min length 1");
                 }
             }
         }
 
         public static void validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) {
             if (rightsHolders == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is missing");
             }
             if (rightsHolders.isPresent()) {
                 if (rightsHolders.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders: less than min length 1");
                 }
             }
         }
 
         public static void validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
             if (sources == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is missing");
             }
             if (sources.isPresent()) {
                 if (sources.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources: less than min length 1");
                 }
             }
         }
 
         public static void validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) {
             if (spatials == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is missing");
             }
             if (spatials.isPresent()) {
                 if (spatials.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials: less than min length 1");
                 }
             }
         }
 
         public static void validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) {
             if (subjects == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is missing");
             }
             if (subjects.isPresent()) {
                 if (subjects.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects: less than min length 1");
                 }
             }
         }
 
         public static void validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) {
             if (temporals == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is missing");
             }
             if (temporals.isPresent()) {
                 if (temporals.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals: less than min length 1");
                 }
             }
         }
 
         public static void validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) {
             if (titles == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is missing");
             }
             if (titles.isPresent()) {
                 if (titles.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles: less than min length 1");
                 }
             }
         }
 
         public static void validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
             if (types == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is missing");
             }
             if (types.isPresent()) {
                 if (types.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types: less than min length 1");
                 }
             }
         }
@@ -2704,10 +2378,9 @@ public final class DublinCoreObject implements org.thryft.Struct {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected DublinCoreObject(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
+    public DublinCoreObject(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
+        Validator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
         this.abstracts = abstracts;
         this.audiences = audiences;
         this.contributors = contributors;
@@ -2734,6 +2407,13 @@ public final class DublinCoreObject implements org.thryft.Struct {
         this.types = types;
     }
 
+    /**
+     * Total Nullable constructor
+     */
+    public DublinCoreObject(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> abstracts, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> audiences, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> contributors, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> coverages, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> createds, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> creators, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> dates, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> descriptions, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> extents, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> formats, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> identifiers, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> languages, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> mediums, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> provenances, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> publishers, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> relations, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rights, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rightsHolders, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> sources, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> spatials, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> subjects, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> temporals, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> titles, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> types) {
+        this(com.google.common.base.Optional.fromNullable(abstracts), com.google.common.base.Optional.fromNullable(audiences), com.google.common.base.Optional.fromNullable(contributors), com.google.common.base.Optional.fromNullable(coverages), com.google.common.base.Optional.fromNullable(createds), com.google.common.base.Optional.fromNullable(creators), com.google.common.base.Optional.fromNullable(dates), com.google.common.base.Optional.fromNullable(descriptions), com.google.common.base.Optional.fromNullable(extents), com.google.common.base.Optional.fromNullable(formats), com.google.common.base.Optional.fromNullable(identifiers), com.google.common.base.Optional.fromNullable(languages), com.google.common.base.Optional.fromNullable(mediums), com.google.common.base.Optional.fromNullable(provenances), com.google.common.base.Optional.fromNullable(publishers), com.google.common.base.Optional.fromNullable(relations), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(rightsHolders), com.google.common.base.Optional.fromNullable(sources), com.google.common.base.Optional.fromNullable(spatials), com.google.common.base.Optional.fromNullable(subjects), com.google.common.base.Optional.fromNullable(temporals), com.google.common.base.Optional.fromNullable(titles), com.google.common.base.Optional.fromNullable(types));
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -2744,51 +2424,6 @@ public final class DublinCoreObject implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<DublinCoreObject> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    @Deprecated
-    public static DublinCoreObject create() {
-        return new DublinCoreObject();
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static DublinCoreObject create(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> abstracts, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> audiences, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> contributors, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> coverages, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> createds, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> creators, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> dates, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> descriptions, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> extents, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> formats, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> identifiers, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> languages, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> mediums, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> provenances, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> publishers, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> relations, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rights, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rightsHolders, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> sources, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> spatials, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> subjects, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> temporals, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> titles, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> types) {
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstractsOptional = com.google.common.base.Optional.fromNullable(abstracts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiencesOptional = com.google.common.base.Optional.fromNullable(audiences);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributorsOptional = com.google.common.base.Optional.fromNullable(contributors);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coveragesOptional = com.google.common.base.Optional.fromNullable(coverages);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createdsOptional = com.google.common.base.Optional.fromNullable(createds);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creatorsOptional = com.google.common.base.Optional.fromNullable(creators);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> datesOptional = com.google.common.base.Optional.fromNullable(dates);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptionsOptional = com.google.common.base.Optional.fromNullable(descriptions);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extentsOptional = com.google.common.base.Optional.fromNullable(extents);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formatsOptional = com.google.common.base.Optional.fromNullable(formats);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiersOptional = com.google.common.base.Optional.fromNullable(identifiers);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languagesOptional = com.google.common.base.Optional.fromNullable(languages);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediumsOptional = com.google.common.base.Optional.fromNullable(mediums);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenancesOptional = com.google.common.base.Optional.fromNullable(provenances);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishersOptional = com.google.common.base.Optional.fromNullable(publishers);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationsOptional = com.google.common.base.Optional.fromNullable(relations);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsOptional = com.google.common.base.Optional.fromNullable(rights);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHoldersOptional = com.google.common.base.Optional.fromNullable(rightsHolders);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sourcesOptional = com.google.common.base.Optional.fromNullable(sources);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatialsOptional = com.google.common.base.Optional.fromNullable(spatials);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectsOptional = com.google.common.base.Optional.fromNullable(subjects);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporalsOptional = com.google.common.base.Optional.fromNullable(temporals);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titlesOptional = com.google.common.base.Optional.fromNullable(titles);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> typesOptional = com.google.common.base.Optional.fromNullable(types);
-        UncheckedValidator.validate(abstractsOptional, audiencesOptional, contributorsOptional, coveragesOptional, createdsOptional, creatorsOptional, datesOptional, descriptionsOptional, extentsOptional, formatsOptional, identifiersOptional, languagesOptional, mediumsOptional, provenancesOptional, publishersOptional, relationsOptional, rightsOptional, rightsHoldersOptional, sourcesOptional, spatialsOptional, subjectsOptional, temporalsOptional, titlesOptional, typesOptional);
-        return new DublinCoreObject(abstractsOptional, audiencesOptional, contributorsOptional, coveragesOptional, createdsOptional, creatorsOptional, datesOptional, descriptionsOptional, extentsOptional, formatsOptional, identifiersOptional, languagesOptional, mediumsOptional, provenancesOptional, publishersOptional, relationsOptional, rightsOptional, rightsHoldersOptional, sourcesOptional, spatialsOptional, subjectsOptional, temporalsOptional, titlesOptional, typesOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static DublinCoreObject create(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-        UncheckedValidator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
-        return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
     }
 
     @Override
@@ -3119,1245 +2754,20 @@ public final class DublinCoreObject implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static DublinCoreObject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static DublinCoreObject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static DublinCoreObject readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            if (__list.getSize() > 0) {
-                try {
-                    abstracts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 1) {
-                try {
-                    audiences = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    contributors = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 3) {
-                try {
-                    coverages = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 4) {
-                try {
-                    createds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 5) {
-                try {
-                    creators = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 6) {
-                try {
-                    dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 7) {
-                try {
-                    descriptions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 8) {
-                try {
-                    extents = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 9) {
-                try {
-                    formats = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 10) {
-                try {
-                    identifiers = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 11) {
-                try {
-                    languages = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 12) {
-                try {
-                    mediums = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 13) {
-                try {
-                    provenances = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 14) {
-                try {
-                    publishers = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 15) {
-                try {
-                    relations = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 16) {
-                try {
-                    rights = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 17) {
-                try {
-                    rightsHolders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 18) {
-                try {
-                    sources = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 19) {
-                try {
-                    spatials = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 20) {
-                try {
-                    subjects = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 21) {
-                try {
-                    temporals = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 22) {
-                try {
-                    titles = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 23) {
-                try {
-                    types = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, e.getCause());
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
-
-        return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
+        return builder().readAsList(iprot).build();
     }
 
     public static DublinCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static DublinCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "abstracts": {
-                    if (!ifield.hasId() || ifield.getId() == 24) {
-                        try {
-                            abstracts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "audiences": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        try {
-                            audiences = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "contributors": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        try {
-                            contributors = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "coverages": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            coverages = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "createds": {
-                    if (!ifield.hasId() || ifield.getId() == 20) {
-                        try {
-                            createds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "creators": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        try {
-                            creators = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "dates": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        try {
-                            dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "descriptions": {
-                    if (!ifield.hasId() || ifield.getId() == 6) {
-                        try {
-                            descriptions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "extents": {
-                    if (!ifield.hasId() || ifield.getId() == 19) {
-                        try {
-                            extents = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "formats": {
-                    if (!ifield.hasId() || ifield.getId() == 8) {
-                        try {
-                            formats = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "identifiers": {
-                    if (!ifield.hasId() || ifield.getId() == 7) {
-                        try {
-                            identifiers = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "languages": {
-                    if (!ifield.hasId() || ifield.getId() == 9) {
-                        try {
-                            languages = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "mediums": {
-                    if (!ifield.hasId() || ifield.getId() == 23) {
-                        try {
-                            mediums = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "provenances": {
-                    if (!ifield.hasId() || ifield.getId() == 10) {
-                        try {
-                            provenances = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "publishers": {
-                    if (!ifield.hasId() || ifield.getId() == 11) {
-                        try {
-                            publishers = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "relations": {
-                    if (!ifield.hasId() || ifield.getId() == 12) {
-                        try {
-                            relations = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "rights": {
-                    if (!ifield.hasId() || ifield.getId() == 13) {
-                        try {
-                            rights = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "rights_holders": {
-                    if (!ifield.hasId() || ifield.getId() == 14) {
-                        try {
-                            rightsHolders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "sources": {
-                    if (!ifield.hasId() || ifield.getId() == 15) {
-                        try {
-                            sources = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "spatials": {
-                    if (!ifield.hasId() || ifield.getId() == 21) {
-                        try {
-                            spatials = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "subjects": {
-                    if (!ifield.hasId() || ifield.getId() == 16) {
-                        try {
-                            subjects = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "temporals": {
-                    if (!ifield.hasId() || ifield.getId() == 22) {
-                        try {
-                            temporals = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "titles": {
-                    if (!ifield.hasId() || ifield.getId() == 17) {
-                        try {
-                            titles = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "types": {
-                    if (!ifield.hasId() || ifield.getId() == 18) {
-                        try {
-                            types = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
-
-        return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
+    public static DublinCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public DublinCoreObject replaceAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) {
-        UncheckedValidator.validateAbstracts(abstracts);
+        Validator.validateAbstracts(abstracts);
         return new DublinCoreObject(abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4366,7 +2776,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) {
-        UncheckedValidator.validateAudiences(audiences);
+        Validator.validateAudiences(audiences);
         return new DublinCoreObject(this.abstracts, audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4375,7 +2785,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) {
-        UncheckedValidator.validateContributors(contributors);
+        Validator.validateContributors(contributors);
         return new DublinCoreObject(this.abstracts, this.audiences, contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4384,7 +2794,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) {
-        UncheckedValidator.validateCoverages(coverages);
+        Validator.validateCoverages(coverages);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4393,7 +2803,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) {
-        UncheckedValidator.validateCreateds(createds);
+        Validator.validateCreateds(createds);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4402,7 +2812,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) {
-        UncheckedValidator.validateCreators(creators);
+        Validator.validateCreators(creators);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4411,7 +2821,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) {
-        UncheckedValidator.validateDates(dates);
+        Validator.validateDates(dates);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4420,7 +2830,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) {
-        UncheckedValidator.validateDescriptions(descriptions);
+        Validator.validateDescriptions(descriptions);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4429,7 +2839,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) {
-        UncheckedValidator.validateExtents(extents);
+        Validator.validateExtents(extents);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4438,7 +2848,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) {
-        UncheckedValidator.validateFormats(formats);
+        Validator.validateFormats(formats);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4447,7 +2857,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) {
-        UncheckedValidator.validateIdentifiers(identifiers);
+        Validator.validateIdentifiers(identifiers);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4456,7 +2866,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) {
-        UncheckedValidator.validateLanguages(languages);
+        Validator.validateLanguages(languages);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4465,7 +2875,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) {
-        UncheckedValidator.validateMediums(mediums);
+        Validator.validateMediums(mediums);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4474,7 +2884,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) {
-        UncheckedValidator.validateProvenances(provenances);
+        Validator.validateProvenances(provenances);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4483,7 +2893,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replacePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) {
-        UncheckedValidator.validatePublishers(publishers);
+        Validator.validatePublishers(publishers);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4492,7 +2902,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) {
-        UncheckedValidator.validateRelations(relations);
+        Validator.validateRelations(relations);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4501,12 +2911,12 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) {
-        UncheckedValidator.validateRights(rights);
+        Validator.validateRights(rights);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
     public DublinCoreObject replaceRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) {
-        UncheckedValidator.validateRightsHolders(rightsHolders);
+        Validator.validateRightsHolders(rightsHolders);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4519,7 +2929,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
-        UncheckedValidator.validateSources(sources);
+        Validator.validateSources(sources);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4528,7 +2938,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) {
-        UncheckedValidator.validateSpatials(spatials);
+        Validator.validateSpatials(spatials);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4537,7 +2947,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) {
-        UncheckedValidator.validateSubjects(subjects);
+        Validator.validateSubjects(subjects);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, subjects, this.temporals, this.titles, this.types);
     }
 
@@ -4546,7 +2956,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) {
-        UncheckedValidator.validateTemporals(temporals);
+        Validator.validateTemporals(temporals);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, temporals, this.titles, this.types);
     }
 
@@ -4555,7 +2965,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) {
-        UncheckedValidator.validateTitles(titles);
+        Validator.validateTitles(titles);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, titles, this.types);
     }
 
@@ -4564,7 +2974,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     }
 
     public DublinCoreObject replaceTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-        UncheckedValidator.validateTypes(types);
+        Validator.validateTypes(types);
         return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, types);
     }
 
@@ -4592,247 +3002,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 24);
-
-        if (getAbstracts().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getAbstracts().get().size());
-            for (final String _iter0 : getAbstracts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getAudiences().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getAudiences().get().size());
-            for (final String _iter0 : getAudiences().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getContributors().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getContributors().get().size());
-            for (final String _iter0 : getContributors().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getCoverages().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCoverages().get().size());
-            for (final String _iter0 : getCoverages().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getCreateds().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCreateds().get().size());
-            for (final String _iter0 : getCreateds().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getCreators().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCreators().get().size());
-            for (final String _iter0 : getCreators().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getDates().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getDates().get().size());
-            for (final String _iter0 : getDates().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getDescriptions().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getDescriptions().get().size());
-            for (final String _iter0 : getDescriptions().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExtents().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getExtents().get().size());
-            for (final String _iter0 : getExtents().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getFormats().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getFormats().get().size());
-            for (final String _iter0 : getFormats().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIdentifiers().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getIdentifiers().get().size());
-            for (final String _iter0 : getIdentifiers().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getLanguages().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getLanguages().get().size());
-            for (final String _iter0 : getLanguages().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getMediums().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getMediums().get().size());
-            for (final String _iter0 : getMediums().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getProvenances().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getProvenances().get().size());
-            for (final String _iter0 : getProvenances().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getPublishers().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getPublishers().get().size());
-            for (final String _iter0 : getPublishers().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getRelations().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRelations().get().size());
-            for (final String _iter0 : getRelations().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getRights().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRights().get().size());
-            for (final String _iter0 : getRights().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getRightsHolders().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRightsHolders().get().size());
-            for (final String _iter0 : getRightsHolders().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getSources().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSources().get().size());
-            for (final String _iter0 : getSources().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getSpatials().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSpatials().get().size());
-            for (final String _iter0 : getSpatials().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getSubjects().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSubjects().get().size());
-            for (final String _iter0 : getSubjects().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getTemporals().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTemporals().get().size());
-            for (final String _iter0 : getTemporals().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getTitles().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTitles().get().size());
-            for (final String _iter0 : getTitles().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getTypes().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTypes().get().size());
-            for (final String _iter0 : getTypes().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -4936,6 +3106,226 @@ public final class DublinCoreObject implements org.thryft.Struct {
             }
             oprot.writeListEnd();
             oprot.writeFieldEnd();
+        }
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getAbstracts().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getAbstracts().get().size());
+            for (final String _iter0 : getAbstracts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getAudiences().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getAudiences().get().size());
+            for (final String _iter0 : getAudiences().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getContributors().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getContributors().get().size());
+            for (final String _iter0 : getContributors().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getCoverages().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCoverages().get().size());
+            for (final String _iter0 : getCoverages().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getCreateds().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCreateds().get().size());
+            for (final String _iter0 : getCreateds().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getCreators().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCreators().get().size());
+            for (final String _iter0 : getCreators().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getDates().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getDates().get().size());
+            for (final String _iter0 : getDates().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getDescriptions().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getDescriptions().get().size());
+            for (final String _iter0 : getDescriptions().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExtents().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getExtents().get().size());
+            for (final String _iter0 : getExtents().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getFormats().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getFormats().get().size());
+            for (final String _iter0 : getFormats().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIdentifiers().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getIdentifiers().get().size());
+            for (final String _iter0 : getIdentifiers().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getLanguages().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getLanguages().get().size());
+            for (final String _iter0 : getLanguages().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getMediums().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getMediums().get().size());
+            for (final String _iter0 : getMediums().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getProvenances().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getProvenances().get().size());
+            for (final String _iter0 : getProvenances().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getPublishers().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getPublishers().get().size());
+            for (final String _iter0 : getPublishers().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getRelations().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRelations().get().size());
+            for (final String _iter0 : getRelations().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getRights().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRights().get().size());
+            for (final String _iter0 : getRights().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getRightsHolders().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRightsHolders().get().size());
+            for (final String _iter0 : getRightsHolders().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getSources().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSources().get().size());
+            for (final String _iter0 : getSources().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getSpatials().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSpatials().get().size());
+            for (final String _iter0 : getSpatials().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getSubjects().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSubjects().get().size());
+            for (final String _iter0 : getSubjects().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getTemporals().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTemporals().get().size());
+            for (final String _iter0 : getTemporals().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getTitles().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTitles().get().size());
+            for (final String _iter0 : getTitles().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getTypes().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTypes().get().size());
+            for (final String _iter0 : getTypes().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
         }
     }
 

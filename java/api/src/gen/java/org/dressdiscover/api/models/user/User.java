@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.user;
 
 public final class User implements org.thryft.waf.api.models.Model {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, User> {
         public Builder() {
             emailAddress = null;
             identityProvider = null;
@@ -33,7 +33,7 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public User build() {
-            UncheckedValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+            Validator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
 
             return _build(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
         }
@@ -81,63 +81,46 @@ public final class User implements org.thryft.waf.api.models.Model {
             return pictureUrl;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                emailAddress = iprot.readString();
-                identityProvider = iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance());
-                identityProviderId = iprot.readString();
+                this.setEmailAddress(iprot.readString());
+                this.setIdentityProvider(iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance()));
+                this.setIdentityProviderId(iprot.readString());
                 if (__list.getSize() > 3) {
-                    emailAddressVerified = org.thryft.Optionals.of(iprot.readBool());
+                    this.setEmailAddressVerified(org.thryft.Optionals.of(iprot.readBool()));
                 }
                 if (__list.getSize() > 4) {
-                    familyName = com.google.common.base.Optional.of(iprot.readString());
+                    this.setFamilyName(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 5) {
-                    givenName = com.google.common.base.Optional.of(iprot.readString());
+                    this.setGivenName(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 6) {
-                    locale = com.google.common.base.Optional.of(iprot.readString());
+                    this.setLocale(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 7) {
-                    name = com.google.common.base.Optional.of(iprot.readString());
+                    this.setName(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 8) {
-                    nickname = com.google.common.base.Optional.of(iprot.readString());
+                    this.setNickname(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 9) {
                     try {
-                        pictureUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                        this.setPictureUrl(com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString())));
                     } catch (final java.lang.IllegalArgumentException e) {
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -147,61 +130,61 @@ public final class User implements org.thryft.waf.api.models.Model {
                     }
                     switch (ifield.getName()) {
                     case "email_address": {
-                        emailAddress = iprot.readString();
+                        this.setEmailAddress(iprot.readString());
                         break;
                     }
                     case "identity_provider": {
-                        identityProvider = iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance());
+                        this.setIdentityProvider(iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance()));
                         break;
                     }
                     case "identity_provider_id": {
-                        identityProviderId = iprot.readString();
+                        this.setIdentityProviderId(iprot.readString());
                         break;
                     }
                     case "email_address_verified": {
-                        emailAddressVerified = org.thryft.Optionals.of(iprot.readBool());
+                        this.setEmailAddressVerified(org.thryft.Optionals.of(iprot.readBool()));
                         break;
                     }
                     case "family_name": {
-                        familyName = com.google.common.base.Optional.of(iprot.readString());
+                        this.setFamilyName(com.google.common.base.Optional.of(iprot.readString()));
                         break;
                     }
                     case "given_name": {
-                        givenName = com.google.common.base.Optional.of(iprot.readString());
+                        this.setGivenName(com.google.common.base.Optional.of(iprot.readString()));
                         break;
                     }
                     case "locale": {
-                        locale = com.google.common.base.Optional.of(iprot.readString());
+                        this.setLocale(com.google.common.base.Optional.of(iprot.readString()));
                         break;
                     }
                     case "name": {
-                        name = com.google.common.base.Optional.of(iprot.readString());
+                        this.setName(com.google.common.base.Optional.of(iprot.readString()));
                         break;
                     }
                     case "nickname": {
-                        nickname = com.google.common.base.Optional.of(iprot.readString());
+                        this.setNickname(com.google.common.base.Optional.of(iprot.readString()));
                         break;
                     }
                     case "picture_url": {
                         try {
-                            pictureUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                            this.setPictureUrl(com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString())));
                         } catch (final java.lang.IllegalArgumentException e) {
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -235,13 +218,13 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setEmailAddress(final String emailAddress) {
-            UncheckedValidator.validateEmailAddress(emailAddress);
+            Validator.validateEmailAddress(emailAddress);
             this.emailAddress = emailAddress;
             return this;
         }
 
         public Builder setEmailAddressVerified(final com.google.common.base.Optional<Boolean> emailAddressVerified) {
-            UncheckedValidator.validateEmailAddressVerified(emailAddressVerified);
+            Validator.validateEmailAddressVerified(emailAddressVerified);
             this.emailAddressVerified = emailAddressVerified;
             return this;
         }
@@ -255,7 +238,7 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setFamilyName(final com.google.common.base.Optional<String> familyName) {
-            UncheckedValidator.validateFamilyName(familyName);
+            Validator.validateFamilyName(familyName);
             this.familyName = familyName;
             return this;
         }
@@ -265,7 +248,7 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setGivenName(final com.google.common.base.Optional<String> givenName) {
-            UncheckedValidator.validateGivenName(givenName);
+            Validator.validateGivenName(givenName);
             this.givenName = givenName;
             return this;
         }
@@ -275,13 +258,13 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setIdentityProvider(final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider) {
-            UncheckedValidator.validateIdentityProvider(identityProvider);
+            Validator.validateIdentityProvider(identityProvider);
             this.identityProvider = identityProvider;
             return this;
         }
 
         public Builder setIdentityProviderId(final String identityProviderId) {
-            UncheckedValidator.validateIdentityProviderId(identityProviderId);
+            Validator.validateIdentityProviderId(identityProviderId);
             this.identityProviderId = identityProviderId;
             return this;
         }
@@ -318,7 +301,7 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setLocale(final com.google.common.base.Optional<String> locale) {
-            UncheckedValidator.validateLocale(locale);
+            Validator.validateLocale(locale);
             this.locale = locale;
             return this;
         }
@@ -328,7 +311,7 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setName(final com.google.common.base.Optional<String> name) {
-            UncheckedValidator.validateName(name);
+            Validator.validateName(name);
             this.name = name;
             return this;
         }
@@ -338,7 +321,7 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setNickname(final com.google.common.base.Optional<String> nickname) {
-            UncheckedValidator.validateNickname(nickname);
+            Validator.validateNickname(nickname);
             this.nickname = nickname;
             return this;
         }
@@ -348,7 +331,7 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setPictureUrl(final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
-            UncheckedValidator.validatePictureUrl(pictureUrl);
+            Validator.validatePictureUrl(pictureUrl);
             this.pictureUrl = pictureUrl;
             return this;
         }
@@ -454,17 +437,6 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<User> {
         @Override
-        public User readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return User.readAs(iprot, type);
-        }
-
-        @Override
-        public User readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return User.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public User readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return User.readAsList(iprot);
         }
@@ -475,24 +447,23 @@ public final class User implements org.thryft.waf.api.models.Model {
         }
 
         @Override
-        public User readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public User readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return User.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "email_address", org.thryft.protocol.Type.STRING),
-        IDENTITY_PROVIDER("identityProvider", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserIdentityProvider>() {}, true, (short)0, "identity_provider", org.thryft.protocol.Type.STRING),
-        IDENTITY_PROVIDER_ID("identityProviderId", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "identity_provider_id", org.thryft.protocol.Type.STRING),
-        EMAIL_ADDRESS_VERIFIED("emailAddressVerified", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "email_address_verified", org.thryft.protocol.Type.BOOL),
-        FAMILY_NAME("familyName", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "family_name", org.thryft.protocol.Type.STRING),
-        GIVEN_NAME("givenName", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "given_name", org.thryft.protocol.Type.STRING),
-        LOCALE("locale", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "locale", org.thryft.protocol.Type.STRING),
-        NAME("name", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "name", org.thryft.protocol.Type.STRING),
-        NICKNAME("nickname", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "nickname", org.thryft.protocol.Type.STRING),
-        PICTURE_URL("pictureUrl", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, (short)0, "picture_url", org.thryft.protocol.Type.STRING);
+        EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "email_address", "email_address", org.thryft.protocol.Type.STRING),
+        IDENTITY_PROVIDER("identityProvider", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserIdentityProvider>() {}, true, (short)0, "identity_provider", "identity_provider", org.thryft.protocol.Type.STRING),
+        IDENTITY_PROVIDER_ID("identityProviderId", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "identity_provider_id", "identity_provider_id", org.thryft.protocol.Type.STRING),
+        EMAIL_ADDRESS_VERIFIED("emailAddressVerified", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "email_address_verified", "email_address_verified", org.thryft.protocol.Type.BOOL),
+        FAMILY_NAME("familyName", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "family_name", "family_name", org.thryft.protocol.Type.STRING),
+        GIVEN_NAME("givenName", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "given_name", "given_name", org.thryft.protocol.Type.STRING),
+        LOCALE("locale", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "locale", "locale", org.thryft.protocol.Type.STRING),
+        NAME("name", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "name", "name", org.thryft.protocol.Type.STRING),
+        NICKNAME("nickname", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "nickname", "nickname", org.thryft.protocol.Type.STRING),
+        PICTURE_URL("pictureUrl", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, (short)0, "picture_url", "picture_url", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -568,17 +539,13 @@ public final class User implements org.thryft.waf.api.models.Model {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -591,207 +558,7 @@ public final class User implements org.thryft.waf.api.models.Model {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) throws org.thryft.protocol.InputProtocolException {
-            validateEmailAddress(emailAddress);
-            validateIdentityProvider(identityProvider);
-            validateIdentityProviderId(identityProviderId);
-            validateEmailAddressVerified(emailAddressVerified);
-            validateFamilyName(familyName);
-            validateGivenName(givenName);
-            validateLocale(locale);
-            validateName(name);
-            validateNickname(nickname);
-            validatePictureUrl(pictureUrl);
-        }
-
-        public static void validateEmailAddress(final String emailAddress) throws org.thryft.protocol.InputProtocolException {
-            if (emailAddress == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress is null");
-            }
-            if (!emailAddress.matches("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+")) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress: not a valid email address");
-            }
-            if (emailAddress.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress: less than min length 1");
-            }
-            {
-                final int __strLen = emailAddress.length();
-                boolean __blank = true;
-                for (int i = 0; i < __strLen; i++) {
-                    if (!Character.isWhitespace(emailAddress.charAt(i))) {
-                        __blank = false;
-                        break;
-                    }
-                }
-                if (__blank) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, String.format("org.dressdiscover.api.models.user.User: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
-                }
-            }
-        }
-
-        public static void validateIdentityProvider(final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider) throws org.thryft.protocol.InputProtocolException {
-            if (identityProvider == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IDENTITY_PROVIDER, "org.dressdiscover.api.models.user.User: identityProvider is null");
-            }
-        }
-
-        public static void validateIdentityProviderId(final String identityProviderId) throws org.thryft.protocol.InputProtocolException {
-            if (identityProviderId == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IDENTITY_PROVIDER_ID, "org.dressdiscover.api.models.user.User: identityProviderId is null");
-            }
-            if (identityProviderId.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTITY_PROVIDER_ID, "org.dressdiscover.api.models.user.User: identityProviderId: less than min length 1");
-            }
-            {
-                final int __strLen = identityProviderId.length();
-                boolean __blank = true;
-                for (int i = 0; i < __strLen; i++) {
-                    if (!Character.isWhitespace(identityProviderId.charAt(i))) {
-                        __blank = false;
-                        break;
-                    }
-                }
-                if (__blank) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTITY_PROVIDER_ID, String.format("org.dressdiscover.api.models.user.User: identityProviderId: blank '%s' (length=%d)", identityProviderId, __strLen));
-                }
-            }
-        }
-
-        public static void validateEmailAddressVerified(final com.google.common.base.Optional<Boolean> emailAddressVerified) throws org.thryft.protocol.InputProtocolException {
-            if (emailAddressVerified == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS_VERIFIED, "org.dressdiscover.api.models.user.User: emailAddressVerified is null");
-            }
-        }
-
-        public static void validateFamilyName(final com.google.common.base.Optional<String> familyName) throws org.thryft.protocol.InputProtocolException {
-            if (familyName == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FAMILY_NAME, "org.dressdiscover.api.models.user.User: familyName is null");
-            }
-            if (familyName.isPresent()) {
-                if (familyName.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FAMILY_NAME, "org.dressdiscover.api.models.user.User: familyName: less than min length 1");
-                }
-                {
-                    final int __strLen = familyName.get().length();
-                    boolean __blank = true;
-                    for (int i = 0; i < __strLen; i++) {
-                        if (!Character.isWhitespace(familyName.get().charAt(i))) {
-                            __blank = false;
-                            break;
-                        }
-                    }
-                    if (__blank) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FAMILY_NAME, String.format("org.dressdiscover.api.models.user.User: familyName: blank '%s' (length=%d)", familyName.get(), __strLen));
-                    }
-                }
-            }
-        }
-
-        public static void validateGivenName(final com.google.common.base.Optional<String> givenName) throws org.thryft.protocol.InputProtocolException {
-            if (givenName == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.GIVEN_NAME, "org.dressdiscover.api.models.user.User: givenName is null");
-            }
-            if (givenName.isPresent()) {
-                if (givenName.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GIVEN_NAME, "org.dressdiscover.api.models.user.User: givenName: less than min length 1");
-                }
-                {
-                    final int __strLen = givenName.get().length();
-                    boolean __blank = true;
-                    for (int i = 0; i < __strLen; i++) {
-                        if (!Character.isWhitespace(givenName.get().charAt(i))) {
-                            __blank = false;
-                            break;
-                        }
-                    }
-                    if (__blank) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GIVEN_NAME, String.format("org.dressdiscover.api.models.user.User: givenName: blank '%s' (length=%d)", givenName.get(), __strLen));
-                    }
-                }
-            }
-        }
-
-        public static void validateLocale(final com.google.common.base.Optional<String> locale) throws org.thryft.protocol.InputProtocolException {
-            if (locale == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCALE, "org.dressdiscover.api.models.user.User: locale is null");
-            }
-            if (locale.isPresent()) {
-                if (locale.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCALE, "org.dressdiscover.api.models.user.User: locale: less than min length 1");
-                }
-                {
-                    final int __strLen = locale.get().length();
-                    boolean __blank = true;
-                    for (int i = 0; i < __strLen; i++) {
-                        if (!Character.isWhitespace(locale.get().charAt(i))) {
-                            __blank = false;
-                            break;
-                        }
-                    }
-                    if (__blank) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCALE, String.format("org.dressdiscover.api.models.user.User: locale: blank '%s' (length=%d)", locale.get(), __strLen));
-                    }
-                }
-            }
-        }
-
-        public static void validateName(final com.google.common.base.Optional<String> name) throws org.thryft.protocol.InputProtocolException {
-            if (name == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.User: name is null");
-            }
-            if (name.isPresent()) {
-                if (name.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.User: name: less than min length 1");
-                }
-                {
-                    final int __strLen = name.get().length();
-                    boolean __blank = true;
-                    for (int i = 0; i < __strLen; i++) {
-                        if (!Character.isWhitespace(name.get().charAt(i))) {
-                            __blank = false;
-                            break;
-                        }
-                    }
-                    if (__blank) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NAME, String.format("org.dressdiscover.api.models.user.User: name: blank '%s' (length=%d)", name.get(), __strLen));
-                    }
-                }
-            }
-        }
-
-        public static void validateNickname(final com.google.common.base.Optional<String> nickname) throws org.thryft.protocol.InputProtocolException {
-            if (nickname == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NICKNAME, "org.dressdiscover.api.models.user.User: nickname is null");
-            }
-            if (nickname.isPresent()) {
-                if (nickname.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NICKNAME, "org.dressdiscover.api.models.user.User: nickname: less than min length 1");
-                }
-                {
-                    final int __strLen = nickname.get().length();
-                    boolean __blank = true;
-                    for (int i = 0; i < __strLen; i++) {
-                        if (!Character.isWhitespace(nickname.get().charAt(i))) {
-                            __blank = false;
-                            break;
-                        }
-                    }
-                    if (__blank) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NICKNAME, String.format("org.dressdiscover.api.models.user.User: nickname: blank '%s' (length=%d)", nickname.get(), __strLen));
-                    }
-                }
-            }
-        }
-
-        public static void validatePictureUrl(final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) throws org.thryft.protocol.InputProtocolException {
-            if (pictureUrl == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PICTURE_URL, "org.dressdiscover.api.models.user.User: pictureUrl is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
             validateEmailAddress(emailAddress);
             validateIdentityProvider(identityProvider);
@@ -807,13 +574,13 @@ public final class User implements org.thryft.waf.api.models.Model {
 
         public static void validateEmailAddress(final String emailAddress) {
             if (emailAddress == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: emailAddress is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: emailAddress is missing");
             }
             if (!emailAddress.matches("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+")) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: emailAddress: not a valid email address");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: emailAddress: not a valid email address");
             }
             if (emailAddress.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: emailAddress: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: emailAddress: less than min length 1");
             }
             {
                 final int __strLen = emailAddress.length();
@@ -825,23 +592,23 @@ public final class User implements org.thryft.waf.api.models.Model {
                     }
                 }
                 if (__blank) {
-                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
+                    throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.models.user.User: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
                 }
             }
         }
 
         public static void validateIdentityProvider(final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider) {
             if (identityProvider == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: identityProvider is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: identityProvider is missing");
             }
         }
 
         public static void validateIdentityProviderId(final String identityProviderId) {
             if (identityProviderId == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: identityProviderId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: identityProviderId is missing");
             }
             if (identityProviderId.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: identityProviderId: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: identityProviderId: less than min length 1");
             }
             {
                 final int __strLen = identityProviderId.length();
@@ -853,24 +620,24 @@ public final class User implements org.thryft.waf.api.models.Model {
                     }
                 }
                 if (__blank) {
-                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: identityProviderId: blank '%s' (length=%d)", identityProviderId, __strLen));
+                    throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.models.user.User: identityProviderId: blank '%s' (length=%d)", identityProviderId, __strLen));
                 }
             }
         }
 
         public static void validateEmailAddressVerified(final com.google.common.base.Optional<Boolean> emailAddressVerified) {
             if (emailAddressVerified == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: emailAddressVerified is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: emailAddressVerified is missing");
             }
         }
 
         public static void validateFamilyName(final com.google.common.base.Optional<String> familyName) {
             if (familyName == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: familyName is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: familyName is missing");
             }
             if (familyName.isPresent()) {
                 if (familyName.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: familyName: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: familyName: less than min length 1");
                 }
                 {
                     final int __strLen = familyName.get().length();
@@ -882,7 +649,7 @@ public final class User implements org.thryft.waf.api.models.Model {
                         }
                     }
                     if (__blank) {
-                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: familyName: blank '%s' (length=%d)", familyName.get(), __strLen));
+                        throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.models.user.User: familyName: blank '%s' (length=%d)", familyName.get(), __strLen));
                     }
                 }
             }
@@ -890,11 +657,11 @@ public final class User implements org.thryft.waf.api.models.Model {
 
         public static void validateGivenName(final com.google.common.base.Optional<String> givenName) {
             if (givenName == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: givenName is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: givenName is missing");
             }
             if (givenName.isPresent()) {
                 if (givenName.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: givenName: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: givenName: less than min length 1");
                 }
                 {
                     final int __strLen = givenName.get().length();
@@ -906,7 +673,7 @@ public final class User implements org.thryft.waf.api.models.Model {
                         }
                     }
                     if (__blank) {
-                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: givenName: blank '%s' (length=%d)", givenName.get(), __strLen));
+                        throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.models.user.User: givenName: blank '%s' (length=%d)", givenName.get(), __strLen));
                     }
                 }
             }
@@ -914,11 +681,11 @@ public final class User implements org.thryft.waf.api.models.Model {
 
         public static void validateLocale(final com.google.common.base.Optional<String> locale) {
             if (locale == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: locale is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: locale is missing");
             }
             if (locale.isPresent()) {
                 if (locale.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: locale: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: locale: less than min length 1");
                 }
                 {
                     final int __strLen = locale.get().length();
@@ -930,7 +697,7 @@ public final class User implements org.thryft.waf.api.models.Model {
                         }
                     }
                     if (__blank) {
-                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: locale: blank '%s' (length=%d)", locale.get(), __strLen));
+                        throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.models.user.User: locale: blank '%s' (length=%d)", locale.get(), __strLen));
                     }
                 }
             }
@@ -938,11 +705,11 @@ public final class User implements org.thryft.waf.api.models.Model {
 
         public static void validateName(final com.google.common.base.Optional<String> name) {
             if (name == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: name is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: name is missing");
             }
             if (name.isPresent()) {
                 if (name.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: name: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: name: less than min length 1");
                 }
                 {
                     final int __strLen = name.get().length();
@@ -954,7 +721,7 @@ public final class User implements org.thryft.waf.api.models.Model {
                         }
                     }
                     if (__blank) {
-                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: name: blank '%s' (length=%d)", name.get(), __strLen));
+                        throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.models.user.User: name: blank '%s' (length=%d)", name.get(), __strLen));
                     }
                 }
             }
@@ -962,11 +729,11 @@ public final class User implements org.thryft.waf.api.models.Model {
 
         public static void validateNickname(final com.google.common.base.Optional<String> nickname) {
             if (nickname == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: nickname is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: nickname is missing");
             }
             if (nickname.isPresent()) {
                 if (nickname.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: nickname: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: nickname: less than min length 1");
                 }
                 {
                     final int __strLen = nickname.get().length();
@@ -978,7 +745,7 @@ public final class User implements org.thryft.waf.api.models.Model {
                         }
                     }
                     if (__blank) {
-                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: nickname: blank '%s' (length=%d)", nickname.get(), __strLen));
+                        throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.models.user.User: nickname: blank '%s' (length=%d)", nickname.get(), __strLen));
                     }
                 }
             }
@@ -986,7 +753,7 @@ public final class User implements org.thryft.waf.api.models.Model {
 
         public static void validatePictureUrl(final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
             if (pictureUrl == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.User: pictureUrl is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.User: pictureUrl is missing");
             }
         }
     }
@@ -999,11 +766,17 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected User(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
+    public User(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId) {
+        this(emailAddress, identityProvider, identityProviderId, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public User(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
+        Validator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
         this.emailAddress = emailAddress;
         this.identityProvider = identityProvider;
         this.identityProviderId = identityProviderId;
@@ -1016,6 +789,13 @@ public final class User implements org.thryft.waf.api.models.Model {
         this.pictureUrl = pictureUrl;
     }
 
+    /**
+     * Total Nullable constructor
+     */
+    public User(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, @javax.annotation.Nullable final Boolean emailAddressVerified, @javax.annotation.Nullable final String familyName, @javax.annotation.Nullable final String givenName, @javax.annotation.Nullable final String locale, @javax.annotation.Nullable final String name, @javax.annotation.Nullable final String nickname, @javax.annotation.Nullable final org.thryft.native_.Url pictureUrl) {
+        this(emailAddress, identityProvider, identityProviderId, org.thryft.Optionals.fromNullable(emailAddressVerified), com.google.common.base.Optional.fromNullable(familyName), com.google.common.base.Optional.fromNullable(givenName), com.google.common.base.Optional.fromNullable(locale), com.google.common.base.Optional.fromNullable(name), com.google.common.base.Optional.fromNullable(nickname), com.google.common.base.Optional.fromNullable(pictureUrl));
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -1026,37 +806,6 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public static Builder builder(final com.google.common.base.Optional<User> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static User create(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId) {
-        UncheckedValidator.validate(emailAddress, identityProvider, identityProviderId, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
-        return new User(emailAddress, identityProvider, identityProviderId, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static User create(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, @javax.annotation.Nullable final Boolean emailAddressVerified, @javax.annotation.Nullable final String familyName, @javax.annotation.Nullable final String givenName, @javax.annotation.Nullable final String locale, @javax.annotation.Nullable final String name, @javax.annotation.Nullable final String nickname, @javax.annotation.Nullable final org.thryft.native_.Url pictureUrl) {
-        final com.google.common.base.Optional<Boolean> emailAddressVerifiedOptional = org.thryft.Optionals.fromNullable(emailAddressVerified);
-        final com.google.common.base.Optional<String> familyNameOptional = com.google.common.base.Optional.fromNullable(familyName);
-        final com.google.common.base.Optional<String> givenNameOptional = com.google.common.base.Optional.fromNullable(givenName);
-        final com.google.common.base.Optional<String> localeOptional = com.google.common.base.Optional.fromNullable(locale);
-        final com.google.common.base.Optional<String> nameOptional = com.google.common.base.Optional.fromNullable(name);
-        final com.google.common.base.Optional<String> nicknameOptional = com.google.common.base.Optional.fromNullable(nickname);
-        final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrlOptional = com.google.common.base.Optional.fromNullable(pictureUrl);
-        UncheckedValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerifiedOptional, familyNameOptional, givenNameOptional, localeOptional, nameOptional, nicknameOptional, pictureUrlOptional);
-        return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerifiedOptional, familyNameOptional, givenNameOptional, localeOptional, nameOptional, nicknameOptional, pictureUrlOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static User create(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
-        UncheckedValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
-        return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
     }
 
     @Override
@@ -1216,164 +965,25 @@ public final class User implements org.thryft.waf.api.models.Model {
         return hashCode;
     }
 
-    public static User readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static User readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static User readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String emailAddress;
-        org.dressdiscover.api.models.user.UserIdentityProvider identityProvider;
-        String identityProviderId;
-        com.google.common.base.Optional<Boolean> emailAddressVerified = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<String> familyName = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> givenName = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> locale = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> name = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> nickname = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            emailAddress = iprot.readString();
-            identityProvider = iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance());
-            identityProviderId = iprot.readString();
-            if (__list.getSize() > 3) {
-                emailAddressVerified = org.thryft.Optionals.of(iprot.readBool());
-            }
-            if (__list.getSize() > 4) {
-                familyName = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 5) {
-                givenName = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 6) {
-                locale = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 7) {
-                name = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 8) {
-                nickname = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 9) {
-                try {
-                    pictureUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
-
-        return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+        return builder().readAsList(iprot).build();
     }
 
     public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String emailAddress = null;
-        @javax.annotation.Nullable org.dressdiscover.api.models.user.UserIdentityProvider identityProvider = null;
-        @javax.annotation.Nullable String identityProviderId = null;
-        com.google.common.base.Optional<Boolean> emailAddressVerified = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<String> familyName = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> givenName = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> locale = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> name = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> nickname = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "email_address": {
-                    emailAddress = iprot.readString();
-                    break;
-                }
-                case "identity_provider": {
-                    identityProvider = iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance());
-                    break;
-                }
-                case "identity_provider_id": {
-                    identityProviderId = iprot.readString();
-                    break;
-                }
-                case "email_address_verified": {
-                    emailAddressVerified = org.thryft.Optionals.of(iprot.readBool());
-                    break;
-                }
-                case "family_name": {
-                    familyName = com.google.common.base.Optional.of(iprot.readString());
-                    break;
-                }
-                case "given_name": {
-                    givenName = com.google.common.base.Optional.of(iprot.readString());
-                    break;
-                }
-                case "locale": {
-                    locale = com.google.common.base.Optional.of(iprot.readString());
-                    break;
-                }
-                case "name": {
-                    name = com.google.common.base.Optional.of(iprot.readString());
-                    break;
-                }
-                case "nickname": {
-                    nickname = com.google.common.base.Optional.of(iprot.readString());
-                    break;
-                }
-                case "picture_url": {
-                    try {
-                        pictureUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
-
-        return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+    public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public User replaceEmailAddress(final String emailAddress) {
-        UncheckedValidator.validateEmailAddress(emailAddress);
+        Validator.validateEmailAddress(emailAddress);
         return new User(emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
     public User replaceEmailAddressVerified(final com.google.common.base.Optional<Boolean> emailAddressVerified) {
-        UncheckedValidator.validateEmailAddressVerified(emailAddressVerified);
+        Validator.validateEmailAddressVerified(emailAddressVerified);
         return new User(this.emailAddress, this.identityProvider, this.identityProviderId, emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
@@ -1386,7 +996,7 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     public User replaceFamilyName(final com.google.common.base.Optional<String> familyName) {
-        UncheckedValidator.validateFamilyName(familyName);
+        Validator.validateFamilyName(familyName);
         return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
@@ -1395,7 +1005,7 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     public User replaceGivenName(final com.google.common.base.Optional<String> givenName) {
-        UncheckedValidator.validateGivenName(givenName);
+        Validator.validateGivenName(givenName);
         return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
@@ -1404,17 +1014,17 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     public User replaceIdentityProvider(final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider) {
-        UncheckedValidator.validateIdentityProvider(identityProvider);
+        Validator.validateIdentityProvider(identityProvider);
         return new User(this.emailAddress, identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
     public User replaceIdentityProviderId(final String identityProviderId) {
-        UncheckedValidator.validateIdentityProviderId(identityProviderId);
+        Validator.validateIdentityProviderId(identityProviderId);
         return new User(this.emailAddress, this.identityProvider, identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
     public User replaceLocale(final com.google.common.base.Optional<String> locale) {
-        UncheckedValidator.validateLocale(locale);
+        Validator.validateLocale(locale);
         return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, locale, this.name, this.nickname, this.pictureUrl);
     }
 
@@ -1423,7 +1033,7 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     public User replaceName(final com.google.common.base.Optional<String> name) {
-        UncheckedValidator.validateName(name);
+        Validator.validateName(name);
         return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, name, this.nickname, this.pictureUrl);
     }
 
@@ -1432,7 +1042,7 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     public User replaceNickname(final com.google.common.base.Optional<String> nickname) {
-        UncheckedValidator.validateNickname(nickname);
+        Validator.validateNickname(nickname);
         return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, nickname, this.pictureUrl);
     }
 
@@ -1441,7 +1051,7 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     public User replacePictureUrl(final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
-        UncheckedValidator.validatePictureUrl(pictureUrl);
+        Validator.validatePictureUrl(pictureUrl);
         return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, pictureUrl);
     }
 
@@ -1457,55 +1067,7 @@ public final class User implements org.thryft.waf.api.models.Model {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 10);
-
-        oprot.writeString(getEmailAddress());
-
-        oprot.writeEnum(getIdentityProvider());
-
-        oprot.writeString(getIdentityProviderId());
-
-        if (getEmailAddressVerified().isPresent()) {
-            oprot.writeBool(getEmailAddressVerified().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getFamilyName().isPresent()) {
-            oprot.writeString(getFamilyName().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getGivenName().isPresent()) {
-            oprot.writeString(getGivenName().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getLocale().isPresent()) {
-            oprot.writeString(getLocale().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getName().isPresent()) {
-            oprot.writeString(getName().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getNickname().isPresent()) {
-            oprot.writeString(getNickname().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getPictureUrl().isPresent()) {
-            oprot.writeString(getPictureUrl().get().toString());
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -1535,6 +1097,48 @@ public final class User implements org.thryft.waf.api.models.Model {
             oprot.writeFieldBegin(FieldMetadata.FAMILY_NAME);
             oprot.writeString(getFamilyName().get());
             oprot.writeFieldEnd();
+        }
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getEmailAddress());
+        oprot.writeEnum(getIdentityProvider());
+        oprot.writeString(getIdentityProviderId());
+        if (getEmailAddressVerified().isPresent()) {
+            oprot.writeBool(getEmailAddressVerified().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getFamilyName().isPresent()) {
+            oprot.writeString(getFamilyName().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getGivenName().isPresent()) {
+            oprot.writeString(getGivenName().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getLocale().isPresent()) {
+            oprot.writeString(getLocale().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getName().isPresent()) {
+            oprot.writeString(getName().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getNickname().isPresent()) {
+            oprot.writeString(getNickname().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getPictureUrl().isPresent()) {
+            oprot.writeString(getPictureUrl().get().toString());
+        } else {
+            oprot.writeNull();
         }
     }
 

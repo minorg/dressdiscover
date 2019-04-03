@@ -13,12 +13,12 @@ public class ValidatingConfigurationCommandService implements org.dressdiscover.
     public final void putCollectionConfiguration(final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration, final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
         {
             if (collectionConfiguration == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putCollectionConfiguration: collectionConfiguration is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putCollectionConfiguration: collectionConfiguration is missing");
             }
         }
         {
             if (collectionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putCollectionConfiguration: collectionId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putCollectionConfiguration: collectionId is missing");
             }
         }
         delegate.putCollectionConfiguration(collectionConfiguration, collectionId);
@@ -28,12 +28,12 @@ public class ValidatingConfigurationCommandService implements org.dressdiscover.
     public final void putInstitutionConfiguration(final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration, final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
         {
             if (institutionConfiguration == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putInstitutionConfiguration: institutionConfiguration is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putInstitutionConfiguration: institutionConfiguration is missing");
             }
         }
         {
             if (institutionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putInstitutionConfiguration: institutionId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putInstitutionConfiguration: institutionId is missing");
             }
         }
         delegate.putInstitutionConfiguration(institutionConfiguration, institutionId);

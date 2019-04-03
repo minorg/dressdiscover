@@ -2,7 +2,7 @@ package org.dressdiscover.api.services.user;
 
 @SuppressWarnings({"serial"})
 public final class DuplicateUserException extends org.thryft.ThryftException {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, DuplicateUserException> {
         public Builder() {
             causeMessage = null;
             userId = null;
@@ -18,7 +18,7 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
         }
 
         public DuplicateUserException build() {
-            UncheckedValidator.validate(causeMessage, userId);
+            Validator.validate(causeMessage, userId);
 
             return _build(causeMessage, userId);
         }
@@ -31,44 +31,27 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
             return userId;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
-                causeMessage = iprot.readString();
+                this.setCauseMessage(iprot.readString());
                 try {
-                    userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    this.setUserId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                 } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                 } catch (final IllegalArgumentException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -78,12 +61,12 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
                     }
                     switch (ifield.getName()) {
                     case "cause_message": {
-                        causeMessage = iprot.readString();
+                        this.setCauseMessage(iprot.readString());
                         break;
                     }
                     case "user_id": {
                         try {
-                            userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            this.setUserId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                         } catch (final IllegalArgumentException e) {
@@ -92,18 +75,18 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -129,7 +112,7 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
         }
 
         public Builder setCauseMessage(final String causeMessage) {
-            UncheckedValidator.validateCauseMessage(causeMessage);
+            Validator.validateCauseMessage(causeMessage);
             this.causeMessage = causeMessage;
             return this;
         }
@@ -144,7 +127,7 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
         }
 
         public Builder setUserId(final org.dressdiscover.api.models.user.UserId userId) {
-            UncheckedValidator.validateUserId(userId);
+            Validator.validateUserId(userId);
             this.userId = userId;
             return this;
         }
@@ -187,17 +170,6 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<DuplicateUserException> {
         @Override
-        public DuplicateUserException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return DuplicateUserException.readAs(iprot, type);
-        }
-
-        @Override
-        public DuplicateUserException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return DuplicateUserException.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public DuplicateUserException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return DuplicateUserException.readAsList(iprot);
         }
@@ -208,15 +180,14 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
         }
 
         @Override
-        public DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return DuplicateUserException.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "cause_message", org.thryft.protocol.Type.STRING),
-        USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "user_id", org.thryft.protocol.Type.STRING);
+        CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "cause_message", "cause_message", org.thryft.protocol.Type.STRING),
+        USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "user_id", "user_id", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -276,17 +247,13 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -299,42 +266,7 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) throws org.thryft.protocol.InputProtocolException {
-            validateCauseMessage(causeMessage);
-            validateUserId(userId);
-        }
-
-        public static void validateCauseMessage(final String causeMessage) throws org.thryft.protocol.InputProtocolException {
-            if (causeMessage == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.services.user.DuplicateUserException: causeMessage is null");
-            }
-            if (causeMessage.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.services.user.DuplicateUserException: causeMessage: less than min length 1");
-            }
-            {
-                final int __strLen = causeMessage.length();
-                boolean __blank = true;
-                for (int i = 0; i < __strLen; i++) {
-                    if (!Character.isWhitespace(causeMessage.charAt(i))) {
-                        __blank = false;
-                        break;
-                    }
-                }
-                if (__blank) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, String.format("org.dressdiscover.api.services.user.DuplicateUserException: causeMessage: blank '%s' (length=%d)", causeMessage, __strLen));
-                }
-            }
-        }
-
-        public static void validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws org.thryft.protocol.InputProtocolException {
-            if (userId == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.USER_ID, "org.dressdiscover.api.services.user.DuplicateUserException: userId is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
             validateCauseMessage(causeMessage);
             validateUserId(userId);
@@ -342,10 +274,10 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
 
         public static void validateCauseMessage(final String causeMessage) {
             if (causeMessage == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.DuplicateUserException: causeMessage is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.DuplicateUserException: causeMessage is missing");
             }
             if (causeMessage.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.services.user.DuplicateUserException: causeMessage: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.DuplicateUserException: causeMessage: less than min length 1");
             }
             {
                 final int __strLen = causeMessage.length();
@@ -357,14 +289,14 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
                     }
                 }
                 if (__blank) {
-                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.services.user.DuplicateUserException: causeMessage: blank '%s' (length=%d)", causeMessage, __strLen));
+                    throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.services.user.DuplicateUserException: causeMessage: blank '%s' (length=%d)", causeMessage, __strLen));
                 }
             }
         }
 
         public static void validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
             if (userId == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.DuplicateUserException: userId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.DuplicateUserException: userId is missing");
             }
         }
     }
@@ -378,10 +310,9 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected DuplicateUserException(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
+    public DuplicateUserException(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
+        Validator.validate(causeMessage, userId);
         this.causeMessage = causeMessage;
         this.userId = userId;
     }
@@ -396,14 +327,6 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
 
     public static Builder builder(final com.google.common.base.Optional<DuplicateUserException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static DuplicateUserException create(final String causeMessage, final org.dressdiscover.api.models.user.UserId userId) {
-        UncheckedValidator.validate(causeMessage, userId);
-        return new DuplicateUserException(causeMessage, userId);
     }
 
     @Override
@@ -476,100 +399,25 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
         return hashCode;
     }
 
-    public static DuplicateUserException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static DuplicateUserException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static DuplicateUserException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String causeMessage;
-        org.dressdiscover.api.models.user.UserId userId;
-
-        try {
-            iprot.readListBegin();
-            causeMessage = iprot.readString();
-            try {
-                userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-            } catch (final IllegalArgumentException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(causeMessage, userId);
-
-        return new DuplicateUserException(causeMessage, userId);
+        return builder().readAsList(iprot).build();
     }
 
     public static DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String causeMessage = null;
-        @javax.annotation.Nullable org.dressdiscover.api.models.user.UserId userId = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "cause_message": {
-                    causeMessage = iprot.readString();
-                    break;
-                }
-                case "user_id": {
-                    try {
-                        userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(causeMessage, userId);
-
-        return new DuplicateUserException(causeMessage, userId);
+    public static DuplicateUserException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public DuplicateUserException replaceCauseMessage(final String causeMessage) {
-        UncheckedValidator.validateCauseMessage(causeMessage);
+        Validator.validateCauseMessage(causeMessage);
         return new DuplicateUserException(causeMessage, this.userId);
     }
 
     public DuplicateUserException replaceUserId(final org.dressdiscover.api.models.user.UserId userId) {
-        UncheckedValidator.validateUserId(userId);
+        Validator.validateUserId(userId);
         return new DuplicateUserException(this.causeMessage, userId);
     }
 
@@ -581,11 +429,7 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-        oprot.writeString(getCauseMessage());
-
-        oprot.writeString(getUserId().toString());
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -616,6 +460,12 @@ public final class DuplicateUserException extends org.thryft.ThryftException {
         oprot.writeFieldBegin(FieldMetadata.CAUSE_MESSAGE);
         oprot.writeString(getCauseMessage());
         oprot.writeFieldEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getCauseMessage());
+        oprot.writeString(getUserId().toString());
     }
 
     @Override

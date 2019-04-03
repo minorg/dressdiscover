@@ -4,7 +4,7 @@ package org.dressdiscover.api.vocabularies.costume_core.component;
  * Costume Core component element
  */
 public final class Component implements org.dressdiscover.api.vocabularies.vra_core.Element {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, Component> {
         public Builder() {
             term = null;
             structures = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> absent();
@@ -20,7 +20,7 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
         }
 
         public Component build() {
-            UncheckedValidator.validate(term, structures);
+            Validator.validate(term, structures);
 
             return _build(term, structures);
         }
@@ -33,40 +33,23 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
             return term;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                term = org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm.readAsStruct(iprot);
+                this.setTerm(org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm.readAsStruct(iprot));
                 if (__list.getSize() > 1) {
-                    structures = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot));
+                    this.setStructures(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot)));
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -77,29 +60,29 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
                     switch (ifield.getName()) {
                     case "term": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            term = org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm.readAsStruct(iprot, unknownFieldCallback);
+                                this.setTerm(org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
                     case "structures": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            structures = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot, unknownFieldCallback));
+                                this.setStructures(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -136,7 +119,7 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
         }
 
         public Builder setStructures(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
-            UncheckedValidator.validateStructures(structures);
+            Validator.validateStructures(structures);
             this.structures = structures;
             return this;
         }
@@ -146,7 +129,7 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
         }
 
         public Builder setTerm(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term) {
-            UncheckedValidator.validateTerm(term);
+            Validator.validateTerm(term);
             this.term = term;
             return this;
         }
@@ -189,17 +172,6 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Component> {
         @Override
-        public Component readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return Component.readAs(iprot, type);
-        }
-
-        @Override
-        public Component readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return Component.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public Component readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return Component.readAsList(iprot);
         }
@@ -210,16 +182,15 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
         }
 
         @Override
-        public Component readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Component readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return Component.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TERM("term", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm>() {}, true, (short)1, "term", org.thryft.protocol.Type.STRUCT),
-        STRUCTURES("structures", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>() {}, false, (short)2, "structures", org.thryft.protocol.Type.STRUCT);
+        TERM("term", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm>() {}, true, (short)1, "term", "1:term", org.thryft.protocol.Type.STRUCT),
+        STRUCTURES("structures", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>() {}, false, (short)2, "structures", "2:structures", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -279,17 +250,13 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -302,26 +269,7 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) throws org.thryft.protocol.InputProtocolException {
-            validateTerm(term);
-            validateStructures(structures);
-        }
-
-        public static void validateTerm(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term) throws org.thryft.protocol.InputProtocolException {
-            if (term == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TERM, "org.dressdiscover.api.vocabularies.costume_core.component.Component: term is null");
-            }
-        }
-
-        public static void validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) throws org.thryft.protocol.InputProtocolException {
-            if (structures == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURES, "org.dressdiscover.api.vocabularies.costume_core.component.Component: structures is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
             validateTerm(term);
             validateStructures(structures);
@@ -329,13 +277,13 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
 
         public static void validateTerm(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term) {
             if (term == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.component.Component: term is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.costume_core.component.Component: term is missing");
             }
         }
 
         public static void validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
             if (structures == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.component.Component: structures is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.costume_core.component.Component: structures is missing");
             }
         }
     }
@@ -348,13 +296,26 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected Component(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
+    public Component(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term) {
+        this(term, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public Component(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
+        Validator.validate(term, structures);
         this.term = term;
         this.structures = structures;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public Component(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet structures) {
+        this(term, com.google.common.base.Optional.fromNullable(structures));
     }
 
     public static Builder builder() {
@@ -367,31 +328,6 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
 
     public static Builder builder(final com.google.common.base.Optional<Component> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static Component create(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term) {
-        UncheckedValidator.validate(term, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> absent());
-        return new Component(term, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static Component create(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet structures) {
-        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structuresOptional = com.google.common.base.Optional.fromNullable(structures);
-        UncheckedValidator.validate(term, structuresOptional);
-        return new Component(term, structuresOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static Component create(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
-        UncheckedValidator.validate(term, structures);
-        return new Component(term, structures);
     }
 
     @Override
@@ -456,89 +392,20 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
         return hashCode;
     }
 
-    public static Component readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static Component readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static Component readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term;
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            term = org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm.readAsStruct(iprot);
-            if (__list.getSize() > 1) {
-                structures = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(term, structures);
-
-        return new Component(term, structures);
+        return builder().readAsList(iprot).build();
     }
 
     public static Component readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static Component readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term = null;
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "term": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        term = org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm.readAsStruct(iprot, unknownFieldCallback);
-                    }
-                    break;
-                }
-                case "structures": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        structures = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(term, structures);
-
-        return new Component(term, structures);
+    public static Component readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public Component replaceStructures(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
-        UncheckedValidator.validateStructures(structures);
+        Validator.validateStructures(structures);
         return new Component(this.term, structures);
     }
 
@@ -547,7 +414,7 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
     }
 
     public Component replaceTerm(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentTerm term) {
-        UncheckedValidator.validateTerm(term);
+        Validator.validateTerm(term);
         return new Component(term, this.structures);
     }
 
@@ -559,15 +426,7 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-        getTerm().writeAsStruct(oprot);
-
-        if (getStructures().isPresent()) {
-            getStructures().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -576,6 +435,16 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
         oprot.writeStructBegin("org.dressdiscover.api.vocabularies.costume_core.component.Component");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        getTerm().writeAsStruct(oprot);
+        if (getStructures().isPresent()) {
+            getStructures().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

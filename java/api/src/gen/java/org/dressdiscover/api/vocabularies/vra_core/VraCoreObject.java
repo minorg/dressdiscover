@@ -1,7 +1,7 @@
 package org.dressdiscover.api.vocabularies.vra_core;
 
 public final class VraCoreObject implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, VraCoreObject> {
         public Builder() {
             agentSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> absent();
             culturalContextSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> absent();
@@ -43,7 +43,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public VraCoreObject build() {
-            UncheckedValidator.validate(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
+            Validator.validate(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
 
             return _build(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
         }
@@ -108,27 +108,12 @@ public final class VraCoreObject implements org.thryft.Struct {
             return workTypeSets;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
                     try {
-                        agentSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>>() {
+                        this.setAgentSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -143,14 +128,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 1) {
                     try {
-                        culturalContextSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>>() {
+                        this.setCulturalContextSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -165,14 +150,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 2) {
                     try {
-                        dateSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>>() {
+                        this.setDateSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -187,14 +172,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 3) {
                     try {
-                        descriptionSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>>() {
+                        this.setDescriptionSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -209,14 +194,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 4) {
                     try {
-                        inscriptionSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>>() {
+                        this.setInscriptionSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -231,14 +216,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 5) {
                     try {
-                        locationSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>>() {
+                        this.setLocationSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -253,14 +238,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 6) {
                     try {
-                        materialSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>>() {
+                        this.setMaterialSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -275,14 +260,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 7) {
                     try {
-                        measurementsSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>>() {
+                        this.setMeasurementsSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -297,14 +282,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 8) {
                     try {
-                        relationSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>>() {
+                        this.setRelationSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -319,14 +304,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 9) {
                     try {
-                        rightsSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>>() {
+                        this.setRightsSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -341,14 +326,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 10) {
                     try {
-                        subjectSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>>() {
+                        this.setSubjectSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -363,14 +348,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 11) {
                     try {
-                        techniqueSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>>() {
+                        this.setTechniqueSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -385,14 +370,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 12) {
                     try {
-                        textrefSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>>() {
+                        this.setTextrefSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -407,14 +392,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 13) {
                     try {
-                        titleSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>>() {
+                        this.setTitleSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -429,14 +414,14 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE_SETS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 14) {
                     try {
-                        workTypeSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>>() {
+                        this.setWorkTypeSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -451,23 +436,21 @@ public final class VraCoreObject implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, e.getCause());
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -478,392 +461,392 @@ public final class VraCoreObject implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "agent_sets": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            try {
-                                agentSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setAgentSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "cultural_context_sets": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            try {
-                                culturalContextSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setCulturalContextSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "date_sets": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            try {
-                                dateSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.date.DateSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setDateSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.date.DateSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "description_sets": {
                         if (!ifield.hasId() || ifield.getId() == 4) {
-                            try {
-                                descriptionSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setDescriptionSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "inscription_sets": {
                         if (!ifield.hasId() || ifield.getId() == 5) {
-                            try {
-                                inscriptionSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setInscriptionSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "location_sets": {
                         if (!ifield.hasId() || ifield.getId() == 6) {
-                            try {
-                                locationSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setLocationSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "material_sets": {
                         if (!ifield.hasId() || ifield.getId() == 7) {
-                            try {
-                                materialSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setMaterialSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "measurements_sets": {
                         if (!ifield.hasId() || ifield.getId() == 8) {
-                            try {
-                                measurementsSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setMeasurementsSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "relation_sets": {
                         if (!ifield.hasId() || ifield.getId() == 9) {
-                            try {
-                                relationSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setRelationSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "rights_sets": {
                         if (!ifield.hasId() || ifield.getId() == 10) {
-                            try {
-                                rightsSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setRightsSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "subject_sets": {
                         if (!ifield.hasId() || ifield.getId() == 11) {
-                            try {
-                                subjectSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setSubjectSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "technique_sets": {
                         if (!ifield.hasId() || ifield.getId() == 12) {
-                            try {
-                                techniqueSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setTechniqueSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "textref_sets": {
                         if (!ifield.hasId() || ifield.getId() == 13) {
-                            try {
-                                textrefSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setTextrefSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "title_sets": {
                         if (!ifield.hasId() || ifield.getId() == 14) {
-                            try {
-                                titleSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.title.TitleSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setTitleSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.title.TitleSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "work_type_sets": {
                         if (!ifield.hasId() || ifield.getId() == 15) {
-                            try {
-                                workTypeSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setWorkTypeSets(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, e.getCause());
+                                }
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -903,7 +886,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setAgentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets) {
-            UncheckedValidator.validateAgentSets(agentSets);
+            Validator.validateAgentSets(agentSets);
             this.agentSets = agentSets;
             return this;
         }
@@ -913,7 +896,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setCulturalContextSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets) {
-            UncheckedValidator.validateCulturalContextSets(culturalContextSets);
+            Validator.validateCulturalContextSets(culturalContextSets);
             this.culturalContextSets = culturalContextSets;
             return this;
         }
@@ -923,7 +906,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setDateSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets) {
-            UncheckedValidator.validateDateSets(dateSets);
+            Validator.validateDateSets(dateSets);
             this.dateSets = dateSets;
             return this;
         }
@@ -933,7 +916,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setDescriptionSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets) {
-            UncheckedValidator.validateDescriptionSets(descriptionSets);
+            Validator.validateDescriptionSets(descriptionSets);
             this.descriptionSets = descriptionSets;
             return this;
         }
@@ -995,7 +978,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setInscriptionSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets) {
-            UncheckedValidator.validateInscriptionSets(inscriptionSets);
+            Validator.validateInscriptionSets(inscriptionSets);
             this.inscriptionSets = inscriptionSets;
             return this;
         }
@@ -1005,7 +988,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setLocationSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets) {
-            UncheckedValidator.validateLocationSets(locationSets);
+            Validator.validateLocationSets(locationSets);
             this.locationSets = locationSets;
             return this;
         }
@@ -1015,7 +998,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setMaterialSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets) {
-            UncheckedValidator.validateMaterialSets(materialSets);
+            Validator.validateMaterialSets(materialSets);
             this.materialSets = materialSets;
             return this;
         }
@@ -1025,7 +1008,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setMeasurementsSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets) {
-            UncheckedValidator.validateMeasurementsSets(measurementsSets);
+            Validator.validateMeasurementsSets(measurementsSets);
             this.measurementsSets = measurementsSets;
             return this;
         }
@@ -1035,7 +1018,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setRelationSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets) {
-            UncheckedValidator.validateRelationSets(relationSets);
+            Validator.validateRelationSets(relationSets);
             this.relationSets = relationSets;
             return this;
         }
@@ -1045,7 +1028,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setRightsSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets) {
-            UncheckedValidator.validateRightsSets(rightsSets);
+            Validator.validateRightsSets(rightsSets);
             this.rightsSets = rightsSets;
             return this;
         }
@@ -1055,7 +1038,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setSubjectSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets) {
-            UncheckedValidator.validateSubjectSets(subjectSets);
+            Validator.validateSubjectSets(subjectSets);
             this.subjectSets = subjectSets;
             return this;
         }
@@ -1065,7 +1048,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setTechniqueSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets) {
-            UncheckedValidator.validateTechniqueSets(techniqueSets);
+            Validator.validateTechniqueSets(techniqueSets);
             this.techniqueSets = techniqueSets;
             return this;
         }
@@ -1075,7 +1058,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setTextrefSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets) {
-            UncheckedValidator.validateTextrefSets(textrefSets);
+            Validator.validateTextrefSets(textrefSets);
             this.textrefSets = textrefSets;
             return this;
         }
@@ -1085,7 +1068,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setTitleSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets) {
-            UncheckedValidator.validateTitleSets(titleSets);
+            Validator.validateTitleSets(titleSets);
             this.titleSets = titleSets;
             return this;
         }
@@ -1095,7 +1078,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         public Builder setWorkTypeSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) {
-            UncheckedValidator.validateWorkTypeSets(workTypeSets);
+            Validator.validateWorkTypeSets(workTypeSets);
             this.workTypeSets = workTypeSets;
             return this;
         }
@@ -1233,17 +1216,6 @@ public final class VraCoreObject implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<VraCoreObject> {
         @Override
-        public VraCoreObject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return VraCoreObject.readAs(iprot, type);
-        }
-
-        @Override
-        public VraCoreObject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return VraCoreObject.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public VraCoreObject readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return VraCoreObject.readAsList(iprot);
         }
@@ -1254,29 +1226,28 @@ public final class VraCoreObject implements org.thryft.Struct {
         }
 
         @Override
-        public VraCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public VraCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return VraCoreObject.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        AGENT_SETS("agentSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>>() {}, false, (short)1, "agent_sets", org.thryft.protocol.Type.LIST),
-        CULTURAL_CONTEXT_SETS("culturalContextSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>>() {}, false, (short)2, "cultural_context_sets", org.thryft.protocol.Type.LIST),
-        DATE_SETS("dateSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>>() {}, false, (short)3, "date_sets", org.thryft.protocol.Type.LIST),
-        DESCRIPTION_SETS("descriptionSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>>() {}, false, (short)4, "description_sets", org.thryft.protocol.Type.LIST),
-        INSCRIPTION_SETS("inscriptionSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>>() {}, false, (short)5, "inscription_sets", org.thryft.protocol.Type.LIST),
-        LOCATION_SETS("locationSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>>() {}, false, (short)6, "location_sets", org.thryft.protocol.Type.LIST),
-        MATERIAL_SETS("materialSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>>() {}, false, (short)7, "material_sets", org.thryft.protocol.Type.LIST),
-        MEASUREMENTS_SETS("measurementsSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>>() {}, false, (short)8, "measurements_sets", org.thryft.protocol.Type.LIST),
-        RELATION_SETS("relationSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>>() {}, false, (short)9, "relation_sets", org.thryft.protocol.Type.LIST),
-        RIGHTS_SETS("rightsSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>>() {}, false, (short)10, "rights_sets", org.thryft.protocol.Type.LIST),
-        SUBJECT_SETS("subjectSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>>() {}, false, (short)11, "subject_sets", org.thryft.protocol.Type.LIST),
-        TECHNIQUE_SETS("techniqueSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>>() {}, false, (short)12, "technique_sets", org.thryft.protocol.Type.LIST),
-        TEXTREF_SETS("textrefSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>>() {}, false, (short)13, "textref_sets", org.thryft.protocol.Type.LIST),
-        TITLE_SETS("titleSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>>() {}, false, (short)14, "title_sets", org.thryft.protocol.Type.LIST),
-        WORK_TYPE_SETS("workTypeSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>>() {}, false, (short)15, "work_type_sets", org.thryft.protocol.Type.LIST);
+        AGENT_SETS("agentSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>>() {}, false, (short)1, "agent_sets", "1:agent_sets", org.thryft.protocol.Type.LIST),
+        CULTURAL_CONTEXT_SETS("culturalContextSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>>() {}, false, (short)2, "cultural_context_sets", "2:cultural_context_sets", org.thryft.protocol.Type.LIST),
+        DATE_SETS("dateSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>>() {}, false, (short)3, "date_sets", "3:date_sets", org.thryft.protocol.Type.LIST),
+        DESCRIPTION_SETS("descriptionSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>>() {}, false, (short)4, "description_sets", "4:description_sets", org.thryft.protocol.Type.LIST),
+        INSCRIPTION_SETS("inscriptionSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>>() {}, false, (short)5, "inscription_sets", "5:inscription_sets", org.thryft.protocol.Type.LIST),
+        LOCATION_SETS("locationSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>>() {}, false, (short)6, "location_sets", "6:location_sets", org.thryft.protocol.Type.LIST),
+        MATERIAL_SETS("materialSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>>() {}, false, (short)7, "material_sets", "7:material_sets", org.thryft.protocol.Type.LIST),
+        MEASUREMENTS_SETS("measurementsSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>>() {}, false, (short)8, "measurements_sets", "8:measurements_sets", org.thryft.protocol.Type.LIST),
+        RELATION_SETS("relationSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>>() {}, false, (short)9, "relation_sets", "9:relation_sets", org.thryft.protocol.Type.LIST),
+        RIGHTS_SETS("rightsSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>>() {}, false, (short)10, "rights_sets", "10:rights_sets", org.thryft.protocol.Type.LIST),
+        SUBJECT_SETS("subjectSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>>() {}, false, (short)11, "subject_sets", "11:subject_sets", org.thryft.protocol.Type.LIST),
+        TECHNIQUE_SETS("techniqueSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>>() {}, false, (short)12, "technique_sets", "12:technique_sets", org.thryft.protocol.Type.LIST),
+        TEXTREF_SETS("textrefSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>>() {}, false, (short)13, "textref_sets", "13:textref_sets", org.thryft.protocol.Type.LIST),
+        TITLE_SETS("titleSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>>() {}, false, (short)14, "title_sets", "14:title_sets", org.thryft.protocol.Type.LIST),
+        WORK_TYPE_SETS("workTypeSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>>() {}, false, (short)15, "work_type_sets", "15:work_type_sets", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -1362,17 +1333,13 @@ public final class VraCoreObject implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -1385,192 +1352,7 @@ public final class VraCoreObject implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) throws org.thryft.protocol.InputProtocolException {
-            validateAgentSets(agentSets);
-            validateCulturalContextSets(culturalContextSets);
-            validateDateSets(dateSets);
-            validateDescriptionSets(descriptionSets);
-            validateInscriptionSets(inscriptionSets);
-            validateLocationSets(locationSets);
-            validateMaterialSets(materialSets);
-            validateMeasurementsSets(measurementsSets);
-            validateRelationSets(relationSets);
-            validateRightsSets(rightsSets);
-            validateSubjectSets(subjectSets);
-            validateTechniqueSets(techniqueSets);
-            validateTextrefSets(textrefSets);
-            validateTitleSets(titleSets);
-            validateWorkTypeSets(workTypeSets);
-        }
-
-        public static void validateAgentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets) throws org.thryft.protocol.InputProtocolException {
-            if (agentSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AGENT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets is null");
-            }
-            if (agentSets.isPresent()) {
-                if (agentSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateCulturalContextSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets) throws org.thryft.protocol.InputProtocolException {
-            if (culturalContextSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets is null");
-            }
-            if (culturalContextSets.isPresent()) {
-                if (culturalContextSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateDateSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets) throws org.thryft.protocol.InputProtocolException {
-            if (dateSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets is null");
-            }
-            if (dateSets.isPresent()) {
-                if (dateSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateDescriptionSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets) throws org.thryft.protocol.InputProtocolException {
-            if (descriptionSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets is null");
-            }
-            if (descriptionSets.isPresent()) {
-                if (descriptionSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateInscriptionSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets) throws org.thryft.protocol.InputProtocolException {
-            if (inscriptionSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets is null");
-            }
-            if (inscriptionSets.isPresent()) {
-                if (inscriptionSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateLocationSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets) throws org.thryft.protocol.InputProtocolException {
-            if (locationSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets is null");
-            }
-            if (locationSets.isPresent()) {
-                if (locationSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateMaterialSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets) throws org.thryft.protocol.InputProtocolException {
-            if (materialSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets is null");
-            }
-            if (materialSets.isPresent()) {
-                if (materialSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateMeasurementsSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets) throws org.thryft.protocol.InputProtocolException {
-            if (measurementsSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets is null");
-            }
-            if (measurementsSets.isPresent()) {
-                if (measurementsSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateRelationSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets) throws org.thryft.protocol.InputProtocolException {
-            if (relationSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets is null");
-            }
-            if (relationSets.isPresent()) {
-                if (relationSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateRightsSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets) throws org.thryft.protocol.InputProtocolException {
-            if (rightsSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets is null");
-            }
-            if (rightsSets.isPresent()) {
-                if (rightsSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateSubjectSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets) throws org.thryft.protocol.InputProtocolException {
-            if (subjectSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets is null");
-            }
-            if (subjectSets.isPresent()) {
-                if (subjectSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateTechniqueSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets) throws org.thryft.protocol.InputProtocolException {
-            if (techniqueSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets is null");
-            }
-            if (techniqueSets.isPresent()) {
-                if (techniqueSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateTextrefSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets) throws org.thryft.protocol.InputProtocolException {
-            if (textrefSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets is null");
-            }
-            if (textrefSets.isPresent()) {
-                if (textrefSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateTitleSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets) throws org.thryft.protocol.InputProtocolException {
-            if (titleSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets is null");
-            }
-            if (titleSets.isPresent()) {
-                if (titleSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateWorkTypeSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) throws org.thryft.protocol.InputProtocolException {
-            if (workTypeSets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets is null");
-            }
-            if (workTypeSets.isPresent()) {
-                if (workTypeSets.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets: less than min length 1");
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) {
             validateAgentSets(agentSets);
             validateCulturalContextSets(culturalContextSets);
@@ -1591,165 +1373,165 @@ public final class VraCoreObject implements org.thryft.Struct {
 
         public static void validateAgentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets) {
             if (agentSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets is missing");
             }
             if (agentSets.isPresent()) {
                 if (agentSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets: less than min length 1");
                 }
             }
         }
 
         public static void validateCulturalContextSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets) {
             if (culturalContextSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets is missing");
             }
             if (culturalContextSets.isPresent()) {
                 if (culturalContextSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets: less than min length 1");
                 }
             }
         }
 
         public static void validateDateSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets) {
             if (dateSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets is missing");
             }
             if (dateSets.isPresent()) {
                 if (dateSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets: less than min length 1");
                 }
             }
         }
 
         public static void validateDescriptionSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets) {
             if (descriptionSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets is missing");
             }
             if (descriptionSets.isPresent()) {
                 if (descriptionSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets: less than min length 1");
                 }
             }
         }
 
         public static void validateInscriptionSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets) {
             if (inscriptionSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets is missing");
             }
             if (inscriptionSets.isPresent()) {
                 if (inscriptionSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets: less than min length 1");
                 }
             }
         }
 
         public static void validateLocationSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets) {
             if (locationSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets is missing");
             }
             if (locationSets.isPresent()) {
                 if (locationSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets: less than min length 1");
                 }
             }
         }
 
         public static void validateMaterialSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets) {
             if (materialSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets is missing");
             }
             if (materialSets.isPresent()) {
                 if (materialSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets: less than min length 1");
                 }
             }
         }
 
         public static void validateMeasurementsSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets) {
             if (measurementsSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets is missing");
             }
             if (measurementsSets.isPresent()) {
                 if (measurementsSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets: less than min length 1");
                 }
             }
         }
 
         public static void validateRelationSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets) {
             if (relationSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets is missing");
             }
             if (relationSets.isPresent()) {
                 if (relationSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets: less than min length 1");
                 }
             }
         }
 
         public static void validateRightsSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets) {
             if (rightsSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets is missing");
             }
             if (rightsSets.isPresent()) {
                 if (rightsSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets: less than min length 1");
                 }
             }
         }
 
         public static void validateSubjectSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets) {
             if (subjectSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets is missing");
             }
             if (subjectSets.isPresent()) {
                 if (subjectSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets: less than min length 1");
                 }
             }
         }
 
         public static void validateTechniqueSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets) {
             if (techniqueSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets is missing");
             }
             if (techniqueSets.isPresent()) {
                 if (techniqueSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets: less than min length 1");
                 }
             }
         }
 
         public static void validateTextrefSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets) {
             if (textrefSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets is missing");
             }
             if (textrefSets.isPresent()) {
                 if (textrefSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets: less than min length 1");
                 }
             }
         }
 
         public static void validateTitleSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets) {
             if (titleSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets is missing");
             }
             if (titleSets.isPresent()) {
                 if (titleSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets: less than min length 1");
                 }
             }
         }
 
         public static void validateWorkTypeSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) {
             if (workTypeSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets is missing");
             }
             if (workTypeSets.isPresent()) {
                 if (workTypeSets.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets: less than min length 1");
                 }
             }
         }
@@ -1786,10 +1568,9 @@ public final class VraCoreObject implements org.thryft.Struct {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected VraCoreObject(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) {
+    public VraCoreObject(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) {
+        Validator.validate(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
         this.agentSets = agentSets;
         this.culturalContextSets = culturalContextSets;
         this.dateSets = dateSets;
@@ -1807,6 +1588,13 @@ public final class VraCoreObject implements org.thryft.Struct {
         this.workTypeSets = workTypeSets;
     }
 
+    /**
+     * Total Nullable constructor
+     */
+    public VraCoreObject(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agentSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContextSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dateSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptionSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptionSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locationSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materialSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurementsSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relationSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rightsSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjectSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniqueSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> titleSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypeSets) {
+        this(com.google.common.base.Optional.fromNullable(agentSets), com.google.common.base.Optional.fromNullable(culturalContextSets), com.google.common.base.Optional.fromNullable(dateSets), com.google.common.base.Optional.fromNullable(descriptionSets), com.google.common.base.Optional.fromNullable(inscriptionSets), com.google.common.base.Optional.fromNullable(locationSets), com.google.common.base.Optional.fromNullable(materialSets), com.google.common.base.Optional.fromNullable(measurementsSets), com.google.common.base.Optional.fromNullable(relationSets), com.google.common.base.Optional.fromNullable(rightsSets), com.google.common.base.Optional.fromNullable(subjectSets), com.google.common.base.Optional.fromNullable(techniqueSets), com.google.common.base.Optional.fromNullable(textrefSets), com.google.common.base.Optional.fromNullable(titleSets), com.google.common.base.Optional.fromNullable(workTypeSets));
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -1817,42 +1605,6 @@ public final class VraCoreObject implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<VraCoreObject> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    @Deprecated
-    public static VraCoreObject create() {
-        return new VraCoreObject();
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static VraCoreObject create(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agentSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContextSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dateSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptionSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptionSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locationSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materialSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurementsSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relationSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rightsSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjectSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniqueSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> titleSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypeSets) {
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSetsOptional = com.google.common.base.Optional.fromNullable(agentSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSetsOptional = com.google.common.base.Optional.fromNullable(culturalContextSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSetsOptional = com.google.common.base.Optional.fromNullable(dateSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSetsOptional = com.google.common.base.Optional.fromNullable(descriptionSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSetsOptional = com.google.common.base.Optional.fromNullable(inscriptionSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSetsOptional = com.google.common.base.Optional.fromNullable(locationSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSetsOptional = com.google.common.base.Optional.fromNullable(materialSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSetsOptional = com.google.common.base.Optional.fromNullable(measurementsSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSetsOptional = com.google.common.base.Optional.fromNullable(relationSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSetsOptional = com.google.common.base.Optional.fromNullable(rightsSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSetsOptional = com.google.common.base.Optional.fromNullable(subjectSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSetsOptional = com.google.common.base.Optional.fromNullable(techniqueSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSetsOptional = com.google.common.base.Optional.fromNullable(textrefSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSetsOptional = com.google.common.base.Optional.fromNullable(titleSets);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSetsOptional = com.google.common.base.Optional.fromNullable(workTypeSets);
-        UncheckedValidator.validate(agentSetsOptional, culturalContextSetsOptional, dateSetsOptional, descriptionSetsOptional, inscriptionSetsOptional, locationSetsOptional, materialSetsOptional, measurementsSetsOptional, relationSetsOptional, rightsSetsOptional, subjectSetsOptional, techniqueSetsOptional, textrefSetsOptional, titleSetsOptional, workTypeSetsOptional);
-        return new VraCoreObject(agentSetsOptional, culturalContextSetsOptional, dateSetsOptional, descriptionSetsOptional, inscriptionSetsOptional, locationSetsOptional, materialSetsOptional, measurementsSetsOptional, relationSetsOptional, rightsSetsOptional, subjectSetsOptional, techniqueSetsOptional, textrefSetsOptional, titleSetsOptional, workTypeSetsOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static VraCoreObject create(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) {
-        UncheckedValidator.validate(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
-        return new VraCoreObject(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
     }
 
     @Override
@@ -2075,804 +1827,20 @@ public final class VraCoreObject implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static VraCoreObject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static VraCoreObject readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static VraCoreObject readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            if (__list.getSize() > 0) {
-                try {
-                    agentSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 1) {
-                try {
-                    culturalContextSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    dateSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.date.DateSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 3) {
-                try {
-                    descriptionSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 4) {
-                try {
-                    inscriptionSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 5) {
-                try {
-                    locationSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 6) {
-                try {
-                    materialSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 7) {
-                try {
-                    measurementsSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 8) {
-                try {
-                    relationSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 9) {
-                try {
-                    rightsSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 10) {
-                try {
-                    subjectSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 11) {
-                try {
-                    techniqueSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 12) {
-                try {
-                    textrefSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 13) {
-                try {
-                    titleSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.title.TitleSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE_SETS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 14) {
-                try {
-                    workTypeSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, e.getCause());
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
-
-        return new VraCoreObject(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
+        return builder().readAsList(iprot).build();
     }
 
     public static VraCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static VraCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "agent_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        try {
-                            agentSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "cultural_context_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        try {
-                            culturalContextSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "date_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            dateSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.date.DateSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "description_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        try {
-                            descriptionSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "inscription_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        try {
-                            inscriptionSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "location_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 6) {
-                        try {
-                            locationSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "material_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 7) {
-                        try {
-                            materialSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "measurements_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 8) {
-                        try {
-                            measurementsSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "relation_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 9) {
-                        try {
-                            relationSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "rights_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 10) {
-                        try {
-                            rightsSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "subject_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 11) {
-                        try {
-                            subjectSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "technique_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 12) {
-                        try {
-                            techniqueSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "textref_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 13) {
-                        try {
-                            textrefSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "title_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 14) {
-                        try {
-                            titleSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.title.TitleSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "work_type_sets": {
-                    if (!ifield.hasId() || ifield.getId() == 15) {
-                        try {
-                            workTypeSets = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
-
-        return new VraCoreObject(agentSets, culturalContextSets, dateSets, descriptionSets, inscriptionSets, locationSets, materialSets, measurementsSets, relationSets, rightsSets, subjectSets, techniqueSets, textrefSets, titleSets, workTypeSets);
+    public static VraCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public VraCoreObject replaceAgentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>> agentSets) {
-        UncheckedValidator.validateAgentSets(agentSets);
+        Validator.validateAgentSets(agentSets);
         return new VraCoreObject(agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2881,7 +1849,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceCulturalContextSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet>> culturalContextSets) {
-        UncheckedValidator.validateCulturalContextSets(culturalContextSets);
+        Validator.validateCulturalContextSets(culturalContextSets);
         return new VraCoreObject(this.agentSets, culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2890,7 +1858,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceDateSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.date.DateSet>> dateSets) {
-        UncheckedValidator.validateDateSets(dateSets);
+        Validator.validateDateSets(dateSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2899,7 +1867,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceDescriptionSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet>> descriptionSets) {
-        UncheckedValidator.validateDescriptionSets(descriptionSets);
+        Validator.validateDescriptionSets(descriptionSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2908,7 +1876,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceInscriptionSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet>> inscriptionSets) {
-        UncheckedValidator.validateInscriptionSets(inscriptionSets);
+        Validator.validateInscriptionSets(inscriptionSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2917,7 +1885,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceLocationSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>> locationSets) {
-        UncheckedValidator.validateLocationSets(locationSets);
+        Validator.validateLocationSets(locationSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2926,7 +1894,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceMaterialSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet>> materialSets) {
-        UncheckedValidator.validateMaterialSets(materialSets);
+        Validator.validateMaterialSets(materialSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2935,7 +1903,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceMeasurementsSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet>> measurementsSets) {
-        UncheckedValidator.validateMeasurementsSets(measurementsSets);
+        Validator.validateMeasurementsSets(measurementsSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2944,7 +1912,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceRelationSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet>> relationSets) {
-        UncheckedValidator.validateRelationSets(relationSets);
+        Validator.validateRelationSets(relationSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2953,7 +1921,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceRightsSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>> rightsSets) {
-        UncheckedValidator.validateRightsSets(rightsSets);
+        Validator.validateRightsSets(rightsSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2962,7 +1930,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceSubjectSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet>> subjectSets) {
-        UncheckedValidator.validateSubjectSets(subjectSets);
+        Validator.validateSubjectSets(subjectSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2971,7 +1939,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceTechniqueSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet>> techniqueSets) {
-        UncheckedValidator.validateTechniqueSets(techniqueSets);
+        Validator.validateTechniqueSets(techniqueSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, techniqueSets, this.textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2980,7 +1948,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceTextrefSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet>> textrefSets) {
-        UncheckedValidator.validateTextrefSets(textrefSets);
+        Validator.validateTextrefSets(textrefSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, textrefSets, this.titleSets, this.workTypeSets);
     }
 
@@ -2989,7 +1957,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceTitleSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>> titleSets) {
-        UncheckedValidator.validateTitleSets(titleSets);
+        Validator.validateTitleSets(titleSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, titleSets, this.workTypeSets);
     }
 
@@ -2998,7 +1966,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     }
 
     public VraCoreObject replaceWorkTypeSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet>> workTypeSets) {
-        UncheckedValidator.validateWorkTypeSets(workTypeSets);
+        Validator.validateWorkTypeSets(workTypeSets);
         return new VraCoreObject(this.agentSets, this.culturalContextSets, this.dateSets, this.descriptionSets, this.inscriptionSets, this.locationSets, this.materialSets, this.measurementsSets, this.relationSets, this.rightsSets, this.subjectSets, this.techniqueSets, this.textrefSets, this.titleSets, workTypeSets);
     }
 
@@ -3026,157 +1994,7 @@ public final class VraCoreObject implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 15);
-
-        if (getAgentSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getAgentSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet _iter0 : getAgentSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getCulturalContextSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getCulturalContextSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet _iter0 : getCulturalContextSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getDateSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getDateSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.date.DateSet _iter0 : getDateSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getDescriptionSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getDescriptionSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet _iter0 : getDescriptionSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getInscriptionSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getInscriptionSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet _iter0 : getInscriptionSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getLocationSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getLocationSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.location.LocationSet _iter0 : getLocationSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getMaterialSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getMaterialSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet _iter0 : getMaterialSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getMeasurementsSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getMeasurementsSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet _iter0 : getMeasurementsSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getRelationSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getRelationSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet _iter0 : getRelationSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getRightsSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getRightsSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet _iter0 : getRightsSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getSubjectSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getSubjectSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet _iter0 : getSubjectSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getTechniqueSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getTechniqueSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet _iter0 : getTechniqueSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getTextrefSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getTextrefSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet _iter0 : getTextrefSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getTitleSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getTitleSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet _iter0 : getTitleSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getWorkTypeSets().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getWorkTypeSets().get().size());
-            for (final org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet _iter0 : getWorkTypeSets().get()) {
-                _iter0.writeAsStruct(oprot);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -3220,6 +2038,145 @@ public final class VraCoreObject implements org.thryft.Struct {
             }
             oprot.writeListEnd();
             oprot.writeFieldEnd();
+        }
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getAgentSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getAgentSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet _iter0 : getAgentSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getCulturalContextSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getCulturalContextSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet _iter0 : getCulturalContextSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getDateSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getDateSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.date.DateSet _iter0 : getDateSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getDescriptionSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getDescriptionSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet _iter0 : getDescriptionSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getInscriptionSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getInscriptionSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet _iter0 : getInscriptionSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getLocationSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getLocationSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.location.LocationSet _iter0 : getLocationSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getMaterialSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getMaterialSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet _iter0 : getMaterialSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getMeasurementsSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getMeasurementsSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet _iter0 : getMeasurementsSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getRelationSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getRelationSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet _iter0 : getRelationSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getRightsSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getRightsSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet _iter0 : getRightsSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getSubjectSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getSubjectSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet _iter0 : getSubjectSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getTechniqueSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getTechniqueSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet _iter0 : getTechniqueSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getTextrefSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getTextrefSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet _iter0 : getTextrefSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getTitleSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getTitleSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet _iter0 : getTitleSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getWorkTypeSets().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getWorkTypeSets().get().size());
+            for (final org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet _iter0 : getWorkTypeSets().get()) {
+                _iter0.writeAsStruct(oprot);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
         }
     }
 

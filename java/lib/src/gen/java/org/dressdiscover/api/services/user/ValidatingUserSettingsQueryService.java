@@ -13,13 +13,13 @@ public class ValidatingUserSettingsQueryService implements org.dressdiscover.api
     public final org.dressdiscover.api.models.user.UserSettings getUserSettings(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException, org.dressdiscover.api.services.user.NoSuchUserSettingsException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserSettingsQueryService.getUserSettings: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserSettingsQueryService.getUserSettings: id is missing");
             }
         }
         final org.dressdiscover.api.models.user.UserSettings __returnValue = delegate.getUserSettings(id);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserSettingsQueryService.getUserSettings: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserSettingsQueryService.getUserSettings: __returnValue is missing");
             }
         }
         return __returnValue;

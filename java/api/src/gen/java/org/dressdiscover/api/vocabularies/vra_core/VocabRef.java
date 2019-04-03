@@ -1,7 +1,7 @@
 package org.dressdiscover.api.vocabularies.vra_core;
 
 public final class VocabRef implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, VocabRef> {
         public Builder() {
             vocab = null;
             refid = com.google.common.base.Optional.<String> absent();
@@ -19,7 +19,7 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         public VocabRef build() {
-            UncheckedValidator.validate(vocab, refid, uri);
+            Validator.validate(vocab, refid, uri);
 
             return _build(vocab, refid, uri);
         }
@@ -36,46 +36,29 @@ public final class VocabRef implements org.thryft.Struct {
             return vocab;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                vocab = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.Vocab.Factory.getInstance());
+                this.setVocab(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.Vocab.Factory.getInstance()));
                 if (__list.getSize() > 1) {
-                    refid = com.google.common.base.Optional.of(iprot.readString());
+                    this.setRefid(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 2) {
                     try {
-                        uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                        this.setUri(com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString())));
                     } catch (final java.lang.IllegalArgumentException e) {
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -86,38 +69,38 @@ public final class VocabRef implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "vocab": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            vocab = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.Vocab.Factory.getInstance());
+                                this.setVocab(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.Vocab.Factory.getInstance()));
                         }
                         break;
                     }
                     case "refid": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            refid = com.google.common.base.Optional.of(iprot.readString());
+                                this.setRefid(com.google.common.base.Optional.of(iprot.readString()));
                         }
                         break;
                     }
                     case "uri": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            try {
-                                uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                            } catch (final java.lang.IllegalArgumentException e) {
-                            }
+                                try {
+                                    this.setUri(com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString())));
+                                } catch (final java.lang.IllegalArgumentException e) {
+                                }
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -158,7 +141,7 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         public Builder setRefid(final com.google.common.base.Optional<String> refid) {
-            UncheckedValidator.validateRefid(refid);
+            Validator.validateRefid(refid);
             this.refid = refid;
             return this;
         }
@@ -168,7 +151,7 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         public Builder setUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-            UncheckedValidator.validateUri(uri);
+            Validator.validateUri(uri);
             this.uri = uri;
             return this;
         }
@@ -178,7 +161,7 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         public Builder setVocab(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab) {
-            UncheckedValidator.validateVocab(vocab);
+            Validator.validateVocab(vocab);
             this.vocab = vocab;
             return this;
         }
@@ -228,17 +211,6 @@ public final class VocabRef implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<VocabRef> {
         @Override
-        public VocabRef readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return VocabRef.readAs(iprot, type);
-        }
-
-        @Override
-        public VocabRef readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return VocabRef.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public VocabRef readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return VocabRef.readAsList(iprot);
         }
@@ -249,17 +221,16 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         @Override
-        public VocabRef readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public VocabRef readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return VocabRef.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        VOCAB("vocab", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.Vocab>() {}, true, (short)2, "vocab", org.thryft.protocol.Type.STRING),
-        REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, (short)1, "refid", org.thryft.protocol.Type.STRING),
-        URI("uri", new com.google.common.reflect.TypeToken<org.thryft.native_.Uri>() {}, false, (short)3, "uri", org.thryft.protocol.Type.STRING);
+        VOCAB("vocab", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.Vocab>() {}, true, (short)2, "vocab", "2:vocab", org.thryft.protocol.Type.STRING),
+        REFID("refid", new com.google.common.reflect.TypeToken<String>() {}, false, (short)1, "refid", "1:refid", org.thryft.protocol.Type.STRING),
+        URI("uri", new com.google.common.reflect.TypeToken<org.thryft.native_.Uri>() {}, false, (short)3, "uri", "3:uri", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -321,17 +292,13 @@ public final class VocabRef implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -344,38 +311,7 @@ public final class VocabRef implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) throws org.thryft.protocol.InputProtocolException {
-            validateVocab(vocab);
-            validateRefid(refid);
-            validateUri(uri);
-        }
-
-        public static void validateVocab(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab) throws org.thryft.protocol.InputProtocolException {
-            if (vocab == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB, "org.dressdiscover.api.vocabularies.vra_core.VocabRef: vocab is null");
-            }
-        }
-
-        public static void validateRefid(final com.google.common.base.Optional<String> refid) throws org.thryft.protocol.InputProtocolException {
-            if (refid == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid is null");
-            }
-            if (refid.isPresent()) {
-                if (refid.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) throws org.thryft.protocol.InputProtocolException {
-            if (uri == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URI, "org.dressdiscover.api.vocabularies.vra_core.VocabRef: uri is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
             validateVocab(vocab);
             validateRefid(refid);
@@ -384,24 +320,24 @@ public final class VocabRef implements org.thryft.Struct {
 
         public static void validateVocab(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab) {
             if (vocab == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: vocab is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: vocab is missing");
             }
         }
 
         public static void validateRefid(final com.google.common.base.Optional<String> refid) {
             if (refid == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid is missing");
             }
             if (refid.isPresent()) {
                 if (refid.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid: less than min length 1");
                 }
             }
         }
 
         public static void validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
             if (uri == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: uri is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: uri is missing");
             }
         }
     }
@@ -414,14 +350,27 @@ public final class VocabRef implements org.thryft.Struct {
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected VocabRef(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
+    public VocabRef(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab) {
+        this(vocab, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Uri> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public VocabRef(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
+        Validator.validate(vocab, refid, uri);
         this.vocab = vocab;
         this.refid = refid;
         this.uri = uri;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public VocabRef(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab, @javax.annotation.Nullable final String refid, @javax.annotation.Nullable final org.thryft.native_.Uri uri) {
+        this(vocab, com.google.common.base.Optional.fromNullable(refid), com.google.common.base.Optional.fromNullable(uri));
     }
 
     public static Builder builder() {
@@ -434,32 +383,6 @@ public final class VocabRef implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<VocabRef> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static VocabRef create(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab) {
-        UncheckedValidator.validate(vocab, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Uri> absent());
-        return new VocabRef(vocab, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Uri> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static VocabRef create(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab, @javax.annotation.Nullable final String refid, @javax.annotation.Nullable final org.thryft.native_.Uri uri) {
-        final com.google.common.base.Optional<String> refidOptional = com.google.common.base.Optional.fromNullable(refid);
-        final com.google.common.base.Optional<org.thryft.native_.Uri> uriOptional = com.google.common.base.Optional.fromNullable(uri);
-        UncheckedValidator.validate(vocab, refidOptional, uriOptional);
-        return new VocabRef(vocab, refidOptional, uriOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static VocabRef create(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab, final com.google.common.base.Optional<String> refid, final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-        UncheckedValidator.validate(vocab, refid, uri);
-        return new VocabRef(vocab, refid, uri);
     }
 
     @Override
@@ -536,106 +459,20 @@ public final class VocabRef implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static VocabRef readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static VocabRef readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static VocabRef readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.vocabularies.vra_core.Vocab vocab;
-        com.google.common.base.Optional<String> refid = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.thryft.native_.Uri> uri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            vocab = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.Vocab.Factory.getInstance());
-            if (__list.getSize() > 1) {
-                refid = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(vocab, refid, uri);
-
-        return new VocabRef(vocab, refid, uri);
+        return builder().readAsList(iprot).build();
     }
 
     public static VocabRef readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static VocabRef readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.Vocab vocab = null;
-        com.google.common.base.Optional<String> refid = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.thryft.native_.Uri> uri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "vocab": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        vocab = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.Vocab.Factory.getInstance());
-                    }
-                    break;
-                }
-                case "refid": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        refid = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "uri": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
-                        }
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(vocab, refid, uri);
-
-        return new VocabRef(vocab, refid, uri);
+    public static VocabRef readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public VocabRef replaceRefid(final com.google.common.base.Optional<String> refid) {
-        UncheckedValidator.validateRefid(refid);
+        Validator.validateRefid(refid);
         return new VocabRef(this.vocab, refid, this.uri);
     }
 
@@ -644,7 +481,7 @@ public final class VocabRef implements org.thryft.Struct {
     }
 
     public VocabRef replaceUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
-        UncheckedValidator.validateUri(uri);
+        Validator.validateUri(uri);
         return new VocabRef(this.vocab, this.refid, uri);
     }
 
@@ -653,7 +490,7 @@ public final class VocabRef implements org.thryft.Struct {
     }
 
     public VocabRef replaceVocab(final org.dressdiscover.api.vocabularies.vra_core.Vocab vocab) {
-        UncheckedValidator.validateVocab(vocab);
+        Validator.validateVocab(vocab);
         return new VocabRef(vocab, this.refid, this.uri);
     }
 
@@ -665,21 +502,7 @@ public final class VocabRef implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
-
-        oprot.writeEnum(getVocab());
-
-        if (getRefid().isPresent()) {
-            oprot.writeString(getRefid().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getUri().isPresent()) {
-            oprot.writeString(getUri().get().toString());
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -688,6 +511,21 @@ public final class VocabRef implements org.thryft.Struct {
         oprot.writeStructBegin("org.dressdiscover.api.vocabularies.vra_core.VocabRef");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeEnum(getVocab());
+        if (getRefid().isPresent()) {
+            oprot.writeString(getRefid().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getUri().isPresent()) {
+            oprot.writeString(getUri().get().toString());
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@ public class ValidatingInstitutionCommandService implements org.dressdiscover.ap
     public final void deleteInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.deleteInstitutionById: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.deleteInstitutionById: id is missing");
             }
         }
         delegate.deleteInstitutionById(id);
@@ -23,12 +23,12 @@ public class ValidatingInstitutionCommandService implements org.dressdiscover.ap
     public final void putInstitution(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) throws org.dressdiscover.api.services.IoException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.putInstitution: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.putInstitution: id is missing");
             }
         }
         {
             if (institution == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.putInstitution: institution is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.putInstitution: institution is missing");
             }
         }
         delegate.putInstitution(id, institution);

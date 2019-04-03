@@ -4,7 +4,7 @@ package org.dressdiscover.api.vocabularies.vra_core.agent;
  * VRA Core 4.0 agentSet element
  */
 public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_core.ElementSet<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, AgentSet> {
         public Builder() {
             elements = null;
             display = com.google.common.base.Optional.<String> absent();
@@ -22,7 +22,7 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
         }
 
         public AgentSet build() {
-            UncheckedValidator.validate(elements, display, notes);
+            Validator.validate(elements, display, notes);
 
             return _build(elements, display, notes);
         }
@@ -39,26 +39,11 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
             return notes;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 try {
-                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent>>() {
+                    this.setElements((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -73,28 +58,26 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
                 }
                 if (__list.getSize() > 1) {
-                    display = com.google.common.base.Optional.of(iprot.readString());
+                    this.setDisplay(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 2) {
-                    notes = com.google.common.base.Optional.of(iprot.readString());
+                    this.setNotes(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -105,54 +88,54 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
                     switch (ifield.getName()) {
                     case "elements": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            try {
-                                elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.agent.Agent.readAsStruct(iprot, unknownFieldCallback));
+                                try {
+                                    this.setElements((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.agent.Agent.readAsStruct(iprot, unknownFieldCallback));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot);
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
-                            }
+                                    }).apply(iprot));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
+                                }
                         }
                         break;
                     }
                     case "display": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            display = com.google.common.base.Optional.of(iprot.readString());
+                                this.setDisplay(com.google.common.base.Optional.of(iprot.readString()));
                         }
                         break;
                     }
                     case "notes": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            notes = com.google.common.base.Optional.of(iprot.readString());
+                                this.setNotes(com.google.common.base.Optional.of(iprot.readString()));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -180,7 +163,7 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
         }
 
         public Builder setDisplay(final com.google.common.base.Optional<String> display) {
-            UncheckedValidator.validateDisplay(display);
+            Validator.validateDisplay(display);
             this.display = display;
             return this;
         }
@@ -190,7 +173,7 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
         }
 
         public Builder setElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements) {
-            UncheckedValidator.validateElements(elements);
+            Validator.validateElements(elements);
             this.elements = elements;
             return this;
         }
@@ -210,7 +193,7 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
         }
 
         public Builder setNotes(final com.google.common.base.Optional<String> notes) {
-            UncheckedValidator.validateNotes(notes);
+            Validator.validateNotes(notes);
             this.notes = notes;
             return this;
         }
@@ -264,17 +247,6 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
 
     public final static class Factory implements org.thryft.CompoundType.Factory<AgentSet> {
         @Override
-        public AgentSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return AgentSet.readAs(iprot, type);
-        }
-
-        @Override
-        public AgentSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return AgentSet.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public AgentSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return AgentSet.readAsList(iprot);
         }
@@ -285,17 +257,16 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
         }
 
         @Override
-        public AgentSet readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public AgentSet readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return AgentSet.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent>>() {}, true, (short)1, "elements", org.thryft.protocol.Type.LIST),
-        DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, (short)2, "display", org.thryft.protocol.Type.STRING),
-        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, (short)3, "notes", org.thryft.protocol.Type.STRING);
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent>>() {}, true, (short)1, "elements", "1:elements", org.thryft.protocol.Type.LIST),
+        DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, (short)2, "display", "2:display", org.thryft.protocol.Type.STRING),
+        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, (short)3, "notes", "3:notes", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -357,17 +328,13 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -380,46 +347,7 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
-            validateElements(elements);
-            validateDisplay(display);
-            validateNotes(notes);
-        }
-
-        public static void validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements) throws org.thryft.protocol.InputProtocolException {
-            if (elements == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: elements is null");
-            }
-            if (elements.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: elements: less than min length 1");
-            }
-        }
-
-        public static void validateDisplay(final com.google.common.base.Optional<String> display) throws org.thryft.protocol.InputProtocolException {
-            if (display == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: display is null");
-            }
-            if (display.isPresent()) {
-                if (display.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: display: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateNotes(final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
-            if (notes == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: notes is null");
-            }
-            if (notes.isPresent()) {
-                if (notes.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: notes: less than min length 1");
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
             validateElements(elements);
             validateDisplay(display);
@@ -428,31 +356,31 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
 
         public static void validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements) {
             if (elements == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: elements is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: elements is missing");
             }
             if (elements.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: elements: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: elements: less than min length 1");
             }
         }
 
         public static void validateDisplay(final com.google.common.base.Optional<String> display) {
             if (display == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: display is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: display is missing");
             }
             if (display.isPresent()) {
                 if (display.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: display: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: display: less than min length 1");
                 }
             }
         }
 
         public static void validateNotes(final com.google.common.base.Optional<String> notes) {
             if (notes == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: notes is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: notes is missing");
             }
             if (notes.isPresent()) {
                 if (notes.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: notes: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet: notes: less than min length 1");
                 }
             }
         }
@@ -466,14 +394,27 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected AgentSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+    public AgentSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements) {
+        this(elements, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public AgentSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        Validator.validate(elements, display, notes);
         this.elements = elements;
         this.display = display;
         this.notes = notes;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public AgentSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements, @javax.annotation.Nullable final String display, @javax.annotation.Nullable final String notes) {
+        this(elements, com.google.common.base.Optional.fromNullable(display), com.google.common.base.Optional.fromNullable(notes));
     }
 
     public static Builder builder() {
@@ -486,32 +427,6 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
 
     public static Builder builder(final com.google.common.base.Optional<AgentSet> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static AgentSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements) {
-        UncheckedValidator.validate(elements, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
-        return new AgentSet(elements, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static AgentSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements, @javax.annotation.Nullable final String display, @javax.annotation.Nullable final String notes) {
-        final com.google.common.base.Optional<String> displayOptional = com.google.common.base.Optional.fromNullable(display);
-        final com.google.common.base.Optional<String> notesOptional = com.google.common.base.Optional.fromNullable(notes);
-        UncheckedValidator.validate(elements, displayOptional, notesOptional);
-        return new AgentSet(elements, displayOptional, notesOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static AgentSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        UncheckedValidator.validate(elements, display, notes);
-        return new AgentSet(elements, display, notes);
     }
 
     @Override
@@ -588,138 +503,20 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
         return hashCode;
     }
 
-    public static AgentSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static AgentSet readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static AgentSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements;
-        com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            try {
-                elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.agent.Agent.readAsStruct(iprot));
-                            }
-                            iprot.readListEnd();
-                            return sequenceBuilder.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
-            }
-            if (__list.getSize() > 1) {
-                display = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 2) {
-                notes = com.google.common.base.Optional.of(iprot.readString());
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(elements, display, notes);
-
-        return new AgentSet(elements, display, notes);
+        return builder().readAsList(iprot).build();
     }
 
     public static AgentSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static AgentSet readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements = null;
-        com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "elements": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        try {
-                            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.agent.Agent.readAsStruct(iprot, unknownFieldCallback));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot);
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                case "display": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        display = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "notes": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        notes = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(elements, display, notes);
-
-        return new AgentSet(elements, display, notes);
+    public static AgentSet readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public AgentSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        UncheckedValidator.validateDisplay(display);
+        Validator.validateDisplay(display);
         return new AgentSet(this.elements, display, this.notes);
     }
 
@@ -728,12 +525,12 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
     }
 
     public AgentSet replaceElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.agent.Agent> elements) {
-        UncheckedValidator.validateElements(elements);
+        Validator.validateElements(elements);
         return new AgentSet(elements, this.display, this.notes);
     }
 
     public AgentSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        UncheckedValidator.validateNotes(notes);
+        Validator.validateNotes(notes);
         return new AgentSet(this.elements, this.display, notes);
     }
 
@@ -749,25 +546,7 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
-
-        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
-        for (final org.dressdiscover.api.vocabularies.vra_core.agent.Agent _iter0 : getElements()) {
-            _iter0.writeAsStruct(oprot);
-        }
-        oprot.writeListEnd();
-
-        if (getDisplay().isPresent()) {
-            oprot.writeString(getDisplay().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getNotes().isPresent()) {
-            oprot.writeString(getNotes().get());
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -794,6 +573,25 @@ public final class AgentSet implements org.dressdiscover.api.vocabularies.vra_co
         }
         oprot.writeListEnd();
         oprot.writeFieldEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
+        for (final org.dressdiscover.api.vocabularies.vra_core.agent.Agent _iter0 : getElements()) {
+            _iter0.writeAsStruct(oprot);
+        }
+        oprot.writeListEnd();
+        if (getDisplay().isPresent()) {
+            oprot.writeString(getDisplay().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getNotes().isPresent()) {
+            oprot.writeString(getNotes().get());
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

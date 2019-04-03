@@ -4,7 +4,7 @@ package org.dressdiscover.api.vocabularies.vra_core.location;
  * VRA Core 4.0 location.name subelement
  */
 public final class LocationName implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, LocationName> {
         public Builder() {
             text = null;
             type = null;
@@ -24,7 +24,7 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         public LocationName build() {
-            UncheckedValidator.validate(text, type, extent, vocabRef);
+            Validator.validate(text, type, extent, vocabRef);
 
             return _build(text, type, extent, vocabRef);
         }
@@ -45,44 +45,27 @@ public final class LocationName implements org.thryft.Struct {
             return vocabRef;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                text = iprot.readString();
-                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance());
+                this.setText(iprot.readString());
+                this.setType(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance()));
                 if (__list.getSize() > 2) {
-                    extent = com.google.common.base.Optional.of(iprot.readString());
+                    this.setExtent(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 3) {
-                    vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot));
+                    this.setVocabRef(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot)));
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -93,41 +76,41 @@ public final class LocationName implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "text": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            text = iprot.readString();
+                                this.setText(iprot.readString());
                         }
                         break;
                     }
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance());
+                                this.setType(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance()));
                         }
                         break;
                     }
                     case "extent": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            extent = com.google.common.base.Optional.of(iprot.readString());
+                                this.setExtent(com.google.common.base.Optional.of(iprot.readString()));
                         }
                         break;
                     }
                     case "vocab_ref": {
                         if (!ifield.hasId() || ifield.getId() == 4) {
-                            vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback));
+                                this.setVocabRef(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -155,7 +138,7 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         public Builder setExtent(final com.google.common.base.Optional<String> extent) {
-            UncheckedValidator.validateExtent(extent);
+            Validator.validateExtent(extent);
             this.extent = extent;
             return this;
         }
@@ -180,19 +163,19 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         public Builder setText(final String text) {
-            UncheckedValidator.validateText(text);
+            Validator.validateText(text);
             this.text = text;
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
-            UncheckedValidator.validateType(type);
+            Validator.validateType(type);
             this.type = type;
             return this;
         }
 
         public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
-            UncheckedValidator.validateVocabRef(vocabRef);
+            Validator.validateVocabRef(vocabRef);
             this.vocabRef = vocabRef;
             return this;
         }
@@ -253,17 +236,6 @@ public final class LocationName implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<LocationName> {
         @Override
-        public LocationName readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return LocationName.readAs(iprot, type);
-        }
-
-        @Override
-        public LocationName readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return LocationName.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public LocationName readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return LocationName.readAsList(iprot);
         }
@@ -274,18 +246,17 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         @Override
-        public LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return LocationName.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "text", org.thryft.protocol.Type.STRING),
-        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType>() {}, true, (short)2, "type", org.thryft.protocol.Type.STRING),
-        EXTENT("extent", new com.google.common.reflect.TypeToken<String>() {}, false, (short)3, "extent", org.thryft.protocol.Type.STRING),
-        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.VocabRef>() {}, false, (short)4, "vocab_ref", org.thryft.protocol.Type.STRUCT);
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "text", "1:text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType>() {}, true, (short)2, "type", "2:type", org.thryft.protocol.Type.STRING),
+        EXTENT("extent", new com.google.common.reflect.TypeToken<String>() {}, false, (short)3, "extent", "3:extent", org.thryft.protocol.Type.STRING),
+        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.VocabRef>() {}, false, (short)4, "vocab_ref", "4:vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -349,17 +320,13 @@ public final class LocationName implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -372,48 +339,7 @@ public final class LocationName implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
-            validateText(text);
-            validateType(type);
-            validateExtent(extent);
-            validateVocabRef(vocabRef);
-        }
-
-        public static void validateText(final String text) throws org.thryft.protocol.InputProtocolException {
-            if (text == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is null");
-            }
-            if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text: less than min length 1");
-            }
-        }
-
-        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) throws org.thryft.protocol.InputProtocolException {
-            if (type == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: type is null");
-            }
-        }
-
-        public static void validateExtent(final com.google.common.base.Optional<String> extent) throws org.thryft.protocol.InputProtocolException {
-            if (extent == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is null");
-            }
-            if (extent.isPresent()) {
-                if (extent.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
-            if (vocabRef == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: vocabRef is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
             validateText(text);
             validateType(type);
@@ -423,33 +349,33 @@ public final class LocationName implements org.thryft.Struct {
 
         public static void validateText(final String text) {
             if (text == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is missing");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text: less than min length 1");
             }
         }
 
         public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
             if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: type is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: type is missing");
             }
         }
 
         public static void validateExtent(final com.google.common.base.Optional<String> extent) {
             if (extent == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is missing");
             }
             if (extent.isPresent()) {
                 if (extent.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent: less than min length 1");
                 }
             }
         }
 
         public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
             if (vocabRef == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: vocabRef is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: vocabRef is missing");
             }
         }
     }
@@ -462,15 +388,28 @@ public final class LocationName implements org.thryft.Struct {
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected LocationName(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+    public LocationName(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
+        this(text, type, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public LocationName(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+        Validator.validate(text, type, extent, vocabRef);
         this.text = text;
         this.type = type;
         this.extent = extent;
         this.vocabRef = vocabRef;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public LocationName(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, @javax.annotation.Nullable final String extent, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VocabRef vocabRef) {
+        this(text, type, com.google.common.base.Optional.fromNullable(extent), com.google.common.base.Optional.fromNullable(vocabRef));
     }
 
     public static Builder builder() {
@@ -483,32 +422,6 @@ public final class LocationName implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<LocationName> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static LocationName create(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
-        UncheckedValidator.validate(text, type, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent());
-        return new LocationName(text, type, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static LocationName create(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, @javax.annotation.Nullable final String extent, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VocabRef vocabRef) {
-        final com.google.common.base.Optional<String> extentOptional = com.google.common.base.Optional.fromNullable(extent);
-        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRefOptional = com.google.common.base.Optional.fromNullable(vocabRef);
-        UncheckedValidator.validate(text, type, extentOptional, vocabRefOptional);
-        return new LocationName(text, type, extentOptional, vocabRefOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static LocationName create(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
-        UncheckedValidator.validate(text, type, extent, vocabRef);
-        return new LocationName(text, type, extent, vocabRef);
     }
 
     @Override
@@ -595,109 +508,20 @@ public final class LocationName implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static LocationName readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static LocationName readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static LocationName readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String text;
-        org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type;
-        com.google.common.base.Optional<String> extent = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance());
-            if (__list.getSize() > 2) {
-                extent = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 3) {
-                vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(text, type, extent, vocabRef);
-
-        return new LocationName(text, type, extent, vocabRef);
+        return builder().readAsList(iprot).build();
     }
 
     public static LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String text = null;
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type = null;
-        com.google.common.base.Optional<String> extent = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "text": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        text = iprot.readString();
-                    }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance());
-                    }
-                    break;
-                }
-                case "extent": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        extent = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "vocab_ref": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(text, type, extent, vocabRef);
-
-        return new LocationName(text, type, extent, vocabRef);
+    public static LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public LocationName replaceExtent(final com.google.common.base.Optional<String> extent) {
-        UncheckedValidator.validateExtent(extent);
+        Validator.validateExtent(extent);
         return new LocationName(this.text, this.type, extent, this.vocabRef);
     }
 
@@ -706,17 +530,17 @@ public final class LocationName implements org.thryft.Struct {
     }
 
     public LocationName replaceText(final String text) {
-        UncheckedValidator.validateText(text);
+        Validator.validateText(text);
         return new LocationName(text, this.type, this.extent, this.vocabRef);
     }
 
     public LocationName replaceType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
-        UncheckedValidator.validateType(type);
+        Validator.validateType(type);
         return new LocationName(this.text, type, this.extent, this.vocabRef);
     }
 
     public LocationName replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
-        UncheckedValidator.validateVocabRef(vocabRef);
+        Validator.validateVocabRef(vocabRef);
         return new LocationName(this.text, this.type, this.extent, vocabRef);
     }
 
@@ -732,23 +556,7 @@ public final class LocationName implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
-
-        oprot.writeString(getText());
-
-        oprot.writeEnum(getType());
-
-        if (getExtent().isPresent()) {
-            oprot.writeString(getExtent().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getVocabRef().isPresent()) {
-            getVocabRef().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -764,6 +572,22 @@ public final class LocationName implements org.thryft.Struct {
             oprot.writeFieldBegin(FieldMetadata.EXTENT);
             oprot.writeString(getExtent().get());
             oprot.writeFieldEnd();
+        }
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getText());
+        oprot.writeEnum(getType());
+        if (getExtent().isPresent()) {
+            oprot.writeString(getExtent().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getVocabRef().isPresent()) {
+            getVocabRef().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
         }
     }
 

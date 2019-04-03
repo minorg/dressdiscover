@@ -1,7 +1,7 @@
 package org.dressdiscover.api.services.object;
 
 public final class ObjectSummarySort implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, ObjectSummarySort> {
         public Builder() {
             field = null;
             order = null;
@@ -17,7 +17,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         public ObjectSummarySort build() {
-            UncheckedValidator.validate(field, order);
+            Validator.validate(field, order);
 
             return _build(field, order);
         }
@@ -30,38 +30,21 @@ public final class ObjectSummarySort implements org.thryft.Struct {
             return order;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
-                field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.Factory.getInstance());
-                order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.Factory.getInstance());
+                this.setField(iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.Factory.getInstance()));
+                this.setOrder(iprot.readEnum(org.dressdiscover.api.models.SortOrder.Factory.getInstance()));
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -71,26 +54,26 @@ public final class ObjectSummarySort implements org.thryft.Struct {
                     }
                     switch (ifield.getName()) {
                     case "field": {
-                        field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.Factory.getInstance());
+                        this.setField(iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.Factory.getInstance()));
                         break;
                     }
                     case "order": {
-                        order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.Factory.getInstance());
+                        this.setOrder(iprot.readEnum(org.dressdiscover.api.models.SortOrder.Factory.getInstance()));
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -116,7 +99,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         public Builder setField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) {
-            UncheckedValidator.validateField(field);
+            Validator.validateField(field);
             this.field = field;
             return this;
         }
@@ -131,7 +114,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         public Builder setOrder(final org.dressdiscover.api.models.SortOrder order) {
-            UncheckedValidator.validateOrder(order);
+            Validator.validateOrder(order);
             this.order = order;
             return this;
         }
@@ -174,17 +157,6 @@ public final class ObjectSummarySort implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<ObjectSummarySort> {
         @Override
-        public ObjectSummarySort readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return ObjectSummarySort.readAs(iprot, type);
-        }
-
-        @Override
-        public ObjectSummarySort readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return ObjectSummarySort.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public ObjectSummarySort readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return ObjectSummarySort.readAsList(iprot);
         }
@@ -195,16 +167,15 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         @Override
-        public ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return ObjectSummarySort.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        FIELD("field", new com.google.common.reflect.TypeToken<org.dressdiscover.api.services.object.ObjectSummarySortField>() {}, true, (short)0, "field", org.thryft.protocol.Type.STRING),
-        ORDER("order", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.SortOrder>() {}, true, (short)0, "order", org.thryft.protocol.Type.STRING);
+        FIELD("field", new com.google.common.reflect.TypeToken<org.dressdiscover.api.services.object.ObjectSummarySortField>() {}, true, (short)0, "field", "field", org.thryft.protocol.Type.STRING),
+        ORDER("order", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.SortOrder>() {}, true, (short)0, "order", "order", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -264,17 +235,13 @@ public final class ObjectSummarySort implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -287,26 +254,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) throws org.thryft.protocol.InputProtocolException {
-            validateField(field);
-            validateOrder(order);
-        }
-
-        public static void validateField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) throws org.thryft.protocol.InputProtocolException {
-            if (field == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FIELD, "org.dressdiscover.api.services.object.ObjectSummarySort: field is null");
-            }
-        }
-
-        public static void validateOrder(final org.dressdiscover.api.models.SortOrder order) throws org.thryft.protocol.InputProtocolException {
-            if (order == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ORDER, "org.dressdiscover.api.services.object.ObjectSummarySort: order is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
             validateField(field);
             validateOrder(order);
@@ -314,13 +262,13 @@ public final class ObjectSummarySort implements org.thryft.Struct {
 
         public static void validateField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) {
             if (field == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ObjectSummarySort: field is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ObjectSummarySort: field is missing");
             }
         }
 
         public static void validateOrder(final org.dressdiscover.api.models.SortOrder order) {
             if (order == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ObjectSummarySort: order is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ObjectSummarySort: order is missing");
             }
         }
     }
@@ -334,10 +282,9 @@ public final class ObjectSummarySort implements org.thryft.Struct {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected ObjectSummarySort(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
+    public ObjectSummarySort(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
+        Validator.validate(field, order);
         this.field = field;
         this.order = order;
     }
@@ -352,14 +299,6 @@ public final class ObjectSummarySort implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ObjectSummarySort> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static ObjectSummarySort create(final org.dressdiscover.api.services.object.ObjectSummarySortField field, final org.dressdiscover.api.models.SortOrder order) {
-        UncheckedValidator.validate(field, order);
-        return new ObjectSummarySort(field, order);
     }
 
     @Override
@@ -422,88 +361,25 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static ObjectSummarySort readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static ObjectSummarySort readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static ObjectSummarySort readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.services.object.ObjectSummarySortField field;
-        org.dressdiscover.api.models.SortOrder order;
-
-        try {
-            iprot.readListBegin();
-            field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.Factory.getInstance());
-            order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.Factory.getInstance());
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(field, order);
-
-        return new ObjectSummarySort(field, order);
+        return builder().readAsList(iprot).build();
     }
 
     public static ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.services.object.ObjectSummarySortField field = null;
-        @javax.annotation.Nullable org.dressdiscover.api.models.SortOrder order = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "field": {
-                    field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.Factory.getInstance());
-                    break;
-                }
-                case "order": {
-                    order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.Factory.getInstance());
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(field, order);
-
-        return new ObjectSummarySort(field, order);
+    public static ObjectSummarySort readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public ObjectSummarySort replaceField(final org.dressdiscover.api.services.object.ObjectSummarySortField field) {
-        UncheckedValidator.validateField(field);
+        Validator.validateField(field);
         return new ObjectSummarySort(field, this.order);
     }
 
     public ObjectSummarySort replaceOrder(final org.dressdiscover.api.models.SortOrder order) {
-        UncheckedValidator.validateOrder(order);
+        Validator.validateOrder(order);
         return new ObjectSummarySort(this.field, order);
     }
 
@@ -515,11 +391,7 @@ public final class ObjectSummarySort implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-        oprot.writeEnum(getField());
-
-        oprot.writeEnum(getOrder());
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -534,6 +406,12 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         oprot.writeFieldBegin(FieldMetadata.FIELD);
         oprot.writeEnum(getField());
         oprot.writeFieldEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeEnum(getField());
+        oprot.writeEnum(getOrder());
     }
 
     @Override

@@ -2,7 +2,7 @@ package org.dressdiscover.api.services.object;
 
 @SuppressWarnings({"serial"})
 public final class NoSuchObjectException extends org.thryft.waf.api.services.NoSuchModelException {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, NoSuchObjectException> {
         public Builder() {
             id = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
         }
@@ -16,7 +16,7 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
         }
 
         public NoSuchObjectException build() {
-            UncheckedValidator.validate(id);
+            Validator.validate(id);
 
             return _build(id);
         }
@@ -25,43 +25,26 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
             return id;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
                     try {
-                        id = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                        this.setId(com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString())));
                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                     } catch (final IllegalArgumentException e) {
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -72,25 +55,25 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                            this.setId(com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString())));
                         } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                         } catch (final IllegalArgumentException e) {
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -115,7 +98,7 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
         }
 
         public Builder setId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) {
-            UncheckedValidator.validateId(id);
+            Validator.validateId(id);
             this.id = id;
             return this;
         }
@@ -165,17 +148,6 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
 
     public final static class Factory implements org.thryft.CompoundType.Factory<NoSuchObjectException> {
         @Override
-        public NoSuchObjectException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return NoSuchObjectException.readAs(iprot, type);
-        }
-
-        @Override
-        public NoSuchObjectException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return NoSuchObjectException.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public NoSuchObjectException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return NoSuchObjectException.readAsList(iprot);
         }
@@ -186,14 +158,13 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
         }
 
         @Override
-        public NoSuchObjectException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public NoSuchObjectException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return NoSuchObjectException.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, (short)0, "id", org.thryft.protocol.Type.STRING);
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, (short)0, "id", "id", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -251,17 +222,13 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -274,26 +241,14 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) throws org.thryft.protocol.InputProtocolException {
-            validateId(id);
-        }
-
-        public static void validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) throws org.thryft.protocol.InputProtocolException {
-            if (id == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.object.NoSuchObjectException: id is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) {
             validateId(id);
         }
 
         public static void validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.NoSuchObjectException: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.NoSuchObjectException: id is missing");
             }
         }
     }
@@ -314,11 +269,17 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected NoSuchObjectException(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) {
+    public NoSuchObjectException(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) {
+        Validator.validate(id);
         this.id = id;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public NoSuchObjectException(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId id) {
+        this(com.google.common.base.Optional.fromNullable(id));
     }
 
     public static Builder builder() {
@@ -331,27 +292,6 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
 
     public static Builder builder(final com.google.common.base.Optional<NoSuchObjectException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    public static NoSuchObjectException create() {
-        return new NoSuchObjectException();
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static NoSuchObjectException create(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId id) {
-        final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> idOptional = com.google.common.base.Optional.fromNullable(id);
-        UncheckedValidator.validate(idOptional);
-        return new NoSuchObjectException(idOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static NoSuchObjectException create(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) {
-        UncheckedValidator.validate(id);
-        return new NoSuchObjectException(id);
     }
 
     @Override
@@ -409,93 +349,23 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-        if (getId().isPresent()) {
-            hashCode = 31 * hashCode + getId().get().hashCode();
-        }
-        return hashCode;
-    }
-
-    public static NoSuchObjectException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static NoSuchObjectException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
+        return getId().hashCode();
     }
 
     public static NoSuchObjectException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            if (__list.getSize() > 0) {
-                try {
-                    id = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
-                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                } catch (final IllegalArgumentException e) {
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(id);
-
-        return new NoSuchObjectException(id);
+        return builder().readAsList(iprot).build();
     }
 
     public static NoSuchObjectException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static NoSuchObjectException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "id": {
-                    try {
-                        id = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
-                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                    } catch (final IllegalArgumentException e) {
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(id);
-
-        return new NoSuchObjectException(id);
+    public static NoSuchObjectException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public NoSuchObjectException replaceId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> id) {
-        UncheckedValidator.validateId(id);
+        Validator.validateId(id);
         return new NoSuchObjectException(id);
     }
 
@@ -511,13 +381,7 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-        if (getId().isPresent()) {
-            oprot.writeString(getId().get().toString());
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -540,6 +404,15 @@ public final class NoSuchObjectException extends org.thryft.waf.api.services.NoS
         oprot.writeStructBegin("org.dressdiscover.api.services.object.NoSuchObjectException");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getId().isPresent()) {
+            oprot.writeString(getId().get().toString());
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

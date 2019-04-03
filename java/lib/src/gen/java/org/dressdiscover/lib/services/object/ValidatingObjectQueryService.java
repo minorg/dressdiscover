@@ -13,13 +13,13 @@ public class ValidatingObjectQueryService implements org.dressdiscover.api.servi
     public final org.dressdiscover.api.models.object.Object getObjectById(final org.dressdiscover.api.models.object.ObjectId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException, org.dressdiscover.api.services.object.NoSuchObjectException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectQueryService.getObjectById: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectQueryService.getObjectById: id is missing");
             }
         }
         final org.dressdiscover.api.models.object.Object __returnValue = delegate.getObjectById(id);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectQueryService.getObjectById: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectQueryService.getObjectById: __returnValue is missing");
             }
         }
         return __returnValue;

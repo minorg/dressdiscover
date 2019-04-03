@@ -2,7 +2,7 @@ package org.dressdiscover.api.services;
 
 @SuppressWarnings({"serial"})
 public final class AuthenticationException extends org.thryft.ThryftException {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, AuthenticationException> {
         public Builder() {
             causeMessage = null;
         }
@@ -16,7 +16,7 @@ public final class AuthenticationException extends org.thryft.ThryftException {
         }
 
         public AuthenticationException build() {
-            UncheckedValidator.validate(causeMessage);
+            Validator.validate(causeMessage);
 
             return _build(causeMessage);
         }
@@ -25,37 +25,20 @@ public final class AuthenticationException extends org.thryft.ThryftException {
             return causeMessage;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
-                causeMessage = iprot.readString();
+                this.setCauseMessage(iprot.readString());
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -65,22 +48,22 @@ public final class AuthenticationException extends org.thryft.ThryftException {
                     }
                     switch (ifield.getName()) {
                     case "cause_message": {
-                        causeMessage = iprot.readString();
+                        this.setCauseMessage(iprot.readString());
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -105,7 +88,7 @@ public final class AuthenticationException extends org.thryft.ThryftException {
         }
 
         public Builder setCauseMessage(final String causeMessage) {
-            UncheckedValidator.validateCauseMessage(causeMessage);
+            Validator.validateCauseMessage(causeMessage);
             this.causeMessage = causeMessage;
             return this;
         }
@@ -149,17 +132,6 @@ public final class AuthenticationException extends org.thryft.ThryftException {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<AuthenticationException> {
         @Override
-        public AuthenticationException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return AuthenticationException.readAs(iprot, type);
-        }
-
-        @Override
-        public AuthenticationException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return AuthenticationException.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public AuthenticationException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return AuthenticationException.readAsList(iprot);
         }
@@ -170,14 +142,13 @@ public final class AuthenticationException extends org.thryft.ThryftException {
         }
 
         @Override
-        public AuthenticationException readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public AuthenticationException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return AuthenticationException.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "cause_message", org.thryft.protocol.Type.STRING);
+        CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "cause_message", "cause_message", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -235,17 +206,13 @@ public final class AuthenticationException extends org.thryft.ThryftException {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -258,45 +225,17 @@ public final class AuthenticationException extends org.thryft.ThryftException {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String causeMessage) throws org.thryft.protocol.InputProtocolException {
-            validateCauseMessage(causeMessage);
-        }
-
-        public static void validateCauseMessage(final String causeMessage) throws org.thryft.protocol.InputProtocolException {
-            if (causeMessage == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.services.AuthenticationException: causeMessage is null");
-            }
-            if (causeMessage.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.services.AuthenticationException: causeMessage: less than min length 1");
-            }
-            {
-                final int __strLen = causeMessage.length();
-                boolean __blank = true;
-                for (int i = 0; i < __strLen; i++) {
-                    if (!Character.isWhitespace(causeMessage.charAt(i))) {
-                        __blank = false;
-                        break;
-                    }
-                }
-                if (__blank) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, String.format("org.dressdiscover.api.services.AuthenticationException: causeMessage: blank '%s' (length=%d)", causeMessage, __strLen));
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String causeMessage) {
             validateCauseMessage(causeMessage);
         }
 
         public static void validateCauseMessage(final String causeMessage) {
             if (causeMessage == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.AuthenticationException: causeMessage is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.AuthenticationException: causeMessage is missing");
             }
             if (causeMessage.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.services.AuthenticationException: causeMessage: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.AuthenticationException: causeMessage: less than min length 1");
             }
             {
                 final int __strLen = causeMessage.length();
@@ -308,7 +247,7 @@ public final class AuthenticationException extends org.thryft.ThryftException {
                     }
                 }
                 if (__blank) {
-                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.services.AuthenticationException: causeMessage: blank '%s' (length=%d)", causeMessage, __strLen));
+                    throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.services.AuthenticationException: causeMessage: blank '%s' (length=%d)", causeMessage, __strLen));
                 }
             }
         }
@@ -323,10 +262,9 @@ public final class AuthenticationException extends org.thryft.ThryftException {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected AuthenticationException(final String causeMessage) {
+    public AuthenticationException(final String causeMessage) {
+        Validator.validate(causeMessage);
         this.causeMessage = causeMessage;
     }
 
@@ -340,14 +278,6 @@ public final class AuthenticationException extends org.thryft.ThryftException {
 
     public static Builder builder(final com.google.common.base.Optional<AuthenticationException> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static AuthenticationException create(final String causeMessage) {
-        UncheckedValidator.validate(causeMessage);
-        return new AuthenticationException(causeMessage);
     }
 
     @Override
@@ -405,81 +335,23 @@ public final class AuthenticationException extends org.thryft.ThryftException {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-        hashCode = 31 * hashCode + getCauseMessage().hashCode();
-        return hashCode;
-    }
-
-    public static AuthenticationException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static AuthenticationException readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
+        return getCauseMessage().hashCode();
     }
 
     public static AuthenticationException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String causeMessage;
-
-        try {
-            iprot.readListBegin();
-            causeMessage = iprot.readString();
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(causeMessage);
-
-        return new AuthenticationException(causeMessage);
+        return builder().readAsList(iprot).build();
     }
 
     public static AuthenticationException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static AuthenticationException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String causeMessage = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "cause_message": {
-                    causeMessage = iprot.readString();
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(causeMessage);
-
-        return new AuthenticationException(causeMessage);
+    public static AuthenticationException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public AuthenticationException replaceCauseMessage(final String causeMessage) {
-        UncheckedValidator.validateCauseMessage(causeMessage);
+        Validator.validateCauseMessage(causeMessage);
         return new AuthenticationException(causeMessage);
     }
 
@@ -491,9 +363,7 @@ public final class AuthenticationException extends org.thryft.ThryftException {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-        oprot.writeString(getCauseMessage());
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -520,6 +390,11 @@ public final class AuthenticationException extends org.thryft.ThryftException {
         oprot.writeFieldBegin(FieldMetadata.CAUSE_MESSAGE);
         oprot.writeString(getCauseMessage());
         oprot.writeFieldEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getCauseMessage());
     }
 
     @Override

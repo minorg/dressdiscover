@@ -13,13 +13,13 @@ public class ValidatingConfigurationQueryService implements org.dressdiscover.ap
     public final org.dressdiscover.api.models.configuration.CollectionConfiguration getCollectionConfiguration(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
         {
             if (collectionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getCollectionConfiguration: collectionId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getCollectionConfiguration: collectionId is missing");
             }
         }
         final org.dressdiscover.api.models.configuration.CollectionConfiguration __returnValue = delegate.getCollectionConfiguration(collectionId);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getCollectionConfiguration: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getCollectionConfiguration: __returnValue is missing");
             }
         }
         return __returnValue;
@@ -29,13 +29,13 @@ public class ValidatingConfigurationQueryService implements org.dressdiscover.ap
     public final org.dressdiscover.api.models.configuration.InstitutionConfiguration getInstitutionConfiguration(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
         {
             if (institutionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getInstitutionConfiguration: institutionId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getInstitutionConfiguration: institutionId is missing");
             }
         }
         final org.dressdiscover.api.models.configuration.InstitutionConfiguration __returnValue = delegate.getInstitutionConfiguration(institutionId);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getInstitutionConfiguration: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getInstitutionConfiguration: __returnValue is missing");
             }
         }
         return __returnValue;

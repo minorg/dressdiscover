@@ -13,7 +13,7 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     public final void deleteUserBookmarkById(final org.dressdiscover.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.deleteUserBookmarkById: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserCommandService.deleteUserBookmarkById: id is missing");
             }
         }
         delegate.deleteUserBookmarkById(id);
@@ -23,7 +23,7 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     public final void deleteUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.deleteUserById: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserCommandService.deleteUserById: id is missing");
             }
         }
         delegate.deleteUserById(id);
@@ -39,13 +39,13 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     public final org.dressdiscover.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException {
         {
             if (user == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUser: user is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUser: user is missing");
             }
         }
         final org.dressdiscover.api.models.user.UserId __returnValue = delegate.postUser(user);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUser: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUser: __returnValue is missing");
             }
         }
         return __returnValue;
@@ -55,13 +55,13 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     public final org.dressdiscover.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException {
         {
             if (userBookmark == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUserBookmark: userBookmark is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUserBookmark: userBookmark is missing");
             }
         }
         final org.dressdiscover.api.models.user.UserBookmarkId __returnValue = delegate.postUserBookmark(userBookmark);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUserBookmark: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUserBookmark: __returnValue is missing");
             }
         }
         return __returnValue;
@@ -71,12 +71,12 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
     public final void putUser(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.putUser: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserCommandService.putUser: id is missing");
             }
         }
         {
             if (user == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.putUser: user is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserCommandService.putUser: user is missing");
             }
         }
         delegate.putUser(id, user);

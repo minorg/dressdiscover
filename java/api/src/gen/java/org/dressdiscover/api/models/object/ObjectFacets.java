@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.object;
 
 public final class ObjectFacets implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, ObjectFacets> {
         public Builder() {
             categories = null;
             collections = null;
@@ -35,7 +35,7 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
 
         public ObjectFacets build() {
-            UncheckedValidator.validate(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
+            Validator.validate(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
 
             return _build(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
         }
@@ -84,26 +84,11 @@ public final class ObjectFacets implements org.thryft.Struct {
             return workTypeTexts;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
                 try {
-                    categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                    this.setCategories((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -126,12 +111,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
                 }
                 try {
-                    collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer>>() {
+                    this.setCollections((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -160,12 +145,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTIONS, e.getCause());
                 }
                 try {
-                    colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                    this.setColorTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -188,12 +173,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, e.getCause());
                 }
                 try {
-                    culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                    this.setCulturalContextTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -216,12 +201,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, e.getCause());
                 }
                 try {
-                    genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer>>() {
+                    this.setGenders((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -244,12 +229,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GENDERS, e.getCause());
                 }
                 try {
-                    institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer>>() {
+                    this.setInstitutions((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -278,12 +263,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTIONS, e.getCause());
                 }
                 try {
-                    locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                    this.setLocationNameTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -306,12 +291,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, e.getCause());
                 }
                 try {
-                    materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                    this.setMaterialTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -334,12 +319,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, e.getCause());
                 }
                 try {
-                    subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                    this.setSubjectTermTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -362,12 +347,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, e.getCause());
                 }
                 try {
-                    techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                    this.setTechniqueTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -390,12 +375,12 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, e.getCause());
                 }
                 try {
-                    workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                    this.setWorkTypeTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -418,22 +403,20 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
-                    }).apply(iprot);
+                    }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, e.getCause());
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -444,7 +427,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "categories": {
                         try {
-                            categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                            this.setCategories((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -467,7 +450,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
                         }
@@ -475,7 +458,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "collections": {
                         try {
-                            collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer>>() {
+                            this.setCollections((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -504,7 +487,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTIONS, e.getCause());
                         }
@@ -512,7 +495,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "color_texts": {
                         try {
-                            colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                            this.setColorTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -535,7 +518,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, e.getCause());
                         }
@@ -543,7 +526,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "cultural_context_texts": {
                         try {
-                            culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                            this.setCulturalContextTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -566,7 +549,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, e.getCause());
                         }
@@ -574,7 +557,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "genders": {
                         try {
-                            genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer>>() {
+                            this.setGenders((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -597,7 +580,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GENDERS, e.getCause());
                         }
@@ -605,7 +588,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "institutions": {
                         try {
-                            institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer>>() {
+                            this.setInstitutions((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -634,7 +617,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTIONS, e.getCause());
                         }
@@ -642,7 +625,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "location_name_texts": {
                         try {
-                            locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                            this.setLocationNameTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -665,7 +648,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, e.getCause());
                         }
@@ -673,7 +656,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "material_texts": {
                         try {
-                            materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                            this.setMaterialTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -696,7 +679,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, e.getCause());
                         }
@@ -704,7 +687,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "subject_term_texts": {
                         try {
-                            subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                            this.setSubjectTermTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -727,7 +710,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, e.getCause());
                         }
@@ -735,7 +718,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "technique_texts": {
                         try {
-                            techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                            this.setTechniqueTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -758,7 +741,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, e.getCause());
                         }
@@ -766,7 +749,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                     }
                     case "work_type_texts": {
                         try {
-                            workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
+                            this.setWorkTypeTexts((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -789,25 +772,25 @@ public final class ObjectFacets implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot);
+                            }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, e.getCause());
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -843,31 +826,31 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
 
         public Builder setCategories(final com.google.common.collect.ImmutableMap<String, Integer> categories) {
-            UncheckedValidator.validateCategories(categories);
+            Validator.validateCategories(categories);
             this.categories = categories;
             return this;
         }
 
         public Builder setCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections) {
-            UncheckedValidator.validateCollections(collections);
+            Validator.validateCollections(collections);
             this.collections = collections;
             return this;
         }
 
         public Builder setColorTexts(final com.google.common.collect.ImmutableMap<String, Integer> colorTexts) {
-            UncheckedValidator.validateColorTexts(colorTexts);
+            Validator.validateColorTexts(colorTexts);
             this.colorTexts = colorTexts;
             return this;
         }
 
         public Builder setCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts) {
-            UncheckedValidator.validateCulturalContextTexts(culturalContextTexts);
+            Validator.validateCulturalContextTexts(culturalContextTexts);
             this.culturalContextTexts = culturalContextTexts;
             return this;
         }
 
         public Builder setGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders) {
-            UncheckedValidator.validateGenders(genders);
+            Validator.validateGenders(genders);
             this.genders = genders;
             return this;
         }
@@ -891,37 +874,37 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
 
         public Builder setInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions) {
-            UncheckedValidator.validateInstitutions(institutions);
+            Validator.validateInstitutions(institutions);
             this.institutions = institutions;
             return this;
         }
 
         public Builder setLocationNameTexts(final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts) {
-            UncheckedValidator.validateLocationNameTexts(locationNameTexts);
+            Validator.validateLocationNameTexts(locationNameTexts);
             this.locationNameTexts = locationNameTexts;
             return this;
         }
 
         public Builder setMaterialTexts(final com.google.common.collect.ImmutableMap<String, Integer> materialTexts) {
-            UncheckedValidator.validateMaterialTexts(materialTexts);
+            Validator.validateMaterialTexts(materialTexts);
             this.materialTexts = materialTexts;
             return this;
         }
 
         public Builder setSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts) {
-            UncheckedValidator.validateSubjectTermTexts(subjectTermTexts);
+            Validator.validateSubjectTermTexts(subjectTermTexts);
             this.subjectTermTexts = subjectTermTexts;
             return this;
         }
 
         public Builder setTechniqueTexts(final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts) {
-            UncheckedValidator.validateTechniqueTexts(techniqueTexts);
+            Validator.validateTechniqueTexts(techniqueTexts);
             this.techniqueTexts = techniqueTexts;
             return this;
         }
 
         public Builder setWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) {
-            UncheckedValidator.validateWorkTypeTexts(workTypeTexts);
+            Validator.validateWorkTypeTexts(workTypeTexts);
             this.workTypeTexts = workTypeTexts;
             return this;
         }
@@ -1027,17 +1010,6 @@ public final class ObjectFacets implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<ObjectFacets> {
         @Override
-        public ObjectFacets readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return ObjectFacets.readAs(iprot, type);
-        }
-
-        @Override
-        public ObjectFacets readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return ObjectFacets.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public ObjectFacets readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return ObjectFacets.readAsList(iprot);
         }
@@ -1048,25 +1020,24 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
 
         @Override
-        public ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return ObjectFacets.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        CATEGORIES("categories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "categories", org.thryft.protocol.Type.MAP),
-        COLLECTIONS("collections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer>>() {}, true, (short)0, "collections", org.thryft.protocol.Type.MAP),
-        COLOR_TEXTS("colorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "color_texts", org.thryft.protocol.Type.MAP),
-        CULTURAL_CONTEXT_TEXTS("culturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "cultural_context_texts", org.thryft.protocol.Type.MAP),
-        GENDERS("genders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer>>() {}, true, (short)0, "genders", org.thryft.protocol.Type.MAP),
-        INSTITUTIONS("institutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer>>() {}, true, (short)0, "institutions", org.thryft.protocol.Type.MAP),
-        LOCATION_NAME_TEXTS("locationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "location_name_texts", org.thryft.protocol.Type.MAP),
-        MATERIAL_TEXTS("materialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "material_texts", org.thryft.protocol.Type.MAP),
-        SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "subject_term_texts", org.thryft.protocol.Type.MAP),
-        TECHNIQUE_TEXTS("techniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "technique_texts", org.thryft.protocol.Type.MAP),
-        WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "work_type_texts", org.thryft.protocol.Type.MAP);
+        CATEGORIES("categories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "categories", "categories", org.thryft.protocol.Type.MAP),
+        COLLECTIONS("collections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer>>() {}, true, (short)0, "collections", "collections", org.thryft.protocol.Type.MAP),
+        COLOR_TEXTS("colorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "color_texts", "color_texts", org.thryft.protocol.Type.MAP),
+        CULTURAL_CONTEXT_TEXTS("culturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "cultural_context_texts", "cultural_context_texts", org.thryft.protocol.Type.MAP),
+        GENDERS("genders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer>>() {}, true, (short)0, "genders", "genders", org.thryft.protocol.Type.MAP),
+        INSTITUTIONS("institutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer>>() {}, true, (short)0, "institutions", "institutions", org.thryft.protocol.Type.MAP),
+        LOCATION_NAME_TEXTS("locationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "location_name_texts", "location_name_texts", org.thryft.protocol.Type.MAP),
+        MATERIAL_TEXTS("materialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "material_texts", "material_texts", org.thryft.protocol.Type.MAP),
+        SUBJECT_TERM_TEXTS("subjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "subject_term_texts", "subject_term_texts", org.thryft.protocol.Type.MAP),
+        TECHNIQUE_TEXTS("techniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "technique_texts", "technique_texts", org.thryft.protocol.Type.MAP),
+        WORK_TYPE_TEXTS("workTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, Integer>>() {}, true, (short)0, "work_type_texts", "work_type_texts", org.thryft.protocol.Type.MAP);
 
         @Override
         public String getJavaName() {
@@ -1144,17 +1115,13 @@ public final class ObjectFacets implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -1167,89 +1134,7 @@ public final class ObjectFacets implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final com.google.common.collect.ImmutableMap<String, Integer> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections, final com.google.common.collect.ImmutableMap<String, Integer> colorTexts, final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions, final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts, final com.google.common.collect.ImmutableMap<String, Integer> materialTexts, final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts, final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) throws org.thryft.protocol.InputProtocolException {
-            validateCategories(categories);
-            validateCollections(collections);
-            validateColorTexts(colorTexts);
-            validateCulturalContextTexts(culturalContextTexts);
-            validateGenders(genders);
-            validateInstitutions(institutions);
-            validateLocationNameTexts(locationNameTexts);
-            validateMaterialTexts(materialTexts);
-            validateSubjectTermTexts(subjectTermTexts);
-            validateTechniqueTexts(techniqueTexts);
-            validateWorkTypeTexts(workTypeTexts);
-        }
-
-        public static void validateCategories(final com.google.common.collect.ImmutableMap<String, Integer> categories) throws org.thryft.protocol.InputProtocolException {
-            if (categories == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacets: categories is null");
-            }
-        }
-
-        public static void validateCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections) throws org.thryft.protocol.InputProtocolException {
-            if (collections == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacets: collections is null");
-            }
-        }
-
-        public static void validateColorTexts(final com.google.common.collect.ImmutableMap<String, Integer> colorTexts) throws org.thryft.protocol.InputProtocolException {
-            if (colorTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: colorTexts is null");
-            }
-        }
-
-        public static void validateCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts) throws org.thryft.protocol.InputProtocolException {
-            if (culturalContextTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: culturalContextTexts is null");
-            }
-        }
-
-        public static void validateGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders) throws org.thryft.protocol.InputProtocolException {
-            if (genders == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.GENDERS, "org.dressdiscover.api.models.object.ObjectFacets: genders is null");
-            }
-        }
-
-        public static void validateInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions) throws org.thryft.protocol.InputProtocolException {
-            if (institutions == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacets: institutions is null");
-            }
-        }
-
-        public static void validateLocationNameTexts(final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts) throws org.thryft.protocol.InputProtocolException {
-            if (locationNameTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: locationNameTexts is null");
-            }
-        }
-
-        public static void validateMaterialTexts(final com.google.common.collect.ImmutableMap<String, Integer> materialTexts) throws org.thryft.protocol.InputProtocolException {
-            if (materialTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: materialTexts is null");
-            }
-        }
-
-        public static void validateSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts) throws org.thryft.protocol.InputProtocolException {
-            if (subjectTermTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: subjectTermTexts is null");
-            }
-        }
-
-        public static void validateTechniqueTexts(final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts) throws org.thryft.protocol.InputProtocolException {
-            if (techniqueTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: techniqueTexts is null");
-            }
-        }
-
-        public static void validateWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) throws org.thryft.protocol.InputProtocolException {
-            if (workTypeTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacets: workTypeTexts is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final com.google.common.collect.ImmutableMap<String, Integer> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections, final com.google.common.collect.ImmutableMap<String, Integer> colorTexts, final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions, final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts, final com.google.common.collect.ImmutableMap<String, Integer> materialTexts, final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts, final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) {
             validateCategories(categories);
             validateCollections(collections);
@@ -1266,67 +1151,67 @@ public final class ObjectFacets implements org.thryft.Struct {
 
         public static void validateCategories(final com.google.common.collect.ImmutableMap<String, Integer> categories) {
             if (categories == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: categories is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: categories is missing");
             }
         }
 
         public static void validateCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections) {
             if (collections == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: collections is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: collections is missing");
             }
         }
 
         public static void validateColorTexts(final com.google.common.collect.ImmutableMap<String, Integer> colorTexts) {
             if (colorTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: colorTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: colorTexts is missing");
             }
         }
 
         public static void validateCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts) {
             if (culturalContextTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: culturalContextTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: culturalContextTexts is missing");
             }
         }
 
         public static void validateGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders) {
             if (genders == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: genders is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: genders is missing");
             }
         }
 
         public static void validateInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions) {
             if (institutions == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: institutions is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: institutions is missing");
             }
         }
 
         public static void validateLocationNameTexts(final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts) {
             if (locationNameTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: locationNameTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: locationNameTexts is missing");
             }
         }
 
         public static void validateMaterialTexts(final com.google.common.collect.ImmutableMap<String, Integer> materialTexts) {
             if (materialTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: materialTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: materialTexts is missing");
             }
         }
 
         public static void validateSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts) {
             if (subjectTermTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: subjectTermTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: subjectTermTexts is missing");
             }
         }
 
         public static void validateTechniqueTexts(final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts) {
             if (techniqueTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: techniqueTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: techniqueTexts is missing");
             }
         }
 
         public static void validateWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) {
             if (workTypeTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacets: workTypeTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacets: workTypeTexts is missing");
             }
         }
     }
@@ -1340,10 +1225,9 @@ public final class ObjectFacets implements org.thryft.Struct {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected ObjectFacets(final com.google.common.collect.ImmutableMap<String, Integer> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections, final com.google.common.collect.ImmutableMap<String, Integer> colorTexts, final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions, final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts, final com.google.common.collect.ImmutableMap<String, Integer> materialTexts, final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts, final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) {
+    public ObjectFacets(final com.google.common.collect.ImmutableMap<String, Integer> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections, final com.google.common.collect.ImmutableMap<String, Integer> colorTexts, final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions, final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts, final com.google.common.collect.ImmutableMap<String, Integer> materialTexts, final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts, final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) {
+        Validator.validate(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
         this.categories = categories;
         this.collections = collections;
         this.colorTexts = colorTexts;
@@ -1367,14 +1251,6 @@ public final class ObjectFacets implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ObjectFacets> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static ObjectFacets create(final com.google.common.collect.ImmutableMap<String, Integer> categories, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections, final com.google.common.collect.ImmutableMap<String, Integer> colorTexts, final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders, final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions, final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts, final com.google.common.collect.ImmutableMap<String, Integer> materialTexts, final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts, final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts, final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) {
-        UncheckedValidator.validate(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
-        return new ObjectFacets(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
     }
 
     @Override
@@ -1527,814 +1403,70 @@ public final class ObjectFacets implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static ObjectFacets readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static ObjectFacets readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static ObjectFacets readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableMap<String, Integer> categories;
-        com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections;
-        com.google.common.collect.ImmutableMap<String, Integer> colorTexts;
-        com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts;
-        com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders;
-        com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions;
-        com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts;
-        com.google.common.collect.ImmutableMap<String, Integer> materialTexts;
-        com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts;
-        com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts;
-        com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts;
-
-        try {
-            iprot.readListBegin();
-            try {
-                categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
-            }
-            try {
-                collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.collection.CollectionId, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final org.dressdiscover.api.models.collection.CollectionId key;
-                                try {
-                                    key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                } catch (final IllegalArgumentException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTIONS, e.getCause());
-            }
-            try {
-                colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, e.getCause());
-            }
-            try {
-                culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, e.getCause());
-            }
-            try {
-                genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final org.dressdiscover.api.vocabularies.costume_core.gender.Gender key;
-                                key = iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance());
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GENDERS, e.getCause());
-            }
-            try {
-                institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.institution.InstitutionId, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final org.dressdiscover.api.models.institution.InstitutionId key;
-                                try {
-                                    key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                } catch (final IllegalArgumentException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTIONS, e.getCause());
-            }
-            try {
-                locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, e.getCause());
-            }
-            try {
-                materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, e.getCause());
-            }
-            try {
-                subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, e.getCause());
-            }
-            try {
-                techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, e.getCause());
-            }
-            try {
-                workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final Integer value;
-                                try {
-                                    value = iprot.readI32();
-                                } catch (final NumberFormatException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
-                                map.put(key, value);
-                            }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, e.getCause());
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
-
-        return new ObjectFacets(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
+        return builder().readAsList(iprot).build();
     }
 
     public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, Integer> categories = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, Integer> colorTexts = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, Integer> materialTexts = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts = null;
-        @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "categories": {
-                    try {
-                        categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
-                    }
-                    break;
-                }
-                case "collections": {
-                    try {
-                        collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.collection.CollectionId, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final org.dressdiscover.api.models.collection.CollectionId key;
-                                        try {
-                                            key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        } catch (final IllegalArgumentException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTIONS, e.getCause());
-                    }
-                    break;
-                }
-                case "color_texts": {
-                    try {
-                        colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "cultural_context_texts": {
-                    try {
-                        culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "genders": {
-                    try {
-                        genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final org.dressdiscover.api.vocabularies.costume_core.gender.Gender key;
-                                        key = iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance());
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GENDERS, e.getCause());
-                    }
-                    break;
-                }
-                case "institutions": {
-                    try {
-                        institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.institution.InstitutionId, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final org.dressdiscover.api.models.institution.InstitutionId key;
-                                        try {
-                                            key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        } catch (final IllegalArgumentException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTIONS, e.getCause());
-                    }
-                    break;
-                }
-                case "location_name_texts": {
-                    try {
-                        locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "material_texts": {
-                    try {
-                        materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "subject_term_texts": {
-                    try {
-                        subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "technique_texts": {
-                    try {
-                        techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "work_type_texts": {
-                    try {
-                        workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, Integer>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, Integer> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, Integer> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final Integer value;
-                                        try {
-                                            value = iprot.readI32();
-                                        } catch (final NumberFormatException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
-
-        return new ObjectFacets(categories, collections, colorTexts, culturalContextTexts, genders, institutions, locationNameTexts, materialTexts, subjectTermTexts, techniqueTexts, workTypeTexts);
+    public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public ObjectFacets replaceCategories(final com.google.common.collect.ImmutableMap<String, Integer> categories) {
-        UncheckedValidator.validateCategories(categories);
+        Validator.validateCategories(categories);
         return new ObjectFacets(categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceCollections(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, Integer> collections) {
-        UncheckedValidator.validateCollections(collections);
+        Validator.validateCollections(collections);
         return new ObjectFacets(this.categories, collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceColorTexts(final com.google.common.collect.ImmutableMap<String, Integer> colorTexts) {
-        UncheckedValidator.validateColorTexts(colorTexts);
+        Validator.validateColorTexts(colorTexts);
         return new ObjectFacets(this.categories, this.collections, colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceCulturalContextTexts(final com.google.common.collect.ImmutableMap<String, Integer> culturalContextTexts) {
-        UncheckedValidator.validateCulturalContextTexts(culturalContextTexts);
+        Validator.validateCulturalContextTexts(culturalContextTexts);
         return new ObjectFacets(this.categories, this.collections, this.colorTexts, culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceGenders(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> genders) {
-        UncheckedValidator.validateGenders(genders);
+        Validator.validateGenders(genders);
         return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceInstitutions(final com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, Integer> institutions) {
-        UncheckedValidator.validateInstitutions(institutions);
+        Validator.validateInstitutions(institutions);
         return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceLocationNameTexts(final com.google.common.collect.ImmutableMap<String, Integer> locationNameTexts) {
-        UncheckedValidator.validateLocationNameTexts(locationNameTexts);
+        Validator.validateLocationNameTexts(locationNameTexts);
         return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceMaterialTexts(final com.google.common.collect.ImmutableMap<String, Integer> materialTexts) {
-        UncheckedValidator.validateMaterialTexts(materialTexts);
+        Validator.validateMaterialTexts(materialTexts);
         return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, materialTexts, this.subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceSubjectTermTexts(final com.google.common.collect.ImmutableMap<String, Integer> subjectTermTexts) {
-        UncheckedValidator.validateSubjectTermTexts(subjectTermTexts);
+        Validator.validateSubjectTermTexts(subjectTermTexts);
         return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, subjectTermTexts, this.techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceTechniqueTexts(final com.google.common.collect.ImmutableMap<String, Integer> techniqueTexts) {
-        UncheckedValidator.validateTechniqueTexts(techniqueTexts);
+        Validator.validateTechniqueTexts(techniqueTexts);
         return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, techniqueTexts, this.workTypeTexts);
     }
 
     public ObjectFacets replaceWorkTypeTexts(final com.google.common.collect.ImmutableMap<String, Integer> workTypeTexts) {
-        UncheckedValidator.validateWorkTypeTexts(workTypeTexts);
+        Validator.validateWorkTypeTexts(workTypeTexts);
         return new ObjectFacets(this.categories, this.collections, this.colorTexts, this.culturalContextTexts, this.genders, this.institutions, this.locationNameTexts, this.materialTexts, this.subjectTermTexts, this.techniqueTexts, workTypeTexts);
     }
 
@@ -2346,84 +1478,7 @@ public final class ObjectFacets implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 11);
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getCategories().size());
-        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getCategories().entrySet()) {
-            oprot.writeString(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getCollections().size());
-        for (com.google.common.collect.ImmutableMap.Entry<org.dressdiscover.api.models.collection.CollectionId, Integer> _iter0 : getCollections().entrySet()) {
-            oprot.writeString(_iter0.getKey().toString());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getColorTexts().size());
-        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getColorTexts().entrySet()) {
-            oprot.writeString(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getCulturalContextTexts().size());
-        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getCulturalContextTexts().entrySet()) {
-            oprot.writeString(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getGenders().size());
-        for (com.google.common.collect.ImmutableMap.Entry<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> _iter0 : getGenders().entrySet()) {
-            oprot.writeEnum(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getInstitutions().size());
-        for (com.google.common.collect.ImmutableMap.Entry<org.dressdiscover.api.models.institution.InstitutionId, Integer> _iter0 : getInstitutions().entrySet()) {
-            oprot.writeString(_iter0.getKey().toString());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getLocationNameTexts().size());
-        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getLocationNameTexts().entrySet()) {
-            oprot.writeString(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getMaterialTexts().size());
-        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getMaterialTexts().entrySet()) {
-            oprot.writeString(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getSubjectTermTexts().size());
-        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getSubjectTermTexts().entrySet()) {
-            oprot.writeString(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getTechniqueTexts().size());
-        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getTechniqueTexts().entrySet()) {
-            oprot.writeString(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
-        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getWorkTypeTexts().size());
-        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getWorkTypeTexts().entrySet()) {
-            oprot.writeString(_iter0.getKey());
-            oprot.writeI32(_iter0.getValue());
-        }
-        oprot.writeMapEnd();
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -2476,6 +1531,76 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
         oprot.writeMapEnd();
         oprot.writeFieldEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getCategories().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getCategories().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getCollections().size());
+        for (com.google.common.collect.ImmutableMap.Entry<org.dressdiscover.api.models.collection.CollectionId, Integer> _iter0 : getCollections().entrySet()) {
+            oprot.writeString(_iter0.getKey().toString());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getColorTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getColorTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getCulturalContextTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getCulturalContextTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getGenders().size());
+        for (com.google.common.collect.ImmutableMap.Entry<org.dressdiscover.api.vocabularies.costume_core.gender.Gender, Integer> _iter0 : getGenders().entrySet()) {
+            oprot.writeEnum(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getInstitutions().size());
+        for (com.google.common.collect.ImmutableMap.Entry<org.dressdiscover.api.models.institution.InstitutionId, Integer> _iter0 : getInstitutions().entrySet()) {
+            oprot.writeString(_iter0.getKey().toString());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getLocationNameTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getLocationNameTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getMaterialTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getMaterialTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getSubjectTermTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getSubjectTermTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getTechniqueTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getTechniqueTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
+        oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.I32, getWorkTypeTexts().size());
+        for (com.google.common.collect.ImmutableMap.Entry<String, Integer> _iter0 : getWorkTypeTexts().entrySet()) {
+            oprot.writeString(_iter0.getKey());
+            oprot.writeI32(_iter0.getValue());
+        }
+        oprot.writeMapEnd();
     }
 
     @Override

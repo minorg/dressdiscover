@@ -2,206 +2,55 @@ package org.dressdiscover.server.controllers.user;
 
 @com.google.inject.Singleton
 @SuppressWarnings({ "serial", "unused" })
-public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
+public class UserQueryServiceJsonRpcServlet extends org.thryft.waf.server.controllers.AbstractJsonRpcServlet {
     @com.google.inject.Inject
     public UserQueryServiceJsonRpcServlet(final org.dressdiscover.api.services.user.UserQueryService service) {
         this.service = service;
     }
 
     @Override
-    protected void doPost(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse) throws java.io.IOException, javax.servlet.ServletException {
-        final String httpServletRequestBody;
-        try (final java.io.Reader httpServletRequestBodyReader = httpServletRequest.getReader()) {
-            final StringBuilder httpServletRequestBodyBuilder = new StringBuilder();
-            final char[] httpServletRequestBodyBuffer = new char[4096];
-            int httpServletRequestBodyBufferReadRet;
-            while ((httpServletRequestBodyBufferReadRet = httpServletRequestBodyReader.read(httpServletRequestBodyBuffer)) != -1) {
-                httpServletRequestBodyBuilder.append(httpServletRequestBodyBuffer, 0, httpServletRequestBodyBufferReadRet);
-            }
-            httpServletRequestBody = httpServletRequestBodyBuilder.toString();
-        }
-
-        org.thryft.protocol.MessageBegin messageBegin = null;
-        try {
-            final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot;
-            try {
-                iprot = new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonInputProtocol(httpServletRequestBody));
-                messageBegin = iprot.readMessageBegin();
-            } catch (final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException e) {
-                throw e;
-            } catch (final org.thryft.protocol.InputProtocolException e) {
-                throw new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException(e, -32600);
-            }
-            if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
-                throw new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException(-32600, "expected request");
-            }
-            if (messageBegin.getName().equals("get_user_bookmarks_by_user_id")) {
-                doPostGetUserBookmarksByUserId(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_user_by_email_address")) {
-                doPostGetUserByEmailAddress(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_user_by_id")) {
-                doPostGetUserById(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else {
-                __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
-                return;
-            }
-        } catch (final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e), messageBegin != null ? messageBegin.getId() : null);
-            return;
+    protected final org.thryft.Struct _dispatch(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final String methodName) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        switch (methodName) {
+        case "get_user_bookmarks_by_user_id": return __dispatchGetUserBookmarksByUserId(iprot);
+        case "get_user_by_email_address": return __dispatchGetUserByEmailAddress(iprot);
+        case "get_user_by_id": return __dispatchGetUserById(iprot);
+        default:
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", methodName));
         }
     }
 
-    private void __doPostError(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse jsonRpcErrorResponse, @javax.annotation.Nullable final Object jsonRpcRequestId) throws java.io.IOException {
-        final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+    private Messages.GetUserBookmarksByUserIdResponse __dispatchGetUserBookmarksByUserId(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        final Messages.GetUserBookmarksByUserIdRequest serviceRequest = _readRequest(iprot, Messages.GetUserBookmarksByUserIdRequest.Factory.INSTANCE);
         try {
-            final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-            oprot.writeMessageBegin("", org.thryft.protocol.MessageType.EXCEPTION, jsonRpcRequestId);
-            jsonRpcErrorResponse.writeAsStruct(oprot);
-            oprot.writeMessageEnd();
-            oprot.flush();
-        } catch (final org.thryft.protocol.OutputProtocolException e) {
-            logger.error("error serializing service error response: ", e);
-            throw new IllegalStateException(e);
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBodyWriter.toString());
-    }
-
-    private static void __doPostResponse(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final String httpServletResponseBody) throws java.io.IOException {
-        httpServletResponse.setContentType("application/json; charset=utf-8");
-
-        try (final java.io.OutputStream httpServletResponseOutputStream = httpServletResponse.getOutputStream()) {
-            httpServletResponseOutputStream.write(httpServletResponseBody.getBytes("UTF-8"));
+            return new Messages.GetUserBookmarksByUserIdResponse(service.getUserBookmarksByUserId(serviceRequest.getUserId(), serviceRequest.getObjectIdsOnly()));
+        } catch (final org.dressdiscover.api.services.IoException | org.dressdiscover.api.services.user.NoSuchUserException e) {
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e);
         }
     }
 
-    public void doPostGetUserBookmarksByUserId(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final Messages.GetUserBookmarksByUserIdRequest serviceRequest;
+    private Messages.GetUserByEmailAddressResponse __dispatchGetUserByEmailAddress(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        final Messages.GetUserByEmailAddressRequest serviceRequest = _readRequest(iprot, Messages.GetUserByEmailAddressRequest.Factory.INSTANCE);
         try {
-            serviceRequest = Messages.GetUserBookmarksByUserIdRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
-            return;
+            return new Messages.GetUserByEmailAddressResponse(service.getUserByEmailAddress(serviceRequest.getEmailAddress()));
+        } catch (final org.dressdiscover.api.services.IoException | org.dressdiscover.api.services.user.NoSuchUserException e) {
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e);
         }
-
-        final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> result;
-        try {
-            result = service.getUserBookmarksByUserId(serviceRequest.getUserId(), serviceRequest.getObjectIdsOnly());
-        } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.user.NoSuchUserException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, result.size());
-                for (final org.dressdiscover.api.models.user.UserBookmarkEntry _iter0 : result) {
-                    _iter0.writeAsStruct(oprot);
-                }
-                oprot.writeListEnd();
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    public void doPostGetUserByEmailAddress(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final Messages.GetUserByEmailAddressRequest serviceRequest;
+    private Messages.GetUserByIdResponse __dispatchGetUserById(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        final Messages.GetUserByIdRequest serviceRequest = _readRequest(iprot, Messages.GetUserByIdRequest.Factory.INSTANCE);
         try {
-            serviceRequest = Messages.GetUserByEmailAddressRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
-            return;
+            return new Messages.GetUserByIdResponse(service.getUserById(serviceRequest.getId()));
+        } catch (final org.dressdiscover.api.services.IoException | org.dressdiscover.api.services.user.NoSuchUserException e) {
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e);
         }
-
-        final org.dressdiscover.api.models.user.UserEntry result;
-        try {
-            result = service.getUserByEmailAddress(serviceRequest.getEmailAddress());
-        } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.user.NoSuchUserException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                result.writeAsStruct(oprot);
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    public void doPostGetUserById(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final Messages.GetUserByIdRequest serviceRequest;
-        try {
-            serviceRequest = Messages.GetUserByIdRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
-            return;
-        }
-
-        final org.dressdiscover.api.models.user.User result;
-        try {
-            result = service.getUserById(serviceRequest.getId());
-        } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.user.NoSuchUserException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                result.writeAsStruct(oprot);
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserQueryServiceJsonRpcServlet.class);
-    private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { @Override public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
     private final org.dressdiscover.api.services.user.UserQueryService service;
 
     private final static class Messages {
         public final static class GetUserBookmarksByUserIdRequest implements org.thryft.Struct {
-            public final static class Builder {
+            public final static class Builder implements org.thryft.CompoundType.Builder<Builder, GetUserBookmarksByUserIdRequest> {
                 public Builder() {
                     userId = null;
                     objectIdsOnly = com.google.common.base.Optional.<Boolean> absent();
@@ -217,7 +66,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 public GetUserBookmarksByUserIdRequest build() {
-                    UncheckedValidator.validate(userId, objectIdsOnly);
+                    Validator.validate(userId, objectIdsOnly);
 
                     return _build(userId, objectIdsOnly);
                 }
@@ -230,46 +79,29 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     return userId;
                 }
 
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     try {
                         final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                         try {
-                            userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            this.setUserId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                         } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                         }
                         if (__list.getSize() > 1) {
-                            objectIdsOnly = org.thryft.Optionals.of(iprot.readBool());
+                            this.setObjectIdsOnly(org.thryft.Optionals.of(iprot.readBool()));
                         }
                         iprot.readListEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readStructBegin();
                         while (true) {
@@ -280,7 +112,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                             switch (ifield.getName()) {
                             case "user_id": {
                                 try {
-                                    userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                                    this.setUserId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                                 } catch (final IllegalArgumentException e) {
@@ -289,22 +121,22 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                                 break;
                             }
                             case "object_ids_only": {
-                                objectIdsOnly = org.thryft.Optionals.of(iprot.readBool());
+                                this.setObjectIdsOnly(org.thryft.Optionals.of(iprot.readBool()));
                                 break;
                             }
                             default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
+                                unknownFieldCallback.apply(ifield);
                                 break;
                             }
                             iprot.readFieldEnd();
                         }
                         iprot.readStructEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
                 public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -341,7 +173,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 public Builder setObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                    UncheckedValidator.validateObjectIdsOnly(objectIdsOnly);
+                    Validator.validateObjectIdsOnly(objectIdsOnly);
                     this.objectIdsOnly = objectIdsOnly;
                     return this;
                 }
@@ -355,7 +187,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 public Builder setUserId(final org.dressdiscover.api.models.user.UserId userId) {
-                    UncheckedValidator.validateUserId(userId);
+                    Validator.validateUserId(userId);
                     this.userId = userId;
                     return this;
                 }
@@ -397,16 +229,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<GetUserBookmarksByUserIdRequest> {
-                @Override
-                public GetUserBookmarksByUserIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserBookmarksByUserIdRequest.readAs(iprot, type);
-                }
-
-                @Override
-                public GetUserBookmarksByUserIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserBookmarksByUserIdRequest.readAs(iprot, type, unknownFieldCallback);
-                }
+                public final static Factory INSTANCE = new Factory();
 
                 @Override
                 public GetUserBookmarksByUserIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -419,15 +242,14 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 @Override
-                public GetUserBookmarksByUserIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public GetUserBookmarksByUserIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     return GetUserBookmarksByUserIdRequest.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "user_id", org.thryft.protocol.Type.STRING),
-                OBJECT_IDS_ONLY("objectIdsOnly", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "object_ids_only", org.thryft.protocol.Type.BOOL);
+                USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "user_id", "user_id", org.thryft.protocol.Type.STRING),
+                OBJECT_IDS_ONLY("objectIdsOnly", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "object_ids_only", "object_ids_only", org.thryft.protocol.Type.BOOL);
 
                 @Override
                 public String getJavaName() {
@@ -487,17 +309,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -510,26 +328,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) throws org.thryft.protocol.InputProtocolException {
-                    validateUserId(userId);
-                    validateObjectIdsOnly(objectIdsOnly);
-                }
-
-                public static void validateUserId(final org.dressdiscover.api.models.user.UserId userId) throws org.thryft.protocol.InputProtocolException {
-                    if (userId == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.USER_ID, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: userId is null");
-                    }
-                }
-
-                public static void validateObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) throws org.thryft.protocol.InputProtocolException {
-                    if (objectIdsOnly == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_IDS_ONLY, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: objectIdsOnly is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
                     validateUserId(userId);
                     validateObjectIdsOnly(objectIdsOnly);
@@ -537,13 +336,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
                 public static void validateUserId(final org.dressdiscover.api.models.user.UserId userId) {
                     if (userId == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: userId is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: userId is missing");
                     }
                 }
 
                 public static void validateObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
                     if (objectIdsOnly == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: objectIdsOnly is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest: objectIdsOnly is missing");
                     }
                 }
             }
@@ -556,13 +355,26 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             }
 
             /**
-             * Total constructor
-             *
-             * All fields should have been validated before calling this.
+             * Required constructor
              */
-            protected GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+            public GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId) {
+                this(userId, com.google.common.base.Optional.<Boolean> absent());
+            }
+
+            /**
+             * Total constructor
+             */
+            public GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
+                Validator.validate(userId, objectIdsOnly);
                 this.userId = userId;
                 this.objectIdsOnly = objectIdsOnly;
+            }
+
+            /**
+             * Total Nullable constructor
+             */
+            public GetUserBookmarksByUserIdRequest(final org.dressdiscover.api.models.user.UserId userId, @javax.annotation.Nullable final Boolean objectIdsOnly) {
+                this(userId, org.thryft.Optionals.fromNullable(objectIdsOnly));
             }
 
             public static Builder builder() {
@@ -575,31 +387,6 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             public static Builder builder(final com.google.common.base.Optional<GetUserBookmarksByUserIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Required factory method
-             */
-            public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId) {
-                UncheckedValidator.validate(userId, com.google.common.base.Optional.<Boolean> absent());
-                return new GetUserBookmarksByUserIdRequest(userId, com.google.common.base.Optional.<Boolean> absent());
-            }
-
-            /**
-             * Total Nullable factory method
-             */
-            public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId, @javax.annotation.Nullable final Boolean objectIdsOnly) {
-                final com.google.common.base.Optional<Boolean> objectIdsOnlyOptional = org.thryft.Optionals.fromNullable(objectIdsOnly);
-                UncheckedValidator.validate(userId, objectIdsOnlyOptional);
-                return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnlyOptional);
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static GetUserBookmarksByUserIdRequest create(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                UncheckedValidator.validate(userId, objectIdsOnly);
-                return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
             }
 
             @Override
@@ -664,97 +451,20 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 return hashCode;
             }
 
-            public static GetUserBookmarksByUserIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserBookmarksByUserIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
             public static GetUserBookmarksByUserIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.user.UserId userId;
-                com.google.common.base.Optional<Boolean> objectIdsOnly = com.google.common.base.Optional.<Boolean> absent();
-
-                try {
-                    final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                    try {
-                        userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-                    }
-                    if (__list.getSize() > 1) {
-                        objectIdsOnly = org.thryft.Optionals.of(iprot.readBool());
-                    }
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(userId, objectIdsOnly);
-
-                return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
+                return builder().readAsList(iprot).build();
             }
 
             public static GetUserBookmarksByUserIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
             }
 
-            public static GetUserBookmarksByUserIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable org.dressdiscover.api.models.user.UserId userId = null;
-                com.google.common.base.Optional<Boolean> objectIdsOnly = com.google.common.base.Optional.<Boolean> absent();
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "user_id": {
-                            try {
-                                userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-                            } catch (final IllegalArgumentException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
-                            }
-                            break;
-                        }
-                        case "object_ids_only": {
-                            objectIdsOnly = org.thryft.Optionals.of(iprot.readBool());
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(userId, objectIdsOnly);
-
-                return new GetUserBookmarksByUserIdRequest(userId, objectIdsOnly);
+            public static GetUserBookmarksByUserIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                return builder().readAsStruct(iprot, unknownFieldCallback).build();
             }
 
             public GetUserBookmarksByUserIdRequest replaceObjectIdsOnly(final com.google.common.base.Optional<Boolean> objectIdsOnly) {
-                UncheckedValidator.validateObjectIdsOnly(objectIdsOnly);
+                Validator.validateObjectIdsOnly(objectIdsOnly);
                 return new GetUserBookmarksByUserIdRequest(this.userId, objectIdsOnly);
             }
 
@@ -767,7 +477,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             }
 
             public GetUserBookmarksByUserIdRequest replaceUserId(final org.dressdiscover.api.models.user.UserId userId) {
-                UncheckedValidator.validateUserId(userId);
+                Validator.validateUserId(userId);
                 return new GetUserBookmarksByUserIdRequest(userId, this.objectIdsOnly);
             }
 
@@ -779,15 +489,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-                oprot.writeString(getUserId().toString());
-
-                if (getObjectIdsOnly().isPresent()) {
-                    oprot.writeBool(getObjectIdsOnly().get());
-                } else {
-                    oprot.writeNull();
-                }
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -796,6 +498,16 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 oprot.writeStructBegin("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdRequest");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeString(getUserId().toString());
+                if (getObjectIdsOnly().isPresent()) {
+                    oprot.writeBool(getObjectIdsOnly().get());
+                } else {
+                    oprot.writeNull();
+                }
             }
 
             @Override
@@ -827,221 +539,8 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
         }
 
         public final static class GetUserBookmarksByUserIdResponse implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                    returnValue = null;
-                }
-
-                public Builder(final GetUserBookmarksByUserIdResponse other) {
-                    this.returnValue = other.getReturnValue();
-                }
-
-                protected GetUserBookmarksByUserIdResponse _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                    return new GetUserBookmarksByUserIdResponse(returnValue);
-                }
-
-                public GetUserBookmarksByUserIdResponse build() {
-                    UncheckedValidator.validate(returnValue);
-
-                    return _build(returnValue);
-                }
-
-                public final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> getReturnValue() {
-                    return returnValue;
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        try {
-                            returnValue = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.user.UserBookmarkEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.user.UserBookmarkEntry.readAsStruct(iprot));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot);
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RETURN_VALUE, e.getCause());
-                        }
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            switch (ifield.getName()) {
-                            case "return_value": {
-                                try {
-                                    returnValue = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry>>() {
-                                        @Override
-                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                            try {
-                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.user.UserBookmarkEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                    sequenceBuilder.add(org.dressdiscover.api.models.user.UserBookmarkEntry.readAsStruct(iprot, unknownFieldCallback));
-                                                }
-                                                iprot.readListEnd();
-                                                return sequenceBuilder.build();
-                                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                            }
-                                        }
-                                    }).apply(iprot);
-                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RETURN_VALUE, e.getCause());
-                                }
-                                break;
-                            }
-                            default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
-                                break;
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    return set(FieldMetadata.valueOfThriftName(fieldThriftName), value);
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    if (!(fieldMetadata instanceof FieldMetadata)) {
-                        throw new IllegalArgumentException();
-                    }
-                    return set((FieldMetadata)fieldMetadata, value);
-                }
-
-                @SuppressWarnings({"unchecked"})
-                public Builder set(final FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
-
-                    switch (fieldMetadata) {
-                    case RETURN_VALUE: setReturnValue((com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry>)value); return this;
-                    default:
-                        throw new IllegalStateException();
-                    }
-                }
-
-                public Builder setIfPresent(final GetUserBookmarksByUserIdResponse other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-                    setReturnValue(other.getReturnValue());
-
-                    return this;
-                }
-
-                public Builder setReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                    UncheckedValidator.validateReturnValue(returnValue);
-                    this.returnValue = returnValue;
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    return unset(FieldMetadata.valueOfThriftName(fieldThriftName));
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    if (!(fieldMetadata instanceof FieldMetadata)) {
-                        throw new IllegalArgumentException();
-                    }
-                    return unset((FieldMetadata)fieldMetadata);
-                }
-
-                public Builder unset(final FieldMetadata fieldMetadata) {
-                    com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
-
-                    switch (fieldMetadata) {
-                    case RETURN_VALUE: return unsetReturnValue();
-                    default:
-                        throw new IllegalStateException();
-                    }
-                }
-
-                public Builder unsetReturnValue() {
-                    this.returnValue = null;
-                    return this;
-                }
-
-                private @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue;
-            }
-
-            public final static class Factory implements org.thryft.CompoundType.Factory<GetUserBookmarksByUserIdResponse> {
-                @Override
-                public GetUserBookmarksByUserIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserBookmarksByUserIdResponse.readAs(iprot, type);
-                }
-
-                @Override
-                public GetUserBookmarksByUserIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserBookmarksByUserIdResponse.readAs(iprot, type, unknownFieldCallback);
-                }
-
-                @Override
-                public GetUserBookmarksByUserIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserBookmarksByUserIdResponse.readAsList(iprot);
-                }
-
-                @Override
-                public GetUserBookmarksByUserIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserBookmarksByUserIdResponse.readAsStruct(iprot);
-                }
-
-                @Override
-                public GetUserBookmarksByUserIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserBookmarksByUserIdResponse.readAsStruct(iprot, unknownFieldCallback);
-                }
-            }
-
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry>>() {}, true, (short)0, "return_value", org.thryft.protocol.Type.LIST);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry>>() {}, true, (short)0, "return_value", "return_value", org.thryft.protocol.Type.LIST);
 
                 @Override
                 public String getJavaName() {
@@ -1099,17 +598,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -1122,26 +617,14 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) throws org.thryft.protocol.InputProtocolException {
-                    validateReturnValue(returnValue);
-                }
-
-                public static void validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) throws org.thryft.protocol.InputProtocolException {
-                    if (returnValue == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.user.GetUserBookmarksByUserIdResponse: returnValue is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
                     validateReturnValue(returnValue);
                 }
 
                 public static void validateReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
                     if (returnValue == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdResponse: returnValue is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdResponse: returnValue is missing");
                     }
                 }
             }
@@ -1155,31 +638,10 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected GetUserBookmarksByUserIdResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
+            public GetUserBookmarksByUserIdResponse(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
+                Validator.validate(returnValue);
                 this.returnValue = returnValue;
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final GetUserBookmarksByUserIdResponse other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<GetUserBookmarksByUserIdResponse> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static GetUserBookmarksByUserIdResponse create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                UncheckedValidator.validate(returnValue);
-                return new GetUserBookmarksByUserIdResponse(returnValue);
             }
 
             @Override
@@ -1227,119 +689,11 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                hashCode = 31 * hashCode + getReturnValue().hashCode();
-                return hashCode;
-            }
-
-            public static GetUserBookmarksByUserIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserBookmarksByUserIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
-            public static GetUserBookmarksByUserIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue;
-
-                try {
-                    iprot.readListBegin();
-                    try {
-                        returnValue = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.user.UserBookmarkEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.user.UserBookmarkEntry.readAsStruct(iprot));
-                                    }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RETURN_VALUE, e.getCause());
-                    }
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(returnValue);
-
-                return new GetUserBookmarksByUserIdResponse(returnValue);
-            }
-
-            public static GetUserBookmarksByUserIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserBookmarksByUserIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "return_value": {
-                            try {
-                                returnValue = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.user.UserBookmarkEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.models.user.UserBookmarkEntry.readAsStruct(iprot, unknownFieldCallback));
-                                            }
-                                            iprot.readListEnd();
-                                            return sequenceBuilder.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                        }
-                                    }
-                                }).apply(iprot);
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RETURN_VALUE, e.getCause());
-                            }
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(returnValue);
-
-                return new GetUserBookmarksByUserIdResponse(returnValue);
+                return getReturnValue().hashCode();
             }
 
             public GetUserBookmarksByUserIdResponse replaceReturnValue(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> returnValue) {
-                UncheckedValidator.validateReturnValue(returnValue);
+                Validator.validateReturnValue(returnValue);
                 return new GetUserBookmarksByUserIdResponse(returnValue);
             }
 
@@ -1351,13 +705,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getReturnValue().size());
-                for (final org.dressdiscover.api.models.user.UserBookmarkEntry _iter0 : getReturnValue()) {
-                    _iter0.writeAsStruct(oprot);
-                }
-                oprot.writeListEnd();
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -1366,6 +714,15 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 oprot.writeStructBegin("org.dressdiscover.api.services.user.GetUserBookmarksByUserIdResponse");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getReturnValue().size());
+                for (final org.dressdiscover.api.models.user.UserBookmarkEntry _iter0 : getReturnValue()) {
+                    _iter0.writeAsStruct(oprot);
+                }
+                oprot.writeListEnd();
             }
 
             @Override
@@ -1389,7 +746,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
         }
 
         public final static class GetUserByEmailAddressRequest implements org.thryft.Struct {
-            public final static class Builder {
+            public final static class Builder implements org.thryft.CompoundType.Builder<Builder, GetUserByEmailAddressRequest> {
                 public Builder() {
                     emailAddress = null;
                 }
@@ -1403,7 +760,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 public GetUserByEmailAddressRequest build() {
-                    UncheckedValidator.validate(emailAddress);
+                    Validator.validate(emailAddress);
 
                     return _build(emailAddress);
                 }
@@ -1412,37 +769,20 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     return emailAddress;
                 }
 
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readListBegin();
-                        emailAddress = iprot.readString();
+                        this.setEmailAddress(iprot.readString());
                         iprot.readListEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readStructBegin();
                         while (true) {
@@ -1452,22 +792,22 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                             }
                             switch (ifield.getName()) {
                             case "email_address": {
-                                emailAddress = iprot.readString();
+                                this.setEmailAddress(iprot.readString());
                                 break;
                             }
                             default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
+                                unknownFieldCallback.apply(ifield);
                                 break;
                             }
                             iprot.readFieldEnd();
                         }
                         iprot.readStructEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
                 public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -1492,7 +832,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 public Builder setEmailAddress(final String emailAddress) {
-                    UncheckedValidator.validateEmailAddress(emailAddress);
+                    Validator.validateEmailAddress(emailAddress);
                     this.emailAddress = emailAddress;
                     return this;
                 }
@@ -1535,16 +875,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<GetUserByEmailAddressRequest> {
-                @Override
-                public GetUserByEmailAddressRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByEmailAddressRequest.readAs(iprot, type);
-                }
-
-                @Override
-                public GetUserByEmailAddressRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByEmailAddressRequest.readAs(iprot, type, unknownFieldCallback);
-                }
+                public final static Factory INSTANCE = new Factory();
 
                 @Override
                 public GetUserByEmailAddressRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1557,14 +888,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 @Override
-                public GetUserByEmailAddressRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public GetUserByEmailAddressRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     return GetUserByEmailAddressRequest.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "email_address", org.thryft.protocol.Type.STRING);
+                EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "email_address", "email_address", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -1622,17 +952,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -1645,51 +971,20 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final String emailAddress) throws org.thryft.protocol.InputProtocolException {
-                    validateEmailAddress(emailAddress);
-                }
-
-                public static void validateEmailAddress(final String emailAddress) throws org.thryft.protocol.InputProtocolException {
-                    if (emailAddress == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is null");
-                    }
-                    if (!emailAddress.matches("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+")) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: not a valid email address");
-                    }
-                    if (emailAddress.isEmpty()) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: less than min length 1");
-                    }
-                    {
-                        final int __strLen = emailAddress.length();
-                        boolean __blank = true;
-                        for (int i = 0; i < __strLen; i++) {
-                            if (!Character.isWhitespace(emailAddress.charAt(i))) {
-                                __blank = false;
-                                break;
-                            }
-                        }
-                        if (__blank) {
-                            throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, String.format("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
-                        }
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final String emailAddress) {
                     validateEmailAddress(emailAddress);
                 }
 
                 public static void validateEmailAddress(final String emailAddress) {
                     if (emailAddress == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is missing");
                     }
                     if (!emailAddress.matches("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+")) {
-                        throw new IllegalArgumentException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: not a valid email address");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: not a valid email address");
                     }
                     if (emailAddress.isEmpty()) {
-                        throw new IllegalArgumentException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: less than min length 1");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: less than min length 1");
                     }
                     {
                         final int __strLen = emailAddress.length();
@@ -1701,7 +996,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                             }
                         }
                         if (__blank) {
-                            throw new IllegalArgumentException(String.format("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
+                            throw new org.thryft.ThryftValidationException(String.format("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
                         }
                     }
                 }
@@ -1716,10 +1011,9 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected GetUserByEmailAddressRequest(final String emailAddress) {
+            public GetUserByEmailAddressRequest(final String emailAddress) {
+                Validator.validate(emailAddress);
                 this.emailAddress = emailAddress;
             }
 
@@ -1733,14 +1027,6 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             public static Builder builder(final com.google.common.base.Optional<GetUserByEmailAddressRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static GetUserByEmailAddressRequest create(final String emailAddress) {
-                UncheckedValidator.validate(emailAddress);
-                return new GetUserByEmailAddressRequest(emailAddress);
             }
 
             @Override
@@ -1788,81 +1074,23 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                hashCode = 31 * hashCode + getEmailAddress().hashCode();
-                return hashCode;
-            }
-
-            public static GetUserByEmailAddressRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserByEmailAddressRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
+                return getEmailAddress().hashCode();
             }
 
             public static GetUserByEmailAddressRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                String emailAddress;
-
-                try {
-                    iprot.readListBegin();
-                    emailAddress = iprot.readString();
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(emailAddress);
-
-                return new GetUserByEmailAddressRequest(emailAddress);
+                return builder().readAsList(iprot).build();
             }
 
             public static GetUserByEmailAddressRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
             }
 
-            public static GetUserByEmailAddressRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable String emailAddress = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "email_address": {
-                            emailAddress = iprot.readString();
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(emailAddress);
-
-                return new GetUserByEmailAddressRequest(emailAddress);
+            public static GetUserByEmailAddressRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                return builder().readAsStruct(iprot, unknownFieldCallback).build();
             }
 
             public GetUserByEmailAddressRequest replaceEmailAddress(final String emailAddress) {
-                UncheckedValidator.validateEmailAddress(emailAddress);
+                Validator.validateEmailAddress(emailAddress);
                 return new GetUserByEmailAddressRequest(emailAddress);
             }
 
@@ -1874,9 +1102,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-                oprot.writeString(getEmailAddress());
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -1894,6 +1120,11 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             }
 
             @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeString(getEmailAddress());
+            }
+
+            @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 writeEmailAddressField(oprot);
 
@@ -1904,182 +1135,8 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
         }
 
         public final static class GetUserByEmailAddressResponse implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                    returnValue = null;
-                }
-
-                public Builder(final GetUserByEmailAddressResponse other) {
-                    this.returnValue = other.getReturnValue();
-                }
-
-                protected GetUserByEmailAddressResponse _build(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                    return new GetUserByEmailAddressResponse(returnValue);
-                }
-
-                public GetUserByEmailAddressResponse build() {
-                    UncheckedValidator.validate(returnValue);
-
-                    return _build(returnValue);
-                }
-
-                public final @javax.annotation.Nullable org.dressdiscover.api.models.user.UserEntry getReturnValue() {
-                    return returnValue;
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        returnValue = org.dressdiscover.api.models.user.UserEntry.readAsStruct(iprot);
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            switch (ifield.getName()) {
-                            case "return_value": {
-                                returnValue = org.dressdiscover.api.models.user.UserEntry.readAsStruct(iprot, unknownFieldCallback);
-                                break;
-                            }
-                            default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
-                                break;
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    return set(FieldMetadata.valueOfThriftName(fieldThriftName), value);
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    if (!(fieldMetadata instanceof FieldMetadata)) {
-                        throw new IllegalArgumentException();
-                    }
-                    return set((FieldMetadata)fieldMetadata, value);
-                }
-
-                public Builder set(final FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
-
-                    switch (fieldMetadata) {
-                    case RETURN_VALUE: setReturnValue((org.dressdiscover.api.models.user.UserEntry)value); return this;
-                    default:
-                        throw new IllegalStateException();
-                    }
-                }
-
-                public Builder setIfPresent(final GetUserByEmailAddressResponse other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-                    setReturnValue(other.getReturnValue());
-
-                    return this;
-                }
-
-                public Builder setReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                    UncheckedValidator.validateReturnValue(returnValue);
-                    this.returnValue = returnValue;
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    return unset(FieldMetadata.valueOfThriftName(fieldThriftName));
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    if (!(fieldMetadata instanceof FieldMetadata)) {
-                        throw new IllegalArgumentException();
-                    }
-                    return unset((FieldMetadata)fieldMetadata);
-                }
-
-                public Builder unset(final FieldMetadata fieldMetadata) {
-                    com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
-
-                    switch (fieldMetadata) {
-                    case RETURN_VALUE: return unsetReturnValue();
-                    default:
-                        throw new IllegalStateException();
-                    }
-                }
-
-                public Builder unsetReturnValue() {
-                    this.returnValue = null;
-                    return this;
-                }
-
-                private @javax.annotation.Nullable org.dressdiscover.api.models.user.UserEntry returnValue;
-            }
-
-            public final static class Factory implements org.thryft.CompoundType.Factory<GetUserByEmailAddressResponse> {
-                @Override
-                public GetUserByEmailAddressResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByEmailAddressResponse.readAs(iprot, type);
-                }
-
-                @Override
-                public GetUserByEmailAddressResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByEmailAddressResponse.readAs(iprot, type, unknownFieldCallback);
-                }
-
-                @Override
-                public GetUserByEmailAddressResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByEmailAddressResponse.readAsList(iprot);
-                }
-
-                @Override
-                public GetUserByEmailAddressResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByEmailAddressResponse.readAsStruct(iprot);
-                }
-
-                @Override
-                public GetUserByEmailAddressResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByEmailAddressResponse.readAsStruct(iprot, unknownFieldCallback);
-                }
-            }
-
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserEntry>() {}, true, (short)0, "return_value", org.thryft.protocol.Type.STRUCT);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserEntry>() {}, true, (short)0, "return_value", "return_value", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -2137,17 +1194,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -2160,26 +1213,14 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final org.dressdiscover.api.models.user.UserEntry returnValue) throws org.thryft.protocol.InputProtocolException {
-                    validateReturnValue(returnValue);
-                }
-
-                public static void validateReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) throws org.thryft.protocol.InputProtocolException {
-                    if (returnValue == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.user.GetUserByEmailAddressResponse: returnValue is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final org.dressdiscover.api.models.user.UserEntry returnValue) {
                     validateReturnValue(returnValue);
                 }
 
                 public static void validateReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) {
                     if (returnValue == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByEmailAddressResponse: returnValue is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserByEmailAddressResponse: returnValue is missing");
                     }
                 }
             }
@@ -2193,31 +1234,10 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected GetUserByEmailAddressResponse(final org.dressdiscover.api.models.user.UserEntry returnValue) {
+            public GetUserByEmailAddressResponse(final org.dressdiscover.api.models.user.UserEntry returnValue) {
+                Validator.validate(returnValue);
                 this.returnValue = returnValue;
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final GetUserByEmailAddressResponse other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<GetUserByEmailAddressResponse> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static GetUserByEmailAddressResponse create(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                UncheckedValidator.validate(returnValue);
-                return new GetUserByEmailAddressResponse(returnValue);
             }
 
             @Override
@@ -2265,81 +1285,11 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                hashCode = 31 * hashCode + getReturnValue().hashCode();
-                return hashCode;
-            }
-
-            public static GetUserByEmailAddressResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserByEmailAddressResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
-            public static GetUserByEmailAddressResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.user.UserEntry returnValue;
-
-                try {
-                    iprot.readListBegin();
-                    returnValue = org.dressdiscover.api.models.user.UserEntry.readAsStruct(iprot);
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(returnValue);
-
-                return new GetUserByEmailAddressResponse(returnValue);
-            }
-
-            public static GetUserByEmailAddressResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserByEmailAddressResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable org.dressdiscover.api.models.user.UserEntry returnValue = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "return_value": {
-                            returnValue = org.dressdiscover.api.models.user.UserEntry.readAsStruct(iprot, unknownFieldCallback);
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(returnValue);
-
-                return new GetUserByEmailAddressResponse(returnValue);
+                return getReturnValue().hashCode();
             }
 
             public GetUserByEmailAddressResponse replaceReturnValue(final org.dressdiscover.api.models.user.UserEntry returnValue) {
-                UncheckedValidator.validateReturnValue(returnValue);
+                Validator.validateReturnValue(returnValue);
                 return new GetUserByEmailAddressResponse(returnValue);
             }
 
@@ -2351,9 +1301,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-                getReturnValue().writeAsStruct(oprot);
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -2362,6 +1310,11 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 oprot.writeStructBegin("org.dressdiscover.api.services.user.GetUserByEmailAddressResponse");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                getReturnValue().writeAsStruct(oprot);
             }
 
             @Override
@@ -2381,7 +1334,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
         }
 
         public final static class GetUserByIdRequest implements org.thryft.Struct {
-            public final static class Builder {
+            public final static class Builder implements org.thryft.CompoundType.Builder<Builder, GetUserByIdRequest> {
                 public Builder() {
                     id = null;
                 }
@@ -2395,7 +1348,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 public GetUserByIdRequest build() {
-                    UncheckedValidator.validate(id);
+                    Validator.validate(id);
 
                     return _build(id);
                 }
@@ -2404,43 +1357,26 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     return id;
                 }
 
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readListBegin();
                         try {
-                            id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            this.setId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         }
                         iprot.readListEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readStructBegin();
                         while (true) {
@@ -2451,7 +1387,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                             switch (ifield.getName()) {
                             case "id": {
                                 try {
-                                    id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                                    this.setId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                                 } catch (final IllegalArgumentException e) {
@@ -2460,18 +1396,18 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                                 break;
                             }
                             default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
+                                unknownFieldCallback.apply(ifield);
                                 break;
                             }
                             iprot.readFieldEnd();
                         }
                         iprot.readStructEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
                 public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -2496,7 +1432,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.user.UserId id) {
-                    UncheckedValidator.validateId(id);
+                    Validator.validateId(id);
                     this.id = id;
                     return this;
                 }
@@ -2539,16 +1475,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<GetUserByIdRequest> {
-                @Override
-                public GetUserByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByIdRequest.readAs(iprot, type);
-                }
-
-                @Override
-                public GetUserByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByIdRequest.readAs(iprot, type, unknownFieldCallback);
-                }
+                public final static Factory INSTANCE = new Factory();
 
                 @Override
                 public GetUserByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2561,14 +1488,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 }
 
                 @Override
-                public GetUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public GetUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     return GetUserByIdRequest.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "id", "id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -2626,17 +1552,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -2649,26 +1571,14 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final org.dressdiscover.api.models.user.UserId id) throws org.thryft.protocol.InputProtocolException {
-                    validateId(id);
-                }
-
-                public static void validateId(final org.dressdiscover.api.models.user.UserId id) throws org.thryft.protocol.InputProtocolException {
-                    if (id == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.user.GetUserByIdRequest: id is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final org.dressdiscover.api.models.user.UserId id) {
                     validateId(id);
                 }
 
                 public static void validateId(final org.dressdiscover.api.models.user.UserId id) {
                     if (id == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByIdRequest: id is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserByIdRequest: id is missing");
                     }
                 }
             }
@@ -2682,10 +1592,9 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected GetUserByIdRequest(final org.dressdiscover.api.models.user.UserId id) {
+            public GetUserByIdRequest(final org.dressdiscover.api.models.user.UserId id) {
+                Validator.validate(id);
                 this.id = id;
             }
 
@@ -2699,14 +1608,6 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             public static Builder builder(final com.google.common.base.Optional<GetUserByIdRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static GetUserByIdRequest create(final org.dressdiscover.api.models.user.UserId id) {
-                UncheckedValidator.validate(id);
-                return new GetUserByIdRequest(id);
             }
 
             @Override
@@ -2754,93 +1655,23 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                hashCode = 31 * hashCode + getId().hashCode();
-                return hashCode;
-            }
-
-            public static GetUserByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserByIdRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
+                return getId().hashCode();
             }
 
             public static GetUserByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.user.UserId id;
-
-                try {
-                    iprot.readListBegin();
-                    try {
-                        id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    }
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(id);
-
-                return new GetUserByIdRequest(id);
+                return builder().readAsList(iprot).build();
             }
 
             public static GetUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
             }
 
-            public static GetUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable org.dressdiscover.api.models.user.UserId id = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "id": {
-                            try {
-                                id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                            } catch (final IllegalArgumentException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                            }
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(id);
-
-                return new GetUserByIdRequest(id);
+            public static GetUserByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                return builder().readAsStruct(iprot, unknownFieldCallback).build();
             }
 
             public GetUserByIdRequest replaceId(final org.dressdiscover.api.models.user.UserId id) {
-                UncheckedValidator.validateId(id);
+                Validator.validateId(id);
                 return new GetUserByIdRequest(id);
             }
 
@@ -2852,9 +1683,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-                oprot.writeString(getId().toString());
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -2863,6 +1692,11 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 oprot.writeStructBegin("org.dressdiscover.api.services.user.GetUserByIdRequest");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeString(getId().toString());
             }
 
             @Override
@@ -2882,182 +1716,8 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
         }
 
         public final static class GetUserByIdResponse implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                    returnValue = null;
-                }
-
-                public Builder(final GetUserByIdResponse other) {
-                    this.returnValue = other.getReturnValue();
-                }
-
-                protected GetUserByIdResponse _build(final org.dressdiscover.api.models.user.User returnValue) {
-                    return new GetUserByIdResponse(returnValue);
-                }
-
-                public GetUserByIdResponse build() {
-                    UncheckedValidator.validate(returnValue);
-
-                    return _build(returnValue);
-                }
-
-                public final @javax.annotation.Nullable org.dressdiscover.api.models.user.User getReturnValue() {
-                    return returnValue;
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        returnValue = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            switch (ifield.getName()) {
-                            case "return_value": {
-                                returnValue = org.dressdiscover.api.models.user.User.readAsStruct(iprot, unknownFieldCallback);
-                                break;
-                            }
-                            default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
-                                break;
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    return set(FieldMetadata.valueOfThriftName(fieldThriftName), value);
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    if (!(fieldMetadata instanceof FieldMetadata)) {
-                        throw new IllegalArgumentException();
-                    }
-                    return set((FieldMetadata)fieldMetadata, value);
-                }
-
-                public Builder set(final FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
-
-                    switch (fieldMetadata) {
-                    case RETURN_VALUE: setReturnValue((org.dressdiscover.api.models.user.User)value); return this;
-                    default:
-                        throw new IllegalStateException();
-                    }
-                }
-
-                public Builder setIfPresent(final GetUserByIdResponse other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-                    setReturnValue(other.getReturnValue());
-
-                    return this;
-                }
-
-                public Builder setReturnValue(final org.dressdiscover.api.models.user.User returnValue) {
-                    UncheckedValidator.validateReturnValue(returnValue);
-                    this.returnValue = returnValue;
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    return unset(FieldMetadata.valueOfThriftName(fieldThriftName));
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    if (!(fieldMetadata instanceof FieldMetadata)) {
-                        throw new IllegalArgumentException();
-                    }
-                    return unset((FieldMetadata)fieldMetadata);
-                }
-
-                public Builder unset(final FieldMetadata fieldMetadata) {
-                    com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
-
-                    switch (fieldMetadata) {
-                    case RETURN_VALUE: return unsetReturnValue();
-                    default:
-                        throw new IllegalStateException();
-                    }
-                }
-
-                public Builder unsetReturnValue() {
-                    this.returnValue = null;
-                    return this;
-                }
-
-                private @javax.annotation.Nullable org.dressdiscover.api.models.user.User returnValue;
-            }
-
-            public final static class Factory implements org.thryft.CompoundType.Factory<GetUserByIdResponse> {
-                @Override
-                public GetUserByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByIdResponse.readAs(iprot, type);
-                }
-
-                @Override
-                public GetUserByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByIdResponse.readAs(iprot, type, unknownFieldCallback);
-                }
-
-                @Override
-                public GetUserByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByIdResponse.readAsList(iprot);
-                }
-
-                @Override
-                public GetUserByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByIdResponse.readAsStruct(iprot);
-                }
-
-                @Override
-                public GetUserByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return GetUserByIdResponse.readAsStruct(iprot, unknownFieldCallback);
-                }
-            }
-
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.User>() {}, true, (short)0, "return_value", org.thryft.protocol.Type.STRUCT);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.User>() {}, true, (short)0, "return_value", "return_value", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -3115,17 +1775,13 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -3138,26 +1794,14 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final org.dressdiscover.api.models.user.User returnValue) throws org.thryft.protocol.InputProtocolException {
-                    validateReturnValue(returnValue);
-                }
-
-                public static void validateReturnValue(final org.dressdiscover.api.models.user.User returnValue) throws org.thryft.protocol.InputProtocolException {
-                    if (returnValue == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.user.GetUserByIdResponse: returnValue is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final org.dressdiscover.api.models.user.User returnValue) {
                     validateReturnValue(returnValue);
                 }
 
                 public static void validateReturnValue(final org.dressdiscover.api.models.user.User returnValue) {
                     if (returnValue == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByIdResponse: returnValue is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.GetUserByIdResponse: returnValue is missing");
                     }
                 }
             }
@@ -3171,31 +1815,10 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected GetUserByIdResponse(final org.dressdiscover.api.models.user.User returnValue) {
+            public GetUserByIdResponse(final org.dressdiscover.api.models.user.User returnValue) {
+                Validator.validate(returnValue);
                 this.returnValue = returnValue;
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final GetUserByIdResponse other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<GetUserByIdResponse> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static GetUserByIdResponse create(final org.dressdiscover.api.models.user.User returnValue) {
-                UncheckedValidator.validate(returnValue);
-                return new GetUserByIdResponse(returnValue);
             }
 
             @Override
@@ -3243,81 +1866,11 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                hashCode = 31 * hashCode + getReturnValue().hashCode();
-                return hashCode;
-            }
-
-            public static GetUserByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
-            public static GetUserByIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.user.User returnValue;
-
-                try {
-                    iprot.readListBegin();
-                    returnValue = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(returnValue);
-
-                return new GetUserByIdResponse(returnValue);
-            }
-
-            public static GetUserByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static GetUserByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable org.dressdiscover.api.models.user.User returnValue = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "return_value": {
-                            returnValue = org.dressdiscover.api.models.user.User.readAsStruct(iprot, unknownFieldCallback);
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(returnValue);
-
-                return new GetUserByIdResponse(returnValue);
+                return getReturnValue().hashCode();
             }
 
             public GetUserByIdResponse replaceReturnValue(final org.dressdiscover.api.models.user.User returnValue) {
-                UncheckedValidator.validateReturnValue(returnValue);
+                Validator.validateReturnValue(returnValue);
                 return new GetUserByIdResponse(returnValue);
             }
 
@@ -3329,9 +1882,7 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-                getReturnValue().writeAsStruct(oprot);
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -3340,6 +1891,11 @@ public class UserQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServl
                 oprot.writeStructBegin("org.dressdiscover.api.services.user.GetUserByIdResponse");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                getReturnValue().writeAsStruct(oprot);
             }
 
             @Override

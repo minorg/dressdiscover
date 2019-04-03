@@ -13,13 +13,13 @@ public class ValidatingInstitutionQueryService implements org.dressdiscover.api.
     public final org.dressdiscover.api.models.institution.Institution getInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionById: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionById: id is missing");
             }
         }
         final org.dressdiscover.api.models.institution.Institution __returnValue = delegate.getInstitutionById(id);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionById: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionById: __returnValue is missing");
             }
         }
         return __returnValue;
@@ -31,7 +31,7 @@ public class ValidatingInstitutionQueryService implements org.dressdiscover.api.
         final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> __returnValue = delegate.getInstitutions();
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutions: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutions: __returnValue is missing");
             }
         }
         return __returnValue;
@@ -41,13 +41,13 @@ public class ValidatingInstitutionQueryService implements org.dressdiscover.api.
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> getInstitutionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (ids == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionsByIds: ids is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionsByIds: ids is missing");
             }
         }
         final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> __returnValue = delegate.getInstitutionsByIds(ids);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionsByIds: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionsByIds: __returnValue is missing");
             }
         }
         return __returnValue;

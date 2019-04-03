@@ -4,7 +4,7 @@ package org.dressdiscover.api.vocabularies.costume_core.closure;
  * Costume Core closure* elements
  */
 public final class Closure implements org.dressdiscover.api.vocabularies.vra_core.Element {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, Closure> {
         public Builder() {
             placement = null;
             type = null;
@@ -20,7 +20,7 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
         }
 
         public Closure build() {
-            UncheckedValidator.validate(placement, type);
+            Validator.validate(placement, type);
 
             return _build(placement, type);
         }
@@ -33,38 +33,21 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
             return type;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
-                placement = org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement.readAsStruct(iprot);
-                type = org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType.readAsStruct(iprot);
+                this.setPlacement(org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement.readAsStruct(iprot));
+                this.setType(org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType.readAsStruct(iprot));
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -75,29 +58,29 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
                     switch (ifield.getName()) {
                     case "placement": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            placement = org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement.readAsStruct(iprot, unknownFieldCallback);
+                                this.setPlacement(org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            type = org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType.readAsStruct(iprot, unknownFieldCallback);
+                                this.setType(org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -132,13 +115,13 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
         }
 
         public Builder setPlacement(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement) {
-            UncheckedValidator.validatePlacement(placement);
+            Validator.validatePlacement(placement);
             this.placement = placement;
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) {
-            UncheckedValidator.validateType(type);
+            Validator.validateType(type);
             this.type = type;
             return this;
         }
@@ -181,17 +164,6 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Closure> {
         @Override
-        public Closure readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return Closure.readAs(iprot, type);
-        }
-
-        @Override
-        public Closure readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return Closure.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public Closure readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return Closure.readAsList(iprot);
         }
@@ -202,16 +174,15 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
         }
 
         @Override
-        public Closure readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Closure readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return Closure.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        PLACEMENT("placement", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement>() {}, true, (short)1, "placement", org.thryft.protocol.Type.STRUCT),
-        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType>() {}, true, (short)2, "type", org.thryft.protocol.Type.STRUCT);
+        PLACEMENT("placement", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement>() {}, true, (short)1, "placement", "1:placement", org.thryft.protocol.Type.STRUCT),
+        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType>() {}, true, (short)2, "type", "2:type", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -271,17 +242,13 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -294,26 +261,7 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement, final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) throws org.thryft.protocol.InputProtocolException {
-            validatePlacement(placement);
-            validateType(type);
-        }
-
-        public static void validatePlacement(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement) throws org.thryft.protocol.InputProtocolException {
-            if (placement == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PLACEMENT, "org.dressdiscover.api.vocabularies.costume_core.closure.Closure: placement is null");
-            }
-        }
-
-        public static void validateType(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) throws org.thryft.protocol.InputProtocolException {
-            if (type == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.costume_core.closure.Closure: type is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement, final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) {
             validatePlacement(placement);
             validateType(type);
@@ -321,13 +269,13 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
 
         public static void validatePlacement(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement) {
             if (placement == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.closure.Closure: placement is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.costume_core.closure.Closure: placement is missing");
             }
         }
 
         public static void validateType(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) {
             if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.closure.Closure: type is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.costume_core.closure.Closure: type is missing");
             }
         }
     }
@@ -341,10 +289,9 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected Closure(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement, final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) {
+    public Closure(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement, final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) {
+        Validator.validate(placement, type);
         this.placement = placement;
         this.type = type;
     }
@@ -359,14 +306,6 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
 
     public static Builder builder(final com.google.common.base.Optional<Closure> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static Closure create(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement, final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) {
-        UncheckedValidator.validate(placement, type);
-        return new Closure(placement, type);
     }
 
     @Override
@@ -429,92 +368,25 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
         return hashCode;
     }
 
-    public static Closure readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static Closure readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static Closure readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement;
-        org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type;
-
-        try {
-            iprot.readListBegin();
-            placement = org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement.readAsStruct(iprot);
-            type = org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType.readAsStruct(iprot);
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(placement, type);
-
-        return new Closure(placement, type);
+        return builder().readAsList(iprot).build();
     }
 
     public static Closure readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static Closure readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement = null;
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "placement": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        placement = org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement.readAsStruct(iprot, unknownFieldCallback);
-                    }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        type = org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType.readAsStruct(iprot, unknownFieldCallback);
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(placement, type);
-
-        return new Closure(placement, type);
+    public static Closure readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public Closure replacePlacement(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement placement) {
-        UncheckedValidator.validatePlacement(placement);
+        Validator.validatePlacement(placement);
         return new Closure(placement, this.type);
     }
 
     public Closure replaceType(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureType type) {
-        UncheckedValidator.validateType(type);
+        Validator.validateType(type);
         return new Closure(this.placement, type);
     }
 
@@ -526,11 +398,7 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-        getPlacement().writeAsStruct(oprot);
-
-        getType().writeAsStruct(oprot);
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -539,6 +407,12 @@ public final class Closure implements org.dressdiscover.api.vocabularies.vra_cor
         oprot.writeStructBegin("org.dressdiscover.api.vocabularies.costume_core.closure.Closure");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        getPlacement().writeAsStruct(oprot);
+        getType().writeAsStruct(oprot);
     }
 
     @Override

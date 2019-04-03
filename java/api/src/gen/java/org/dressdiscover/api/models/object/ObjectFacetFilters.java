@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.object;
 
 public final class ObjectFacetFilters implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, ObjectFacetFilters> {
         public Builder() {
             excludeAll = com.google.common.base.Optional.<Boolean> absent();
             excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
@@ -59,7 +59,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public ObjectFacetFilters build() {
-            UncheckedValidator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
+            Validator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
 
             return _build(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
         }
@@ -156,30 +156,15 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             return includeWorkTypeTexts;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
-                    excludeAll = org.thryft.Optionals.of(iprot.readBool());
+                    this.setExcludeAll(org.thryft.Optionals.of(iprot.readBool()));
                 }
                 if (__list.getSize() > 1) {
                     try {
-                        excludeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setExcludeCategories(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -194,14 +179,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 2) {
                     try {
-                        excludeCollections = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
+                        this.setExcludeCollections(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -222,14 +207,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 3) {
                     try {
-                        excludeColorTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setExcludeColorTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -244,14 +229,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 4) {
                     try {
-                        excludeCulturalContextTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setExcludeCulturalContextTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -266,14 +251,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 5) {
                     try {
-                        excludeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
+                        this.setExcludeGenders(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -288,14 +273,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 6) {
                     try {
-                        excludeInstitutions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
+                        this.setExcludeInstitutions(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -316,14 +301,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 7) {
                     try {
-                        excludeLocationNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setExcludeLocationNameTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -338,14 +323,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 8) {
                     try {
-                        excludeMaterialTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setExcludeMaterialTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -360,14 +345,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 9) {
                     try {
-                        excludeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setExcludeSubjectTermTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -382,14 +367,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 10) {
                     try {
-                        excludeTechniqueTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setExcludeTechniqueTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -404,14 +389,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 11) {
                     try {
-                        excludeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setExcludeWorkTypeTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -426,14 +411,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 12) {
                     try {
-                        includeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setIncludeCategories(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -448,14 +433,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, e.getCause());
                     }
                 }
                 if (__list.getSize() > 13) {
                     try {
-                        includeCollections = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
+                        this.setIncludeCollections(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -476,14 +461,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 14) {
                     try {
-                        includeColorTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setIncludeColorTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -498,14 +483,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 15) {
                     try {
-                        includeCulturalContextTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setIncludeCulturalContextTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -520,14 +505,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 16) {
                     try {
-                        includeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
+                        this.setIncludeGenders(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -542,14 +527,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 17) {
                     try {
-                        includeInstitutions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
+                        this.setIncludeInstitutions(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -570,14 +555,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 18) {
                     try {
-                        includeLocationNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setIncludeLocationNameTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -592,14 +577,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 19) {
                     try {
-                        includeMaterialTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setIncludeMaterialTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -614,14 +599,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 20) {
                     try {
-                        includeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setIncludeSubjectTermTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -636,14 +621,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 21) {
                     try {
-                        includeTechniqueTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setIncludeTechniqueTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -658,14 +643,14 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 22) {
                     try {
-                        includeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        this.setIncludeWorkTypeTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -680,23 +665,21 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, e.getCause());
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -706,12 +689,12 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     switch (ifield.getName()) {
                     case "exclude_all": {
-                        excludeAll = org.thryft.Optionals.of(iprot.readBool());
+                        this.setExcludeAll(org.thryft.Optionals.of(iprot.readBool()));
                         break;
                     }
                     case "exclude_categories": {
                         try {
-                            excludeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setExcludeCategories(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -726,7 +709,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, e.getCause());
                         }
@@ -734,7 +717,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_collections": {
                         try {
-                            excludeCollections = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
+                            this.setExcludeCollections(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -755,7 +738,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, e.getCause());
                         }
@@ -763,7 +746,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_color_texts": {
                         try {
-                            excludeColorTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setExcludeColorTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -778,7 +761,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, e.getCause());
                         }
@@ -786,7 +769,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_cultural_context_texts": {
                         try {
-                            excludeCulturalContextTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setExcludeCulturalContextTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -801,7 +784,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, e.getCause());
                         }
@@ -809,7 +792,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_genders": {
                         try {
-                            excludeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
+                            this.setExcludeGenders(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -824,7 +807,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, e.getCause());
                         }
@@ -832,7 +815,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_institutions": {
                         try {
-                            excludeInstitutions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
+                            this.setExcludeInstitutions(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -853,7 +836,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, e.getCause());
                         }
@@ -861,7 +844,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_location_name_texts": {
                         try {
-                            excludeLocationNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setExcludeLocationNameTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -876,7 +859,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, e.getCause());
                         }
@@ -884,7 +867,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_material_texts": {
                         try {
-                            excludeMaterialTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setExcludeMaterialTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -899,7 +882,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, e.getCause());
                         }
@@ -907,7 +890,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_subject_term_texts": {
                         try {
-                            excludeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setExcludeSubjectTermTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -922,7 +905,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, e.getCause());
                         }
@@ -930,7 +913,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_technique_texts": {
                         try {
-                            excludeTechniqueTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setExcludeTechniqueTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -945,7 +928,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, e.getCause());
                         }
@@ -953,7 +936,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "exclude_work_type_texts": {
                         try {
-                            excludeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setExcludeWorkTypeTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -968,7 +951,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, e.getCause());
                         }
@@ -976,7 +959,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_categories": {
                         try {
-                            includeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setIncludeCategories(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -991,7 +974,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, e.getCause());
                         }
@@ -999,7 +982,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_collections": {
                         try {
-                            includeCollections = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
+                            this.setIncludeCollections(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1020,7 +1003,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, e.getCause());
                         }
@@ -1028,7 +1011,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_color_texts": {
                         try {
-                            includeColorTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setIncludeColorTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1043,7 +1026,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, e.getCause());
                         }
@@ -1051,7 +1034,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_cultural_context_texts": {
                         try {
-                            includeCulturalContextTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setIncludeCulturalContextTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1066,7 +1049,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, e.getCause());
                         }
@@ -1074,7 +1057,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_genders": {
                         try {
-                            includeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
+                            this.setIncludeGenders(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1089,7 +1072,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, e.getCause());
                         }
@@ -1097,7 +1080,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_institutions": {
                         try {
-                            includeInstitutions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
+                            this.setIncludeInstitutions(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1118,7 +1101,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, e.getCause());
                         }
@@ -1126,7 +1109,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_location_name_texts": {
                         try {
-                            includeLocationNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setIncludeLocationNameTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1141,7 +1124,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, e.getCause());
                         }
@@ -1149,7 +1132,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_material_texts": {
                         try {
-                            includeMaterialTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setIncludeMaterialTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1164,7 +1147,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, e.getCause());
                         }
@@ -1172,7 +1155,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_subject_term_texts": {
                         try {
-                            includeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setIncludeSubjectTermTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1187,7 +1170,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, e.getCause());
                         }
@@ -1195,7 +1178,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_technique_texts": {
                         try {
-                            includeTechniqueTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setIncludeTechniqueTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1210,7 +1193,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, e.getCause());
                         }
@@ -1218,7 +1201,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     case "include_work_type_texts": {
                         try {
-                            includeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            this.setIncludeWorkTypeTexts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -1233,25 +1216,25 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, e.getCause());
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -1299,7 +1282,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) {
-            UncheckedValidator.validateExcludeAll(excludeAll);
+            Validator.validateExcludeAll(excludeAll);
             this.excludeAll = excludeAll;
             return this;
         }
@@ -1313,7 +1296,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
-            UncheckedValidator.validateExcludeCategories(excludeCategories);
+            Validator.validateExcludeCategories(excludeCategories);
             this.excludeCategories = excludeCategories;
             return this;
         }
@@ -1323,7 +1306,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) {
-            UncheckedValidator.validateExcludeCollections(excludeCollections);
+            Validator.validateExcludeCollections(excludeCollections);
             this.excludeCollections = excludeCollections;
             return this;
         }
@@ -1333,7 +1316,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) {
-            UncheckedValidator.validateExcludeColorTexts(excludeColorTexts);
+            Validator.validateExcludeColorTexts(excludeColorTexts);
             this.excludeColorTexts = excludeColorTexts;
             return this;
         }
@@ -1343,7 +1326,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) {
-            UncheckedValidator.validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
+            Validator.validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
             this.excludeCulturalContextTexts = excludeCulturalContextTexts;
             return this;
         }
@@ -1353,7 +1336,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) {
-            UncheckedValidator.validateExcludeGenders(excludeGenders);
+            Validator.validateExcludeGenders(excludeGenders);
             this.excludeGenders = excludeGenders;
             return this;
         }
@@ -1363,7 +1346,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) {
-            UncheckedValidator.validateExcludeInstitutions(excludeInstitutions);
+            Validator.validateExcludeInstitutions(excludeInstitutions);
             this.excludeInstitutions = excludeInstitutions;
             return this;
         }
@@ -1373,7 +1356,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) {
-            UncheckedValidator.validateExcludeLocationNameTexts(excludeLocationNameTexts);
+            Validator.validateExcludeLocationNameTexts(excludeLocationNameTexts);
             this.excludeLocationNameTexts = excludeLocationNameTexts;
             return this;
         }
@@ -1383,7 +1366,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) {
-            UncheckedValidator.validateExcludeMaterialTexts(excludeMaterialTexts);
+            Validator.validateExcludeMaterialTexts(excludeMaterialTexts);
             this.excludeMaterialTexts = excludeMaterialTexts;
             return this;
         }
@@ -1393,7 +1376,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
-            UncheckedValidator.validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
+            Validator.validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
             this.excludeSubjectTermTexts = excludeSubjectTermTexts;
             return this;
         }
@@ -1403,7 +1386,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) {
-            UncheckedValidator.validateExcludeTechniqueTexts(excludeTechniqueTexts);
+            Validator.validateExcludeTechniqueTexts(excludeTechniqueTexts);
             this.excludeTechniqueTexts = excludeTechniqueTexts;
             return this;
         }
@@ -1413,7 +1396,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
-            UncheckedValidator.validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
+            Validator.validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
             this.excludeWorkTypeTexts = excludeWorkTypeTexts;
             return this;
         }
@@ -1499,7 +1482,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
-            UncheckedValidator.validateIncludeCategories(includeCategories);
+            Validator.validateIncludeCategories(includeCategories);
             this.includeCategories = includeCategories;
             return this;
         }
@@ -1509,7 +1492,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) {
-            UncheckedValidator.validateIncludeCollections(includeCollections);
+            Validator.validateIncludeCollections(includeCollections);
             this.includeCollections = includeCollections;
             return this;
         }
@@ -1519,7 +1502,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) {
-            UncheckedValidator.validateIncludeColorTexts(includeColorTexts);
+            Validator.validateIncludeColorTexts(includeColorTexts);
             this.includeColorTexts = includeColorTexts;
             return this;
         }
@@ -1529,7 +1512,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) {
-            UncheckedValidator.validateIncludeCulturalContextTexts(includeCulturalContextTexts);
+            Validator.validateIncludeCulturalContextTexts(includeCulturalContextTexts);
             this.includeCulturalContextTexts = includeCulturalContextTexts;
             return this;
         }
@@ -1539,7 +1522,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) {
-            UncheckedValidator.validateIncludeGenders(includeGenders);
+            Validator.validateIncludeGenders(includeGenders);
             this.includeGenders = includeGenders;
             return this;
         }
@@ -1549,7 +1532,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) {
-            UncheckedValidator.validateIncludeInstitutions(includeInstitutions);
+            Validator.validateIncludeInstitutions(includeInstitutions);
             this.includeInstitutions = includeInstitutions;
             return this;
         }
@@ -1559,7 +1542,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) {
-            UncheckedValidator.validateIncludeLocationNameTexts(includeLocationNameTexts);
+            Validator.validateIncludeLocationNameTexts(includeLocationNameTexts);
             this.includeLocationNameTexts = includeLocationNameTexts;
             return this;
         }
@@ -1569,7 +1552,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) {
-            UncheckedValidator.validateIncludeMaterialTexts(includeMaterialTexts);
+            Validator.validateIncludeMaterialTexts(includeMaterialTexts);
             this.includeMaterialTexts = includeMaterialTexts;
             return this;
         }
@@ -1579,7 +1562,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
-            UncheckedValidator.validateIncludeSubjectTermTexts(includeSubjectTermTexts);
+            Validator.validateIncludeSubjectTermTexts(includeSubjectTermTexts);
             this.includeSubjectTermTexts = includeSubjectTermTexts;
             return this;
         }
@@ -1589,7 +1572,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) {
-            UncheckedValidator.validateIncludeTechniqueTexts(includeTechniqueTexts);
+            Validator.validateIncludeTechniqueTexts(includeTechniqueTexts);
             this.includeTechniqueTexts = includeTechniqueTexts;
             return this;
         }
@@ -1599,7 +1582,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-            UncheckedValidator.validateIncludeWorkTypeTexts(includeWorkTypeTexts);
+            Validator.validateIncludeWorkTypeTexts(includeWorkTypeTexts);
             this.includeWorkTypeTexts = includeWorkTypeTexts;
             return this;
         }
@@ -1793,17 +1776,6 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<ObjectFacetFilters> {
         @Override
-        public ObjectFacetFilters readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return ObjectFacetFilters.readAs(iprot, type);
-        }
-
-        @Override
-        public ObjectFacetFilters readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return ObjectFacetFilters.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public ObjectFacetFilters readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return ObjectFacetFilters.readAsList(iprot);
         }
@@ -1814,37 +1786,36 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         @Override
-        public ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return ObjectFacetFilters.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        EXCLUDE_ALL("excludeAll", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "exclude_all", org.thryft.protocol.Type.BOOL),
-        EXCLUDE_CATEGORIES("excludeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_categories", org.thryft.protocol.Type.SET),
-        EXCLUDE_COLLECTIONS("excludeCollections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, (short)0, "exclude_collections", org.thryft.protocol.Type.SET),
-        EXCLUDE_COLOR_TEXTS("excludeColorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_color_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_CULTURAL_CONTEXT_TEXTS("excludeCulturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_cultural_context_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_GENDERS("excludeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {}, false, (short)0, "exclude_genders", org.thryft.protocol.Type.SET),
-        EXCLUDE_INSTITUTIONS("excludeInstitutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, (short)0, "exclude_institutions", org.thryft.protocol.Type.SET),
-        EXCLUDE_LOCATION_NAME_TEXTS("excludeLocationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_location_name_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_MATERIAL_TEXTS("excludeMaterialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_material_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_SUBJECT_TERM_TEXTS("excludeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_subject_term_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_TECHNIQUE_TEXTS("excludeTechniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_technique_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_WORK_TYPE_TEXTS("excludeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_work_type_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_CATEGORIES("includeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_categories", org.thryft.protocol.Type.SET),
-        INCLUDE_COLLECTIONS("includeCollections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, (short)0, "include_collections", org.thryft.protocol.Type.SET),
-        INCLUDE_COLOR_TEXTS("includeColorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_color_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_CULTURAL_CONTEXT_TEXTS("includeCulturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_cultural_context_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_GENDERS("includeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {}, false, (short)0, "include_genders", org.thryft.protocol.Type.SET),
-        INCLUDE_INSTITUTIONS("includeInstitutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, (short)0, "include_institutions", org.thryft.protocol.Type.SET),
-        INCLUDE_LOCATION_NAME_TEXTS("includeLocationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_location_name_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_MATERIAL_TEXTS("includeMaterialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_material_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_SUBJECT_TERM_TEXTS("includeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_subject_term_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_TECHNIQUE_TEXTS("includeTechniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_technique_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_WORK_TYPE_TEXTS("includeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_work_type_texts", org.thryft.protocol.Type.SET);
+        EXCLUDE_ALL("excludeAll", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "exclude_all", "exclude_all", org.thryft.protocol.Type.BOOL),
+        EXCLUDE_CATEGORIES("excludeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_categories", "exclude_categories", org.thryft.protocol.Type.SET),
+        EXCLUDE_COLLECTIONS("excludeCollections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, (short)0, "exclude_collections", "exclude_collections", org.thryft.protocol.Type.SET),
+        EXCLUDE_COLOR_TEXTS("excludeColorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_color_texts", "exclude_color_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_CULTURAL_CONTEXT_TEXTS("excludeCulturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_cultural_context_texts", "exclude_cultural_context_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_GENDERS("excludeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {}, false, (short)0, "exclude_genders", "exclude_genders", org.thryft.protocol.Type.SET),
+        EXCLUDE_INSTITUTIONS("excludeInstitutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, (short)0, "exclude_institutions", "exclude_institutions", org.thryft.protocol.Type.SET),
+        EXCLUDE_LOCATION_NAME_TEXTS("excludeLocationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_location_name_texts", "exclude_location_name_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_MATERIAL_TEXTS("excludeMaterialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_material_texts", "exclude_material_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_SUBJECT_TERM_TEXTS("excludeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_subject_term_texts", "exclude_subject_term_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_TECHNIQUE_TEXTS("excludeTechniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_technique_texts", "exclude_technique_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_WORK_TYPE_TEXTS("excludeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_work_type_texts", "exclude_work_type_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_CATEGORIES("includeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_categories", "include_categories", org.thryft.protocol.Type.SET),
+        INCLUDE_COLLECTIONS("includeCollections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, (short)0, "include_collections", "include_collections", org.thryft.protocol.Type.SET),
+        INCLUDE_COLOR_TEXTS("includeColorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_color_texts", "include_color_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_CULTURAL_CONTEXT_TEXTS("includeCulturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_cultural_context_texts", "include_cultural_context_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_GENDERS("includeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {}, false, (short)0, "include_genders", "include_genders", org.thryft.protocol.Type.SET),
+        INCLUDE_INSTITUTIONS("includeInstitutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, (short)0, "include_institutions", "include_institutions", org.thryft.protocol.Type.SET),
+        INCLUDE_LOCATION_NAME_TEXTS("includeLocationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_location_name_texts", "include_location_name_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_MATERIAL_TEXTS("includeMaterialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_material_texts", "include_material_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_SUBJECT_TERM_TEXTS("includeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_subject_term_texts", "include_subject_term_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_TECHNIQUE_TEXTS("includeTechniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_technique_texts", "include_technique_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_WORK_TYPE_TEXTS("includeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_work_type_texts", "include_work_type_texts", org.thryft.protocol.Type.SET);
 
         @Override
         public String getJavaName() {
@@ -1946,17 +1917,13 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -1969,288 +1936,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) throws org.thryft.protocol.InputProtocolException {
-            validateExcludeAll(excludeAll);
-            validateExcludeCategories(excludeCategories);
-            validateExcludeCollections(excludeCollections);
-            validateExcludeColorTexts(excludeColorTexts);
-            validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
-            validateExcludeGenders(excludeGenders);
-            validateExcludeInstitutions(excludeInstitutions);
-            validateExcludeLocationNameTexts(excludeLocationNameTexts);
-            validateExcludeMaterialTexts(excludeMaterialTexts);
-            validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
-            validateExcludeTechniqueTexts(excludeTechniqueTexts);
-            validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
-            validateIncludeCategories(includeCategories);
-            validateIncludeCollections(includeCollections);
-            validateIncludeColorTexts(includeColorTexts);
-            validateIncludeCulturalContextTexts(includeCulturalContextTexts);
-            validateIncludeGenders(includeGenders);
-            validateIncludeInstitutions(includeInstitutions);
-            validateIncludeLocationNameTexts(includeLocationNameTexts);
-            validateIncludeMaterialTexts(includeMaterialTexts);
-            validateIncludeSubjectTermTexts(includeSubjectTermTexts);
-            validateIncludeTechniqueTexts(includeTechniqueTexts);
-            validateIncludeWorkTypeTexts(includeWorkTypeTexts);
-        }
-
-        public static void validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) throws org.thryft.protocol.InputProtocolException {
-            if (excludeAll == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_ALL, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is null");
-            }
-            if (excludeAll.isPresent()) {
-                if (!excludeAll.get()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_ALL, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll: not true");
-                }
-            }
-        }
-
-        public static void validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) throws org.thryft.protocol.InputProtocolException {
-            if (excludeCategories == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is null");
-            }
-            if (excludeCategories.isPresent()) {
-                if (excludeCategories.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) throws org.thryft.protocol.InputProtocolException {
-            if (excludeCollections == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is null");
-            }
-            if (excludeCollections.isPresent()) {
-                if (excludeCollections.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) throws org.thryft.protocol.InputProtocolException {
-            if (excludeColorTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is null");
-            }
-            if (excludeColorTexts.isPresent()) {
-                if (excludeColorTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) throws org.thryft.protocol.InputProtocolException {
-            if (excludeCulturalContextTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is null");
-            }
-            if (excludeCulturalContextTexts.isPresent()) {
-                if (excludeCulturalContextTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) throws org.thryft.protocol.InputProtocolException {
-            if (excludeGenders == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is null");
-            }
-            if (excludeGenders.isPresent()) {
-                if (excludeGenders.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) throws org.thryft.protocol.InputProtocolException {
-            if (excludeInstitutions == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is null");
-            }
-            if (excludeInstitutions.isPresent()) {
-                if (excludeInstitutions.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) throws org.thryft.protocol.InputProtocolException {
-            if (excludeLocationNameTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is null");
-            }
-            if (excludeLocationNameTexts.isPresent()) {
-                if (excludeLocationNameTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) throws org.thryft.protocol.InputProtocolException {
-            if (excludeMaterialTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is null");
-            }
-            if (excludeMaterialTexts.isPresent()) {
-                if (excludeMaterialTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) throws org.thryft.protocol.InputProtocolException {
-            if (excludeSubjectTermTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is null");
-            }
-            if (excludeSubjectTermTexts.isPresent()) {
-                if (excludeSubjectTermTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) throws org.thryft.protocol.InputProtocolException {
-            if (excludeTechniqueTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is null");
-            }
-            if (excludeTechniqueTexts.isPresent()) {
-                if (excludeTechniqueTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) throws org.thryft.protocol.InputProtocolException {
-            if (excludeWorkTypeTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is null");
-            }
-            if (excludeWorkTypeTexts.isPresent()) {
-                if (excludeWorkTypeTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) throws org.thryft.protocol.InputProtocolException {
-            if (includeCategories == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is null");
-            }
-            if (includeCategories.isPresent()) {
-                if (includeCategories.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) throws org.thryft.protocol.InputProtocolException {
-            if (includeCollections == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is null");
-            }
-            if (includeCollections.isPresent()) {
-                if (includeCollections.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) throws org.thryft.protocol.InputProtocolException {
-            if (includeColorTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is null");
-            }
-            if (includeColorTexts.isPresent()) {
-                if (includeColorTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) throws org.thryft.protocol.InputProtocolException {
-            if (includeCulturalContextTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is null");
-            }
-            if (includeCulturalContextTexts.isPresent()) {
-                if (includeCulturalContextTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) throws org.thryft.protocol.InputProtocolException {
-            if (includeGenders == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is null");
-            }
-            if (includeGenders.isPresent()) {
-                if (includeGenders.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) throws org.thryft.protocol.InputProtocolException {
-            if (includeInstitutions == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is null");
-            }
-            if (includeInstitutions.isPresent()) {
-                if (includeInstitutions.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) throws org.thryft.protocol.InputProtocolException {
-            if (includeLocationNameTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is null");
-            }
-            if (includeLocationNameTexts.isPresent()) {
-                if (includeLocationNameTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) throws org.thryft.protocol.InputProtocolException {
-            if (includeMaterialTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is null");
-            }
-            if (includeMaterialTexts.isPresent()) {
-                if (includeMaterialTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) throws org.thryft.protocol.InputProtocolException {
-            if (includeSubjectTermTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is null");
-            }
-            if (includeSubjectTermTexts.isPresent()) {
-                if (includeSubjectTermTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) throws org.thryft.protocol.InputProtocolException {
-            if (includeTechniqueTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is null");
-            }
-            if (includeTechniqueTexts.isPresent()) {
-                if (includeTechniqueTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) throws org.thryft.protocol.InputProtocolException {
-            if (includeWorkTypeTexts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is null");
-            }
-            if (includeWorkTypeTexts.isPresent()) {
-                if (includeWorkTypeTexts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts: less than min length 1");
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
             validateExcludeAll(excludeAll);
             validateExcludeCategories(excludeCategories);
@@ -2279,253 +1965,253 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
 
         public static void validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) {
             if (excludeAll == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is missing");
             }
             if (excludeAll.isPresent()) {
                 if (!excludeAll.get()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll: not true");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll: not true");
                 }
             }
         }
 
         public static void validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
             if (excludeCategories == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is missing");
             }
             if (excludeCategories.isPresent()) {
                 if (excludeCategories.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) {
             if (excludeCollections == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is missing");
             }
             if (excludeCollections.isPresent()) {
                 if (excludeCollections.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) {
             if (excludeColorTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is missing");
             }
             if (excludeColorTexts.isPresent()) {
                 if (excludeColorTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) {
             if (excludeCulturalContextTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is missing");
             }
             if (excludeCulturalContextTexts.isPresent()) {
                 if (excludeCulturalContextTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) {
             if (excludeGenders == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is missing");
             }
             if (excludeGenders.isPresent()) {
                 if (excludeGenders.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) {
             if (excludeInstitutions == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is missing");
             }
             if (excludeInstitutions.isPresent()) {
                 if (excludeInstitutions.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) {
             if (excludeLocationNameTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is missing");
             }
             if (excludeLocationNameTexts.isPresent()) {
                 if (excludeLocationNameTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) {
             if (excludeMaterialTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is missing");
             }
             if (excludeMaterialTexts.isPresent()) {
                 if (excludeMaterialTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
             if (excludeSubjectTermTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is missing");
             }
             if (excludeSubjectTermTexts.isPresent()) {
                 if (excludeSubjectTermTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) {
             if (excludeTechniqueTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is missing");
             }
             if (excludeTechniqueTexts.isPresent()) {
                 if (excludeTechniqueTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
             if (excludeWorkTypeTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is missing");
             }
             if (excludeWorkTypeTexts.isPresent()) {
                 if (excludeWorkTypeTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
             if (includeCategories == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is missing");
             }
             if (includeCategories.isPresent()) {
                 if (includeCategories.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) {
             if (includeCollections == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is missing");
             }
             if (includeCollections.isPresent()) {
                 if (includeCollections.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) {
             if (includeColorTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is missing");
             }
             if (includeColorTexts.isPresent()) {
                 if (includeColorTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) {
             if (includeCulturalContextTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is missing");
             }
             if (includeCulturalContextTexts.isPresent()) {
                 if (includeCulturalContextTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) {
             if (includeGenders == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is missing");
             }
             if (includeGenders.isPresent()) {
                 if (includeGenders.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) {
             if (includeInstitutions == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is missing");
             }
             if (includeInstitutions.isPresent()) {
                 if (includeInstitutions.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) {
             if (includeLocationNameTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is missing");
             }
             if (includeLocationNameTexts.isPresent()) {
                 if (includeLocationNameTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) {
             if (includeMaterialTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is missing");
             }
             if (includeMaterialTexts.isPresent()) {
                 if (includeMaterialTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
             if (includeSubjectTermTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is missing");
             }
             if (includeSubjectTermTexts.isPresent()) {
                 if (includeSubjectTermTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) {
             if (includeTechniqueTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is missing");
             }
             if (includeTechniqueTexts.isPresent()) {
                 if (includeTechniqueTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts: less than min length 1");
                 }
             }
         }
 
         public static void validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
             if (includeWorkTypeTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is missing");
             }
             if (includeWorkTypeTexts.isPresent()) {
                 if (includeWorkTypeTexts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts: less than min length 1");
                 }
             }
         }
@@ -2570,10 +2256,9 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected ObjectFacetFilters(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+    public ObjectFacetFilters(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+        Validator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
         this.excludeAll = excludeAll;
         this.excludeCategories = excludeCategories;
         this.excludeCollections = excludeCollections;
@@ -2599,6 +2284,13 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         this.includeWorkTypeTexts = includeWorkTypeTexts;
     }
 
+    /**
+     * Total Nullable constructor
+     */
+    public ObjectFacetFilters(@javax.annotation.Nullable final Boolean excludeAll, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCategories, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeColorTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> excludeGenders, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeMaterialTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCategories, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeColorTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> includeGenders, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeLocationNameTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeMaterialTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeTechniqueTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
+        this(org.thryft.Optionals.fromNullable(excludeAll), com.google.common.base.Optional.fromNullable(excludeCategories), com.google.common.base.Optional.fromNullable(excludeCollections), com.google.common.base.Optional.fromNullable(excludeColorTexts), com.google.common.base.Optional.fromNullable(excludeCulturalContextTexts), com.google.common.base.Optional.fromNullable(excludeGenders), com.google.common.base.Optional.fromNullable(excludeInstitutions), com.google.common.base.Optional.fromNullable(excludeLocationNameTexts), com.google.common.base.Optional.fromNullable(excludeMaterialTexts), com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts), com.google.common.base.Optional.fromNullable(excludeTechniqueTexts), com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts), com.google.common.base.Optional.fromNullable(includeCategories), com.google.common.base.Optional.fromNullable(includeCollections), com.google.common.base.Optional.fromNullable(includeColorTexts), com.google.common.base.Optional.fromNullable(includeCulturalContextTexts), com.google.common.base.Optional.fromNullable(includeGenders), com.google.common.base.Optional.fromNullable(includeInstitutions), com.google.common.base.Optional.fromNullable(includeLocationNameTexts), com.google.common.base.Optional.fromNullable(includeMaterialTexts), com.google.common.base.Optional.fromNullable(includeSubjectTermTexts), com.google.common.base.Optional.fromNullable(includeTechniqueTexts), com.google.common.base.Optional.fromNullable(includeWorkTypeTexts));
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -2609,50 +2301,6 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ObjectFacetFilters> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    @Deprecated
-    public static ObjectFacetFilters create() {
-        return new ObjectFacetFilters();
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static ObjectFacetFilters create(@javax.annotation.Nullable final Boolean excludeAll, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCategories, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeColorTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> excludeGenders, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeMaterialTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCategories, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeColorTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> includeGenders, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeLocationNameTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeMaterialTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeTechniqueTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
-        final com.google.common.base.Optional<Boolean> excludeAllOptional = org.thryft.Optionals.fromNullable(excludeAll);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategoriesOptional = com.google.common.base.Optional.fromNullable(excludeCategories);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollectionsOptional = com.google.common.base.Optional.fromNullable(excludeCollections);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTextsOptional = com.google.common.base.Optional.fromNullable(excludeColorTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTextsOptional = com.google.common.base.Optional.fromNullable(excludeCulturalContextTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGendersOptional = com.google.common.base.Optional.fromNullable(excludeGenders);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutionsOptional = com.google.common.base.Optional.fromNullable(excludeInstitutions);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTextsOptional = com.google.common.base.Optional.fromNullable(excludeLocationNameTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTextsOptional = com.google.common.base.Optional.fromNullable(excludeMaterialTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTextsOptional = com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTextsOptional = com.google.common.base.Optional.fromNullable(excludeTechniqueTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTextsOptional = com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategoriesOptional = com.google.common.base.Optional.fromNullable(includeCategories);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollectionsOptional = com.google.common.base.Optional.fromNullable(includeCollections);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTextsOptional = com.google.common.base.Optional.fromNullable(includeColorTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTextsOptional = com.google.common.base.Optional.fromNullable(includeCulturalContextTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGendersOptional = com.google.common.base.Optional.fromNullable(includeGenders);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutionsOptional = com.google.common.base.Optional.fromNullable(includeInstitutions);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTextsOptional = com.google.common.base.Optional.fromNullable(includeLocationNameTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTextsOptional = com.google.common.base.Optional.fromNullable(includeMaterialTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTextsOptional = com.google.common.base.Optional.fromNullable(includeSubjectTermTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTextsOptional = com.google.common.base.Optional.fromNullable(includeTechniqueTexts);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTextsOptional = com.google.common.base.Optional.fromNullable(includeWorkTypeTexts);
-        UncheckedValidator.validate(excludeAllOptional, excludeCategoriesOptional, excludeCollectionsOptional, excludeColorTextsOptional, excludeCulturalContextTextsOptional, excludeGendersOptional, excludeInstitutionsOptional, excludeLocationNameTextsOptional, excludeMaterialTextsOptional, excludeSubjectTermTextsOptional, excludeTechniqueTextsOptional, excludeWorkTypeTextsOptional, includeCategoriesOptional, includeCollectionsOptional, includeColorTextsOptional, includeCulturalContextTextsOptional, includeGendersOptional, includeInstitutionsOptional, includeLocationNameTextsOptional, includeMaterialTextsOptional, includeSubjectTermTextsOptional, includeTechniqueTextsOptional, includeWorkTypeTextsOptional);
-        return new ObjectFacetFilters(excludeAllOptional, excludeCategoriesOptional, excludeCollectionsOptional, excludeColorTextsOptional, excludeCulturalContextTextsOptional, excludeGendersOptional, excludeInstitutionsOptional, excludeLocationNameTextsOptional, excludeMaterialTextsOptional, excludeSubjectTermTextsOptional, excludeTechniqueTextsOptional, excludeWorkTypeTextsOptional, includeCategoriesOptional, includeCollectionsOptional, includeColorTextsOptional, includeCulturalContextTextsOptional, includeGendersOptional, includeInstitutionsOptional, includeLocationNameTextsOptional, includeMaterialTextsOptional, includeSubjectTermTextsOptional, includeTechniqueTextsOptional, includeWorkTypeTextsOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static ObjectFacetFilters create(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-        UncheckedValidator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
-        return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
     }
 
     @Override
@@ -2971,1160 +2619,20 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static ObjectFacetFilters readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static ObjectFacetFilters readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static ObjectFacetFilters readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<Boolean> excludeAll = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            if (__list.getSize() > 0) {
-                excludeAll = org.thryft.Optionals.of(iprot.readBool());
-            }
-            if (__list.getSize() > 1) {
-                try {
-                    excludeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    excludeCollections = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    try {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
-                                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    } catch (final IllegalArgumentException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    }
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 3) {
-                try {
-                    excludeColorTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 4) {
-                try {
-                    excludeCulturalContextTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 5) {
-                try {
-                    excludeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 6) {
-                try {
-                    excludeInstitutions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    try {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
-                                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    } catch (final IllegalArgumentException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    }
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 7) {
-                try {
-                    excludeLocationNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 8) {
-                try {
-                    excludeMaterialTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 9) {
-                try {
-                    excludeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 10) {
-                try {
-                    excludeTechniqueTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 11) {
-                try {
-                    excludeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 12) {
-                try {
-                    includeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, e.getCause());
-                }
-            }
-            if (__list.getSize() > 13) {
-                try {
-                    includeCollections = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    try {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
-                                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    } catch (final IllegalArgumentException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    }
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 14) {
-                try {
-                    includeColorTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 15) {
-                try {
-                    includeCulturalContextTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 16) {
-                try {
-                    includeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 17) {
-                try {
-                    includeInstitutions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    try {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
-                                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    } catch (final IllegalArgumentException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    }
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 18) {
-                try {
-                    includeLocationNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 19) {
-                try {
-                    includeMaterialTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 20) {
-                try {
-                    includeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 21) {
-                try {
-                    includeTechniqueTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 22) {
-                try {
-                    includeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readSetEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, e.getCause());
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
-
-        return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
+        return builder().readAsList(iprot).build();
     }
 
     public static ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<Boolean> excludeAll = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "exclude_all": {
-                    excludeAll = org.thryft.Optionals.of(iprot.readBool());
-                    break;
-                }
-                case "exclude_categories": {
-                    try {
-                        excludeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_collections": {
-                    try {
-                        excludeCollections = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        try {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
-                                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        } catch (final IllegalArgumentException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_color_texts": {
-                    try {
-                        excludeColorTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_cultural_context_texts": {
-                    try {
-                        excludeCulturalContextTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_genders": {
-                    try {
-                        excludeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_institutions": {
-                    try {
-                        excludeInstitutions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        try {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
-                                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        } catch (final IllegalArgumentException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_location_name_texts": {
-                    try {
-                        excludeLocationNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_material_texts": {
-                    try {
-                        excludeMaterialTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_subject_term_texts": {
-                    try {
-                        excludeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_technique_texts": {
-                    try {
-                        excludeTechniqueTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "exclude_work_type_texts": {
-                    try {
-                        excludeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_categories": {
-                    try {
-                        includeCategories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, e.getCause());
-                    }
-                    break;
-                }
-                case "include_collections": {
-                    try {
-                        includeCollections = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.collection.CollectionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        try {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
-                                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        } catch (final IllegalArgumentException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_color_texts": {
-                    try {
-                        includeColorTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_cultural_context_texts": {
-                    try {
-                        includeCulturalContextTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_genders": {
-                    try {
-                        includeGenders = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_institutions": {
-                    try {
-                        includeInstitutions = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.models.institution.InstitutionId> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        try {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
-                                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        } catch (final IllegalArgumentException e) {
-                                             throw new org.thryft.protocol.InputProtocolException(e);
-                                        }
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_location_name_texts": {
-                    try {
-                        includeLocationNameTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_material_texts": {
-                    try {
-                        includeMaterialTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_subject_term_texts": {
-                    try {
-                        includeSubjectTermTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_technique_texts": {
-                    try {
-                        includeTechniqueTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                case "include_work_type_texts": {
-                    try {
-                        includeWorkTypeTexts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
-                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readSetEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, e.getCause());
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
-
-        return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
+    public static ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public ObjectFacetFilters replaceExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) {
-        UncheckedValidator.validateExcludeAll(excludeAll);
+        Validator.validateExcludeAll(excludeAll);
         return new ObjectFacetFilters(excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4137,7 +2645,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
-        UncheckedValidator.validateExcludeCategories(excludeCategories);
+        Validator.validateExcludeCategories(excludeCategories);
         return new ObjectFacetFilters(this.excludeAll, excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4146,7 +2654,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) {
-        UncheckedValidator.validateExcludeCollections(excludeCollections);
+        Validator.validateExcludeCollections(excludeCollections);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4155,7 +2663,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) {
-        UncheckedValidator.validateExcludeColorTexts(excludeColorTexts);
+        Validator.validateExcludeColorTexts(excludeColorTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4164,7 +2672,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) {
-        UncheckedValidator.validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
+        Validator.validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4173,7 +2681,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) {
-        UncheckedValidator.validateExcludeGenders(excludeGenders);
+        Validator.validateExcludeGenders(excludeGenders);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4182,7 +2690,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) {
-        UncheckedValidator.validateExcludeInstitutions(excludeInstitutions);
+        Validator.validateExcludeInstitutions(excludeInstitutions);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4191,7 +2699,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) {
-        UncheckedValidator.validateExcludeLocationNameTexts(excludeLocationNameTexts);
+        Validator.validateExcludeLocationNameTexts(excludeLocationNameTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4200,7 +2708,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) {
-        UncheckedValidator.validateExcludeMaterialTexts(excludeMaterialTexts);
+        Validator.validateExcludeMaterialTexts(excludeMaterialTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4209,7 +2717,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
-        UncheckedValidator.validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
+        Validator.validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4218,7 +2726,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) {
-        UncheckedValidator.validateExcludeTechniqueTexts(excludeTechniqueTexts);
+        Validator.validateExcludeTechniqueTexts(excludeTechniqueTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4227,7 +2735,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
-        UncheckedValidator.validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
+        Validator.validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4236,7 +2744,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
-        UncheckedValidator.validateIncludeCategories(includeCategories);
+        Validator.validateIncludeCategories(includeCategories);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4245,7 +2753,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) {
-        UncheckedValidator.validateIncludeCollections(includeCollections);
+        Validator.validateIncludeCollections(includeCollections);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4254,7 +2762,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) {
-        UncheckedValidator.validateIncludeColorTexts(includeColorTexts);
+        Validator.validateIncludeColorTexts(includeColorTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4263,7 +2771,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) {
-        UncheckedValidator.validateIncludeCulturalContextTexts(includeCulturalContextTexts);
+        Validator.validateIncludeCulturalContextTexts(includeCulturalContextTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4272,7 +2780,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) {
-        UncheckedValidator.validateIncludeGenders(includeGenders);
+        Validator.validateIncludeGenders(includeGenders);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4281,7 +2789,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) {
-        UncheckedValidator.validateIncludeInstitutions(includeInstitutions);
+        Validator.validateIncludeInstitutions(includeInstitutions);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4290,7 +2798,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) {
-        UncheckedValidator.validateIncludeLocationNameTexts(includeLocationNameTexts);
+        Validator.validateIncludeLocationNameTexts(includeLocationNameTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4299,7 +2807,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) {
-        UncheckedValidator.validateIncludeMaterialTexts(includeMaterialTexts);
+        Validator.validateIncludeMaterialTexts(includeMaterialTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4308,7 +2816,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
-        UncheckedValidator.validateIncludeSubjectTermTexts(includeSubjectTermTexts);
+        Validator.validateIncludeSubjectTermTexts(includeSubjectTermTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4317,7 +2825,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) {
-        UncheckedValidator.validateIncludeTechniqueTexts(includeTechniqueTexts);
+        Validator.validateIncludeTechniqueTexts(includeTechniqueTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
@@ -4326,7 +2834,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     }
 
     public ObjectFacetFilters replaceIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-        UncheckedValidator.validateIncludeWorkTypeTexts(includeWorkTypeTexts);
+        Validator.validateIncludeWorkTypeTexts(includeWorkTypeTexts);
         return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, includeWorkTypeTexts);
     }
 
@@ -4342,233 +2850,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 23);
-
-        if (getExcludeAll().isPresent()) {
-            oprot.writeBool(getExcludeAll().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeCategories().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCategories().get().size());
-            for (final String _iter0 : getExcludeCategories().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeCollections().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCollections().get().size());
-            for (final org.dressdiscover.api.models.collection.CollectionId _iter0 : getExcludeCollections().get()) {
-                oprot.writeString(_iter0.toString());
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeColorTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeColorTexts().get().size());
-            for (final String _iter0 : getExcludeColorTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeCulturalContextTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCulturalContextTexts().get().size());
-            for (final String _iter0 : getExcludeCulturalContextTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeGenders().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeGenders().get().size());
-            for (final org.dressdiscover.api.vocabularies.costume_core.gender.Gender _iter0 : getExcludeGenders().get()) {
-                oprot.writeEnum(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeInstitutions().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeInstitutions().get().size());
-            for (final org.dressdiscover.api.models.institution.InstitutionId _iter0 : getExcludeInstitutions().get()) {
-                oprot.writeString(_iter0.toString());
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeLocationNameTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeLocationNameTexts().get().size());
-            for (final String _iter0 : getExcludeLocationNameTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeMaterialTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeMaterialTexts().get().size());
-            for (final String _iter0 : getExcludeMaterialTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeSubjectTermTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeSubjectTermTexts().get().size());
-            for (final String _iter0 : getExcludeSubjectTermTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeTechniqueTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeTechniqueTexts().get().size());
-            for (final String _iter0 : getExcludeTechniqueTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExcludeWorkTypeTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeWorkTypeTexts().get().size());
-            for (final String _iter0 : getExcludeWorkTypeTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeCategories().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCategories().get().size());
-            for (final String _iter0 : getIncludeCategories().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeCollections().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCollections().get().size());
-            for (final org.dressdiscover.api.models.collection.CollectionId _iter0 : getIncludeCollections().get()) {
-                oprot.writeString(_iter0.toString());
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeColorTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeColorTexts().get().size());
-            for (final String _iter0 : getIncludeColorTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeCulturalContextTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCulturalContextTexts().get().size());
-            for (final String _iter0 : getIncludeCulturalContextTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeGenders().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeGenders().get().size());
-            for (final org.dressdiscover.api.vocabularies.costume_core.gender.Gender _iter0 : getIncludeGenders().get()) {
-                oprot.writeEnum(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeInstitutions().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeInstitutions().get().size());
-            for (final org.dressdiscover.api.models.institution.InstitutionId _iter0 : getIncludeInstitutions().get()) {
-                oprot.writeString(_iter0.toString());
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeLocationNameTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeLocationNameTexts().get().size());
-            for (final String _iter0 : getIncludeLocationNameTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeMaterialTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeMaterialTexts().get().size());
-            for (final String _iter0 : getIncludeMaterialTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeSubjectTermTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeSubjectTermTexts().get().size());
-            for (final String _iter0 : getIncludeSubjectTermTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeTechniqueTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeTechniqueTexts().get().size());
-            for (final String _iter0 : getIncludeTechniqueTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getIncludeWorkTypeTexts().isPresent()) {
-            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeWorkTypeTexts().get().size());
-            for (final String _iter0 : getIncludeWorkTypeTexts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeSetEnd();
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -4716,6 +2998,213 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             }
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
+        }
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getExcludeAll().isPresent()) {
+            oprot.writeBool(getExcludeAll().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeCategories().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCategories().get().size());
+            for (final String _iter0 : getExcludeCategories().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeCollections().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCollections().get().size());
+            for (final org.dressdiscover.api.models.collection.CollectionId _iter0 : getExcludeCollections().get()) {
+                oprot.writeString(_iter0.toString());
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeColorTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeColorTexts().get().size());
+            for (final String _iter0 : getExcludeColorTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeCulturalContextTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCulturalContextTexts().get().size());
+            for (final String _iter0 : getExcludeCulturalContextTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeGenders().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeGenders().get().size());
+            for (final org.dressdiscover.api.vocabularies.costume_core.gender.Gender _iter0 : getExcludeGenders().get()) {
+                oprot.writeEnum(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeInstitutions().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeInstitutions().get().size());
+            for (final org.dressdiscover.api.models.institution.InstitutionId _iter0 : getExcludeInstitutions().get()) {
+                oprot.writeString(_iter0.toString());
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeLocationNameTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeLocationNameTexts().get().size());
+            for (final String _iter0 : getExcludeLocationNameTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeMaterialTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeMaterialTexts().get().size());
+            for (final String _iter0 : getExcludeMaterialTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeSubjectTermTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeSubjectTermTexts().get().size());
+            for (final String _iter0 : getExcludeSubjectTermTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeTechniqueTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeTechniqueTexts().get().size());
+            for (final String _iter0 : getExcludeTechniqueTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getExcludeWorkTypeTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeWorkTypeTexts().get().size());
+            for (final String _iter0 : getExcludeWorkTypeTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeCategories().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCategories().get().size());
+            for (final String _iter0 : getIncludeCategories().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeCollections().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCollections().get().size());
+            for (final org.dressdiscover.api.models.collection.CollectionId _iter0 : getIncludeCollections().get()) {
+                oprot.writeString(_iter0.toString());
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeColorTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeColorTexts().get().size());
+            for (final String _iter0 : getIncludeColorTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeCulturalContextTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCulturalContextTexts().get().size());
+            for (final String _iter0 : getIncludeCulturalContextTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeGenders().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeGenders().get().size());
+            for (final org.dressdiscover.api.vocabularies.costume_core.gender.Gender _iter0 : getIncludeGenders().get()) {
+                oprot.writeEnum(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeInstitutions().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeInstitutions().get().size());
+            for (final org.dressdiscover.api.models.institution.InstitutionId _iter0 : getIncludeInstitutions().get()) {
+                oprot.writeString(_iter0.toString());
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeLocationNameTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeLocationNameTexts().get().size());
+            for (final String _iter0 : getIncludeLocationNameTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeMaterialTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeMaterialTexts().get().size());
+            for (final String _iter0 : getIncludeMaterialTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeSubjectTermTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeSubjectTermTexts().get().size());
+            for (final String _iter0 : getIncludeSubjectTermTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeTechniqueTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeTechniqueTexts().get().size());
+            for (final String _iter0 : getIncludeTechniqueTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
+        }
+        if (getIncludeWorkTypeTexts().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeWorkTypeTexts().get().size());
+            for (final String _iter0 : getIncludeWorkTypeTexts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+        } else {
+            oprot.writeNull();
         }
     }
 

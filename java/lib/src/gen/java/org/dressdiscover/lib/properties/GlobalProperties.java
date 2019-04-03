@@ -1,7 +1,7 @@
 package org.dressdiscover.lib.properties;
 
 public final class GlobalProperties implements org.thryft.waf.lib.Properties {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, GlobalProperties> {
         public Builder() {
             environment = null;
             pythonPath = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
@@ -17,7 +17,7 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
         }
 
         public GlobalProperties build() {
-            UncheckedValidator.validate(environment, pythonPath);
+            Validator.validate(environment, pythonPath);
 
             return _build(environment, pythonPath);
         }
@@ -30,28 +30,13 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
             return pythonPath;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                environment = iprot.readEnum(org.dressdiscover.lib.properties.Environment.Factory.getInstance());
+                this.setEnvironment(iprot.readEnum(org.dressdiscover.lib.properties.Environment.Factory.getInstance()));
                 if (__list.getSize() > 1) {
                     try {
-                        pythonPath = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        this.setPythonPath(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -66,23 +51,21 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PYTHON_PATH, e.getCause());
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -92,12 +75,12 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
                     }
                     switch (ifield.getName()) {
                     case "environment": {
-                        environment = iprot.readEnum(org.dressdiscover.lib.properties.Environment.Factory.getInstance());
+                        this.setEnvironment(iprot.readEnum(org.dressdiscover.lib.properties.Environment.Factory.getInstance()));
                         break;
                     }
                     case "python_path": {
                         try {
-                            pythonPath = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                            this.setPythonPath(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -112,25 +95,25 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PYTHON_PATH, e.getCause());
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -157,7 +140,7 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
         }
 
         public Builder setEnvironment(final org.dressdiscover.lib.properties.Environment environment) {
-            UncheckedValidator.validateEnvironment(environment);
+            Validator.validateEnvironment(environment);
             this.environment = environment;
             return this;
         }
@@ -174,7 +157,7 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
         }
 
         public Builder setPythonPath(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) {
-            UncheckedValidator.validatePythonPath(pythonPath);
+            Validator.validatePythonPath(pythonPath);
             this.pythonPath = pythonPath;
             return this;
         }
@@ -221,17 +204,6 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<GlobalProperties> {
         @Override
-        public GlobalProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return GlobalProperties.readAs(iprot, type);
-        }
-
-        @Override
-        public GlobalProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return GlobalProperties.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public GlobalProperties readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return GlobalProperties.readAsList(iprot);
         }
@@ -242,16 +214,15 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
         }
 
         @Override
-        public GlobalProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public GlobalProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return GlobalProperties.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ENVIRONMENT("environment", new com.google.common.reflect.TypeToken<org.dressdiscover.lib.properties.Environment>() {}, true, (short)0, "environment", org.thryft.protocol.Type.STRING),
-        PYTHON_PATH("pythonPath", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)0, "python_path", org.thryft.protocol.Type.LIST);
+        ENVIRONMENT("environment", new com.google.common.reflect.TypeToken<org.dressdiscover.lib.properties.Environment>() {}, true, (short)0, "environment", "environment", org.thryft.protocol.Type.STRING),
+        PYTHON_PATH("pythonPath", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)0, "python_path", "python_path", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -311,17 +282,13 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -334,26 +301,7 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.lib.properties.Environment environment, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) throws org.thryft.protocol.InputProtocolException {
-            validateEnvironment(environment);
-            validatePythonPath(pythonPath);
-        }
-
-        public static void validateEnvironment(final org.dressdiscover.lib.properties.Environment environment) throws org.thryft.protocol.InputProtocolException {
-            if (environment == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ENVIRONMENT, "org.dressdiscover.lib.properties.GlobalProperties: environment is null");
-            }
-        }
-
-        public static void validatePythonPath(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) throws org.thryft.protocol.InputProtocolException {
-            if (pythonPath == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PYTHON_PATH, "org.dressdiscover.lib.properties.GlobalProperties: pythonPath is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.lib.properties.Environment environment, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) {
             validateEnvironment(environment);
             validatePythonPath(pythonPath);
@@ -361,13 +309,13 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
 
         public static void validateEnvironment(final org.dressdiscover.lib.properties.Environment environment) {
             if (environment == null) {
-                throw new NullPointerException("org.dressdiscover.lib.properties.GlobalProperties: environment is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.lib.properties.GlobalProperties: environment is missing");
             }
         }
 
         public static void validatePythonPath(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) {
             if (pythonPath == null) {
-                throw new NullPointerException("org.dressdiscover.lib.properties.GlobalProperties: pythonPath is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.lib.properties.GlobalProperties: pythonPath is missing");
             }
         }
     }
@@ -380,13 +328,26 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected GlobalProperties(final org.dressdiscover.lib.properties.Environment environment, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) {
+    public GlobalProperties(final org.dressdiscover.lib.properties.Environment environment) {
+        this(environment, com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public GlobalProperties(final org.dressdiscover.lib.properties.Environment environment, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) {
+        Validator.validate(environment, pythonPath);
         this.environment = environment;
         this.pythonPath = pythonPath;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public GlobalProperties(final org.dressdiscover.lib.properties.Environment environment, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> pythonPath) {
+        this(environment, com.google.common.base.Optional.fromNullable(pythonPath));
     }
 
     private static java.util.Properties __mergeProperties(
@@ -445,31 +406,6 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
 
     public static Builder builder(final com.google.common.base.Optional<GlobalProperties> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static GlobalProperties create(final org.dressdiscover.lib.properties.Environment environment) {
-        UncheckedValidator.validate(environment, com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
-        return new GlobalProperties(environment, com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static GlobalProperties create(final org.dressdiscover.lib.properties.Environment environment, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> pythonPath) {
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPathOptional = com.google.common.base.Optional.fromNullable(pythonPath);
-        UncheckedValidator.validate(environment, pythonPathOptional);
-        return new GlobalProperties(environment, pythonPathOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static GlobalProperties create(final org.dressdiscover.lib.properties.Environment environment, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) {
-        UncheckedValidator.validate(environment, pythonPath);
-        return new GlobalProperties(environment, pythonPath);
     }
 
     @Override
@@ -604,131 +540,28 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
             throw new RuntimeException("properties file(s) have unknown property " + entry.getKey().toString());
         }
 
-        return GlobalProperties.create(environment, pythonPath);
-    }
-
-    public static GlobalProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static GlobalProperties readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
+        return new GlobalProperties(environment, pythonPath);
     }
 
     public static GlobalProperties readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.lib.properties.Environment environment;
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            environment = iprot.readEnum(org.dressdiscover.lib.properties.Environment.Factory.getInstance());
-            if (__list.getSize() > 1) {
-                try {
-                    pythonPath = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PYTHON_PATH, e.getCause());
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(environment, pythonPath);
-
-        return new GlobalProperties(environment, pythonPath);
+        return builder().readAsList(iprot).build();
     }
 
     public static GlobalProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static GlobalProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.lib.properties.Environment environment = null;
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "environment": {
-                    environment = iprot.readEnum(org.dressdiscover.lib.properties.Environment.Factory.getInstance());
-                    break;
-                }
-                case "python_path": {
-                    try {
-                        pythonPath = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
-                                    }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PYTHON_PATH, e.getCause());
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(environment, pythonPath);
-
-        return new GlobalProperties(environment, pythonPath);
+    public static GlobalProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public GlobalProperties replaceEnvironment(final org.dressdiscover.lib.properties.Environment environment) {
-        UncheckedValidator.validateEnvironment(environment);
+        Validator.validateEnvironment(environment);
         return new GlobalProperties(environment, this.pythonPath);
     }
 
     public GlobalProperties replacePythonPath(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) {
-        UncheckedValidator.validatePythonPath(pythonPath);
+        Validator.validatePythonPath(pythonPath);
         return new GlobalProperties(this.environment, pythonPath);
     }
 
@@ -753,19 +586,7 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-        oprot.writeEnum(getEnvironment());
-
-        if (getPythonPath().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getPythonPath().get().size());
-            for (final String _iter0 : getPythonPath().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -780,6 +601,20 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
         oprot.writeFieldBegin(FieldMetadata.ENVIRONMENT);
         oprot.writeEnum(getEnvironment());
         oprot.writeFieldEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeEnum(getEnvironment());
+        if (getPythonPath().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getPythonPath().get().size());
+            for (final String _iter0 : getPythonPath().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

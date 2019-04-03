@@ -4,7 +4,7 @@ package org.dressdiscover.api.vocabularies.vra_core.textref;
  * VRA Core 4.0 textref element
  */
 public final class Textref implements org.dressdiscover.api.vocabularies.vra_core.Element {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, Textref> {
         public Builder() {
             name = null;
             refid = null;
@@ -20,7 +20,7 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
         }
 
         public Textref build() {
-            UncheckedValidator.validate(name, refid);
+            Validator.validate(name, refid);
 
             return _build(name, refid);
         }
@@ -33,38 +33,21 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
             return refid;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
-                name = org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName.readAsStruct(iprot);
-                refid = org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid.readAsStruct(iprot);
+                this.setName(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName.readAsStruct(iprot));
+                this.setRefid(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid.readAsStruct(iprot));
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -75,29 +58,29 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
                     switch (ifield.getName()) {
                     case "name": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            name = org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName.readAsStruct(iprot, unknownFieldCallback);
+                                this.setName(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
                     case "refid": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            refid = org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid.readAsStruct(iprot, unknownFieldCallback);
+                                this.setRefid(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -132,13 +115,13 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
         }
 
         public Builder setName(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name) {
-            UncheckedValidator.validateName(name);
+            Validator.validateName(name);
             this.name = name;
             return this;
         }
 
         public Builder setRefid(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) {
-            UncheckedValidator.validateRefid(refid);
+            Validator.validateRefid(refid);
             this.refid = refid;
             return this;
         }
@@ -181,17 +164,6 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Textref> {
         @Override
-        public Textref readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return Textref.readAs(iprot, type);
-        }
-
-        @Override
-        public Textref readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return Textref.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public Textref readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return Textref.readAsList(iprot);
         }
@@ -202,16 +174,15 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
         }
 
         @Override
-        public Textref readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Textref readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return Textref.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        NAME("name", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName>() {}, true, (short)1, "name", org.thryft.protocol.Type.STRUCT),
-        REFID("refid", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid>() {}, true, (short)2, "refid", org.thryft.protocol.Type.STRUCT);
+        NAME("name", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName>() {}, true, (short)1, "name", "1:name", org.thryft.protocol.Type.STRUCT),
+        REFID("refid", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid>() {}, true, (short)2, "refid", "2:refid", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -271,17 +242,13 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -294,26 +261,7 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name, final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) throws org.thryft.protocol.InputProtocolException {
-            validateName(name);
-            validateRefid(refid);
-        }
-
-        public static void validateName(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name) throws org.thryft.protocol.InputProtocolException {
-            if (name == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.vocabularies.vra_core.textref.Textref: name is null");
-            }
-        }
-
-        public static void validateRefid(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) throws org.thryft.protocol.InputProtocolException {
-            if (refid == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.vocabularies.vra_core.textref.Textref: refid is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name, final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) {
             validateName(name);
             validateRefid(refid);
@@ -321,13 +269,13 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
 
         public static void validateName(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name) {
             if (name == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.textref.Textref: name is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.textref.Textref: name is missing");
             }
         }
 
         public static void validateRefid(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) {
             if (refid == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.textref.Textref: refid is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.textref.Textref: refid is missing");
             }
         }
     }
@@ -341,10 +289,9 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected Textref(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name, final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) {
+    public Textref(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name, final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) {
+        Validator.validate(name, refid);
         this.name = name;
         this.refid = refid;
     }
@@ -359,14 +306,6 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
 
     public static Builder builder(final com.google.common.base.Optional<Textref> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static Textref create(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name, final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) {
-        UncheckedValidator.validate(name, refid);
-        return new Textref(name, refid);
     }
 
     @Override
@@ -429,92 +368,25 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
         return hashCode;
     }
 
-    public static Textref readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static Textref readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static Textref readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name;
-        org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid;
-
-        try {
-            iprot.readListBegin();
-            name = org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName.readAsStruct(iprot);
-            refid = org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid.readAsStruct(iprot);
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(name, refid);
-
-        return new Textref(name, refid);
+        return builder().readAsList(iprot).build();
     }
 
     public static Textref readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static Textref readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name = null;
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "name": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        name = org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName.readAsStruct(iprot, unknownFieldCallback);
-                    }
-                    break;
-                }
-                case "refid": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        refid = org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid.readAsStruct(iprot, unknownFieldCallback);
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(name, refid);
-
-        return new Textref(name, refid);
+    public static Textref readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public Textref replaceName(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefName name) {
-        UncheckedValidator.validateName(name);
+        Validator.validateName(name);
         return new Textref(name, this.refid);
     }
 
     public Textref replaceRefid(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid refid) {
-        UncheckedValidator.validateRefid(refid);
+        Validator.validateRefid(refid);
         return new Textref(this.name, refid);
     }
 
@@ -526,11 +398,7 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-        getName().writeAsStruct(oprot);
-
-        getRefid().writeAsStruct(oprot);
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -539,6 +407,12 @@ public final class Textref implements org.dressdiscover.api.vocabularies.vra_cor
         oprot.writeStructBegin("org.dressdiscover.api.vocabularies.vra_core.textref.Textref");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        getName().writeAsStruct(oprot);
+        getRefid().writeAsStruct(oprot);
     }
 
     @Override

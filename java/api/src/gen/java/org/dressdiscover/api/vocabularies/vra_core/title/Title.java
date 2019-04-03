@@ -4,7 +4,7 @@ package org.dressdiscover.api.vocabularies.vra_core.title;
  * VRA Core 4.0 title element
  */
 public final class Title implements org.dressdiscover.api.vocabularies.vra_core.Element {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, Title> {
         public Builder() {
             text = null;
             type = null;
@@ -22,7 +22,7 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
         }
 
         public Title build() {
-            UncheckedValidator.validate(text, type, pref);
+            Validator.validate(text, type, pref);
 
             return _build(text, type, pref);
         }
@@ -39,41 +39,24 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
             return type;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                text = iprot.readString();
-                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.title.TitleType.Factory.getInstance());
+                this.setText(iprot.readString());
+                this.setType(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.title.TitleType.Factory.getInstance()));
                 if (__list.getSize() > 2) {
-                    pref = org.thryft.Optionals.of(iprot.readBool());
+                    this.setPref(org.thryft.Optionals.of(iprot.readBool()));
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -84,35 +67,35 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
                     switch (ifield.getName()) {
                     case "text": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            text = iprot.readString();
+                                this.setText(iprot.readString());
                         }
                         break;
                     }
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.title.TitleType.Factory.getInstance());
+                                this.setType(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.title.TitleType.Factory.getInstance()));
                         }
                         break;
                     }
                     case "pref": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            pref = org.thryft.Optionals.of(iprot.readBool());
+                                this.setPref(org.thryft.Optionals.of(iprot.readBool()));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -151,7 +134,7 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
         }
 
         public Builder setPref(final com.google.common.base.Optional<Boolean> pref) {
-            UncheckedValidator.validatePref(pref);
+            Validator.validatePref(pref);
             this.pref = pref;
             return this;
         }
@@ -165,13 +148,13 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
         }
 
         public Builder setText(final String text) {
-            UncheckedValidator.validateText(text);
+            Validator.validateText(text);
             this.text = text;
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type) {
-            UncheckedValidator.validateType(type);
+            Validator.validateType(type);
             this.type = type;
             return this;
         }
@@ -221,17 +204,6 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Title> {
         @Override
-        public Title readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return Title.readAs(iprot, type);
-        }
-
-        @Override
-        public Title readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return Title.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public Title readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return Title.readAsList(iprot);
         }
@@ -242,17 +214,16 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
         }
 
         @Override
-        public Title readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Title readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return Title.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "text", org.thryft.protocol.Type.STRING),
-        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.title.TitleType>() {}, true, (short)2, "type", org.thryft.protocol.Type.STRING),
-        PREF("pref", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)3, "pref", org.thryft.protocol.Type.BOOL);
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "text", "1:text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.title.TitleType>() {}, true, (short)2, "type", "2:type", org.thryft.protocol.Type.STRING),
+        PREF("pref", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)3, "pref", "3:pref", org.thryft.protocol.Type.BOOL);
 
         @Override
         public String getJavaName() {
@@ -314,17 +285,13 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -337,41 +304,7 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) throws org.thryft.protocol.InputProtocolException {
-            validateText(text);
-            validateType(type);
-            validatePref(pref);
-        }
-
-        public static void validateText(final String text) throws org.thryft.protocol.InputProtocolException {
-            if (text == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.title.Title: text is null");
-            }
-            if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.title.Title: text: less than min length 1");
-            }
-        }
-
-        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type) throws org.thryft.protocol.InputProtocolException {
-            if (type == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.vra_core.title.Title: type is null");
-            }
-        }
-
-        public static void validatePref(final com.google.common.base.Optional<Boolean> pref) throws org.thryft.protocol.InputProtocolException {
-            if (pref == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PREF, "org.dressdiscover.api.vocabularies.vra_core.title.Title: pref is null");
-            }
-            if (pref.isPresent()) {
-                if (!pref.get()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PREF, "org.dressdiscover.api.vocabularies.vra_core.title.Title: pref: not true");
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
             validateText(text);
             validateType(type);
@@ -380,26 +313,26 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
 
         public static void validateText(final String text) {
             if (text == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.title.Title: text is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.title.Title: text is missing");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.title.Title: text: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.title.Title: text: less than min length 1");
             }
         }
 
         public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type) {
             if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.title.Title: type is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.title.Title: type is missing");
             }
         }
 
         public static void validatePref(final com.google.common.base.Optional<Boolean> pref) {
             if (pref == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.title.Title: pref is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.title.Title: pref is missing");
             }
             if (pref.isPresent()) {
                 if (!pref.get()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.title.Title: pref: not true");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.title.Title: pref: not true");
                 }
             }
         }
@@ -413,14 +346,27 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected Title(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
+    public Title(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type) {
+        this(text, type, com.google.common.base.Optional.<Boolean> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public Title(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
+        Validator.validate(text, type, pref);
         this.text = text;
         this.type = type;
         this.pref = pref;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public Title(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type, @javax.annotation.Nullable final Boolean pref) {
+        this(text, type, org.thryft.Optionals.fromNullable(pref));
     }
 
     public static Builder builder() {
@@ -433,31 +379,6 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
 
     public static Builder builder(final com.google.common.base.Optional<Title> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static Title create(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type) {
-        UncheckedValidator.validate(text, type, com.google.common.base.Optional.<Boolean> absent());
-        return new Title(text, type, com.google.common.base.Optional.<Boolean> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static Title create(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type, @javax.annotation.Nullable final Boolean pref) {
-        final com.google.common.base.Optional<Boolean> prefOptional = org.thryft.Optionals.fromNullable(pref);
-        UncheckedValidator.validate(text, type, prefOptional);
-        return new Title(text, type, prefOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static Title create(final String text, final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type, final com.google.common.base.Optional<Boolean> pref) {
-        UncheckedValidator.validate(text, type, pref);
-        return new Title(text, type, pref);
     }
 
     @Override
@@ -532,98 +453,20 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
         return hashCode;
     }
 
-    public static Title readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static Title readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static Title readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String text;
-        org.dressdiscover.api.vocabularies.vra_core.title.TitleType type;
-        com.google.common.base.Optional<Boolean> pref = com.google.common.base.Optional.<Boolean> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.title.TitleType.Factory.getInstance());
-            if (__list.getSize() > 2) {
-                pref = org.thryft.Optionals.of(iprot.readBool());
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(text, type, pref);
-
-        return new Title(text, type, pref);
+        return builder().readAsList(iprot).build();
     }
 
     public static Title readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static Title readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String text = null;
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.title.TitleType type = null;
-        com.google.common.base.Optional<Boolean> pref = com.google.common.base.Optional.<Boolean> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "text": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        text = iprot.readString();
-                    }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.title.TitleType.Factory.getInstance());
-                    }
-                    break;
-                }
-                case "pref": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        pref = org.thryft.Optionals.of(iprot.readBool());
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(text, type, pref);
-
-        return new Title(text, type, pref);
+    public static Title readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public Title replacePref(final com.google.common.base.Optional<Boolean> pref) {
-        UncheckedValidator.validatePref(pref);
+        Validator.validatePref(pref);
         return new Title(this.text, this.type, pref);
     }
 
@@ -636,12 +479,12 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
     }
 
     public Title replaceText(final String text) {
-        UncheckedValidator.validateText(text);
+        Validator.validateText(text);
         return new Title(text, this.type, this.pref);
     }
 
     public Title replaceType(final org.dressdiscover.api.vocabularies.vra_core.title.TitleType type) {
-        UncheckedValidator.validateType(type);
+        Validator.validateType(type);
         return new Title(this.text, type, this.pref);
     }
 
@@ -653,17 +496,7 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
-
-        oprot.writeString(getText());
-
-        oprot.writeEnum(getType());
-
-        if (getPref().isPresent()) {
-            oprot.writeBool(getPref().get());
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -672,6 +505,17 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
         oprot.writeStructBegin("org.dressdiscover.api.vocabularies.vra_core.title.Title");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getText());
+        oprot.writeEnum(getType());
+        if (getPref().isPresent()) {
+            oprot.writeBool(getPref().get());
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

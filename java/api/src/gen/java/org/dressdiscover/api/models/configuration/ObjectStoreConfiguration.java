@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.configuration;
 
 public final class ObjectStoreConfiguration implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, ObjectStoreConfiguration> {
         public Builder() {
             type = null;
             parameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
@@ -17,7 +17,7 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
         }
 
         public ObjectStoreConfiguration build() {
-            UncheckedValidator.validate(type, parameters);
+            Validator.validate(type, parameters);
 
             return _build(type, parameters);
         }
@@ -30,28 +30,13 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
             return type;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                type = iprot.readString();
+                this.setType(iprot.readString());
                 if (__list.getSize() > 1) {
                     try {
-                        parameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
+                        this.setParameters(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
                             @Override
                             public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -70,23 +55,21 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, e.getCause());
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -97,52 +80,52 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            type = iprot.readString();
+                                this.setType(iprot.readString());
                         }
                         break;
                     }
                     case "parameters": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            try {
-                                parameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                            final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                                final String key;
-                                                key = iprot.readString();
-                                                final String value;
-                                                value = iprot.readString();
-                                                map.put(key, value);
+                                try {
+                                    this.setParameters(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                                final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
+                                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                                    final String key;
+                                                    key = iprot.readString();
+                                                    final String value;
+                                                    value = iprot.readString();
+                                                    map.put(key, value);
+                                                }
+                                                iprot.readMapEnd();
+                                                return map.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                             }
-                                            iprot.readMapEnd();
-                                            return map.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, e.getCause());
-                            }
+                                    }).apply(iprot)));
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, e.getCause());
+                                }
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -180,7 +163,7 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
         }
 
         public Builder setParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-            UncheckedValidator.validateParameters(parameters);
+            Validator.validateParameters(parameters);
             this.parameters = parameters;
             return this;
         }
@@ -190,7 +173,7 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
         }
 
         public Builder setType(final String type) {
-            UncheckedValidator.validateType(type);
+            Validator.validateType(type);
             this.type = type;
             return this;
         }
@@ -233,17 +216,6 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<ObjectStoreConfiguration> {
         @Override
-        public ObjectStoreConfiguration readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return ObjectStoreConfiguration.readAs(iprot, type);
-        }
-
-        @Override
-        public ObjectStoreConfiguration readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return ObjectStoreConfiguration.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public ObjectStoreConfiguration readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return ObjectStoreConfiguration.readAsList(iprot);
         }
@@ -254,16 +226,15 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
         }
 
         @Override
-        public ObjectStoreConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public ObjectStoreConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return ObjectStoreConfiguration.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TYPE("type", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "type", org.thryft.protocol.Type.STRING),
-        PARAMETERS("parameters", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, String>>() {}, false, (short)2, "parameters", org.thryft.protocol.Type.MAP);
+        TYPE("type", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "type", "1:type", org.thryft.protocol.Type.STRING),
+        PARAMETERS("parameters", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, String>>() {}, false, (short)2, "parameters", "2:parameters", org.thryft.protocol.Type.MAP);
 
         @Override
         public String getJavaName() {
@@ -323,17 +294,13 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -346,31 +313,7 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) throws org.thryft.protocol.InputProtocolException {
-            validateType(type);
-            validateParameters(parameters);
-        }
-
-        public static void validateType(final String type) throws org.thryft.protocol.InputProtocolException {
-            if (type == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: type is null");
-            }
-        }
-
-        public static void validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) throws org.thryft.protocol.InputProtocolException {
-            if (parameters == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PARAMETERS, "org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters is null");
-            }
-            if (parameters.isPresent()) {
-                if (parameters.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, "org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters: less than min length 1");
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
             validateType(type);
             validateParameters(parameters);
@@ -378,17 +321,17 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
 
         public static void validateType(final String type) {
             if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: type is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: type is missing");
             }
         }
 
         public static void validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
             if (parameters == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters is missing");
             }
             if (parameters.isPresent()) {
                 if (parameters.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters: less than min length 1");
                 }
             }
         }
@@ -402,13 +345,26 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected ObjectStoreConfiguration(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
+    public ObjectStoreConfiguration(final String type) {
+        this(type, com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public ObjectStoreConfiguration(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
+        Validator.validate(type, parameters);
         this.type = type;
         this.parameters = parameters;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public ObjectStoreConfiguration(final String type, @javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> parameters) {
+        this(type, com.google.common.base.Optional.fromNullable(parameters));
     }
 
     public static Builder builder() {
@@ -421,31 +377,6 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<ObjectStoreConfiguration> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static ObjectStoreConfiguration create(final String type) {
-        UncheckedValidator.validate(type, com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent());
-        return new ObjectStoreConfiguration(type, com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static ObjectStoreConfiguration create(final String type, @javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> parameters) {
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parametersOptional = com.google.common.base.Optional.fromNullable(parameters);
-        UncheckedValidator.validate(type, parametersOptional);
-        return new ObjectStoreConfiguration(type, parametersOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static ObjectStoreConfiguration create(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-        UncheckedValidator.validate(type, parameters);
-        return new ObjectStoreConfiguration(type, parameters);
     }
 
     @Override
@@ -510,135 +441,20 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static ObjectStoreConfiguration readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static ObjectStoreConfiguration readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static ObjectStoreConfiguration readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String type;
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            type = iprot.readString();
-            if (__list.getSize() > 1) {
-                try {
-                    parameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                    final String key;
-                                    key = iprot.readString();
-                                    final String value;
-                                    value = iprot.readString();
-                                    map.put(key, value);
-                                }
-                                iprot.readMapEnd();
-                                return map.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, e.getCause());
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(type, parameters);
-
-        return new ObjectStoreConfiguration(type, parameters);
+        return builder().readAsList(iprot).build();
     }
 
     public static ObjectStoreConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static ObjectStoreConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String type = null;
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        type = iprot.readString();
-                    }
-                    break;
-                }
-                case "parameters": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        try {
-                            parameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                        final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                            final String key;
-                                            key = iprot.readString();
-                                            final String value;
-                                            value = iprot.readString();
-                                            map.put(key, value);
-                                        }
-                                        iprot.readMapEnd();
-                                        return map.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, e.getCause());
-                        }
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(type, parameters);
-
-        return new ObjectStoreConfiguration(type, parameters);
+    public static ObjectStoreConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public ObjectStoreConfiguration replaceParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-        UncheckedValidator.validateParameters(parameters);
+        Validator.validateParameters(parameters);
         return new ObjectStoreConfiguration(this.type, parameters);
     }
 
@@ -647,7 +463,7 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
     }
 
     public ObjectStoreConfiguration replaceType(final String type) {
-        UncheckedValidator.validateType(type);
+        Validator.validateType(type);
         return new ObjectStoreConfiguration(type, this.parameters);
     }
 
@@ -659,9 +475,20 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
+        writeFieldValues(oprot);
+        oprot.writeListEnd();
+    }
 
+    @Override
+    public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeStructBegin("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration");
+        writeFields(oprot);
+        oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeString(getType());
-
         if (getParameters().isPresent()) {
             oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.STRING, getParameters().get().size());
             for (com.google.common.collect.ImmutableMap.Entry<String, String> _iter0 : getParameters().get().entrySet()) {
@@ -672,15 +499,6 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
         } else {
             oprot.writeNull();
         }
-
-        oprot.writeListEnd();
-    }
-
-    @Override
-    public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeStructBegin("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration");
-        writeFields(oprot);
-        oprot.writeStructEnd();
     }
 
     @Override

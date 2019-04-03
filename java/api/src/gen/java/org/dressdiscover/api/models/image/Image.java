@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.image;
 
 public final class Image implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, Image> {
         public Builder() {
             fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
             original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
@@ -23,7 +23,7 @@ public final class Image implements org.thryft.Struct {
         }
 
         public Image build() {
-            UncheckedValidator.validate(fullSize, original, rights, squareThumbnail, thumbnail);
+            Validator.validate(fullSize, original, rights, squareThumbnail, thumbnail);
 
             return _build(fullSize, original, rights, squareThumbnail, thumbnail);
         }
@@ -48,51 +48,34 @@ public final class Image implements org.thryft.Struct {
             return thumbnail;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
-                    fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    this.setFullSize(com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot)));
                 }
                 if (__list.getSize() > 1) {
-                    original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    this.setOriginal(com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot)));
                 }
                 if (__list.getSize() > 2) {
-                    rights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
+                    this.setRights(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot)));
                 }
                 if (__list.getSize() > 3) {
-                    squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    this.setSquareThumbnail(com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot)));
                 }
                 if (__list.getSize() > 4) {
-                    thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    this.setThumbnail(com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot)));
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -103,47 +86,47 @@ public final class Image implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "full_size": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback));
+                                this.setFullSize(com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     case "original": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback));
+                                this.setOriginal(com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     case "rights": {
                         if (!ifield.hasId() || ifield.getId() == 6) {
-                            rights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback));
+                                this.setRights(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     case "square_thumbnail": {
                         if (!ifield.hasId() || ifield.getId() == 4) {
-                            squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback));
+                                this.setSquareThumbnail(com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     case "thumbnail": {
                         if (!ifield.hasId() || ifield.getId() == 5) {
-                            thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback));
+                                this.setThumbnail(com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -172,7 +155,7 @@ public final class Image implements org.thryft.Struct {
         }
 
         public Builder setFullSize(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize) {
-            UncheckedValidator.validateFullSize(fullSize);
+            Validator.validateFullSize(fullSize);
             this.fullSize = fullSize;
             return this;
         }
@@ -204,7 +187,7 @@ public final class Image implements org.thryft.Struct {
         }
 
         public Builder setOriginal(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original) {
-            UncheckedValidator.validateOriginal(original);
+            Validator.validateOriginal(original);
             this.original = original;
             return this;
         }
@@ -214,7 +197,7 @@ public final class Image implements org.thryft.Struct {
         }
 
         public Builder setRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights) {
-            UncheckedValidator.validateRights(rights);
+            Validator.validateRights(rights);
             this.rights = rights;
             return this;
         }
@@ -224,7 +207,7 @@ public final class Image implements org.thryft.Struct {
         }
 
         public Builder setSquareThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail) {
-            UncheckedValidator.validateSquareThumbnail(squareThumbnail);
+            Validator.validateSquareThumbnail(squareThumbnail);
             this.squareThumbnail = squareThumbnail;
             return this;
         }
@@ -234,7 +217,7 @@ public final class Image implements org.thryft.Struct {
         }
 
         public Builder setThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
-            UncheckedValidator.validateThumbnail(thumbnail);
+            Validator.validateThumbnail(thumbnail);
             this.thumbnail = thumbnail;
             return this;
         }
@@ -302,17 +285,6 @@ public final class Image implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Image> {
         @Override
-        public Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return Image.readAs(iprot, type);
-        }
-
-        @Override
-        public Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return Image.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public Image readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return Image.readAsList(iprot);
         }
@@ -323,19 +295,18 @@ public final class Image implements org.thryft.Struct {
         }
 
         @Override
-        public Image readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Image readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return Image.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        FULL_SIZE("fullSize", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, (short)2, "full_size", org.thryft.protocol.Type.STRUCT),
-        ORIGINAL("original", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, (short)3, "original", org.thryft.protocol.Type.STRUCT),
-        RIGHTS("rights", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>() {}, false, (short)6, "rights", org.thryft.protocol.Type.STRUCT),
-        SQUARE_THUMBNAIL("squareThumbnail", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, (short)4, "square_thumbnail", org.thryft.protocol.Type.STRUCT),
-        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, (short)5, "thumbnail", org.thryft.protocol.Type.STRUCT);
+        FULL_SIZE("fullSize", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, (short)2, "full_size", "2:full_size", org.thryft.protocol.Type.STRUCT),
+        ORIGINAL("original", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, (short)3, "original", "3:original", org.thryft.protocol.Type.STRUCT),
+        RIGHTS("rights", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>() {}, false, (short)6, "rights", "6:rights", org.thryft.protocol.Type.STRUCT),
+        SQUARE_THUMBNAIL("squareThumbnail", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, (short)4, "square_thumbnail", "4:square_thumbnail", org.thryft.protocol.Type.STRUCT),
+        THUMBNAIL("thumbnail", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.image.ImageVersion>() {}, false, (short)5, "thumbnail", "5:thumbnail", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -401,17 +372,13 @@ public final class Image implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -424,47 +391,7 @@ public final class Image implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) throws org.thryft.protocol.InputProtocolException {
-            validateFullSize(fullSize);
-            validateOriginal(original);
-            validateRights(rights);
-            validateSquareThumbnail(squareThumbnail);
-            validateThumbnail(thumbnail);
-        }
-
-        public static void validateFullSize(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize) throws org.thryft.protocol.InputProtocolException {
-            if (fullSize == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FULL_SIZE, "org.dressdiscover.api.models.image.Image: fullSize is null");
-            }
-        }
-
-        public static void validateOriginal(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original) throws org.thryft.protocol.InputProtocolException {
-            if (original == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ORIGINAL, "org.dressdiscover.api.models.image.Image: original is null");
-            }
-        }
-
-        public static void validateRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights) throws org.thryft.protocol.InputProtocolException {
-            if (rights == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.models.image.Image: rights is null");
-            }
-        }
-
-        public static void validateSquareThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail) throws org.thryft.protocol.InputProtocolException {
-            if (squareThumbnail == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SQUARE_THUMBNAIL, "org.dressdiscover.api.models.image.Image: squareThumbnail is null");
-            }
-        }
-
-        public static void validateThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) throws org.thryft.protocol.InputProtocolException {
-            if (thumbnail == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.THUMBNAIL, "org.dressdiscover.api.models.image.Image: thumbnail is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
             validateFullSize(fullSize);
             validateOriginal(original);
@@ -475,31 +402,31 @@ public final class Image implements org.thryft.Struct {
 
         public static void validateFullSize(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize) {
             if (fullSize == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.image.Image: fullSize is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.image.Image: fullSize is missing");
             }
         }
 
         public static void validateOriginal(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original) {
             if (original == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.image.Image: original is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.image.Image: original is missing");
             }
         }
 
         public static void validateRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights) {
             if (rights == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.image.Image: rights is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.image.Image: rights is missing");
             }
         }
 
         public static void validateSquareThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail) {
             if (squareThumbnail == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.image.Image: squareThumbnail is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.image.Image: squareThumbnail is missing");
             }
         }
 
         public static void validateThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
             if (thumbnail == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.image.Image: thumbnail is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.image.Image: thumbnail is missing");
             }
         }
     }
@@ -525,15 +452,21 @@ public final class Image implements org.thryft.Struct {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected Image(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
+    public Image(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
+        Validator.validate(fullSize, original, rights, squareThumbnail, thumbnail);
         this.fullSize = fullSize;
         this.original = original;
         this.rights = rights;
         this.squareThumbnail = squareThumbnail;
         this.thumbnail = thumbnail;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public Image(@javax.annotation.Nullable final org.dressdiscover.api.models.image.ImageVersion fullSize, @javax.annotation.Nullable final org.dressdiscover.api.models.image.ImageVersion original, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet rights, @javax.annotation.Nullable final org.dressdiscover.api.models.image.ImageVersion squareThumbnail, @javax.annotation.Nullable final org.dressdiscover.api.models.image.ImageVersion thumbnail) {
+        this(com.google.common.base.Optional.fromNullable(fullSize), com.google.common.base.Optional.fromNullable(original), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(squareThumbnail), com.google.common.base.Optional.fromNullable(thumbnail));
     }
 
     public static Builder builder() {
@@ -546,32 +479,6 @@ public final class Image implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<Image> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    @Deprecated
-    public static Image create() {
-        return new Image();
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static Image create(@javax.annotation.Nullable final org.dressdiscover.api.models.image.ImageVersion fullSize, @javax.annotation.Nullable final org.dressdiscover.api.models.image.ImageVersion original, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet rights, @javax.annotation.Nullable final org.dressdiscover.api.models.image.ImageVersion squareThumbnail, @javax.annotation.Nullable final org.dressdiscover.api.models.image.ImageVersion thumbnail) {
-        final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSizeOptional = com.google.common.base.Optional.fromNullable(fullSize);
-        final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> originalOptional = com.google.common.base.Optional.fromNullable(original);
-        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rightsOptional = com.google.common.base.Optional.fromNullable(rights);
-        final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnailOptional = com.google.common.base.Optional.fromNullable(squareThumbnail);
-        final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnailOptional = com.google.common.base.Optional.fromNullable(thumbnail);
-        UncheckedValidator.validate(fullSizeOptional, originalOptional, rightsOptional, squareThumbnailOptional, thumbnailOptional);
-        return new Image(fullSizeOptional, originalOptional, rightsOptional, squareThumbnailOptional, thumbnailOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static Image create(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail, final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
-        UncheckedValidator.validate(fullSize, original, rights, squareThumbnail, thumbnail);
-        return new Image(fullSize, original, rights, squareThumbnail, thumbnail);
     }
 
     @Override
@@ -674,124 +581,20 @@ public final class Image implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static Image readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static Image readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            if (__list.getSize() > 0) {
-                fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 1) {
-                original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 2) {
-                rights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 3) {
-                squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 4) {
-                thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(fullSize, original, rights, squareThumbnail, thumbnail);
-
-        return new Image(fullSize, original, rights, squareThumbnail, thumbnail);
+        return builder().readAsList(iprot).build();
     }
 
     public static Image readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static Image readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "full_size": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                case "original": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                case "rights": {
-                    if (!ifield.hasId() || ifield.getId() == 6) {
-                        rights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                case "square_thumbnail": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                case "thumbnail": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(fullSize, original, rights, squareThumbnail, thumbnail);
-
-        return new Image(fullSize, original, rights, squareThumbnail, thumbnail);
+    public static Image readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public Image replaceFullSize(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> fullSize) {
-        UncheckedValidator.validateFullSize(fullSize);
+        Validator.validateFullSize(fullSize);
         return new Image(fullSize, this.original, this.rights, this.squareThumbnail, this.thumbnail);
     }
 
@@ -800,7 +603,7 @@ public final class Image implements org.thryft.Struct {
     }
 
     public Image replaceOriginal(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original) {
-        UncheckedValidator.validateOriginal(original);
+        Validator.validateOriginal(original);
         return new Image(this.fullSize, original, this.rights, this.squareThumbnail, this.thumbnail);
     }
 
@@ -809,7 +612,7 @@ public final class Image implements org.thryft.Struct {
     }
 
     public Image replaceRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights) {
-        UncheckedValidator.validateRights(rights);
+        Validator.validateRights(rights);
         return new Image(this.fullSize, this.original, rights, this.squareThumbnail, this.thumbnail);
     }
 
@@ -818,7 +621,7 @@ public final class Image implements org.thryft.Struct {
     }
 
     public Image replaceSquareThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail) {
-        UncheckedValidator.validateSquareThumbnail(squareThumbnail);
+        Validator.validateSquareThumbnail(squareThumbnail);
         return new Image(this.fullSize, this.original, this.rights, squareThumbnail, this.thumbnail);
     }
 
@@ -827,7 +630,7 @@ public final class Image implements org.thryft.Struct {
     }
 
     public Image replaceThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
-        UncheckedValidator.validateThumbnail(thumbnail);
+        Validator.validateThumbnail(thumbnail);
         return new Image(this.fullSize, this.original, this.rights, this.squareThumbnail, thumbnail);
     }
 
@@ -843,37 +646,7 @@ public final class Image implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
-
-        if (getFullSize().isPresent()) {
-            getFullSize().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getOriginal().isPresent()) {
-            getOriginal().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getRights().isPresent()) {
-            getRights().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getSquareThumbnail().isPresent()) {
-            getSquareThumbnail().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getThumbnail().isPresent()) {
-            getThumbnail().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -882,6 +655,35 @@ public final class Image implements org.thryft.Struct {
         oprot.writeStructBegin("org.dressdiscover.api.models.image.Image");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getFullSize().isPresent()) {
+            getFullSize().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+        if (getOriginal().isPresent()) {
+            getOriginal().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+        if (getRights().isPresent()) {
+            getRights().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+        if (getSquareThumbnail().isPresent()) {
+            getSquareThumbnail().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+        if (getThumbnail().isPresent()) {
+            getThumbnail().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

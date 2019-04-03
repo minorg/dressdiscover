@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.configuration;
 
 public final class CollectionConfiguration implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, CollectionConfiguration> {
         public Builder() {
             objectStoreConfiguration = null;
         }
@@ -15,7 +15,7 @@ public final class CollectionConfiguration implements org.thryft.Struct {
         }
 
         public CollectionConfiguration build() {
-            UncheckedValidator.validate(objectStoreConfiguration);
+            Validator.validate(objectStoreConfiguration);
 
             return _build(objectStoreConfiguration);
         }
@@ -24,37 +24,20 @@ public final class CollectionConfiguration implements org.thryft.Struct {
             return objectStoreConfiguration;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
-                objectStoreConfiguration = org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot);
+                this.setObjectStoreConfiguration(org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot));
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -65,23 +48,23 @@ public final class CollectionConfiguration implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "object_store_configuration": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            objectStoreConfiguration = org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot, unknownFieldCallback);
+                                this.setObjectStoreConfiguration(org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -114,7 +97,7 @@ public final class CollectionConfiguration implements org.thryft.Struct {
         }
 
         public Builder setObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
-            UncheckedValidator.validateObjectStoreConfiguration(objectStoreConfiguration);
+            Validator.validateObjectStoreConfiguration(objectStoreConfiguration);
             this.objectStoreConfiguration = objectStoreConfiguration;
             return this;
         }
@@ -150,17 +133,6 @@ public final class CollectionConfiguration implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<CollectionConfiguration> {
         @Override
-        public CollectionConfiguration readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return CollectionConfiguration.readAs(iprot, type);
-        }
-
-        @Override
-        public CollectionConfiguration readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return CollectionConfiguration.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public CollectionConfiguration readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return CollectionConfiguration.readAsList(iprot);
         }
@@ -171,15 +143,14 @@ public final class CollectionConfiguration implements org.thryft.Struct {
         }
 
         @Override
-        public CollectionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public CollectionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return CollectionConfiguration.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        OBJECT_STORE_CONFIGURATION("objectStoreConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.ObjectStoreConfiguration>() {}, true, (short)1, "object_store_configuration", org.thryft.protocol.Type.STRUCT);
+        OBJECT_STORE_CONFIGURATION("objectStoreConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.ObjectStoreConfiguration>() {}, true, (short)1, "object_store_configuration", "1:object_store_configuration", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -237,17 +208,13 @@ public final class CollectionConfiguration implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -260,26 +227,14 @@ public final class CollectionConfiguration implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) throws org.thryft.protocol.InputProtocolException {
-            validateObjectStoreConfiguration(objectStoreConfiguration);
-        }
-
-        public static void validateObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) throws org.thryft.protocol.InputProtocolException {
-            if (objectStoreConfiguration == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_STORE_CONFIGURATION, "org.dressdiscover.api.models.configuration.CollectionConfiguration: objectStoreConfiguration is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
             validateObjectStoreConfiguration(objectStoreConfiguration);
         }
 
         public static void validateObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
             if (objectStoreConfiguration == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.CollectionConfiguration: objectStoreConfiguration is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.configuration.CollectionConfiguration: objectStoreConfiguration is missing");
             }
         }
     }
@@ -293,10 +248,9 @@ public final class CollectionConfiguration implements org.thryft.Struct {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected CollectionConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
+    public CollectionConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
+        Validator.validate(objectStoreConfiguration);
         this.objectStoreConfiguration = objectStoreConfiguration;
     }
 
@@ -310,14 +264,6 @@ public final class CollectionConfiguration implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<CollectionConfiguration> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static CollectionConfiguration create(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
-        UncheckedValidator.validate(objectStoreConfiguration);
-        return new CollectionConfiguration(objectStoreConfiguration);
     }
 
     @Override
@@ -365,83 +311,23 @@ public final class CollectionConfiguration implements org.thryft.Struct {
 
     @Override
     public int hashCode() {
-        int hashCode = 17;
-        hashCode = 31 * hashCode + getObjectStoreConfiguration().hashCode();
-        return hashCode;
-    }
-
-    public static CollectionConfiguration readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static CollectionConfiguration readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
+        return getObjectStoreConfiguration().hashCode();
     }
 
     public static CollectionConfiguration readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration;
-
-        try {
-            iprot.readListBegin();
-            objectStoreConfiguration = org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot);
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(objectStoreConfiguration);
-
-        return new CollectionConfiguration(objectStoreConfiguration);
+        return builder().readAsList(iprot).build();
     }
 
     public static CollectionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static CollectionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "object_store_configuration": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        objectStoreConfiguration = org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot, unknownFieldCallback);
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(objectStoreConfiguration);
-
-        return new CollectionConfiguration(objectStoreConfiguration);
+    public static CollectionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public CollectionConfiguration replaceObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
-        UncheckedValidator.validateObjectStoreConfiguration(objectStoreConfiguration);
+        Validator.validateObjectStoreConfiguration(objectStoreConfiguration);
         return new CollectionConfiguration(objectStoreConfiguration);
     }
 
@@ -453,9 +339,7 @@ public final class CollectionConfiguration implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
-
-        getObjectStoreConfiguration().writeAsStruct(oprot);
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -464,6 +348,11 @@ public final class CollectionConfiguration implements org.thryft.Struct {
         oprot.writeStructBegin("org.dressdiscover.api.models.configuration.CollectionConfiguration");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        getObjectStoreConfiguration().writeAsStruct(oprot);
     }
 
     @Override

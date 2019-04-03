@@ -13,12 +13,12 @@ public class ValidatingUserSettingsCommandService implements org.dressdiscover.a
     public final void putUserSettings(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.UserSettings userSettings) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserSettingsCommandService.putUserSettings: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserSettingsCommandService.putUserSettings: id is missing");
             }
         }
         {
             if (userSettings == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserSettingsCommandService.putUserSettings: userSettings is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.ValidatingUserSettingsCommandService.putUserSettings: userSettings is missing");
             }
         }
         delegate.putUserSettings(id, userSettings);

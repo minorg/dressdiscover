@@ -4,7 +4,7 @@ package org.dressdiscover.api.vocabularies.vra_core.rights;
  * VRA Core 4.0 rights element
  */
 public final class Rights implements org.dressdiscover.api.vocabularies.vra_core.Element {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, Rights> {
         public Builder() {
             text = null;
             type = null;
@@ -26,7 +26,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         }
 
         public Rights build() {
-            UncheckedValidator.validate(text, type, licenseVocabRef, notes, rightsHolder);
+            Validator.validate(text, type, licenseVocabRef, notes, rightsHolder);
 
             return _build(text, type, licenseVocabRef, notes, rightsHolder);
         }
@@ -51,47 +51,30 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
             return type;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                text = iprot.readString();
-                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.rights.RightsType.Factory.getInstance());
+                this.setText(iprot.readString());
+                this.setType(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.rights.RightsType.Factory.getInstance()));
                 if (__list.getSize() > 2) {
-                    licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot));
+                    this.setLicenseVocabRef(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot)));
                 }
                 if (__list.getSize() > 3) {
-                    notes = com.google.common.base.Optional.of(iprot.readString());
+                    this.setNotes(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 if (__list.getSize() > 4) {
-                    rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+                    this.setRightsHolder(com.google.common.base.Optional.of(iprot.readString()));
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -102,47 +85,47 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
                     switch (ifield.getName()) {
                     case "text": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            text = iprot.readString();
+                                this.setText(iprot.readString());
                         }
                         break;
                     }
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.rights.RightsType.Factory.getInstance());
+                                this.setType(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.rights.RightsType.Factory.getInstance()));
                         }
                         break;
                     }
                     case "license_vocab_ref": {
                         if (!ifield.hasId() || ifield.getId() == 5) {
-                            licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback));
+                                this.setLicenseVocabRef(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     case "notes": {
                         if (!ifield.hasId() || ifield.getId() == 4) {
-                            notes = com.google.common.base.Optional.of(iprot.readString());
+                                this.setNotes(com.google.common.base.Optional.of(iprot.readString()));
                         }
                         break;
                     }
                     case "rights_holder": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+                                this.setRightsHolder(com.google.common.base.Optional.of(iprot.readString()));
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -189,7 +172,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         }
 
         public Builder setLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef) {
-            UncheckedValidator.validateLicenseVocabRef(licenseVocabRef);
+            Validator.validateLicenseVocabRef(licenseVocabRef);
             this.licenseVocabRef = licenseVocabRef;
             return this;
         }
@@ -199,7 +182,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         }
 
         public Builder setNotes(final com.google.common.base.Optional<String> notes) {
-            UncheckedValidator.validateNotes(notes);
+            Validator.validateNotes(notes);
             this.notes = notes;
             return this;
         }
@@ -209,7 +192,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         }
 
         public Builder setRightsHolder(final com.google.common.base.Optional<String> rightsHolder) {
-            UncheckedValidator.validateRightsHolder(rightsHolder);
+            Validator.validateRightsHolder(rightsHolder);
             this.rightsHolder = rightsHolder;
             return this;
         }
@@ -219,13 +202,13 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         }
 
         public Builder setText(final String text) {
-            UncheckedValidator.validateText(text);
+            Validator.validateText(text);
             this.text = text;
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type) {
-            UncheckedValidator.validateType(type);
+            Validator.validateType(type);
             this.type = type;
             return this;
         }
@@ -289,17 +272,6 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Rights> {
         @Override
-        public Rights readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return Rights.readAs(iprot, type);
-        }
-
-        @Override
-        public Rights readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return Rights.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public Rights readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return Rights.readAsList(iprot);
         }
@@ -310,19 +282,18 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         }
 
         @Override
-        public Rights readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Rights readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return Rights.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)2, "text", org.thryft.protocol.Type.STRING),
-        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.rights.RightsType>() {}, true, (short)3, "type", org.thryft.protocol.Type.STRING),
-        LICENSE_VOCAB_REF("licenseVocabRef", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.VocabRef>() {}, false, (short)5, "license_vocab_ref", org.thryft.protocol.Type.STRUCT),
-        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, (short)4, "notes", org.thryft.protocol.Type.STRING),
-        RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, false, (short)1, "rights_holder", org.thryft.protocol.Type.STRING);
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)2, "text", "2:text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.rights.RightsType>() {}, true, (short)3, "type", "3:type", org.thryft.protocol.Type.STRING),
+        LICENSE_VOCAB_REF("licenseVocabRef", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.VocabRef>() {}, false, (short)5, "license_vocab_ref", "5:license_vocab_ref", org.thryft.protocol.Type.STRUCT),
+        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, (short)4, "notes", "4:notes", org.thryft.protocol.Type.STRING),
+        RIGHTS_HOLDER("rightsHolder", new com.google.common.reflect.TypeToken<String>() {}, false, (short)1, "rights_holder", "1:rights_holder", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -388,17 +359,13 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -411,60 +378,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) throws org.thryft.protocol.InputProtocolException {
-            validateText(text);
-            validateType(type);
-            validateLicenseVocabRef(licenseVocabRef);
-            validateNotes(notes);
-            validateRightsHolder(rightsHolder);
-        }
-
-        public static void validateText(final String text) throws org.thryft.protocol.InputProtocolException {
-            if (text == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text is null");
-            }
-            if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text: less than min length 1");
-            }
-        }
-
-        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type) throws org.thryft.protocol.InputProtocolException {
-            if (type == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: type is null");
-            }
-        }
-
-        public static void validateLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef) throws org.thryft.protocol.InputProtocolException {
-            if (licenseVocabRef == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LICENSE_VOCAB_REF, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: licenseVocabRef is null");
-            }
-        }
-
-        public static void validateNotes(final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
-            if (notes == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes is null");
-            }
-            if (notes.isPresent()) {
-                if (notes.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes: less than min length 1");
-                }
-            }
-        }
-
-        public static void validateRightsHolder(final com.google.common.base.Optional<String> rightsHolder) throws org.thryft.protocol.InputProtocolException {
-            if (rightsHolder == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDER, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder is null");
-            }
-            if (rightsHolder.isPresent()) {
-                if (rightsHolder.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDER, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder: less than min length 1");
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
             validateText(text);
             validateType(type);
@@ -475,43 +389,43 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
 
         public static void validateText(final String text) {
             if (text == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text is missing");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text: less than min length 1");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text: less than min length 1");
             }
         }
 
         public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type) {
             if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: type is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: type is missing");
             }
         }
 
         public static void validateLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef) {
             if (licenseVocabRef == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: licenseVocabRef is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: licenseVocabRef is missing");
             }
         }
 
         public static void validateNotes(final com.google.common.base.Optional<String> notes) {
             if (notes == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes is missing");
             }
             if (notes.isPresent()) {
                 if (notes.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes: less than min length 1");
                 }
             }
         }
 
         public static void validateRightsHolder(final com.google.common.base.Optional<String> rightsHolder) {
             if (rightsHolder == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder is missing");
             }
             if (rightsHolder.isPresent()) {
                 if (rightsHolder.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder: less than min length 1");
                 }
             }
         }
@@ -525,16 +439,29 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected Rights(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
+    public Rights(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type) {
+        this(text, type, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public Rights(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
+        Validator.validate(text, type, licenseVocabRef, notes, rightsHolder);
         this.text = text;
         this.type = type;
         this.licenseVocabRef = licenseVocabRef;
         this.notes = notes;
         this.rightsHolder = rightsHolder;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public Rights(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VocabRef licenseVocabRef, @javax.annotation.Nullable final String notes, @javax.annotation.Nullable final String rightsHolder) {
+        this(text, type, com.google.common.base.Optional.fromNullable(licenseVocabRef), com.google.common.base.Optional.fromNullable(notes), com.google.common.base.Optional.fromNullable(rightsHolder));
     }
 
     public static Builder builder() {
@@ -547,33 +474,6 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
 
     public static Builder builder(final com.google.common.base.Optional<Rights> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static Rights create(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type) {
-        UncheckedValidator.validate(text, type, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
-        return new Rights(text, type, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static Rights create(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VocabRef licenseVocabRef, @javax.annotation.Nullable final String notes, @javax.annotation.Nullable final String rightsHolder) {
-        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRefOptional = com.google.common.base.Optional.fromNullable(licenseVocabRef);
-        final com.google.common.base.Optional<String> notesOptional = com.google.common.base.Optional.fromNullable(notes);
-        final com.google.common.base.Optional<String> rightsHolderOptional = com.google.common.base.Optional.fromNullable(rightsHolder);
-        UncheckedValidator.validate(text, type, licenseVocabRefOptional, notesOptional, rightsHolderOptional);
-        return new Rights(text, type, licenseVocabRefOptional, notesOptional, rightsHolderOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static Rights create(final String text, final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef, final com.google.common.base.Optional<String> notes, final com.google.common.base.Optional<String> rightsHolder) {
-        UncheckedValidator.validate(text, type, licenseVocabRef, notes, rightsHolder);
-        return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
     }
 
     @Override
@@ -672,120 +572,20 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         return hashCode;
     }
 
-    public static Rights readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static Rights readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static Rights readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String text;
-        org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type;
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.<String> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.rights.RightsType.Factory.getInstance());
-            if (__list.getSize() > 2) {
-                licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 3) {
-                notes = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 4) {
-                rightsHolder = com.google.common.base.Optional.of(iprot.readString());
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(text, type, licenseVocabRef, notes, rightsHolder);
-
-        return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
+        return builder().readAsList(iprot).build();
     }
 
     public static Rights readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static Rights readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String text = null;
-        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
-        com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.<String> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "text": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        text = iprot.readString();
-                    }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.rights.RightsType.Factory.getInstance());
-                    }
-                    break;
-                }
-                case "license_vocab_ref": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                case "notes": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        notes = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "rights_holder": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        rightsHolder = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(text, type, licenseVocabRef, notes, rightsHolder);
-
-        return new Rights(text, type, licenseVocabRef, notes, rightsHolder);
+    public static Rights readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public Rights replaceLicenseVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> licenseVocabRef) {
-        UncheckedValidator.validateLicenseVocabRef(licenseVocabRef);
+        Validator.validateLicenseVocabRef(licenseVocabRef);
         return new Rights(this.text, this.type, licenseVocabRef, this.notes, this.rightsHolder);
     }
 
@@ -794,7 +594,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
     }
 
     public Rights replaceNotes(final com.google.common.base.Optional<String> notes) {
-        UncheckedValidator.validateNotes(notes);
+        Validator.validateNotes(notes);
         return new Rights(this.text, this.type, this.licenseVocabRef, notes, this.rightsHolder);
     }
 
@@ -803,7 +603,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
     }
 
     public Rights replaceRightsHolder(final com.google.common.base.Optional<String> rightsHolder) {
-        UncheckedValidator.validateRightsHolder(rightsHolder);
+        Validator.validateRightsHolder(rightsHolder);
         return new Rights(this.text, this.type, this.licenseVocabRef, this.notes, rightsHolder);
     }
 
@@ -812,12 +612,12 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
     }
 
     public Rights replaceText(final String text) {
-        UncheckedValidator.validateText(text);
+        Validator.validateText(text);
         return new Rights(text, this.type, this.licenseVocabRef, this.notes, this.rightsHolder);
     }
 
     public Rights replaceType(final org.dressdiscover.api.vocabularies.vra_core.rights.RightsType type) {
-        UncheckedValidator.validateType(type);
+        Validator.validateType(type);
         return new Rights(this.text, type, this.licenseVocabRef, this.notes, this.rightsHolder);
     }
 
@@ -829,29 +629,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
-
-        oprot.writeString(getText());
-
-        oprot.writeEnum(getType());
-
-        if (getLicenseVocabRef().isPresent()) {
-            getLicenseVocabRef().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getNotes().isPresent()) {
-            oprot.writeString(getNotes().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getRightsHolder().isPresent()) {
-            oprot.writeString(getRightsHolder().get());
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -860,6 +638,27 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
         oprot.writeStructBegin("org.dressdiscover.api.vocabularies.vra_core.rights.Rights");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getText());
+        oprot.writeEnum(getType());
+        if (getLicenseVocabRef().isPresent()) {
+            getLicenseVocabRef().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+        if (getNotes().isPresent()) {
+            oprot.writeString(getNotes().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getRightsHolder().isPresent()) {
+            oprot.writeString(getRightsHolder().get());
+        } else {
+            oprot.writeNull();
+        }
     }
 
     @Override

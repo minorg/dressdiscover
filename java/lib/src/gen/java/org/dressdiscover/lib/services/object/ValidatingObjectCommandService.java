@@ -13,7 +13,7 @@ public class ValidatingObjectCommandService implements org.dressdiscover.api.ser
     public final int deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (collectionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.deleteObjectsByCollectionId: collectionId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.deleteObjectsByCollectionId: collectionId is missing");
             }
         }
         return delegate.deleteObjectsByCollectionId(collectionId);
@@ -23,12 +23,12 @@ public class ValidatingObjectCommandService implements org.dressdiscover.api.ser
     public final void putObject(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObject: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObject: id is missing");
             }
         }
         {
             if (object == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObject: object is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObject: object is missing");
             }
         }
         delegate.putObject(id, object);
@@ -38,7 +38,7 @@ public class ValidatingObjectCommandService implements org.dressdiscover.api.ser
     public final void putObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (objects == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObjects: objects is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObjects: objects is missing");
             }
         }
         delegate.putObjects(objects);

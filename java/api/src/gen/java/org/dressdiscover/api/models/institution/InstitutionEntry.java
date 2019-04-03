@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.institution;
 
 public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.institution.Institution, org.dressdiscover.api.models.institution.InstitutionId> {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, InstitutionEntry> {
         public Builder() {
             id = null;
             model = null;
@@ -17,7 +17,7 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
         }
 
         public InstitutionEntry build() {
-            UncheckedValidator.validate(id, model);
+            Validator.validate(id, model);
 
             return _build(id, model);
         }
@@ -30,44 +30,27 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
             return model;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
                 try {
-                    id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                    this.setId(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                 } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                 } catch (final IllegalArgumentException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                 }
-                model = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot);
+                this.setModel(org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot));
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -78,7 +61,7 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                            this.setId(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         } catch (final IllegalArgumentException e) {
@@ -87,22 +70,22 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
                         break;
                     }
                     case "model": {
-                        model = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot, unknownFieldCallback);
+                        this.setModel(org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot, unknownFieldCallback));
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -128,7 +111,7 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
         }
 
         public Builder setId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-            UncheckedValidator.validateId(id);
+            Validator.validateId(id);
             this.id = id;
             return this;
         }
@@ -143,7 +126,7 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
         }
 
         public Builder setModel(final org.dressdiscover.api.models.institution.Institution model) {
-            UncheckedValidator.validateModel(model);
+            Validator.validateModel(model);
             this.model = model;
             return this;
         }
@@ -186,17 +169,6 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
 
     public final static class Factory implements org.thryft.CompoundType.Factory<InstitutionEntry> {
         @Override
-        public InstitutionEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return InstitutionEntry.readAs(iprot, type);
-        }
-
-        @Override
-        public InstitutionEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return InstitutionEntry.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public InstitutionEntry readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return InstitutionEntry.readAsList(iprot);
         }
@@ -207,16 +179,15 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
         }
 
         @Override
-        public InstitutionEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public InstitutionEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return InstitutionEntry.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING),
-        MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.Institution>() {}, true, (short)0, "model", org.thryft.protocol.Type.STRUCT);
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, (short)0, "id", "id", org.thryft.protocol.Type.STRING),
+        MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.Institution>() {}, true, (short)0, "model", "model", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -276,17 +247,13 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -299,26 +266,7 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution model) throws org.thryft.protocol.InputProtocolException {
-            validateId(id);
-            validateModel(model);
-        }
-
-        public static void validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
-            if (id == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.models.institution.InstitutionEntry: id is null");
-            }
-        }
-
-        public static void validateModel(final org.dressdiscover.api.models.institution.Institution model) throws org.thryft.protocol.InputProtocolException {
-            if (model == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MODEL, "org.dressdiscover.api.models.institution.InstitutionEntry: model is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution model) {
             validateId(id);
             validateModel(model);
@@ -326,13 +274,13 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
 
         public static void validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.InstitutionEntry: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.InstitutionEntry: id is missing");
             }
         }
 
         public static void validateModel(final org.dressdiscover.api.models.institution.Institution model) {
             if (model == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.InstitutionEntry: model is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.InstitutionEntry: model is missing");
             }
         }
     }
@@ -346,10 +294,9 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected InstitutionEntry(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution model) {
+    public InstitutionEntry(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution model) {
+        Validator.validate(id, model);
         this.id = id;
         this.model = model;
     }
@@ -364,14 +311,6 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
 
     public static Builder builder(final com.google.common.base.Optional<InstitutionEntry> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static InstitutionEntry create(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution model) {
-        UncheckedValidator.validate(id, model);
-        return new InstitutionEntry(id, model);
     }
 
     @Override
@@ -434,100 +373,25 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
         return hashCode;
     }
 
-    public static InstitutionEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static InstitutionEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static InstitutionEntry readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.institution.InstitutionId id;
-        org.dressdiscover.api.models.institution.Institution model;
-
-        try {
-            iprot.readListBegin();
-            try {
-                id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-            } catch (final IllegalArgumentException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-            }
-            model = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot);
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(id, model);
-
-        return new InstitutionEntry(id, model);
+        return builder().readAsList(iprot).build();
     }
 
     public static InstitutionEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static InstitutionEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id = null;
-        @javax.annotation.Nullable org.dressdiscover.api.models.institution.Institution model = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "id": {
-                    try {
-                        id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    }
-                    break;
-                }
-                case "model": {
-                    model = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot, unknownFieldCallback);
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(id, model);
-
-        return new InstitutionEntry(id, model);
+    public static InstitutionEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public InstitutionEntry replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-        UncheckedValidator.validateId(id);
+        Validator.validateId(id);
         return new InstitutionEntry(id, this.model);
     }
 
     public InstitutionEntry replaceModel(final org.dressdiscover.api.models.institution.Institution model) {
-        UncheckedValidator.validateModel(model);
+        Validator.validateModel(model);
         return new InstitutionEntry(this.id, model);
     }
 
@@ -539,11 +403,7 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-        oprot.writeString(getId().toString());
-
-        getModel().writeAsStruct(oprot);
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -552,6 +412,12 @@ public final class InstitutionEntry implements org.thryft.waf.api.models.ModelEn
         oprot.writeStructBegin("org.dressdiscover.api.models.institution.InstitutionEntry");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getId().toString());
+        getModel().writeAsStruct(oprot);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package org.dressdiscover.api.services.object;
 
 public final class GetObjectSummariesOptions implements org.thryft.Struct {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, GetObjectSummariesOptions> {
         public Builder() {
             from_ = com.google.common.base.Optional.<Integer> absent();
             includeFacets = com.google.common.base.Optional.<Boolean> absent();
@@ -21,7 +21,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public GetObjectSummariesOptions build() {
-            UncheckedValidator.validate(from_, includeFacets, size, sorts);
+            Validator.validate(from_, includeFacets, size, sorts);
 
             return _build(from_, includeFacets, size, sorts);
         }
@@ -42,42 +42,27 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
             return sorts;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
                     try {
-                        from_ = org.thryft.Optionals.of(iprot.readI32());
+                        this.setFrom_(org.thryft.Optionals.of(iprot.readI32()));
                     } catch (final NumberFormatException e) {
                     }
                 }
                 if (__list.getSize() > 1) {
-                    includeFacets = org.thryft.Optionals.of(iprot.readBool());
+                    this.setIncludeFacets(org.thryft.Optionals.of(iprot.readBool()));
                 }
                 if (__list.getSize() > 2) {
                     try {
-                        size = org.thryft.Optionals.of(iprot.readI32());
+                        this.setSize(org.thryft.Optionals.of(iprot.readI32()));
                     } catch (final NumberFormatException e) {
                     }
                 }
                 if (__list.getSize() > 3) {
                     try {
-                        sorts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>>() {
+                        this.setSorts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -92,23 +77,21 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
                                     throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
                             }
-                        }).apply(iprot));
+                        }).apply(iprot)));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SORTS, e.getCause());
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -119,25 +102,25 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "from_": {
                         try {
-                            from_ = org.thryft.Optionals.of(iprot.readI32());
+                            this.setFrom_(org.thryft.Optionals.of(iprot.readI32()));
                         } catch (final NumberFormatException e) {
                         }
                         break;
                     }
                     case "include_facets": {
-                        includeFacets = org.thryft.Optionals.of(iprot.readBool());
+                        this.setIncludeFacets(org.thryft.Optionals.of(iprot.readBool()));
                         break;
                     }
                     case "size": {
                         try {
-                            size = org.thryft.Optionals.of(iprot.readI32());
+                            this.setSize(org.thryft.Optionals.of(iprot.readI32()));
                         } catch (final NumberFormatException e) {
                         }
                         break;
                     }
                     case "sorts": {
                         try {
-                            sorts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>>() {
+                            this.setSorts(com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -152,25 +135,25 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
                                         throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
                                 }
-                            }).apply(iprot));
+                            }).apply(iprot)));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SORTS, e.getCause());
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -199,7 +182,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public Builder setFrom_(final com.google.common.base.Optional<Integer> from_) {
-            UncheckedValidator.validateFrom_(from_);
+            Validator.validateFrom_(from_);
             this.from_ = from_;
             return this;
         }
@@ -232,7 +215,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public Builder setIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
-            UncheckedValidator.validateIncludeFacets(includeFacets);
+            Validator.validateIncludeFacets(includeFacets);
             this.includeFacets = includeFacets;
             return this;
         }
@@ -246,7 +229,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public Builder setSize(final com.google.common.base.Optional<Integer> size) {
-            UncheckedValidator.validateSize(size);
+            Validator.validateSize(size);
             this.size = size;
             return this;
         }
@@ -260,7 +243,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         public Builder setSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-            UncheckedValidator.validateSorts(sorts);
+            Validator.validateSorts(sorts);
             this.sorts = sorts;
             return this;
         }
@@ -321,17 +304,6 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<GetObjectSummariesOptions> {
         @Override
-        public GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return GetObjectSummariesOptions.readAs(iprot, type);
-        }
-
-        @Override
-        public GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return GetObjectSummariesOptions.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public GetObjectSummariesOptions readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return GetObjectSummariesOptions.readAsList(iprot);
         }
@@ -342,18 +314,17 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         }
 
         @Override
-        public GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return GetObjectSummariesOptions.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        FROM_("from_", new com.google.common.reflect.TypeToken<Integer>() {}, false, (short)0, "from_", org.thryft.protocol.Type.I32),
-        INCLUDE_FACETS("includeFacets", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "include_facets", org.thryft.protocol.Type.BOOL),
-        SIZE("size", new com.google.common.reflect.TypeToken<Integer>() {}, false, (short)0, "size", org.thryft.protocol.Type.I32),
-        SORTS("sorts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>>() {}, false, (short)0, "sorts", org.thryft.protocol.Type.LIST);
+        FROM_("from_", new com.google.common.reflect.TypeToken<Integer>() {}, false, (short)0, "from_", "from_", org.thryft.protocol.Type.I32),
+        INCLUDE_FACETS("includeFacets", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "include_facets", "include_facets", org.thryft.protocol.Type.BOOL),
+        SIZE("size", new com.google.common.reflect.TypeToken<Integer>() {}, false, (short)0, "size", "size", org.thryft.protocol.Type.I32),
+        SORTS("sorts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>>() {}, false, (short)0, "sorts", "sorts", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -417,17 +388,13 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -440,50 +407,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final com.google.common.base.Optional<Integer> from_, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<Integer> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) throws org.thryft.protocol.InputProtocolException {
-            validateFrom_(from_);
-            validateIncludeFacets(includeFacets);
-            validateSize(size);
-            validateSorts(sorts);
-        }
-
-        public static void validateFrom_(final com.google.common.base.Optional<Integer> from_) throws org.thryft.protocol.InputProtocolException {
-            if (from_ == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FROM_, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: from_ is null");
-            }
-        }
-
-        public static void validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) throws org.thryft.protocol.InputProtocolException {
-            if (includeFacets == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_FACETS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets is null");
-            }
-            if (includeFacets.isPresent()) {
-                if (!includeFacets.get()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_FACETS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets: not true");
-                }
-            }
-        }
-
-        public static void validateSize(final com.google.common.base.Optional<Integer> size) throws org.thryft.protocol.InputProtocolException {
-            if (size == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SIZE, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: size is null");
-            }
-        }
-
-        public static void validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) throws org.thryft.protocol.InputProtocolException {
-            if (sorts == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SORTS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is null");
-            }
-            if (sorts.isPresent()) {
-                if (sorts.get().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SORTS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts: less than min length 1");
-                }
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final com.google.common.base.Optional<Integer> from_, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<Integer> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
             validateFrom_(from_);
             validateIncludeFacets(includeFacets);
@@ -493,34 +417,34 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
 
         public static void validateFrom_(final com.google.common.base.Optional<Integer> from_) {
             if (from_ == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: from_ is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: from_ is missing");
             }
         }
 
         public static void validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
             if (includeFacets == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets is missing");
             }
             if (includeFacets.isPresent()) {
                 if (!includeFacets.get()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets: not true");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets: not true");
                 }
             }
         }
 
         public static void validateSize(final com.google.common.base.Optional<Integer> size) {
             if (size == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: size is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: size is missing");
             }
         }
 
         public static void validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
             if (sorts == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is missing");
             }
             if (sorts.isPresent()) {
                 if (sorts.get().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts: less than min length 1");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts: less than min length 1");
                 }
             }
         }
@@ -546,14 +470,20 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected GetObjectSummariesOptions(final com.google.common.base.Optional<Integer> from_, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<Integer> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
+    public GetObjectSummariesOptions(final com.google.common.base.Optional<Integer> from_, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<Integer> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
+        Validator.validate(from_, includeFacets, size, sorts);
         this.from_ = from_;
         this.includeFacets = includeFacets;
         this.size = size;
         this.sorts = sorts;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public GetObjectSummariesOptions(@javax.annotation.Nullable final Integer from_, @javax.annotation.Nullable final Boolean includeFacets, @javax.annotation.Nullable final Integer size, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> sorts) {
+        this(org.thryft.Optionals.fromNullable(from_), org.thryft.Optionals.fromNullable(includeFacets), org.thryft.Optionals.fromNullable(size), com.google.common.base.Optional.fromNullable(sorts));
     }
 
     public static Builder builder() {
@@ -566,31 +496,6 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
 
     public static Builder builder(final com.google.common.base.Optional<GetObjectSummariesOptions> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    @Deprecated
-    public static GetObjectSummariesOptions create() {
-        return new GetObjectSummariesOptions();
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static GetObjectSummariesOptions create(@javax.annotation.Nullable final Integer from_, @javax.annotation.Nullable final Boolean includeFacets, @javax.annotation.Nullable final Integer size, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> sorts) {
-        final com.google.common.base.Optional<Integer> from_Optional = org.thryft.Optionals.fromNullable(from_);
-        final com.google.common.base.Optional<Boolean> includeFacetsOptional = org.thryft.Optionals.fromNullable(includeFacets);
-        final com.google.common.base.Optional<Integer> sizeOptional = org.thryft.Optionals.fromNullable(size);
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sortsOptional = com.google.common.base.Optional.fromNullable(sorts);
-        UncheckedValidator.validate(from_Optional, includeFacetsOptional, sizeOptional, sortsOptional);
-        return new GetObjectSummariesOptions(from_Optional, includeFacetsOptional, sizeOptional, sortsOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static GetObjectSummariesOptions create(final com.google.common.base.Optional<Integer> from_, final com.google.common.base.Optional<Boolean> includeFacets, final com.google.common.base.Optional<Integer> size, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-        UncheckedValidator.validate(from_, includeFacets, size, sorts);
-        return new GetObjectSummariesOptions(from_, includeFacets, size, sorts);
     }
 
     @Override
@@ -681,155 +586,20 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         return hashCode;
     }
 
-    public static GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static GetObjectSummariesOptions readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static GetObjectSummariesOptions readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<Integer> from_ = com.google.common.base.Optional.<Integer> absent();
-        com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<Integer> size = com.google.common.base.Optional.<Integer> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            if (__list.getSize() > 0) {
-                try {
-                    from_ = org.thryft.Optionals.of(iprot.readI32());
-                } catch (final NumberFormatException e) {
-                }
-            }
-            if (__list.getSize() > 1) {
-                includeFacets = org.thryft.Optionals.of(iprot.readBool());
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    size = org.thryft.Optionals.of(iprot.readI32());
-                } catch (final NumberFormatException e) {
-                }
-            }
-            if (__list.getSize() > 3) {
-                try {
-                    sorts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.services.object.ObjectSummarySort> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.services.object.ObjectSummarySort.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SORTS, e.getCause());
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(from_, includeFacets, size, sorts);
-
-        return new GetObjectSummariesOptions(from_, includeFacets, size, sorts);
+        return builder().readAsList(iprot).build();
     }
 
     public static GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<Integer> from_ = com.google.common.base.Optional.<Integer> absent();
-        com.google.common.base.Optional<Boolean> includeFacets = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<Integer> size = com.google.common.base.Optional.<Integer> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "from_": {
-                    try {
-                        from_ = org.thryft.Optionals.of(iprot.readI32());
-                    } catch (final NumberFormatException e) {
-                    }
-                    break;
-                }
-                case "include_facets": {
-                    includeFacets = org.thryft.Optionals.of(iprot.readBool());
-                    break;
-                }
-                case "size": {
-                    try {
-                        size = org.thryft.Optionals.of(iprot.readI32());
-                    } catch (final NumberFormatException e) {
-                    }
-                    break;
-                }
-                case "sorts": {
-                    try {
-                        sorts = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.services.object.ObjectSummarySort> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(org.dressdiscover.api.services.object.ObjectSummarySort.readAsStruct(iprot, unknownFieldCallback));
-                                    }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SORTS, e.getCause());
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(from_, includeFacets, size, sorts);
-
-        return new GetObjectSummariesOptions(from_, includeFacets, size, sorts);
+    public static GetObjectSummariesOptions readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public GetObjectSummariesOptions replaceFrom_(final com.google.common.base.Optional<Integer> from_) {
-        UncheckedValidator.validateFrom_(from_);
+        Validator.validateFrom_(from_);
         return new GetObjectSummariesOptions(from_, this.includeFacets, this.size, this.sorts);
     }
 
@@ -842,7 +612,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
-        UncheckedValidator.validateIncludeFacets(includeFacets);
+        Validator.validateIncludeFacets(includeFacets);
         return new GetObjectSummariesOptions(this.from_, includeFacets, this.size, this.sorts);
     }
 
@@ -855,7 +625,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceSize(final com.google.common.base.Optional<Integer> size) {
-        UncheckedValidator.validateSize(size);
+        Validator.validateSize(size);
         return new GetObjectSummariesOptions(this.from_, this.includeFacets, size, this.sorts);
     }
 
@@ -868,7 +638,7 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
     }
 
     public GetObjectSummariesOptions replaceSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
-        UncheckedValidator.validateSorts(sorts);
+        Validator.validateSorts(sorts);
         return new GetObjectSummariesOptions(this.from_, this.includeFacets, this.size, sorts);
     }
 
@@ -884,25 +654,34 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
+        writeFieldValues(oprot);
+        oprot.writeListEnd();
+    }
 
+    @Override
+    public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeStructBegin("org.dressdiscover.api.services.object.GetObjectSummariesOptions");
+        writeFields(oprot);
+        oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getFrom_().isPresent()) {
             oprot.writeI32(getFrom_().get());
         } else {
             oprot.writeNull();
         }
-
         if (getIncludeFacets().isPresent()) {
             oprot.writeBool(getIncludeFacets().get());
         } else {
             oprot.writeNull();
         }
-
         if (getSize().isPresent()) {
             oprot.writeI32(getSize().get());
         } else {
             oprot.writeNull();
         }
-
         if (getSorts().isPresent()) {
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getSorts().get().size());
             for (final org.dressdiscover.api.services.object.ObjectSummarySort _iter0 : getSorts().get()) {
@@ -912,15 +691,6 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
         } else {
             oprot.writeNull();
         }
-
-        oprot.writeListEnd();
-    }
-
-    @Override
-    public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeStructBegin("org.dressdiscover.api.services.object.GetObjectSummariesOptions");
-        writeFields(oprot);
-        oprot.writeStructEnd();
     }
 
     @Override

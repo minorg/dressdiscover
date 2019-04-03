@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.user;
 
 public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.user.User, org.dressdiscover.api.models.user.UserId> {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, UserEntry> {
         public Builder() {
             id = null;
             model = null;
@@ -17,7 +17,7 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
         }
 
         public UserEntry build() {
-            UncheckedValidator.validate(id, model);
+            Validator.validate(id, model);
 
             return _build(id, model);
         }
@@ -30,44 +30,27 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
             return model;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
                 try {
-                    id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    this.setId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                 } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                 } catch (final IllegalArgumentException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                 }
-                model = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
+                this.setModel(org.dressdiscover.api.models.user.User.readAsStruct(iprot));
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -78,7 +61,7 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
                     switch (ifield.getName()) {
                     case "id": {
                         try {
-                            id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            this.setId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         } catch (final IllegalArgumentException e) {
@@ -87,22 +70,22 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
                         break;
                     }
                     case "model": {
-                        model = org.dressdiscover.api.models.user.User.readAsStruct(iprot, unknownFieldCallback);
+                        this.setModel(org.dressdiscover.api.models.user.User.readAsStruct(iprot, unknownFieldCallback));
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -128,7 +111,7 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
         }
 
         public Builder setId(final org.dressdiscover.api.models.user.UserId id) {
-            UncheckedValidator.validateId(id);
+            Validator.validateId(id);
             this.id = id;
             return this;
         }
@@ -143,7 +126,7 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
         }
 
         public Builder setModel(final org.dressdiscover.api.models.user.User model) {
-            UncheckedValidator.validateModel(model);
+            Validator.validateModel(model);
             this.model = model;
             return this;
         }
@@ -186,17 +169,6 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
 
     public final static class Factory implements org.thryft.CompoundType.Factory<UserEntry> {
         @Override
-        public UserEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return UserEntry.readAs(iprot, type);
-        }
-
-        @Override
-        public UserEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return UserEntry.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public UserEntry readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return UserEntry.readAsList(iprot);
         }
@@ -207,16 +179,15 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
         }
 
         @Override
-        public UserEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public UserEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return UserEntry.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING),
-        MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.User>() {}, true, (short)0, "model", org.thryft.protocol.Type.STRUCT);
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "id", "id", org.thryft.protocol.Type.STRING),
+        MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.User>() {}, true, (short)0, "model", "model", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -276,17 +247,13 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -299,26 +266,7 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) throws org.thryft.protocol.InputProtocolException {
-            validateId(id);
-            validateModel(model);
-        }
-
-        public static void validateId(final org.dressdiscover.api.models.user.UserId id) throws org.thryft.protocol.InputProtocolException {
-            if (id == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.models.user.UserEntry: id is null");
-            }
-        }
-
-        public static void validateModel(final org.dressdiscover.api.models.user.User model) throws org.thryft.protocol.InputProtocolException {
-            if (model == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MODEL, "org.dressdiscover.api.models.user.UserEntry: model is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) {
             validateId(id);
             validateModel(model);
@@ -326,13 +274,13 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
 
         public static void validateId(final org.dressdiscover.api.models.user.UserId id) {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserEntry: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserEntry: id is missing");
             }
         }
 
         public static void validateModel(final org.dressdiscover.api.models.user.User model) {
             if (model == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserEntry: model is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.user.UserEntry: model is missing");
             }
         }
     }
@@ -346,10 +294,9 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
 
     /**
      * Total constructor
-     *
-     * All fields should have been validated before calling this.
      */
-    protected UserEntry(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) {
+    public UserEntry(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) {
+        Validator.validate(id, model);
         this.id = id;
         this.model = model;
     }
@@ -364,14 +311,6 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
 
     public static Builder builder(final com.google.common.base.Optional<UserEntry> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static UserEntry create(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User model) {
-        UncheckedValidator.validate(id, model);
-        return new UserEntry(id, model);
     }
 
     @Override
@@ -434,100 +373,25 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
         return hashCode;
     }
 
-    public static UserEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static UserEntry readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static UserEntry readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.user.UserId id;
-        org.dressdiscover.api.models.user.User model;
-
-        try {
-            iprot.readListBegin();
-            try {
-                id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-            } catch (final IllegalArgumentException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-            }
-            model = org.dressdiscover.api.models.user.User.readAsStruct(iprot);
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(id, model);
-
-        return new UserEntry(id, model);
+        return builder().readAsList(iprot).build();
     }
 
     public static UserEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static UserEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.models.user.UserId id = null;
-        @javax.annotation.Nullable org.dressdiscover.api.models.user.User model = null;
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "id": {
-                    try {
-                        id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    }
-                    break;
-                }
-                case "model": {
-                    model = org.dressdiscover.api.models.user.User.readAsStruct(iprot, unknownFieldCallback);
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(id, model);
-
-        return new UserEntry(id, model);
+    public static UserEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public UserEntry replaceId(final org.dressdiscover.api.models.user.UserId id) {
-        UncheckedValidator.validateId(id);
+        Validator.validateId(id);
         return new UserEntry(id, this.model);
     }
 
     public UserEntry replaceModel(final org.dressdiscover.api.models.user.User model) {
-        UncheckedValidator.validateModel(model);
+        Validator.validateModel(model);
         return new UserEntry(this.id, model);
     }
 
@@ -539,11 +403,7 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-        oprot.writeString(getId().toString());
-
-        getModel().writeAsStruct(oprot);
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -552,6 +412,12 @@ public final class UserEntry implements org.thryft.waf.api.models.ModelEntry<org
         oprot.writeStructBegin("org.dressdiscover.api.models.user.UserEntry");
         writeFields(oprot);
         oprot.writeStructEnd();
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getId().toString());
+        getModel().writeAsStruct(oprot);
     }
 
     @Override

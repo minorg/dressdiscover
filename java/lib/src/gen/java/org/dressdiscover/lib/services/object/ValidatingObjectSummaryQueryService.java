@@ -13,18 +13,18 @@ public class ValidatingObjectSummaryQueryService implements org.dressdiscover.ap
     public final org.dressdiscover.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws org.dressdiscover.api.services.IoException {
         {
             if (options == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: options is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: options is missing");
             }
         }
         {
             if (query == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: query is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: query is missing");
             }
         }
         final org.dressdiscover.api.services.object.GetObjectSummariesResult __returnValue = delegate.getObjectSummaries(options, query);
         {
             if (__returnValue == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: __returnValue is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: __returnValue is missing");
             }
         }
         return __returnValue;

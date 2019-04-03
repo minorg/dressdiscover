@@ -13,7 +13,7 @@ public class ValidatingCollectionCommandService implements org.dressdiscover.api
     public final void deleteCollectionById(final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.collection.ValidatingCollectionCommandService.deleteCollectionById: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.collection.ValidatingCollectionCommandService.deleteCollectionById: id is missing");
             }
         }
         delegate.deleteCollectionById(id);
@@ -23,7 +23,7 @@ public class ValidatingCollectionCommandService implements org.dressdiscover.api
     public final void deleteCollectionsByInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (institutionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.collection.ValidatingCollectionCommandService.deleteCollectionsByInstitutionId: institutionId is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.collection.ValidatingCollectionCommandService.deleteCollectionsByInstitutionId: institutionId is missing");
             }
         }
         delegate.deleteCollectionsByInstitutionId(institutionId);
@@ -33,12 +33,12 @@ public class ValidatingCollectionCommandService implements org.dressdiscover.api
     public final void putCollection(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         {
             if (collection == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.collection.ValidatingCollectionCommandService.putCollection: collection is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.collection.ValidatingCollectionCommandService.putCollection: collection is missing");
             }
         }
         {
             if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.collection.ValidatingCollectionCommandService.putCollection: id is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.collection.ValidatingCollectionCommandService.putCollection: id is missing");
             }
         }
         delegate.putCollection(collection, id);

@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.institution;
 
 public final class Institution implements org.thryft.waf.api.models.Model {
-    public final static class Builder {
+    public final static class Builder implements org.thryft.CompoundType.Builder<Builder, Institution> {
         public Builder() {
             title = null;
             dataRights = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent();
@@ -25,7 +25,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         }
 
         public Institution build() {
-            UncheckedValidator.validate(title, dataRights, external, hidden, locations, url);
+            Validator.validate(title, dataRights, external, hidden, locations, url);
 
             return _build(title, dataRights, external, hidden, locations, url);
         }
@@ -54,55 +54,38 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             return url;
         }
 
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            switch (type) {
-            case LIST:
-                return readAsList(iprot);
-            case STRUCT:
-                return readAsStruct(iprot, unknownFieldCallback);
-            default:
-                throw new IllegalArgumentException("cannot read as " + type);
-            }
-        }
-
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                title = iprot.readString();
+                this.setTitle(iprot.readString());
                 if (__list.getSize() > 1) {
-                    dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
+                    this.setDataRights(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot)));
                 }
                 if (__list.getSize() > 2) {
-                    external = org.thryft.Optionals.of(iprot.readBool());
+                    this.setExternal(org.thryft.Optionals.of(iprot.readBool()));
                 }
                 if (__list.getSize() > 3) {
-                    hidden = org.thryft.Optionals.of(iprot.readBool());
+                    this.setHidden(org.thryft.Optionals.of(iprot.readBool()));
                 }
                 if (__list.getSize() > 4) {
-                    locations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot));
+                    this.setLocations(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot)));
                 }
                 if (__list.getSize() > 5) {
                     try {
-                        url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                        this.setUrl(com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString())));
                     } catch (final java.lang.IllegalArgumentException e) {
                     }
                 }
                 iprot.readListEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readStructBegin();
                 while (true) {
@@ -113,56 +96,56 @@ public final class Institution implements org.thryft.waf.api.models.Model {
                     switch (ifield.getName()) {
                     case "title": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            title = iprot.readString();
+                                this.setTitle(iprot.readString());
                         }
                         break;
                     }
                     case "data_rights": {
                         if (!ifield.hasId() || ifield.getId() == 5) {
-                            dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback));
+                                this.setDataRights(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     case "external": {
                         if (!ifield.hasId() || ifield.getId() == 7) {
-                            external = org.thryft.Optionals.of(iprot.readBool());
+                                this.setExternal(org.thryft.Optionals.of(iprot.readBool()));
                         }
                         break;
                     }
                     case "hidden": {
                         if (!ifield.hasId() || ifield.getId() == 6) {
-                            hidden = org.thryft.Optionals.of(iprot.readBool());
+                                this.setHidden(org.thryft.Optionals.of(iprot.readBool()));
                         }
                         break;
                     }
                     case "locations": {
                         if (!ifield.hasId() || ifield.getId() == 8) {
-                            locations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot, unknownFieldCallback));
+                                this.setLocations(com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot, unknownFieldCallback)));
                         }
                         break;
                     }
                     case "url": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            try {
-                                url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                            } catch (final java.lang.IllegalArgumentException e) {
-                            }
+                                try {
+                                    this.setUrl(com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString())));
+                                } catch (final java.lang.IllegalArgumentException e) {
+                                }
                         }
                         break;
                     }
                     default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
+                        unknownFieldCallback.apply(ifield);
                         break;
                     }
                     iprot.readFieldEnd();
                 }
                 iprot.readStructEnd();
+                return this;
+            } catch (final org.thryft.ThryftValidationException e) {
+                throw new org.thryft.protocol.InputProtocolException(e);
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
             }
-            return this;
         }
 
         public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -192,7 +175,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setDataRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights) {
-            UncheckedValidator.validateDataRights(dataRights);
+            Validator.validateDataRights(dataRights);
             this.dataRights = dataRights;
             return this;
         }
@@ -202,7 +185,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setExternal(final com.google.common.base.Optional<Boolean> external) {
-            UncheckedValidator.validateExternal(external);
+            Validator.validateExternal(external);
             this.external = external;
             return this;
         }
@@ -216,7 +199,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setHidden(final com.google.common.base.Optional<Boolean> hidden) {
-            UncheckedValidator.validateHidden(hidden);
+            Validator.validateHidden(hidden);
             this.hidden = hidden;
             return this;
         }
@@ -253,7 +236,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) {
-            UncheckedValidator.validateLocations(locations);
+            Validator.validateLocations(locations);
             this.locations = locations;
             return this;
         }
@@ -263,13 +246,13 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         }
 
         public Builder setTitle(final String title) {
-            UncheckedValidator.validateTitle(title);
+            Validator.validateTitle(title);
             this.title = title;
             return this;
         }
 
         public Builder setUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-            UncheckedValidator.validateUrl(url);
+            Validator.validateUrl(url);
             this.url = url;
             return this;
         }
@@ -344,17 +327,6 @@ public final class Institution implements org.thryft.waf.api.models.Model {
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Institution> {
         @Override
-        public Institution readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-            return Institution.readAs(iprot, type);
-        }
-
-        @Override
-        public Institution readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            return Institution.readAs(iprot, type, unknownFieldCallback);
-        }
-
-        @Override
         public Institution readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             return Institution.readAsList(iprot);
         }
@@ -365,20 +337,19 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         }
 
         @Override
-        public Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        public Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
             return Institution.readAsStruct(iprot, unknownFieldCallback);
         }
     }
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "title", org.thryft.protocol.Type.STRING),
-        DATA_RIGHTS("dataRights", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>() {}, false, (short)5, "data_rights", org.thryft.protocol.Type.STRUCT),
-        EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)7, "external", org.thryft.protocol.Type.BOOL),
-        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)6, "hidden", org.thryft.protocol.Type.BOOL),
-        LOCATIONS("locations", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>() {}, false, (short)8, "locations", org.thryft.protocol.Type.STRUCT),
-        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, (short)3, "url", org.thryft.protocol.Type.STRING);
+        TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "title", "1:title", org.thryft.protocol.Type.STRING),
+        DATA_RIGHTS("dataRights", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>() {}, false, (short)5, "data_rights", "5:data_rights", org.thryft.protocol.Type.STRUCT),
+        EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)7, "external", "7:external", org.thryft.protocol.Type.BOOL),
+        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)6, "hidden", "6:hidden", org.thryft.protocol.Type.BOOL),
+        LOCATIONS("locations", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>() {}, false, (short)8, "locations", "8:locations", org.thryft.protocol.Type.STRUCT),
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, (short)3, "url", "3:url", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -446,17 +417,13 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
             this.thriftId = thriftId;
             this.thriftName = thriftName;
-            if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-            } else {
-                this.thriftProtocolKey = thriftName;
-            }
+            this.thriftProtocolKey = thriftProtocolKey;
             this.thriftProtocolType = thriftProtocolType;
         }
 
@@ -469,64 +436,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public final static class ReadValidator {
-        public static void validate(final String title, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url) throws org.thryft.protocol.InputProtocolException {
-            validateTitle(title);
-            validateDataRights(dataRights);
-            validateExternal(external);
-            validateHidden(hidden);
-            validateLocations(locations);
-            validateUrl(url);
-        }
-
-        public static void validateTitle(final String title) throws org.thryft.protocol.InputProtocolException {
-            if (title == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.institution.Institution: title is null");
-            }
-        }
-
-        public static void validateDataRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights) throws org.thryft.protocol.InputProtocolException {
-            if (dataRights == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATA_RIGHTS, "org.dressdiscover.api.models.institution.Institution: dataRights is null");
-            }
-        }
-
-        public static void validateExternal(final com.google.common.base.Optional<Boolean> external) throws org.thryft.protocol.InputProtocolException {
-            if (external == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.institution.Institution: external is null");
-            }
-            if (external.isPresent()) {
-                if (!external.get()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.institution.Institution: external: not true");
-                }
-            }
-        }
-
-        public static void validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws org.thryft.protocol.InputProtocolException {
-            if (hidden == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.institution.Institution: hidden is null");
-            }
-            if (hidden.isPresent()) {
-                if (!hidden.get()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.institution.Institution: hidden: not true");
-                }
-            }
-        }
-
-        public static void validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) throws org.thryft.protocol.InputProtocolException {
-            if (locations == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATIONS, "org.dressdiscover.api.models.institution.Institution: locations is null");
-            }
-        }
-
-        public static void validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws org.thryft.protocol.InputProtocolException {
-            if (url == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URL, "org.dressdiscover.api.models.institution.Institution: url is null");
-            }
-        }
-    }
-
-    public final static class UncheckedValidator {
+    public final static class Validator {
         public static void validate(final String title, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
             validateTitle(title);
             validateDataRights(dataRights);
@@ -538,47 +448,47 @@ public final class Institution implements org.thryft.waf.api.models.Model {
 
         public static void validateTitle(final String title) {
             if (title == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: title is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.Institution: title is missing");
             }
         }
 
         public static void validateDataRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights) {
             if (dataRights == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: dataRights is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.Institution: dataRights is missing");
             }
         }
 
         public static void validateExternal(final com.google.common.base.Optional<Boolean> external) {
             if (external == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: external is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.Institution: external is missing");
             }
             if (external.isPresent()) {
                 if (!external.get()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.institution.Institution: external: not true");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.Institution: external: not true");
                 }
             }
         }
 
         public static void validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
             if (hidden == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: hidden is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.Institution: hidden is missing");
             }
             if (hidden.isPresent()) {
                 if (!hidden.get()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.institution.Institution: hidden: not true");
+                    throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.Institution: hidden: not true");
                 }
             }
         }
 
         public static void validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) {
             if (locations == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: locations is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.Institution: locations is missing");
             }
         }
 
         public static void validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
             if (url == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: url is null");
+                throw new org.thryft.ThryftValidationException("org.dressdiscover.api.models.institution.Institution: url is missing");
             }
         }
     }
@@ -591,17 +501,30 @@ public final class Institution implements org.thryft.waf.api.models.Model {
     }
 
     /**
-     * Total constructor
-     *
-     * All fields should have been validated before calling this.
+     * Required constructor
      */
-    protected Institution(final String title, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+    public Institution(final String title) {
+        this(title, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
+    }
+
+    /**
+     * Total constructor
+     */
+    public Institution(final String title, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+        Validator.validate(title, dataRights, external, hidden, locations, url);
         this.title = title;
         this.dataRights = dataRights;
         this.external = external;
         this.hidden = hidden;
         this.locations = locations;
         this.url = url;
+    }
+
+    /**
+     * Total Nullable constructor
+     */
+    public Institution(final String title, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet dataRights, @javax.annotation.Nullable final Boolean external, @javax.annotation.Nullable final Boolean hidden, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations, @javax.annotation.Nullable final org.thryft.native_.Url url) {
+        this(title, com.google.common.base.Optional.fromNullable(dataRights), org.thryft.Optionals.fromNullable(external), org.thryft.Optionals.fromNullable(hidden), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(url));
     }
 
     public static Builder builder() {
@@ -614,35 +537,6 @@ public final class Institution implements org.thryft.waf.api.models.Model {
 
     public static Builder builder(final com.google.common.base.Optional<Institution> other) {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
-    }
-
-    /**
-     * Required factory method
-     */
-    public static Institution create(final String title) {
-        UncheckedValidator.validate(title, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
-        return new Institution(title, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static Institution create(final String title, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet dataRights, @javax.annotation.Nullable final Boolean external, @javax.annotation.Nullable final Boolean hidden, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations, @javax.annotation.Nullable final org.thryft.native_.Url url) {
-        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRightsOptional = com.google.common.base.Optional.fromNullable(dataRights);
-        final com.google.common.base.Optional<Boolean> externalOptional = org.thryft.Optionals.fromNullable(external);
-        final com.google.common.base.Optional<Boolean> hiddenOptional = org.thryft.Optionals.fromNullable(hidden);
-        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locationsOptional = com.google.common.base.Optional.fromNullable(locations);
-        final com.google.common.base.Optional<org.thryft.native_.Url> urlOptional = com.google.common.base.Optional.fromNullable(url);
-        UncheckedValidator.validate(title, dataRightsOptional, externalOptional, hiddenOptional, locationsOptional, urlOptional);
-        return new Institution(title, dataRightsOptional, externalOptional, hiddenOptional, locationsOptional, urlOptional);
-    }
-
-    /**
-     * Optional factory method
-     */
-    public static Institution create(final String title, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        UncheckedValidator.validate(title, dataRights, external, hidden, locations, url);
-        return new Institution(title, dataRights, external, hidden, locations, url);
     }
 
     @Override
@@ -755,139 +649,20 @@ public final class Institution implements org.thryft.waf.api.models.Model {
         return hashCode;
     }
 
-    public static Institution readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-        return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static Institution readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        switch (type) {
-        case LIST:
-            return readAsList(iprot);
-        case STRUCT:
-            return readAsStruct(iprot, unknownFieldCallback);
-        default:
-            throw new IllegalArgumentException("cannot read as " + type);
-        }
-    }
-
     public static Institution readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String title;
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent();
-        com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
-
-        try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            title = iprot.readString();
-            if (__list.getSize() > 1) {
-                dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 2) {
-                external = org.thryft.Optionals.of(iprot.readBool());
-            }
-            if (__list.getSize() > 3) {
-                hidden = org.thryft.Optionals.of(iprot.readBool());
-            }
-            if (__list.getSize() > 4) {
-                locations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 5) {
-                try {
-                    url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
-                }
-            }
-            iprot.readListEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(title, dataRights, external, hidden, locations, url);
-
-        return new Institution(title, dataRights, external, hidden, locations, url);
+        return builder().readAsList(iprot).build();
     }
 
     public static Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
     }
 
-    public static Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable String title = null;
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent();
-        com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent();
-        com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
-
-        try {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "title": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        title = iprot.readString();
-                    }
-                    break;
-                }
-                case "data_rights": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                case "external": {
-                    if (!ifield.hasId() || ifield.getId() == 7) {
-                        external = org.thryft.Optionals.of(iprot.readBool());
-                    }
-                    break;
-                }
-                case "hidden": {
-                    if (!ifield.hasId() || ifield.getId() == 6) {
-                        hidden = org.thryft.Optionals.of(iprot.readBool());
-                    }
-                    break;
-                }
-                case "locations": {
-                    if (!ifield.hasId() || ifield.getId() == 8) {
-                        locations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot, unknownFieldCallback));
-                    }
-                    break;
-                }
-                case "url": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
-                        }
-                    }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
-            }
-            iprot.readStructEnd();
-        } catch (final RuntimeException e) {
-            throw new IllegalStateException(e);
-        }
-
-        ReadValidator.validate(title, dataRights, external, hidden, locations, url);
-
-        return new Institution(title, dataRights, external, hidden, locations, url);
+    public static Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        return builder().readAsStruct(iprot, unknownFieldCallback).build();
     }
 
     public Institution replaceDataRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights) {
-        UncheckedValidator.validateDataRights(dataRights);
+        Validator.validateDataRights(dataRights);
         return new Institution(this.title, dataRights, this.external, this.hidden, this.locations, this.url);
     }
 
@@ -896,7 +671,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
     }
 
     public Institution replaceExternal(final com.google.common.base.Optional<Boolean> external) {
-        UncheckedValidator.validateExternal(external);
+        Validator.validateExternal(external);
         return new Institution(this.title, this.dataRights, external, this.hidden, this.locations, this.url);
     }
 
@@ -909,7 +684,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
     }
 
     public Institution replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        UncheckedValidator.validateHidden(hidden);
+        Validator.validateHidden(hidden);
         return new Institution(this.title, this.dataRights, this.external, hidden, this.locations, this.url);
     }
 
@@ -922,7 +697,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
     }
 
     public Institution replaceLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) {
-        UncheckedValidator.validateLocations(locations);
+        Validator.validateLocations(locations);
         return new Institution(this.title, this.dataRights, this.external, this.hidden, locations, this.url);
     }
 
@@ -931,12 +706,12 @@ public final class Institution implements org.thryft.waf.api.models.Model {
     }
 
     public Institution replaceTitle(final String title) {
-        UncheckedValidator.validateTitle(title);
+        Validator.validateTitle(title);
         return new Institution(title, this.dataRights, this.external, this.hidden, this.locations, this.url);
     }
 
     public Institution replaceUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        UncheckedValidator.validateUrl(url);
+        Validator.validateUrl(url);
         return new Institution(this.title, this.dataRights, this.external, this.hidden, this.locations, url);
     }
 
@@ -952,39 +727,7 @@ public final class Institution implements org.thryft.waf.api.models.Model {
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 6);
-
-        oprot.writeString(getTitle());
-
-        if (getDataRights().isPresent()) {
-            getDataRights().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getExternal().isPresent()) {
-            oprot.writeBool(getExternal().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getHidden().isPresent()) {
-            oprot.writeBool(getHidden().get());
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getLocations().isPresent()) {
-            getLocations().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getUrl().isPresent()) {
-            oprot.writeString(getUrl().get().toString());
-        } else {
-            oprot.writeNull();
-        }
-
+        writeFieldValues(oprot);
         oprot.writeListEnd();
     }
 
@@ -1008,6 +751,36 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             oprot.writeFieldBegin(FieldMetadata.EXTERNAL);
             oprot.writeBool(getExternal().get());
             oprot.writeFieldEnd();
+        }
+    }
+
+    @Override
+    public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeString(getTitle());
+        if (getDataRights().isPresent()) {
+            getDataRights().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+        if (getExternal().isPresent()) {
+            oprot.writeBool(getExternal().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getHidden().isPresent()) {
+            oprot.writeBool(getHidden().get());
+        } else {
+            oprot.writeNull();
+        }
+        if (getLocations().isPresent()) {
+            getLocations().get().writeAsStruct(oprot);
+        } else {
+            oprot.writeNull();
+        }
+        if (getUrl().isPresent()) {
+            oprot.writeString(getUrl().get().toString());
+        } else {
+            oprot.writeNull();
         }
     }
 

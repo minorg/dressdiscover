@@ -2,120 +2,35 @@ package org.dressdiscover.api.services.user;
 
 @com.google.inject.Singleton
 @SuppressWarnings({ "serial", "unused" })
-public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
+public class UserSettingsCommandServiceJsonRpcServlet extends org.thryft.waf.server.controllers.AbstractJsonRpcServlet {
     @com.google.inject.Inject
     public UserSettingsCommandServiceJsonRpcServlet(final org.dressdiscover.api.services.user.UserSettingsCommandService service) {
         this.service = service;
     }
 
     @Override
-    protected void doPost(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse) throws java.io.IOException, javax.servlet.ServletException {
-        final String httpServletRequestBody;
-        try (final java.io.Reader httpServletRequestBodyReader = httpServletRequest.getReader()) {
-            final StringBuilder httpServletRequestBodyBuilder = new StringBuilder();
-            final char[] httpServletRequestBodyBuffer = new char[4096];
-            int httpServletRequestBodyBufferReadRet;
-            while ((httpServletRequestBodyBufferReadRet = httpServletRequestBodyReader.read(httpServletRequestBodyBuffer)) != -1) {
-                httpServletRequestBodyBuilder.append(httpServletRequestBodyBuffer, 0, httpServletRequestBodyBufferReadRet);
-            }
-            httpServletRequestBody = httpServletRequestBodyBuilder.toString();
-        }
-
-        org.thryft.protocol.MessageBegin messageBegin = null;
-        try {
-            final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot;
-            try {
-                iprot = new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonInputProtocol(httpServletRequestBody));
-                messageBegin = iprot.readMessageBegin();
-            } catch (final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException e) {
-                throw e;
-            } catch (final org.thryft.protocol.InputProtocolException e) {
-                throw new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException(e, -32600);
-            }
-            if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
-                throw new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException(-32600, "expected request");
-            }
-            if (messageBegin.getName().equals("put_user_settings")) {
-                doPostPutUserSettings(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else {
-                __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
-                return;
-            }
-        } catch (final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e), messageBegin != null ? messageBegin.getId() : null);
-            return;
+    protected final org.thryft.Struct _dispatch(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final String methodName) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        switch (methodName) {
+        case "put_user_settings": return __dispatchPutUserSettings(iprot);
+        default:
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", methodName));
         }
     }
 
-    private void __doPostError(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse jsonRpcErrorResponse, @javax.annotation.Nullable final Object jsonRpcRequestId) throws java.io.IOException {
-        final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+    private Messages.PutUserSettingsResponse __dispatchPutUserSettings(final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot) throws org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse {
+        final Messages.PutUserSettingsRequest serviceRequest = _readRequest(iprot, Messages.PutUserSettingsRequest.Factory.INSTANCE);
         try {
-            final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-            oprot.writeMessageBegin("", org.thryft.protocol.MessageType.EXCEPTION, jsonRpcRequestId);
-            jsonRpcErrorResponse.writeAsStruct(oprot);
-            oprot.writeMessageEnd();
-            oprot.flush();
-        } catch (final org.thryft.protocol.OutputProtocolException e) {
-            logger.error("error serializing service error response: ", e);
-            throw new IllegalStateException(e);
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBodyWriter.toString());
-    }
-
-    private static void __doPostResponse(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final String httpServletResponseBody) throws java.io.IOException {
-        httpServletResponse.setContentType("application/json; charset=utf-8");
-
-        try (final java.io.OutputStream httpServletResponseOutputStream = httpServletResponse.getOutputStream()) {
-            httpServletResponseOutputStream.write(httpServletResponseBody.getBytes("UTF-8"));
+            service.putUserSettings(serviceRequest.getId(), serviceRequest.getUserSettings()); return Messages.PutUserSettingsResponse.INSTANCE;
+        } catch (final org.dressdiscover.api.services.IoException | org.dressdiscover.api.services.user.NoSuchUserException e) {
+            throw new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e);
         }
     }
 
-    public void doPostPutUserSettings(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final Messages.PutUserSettingsRequest serviceRequest;
-        try {
-            serviceRequest = Messages.PutUserSettingsRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
-        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
-            logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
-            return;
-        }
-
-        try {
-            service.putUserSettings(serviceRequest.getId(), serviceRequest.getUserSettings());
-        } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.user.NoSuchUserException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeStructBegin("response");
-                oprot.writeStructEnd();
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserSettingsCommandServiceJsonRpcServlet.class);
-    private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { @Override public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
     private final org.dressdiscover.api.services.user.UserSettingsCommandService service;
 
     private final static class Messages {
         public final static class PutUserSettingsRequest implements org.thryft.Struct {
-            public final static class Builder {
+            public final static class Builder implements org.thryft.CompoundType.Builder<Builder, PutUserSettingsRequest> {
                 public Builder() {
                     id = null;
                     userSettings = null;
@@ -131,7 +46,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                 }
 
                 public PutUserSettingsRequest build() {
-                    UncheckedValidator.validate(id, userSettings);
+                    Validator.validate(id, userSettings);
 
                     return _build(id, userSettings);
                 }
@@ -144,44 +59,27 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                     return userSettings;
                 }
 
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readListBegin();
                         try {
-                            id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                            this.setId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         }
-                        userSettings = org.dressdiscover.api.models.user.UserSettings.readAsStruct(iprot);
+                        this.setUserSettings(org.dressdiscover.api.models.user.UserSettings.readAsStruct(iprot));
                         iprot.readListEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readStructBegin();
                         while (true) {
@@ -192,7 +90,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                             switch (ifield.getName()) {
                             case "id": {
                                 try {
-                                    id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                                    this.setId(org.dressdiscover.api.models.user.UserId.parse(iprot.readString()));
                                 } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                                 } catch (final IllegalArgumentException e) {
@@ -201,22 +99,22 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                                 break;
                             }
                             case "user_settings": {
-                                userSettings = org.dressdiscover.api.models.user.UserSettings.readAsStruct(iprot, unknownFieldCallback);
+                                this.setUserSettings(org.dressdiscover.api.models.user.UserSettings.readAsStruct(iprot, unknownFieldCallback));
                                 break;
                             }
                             default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
+                                unknownFieldCallback.apply(ifield);
                                 break;
                             }
                             iprot.readFieldEnd();
                         }
                         iprot.readStructEnd();
+                        return this;
+                    } catch (final org.thryft.ThryftValidationException e) {
+                        throw new org.thryft.protocol.InputProtocolException(e);
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
                     }
-                    return this;
                 }
 
                 public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
@@ -242,7 +140,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.user.UserId id) {
-                    UncheckedValidator.validateId(id);
+                    Validator.validateId(id);
                     this.id = id;
                     return this;
                 }
@@ -257,7 +155,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                 }
 
                 public Builder setUserSettings(final org.dressdiscover.api.models.user.UserSettings userSettings) {
-                    UncheckedValidator.validateUserSettings(userSettings);
+                    Validator.validateUserSettings(userSettings);
                     this.userSettings = userSettings;
                     return this;
                 }
@@ -299,16 +197,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<PutUserSettingsRequest> {
-                @Override
-                public PutUserSettingsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return PutUserSettingsRequest.readAs(iprot, type);
-                }
-
-                @Override
-                public PutUserSettingsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return PutUserSettingsRequest.readAs(iprot, type, unknownFieldCallback);
-                }
+                public final static Factory INSTANCE = new Factory();
 
                 @Override
                 public PutUserSettingsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -321,15 +210,14 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                 }
 
                 @Override
-                public PutUserSettingsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                public PutUserSettingsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                     return PutUserSettingsRequest.readAsStruct(iprot, unknownFieldCallback);
                 }
             }
 
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING),
-                USER_SETTINGS("userSettings", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserSettings>() {}, true, (short)0, "user_settings", org.thryft.protocol.Type.STRUCT);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserId>() {}, true, (short)0, "id", "id", org.thryft.protocol.Type.STRING),
+                USER_SETTINGS("userSettings", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserSettings>() {}, true, (short)0, "user_settings", "user_settings", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -389,17 +277,13 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final String thriftProtocolKey, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
                     this.thriftId = thriftId;
                     this.thriftName = thriftName;
-                    if (thriftId != org.thryft.protocol.FieldBegin.ABSENT_ID) {
-                        this.thriftProtocolKey = Integer.toString(thriftId) + ":" + thriftName;
-                    } else {
-                        this.thriftProtocolKey = thriftName;
-                    }
+                    this.thriftProtocolKey = thriftProtocolKey;
                     this.thriftProtocolType = thriftProtocolType;
                 }
 
@@ -412,26 +296,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public final static class ReadValidator {
-                public static void validate(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.UserSettings userSettings) throws org.thryft.protocol.InputProtocolException {
-                    validateId(id);
-                    validateUserSettings(userSettings);
-                }
-
-                public static void validateId(final org.dressdiscover.api.models.user.UserId id) throws org.thryft.protocol.InputProtocolException {
-                    if (id == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.user.PutUserSettingsRequest: id is null");
-                    }
-                }
-
-                public static void validateUserSettings(final org.dressdiscover.api.models.user.UserSettings userSettings) throws org.thryft.protocol.InputProtocolException {
-                    if (userSettings == null) {
-                        throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.USER_SETTINGS, "org.dressdiscover.api.services.user.PutUserSettingsRequest: userSettings is null");
-                    }
-                }
-            }
-
-            public final static class UncheckedValidator {
+            public final static class Validator {
                 public static void validate(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.UserSettings userSettings) {
                     validateId(id);
                     validateUserSettings(userSettings);
@@ -439,13 +304,13 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
 
                 public static void validateId(final org.dressdiscover.api.models.user.UserId id) {
                     if (id == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.PutUserSettingsRequest: id is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.PutUserSettingsRequest: id is missing");
                     }
                 }
 
                 public static void validateUserSettings(final org.dressdiscover.api.models.user.UserSettings userSettings) {
                     if (userSettings == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.user.PutUserSettingsRequest: userSettings is null");
+                        throw new org.thryft.ThryftValidationException("org.dressdiscover.api.services.user.PutUserSettingsRequest: userSettings is missing");
                     }
                 }
             }
@@ -459,10 +324,9 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
 
             /**
              * Total constructor
-             *
-             * All fields should have been validated before calling this.
              */
-            protected PutUserSettingsRequest(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.UserSettings userSettings) {
+            public PutUserSettingsRequest(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.UserSettings userSettings) {
+                Validator.validate(id, userSettings);
                 this.id = id;
                 this.userSettings = userSettings;
             }
@@ -477,14 +341,6 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
 
             public static Builder builder(final com.google.common.base.Optional<PutUserSettingsRequest> other) {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            /**
-             * Optional factory method
-             */
-            public static PutUserSettingsRequest create(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.UserSettings userSettings) {
-                UncheckedValidator.validate(id, userSettings);
-                return new PutUserSettingsRequest(id, userSettings);
             }
 
             @Override
@@ -547,100 +403,25 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                 return hashCode;
             }
 
-            public static PutUserSettingsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static PutUserSettingsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
             public static PutUserSettingsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.user.UserId id;
-                org.dressdiscover.api.models.user.UserSettings userSettings;
-
-                try {
-                    iprot.readListBegin();
-                    try {
-                        id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                    }
-                    userSettings = org.dressdiscover.api.models.user.UserSettings.readAsStruct(iprot);
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(id, userSettings);
-
-                return new PutUserSettingsRequest(id, userSettings);
+                return builder().readAsList(iprot).build();
             }
 
             public static PutUserSettingsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                return readAsStruct(iprot, NopUnknownFieldCallback.getInstance());
             }
 
-            public static PutUserSettingsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                @javax.annotation.Nullable org.dressdiscover.api.models.user.UserId id = null;
-                @javax.annotation.Nullable org.dressdiscover.api.models.user.UserSettings userSettings = null;
-
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "id": {
-                            try {
-                                id = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                            } catch (final IllegalArgumentException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
-                            }
-                            break;
-                        }
-                        case "user_settings": {
-                            userSettings = org.dressdiscover.api.models.user.UserSettings.readAsStruct(iprot, unknownFieldCallback);
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                ReadValidator.validate(id, userSettings);
-
-                return new PutUserSettingsRequest(id, userSettings);
+            public static PutUserSettingsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final UnknownFieldCallback unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                return builder().readAsStruct(iprot, unknownFieldCallback).build();
             }
 
             public PutUserSettingsRequest replaceId(final org.dressdiscover.api.models.user.UserId id) {
-                UncheckedValidator.validateId(id);
+                Validator.validateId(id);
                 return new PutUserSettingsRequest(id, this.userSettings);
             }
 
             public PutUserSettingsRequest replaceUserSettings(final org.dressdiscover.api.models.user.UserSettings userSettings) {
-                UncheckedValidator.validateUserSettings(userSettings);
+                Validator.validateUserSettings(userSettings);
                 return new PutUserSettingsRequest(this.id, userSettings);
             }
 
@@ -652,11 +433,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
-
-                oprot.writeString(getId().toString());
-
-                getUserSettings().writeAsStruct(oprot);
-
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -665,6 +442,12 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                 oprot.writeStructBegin("org.dressdiscover.api.services.user.PutUserSettingsRequest");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeString(getId().toString());
+                getUserSettings().writeAsStruct(oprot);
             }
 
             @Override
@@ -694,35 +477,6 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
         }
 
         public final static class PutUserSettingsResponse implements org.thryft.Struct {
-            public final static class Factory implements org.thryft.CompoundType.Factory<PutUserSettingsResponse> {
-                @Override
-                public PutUserSettingsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return PutUserSettingsResponse.readAs(iprot, type);
-                }
-
-                @Override
-                public PutUserSettingsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return PutUserSettingsResponse.readAs(iprot, type, unknownFieldCallback);
-                }
-
-                @Override
-                public PutUserSettingsResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return PutUserSettingsResponse.readAsList(iprot);
-                }
-
-                @Override
-                public PutUserSettingsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return PutUserSettingsResponse.readAsStruct(iprot);
-                }
-
-                @Override
-                public PutUserSettingsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
-                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    return PutUserSettingsResponse.readAsStruct(iprot, unknownFieldCallback);
-                }
-            }
-
             private PutUserSettingsResponse() {
             }
 
@@ -750,59 +504,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
 
             @Override
             public int hashCode() {
-                int hashCode = 17;
-                return hashCode;
-            }
-
-            public static PutUserSettingsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static PutUserSettingsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                switch (type) {
-                case LIST:
-                    return readAsList(iprot);
-                case STRUCT:
-                    return readAsStruct(iprot, unknownFieldCallback);
-                default:
-                    throw new IllegalArgumentException("cannot read as " + type);
-                }
-            }
-
-            public static PutUserSettingsResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                try {
-                    iprot.readListBegin();
-                    iprot.readListEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                return INSTANCE;
-            }
-
-            public static PutUserSettingsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static PutUserSettingsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                try {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
-                        iprot.readFieldEnd();
-                    }
-                    iprot.readStructEnd();
-                } catch (final RuntimeException e) {
-                    throw new IllegalStateException(e);
-                }
-
-                return INSTANCE;
+                return 17;
             }
 
             @Override
@@ -813,6 +515,7 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
             @Override
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                writeFieldValues(oprot);
                 oprot.writeListEnd();
             }
 
@@ -821,6 +524,10 @@ public class UserSettingsCommandServiceJsonRpcServlet extends javax.servlet.http
                 oprot.writeStructBegin("org.dressdiscover.api.services.user.PutUserSettingsResponse");
                 writeFields(oprot);
                 oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFieldValues(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
             }
 
             @Override
