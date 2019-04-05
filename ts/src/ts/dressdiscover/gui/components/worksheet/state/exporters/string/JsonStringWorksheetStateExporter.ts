@@ -1,6 +1,9 @@
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import {
+    JsonWorksheetStateExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/JsonWorksheetStateExporter';
+import {
     StringWorksheetStateExporter,
 } from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringWorksheetStateExporter';
 
@@ -17,5 +20,5 @@ export class JsonStringWorksheetStateExporter implements StringWorksheetStateExp
         return "application/json";
     }
 
-    private readonly delegate = new JsonStringWorksheetStateExporter();
+    private readonly delegate = new JsonWorksheetStateExporter();
 }
