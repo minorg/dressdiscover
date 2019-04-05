@@ -6,7 +6,7 @@ import {
 
 export class JsonStringWorksheetStateExporter implements StringWorksheetStateExporter {
     export(worksheetDefinition: WorksheetDefinition, worksheetStates: WorksheetState[]): string {
-        return JSON.stringify(worksheetStates.map((worksheetState) => worksheetState.toJsonObject()), undefined, 4);
+        return JSON.stringify(this.delegate.export(worksheetDefinition, worksheetStates));
     }
 
     get fileExtension() {
@@ -16,4 +16,6 @@ export class JsonStringWorksheetStateExporter implements StringWorksheetStateExp
     get mimeType() {
         return "application/json";
     }
+
+    private readonly delegate = new JsonStringWorksheetStateExporter();
 }
