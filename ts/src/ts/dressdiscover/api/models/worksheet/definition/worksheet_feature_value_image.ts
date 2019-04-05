@@ -54,28 +54,24 @@ export class WorksheetFeatureValueImage {
         return new WorksheetFeatureValueImage({rights, thumbnailUrl, fullSizeUrl});
     }
 
-    public toJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        json.rights = this.rights.toJsonObject();
-        json.thumbnail_url = this.thumbnailUrl.toJsonObject();
-        if (this.fullSizeUrl != null) {
-            json.full_size_url = this.fullSizeUrl.toJsonObject();
-        }
-        return json;
+    public toJsonObject(): {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} {
+        return {
+            full_size_url: this.fullSizeUrl != null ? this.fullSizeUrl.toJsonObject() : undefined,
+            rights: this.rights.toJsonObject(),
+            thumbnail_url: this.thumbnailUrl.toJsonObject()
+        };
     }
 
     public toString(): string {
         return "WorksheetFeatureValueImage(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        json.rights = this.rights.toThryftJsonObject();
-        json.thumbnail_url = this.thumbnailUrl.toThryftJsonObject();
-        if (this.fullSizeUrl != null) {
-            json.full_size_url = this.fullSizeUrl.toThryftJsonObject();
-        }
-        return json;
+    public toThryftJsonObject(): {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} {
+        return {
+            full_size_url: this.fullSizeUrl != null ? this.fullSizeUrl.toThryftJsonObject() : undefined,
+            rights: this.rights.toThryftJsonObject(),
+            thumbnail_url: this.thumbnailUrl.toThryftJsonObject()
+        };
     }
 
     private static validateFullSizeUrl(fullSizeUrl: WorksheetFeatureValueImageUrl | undefined): WorksheetFeatureValueImageUrl | undefined {

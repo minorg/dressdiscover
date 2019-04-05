@@ -48,30 +48,22 @@ export class WorksheetStateConfiguration {
         return new WorksheetStateConfiguration({googleSheets, localStorage});
     }
 
-    public toJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        if (this.googleSheets != null) {
-            json.google_sheets = this.googleSheets.toJsonObject();
-        }
-        if (this.localStorage != null) {
-            json.local_storage = this.localStorage.toJsonObject();
-        }
-        return json;
+    public toJsonObject(): {google_sheets: {spreadsheet_id: string} | undefined, local_storage: {} | undefined} {
+        return {
+            google_sheets: this.googleSheets != null ? this.googleSheets.toJsonObject() : undefined,
+            local_storage: this.localStorage != null ? this.localStorage.toJsonObject() : undefined
+        };
     }
 
     public toString(): string {
         return "WorksheetStateConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        if (this.googleSheets != null) {
-            json["2:google_sheets"] = this.googleSheets.toThryftJsonObject();
-        }
-        if (this.localStorage != null) {
-            json["1:local_storage"] = this.localStorage.toThryftJsonObject();
-        }
-        return json;
+    public toThryftJsonObject(): {"2:google_sheets": {"1:spreadsheet_id": string} | undefined, "1:local_storage": {} | undefined} {
+        return {
+            "2:google_sheets": this.googleSheets != null ? this.googleSheets.toThryftJsonObject() : undefined,
+            "1:local_storage": this.localStorage != null ? this.localStorage.toThryftJsonObject() : undefined
+        };
     }
 
     private static validateGoogleSheets(googleSheets: GoogleSheetsWorksheetStateConfiguration | undefined): GoogleSheetsWorksheetStateConfiguration | undefined {

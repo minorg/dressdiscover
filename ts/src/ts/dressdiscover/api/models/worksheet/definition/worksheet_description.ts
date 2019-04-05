@@ -41,22 +41,22 @@ export class WorksheetDescription {
         return new WorksheetDescription({rights, textEn});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.rights = this.rights.toJsonObject();
-        json.text_en = this.textEn;
-        return json;
+    public toJsonObject(): {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} {
+        return {
+            rights: this.rights.toJsonObject(),
+            text_en: this.textEn
+        };
     }
 
     public toString(): string {
         return "WorksheetDescription(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.rights = this.rights.toThryftJsonObject();
-        json.text_en = this.textEn;
-        return json;
+    public toThryftJsonObject(): {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} {
+        return {
+            rights: this.rights.toThryftJsonObject(),
+            text_en: this.textEn
+        };
     }
 
     private static validateRights(rights: WorksheetRights): WorksheetRights {

@@ -79,32 +79,24 @@ export class WorksheetFeatureState {
         return new WorksheetFeatureState({id, selectedValueIds, text});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.id = this.id.toString();
-        if (this.selectedValueIds != null) {
-            json.selected_value_ids = (this.selectedValueIds).map((inElement) => inElement.toString());
-        }
-        if (this.text != null) {
-            json.text = this.text;
-        }
-        return json;
+    public toJsonObject(): {id: string, selected_value_ids: string[] | undefined, text: string | undefined} {
+        return {
+            id: this.id.toString(),
+            selected_value_ids: this.selectedValueIds != null ? (this.selectedValueIds).map((inElement) => inElement.toString()) : undefined,
+            text: this.text != null ? this.text : undefined
+        };
     }
 
     public toString(): string {
         return "WorksheetFeatureState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.id = this.id.toString();
-        if (this.selectedValueIds != null) {
-            json.selected_value_ids = (this.selectedValueIds).map((inElement) => inElement.toString());
-        }
-        if (this.text != null) {
-            json.text = this.text;
-        }
-        return json;
+    public toThryftJsonObject(): {id: string, selected_value_ids: string[] | undefined, text: string | undefined} {
+        return {
+            id: this.id.toString(),
+            selected_value_ids: this.selectedValueIds != null ? (this.selectedValueIds).map((inElement) => inElement.toString()) : undefined,
+            text: this.text != null ? this.text : undefined
+        };
     }
 
     private static validateId(id: WorksheetFeatureId): WorksheetFeatureId {

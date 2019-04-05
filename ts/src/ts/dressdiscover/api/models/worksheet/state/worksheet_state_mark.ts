@@ -68,38 +68,26 @@ export class WorksheetStateMark {
         return new WorksheetStateMark({worksheetStateId, featureId, featureSetId, review});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.worksheet_state_id = this.worksheetStateId.toString();
-        if (this.featureId != null) {
-            json.feature_id = this.featureId.toString();
-        }
-        if (this.featureSetId != null) {
-            json.feature_set_id = this.featureSetId.toString();
-        }
-        if (this.review != null) {
-            json.review = this.review;
-        }
-        return json;
+    public toJsonObject(): {feature_id: string | undefined, feature_set_id: string | undefined, review: boolean | undefined, worksheet_state_id: string} {
+        return {
+            feature_id: this.featureId != null ? this.featureId.toString() : undefined,
+            feature_set_id: this.featureSetId != null ? this.featureSetId.toString() : undefined,
+            review: this.review != null ? this.review : undefined,
+            worksheet_state_id: this.worksheetStateId.toString()
+        };
     }
 
     public toString(): string {
         return "WorksheetStateMark(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.worksheet_state_id = this.worksheetStateId.toString();
-        if (this.featureId != null) {
-            json.feature_id = this.featureId.toString();
-        }
-        if (this.featureSetId != null) {
-            json.feature_set_id = this.featureSetId.toString();
-        }
-        if (this.review != null) {
-            json.review = this.review;
-        }
-        return json;
+    public toThryftJsonObject(): {feature_id: string | undefined, feature_set_id: string | undefined, review: boolean | undefined, worksheet_state_id: string} {
+        return {
+            feature_id: this.featureId != null ? this.featureId.toString() : undefined,
+            feature_set_id: this.featureSetId != null ? this.featureSetId.toString() : undefined,
+            review: this.review != null ? this.review : undefined,
+            worksheet_state_id: this.worksheetStateId.toString()
+        };
     }
 
     private static validateFeatureId(featureId: WorksheetFeatureId | undefined): WorksheetFeatureId | undefined {

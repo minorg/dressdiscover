@@ -35,24 +35,20 @@ export class UserSettings {
         return new UserSettings({worksheetConfiguration});
     }
 
-    public toJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        if (this.worksheetConfiguration != null) {
-            json.worksheet_configuration = this.worksheetConfiguration.toJsonObject();
-        }
-        return json;
+    public toJsonObject(): {worksheet_configuration: {definition: {bundled: {} | undefined}, state: {google_sheets: {spreadsheet_id: string} | undefined, local_storage: {} | undefined}} | undefined} {
+        return {
+            worksheet_configuration: this.worksheetConfiguration != null ? this.worksheetConfiguration.toJsonObject() : undefined
+        };
     }
 
     public toString(): string {
         return "UserSettings(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        if (this.worksheetConfiguration != null) {
-            json["1:worksheet_configuration"] = this.worksheetConfiguration.toThryftJsonObject();
-        }
-        return json;
+    public toThryftJsonObject(): {"1:worksheet_configuration": {"1:definition": {"1:bundled": {} | undefined}, "2:state": {"2:google_sheets": {"1:spreadsheet_id": string} | undefined, "1:local_storage": {} | undefined}} | undefined} {
+        return {
+            "1:worksheet_configuration": this.worksheetConfiguration != null ? this.worksheetConfiguration.toThryftJsonObject() : undefined
+        };
     }
 
     private static validateWorksheetConfiguration(worksheetConfiguration: WorksheetConfiguration | undefined): WorksheetConfiguration | undefined {

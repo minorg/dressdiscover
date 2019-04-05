@@ -66,30 +66,26 @@ export class WorksheetFeatureSetDefinition {
         return new WorksheetFeatureSetDefinition({displayNameEn, featureIds, id, description});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.display_name_en = this.displayNameEn;
-        json.feature_ids = (this.featureIds).map((inElement) => inElement.toString());
-        json.id = this.id.toString();
-        if (this.description != null) {
-            json.description = this.description.toJsonObject();
-        }
-        return json;
+    public toJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, feature_ids: string[], id: string} {
+        return {
+            description: this.description != null ? this.description.toJsonObject() : undefined,
+            display_name_en: this.displayNameEn,
+            feature_ids: (this.featureIds).map((inElement) => inElement.toString()),
+            id: this.id.toString()
+        };
     }
 
     public toString(): string {
         return "WorksheetFeatureSetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.display_name_en = this.displayNameEn;
-        json.feature_ids = (this.featureIds).map((inElement) => inElement.toString());
-        json.id = this.id.toString();
-        if (this.description != null) {
-            json.description = this.description.toThryftJsonObject();
-        }
-        return json;
+    public toThryftJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, feature_ids: string[], id: string} {
+        return {
+            description: this.description != null ? this.description.toThryftJsonObject() : undefined,
+            display_name_en: this.displayNameEn,
+            feature_ids: (this.featureIds).map((inElement) => inElement.toString()),
+            id: this.id.toString()
+        };
     }
 
     private static validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {

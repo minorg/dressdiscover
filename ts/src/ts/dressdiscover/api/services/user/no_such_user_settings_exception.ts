@@ -35,24 +35,20 @@ export class NoSuchUserSettingsException implements Exception {
         return new NoSuchUserSettingsException({id});
     }
 
-    public toJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        if (this.id != null) {
-            json.id = this.id.toString();
-        }
-        return json;
+    public toJsonObject(): {id: string | undefined} {
+        return {
+            id: this.id != null ? this.id.toString() : undefined
+        };
     }
 
     public toString(): string {
         return "NoSuchUserSettingsException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        if (this.id != null) {
-            json.id = this.id.toString();
-        }
-        return json;
+    public toThryftJsonObject(): {id: string | undefined} {
+        return {
+            id: this.id != null ? this.id.toString() : undefined
+        };
     }
 
     private static validateId(id: UserId | undefined): UserId | undefined {

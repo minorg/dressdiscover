@@ -28,20 +28,20 @@ export class AuthorizationException implements Exception {
         return new AuthorizationException({causeMessage});
     }
 
-    public toJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        json.cause_message = this.causeMessage;
-        return json;
+    public toJsonObject(): {cause_message: string} {
+        return {
+            cause_message: this.causeMessage
+        };
     }
 
     public toString(): string {
         return "AuthorizationException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        json.cause_message = this.causeMessage;
-        return json;
+    public toThryftJsonObject(): {cause_message: string} {
+        return {
+            cause_message: this.causeMessage
+        };
     }
 
     private static validateCauseMessage(causeMessage: string): string {

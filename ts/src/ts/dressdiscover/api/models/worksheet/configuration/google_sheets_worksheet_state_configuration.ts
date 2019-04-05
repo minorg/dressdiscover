@@ -28,20 +28,20 @@ export class GoogleSheetsWorksheetStateConfiguration {
         return new GoogleSheetsWorksheetStateConfiguration({spreadsheetId});
     }
 
-    public toJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        json.spreadsheet_id = this.spreadsheetId;
-        return json;
+    public toJsonObject(): {spreadsheet_id: string} {
+        return {
+            spreadsheet_id: this.spreadsheetId
+        };
     }
 
     public toString(): string {
         return "GoogleSheetsWorksheetStateConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        json["1:spreadsheet_id"] = this.spreadsheetId;
-        return json;
+    public toThryftJsonObject(): {"1:spreadsheet_id": string} {
+        return {
+            "1:spreadsheet_id": this.spreadsheetId
+        };
     }
 
     private static validateSpreadsheetId(spreadsheetId: string): string {

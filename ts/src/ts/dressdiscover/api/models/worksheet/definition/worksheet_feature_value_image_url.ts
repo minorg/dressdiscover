@@ -45,30 +45,22 @@ export class WorksheetFeatureValueImageUrl {
         return new WorksheetFeatureValueImageUrl({absolute, relative});
     }
 
-    public toJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        if (this.absolute != null) {
-            json.absolute = this.absolute;
-        }
-        if (this.relative != null) {
-            json.relative = this.relative;
-        }
-        return json;
+    public toJsonObject(): {absolute: string | undefined, relative: string | undefined} {
+        return {
+            absolute: this.absolute != null ? this.absolute : undefined,
+            relative: this.relative != null ? this.relative : undefined
+        };
     }
 
     public toString(): string {
         return "WorksheetFeatureValueImageUrl(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        if (this.absolute != null) {
-            json.absolute = this.absolute;
-        }
-        if (this.relative != null) {
-            json.relative = this.relative;
-        }
-        return json;
+    public toThryftJsonObject(): {absolute: string | undefined, relative: string | undefined} {
+        return {
+            absolute: this.absolute != null ? this.absolute : undefined,
+            relative: this.relative != null ? this.relative : undefined
+        };
     }
 
     private static validateAbsolute(absolute: string | undefined): string | undefined {

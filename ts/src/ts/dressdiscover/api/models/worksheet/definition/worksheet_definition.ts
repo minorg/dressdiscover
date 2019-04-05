@@ -54,24 +54,24 @@ export class WorksheetDefinition {
         return new WorksheetDefinition({featureSets, featureValues, features});
     }
 
-    public toJsonObject(): {[index: string]: object[]} {
-        const json: {[index: string]: object[]} = {};
-        json.feature_sets = (this.featureSets).map((inElement) => inElement.toJsonObject());
-        json.feature_values = (this.featureValues).map((inElement) => inElement.toJsonObject());
-        json.features = (this.features).map((inElement) => inElement.toJsonObject());
-        return json;
+    public toJsonObject(): {feature_sets: {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, feature_ids: string[], id: string}[], feature_values: {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, image: {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} | undefined}[], features: {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: string[]}[]} {
+        return {
+            feature_sets: (this.featureSets).map((inElement) => inElement.toJsonObject()),
+            feature_values: (this.featureValues).map((inElement) => inElement.toJsonObject()),
+            features: (this.features).map((inElement) => inElement.toJsonObject())
+        };
     }
 
     public toString(): string {
         return "WorksheetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: object[]} {
-        const json: {[index: string]: object[]} = {};
-        json.feature_sets = (this.featureSets).map((inElement) => inElement.toThryftJsonObject());
-        json.feature_values = (this.featureValues).map((inElement) => inElement.toThryftJsonObject());
-        json.features = (this.features).map((inElement) => inElement.toThryftJsonObject());
-        return json;
+    public toThryftJsonObject(): {feature_sets: {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, feature_ids: string[], id: string}[], feature_values: {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, image: {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} | undefined}[], features: {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: string[]}[]} {
+        return {
+            feature_sets: (this.featureSets).map((inElement) => inElement.toThryftJsonObject()),
+            feature_values: (this.featureValues).map((inElement) => inElement.toThryftJsonObject()),
+            features: (this.features).map((inElement) => inElement.toThryftJsonObject())
+        };
     }
 
     private static validateFeatureSets(featureSets: WorksheetFeatureSetDefinition[]): WorksheetFeatureSetDefinition[] {

@@ -136,66 +136,38 @@ export class User {
         return new User({emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.email_address = this.emailAddress;
-        json.identity_provider = UserIdentityProvider[this.identityProvider];
-        json.identity_provider_id = this.identityProviderId;
-        if (this.emailAddressVerified != null) {
-            json.email_address_verified = this.emailAddressVerified;
-        }
-        if (this.familyName != null) {
-            json.family_name = this.familyName;
-        }
-        if (this.givenName != null) {
-            json.given_name = this.givenName;
-        }
-        if (this.locale != null) {
-            json.locale = this.locale;
-        }
-        if (this.name != null) {
-            json.name = this.name;
-        }
-        if (this.nickname != null) {
-            json.nickname = this.nickname;
-        }
-        if (this.pictureUrl != null) {
-            json.picture_url = this.pictureUrl;
-        }
-        return json;
+    public toJsonObject(): {email_address: string, email_address_verified: boolean | undefined, family_name: string | undefined, given_name: string | undefined, identity_provider: string, identity_provider_id: string, locale: string | undefined, name: string | undefined, nickname: string | undefined, picture_url: string | undefined} {
+        return {
+            email_address: this.emailAddress,
+            email_address_verified: this.emailAddressVerified != null ? this.emailAddressVerified : undefined,
+            family_name: this.familyName != null ? this.familyName : undefined,
+            given_name: this.givenName != null ? this.givenName : undefined,
+            identity_provider: UserIdentityProvider[this.identityProvider],
+            identity_provider_id: this.identityProviderId,
+            locale: this.locale != null ? this.locale : undefined,
+            name: this.name != null ? this.name : undefined,
+            nickname: this.nickname != null ? this.nickname : undefined,
+            picture_url: this.pictureUrl != null ? this.pictureUrl : undefined
+        };
     }
 
     public toString(): string {
         return "User(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.email_address = this.emailAddress;
-        json.identity_provider = UserIdentityProvider[this.identityProvider];
-        json.identity_provider_id = this.identityProviderId;
-        if (this.emailAddressVerified != null) {
-            json.email_address_verified = this.emailAddressVerified;
-        }
-        if (this.familyName != null) {
-            json.family_name = this.familyName;
-        }
-        if (this.givenName != null) {
-            json.given_name = this.givenName;
-        }
-        if (this.locale != null) {
-            json.locale = this.locale;
-        }
-        if (this.name != null) {
-            json.name = this.name;
-        }
-        if (this.nickname != null) {
-            json.nickname = this.nickname;
-        }
-        if (this.pictureUrl != null) {
-            json.picture_url = this.pictureUrl;
-        }
-        return json;
+    public toThryftJsonObject(): {email_address: string, email_address_verified: boolean | undefined, family_name: string | undefined, given_name: string | undefined, identity_provider: string, identity_provider_id: string, locale: string | undefined, name: string | undefined, nickname: string | undefined, picture_url: string | undefined} {
+        return {
+            email_address: this.emailAddress,
+            email_address_verified: this.emailAddressVerified != null ? this.emailAddressVerified : undefined,
+            family_name: this.familyName != null ? this.familyName : undefined,
+            given_name: this.givenName != null ? this.givenName : undefined,
+            identity_provider: UserIdentityProvider[this.identityProvider],
+            identity_provider_id: this.identityProviderId,
+            locale: this.locale != null ? this.locale : undefined,
+            name: this.name != null ? this.name : undefined,
+            nickname: this.nickname != null ? this.nickname : undefined,
+            picture_url: this.pictureUrl != null ? this.pictureUrl : undefined
+        };
     }
 
     private static validateEmailAddress(emailAddress: string): string {

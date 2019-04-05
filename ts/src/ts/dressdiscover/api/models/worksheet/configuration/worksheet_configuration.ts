@@ -42,22 +42,22 @@ export class WorksheetConfiguration {
         return new WorksheetConfiguration({definition, state});
     }
 
-    public toJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        json.definition = this.definition.toJsonObject();
-        json.state = this.state.toJsonObject();
-        return json;
+    public toJsonObject(): {definition: {bundled: {} | undefined}, state: {google_sheets: {spreadsheet_id: string} | undefined, local_storage: {} | undefined}} {
+        return {
+            definition: this.definition.toJsonObject(),
+            state: this.state.toJsonObject()
+        };
     }
 
     public toString(): string {
         return "WorksheetConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        json["1:definition"] = this.definition.toThryftJsonObject();
-        json["2:state"] = this.state.toThryftJsonObject();
-        return json;
+    public toThryftJsonObject(): {"1:definition": {"1:bundled": {} | undefined}, "2:state": {"2:google_sheets": {"1:spreadsheet_id": string} | undefined, "1:local_storage": {} | undefined}} {
+        return {
+            "1:definition": this.definition.toThryftJsonObject(),
+            "2:state": this.state.toThryftJsonObject()
+        };
     }
 
     private static validateDefinition(definition: WorksheetDefinitionConfiguration): WorksheetDefinitionConfiguration {

@@ -61,26 +61,26 @@ export class WorksheetRights {
         return new WorksheetRights({author, license, sourceName, sourceUrl});
     }
 
-    public toJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        json.author = this.author;
-        json.license = this.license;
-        json.source_name = this.sourceName;
-        json.source_url = this.sourceUrl;
-        return json;
+    public toJsonObject(): {author: string, license: string, source_name: string, source_url: string} {
+        return {
+            author: this.author,
+            license: this.license,
+            source_name: this.sourceName,
+            source_url: this.sourceUrl
+        };
     }
 
     public toString(): string {
         return "WorksheetRights(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        json.author = this.author;
-        json.license = this.license;
-        json.source_name = this.sourceName;
-        json.source_url = this.sourceUrl;
-        return json;
+    public toThryftJsonObject(): {author: string, license: string, source_name: string, source_url: string} {
+        return {
+            author: this.author,
+            license: this.license,
+            source_name: this.sourceName,
+            source_url: this.sourceUrl
+        };
     }
 
     private static validateAuthor(author: string): string {

@@ -42,22 +42,22 @@ export class WorksheetFeatureSetState {
         return new WorksheetFeatureSetState({features, id});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.features = (this.features).map((inElement) => inElement.toJsonObject());
-        json.id = this.id.toString();
-        return json;
+    public toJsonObject(): {features: {id: string, selected_value_ids: string[] | undefined, text: string | undefined}[], id: string} {
+        return {
+            features: (this.features).map((inElement) => inElement.toJsonObject()),
+            id: this.id.toString()
+        };
     }
 
     public toString(): string {
         return "WorksheetFeatureSetState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.features = (this.features).map((inElement) => inElement.toThryftJsonObject());
-        json.id = this.id.toString();
-        return json;
+    public toThryftJsonObject(): {features: {id: string, selected_value_ids: string[] | undefined, text: string | undefined}[], id: string} {
+        return {
+            features: (this.features).map((inElement) => inElement.toThryftJsonObject()),
+            id: this.id.toString()
+        };
     }
 
     private static validateFeatures(features: WorksheetFeatureState[]): WorksheetFeatureState[] {

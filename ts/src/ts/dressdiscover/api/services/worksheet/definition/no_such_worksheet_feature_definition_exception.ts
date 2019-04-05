@@ -30,20 +30,20 @@ export class NoSuchWorksheetFeatureDefinitionException {
         return new NoSuchWorksheetFeatureDefinitionException({id});
     }
 
-    public toJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        json.id = this.id.toString();
-        return json;
+    public toJsonObject(): {id: string} {
+        return {
+            id: this.id.toString()
+        };
     }
 
     public toString(): string {
         return "NoSuchWorksheetFeatureDefinitionException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: string} {
-        const json: {[index: string]: string} = {};
-        json.id = this.id.toString();
-        return json;
+    public toThryftJsonObject(): {id: string} {
+        return {
+            id: this.id.toString()
+        };
     }
 
     private static validateId(id: WorksheetFeatureId): WorksheetFeatureId {

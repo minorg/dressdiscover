@@ -35,24 +35,20 @@ export class WorksheetDefinitionConfiguration {
         return new WorksheetDefinitionConfiguration({bundled});
     }
 
-    public toJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        if (this.bundled != null) {
-            json.bundled = this.bundled.toJsonObject();
-        }
-        return json;
+    public toJsonObject(): {bundled: {} | undefined} {
+        return {
+            bundled: this.bundled != null ? this.bundled.toJsonObject() : undefined
+        };
     }
 
     public toString(): string {
         return "WorksheetDefinitionConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: object} {
-        const json: {[index: string]: object} = {};
-        if (this.bundled != null) {
-            json["1:bundled"] = this.bundled.toThryftJsonObject();
-        }
-        return json;
+    public toThryftJsonObject(): {"1:bundled": {} | undefined} {
+        return {
+            "1:bundled": this.bundled != null ? this.bundled.toThryftJsonObject() : undefined
+        };
     }
 
     private static validateBundled(bundled: BundledWorksheetDefinitionConfiguration | undefined): BundledWorksheetDefinitionConfiguration | undefined {

@@ -67,34 +67,26 @@ export class WorksheetFeatureValueDefinition {
         return new WorksheetFeatureValueDefinition({displayNameEn, id, description, image});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.display_name_en = this.displayNameEn;
-        json.id = this.id.toString();
-        if (this.description != null) {
-            json.description = this.description.toJsonObject();
-        }
-        if (this.image != null) {
-            json.image = this.image.toJsonObject();
-        }
-        return json;
+    public toJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, image: {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} | undefined} {
+        return {
+            description: this.description != null ? this.description.toJsonObject() : undefined,
+            display_name_en: this.displayNameEn,
+            id: this.id.toString(),
+            image: this.image != null ? this.image.toJsonObject() : undefined
+        };
     }
 
     public toString(): string {
         return "WorksheetFeatureValueDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
-        json.display_name_en = this.displayNameEn;
-        json.id = this.id.toString();
-        if (this.description != null) {
-            json.description = this.description.toThryftJsonObject();
-        }
-        if (this.image != null) {
-            json.image = this.image.toThryftJsonObject();
-        }
-        return json;
+    public toThryftJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, image: {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} | undefined} {
+        return {
+            description: this.description != null ? this.description.toThryftJsonObject() : undefined,
+            display_name_en: this.displayNameEn,
+            id: this.id.toString(),
+            image: this.image != null ? this.image.toThryftJsonObject() : undefined
+        };
     }
 
     private static validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {
