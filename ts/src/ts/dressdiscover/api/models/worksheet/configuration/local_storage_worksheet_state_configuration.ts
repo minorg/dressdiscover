@@ -11,7 +11,7 @@ export class LocalStorageWorksheetStateConfiguration {
         return new LocalStorageWorksheetStateConfiguration;
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         return {};
     }
 
@@ -19,7 +19,7 @@ export class LocalStorageWorksheetStateConfiguration {
         return "LocalStorageWorksheetStateConfiguration()";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         return {};
     }
 }

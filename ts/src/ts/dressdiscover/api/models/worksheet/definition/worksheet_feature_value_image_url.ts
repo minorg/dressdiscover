@@ -45,7 +45,7 @@ export class WorksheetFeatureValueImageUrl {
         return new WorksheetFeatureValueImageUrl({absolute, relative});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         if (this.absolute != null) {
             json.absolute = this.absolute;
@@ -60,7 +60,7 @@ export class WorksheetFeatureValueImageUrl {
         return "WorksheetFeatureValueImageUrl(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         if (this.absolute != null) {
             json.absolute = this.absolute;

@@ -68,7 +68,7 @@ export class WorksheetStateMark {
         return new WorksheetStateMark({worksheetStateId, featureId, featureSetId, review});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.worksheet_state_id = this.worksheetStateId.toString();
         if (this.featureId != null) {
@@ -87,7 +87,7 @@ export class WorksheetStateMark {
         return "WorksheetStateMark(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.worksheet_state_id = this.worksheetStateId.toString();
         if (this.featureId != null) {

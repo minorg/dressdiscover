@@ -136,7 +136,7 @@ export class User {
         return new User({emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.email_address = this.emailAddress;
         json.identity_provider = UserIdentityProvider[this.identityProvider];
@@ -169,7 +169,7 @@ export class User {
         return "User(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.email_address = this.emailAddress;
         json.identity_provider = UserIdentityProvider[this.identityProvider];

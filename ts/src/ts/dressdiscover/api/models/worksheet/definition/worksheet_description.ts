@@ -41,7 +41,7 @@ export class WorksheetDescription {
         return new WorksheetDescription({rights, textEn});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.rights = this.rights.toJsonObject();
         json.text_en = this.textEn;
@@ -52,7 +52,7 @@ export class WorksheetDescription {
         return "WorksheetDescription(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.rights = this.rights.toThryftJsonObject();
         json.text_en = this.textEn;

@@ -42,7 +42,7 @@ export class WorksheetFeatureSetState {
         return new WorksheetFeatureSetState({features, id});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.features = (this.features).map((inElement) => inElement.toJsonObject());
         json.id = this.id.toString();
@@ -53,7 +53,7 @@ export class WorksheetFeatureSetState {
         return "WorksheetFeatureSetState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.features = (this.features).map((inElement) => inElement.toThryftJsonObject());
         json.id = this.id.toString();

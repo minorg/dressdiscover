@@ -79,7 +79,7 @@ export class WorksheetFeatureState {
         return new WorksheetFeatureState({id, selectedValueIds, text});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.id = this.id.toString();
         if (this.selectedValueIds != null) {
@@ -95,7 +95,7 @@ export class WorksheetFeatureState {
         return "WorksheetFeatureState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.id = this.id.toString();
         if (this.selectedValueIds != null) {

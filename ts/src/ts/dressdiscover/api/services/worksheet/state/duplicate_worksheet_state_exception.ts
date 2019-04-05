@@ -30,7 +30,7 @@ export class DuplicateWorksheetStateException {
         return new DuplicateWorksheetStateException({id});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.id = this.id.toString();
         return json;
@@ -40,7 +40,7 @@ export class DuplicateWorksheetStateException {
         return "DuplicateWorksheetStateException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.id = this.id.toString();
         return json;

@@ -66,7 +66,7 @@ export class WorksheetFeatureSetDefinition {
         return new WorksheetFeatureSetDefinition({displayNameEn, featureIds, id, description});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.display_name_en = this.displayNameEn;
         json.feature_ids = (this.featureIds).map((inElement) => inElement.toString());
@@ -81,7 +81,7 @@ export class WorksheetFeatureSetDefinition {
         return "WorksheetFeatureSetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.display_name_en = this.displayNameEn;
         json.feature_ids = (this.featureIds).map((inElement) => inElement.toString());

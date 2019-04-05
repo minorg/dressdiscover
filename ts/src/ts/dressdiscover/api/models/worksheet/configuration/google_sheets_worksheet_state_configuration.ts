@@ -28,7 +28,7 @@ export class GoogleSheetsWorksheetStateConfiguration {
         return new GoogleSheetsWorksheetStateConfiguration({spreadsheetId});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.spreadsheet_id = this.spreadsheetId;
         return json;
@@ -38,7 +38,7 @@ export class GoogleSheetsWorksheetStateConfiguration {
         return "GoogleSheetsWorksheetStateConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json["1:spreadsheet_id"] = this.spreadsheetId;
         return json;

@@ -11,7 +11,7 @@ export class BundledWorksheetDefinitionConfiguration {
         return new BundledWorksheetDefinitionConfiguration;
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         return {};
     }
 
@@ -19,7 +19,7 @@ export class BundledWorksheetDefinitionConfiguration {
         return "BundledWorksheetDefinitionConfiguration()";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         return {};
     }
 }

@@ -28,7 +28,7 @@ export class AuthenticationException implements Exception {
         return new AuthenticationException({causeMessage});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.cause_message = this.causeMessage;
         return json;
@@ -38,7 +38,7 @@ export class AuthenticationException implements Exception {
         return "AuthenticationException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.cause_message = this.causeMessage;
         return json;

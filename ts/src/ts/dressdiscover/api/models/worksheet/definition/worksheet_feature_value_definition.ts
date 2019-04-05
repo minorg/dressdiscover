@@ -67,7 +67,7 @@ export class WorksheetFeatureValueDefinition {
         return new WorksheetFeatureValueDefinition({displayNameEn, id, description, image});
     }
 
-    public toJsonObject(): any {
+    public toJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.display_name_en = this.displayNameEn;
         json.id = this.id.toString();
@@ -84,7 +84,7 @@ export class WorksheetFeatureValueDefinition {
         return "WorksheetFeatureValueDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): any {
+    public toThryftJsonObject(): {[index: string]: any} {
         const json: {[index: string]: any} = {};
         json.display_name_en = this.displayNameEn;
         json.id = this.id.toString();
