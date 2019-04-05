@@ -33,48 +33,37 @@ interface WorksheetFeatureStateEditImplProps {
     worksheetState: WorksheetStateWrapper;
 }
 
-interface WorksheetFeatureStateEditImplState {
-    selectedValueIds?: WorksheetFeatureValueId[];
-    text?: string;
-}
-
 @inject("currentUserStore")
-class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStateEditImplProps, WorksheetFeatureStateEditImplState> {
+class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStateEditImplProps> {
     constructor(props: WorksheetFeatureStateEditImplProps) {
         super(props);
 
         this.onToggleFeatureValue = this.onToggleFeatureValue.bind(this);
         this.save = this.save.bind(this);
-
-        const featureState = props.worksheetState.currentFeatureState;
-        const state: WorksheetFeatureStateEditImplState = {};
-        if (featureState) {
-            if (featureState.selectedValueIds && featureState.selectedValueIds.length) {
-                state.selectedValueIds = featureState.selectedValueIds;
-            }
-            if (featureState.text) {
-                state.text = featureState.text;
-            }
-        }
-        this.state = state;
     }
 
     onToggleFeatureValue(featureValueId: WorksheetFeatureValueId) {
-        this.setState((prevState) => {
-            if (!prevState.selectedValueIds) {
-                return { selectedValueIds: [featureValueId] };
-            }
-            const otherSelectedValueIds = prevState.selectedValueIds.filter((selectedValueId) => !selectedValueId.equals(featureValueId));
-            if (otherSelectedValueIds.length === prevState.selectedValueIds.length) {
-                return { selectedValueIds: prevState.selectedValueIds.concat(featureValueId) }; // Add
+        const featureState = this.props.worksheetState.currentFeatureState;
+        let selectedValueIds = (featureState && featureState.selectedValueIds && featureState.selectedValueIds.length) ? featureState.selectedValueIds : undefined;
+        if (!selectedValueIds) {
+            selectedValueIds = [featureValueId];
+        } else {
+            const otherSelectedValueIds = selectedValueIds.filter((selectedValueId) => !selectedValueId.equals(featureValueId));
+            if (otherSelectedValueIds.length === selectedValueIds.length) {
+                selectedValueIds = selectedValueIds.concat(featureValueId);
             } else {
-                return { selectedValueIds: otherSelectedValueIds };
+                selectedValueIds = otherSelectedValueIds
             }
-        });
+        }
+
+        this.props.worksheetState.selectFeatureValues(selectedValueIds);
+        this.forceUpdate();
     }
 
     render() {
         const { worksheetState } = this.props;
+        const featureState = worksheetState.currentFeatureState;
+        const selectedValueIds = (featureState && featureState.selectedValueIds && featureState.selectedValueIds.length) ? featureState.selectedValueIds : undefined;
         return (
             <WorksheetStateFrame
                 headline={"Feature: " + worksheetState.currentFeatureDefinition!.displayName}
@@ -91,7 +80,7 @@ class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStat
                                 featureValueDefinition={featureValueDefinition}
                                 key={featureValueDefinition.id.toString()}
                                 onToggleSelected={this.onToggleFeatureValue}
-                                selected={!!this.state.selectedValueIds && this.state.selectedValueIds.some((selectedValueId) => selectedValueId.equals(featureValueDefinition.id))}
+                                selected={!!selectedValueIds && selectedValueIds.some((selectedValueId) => selectedValueId.equals(featureValueDefinition.id))}
                             />
                         )}
                     </Row>
@@ -101,9 +90,7 @@ class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStat
 
     save() {
         const { currentUserStore, worksheetState } = this.props;
-        worksheetState.selectFeatureValues(this.state.selectedValueIds);
         currentUserStore!.currentUserServices.worksheetStateCommandService.putWorksheetState({ state: worksheetState.toWorksheetState() });
-        this.setState((prevState) => ({ selectedValueIds: undefined, text: undefined }));
     }
 }
 

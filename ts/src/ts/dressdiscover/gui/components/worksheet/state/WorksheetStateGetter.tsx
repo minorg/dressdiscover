@@ -30,6 +30,16 @@ export class WorksheetStateGetter extends React.Component<Props, State> {
     }
 
     async componentDidMount() {
+        await this.getWorksheetState();
+    }
+
+    // async componentDidUpdate(prevProps: Props) {
+    //     if (!this.props.worksheetStateMark.equals(prevProps.worksheetStateMark)) {
+    //         await this.getWorksheetState();
+    //     }
+    // }
+
+    private async getWorksheetState() {
         const { currentUserStore } = this.props;
         const worksheetStateId = this.props.worksheetStateMark.worksheetStateId;
         const self = this;
