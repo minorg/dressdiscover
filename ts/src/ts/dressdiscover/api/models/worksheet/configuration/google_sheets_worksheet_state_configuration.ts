@@ -28,8 +28,8 @@ export class GoogleSheetsWorksheetStateConfiguration {
         return new GoogleSheetsWorksheetStateConfiguration({spreadsheetId});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         json.spreadsheet_id = this.spreadsheetId;
         return json;
     }
@@ -38,8 +38,8 @@ export class GoogleSheetsWorksheetStateConfiguration {
         return "GoogleSheetsWorksheetStateConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         json["1:spreadsheet_id"] = this.spreadsheetId;
         return json;
     }

@@ -35,8 +35,8 @@ export class UserSettings {
         return new UserSettings({worksheetConfiguration});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         if (this.worksheetConfiguration != null) {
             json.worksheet_configuration = this.worksheetConfiguration.toJsonObject();
         }
@@ -47,8 +47,8 @@ export class UserSettings {
         return "UserSettings(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         if (this.worksheetConfiguration != null) {
             json["1:worksheet_configuration"] = this.worksheetConfiguration.toThryftJsonObject();
         }

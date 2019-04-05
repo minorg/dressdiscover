@@ -54,8 +54,8 @@ export class WorksheetFeatureValueImage {
         return new WorksheetFeatureValueImage({rights, thumbnailUrl, fullSizeUrl});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         json.rights = this.rights.toJsonObject();
         json.thumbnail_url = this.thumbnailUrl.toJsonObject();
         if (this.fullSizeUrl != null) {
@@ -68,8 +68,8 @@ export class WorksheetFeatureValueImage {
         return "WorksheetFeatureValueImage(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         json.rights = this.rights.toThryftJsonObject();
         json.thumbnail_url = this.thumbnailUrl.toThryftJsonObject();
         if (this.fullSizeUrl != null) {

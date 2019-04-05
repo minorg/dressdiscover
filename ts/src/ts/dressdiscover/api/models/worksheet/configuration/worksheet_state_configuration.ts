@@ -48,8 +48,8 @@ export class WorksheetStateConfiguration {
         return new WorksheetStateConfiguration({googleSheets, localStorage});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         if (this.googleSheets != null) {
             json.google_sheets = this.googleSheets.toJsonObject();
         }
@@ -63,8 +63,8 @@ export class WorksheetStateConfiguration {
         return "WorksheetStateConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         if (this.googleSheets != null) {
             json["2:google_sheets"] = this.googleSheets.toThryftJsonObject();
         }

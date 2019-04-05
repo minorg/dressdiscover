@@ -35,8 +35,8 @@ export class NoSuchUserSettingsException implements Exception {
         return new NoSuchUserSettingsException({id});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         if (this.id != null) {
             json.id = this.id.toString();
         }
@@ -47,8 +47,8 @@ export class NoSuchUserSettingsException implements Exception {
         return "NoSuchUserSettingsException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         if (this.id != null) {
             json.id = this.id.toString();
         }

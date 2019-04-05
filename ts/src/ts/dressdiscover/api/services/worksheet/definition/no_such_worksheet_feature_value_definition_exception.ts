@@ -30,8 +30,8 @@ export class NoSuchWorksheetFeatureValueDefinitionException {
         return new NoSuchWorksheetFeatureValueDefinitionException({id});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         json.id = this.id.toString();
         return json;
     }
@@ -40,8 +40,8 @@ export class NoSuchWorksheetFeatureValueDefinitionException {
         return "NoSuchWorksheetFeatureValueDefinitionException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         json.id = this.id.toString();
         return json;
     }

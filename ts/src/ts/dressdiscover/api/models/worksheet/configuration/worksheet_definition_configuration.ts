@@ -35,8 +35,8 @@ export class WorksheetDefinitionConfiguration {
         return new WorksheetDefinitionConfiguration({bundled});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         if (this.bundled != null) {
             json.bundled = this.bundled.toJsonObject();
         }
@@ -47,8 +47,8 @@ export class WorksheetDefinitionConfiguration {
         return "WorksheetDefinitionConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         if (this.bundled != null) {
             json["1:bundled"] = this.bundled.toThryftJsonObject();
         }

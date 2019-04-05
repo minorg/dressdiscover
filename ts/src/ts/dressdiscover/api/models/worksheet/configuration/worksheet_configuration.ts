@@ -42,8 +42,8 @@ export class WorksheetConfiguration {
         return new WorksheetConfiguration({definition, state});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         json.definition = this.definition.toJsonObject();
         json.state = this.state.toJsonObject();
         return json;
@@ -53,8 +53,8 @@ export class WorksheetConfiguration {
         return "WorksheetConfiguration(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: object} {
+        const json: {[index: string]: object} = {};
         json["1:definition"] = this.definition.toThryftJsonObject();
         json["2:state"] = this.state.toThryftJsonObject();
         return json;

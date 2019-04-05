@@ -28,8 +28,8 @@ export class AuthorizationException implements Exception {
         return new AuthorizationException({causeMessage});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         json.cause_message = this.causeMessage;
         return json;
     }
@@ -38,8 +38,8 @@ export class AuthorizationException implements Exception {
         return "AuthorizationException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         json.cause_message = this.causeMessage;
         return json;
     }

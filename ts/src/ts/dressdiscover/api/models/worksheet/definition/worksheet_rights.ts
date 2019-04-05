@@ -61,8 +61,8 @@ export class WorksheetRights {
         return new WorksheetRights({author, license, sourceName, sourceUrl});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         json.author = this.author;
         json.license = this.license;
         json.source_name = this.sourceName;
@@ -74,8 +74,8 @@ export class WorksheetRights {
         return "WorksheetRights(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: string} {
+        const json: {[index: string]: string} = {};
         json.author = this.author;
         json.license = this.license;
         json.source_name = this.sourceName;

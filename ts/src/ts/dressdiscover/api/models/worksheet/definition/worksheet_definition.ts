@@ -54,8 +54,8 @@ export class WorksheetDefinition {
         return new WorksheetDefinition({featureSets, featureValues, features});
     }
 
-    public toJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toJsonObject(): {[index: string]: object[]} {
+        const json: {[index: string]: object[]} = {};
         json.feature_sets = (this.featureSets).map((inElement) => inElement.toJsonObject());
         json.feature_values = (this.featureValues).map((inElement) => inElement.toJsonObject());
         json.features = (this.features).map((inElement) => inElement.toJsonObject());
@@ -66,8 +66,8 @@ export class WorksheetDefinition {
         return "WorksheetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {[index: string]: any} {
-        const json: {[index: string]: any} = {};
+    public toThryftJsonObject(): {[index: string]: object[]} {
+        const json: {[index: string]: object[]} = {};
         json.feature_sets = (this.featureSets).map((inElement) => inElement.toThryftJsonObject());
         json.feature_values = (this.featureValues).map((inElement) => inElement.toThryftJsonObject());
         json.features = (this.features).map((inElement) => inElement.toThryftJsonObject());
