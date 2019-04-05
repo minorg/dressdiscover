@@ -2,6 +2,9 @@ import {
     CsvStringWorksheetStateExporter,
 } from 'dressdiscover/gui/components/worksheet/state/exporters/string/CsvStringWorksheetStateExporter';
 import {
+    JsonLdStringWorksheetStateExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonLdStringWorksheetStateExporter';
+import {
     JsonStringWorksheetStateExporter,
 } from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonStringWorksheetStateExporter';
 import {
@@ -113,7 +116,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
                             <Button color="secondary" onClick={this.onClickDownloadButton}>Download</Button>&nbsp;
                             <Input onChange={this.onChangeFormat} value={this.state.selectedFormatIndex} type="select">
                                 {this.stringExporters.map((stringStringExporter, formatIndex) =>
-                                    <option key={stringStringExporter.fileExtension} value={formatIndex.toString()}>{stringStringExporter.fileExtension.toUpperCase()}</option>
+                                    <option key={stringStringExporter.fileExtension} value={formatIndex.toString()}>{stringStringExporter.displayName}</option>
                                 )}
                             </Input>
                         </Form>
@@ -150,5 +153,5 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
         return this.stringExporters[this.state.selectedFormatIndex];
     }
 
-    private readonly stringExporters: StringWorksheetStateExporter[] = [new CsvStringWorksheetStateExporter(), new JsonStringWorksheetStateExporter()];
+    private readonly stringExporters: StringWorksheetStateExporter[] = [new CsvStringWorksheetStateExporter(), new JsonStringWorksheetStateExporter(), new JsonLdStringWorksheetStateExporter()];
 }

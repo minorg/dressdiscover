@@ -12,6 +12,10 @@ export class JsonStringWorksheetStateExporter implements StringWorksheetStateExp
         return JSON.stringify(this.delegate.export(worksheetDefinition, worksheetStates));
     }
 
+    get displayName() {
+        return "JSON";
+    }
+
     get fileExtension() {
         return "json";
     }
