@@ -78,7 +78,7 @@ export class WorksheetState {
         return new WorksheetState({featureSets, id, text});
     }
 
-    public toJsonObject(): {feature_sets: {features: {id: string, selected_value_ids: string[] | undefined, text: string | undefined}[], id: string}[], id: string, text: string | undefined} {
+    public toJsonObject(): {feature_sets: Array<{features: Array<{id: string, selected_value_ids: Array<string> | undefined, text: string | undefined}>, id: string}>, id: string, text: string | undefined} {
         return {
             feature_sets: (this.featureSets).map((inElement) => inElement.toJsonObject()),
             id: this.id.toString(),
@@ -90,7 +90,7 @@ export class WorksheetState {
         return "WorksheetState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {feature_sets: {features: {id: string, selected_value_ids: string[] | undefined, text: string | undefined}[], id: string}[], id: string, text: string | undefined} {
+    public toThryftJsonObject(): {feature_sets: Array<{features: Array<{id: string, selected_value_ids: Array<string> | undefined, text: string | undefined}>, id: string}>, id: string, text: string | undefined} {
         return {
             feature_sets: (this.featureSets).map((inElement) => inElement.toThryftJsonObject()),
             id: this.id.toString(),

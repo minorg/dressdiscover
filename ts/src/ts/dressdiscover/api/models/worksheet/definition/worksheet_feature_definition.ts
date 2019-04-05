@@ -66,7 +66,7 @@ export class WorksheetFeatureDefinition {
         return new WorksheetFeatureDefinition({displayNameEn, id, valueIds, description});
     }
 
-    public toJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: string[]} {
+    public toJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: Array<string>} {
         return {
             description: this.description != null ? this.description.toJsonObject() : undefined,
             display_name_en: this.displayNameEn,
@@ -79,7 +79,7 @@ export class WorksheetFeatureDefinition {
         return "WorksheetFeatureDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: string[]} {
+    public toThryftJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: Array<string>} {
         return {
             description: this.description != null ? this.description.toThryftJsonObject() : undefined,
             display_name_en: this.displayNameEn,
