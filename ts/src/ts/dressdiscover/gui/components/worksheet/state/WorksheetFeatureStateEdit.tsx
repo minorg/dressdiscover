@@ -128,7 +128,7 @@ class WorksheetFeatureValueStateEdit extends React.Component<WorksheetFeatureVal
             if (definition.image.thumbnailUrl.absolute) {
                 thumbnailImgSrc = definition.image.thumbnailUrl.absolute;
             } else if (definition.image.thumbnailUrl.relative) {
-                thumbnailImgSrc = "https://dressdiscover.org/worksheet/" + definition.image.thumbnailUrl.relative;
+                thumbnailImgSrc = "https://dressdiscover.org/img/worksheet/" + definition.image.thumbnailUrl.relative;
             }
         }
         if (!thumbnailImgSrc) {
