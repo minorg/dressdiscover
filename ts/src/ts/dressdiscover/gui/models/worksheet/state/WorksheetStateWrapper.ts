@@ -106,6 +106,7 @@ export class WorksheetStateWrapper {
         }
         this.worksheetState.featureSets = selectedFeatureSetStates;
         this.worksheetStateMachine.recalculateStateMarks(this.worksheetState);
+        this.worksheetState.mtime = new Date();
     }
 
     selectFeatureValues(featureValueIds: WorksheetFeatureValueId[] | undefined) {
@@ -132,7 +133,9 @@ export class WorksheetStateWrapper {
             _.remove(featureSetState.features, (feature) => feature.id.equals(this.currentStateMark.featureId));
             // Don't remove empty feature sets, they're used to indicate which were selected.
         }
+
         this.worksheetStateMachine.recalculateStateMarks(this.worksheetState);
+        this.worksheetState.mtime = new Date();
     }
 
     get selectedFeatureSetIds(): WorksheetFeatureSetId[] {

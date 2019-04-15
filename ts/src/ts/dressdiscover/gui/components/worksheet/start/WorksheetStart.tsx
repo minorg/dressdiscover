@@ -70,7 +70,8 @@ export class WorksheetStart extends React.Component<Props, State> {
     }
 
     async onStartNewWorksheet(kwds: { newWorksheetStateId: WorksheetStateId }) {
-        await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.putWorksheetState({ state: new WorksheetState({ featureSets: [], id: kwds.newWorksheetStateId }) });
+        const mtime = new Date();
+        await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.putWorksheetState({ state: new WorksheetState({ ctime: mtime, featureSets: [], id: kwds.newWorksheetStateId, mtime }) });
         this.setState((prevState) => Object.assign({}, prevState, kwds));
     }
 

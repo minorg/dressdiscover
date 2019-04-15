@@ -16,14 +16,14 @@ export class CsvWorksheetStateImporter {
         }
 
         const headerRow = csvRows[0];
-        if (headerRow.length < 2) {
+        if (headerRow.length < CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX) {
             return [];
         }
-        const parsedHeaderColumns: any[] = headerRow.slice(2).map((headerColumn) => CsvWorksheetStateExporter.parseFeatureHeader(headerColumn));
+        const parsedHeaderColumns: any[] = headerRow.slice(CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX).map((headerColumn) => CsvWorksheetStateExporter.parseFeatureHeader(headerColumn));
 
         const worksheetStates: WorksheetState[] = [];
         for (const dataRow of csvRows.slice(1)) {
-            if (dataRow.length < 2) {
+            if (dataRow.length < CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX) {
                 continue;
             }
 
@@ -31,13 +31,15 @@ export class CsvWorksheetStateImporter {
                 continue;
             }
             const id = WorksheetStateId.parse(dataRow[0]);
+            const ctime = new Date(Date.parse(dataRow[1]));
+            const mtime = new Date(Date.parse(dataRow[2]));
 
-            let description: string | undefined = dataRow[1];
+            let description: string | undefined = dataRow[3];
             description = description.length ? description : undefined;
 
             // Build a map of maps of feature value id's.
             const featureSetValueIds: { [index: string]: { [index: string]: WorksheetFeatureValueId[] } } = {};
-            dataRow.slice(2).map((dataColumn, dataColumnI) => {
+            dataRow.slice(CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX).map((dataColumn, dataColumnI) => {
                 const headerColumn = parsedHeaderColumns[dataColumnI];
                 if (!headerColumn) {
                     return;
@@ -61,7 +63,7 @@ export class CsvWorksheetStateImporter {
                 }
                 featureSetStates.push(new WorksheetFeatureSetState({ features: featureStates, id: featureSetId }));
             }
-            worksheetStates.push(new WorksheetState({ featureSets: featureSetStates, id, text: description }));
+            worksheetStates.push(new WorksheetState({ ctime, featureSets: featureSetStates, id, mtime, text: description }));
         }
 
         return worksheetStates;

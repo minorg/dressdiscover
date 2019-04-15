@@ -6,6 +6,8 @@ import { WorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/s
 import * as _ from 'lodash';
 
 export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[][]> {
+    static readonly FIRST_FEATURE_COLUMN_INDEX = 4;
+
     static parseFeatureHeader(featureHeader: string): [WorksheetFeatureSetId, WorksheetFeatureId] {
         const split = featureHeader.split("/", 2);
         if (split.length !== 2) {
@@ -17,7 +19,7 @@ export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[
     export(worksheetDefinition: WorksheetDefinition, worksheetStates: WorksheetState[]): string[][] {
         const rows: string[][] = [];
 
-        const headerRow = ["id", "description"];
+        const headerRow = ["id", "ctime", "mtime", "description"];
         // Output all feature sets and values so they're represented in the CSV.
         for (const featureSetDefinition of worksheetDefinition.featureSets) {
             for (const featureId of featureSetDefinition.featureIds) {
@@ -27,7 +29,7 @@ export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[
         rows.push(headerRow);
 
         for (const worksheetState of worksheetStates) {
-            const dataRow = [worksheetState.id.toString()];
+            const dataRow = [worksheetState.id.toString(), worksheetState.ctime.toISOString(), worksheetState.mtime.toISOString()];
 
             if (worksheetState.text) {
                 dataRow.push(worksheetState.text);
@@ -35,7 +37,7 @@ export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[
                 dataRow.push("");
             }
 
-            for (const featureHeader of headerRow.slice(2)) {
+            for (const featureHeader of headerRow.slice(CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX)) {
                 const [featureSetId, featureId] = CsvWorksheetStateExporter.parseFeatureHeader(featureHeader);
                 const featureSetState = _.find(worksheetState.featureSets, (existingFeatureSetState) => existingFeatureSetState.id.equals(featureSetId));
                 if (!featureSetState) {
