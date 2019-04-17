@@ -1,5 +1,8 @@
 import * as classnames from 'classnames';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
+import {
+    WorksheetStateConfigurationHeadline,
+} from 'dressdiscover/gui/components/worksheet/start/WorksheetStateConfigurationHeadline';
 import * as React from 'react';
 import Hammer from 'react-hammerjs';
 import { Button, Card, CardBody, CardHeader, CardTitle, Col, Container, Input, Row } from 'reactstrap';
@@ -52,7 +55,7 @@ export class NewWorksheetState extends React.Component<Props, { newWorksheetStat
                 <div>
                     <Card>
                         <CardHeader>
-                            <CardTitle className={classnames(["mb-0", "text-center"])}>Start a new worksheet</CardTitle>
+                            <CardTitle className={classnames(["mb-0", "text-center"])}><b>Start a new worksheet</b> in <WorksheetStateConfigurationHeadline/></CardTitle>
                         </CardHeader>
                         <CardBody>
                             <Container fluid>

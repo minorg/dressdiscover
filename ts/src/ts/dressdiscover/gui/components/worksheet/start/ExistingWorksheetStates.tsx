@@ -5,6 +5,9 @@ import {
     OnDeleteWorksheetStateCallback,
     OnRenameWorksheetStateCallback,
 } from 'dressdiscover/gui/components/worksheet/start/ExistingWorksheetState';
+import {
+    WorksheetStateConfigurationHeadline,
+} from 'dressdiscover/gui/components/worksheet/start/WorksheetStateConfigurationHeadline';
 import * as React from 'react';
 import { Card, CardBody, CardHeader, CardTitle, Col, Container, Row, Table } from 'reactstrap';
 
@@ -19,7 +22,7 @@ export class ExistingWorksheetStates extends React.Component<{
         return (
             <Card>
                 <CardHeader>
-                    <CardTitle className={classnames(["mb-0", "text-center"])}>Existing worksheets</CardTitle>
+                    <CardTitle className={classnames(["mb-0", "text-center"])}><b>Existing worksheets</b> from <WorksheetStateConfigurationHeadline/></CardTitle>
                 </CardHeader>
                 <CardBody>
                     <Container fluid>

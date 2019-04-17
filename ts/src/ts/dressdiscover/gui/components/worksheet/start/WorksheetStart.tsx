@@ -111,7 +111,10 @@ export class WorksheetStart extends React.Component<Props, State> {
                             <Container fluid>
                                 <Row>
                                     <Col xs="12">
-                                        <NewWorksheetState existingWorksheetStateIds={existingWorksheetStateIds} onSubmit={this.onStartNewWorksheet}></NewWorksheetState>
+                                        <NewWorksheetState
+                                            existingWorksheetStateIds={existingWorksheetStateIds}
+                                            onSubmit={this.onStartNewWorksheet}
+                                        ></NewWorksheetState>
                                         <div className="w-100 text-center">
                                             <p>Select <b>Worksheets</b> from the top navigation to return to this page at any time.</p>
                                         </div>

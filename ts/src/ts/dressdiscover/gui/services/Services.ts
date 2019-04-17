@@ -41,7 +41,7 @@ import {
 } from 'dressdiscover/gui/services/worksheet/state/LocalStorageWorksheetStateQueryService';
 
 export class Services {
-  constructor(configuration: WorksheetConfiguration) {
+  constructor(readonly configuration: WorksheetConfiguration) {
     this.userSettingsCommandService = new LoggingUserSettingsCommandService(new LocalStorageUserSettingsCommandService());
     this.userSettingsQueryService = new LoggingUserSettingsQueryService(new LocalStorageUserSettingsQueryService());
 
