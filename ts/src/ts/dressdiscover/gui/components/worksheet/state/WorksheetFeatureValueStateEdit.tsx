@@ -1,3 +1,5 @@
+import './WorksheetFeatureValueStateEdit.scss';
+
 import * as classnames from 'classnames';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
 import { WorksheetDescriptionComponent } from 'dressdiscover/gui/components/worksheet/state/WorksheetDescriptionComponent';
@@ -5,7 +7,7 @@ import {
     WorksheetFeatureValueDefinitionWrapper,
 } from 'dressdiscover/gui/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 import * as React from 'react';
-import { Card, CardBody, CardHeader, Collapse } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap';
 
 interface Props {
     featureValueDefinition: WorksheetFeatureValueDefinitionWrapper;
@@ -49,9 +51,9 @@ export class WorksheetFeatureValueStateEdit extends React.Component<Props, State
         }
 
         return (
-            <Card className={classnames({ "border-info": this.props.selected, "mb-4": true, "mr-4": true })} style={{ borderWidth: "8px" }}>
+            <Card className={classnames({ "border-info": this.props.selected, "mb-4": true, "mr-4": true, "worksheet-feature-value-state": true})}>
                 <CardHeader>
-                    <a onClick={this.onToggleSelected}>{definition.displayName}</a>
+                    <Button color="link" onClick={this.onToggleSelected}>{definition.displayName}</Button>
                 </CardHeader>
                 <CardBody style={{ width: "240px" }}>
                     <figure className="figure">
@@ -73,9 +75,9 @@ export class WorksheetFeatureValueStateEdit extends React.Component<Props, State
                     </figure>
                     {definition.description ? (
                         <div className="card-text">
-                            <a onClick={this.onToggleDescription}>Description</a>
+                            <a onClick={this.onToggleDescription} className="description-toggle">Description</a>
                             <div className="float-right">
-                                <a onClick={this.onToggleDescription} style={{ textDecoration: "none" }}>
+                                <a onClick={this.onToggleDescription} className="description-toggle">
                                     <i className={classnames({ fas: true, "fa-chevron-down": this.state.descriptionShown, "fa-chevron-right": !this.state.descriptionShown })}></i>
                                 </a>
                             </div>

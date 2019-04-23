@@ -1,0 +1,19 @@
+.worksheet-feature-value-state {
+    border-width: 8px;
+
+    .card-body figure a {
+        cursor: pointer;
+    }
+
+    .card-header {
+        button, button:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
+    .card-text a.description-toggle {
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
