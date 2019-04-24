@@ -4,6 +4,6 @@ import * as React from 'react';
 export class WorksheetRightsLicenseComponent extends React.Component<{ license: WorksheetRightsLicense }> {
     render() {
         const { license } = this.props;
-        return (<a href={license.uri}>{license.statement} ({license.nickname})</a>);
+        return (<a href={license.uri} target="_blank">{license.statement} ({license.nickname})</a>);
     }
 }
