@@ -1,11 +1,11 @@
 namespace * dressdiscover.api.models.worksheet.definition
 
-include "thryft/native/url.thrift"
+include "dressdiscover/api/models/worksheet/definition/worksheet_rights_license.thrift"
+include "dressdiscover/api/models/worksheet/definition/worksheet_rights_source.thrift"
 include "thryft/waf/api/models/non_blank_string.thrift"
 
 struct WorksheetRights {
     non_blank_string.NonBlankString author;
-    non_blank_string.NonBlankString license;
-    non_blank_string.NonBlankString source_name;
-    url.Url source_url;
+    worksheet_rights_license.WorksheetRightsLicense license;
+    worksheet_rights_source.WorksheetRightsSource source;
 }

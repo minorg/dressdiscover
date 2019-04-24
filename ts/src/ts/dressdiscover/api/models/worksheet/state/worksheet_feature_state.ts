@@ -4,16 +4,8 @@ import { WorksheetFeatureValueId } from "../worksheet_feature_value_id";
 export class WorksheetFeatureState {
     constructor(kwds: {id: WorksheetFeatureId, selectedValueIds?: WorksheetFeatureValueId[], text?: string}) {
         this.idPrivate = WorksheetFeatureState.validateId(kwds.id);
-        if (kwds.selectedValueIds != null) {
-            this.selectedValueIdsPrivate = WorksheetFeatureState.validateSelectedValueIds(kwds.selectedValueIds);
-        } else {
-            this.selectedValueIdsPrivate = undefined;
-        }
-        if (kwds.text != null) {
-            this.textPrivate = WorksheetFeatureState.validateText(kwds.text);
-        } else {
-            this.textPrivate = undefined;
-        }
+        this.selectedValueIdsPrivate = WorksheetFeatureState.validateSelectedValueIds(kwds.selectedValueIds);
+        this.textPrivate = WorksheetFeatureState.validateText(kwds.text);
     }
 
     get id(): WorksheetFeatureId {
@@ -53,7 +45,7 @@ export class WorksheetFeatureState {
             return false;
         }
 
-        if (!((!((typeof (this.text)) === "undefined") && !((typeof (other.text)) === "undefined")) ? ((this.text as string) === (other.text as string)) : (((typeof (this.text)) === "undefined") && ((typeof (other.text)) === "undefined")))) {
+        if (this.text !== other.text) {
             return false;
         }
 
@@ -128,8 +120,6 @@ export class WorksheetFeatureState {
     }
 
     private idPrivate: WorksheetFeatureId;
-
     private selectedValueIdsPrivate?: WorksheetFeatureValueId[];
-
     private textPrivate?: string;
 }

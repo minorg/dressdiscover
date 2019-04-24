@@ -7,11 +7,7 @@ export class WorksheetState {
         this.featureSetsPrivate = WorksheetState.validateFeatureSets(kwds.featureSets);
         this.idPrivate = WorksheetState.validateId(kwds.id);
         this.mtimePrivate = WorksheetState.validateMtime(kwds.mtime);
-        if (kwds.text != null) {
-            this.textPrivate = WorksheetState.validateText(kwds.text);
-        } else {
-            this.textPrivate = undefined;
-        }
+        this.textPrivate = WorksheetState.validateText(kwds.text);
     }
 
     get ctime(): Date {
@@ -75,7 +71,7 @@ export class WorksheetState {
             return false;
         }
 
-        if (!((!((typeof (this.text)) === "undefined") && !((typeof (other.text)) === "undefined")) ? ((this.text as string) === (other.text as string)) : (((typeof (this.text)) === "undefined") && ((typeof (other.text)) === "undefined")))) {
+        if (this.text !== other.text) {
             return false;
         }
 
@@ -181,12 +177,8 @@ export class WorksheetState {
     }
 
     private ctimePrivate: Date;
-
     private featureSetsPrivate: WorksheetFeatureSetState[];
-
     private idPrivate: WorksheetStateId;
-
     private mtimePrivate: Date;
-
     private textPrivate?: string;
 }

@@ -5,41 +5,13 @@ export class User {
         this.emailAddress = User.validateEmailAddress(kwds.emailAddress);
         this.identityProvider = User.validateIdentityProvider(kwds.identityProvider);
         this.identityProviderId = User.validateIdentityProviderId(kwds.identityProviderId);
-        if (kwds.emailAddressVerified != null) {
-            this.emailAddressVerified = User.validateEmailAddressVerified(kwds.emailAddressVerified);
-        } else {
-            this.emailAddressVerified = undefined;
-        }
-        if (kwds.familyName != null) {
-            this.familyName = User.validateFamilyName(kwds.familyName);
-        } else {
-            this.familyName = undefined;
-        }
-        if (kwds.givenName != null) {
-            this.givenName = User.validateGivenName(kwds.givenName);
-        } else {
-            this.givenName = undefined;
-        }
-        if (kwds.locale != null) {
-            this.locale = User.validateLocale(kwds.locale);
-        } else {
-            this.locale = undefined;
-        }
-        if (kwds.name != null) {
-            this.name = User.validateName(kwds.name);
-        } else {
-            this.name = undefined;
-        }
-        if (kwds.nickname != null) {
-            this.nickname = User.validateNickname(kwds.nickname);
-        } else {
-            this.nickname = undefined;
-        }
-        if (kwds.pictureUrl != null) {
-            this.pictureUrl = User.validatePictureUrl(kwds.pictureUrl);
-        } else {
-            this.pictureUrl = undefined;
-        }
+        this.emailAddressVerified = (kwds.emailAddressVerified != null) ? kwds.emailAddressVerified : undefined;
+        this.familyName = User.validateFamilyName(kwds.familyName);
+        this.givenName = User.validateGivenName(kwds.givenName);
+        this.locale = User.validateLocale(kwds.locale);
+        this.name = User.validateName(kwds.name);
+        this.nickname = User.validateNickname(kwds.nickname);
+        this.pictureUrl = (kwds.pictureUrl != null) ? kwds.pictureUrl : undefined;
     }
 
     public deepCopy(): User {
@@ -47,43 +19,43 @@ export class User {
     }
 
     public equals(other: User): boolean {
-        if (!(this.emailAddress === other.emailAddress)) {
+        if (this.emailAddress !== other.emailAddress) {
             return false;
         }
 
-        if (!(this.identityProvider === other.identityProvider)) {
+        if (this.identityProvider !== other.identityProvider) {
             return false;
         }
 
-        if (!(this.identityProviderId === other.identityProviderId)) {
+        if (this.identityProviderId !== other.identityProviderId) {
             return false;
         }
 
-        if (!((!((typeof (this.emailAddressVerified)) === "undefined") && !((typeof (other.emailAddressVerified)) === "undefined")) ? ((this.emailAddressVerified as boolean) === (other.emailAddressVerified as boolean)) : (((typeof (this.emailAddressVerified)) === "undefined") && ((typeof (other.emailAddressVerified)) === "undefined")))) {
+        if (this.emailAddressVerified !== other.emailAddressVerified) {
             return false;
         }
 
-        if (!((!((typeof (this.familyName)) === "undefined") && !((typeof (other.familyName)) === "undefined")) ? ((this.familyName as string) === (other.familyName as string)) : (((typeof (this.familyName)) === "undefined") && ((typeof (other.familyName)) === "undefined")))) {
+        if (this.familyName !== other.familyName) {
             return false;
         }
 
-        if (!((!((typeof (this.givenName)) === "undefined") && !((typeof (other.givenName)) === "undefined")) ? ((this.givenName as string) === (other.givenName as string)) : (((typeof (this.givenName)) === "undefined") && ((typeof (other.givenName)) === "undefined")))) {
+        if (this.givenName !== other.givenName) {
             return false;
         }
 
-        if (!((!((typeof (this.locale)) === "undefined") && !((typeof (other.locale)) === "undefined")) ? ((this.locale as string) === (other.locale as string)) : (((typeof (this.locale)) === "undefined") && ((typeof (other.locale)) === "undefined")))) {
+        if (this.locale !== other.locale) {
             return false;
         }
 
-        if (!((!((typeof (this.name)) === "undefined") && !((typeof (other.name)) === "undefined")) ? ((this.name as string) === (other.name as string)) : (((typeof (this.name)) === "undefined") && ((typeof (other.name)) === "undefined")))) {
+        if (this.name !== other.name) {
             return false;
         }
 
-        if (!((!((typeof (this.nickname)) === "undefined") && !((typeof (other.nickname)) === "undefined")) ? ((this.nickname as string) === (other.nickname as string)) : (((typeof (this.nickname)) === "undefined") && ((typeof (other.nickname)) === "undefined")))) {
+        if (this.nickname !== other.nickname) {
             return false;
         }
 
-        if (!((!((typeof (this.pictureUrl)) === "undefined") && !((typeof (other.pictureUrl)) === "undefined")) ? ((this.pictureUrl as string) === (other.pictureUrl as string)) : (((typeof (this.pictureUrl)) === "undefined") && ((typeof (other.pictureUrl)) === "undefined")))) {
+        if (this.pictureUrl !== other.pictureUrl) {
             return false;
         }
 
@@ -183,10 +155,6 @@ export class User {
         return emailAddress;
     }
 
-    private static validateEmailAddressVerified(emailAddressVerified: boolean | undefined): boolean | undefined {
-        return emailAddressVerified;
-    }
-
     private static validateFamilyName(familyName: string | undefined): string | undefined {
         if (familyName != null) {
             if (familyName.trim().length === 0) {
@@ -267,30 +235,17 @@ export class User {
         return nickname;
     }
 
-    private static validatePictureUrl(pictureUrl: string | undefined): string | undefined {
-        return pictureUrl;
-    }
-
     /**
      * date_time.DateTime ctime;
      */
     public readonly emailAddress: string;
-
     public readonly emailAddressVerified?: boolean;
-
     public readonly familyName?: string;
-
     public readonly givenName?: string;
-
     public readonly identityProvider: UserIdentityProvider;
-
     public readonly identityProviderId: string;
-
     public readonly locale?: string;
-
     public readonly name?: string;
-
     public readonly nickname?: string;
-
     public readonly pictureUrl?: string;
 }

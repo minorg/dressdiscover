@@ -15,7 +15,7 @@ export class WorksheetDescription {
             return false;
         }
 
-        if (!(this.textEn === other.textEn)) {
+        if (this.textEn !== other.textEn) {
             return false;
         }
 
@@ -41,7 +41,7 @@ export class WorksheetDescription {
         return new WorksheetDescription({rights, textEn});
     }
 
-    public toJsonObject(): {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} {
+    public toJsonObject(): {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} {
         return {
             rights: this.rights.toJsonObject(),
             text_en: this.textEn
@@ -52,7 +52,7 @@ export class WorksheetDescription {
         return "WorksheetDescription(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} {
+    public toThryftJsonObject(): {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} {
         return {
             rights: this.rights.toThryftJsonObject(),
             text_en: this.textEn
@@ -80,6 +80,5 @@ export class WorksheetDescription {
     }
 
     public readonly rights: WorksheetRights;
-
     public readonly textEn: string;
 }

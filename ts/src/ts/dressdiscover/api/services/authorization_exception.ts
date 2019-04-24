@@ -8,7 +8,7 @@ export class AuthorizationException implements Exception {
     }
 
     public equals(other: AuthorizationException): boolean {
-        if (!(this.causeMessage === other.causeMessage)) {
+        if (this.causeMessage !== other.causeMessage) {
             return false;
         }
 

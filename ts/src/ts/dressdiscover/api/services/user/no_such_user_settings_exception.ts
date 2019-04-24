@@ -5,11 +5,7 @@ export class NoSuchUserSettingsException implements Exception {
         if (!kwds) {
             return;
         }
-        if (kwds.id != null) {
-            this.id = NoSuchUserSettingsException.validateId(kwds.id);
-        } else {
-            this.id = undefined;
-        }
+        this.id = (kwds.id != null) ? kwds.id : undefined;
     }
 
     public deepCopy(): NoSuchUserSettingsException {
@@ -49,10 +45,6 @@ export class NoSuchUserSettingsException implements Exception {
         return {
             id: this.id != null ? this.id.toString() : undefined
         };
-    }
-
-    private static validateId(id: UserId | undefined): UserId | undefined {
-        return id;
     }
 
     public readonly id?: UserId;

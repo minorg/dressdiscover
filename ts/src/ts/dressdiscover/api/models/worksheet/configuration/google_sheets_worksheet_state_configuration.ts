@@ -8,7 +8,7 @@ export class GoogleSheetsWorksheetStateConfiguration {
     }
 
     public equals(other: GoogleSheetsWorksheetStateConfiguration): boolean {
-        if (!(this.spreadsheetId === other.spreadsheetId)) {
+        if (this.spreadsheetId !== other.spreadsheetId) {
             return false;
         }
 

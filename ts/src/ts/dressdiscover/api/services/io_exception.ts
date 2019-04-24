@@ -8,7 +8,7 @@ export class IoException implements Exception {
     }
 
     public equals(other: IoException): boolean {
-        if (!(this.causeMessage === other.causeMessage)) {
+        if (this.causeMessage !== other.causeMessage) {
             return false;
         }
 

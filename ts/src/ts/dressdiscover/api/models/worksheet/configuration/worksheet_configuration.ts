@@ -75,6 +75,5 @@ export class WorksheetConfiguration {
     }
 
     public readonly definition: WorksheetDefinitionConfiguration;
-
     public readonly state: WorksheetStateConfiguration;
 }
