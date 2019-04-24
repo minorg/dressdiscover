@@ -7,11 +7,7 @@ export class WorksheetFeatureSetDefinition {
         this.displayNameEn = WorksheetFeatureSetDefinition.validateDisplayNameEn(kwds.displayNameEn);
         this.featureIds = WorksheetFeatureSetDefinition.validateFeatureIds(kwds.featureIds);
         this.id = WorksheetFeatureSetDefinition.validateId(kwds.id);
-        if (kwds.description != null) {
-            this.description = WorksheetFeatureSetDefinition.validateDescription(kwds.description);
-        } else {
-            this.description = undefined;
-        }
+        this.description = (kwds.description != null) ? kwds.description : undefined;
     }
 
     public deepCopy(): WorksheetFeatureSetDefinition {
@@ -19,7 +15,7 @@ export class WorksheetFeatureSetDefinition {
     }
 
     public equals(other: WorksheetFeatureSetDefinition): boolean {
-        if (!(this.displayNameEn === other.displayNameEn)) {
+        if (this.displayNameEn !== other.displayNameEn) {
             return false;
         }
 
@@ -66,7 +62,7 @@ export class WorksheetFeatureSetDefinition {
         return new WorksheetFeatureSetDefinition({displayNameEn, featureIds, id, description});
     }
 
-    public toJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, feature_ids: Array<string>, id: string} {
+    public toJsonObject(): {description: {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} | undefined, display_name_en: string, feature_ids: Array<string>, id: string} {
         return {
             description: this.description != null ? this.description.toJsonObject() : undefined,
             display_name_en: this.displayNameEn,
@@ -79,17 +75,13 @@ export class WorksheetFeatureSetDefinition {
         return "WorksheetFeatureSetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, feature_ids: Array<string>, id: string} {
+    public toThryftJsonObject(): {description: {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} | undefined, display_name_en: string, feature_ids: Array<string>, id: string} {
         return {
             description: this.description != null ? this.description.toThryftJsonObject() : undefined,
             display_name_en: this.displayNameEn,
             feature_ids: (this.featureIds).map((inElement) => inElement.toString()),
             id: this.id.toString()
         };
-    }
-
-    private static validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {
-        return description;
     }
 
     private static validateDisplayNameEn(displayNameEn: string): string {
@@ -123,10 +115,7 @@ export class WorksheetFeatureSetDefinition {
     }
 
     public readonly description?: WorksheetDescription;
-
     public readonly displayNameEn: string;
-
     public readonly featureIds: WorksheetFeatureId[];
-
     public readonly id: WorksheetFeatureSetId;
 }

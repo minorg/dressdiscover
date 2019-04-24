@@ -5,11 +5,7 @@ export class WorksheetDefinitionConfiguration {
         if (!kwds) {
             return;
         }
-        if (kwds.bundled != null) {
-            this.bundled = WorksheetDefinitionConfiguration.validateBundled(kwds.bundled);
-        } else {
-            this.bundled = undefined;
-        }
+        this.bundled = (kwds.bundled != null) ? kwds.bundled : undefined;
     }
 
     public deepCopy(): WorksheetDefinitionConfiguration {
@@ -49,10 +45,6 @@ export class WorksheetDefinitionConfiguration {
         return {
             "1:bundled": this.bundled != null ? this.bundled.toThryftJsonObject() : undefined
         };
-    }
-
-    private static validateBundled(bundled: BundledWorksheetDefinitionConfiguration | undefined): BundledWorksheetDefinitionConfiguration | undefined {
-        return bundled;
     }
 
     public readonly bundled?: BundledWorksheetDefinitionConfiguration;

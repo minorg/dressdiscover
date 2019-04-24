@@ -5,11 +5,7 @@ export class WorksheetFeatureValueImage {
     constructor(kwds: {rights: WorksheetRights, thumbnailUrl: WorksheetFeatureValueImageUrl, fullSizeUrl?: WorksheetFeatureValueImageUrl}) {
         this.rights = WorksheetFeatureValueImage.validateRights(kwds.rights);
         this.thumbnailUrl = WorksheetFeatureValueImage.validateThumbnailUrl(kwds.thumbnailUrl);
-        if (kwds.fullSizeUrl != null) {
-            this.fullSizeUrl = WorksheetFeatureValueImage.validateFullSizeUrl(kwds.fullSizeUrl);
-        } else {
-            this.fullSizeUrl = undefined;
-        }
+        this.fullSizeUrl = (kwds.fullSizeUrl != null) ? kwds.fullSizeUrl : undefined;
     }
 
     public deepCopy(): WorksheetFeatureValueImage {
@@ -54,7 +50,7 @@ export class WorksheetFeatureValueImage {
         return new WorksheetFeatureValueImage({rights, thumbnailUrl, fullSizeUrl});
     }
 
-    public toJsonObject(): {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} {
+    public toJsonObject(): {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} {
         return {
             full_size_url: this.fullSizeUrl != null ? this.fullSizeUrl.toJsonObject() : undefined,
             rights: this.rights.toJsonObject(),
@@ -66,16 +62,12 @@ export class WorksheetFeatureValueImage {
         return "WorksheetFeatureValueImage(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} {
+    public toThryftJsonObject(): {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} {
         return {
             full_size_url: this.fullSizeUrl != null ? this.fullSizeUrl.toThryftJsonObject() : undefined,
             rights: this.rights.toThryftJsonObject(),
             thumbnail_url: this.thumbnailUrl.toThryftJsonObject()
         };
-    }
-
-    private static validateFullSizeUrl(fullSizeUrl: WorksheetFeatureValueImageUrl | undefined): WorksheetFeatureValueImageUrl | undefined {
-        return fullSizeUrl;
     }
 
     private static validateRights(rights: WorksheetRights): WorksheetRights {
@@ -93,8 +85,6 @@ export class WorksheetFeatureValueImage {
     }
 
     public readonly fullSizeUrl?: WorksheetFeatureValueImageUrl;
-
     public readonly rights: WorksheetRights;
-
     public readonly thumbnailUrl: WorksheetFeatureValueImageUrl;
 }

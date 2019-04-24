@@ -6,16 +6,8 @@ export class WorksheetStateConfiguration {
         if (!kwds) {
             return;
         }
-        if (kwds.googleSheets != null) {
-            this.googleSheets = WorksheetStateConfiguration.validateGoogleSheets(kwds.googleSheets);
-        } else {
-            this.googleSheets = undefined;
-        }
-        if (kwds.localStorage != null) {
-            this.localStorage = WorksheetStateConfiguration.validateLocalStorage(kwds.localStorage);
-        } else {
-            this.localStorage = undefined;
-        }
+        this.googleSheets = (kwds.googleSheets != null) ? kwds.googleSheets : undefined;
+        this.localStorage = (kwds.localStorage != null) ? kwds.localStorage : undefined;
     }
 
     public deepCopy(): WorksheetStateConfiguration {
@@ -66,15 +58,6 @@ export class WorksheetStateConfiguration {
         };
     }
 
-    private static validateGoogleSheets(googleSheets: GoogleSheetsWorksheetStateConfiguration | undefined): GoogleSheetsWorksheetStateConfiguration | undefined {
-        return googleSheets;
-    }
-
-    private static validateLocalStorage(localStorage: LocalStorageWorksheetStateConfiguration | undefined): LocalStorageWorksheetStateConfiguration | undefined {
-        return localStorage;
-    }
-
     public readonly googleSheets?: GoogleSheetsWorksheetStateConfiguration;
-
     public readonly localStorage?: LocalStorageWorksheetStateConfiguration;
 }

@@ -3,16 +3,8 @@ export class WorksheetFeatureValueImageUrl {
         if (!kwds) {
             return;
         }
-        if (kwds.absolute != null) {
-            this.absolute = WorksheetFeatureValueImageUrl.validateAbsolute(kwds.absolute);
-        } else {
-            this.absolute = undefined;
-        }
-        if (kwds.relative != null) {
-            this.relative = WorksheetFeatureValueImageUrl.validateRelative(kwds.relative);
-        } else {
-            this.relative = undefined;
-        }
+        this.absolute = (kwds.absolute != null) ? kwds.absolute : undefined;
+        this.relative = WorksheetFeatureValueImageUrl.validateRelative(kwds.relative);
     }
 
     public deepCopy(): WorksheetFeatureValueImageUrl {
@@ -20,11 +12,11 @@ export class WorksheetFeatureValueImageUrl {
     }
 
     public equals(other: WorksheetFeatureValueImageUrl): boolean {
-        if (!((!((typeof (this.absolute)) === "undefined") && !((typeof (other.absolute)) === "undefined")) ? ((this.absolute as string) === (other.absolute as string)) : (((typeof (this.absolute)) === "undefined") && ((typeof (other.absolute)) === "undefined")))) {
+        if (this.absolute !== other.absolute) {
             return false;
         }
 
-        if (!((!((typeof (this.relative)) === "undefined") && !((typeof (other.relative)) === "undefined")) ? ((this.relative as string) === (other.relative as string)) : (((typeof (this.relative)) === "undefined") && ((typeof (other.relative)) === "undefined")))) {
+        if (this.relative !== other.relative) {
             return false;
         }
 
@@ -63,10 +55,6 @@ export class WorksheetFeatureValueImageUrl {
         };
     }
 
-    private static validateAbsolute(absolute: string | undefined): string | undefined {
-        return absolute;
-    }
-
     private static validateRelative(relative: string | undefined): string | undefined {
         if (relative != null) {
             if (relative.trim().length === 0) {
@@ -80,6 +68,5 @@ export class WorksheetFeatureValueImageUrl {
     }
 
     public readonly absolute?: string;
-
     public readonly relative?: string;
 }

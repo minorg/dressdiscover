@@ -5,11 +5,7 @@ export class UserSettings {
         if (!kwds) {
             return;
         }
-        if (kwds.worksheetConfiguration != null) {
-            this.worksheetConfiguration = UserSettings.validateWorksheetConfiguration(kwds.worksheetConfiguration);
-        } else {
-            this.worksheetConfiguration = undefined;
-        }
+        this.worksheetConfiguration = (kwds.worksheetConfiguration != null) ? kwds.worksheetConfiguration : undefined;
     }
 
     public deepCopy(): UserSettings {
@@ -49,10 +45,6 @@ export class UserSettings {
         return {
             "1:worksheet_configuration": this.worksheetConfiguration != null ? this.worksheetConfiguration.toThryftJsonObject() : undefined
         };
-    }
-
-    private static validateWorksheetConfiguration(worksheetConfiguration: WorksheetConfiguration | undefined): WorksheetConfiguration | undefined {
-        return worksheetConfiguration;
     }
 
     public readonly worksheetConfiguration?: WorksheetConfiguration;

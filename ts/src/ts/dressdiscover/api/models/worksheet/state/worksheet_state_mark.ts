@@ -5,21 +5,9 @@ import { WorksheetStateId } from "./worksheet_state_id";
 export class WorksheetStateMark {
     constructor(kwds: {worksheetStateId: WorksheetStateId, featureId?: WorksheetFeatureId, featureSetId?: WorksheetFeatureSetId, review?: boolean}) {
         this.worksheetStateId = WorksheetStateMark.validateWorksheetStateId(kwds.worksheetStateId);
-        if (kwds.featureId != null) {
-            this.featureId = WorksheetStateMark.validateFeatureId(kwds.featureId);
-        } else {
-            this.featureId = undefined;
-        }
-        if (kwds.featureSetId != null) {
-            this.featureSetId = WorksheetStateMark.validateFeatureSetId(kwds.featureSetId);
-        } else {
-            this.featureSetId = undefined;
-        }
-        if (kwds.review != null) {
-            this.review = WorksheetStateMark.validateReview(kwds.review);
-        } else {
-            this.review = undefined;
-        }
+        this.featureId = (kwds.featureId != null) ? kwds.featureId : undefined;
+        this.featureSetId = (kwds.featureSetId != null) ? kwds.featureSetId : undefined;
+        this.review = WorksheetStateMark.validateReview(kwds.review);
     }
 
     public deepCopy(): WorksheetStateMark {
@@ -39,7 +27,7 @@ export class WorksheetStateMark {
             return false;
         }
 
-        if (!((!((typeof (this.review)) === "undefined") && !((typeof (other.review)) === "undefined")) ? ((this.review as boolean) === (other.review as boolean)) : (((typeof (this.review)) === "undefined") && ((typeof (other.review)) === "undefined")))) {
+        if (this.review !== other.review) {
             return false;
         }
 
@@ -90,14 +78,6 @@ export class WorksheetStateMark {
         };
     }
 
-    private static validateFeatureId(featureId: WorksheetFeatureId | undefined): WorksheetFeatureId | undefined {
-        return featureId;
-    }
-
-    private static validateFeatureSetId(featureSetId: WorksheetFeatureSetId | undefined): WorksheetFeatureSetId | undefined {
-        return featureSetId;
-    }
-
     private static validateReview(review: boolean | undefined): boolean | undefined {
         if (review != null) {
             if (!review) {
@@ -115,10 +95,7 @@ export class WorksheetStateMark {
     }
 
     public readonly featureId?: WorksheetFeatureId;
-
     public readonly featureSetId?: WorksheetFeatureSetId;
-
     public readonly review?: boolean;
-
     public readonly worksheetStateId: WorksheetStateId;
 }

@@ -75,6 +75,5 @@ export class WorksheetFeatureSetState {
     }
 
     public readonly features: WorksheetFeatureState[];
-
     public readonly id: WorksheetFeatureSetId;
 }

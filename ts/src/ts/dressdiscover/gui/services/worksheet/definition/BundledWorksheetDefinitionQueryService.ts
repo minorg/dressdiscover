@@ -1,6 +1,6 @@
 ﻿import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
 import {
-  WorksheetDefinitionQueryService,
+    WorksheetDefinitionQueryService,
 } from 'dressdiscover/api/services/worksheet/definition/worksheet_definition_query_service';
 import { WorksheetDefinitionCsvParser } from 'dressdiscover/gui/models/worksheet/definition/WorksheetDefinitionCsvParser';
 import { WorksheetDefinitionValidator } from 'dressdiscover/gui/models/worksheet/definition/WorksheetDefinitionValidator';
@@ -18,7 +18,8 @@ export class BundledWorksheetDefinitionQueryService implements WorksheetDefiniti
         this._worksheetDefinition = new WorksheetDefinitionValidator().validateWorksheetDefinition(new WorksheetDefinitionCsvParser().parseWorksheetDefinitionCsv({
             featureSetsCsv: require("raw-loader!definitions/feature_sets.csv"),
             featuresCsv: require("raw-loader!definitions/features.csv"),
-            featureValuesCsv: require("raw-loader!definitions/feature_values.csv")
+            featureValuesCsv: require("raw-loader!definitions/feature_values.csv"),
+            rightsLicensesCsv: require("raw-loader!definitions/rights_licenses.csv")
         }));
         // console.debug("Worksheet definition:\n" + JSON.stringify(this._worksheetDefinition.toThryftJsonObject(), undefined, 4));
     }

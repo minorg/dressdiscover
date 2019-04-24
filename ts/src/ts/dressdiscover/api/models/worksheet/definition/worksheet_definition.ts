@@ -54,7 +54,7 @@ export class WorksheetDefinition {
         return new WorksheetDefinition({featureSets, featureValues, features});
     }
 
-    public toJsonObject(): {feature_sets: Array<{description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, feature_ids: Array<string>, id: string}>, feature_values: Array<{description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, image: {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} | undefined}>, features: Array<{description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: Array<string>}>} {
+    public toJsonObject(): {feature_sets: Array<{description: {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} | undefined, display_name_en: string, feature_ids: Array<string>, id: string}>, feature_values: Array<{description: {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} | undefined, display_name_en: string, id: string, image: {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} | undefined}>, features: Array<{description: {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: Array<string>}>} {
         return {
             feature_sets: (this.featureSets).map((inElement) => inElement.toJsonObject()),
             feature_values: (this.featureValues).map((inElement) => inElement.toJsonObject()),
@@ -66,7 +66,7 @@ export class WorksheetDefinition {
         return "WorksheetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    public toThryftJsonObject(): {feature_sets: Array<{description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, feature_ids: Array<string>, id: string}>, feature_values: Array<{description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, image: {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: string, source_name: string, source_url: string}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} | undefined}>, features: Array<{description: {rights: {author: string, license: string, source_name: string, source_url: string}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: Array<string>}>} {
+    public toThryftJsonObject(): {feature_sets: Array<{description: {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} | undefined, display_name_en: string, feature_ids: Array<string>, id: string}>, feature_values: Array<{description: {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} | undefined, display_name_en: string, id: string, image: {full_size_url: {absolute: string | undefined, relative: string | undefined} | undefined, rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, thumbnail_url: {absolute: string | undefined, relative: string | undefined}} | undefined}>, features: Array<{description: {rights: {author: string, license: {nickname: string, statement: string, uri: string}, source: {name: string, url: string}}, text_en: string} | undefined, display_name_en: string, id: string, value_ids: Array<string>}>} {
         return {
             feature_sets: (this.featureSets).map((inElement) => inElement.toThryftJsonObject()),
             feature_values: (this.featureValues).map((inElement) => inElement.toThryftJsonObject()),
@@ -105,8 +105,6 @@ export class WorksheetDefinition {
     }
 
     public readonly featureSets: WorksheetFeatureSetDefinition[];
-
     public readonly featureValues: WorksheetFeatureValueDefinition[];
-
     public readonly features: WorksheetFeatureDefinition[];
 }
