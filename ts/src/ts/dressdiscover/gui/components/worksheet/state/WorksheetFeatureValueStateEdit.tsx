@@ -4,6 +4,9 @@ import * as classnames from 'classnames';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
 import { WorksheetDescriptionComponent } from 'dressdiscover/gui/components/worksheet/state/WorksheetDescriptionComponent';
 import {
+    WorksheetRightsLicenseComponent,
+} from 'dressdiscover/gui/components/worksheet/state/WorksheetRightsLicenseComponent';
+import {
     WorksheetFeatureValueDefinitionWrapper,
 } from 'dressdiscover/gui/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 import * as React from 'react';
@@ -69,7 +72,7 @@ export class WorksheetFeatureValueStateEdit extends React.Component<Props, State
                                 Image&nbsp;&copy;
                                 <span>{definition.image.rights.author}</span>
                                 <br />License:&nbsp;
-                                <span >{definition.image.rights.license}</span>
+                                <span ><WorksheetRightsLicenseComponent license={definition.image.rights.license}></WorksheetRightsLicenseComponent></span>
                             </figcaption>
                         ) : null}
                     </figure>
