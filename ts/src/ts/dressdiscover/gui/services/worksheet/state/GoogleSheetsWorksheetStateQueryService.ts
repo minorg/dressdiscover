@@ -5,7 +5,9 @@ import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/workshe
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
 import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
-import { CsvWorksheetStateImporter } from 'dressdiscover/gui/components/worksheet/state/importers/CsvWorksheetStateImporter';
+import {
+    GoogleSheetsWorksheetStateImporter,
+} from 'dressdiscover/gui/components/worksheet/state/importers/GoogleSheetsWorksheetStateImporter';
 import { convertGapiErrorToException } from 'dressdiscover/gui/services/GapiException';
 import * as _ from 'lodash';
 
@@ -21,7 +23,7 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
         const spreadsheetId = kwds.spreadsheetId;
         return new Promise((resolve, reject) => {
             GoogleSheetsWorksheetStateQueryService.getFirstSheetData({ spreadsheetId }).then((stringRows) => {
-                resolve(new CsvWorksheetStateImporter().importCsvRows(stringRows));
+                resolve(new GoogleSheetsWorksheetStateImporter().importCsvRows(stringRows));
             }, reject);
         });
     }

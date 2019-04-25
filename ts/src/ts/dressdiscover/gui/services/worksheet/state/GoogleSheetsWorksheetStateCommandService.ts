@@ -8,7 +8,9 @@ import {
 } from 'dressdiscover/api/services/worksheet/definition/worksheet_definition_query_service';
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
 import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
-import { CsvWorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/CsvWorksheetStateExporter';
+import {
+    GoogleSheetsWorksheetStateExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/GoogleSheetsWorksheetStateExporter';
 import { convertGapiErrorToException } from 'dressdiscover/gui/services/GapiException';
 import {
     GoogleSheetsWorksheetStateQueryService,
@@ -111,7 +113,7 @@ export class GoogleSheetsWorksheetStateCommandService implements WorksheetStateC
         const self = this;
         return new Promise((resolve, reject) => {
             this.worksheetDefinitionQueryService.getWorksheetDefinition().then((worksheetDefinition) => {
-                self.replaceFirstSheetData(new CsvWorksheetStateExporter().export(worksheetDefinition, newWorksheetStates)).then(resolve, reject);
+                self.replaceFirstSheetData(new GoogleSheetsWorksheetStateExporter().export(worksheetDefinition, newWorksheetStates)).then(resolve, reject);
             }, (reason) => reject(reason));
         });
     }

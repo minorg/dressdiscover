@@ -5,25 +5,27 @@ import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/works
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
-import { CsvWorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/CsvWorksheetStateExporter';
+import {
+    GoogleSheetsWorksheetStateExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/GoogleSheetsWorksheetStateExporter';
 import * as _ from 'lodash';
 import * as Papa from 'papaparse';
 
-export class CsvWorksheetStateImporter {
+export class GoogleSheetsWorksheetStateImporter {
     importCsvRows(csvRows: string[][]): WorksheetState[] {
         if (csvRows.length < 2) {
             return [];
         }
 
         const headerRow = csvRows[0];
-        if (headerRow.length < CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX) {
+        if (headerRow.length < GoogleSheetsWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX) {
             return [];
         }
-        const parsedHeaderColumns: any[] = headerRow.slice(CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX).map((headerColumn) => CsvWorksheetStateExporter.parseFeatureHeader(headerColumn));
+        const parsedHeaderColumns: any[] = headerRow.slice(GoogleSheetsWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX).map((headerColumn) => GoogleSheetsWorksheetStateExporter.parseFeatureHeader(headerColumn));
 
         const worksheetStates: WorksheetState[] = [];
         for (const dataRow of csvRows.slice(1)) {
-            if (dataRow.length < CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX) {
+            if (dataRow.length < GoogleSheetsWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX) {
                 continue;
             }
 
@@ -39,7 +41,7 @@ export class CsvWorksheetStateImporter {
 
             // Build a map of maps of feature value id's.
             const featureSetValueIds: { [index: string]: { [index: string]: WorksheetFeatureValueId[] } } = {};
-            dataRow.slice(CsvWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX).map((dataColumn, dataColumnI) => {
+            dataRow.slice(GoogleSheetsWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX).map((dataColumn, dataColumnI) => {
                 const headerColumn = parsedHeaderColumns[dataColumnI];
                 if (!headerColumn) {
                     return;
