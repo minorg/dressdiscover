@@ -46,7 +46,7 @@ export class WorksheetFeatureValueStateEdit extends React.Component<Props, State
             if (definition.image.thumbnailUrl.absolute) {
                 thumbnailImgSrc = definition.image.thumbnailUrl.absolute;
             } else if (definition.image.thumbnailUrl.relative) {
-                thumbnailImgSrc = "https://dressdiscover.org/img/worksheet/" + definition.image.thumbnailUrl.relative;
+                thumbnailImgSrc = window.location.protocol + "//" + window.location.host + "/img/worksheet/" + definition.image.thumbnailUrl.relative;
             }
         }
         if (!thumbnailImgSrc) {
