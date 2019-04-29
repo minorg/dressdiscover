@@ -12,7 +12,15 @@ export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[
         const rows: string[][] = [];
 
         const featureHeader = (featureSetId: WorksheetFeatureSetId, featureId: WorksheetFeatureId) => {
-            const featureSetDefinition = worksheetDefinition.featureSets.find((featureSetDefinition) => featureSetDefinition.id.equals(featureSetId));
+            if (worksheetStates.length === 1) {
+                const worksheetState = worksheetStates[0];
+                if (worksheetState.featureSets && worksheetState.featureSets.length === 1) {
+                    // # 318: don't prefix CSV header names if there is only one feature set defined in all worksheets
+                    return featureId.toString();
+                }
+            }
+
+            const featureSetDefinition = worksheetDefinition.featureSets.find((checkFeatureSetDefinition) => checkFeatureSetDefinition.id.equals(featureSetId));
             if (!featureSetDefinition) {
                 return undefined;
             }
