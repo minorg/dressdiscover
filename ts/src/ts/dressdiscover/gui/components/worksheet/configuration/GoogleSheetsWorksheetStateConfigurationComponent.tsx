@@ -2,9 +2,10 @@ import * as classnames from 'classnames';
 import {
     GoogleSheetsWorksheetStateConfiguration,
 } from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
-import { FatalErrorModal } from 'dressdiscover/gui/components/error/FatalErrorModal';
+import { GenericErrorHandler } from 'dressdiscover/gui/components/error/GenericErrorHandler';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { convertGapiErrorToException, GapiException } from 'dressdiscover/gui/services/GapiException';
+import { History } from 'history';
 import * as React from 'react';
 import * as ReactLoader from 'react-loader';
 import {
@@ -66,6 +67,7 @@ class DeleteExistingFileConfirmationModal extends React.Component<{ existingFile
 interface Props {
     currentUser: CurrentUser;
     googleSheetsWorksheetStateConfiguration?: GoogleSheetsWorksheetStateConfiguration;
+    history: History;
     onChange: (newGoogleSheetsWorksheetStateConfiguration: GoogleSheetsWorksheetStateConfiguration) => void;
 }
 
@@ -145,7 +147,7 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
         const { googleSheetsWorksheetStateConfiguration } = this.props;
         const { exception, deletingExistingFile, existingFiles } = this.state;
         if (exception) {
-            return <FatalErrorModal message={JSON.stringify(exception)}></FatalErrorModal>;
+            return <GenericErrorHandler exception={exception} history={this.props.history}></GenericErrorHandler>;
         } else if (deletingExistingFile) {
             return <DeleteExistingFileConfirmationModal existingFile={deletingExistingFile} onCancel={this.onClickCancelDeleteExistingFile} onConfirm={this.onClickConfirmDeleteExistingFile} />;
         } else if (!existingFiles) {

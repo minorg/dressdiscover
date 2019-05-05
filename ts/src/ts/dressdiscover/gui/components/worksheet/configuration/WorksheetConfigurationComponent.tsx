@@ -10,6 +10,7 @@ import {
 import {
     WorksheetStateConfigurationComponent,
 } from 'dressdiscover/gui/components/worksheet/configuration/WorksheetStateConfigurationComponent';
+import { History } from 'history';
 import * as React from 'react';
 import { Nav, NavItem, NavLink, TabPane } from 'reactstrap';
 import TabContent from 'reactstrap/lib/TabContent';
@@ -20,6 +21,7 @@ enum ActiveTab {
 }
 
 interface Props {
+    history: History;
     onChange: (newWorksheetConfiguration: WorksheetConfiguration) => void;
     worksheetConfiguration: WorksheetConfiguration;
 }
@@ -78,14 +80,15 @@ export class WorksheetConfigurationComponent extends React.Component<Props, Stat
                 </Nav>
                 <br />
                 <TabContent activeTab={activeTab}>
-                    <TabPane tabId={ActiveTab.DEFINITIONS}>
+                    <TabPane className={classnames({ active: activeTab === ActiveTab.DEFINITIONS })} tabId={ActiveTab.DEFINITIONS}>
                         <WorksheetDefinitionConfigurationComponent
                             onChange={this.onChangeWorksheetDefinitionConfiguration}
                             worksheetDefinitionConfiguration={worksheetConfiguration.definition}>
                         </WorksheetDefinitionConfigurationComponent>
                     </TabPane>
-                    <TabPane tabId={ActiveTab.STATE}>
+                    <TabPane className={classnames({ active: activeTab === ActiveTab.STATE })} tabId={ActiveTab.STATE}>
                         <WorksheetStateConfigurationComponent
+                            history={this.props.history}
                             onChange={this.onChangeWorksheetStateConfiguration}
                             worksheetStateConfiguration={worksheetConfiguration.state}>
                         </WorksheetStateConfigurationComponent>
