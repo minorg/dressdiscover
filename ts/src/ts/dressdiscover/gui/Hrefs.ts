@@ -13,6 +13,10 @@ export class Hrefs {
     return "/credits";
   }
 
+  static get gettingStarted() {
+    return "/GettingStartedWithDressDiscover.pdf";
+  }
+
   static get gitHub() {
     return "https://github.com/minorg/dressdiscover";
   }

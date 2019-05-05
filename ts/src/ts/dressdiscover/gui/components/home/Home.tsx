@@ -17,6 +17,7 @@ export class Home extends React.Component {
         </p>
         <p>Read more about this project on the <Link to={Hrefs.about}>About</Link> page.</p>
         <p>Try our visual workflow for describing historic clothing artifacts on the <Link to={Hrefs.worksheetStart}>Worksheets</Link> page.</p>
+        <p>We have provided a <Link to={Hrefs.gettingStarted}>Getting Started guide</Link> for new users.</p>
       </Frame>
     );
   }
