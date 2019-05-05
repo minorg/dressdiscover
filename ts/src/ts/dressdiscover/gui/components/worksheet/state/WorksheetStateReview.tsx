@@ -1,3 +1,5 @@
+import './WorksheetStateReview.scss';
+
 import {
     CsvStringWorksheetStateExporter,
 } from 'dressdiscover/gui/components/worksheet/state/exporters/string/CsvStringWorksheetStateExporter';
@@ -98,7 +100,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
             <WorksheetStateFrame
                 headline={"Worksheet: " + worksheetState.id.toString()}
                 history={this.props.history}
-                id="worksheet-state-edit"
+                id="worksheet-state-review"
                 finishButtonEnabled={false}
                 nextButtonEnabled={false}
                 previousButtonEnabled={true}
@@ -110,7 +112,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
                     </div>
                     <div className="float-right">
                         <Form inline>
-                            <Clipboard className="btn btn-secondary" component="a" option-text={this.export}>
+                            <Clipboard className="btn btn-secondary copy-button" component="a" option-text={this.export}>
                                 Copy
                             </Clipboard>&nbsp;
                             <Button color="secondary" onClick={this.onClickEmailButton}>Email</Button>&nbsp;

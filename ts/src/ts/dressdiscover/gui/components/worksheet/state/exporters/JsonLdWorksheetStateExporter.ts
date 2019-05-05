@@ -15,24 +15,22 @@ export class JsonLdWorksheetStateExporter implements WorksheetStateExporter<any>
 
     private _export(worksheetDefinition: WorksheetDefinition, worksheetState: WorksheetState): any {
         const json: any = {};
-        json["@context"] = "https://dressdiscover.org/contexts/worksheet";
-        json["@id"] = "https://dressdiscover.org" + Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: worksheetState.id }));
+        const context: any = {};
+        context.cc = "http://purl.org/costumeCore/ontology/";
+        json["@context"] = context;
+        let href = Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: worksheetState.id }));
+        if (href.endsWith("/edit")) {
+            href = href.substring(0, href.length - 4);
+        }
+        json["@id"] = "https://dressdiscover.org" + href;
         for (const featureSetState of worksheetState.featureSets) {
             for (const featureState of featureSetState.features) {
                 if (!featureState.selectedValueIds || featureState.selectedValueIds.length === 0) {
                     continue;
                 }
-                let selectedValueDisplayNames: string[] = [];
-                for (const selectedValueId of featureState.selectedValueIds) {
-                    const selectedValueDefinition = worksheetDefinition.featureValues.find((value) => value.id.equals(selectedValueId));
-                    if (!selectedValueDefinition) {
-                        continue;
-                    }
-                    selectedValueDisplayNames.push(selectedValueDefinition.displayNameEn);
-                }
-                if (selectedValueDisplayNames.length > 0) {
-                    json[featureState.id.toString().replace(" ", "")] = selectedValueDisplayNames;
-                }
+                const featureStateKey = "cc:" + featureState.id.toString().replace(" ", "");
+                context[featureStateKey] = { "@type": "@id" };
+                json[featureStateKey] = featureState.selectedValueIds.map((selectedValueId) => "cc:" + selectedValueId.toString());
             }
         }
         return json;

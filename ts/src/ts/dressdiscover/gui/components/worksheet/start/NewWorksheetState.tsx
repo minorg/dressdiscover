@@ -38,7 +38,7 @@ export class NewWorksheetState extends React.Component<Props, { newWorksheetStat
         let newWorksheetStateIdStem = this.state.newWorksheetStateId;
         if (!newWorksheetStateIdStem) {
             const currentDate = new Date();
-            newWorksheetStateIdStem = "New object " + currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + (currentDate.getDay() + 1);
+            newWorksheetStateIdStem = "New object " + currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
         }
         let newWorksheetStateIdSuffix = 0;
         let newWorksheetStateId = newWorksheetStateIdStem;

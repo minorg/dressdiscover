@@ -9,7 +9,7 @@ import {
 
 export class JsonStringWorksheetStateExporter implements StringWorksheetStateExporter {
     export(worksheetDefinition: WorksheetDefinition, worksheetStates: WorksheetState[]): string {
-        return JSON.stringify(this.delegate.export(worksheetDefinition, worksheetStates));
+        return JSON.stringify(this.delegate.export(worksheetDefinition, worksheetStates), null, 4);
     }
 
     get displayName() {
