@@ -17,7 +17,7 @@ export class AuthorizationExceptionModal extends React.Component<{ currentUserSt
 
         return (
             <div>
-                <Modal isOpen={true}>
+                <Modal backdrop="static" centered={true} keyboard={false} isOpen={true}>
                     <ModalHeader>Authorization exception</ModalHeader>
                     <ModalBody>
                         <Container fluid>
