@@ -54,7 +54,7 @@ export class LoginCallback extends React.Component<Props, State> {
         if (currentUserStore.currentUser) {
             return <Redirect to={Hrefs.home}></Redirect>;
         } else if (this.state.error || currentUserStore.exception) {
-            return <GenericErrorHandler exception={currentUserStore.exception} error={this.state.error}></GenericErrorHandler>;
+            return <GenericErrorHandler exception={currentUserStore.exception} error={this.state.error} history={this.props.history}></GenericErrorHandler>;
         }
 
         return <ReactLoader loaded={false} />;

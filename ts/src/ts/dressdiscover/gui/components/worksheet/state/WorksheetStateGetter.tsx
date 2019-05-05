@@ -5,12 +5,14 @@ import { GenericErrorHandler } from 'dressdiscover/gui/components/error/GenericE
 import { WorksheetDefinitionWrapper } from 'dressdiscover/gui/models/worksheet/definition/WorksheetDefinitionWrapper';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
+import { History } from 'history';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import * as ReactLoader from 'react-loader';
 
 interface Props {
     currentUserStore?: CurrentUserStore;
+    history: History;
     render: (worksheetState: WorksheetStateWrapper) => React.ReactNode;
     worksheetStateMark: WorksheetStateMark;
 }
@@ -66,7 +68,7 @@ export class WorksheetStateGetter extends React.Component<Props, State> {
         const { exception, worksheetDefinition, worksheetState } = this.state;
 
         if (exception) {
-            return <GenericErrorHandler exception={exception}></GenericErrorHandler>;
+            return <GenericErrorHandler exception={exception} history={this.props.history}></GenericErrorHandler>;
         }
 
         if (!worksheetDefinition) {

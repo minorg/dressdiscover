@@ -12,6 +12,7 @@ export class WorksheetFeatureSetStateEditOrReview extends React.Component<RouteC
     render() {
         return (
             <WorksheetStateGetter
+                history={this.props.history}
                 render={(worksheetState) => <WorksheetFeatureSetStateEditOrReviewImpl history={this.props.history} worksheetState={worksheetState} />}
                 worksheetStateMark={WorksheetStateMarkParser.parseRouteComponentProps(this.props)}
             />
