@@ -12,11 +12,11 @@ import {
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { inject } from 'mobx-react';
 import * as React from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, RouteComponentProps } from 'react-router';
 import { Button, Col, Container, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import Row from 'reactstrap/lib/Row';
 
-interface Props {
+interface Props extends RouteComponentProps<any> {
     currentUserStore: CurrentUserStore;
 }
 
@@ -82,6 +82,7 @@ export class UserSettingsComponent extends React.Component<Props, State> {
                             <TabContent activeTab="worksheet">
                                 <TabPane tabId="worksheet">
                                     <WorksheetConfigurationComponent
+                                        history={this.props.history}
                                         onChange={this.onChangeWorksheetConfiguration}
                                         worksheetConfiguration={worksheetConfiguration}
                                     />

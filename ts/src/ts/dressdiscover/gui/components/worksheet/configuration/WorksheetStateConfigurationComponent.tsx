@@ -11,12 +11,14 @@ import {
 } from 'dressdiscover/gui/components/worksheet/configuration/GoogleSheetsWorksheetStateConfigurationComponent';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
+import { History } from 'history';
 import { inject } from 'mobx-react';
 import * as React from 'react';
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 
 interface Props {
     currentUserStore?: CurrentUserStore;
+    history: History;
     onChange: (newWorksheetStateConfiguration: WorksheetStateConfiguration) => void;
     worksheetStateConfiguration: WorksheetStateConfiguration;
 }
@@ -93,6 +95,7 @@ export class WorksheetStateConfigurationComponent extends React.Component<Props,
                             <GoogleSheetsWorksheetStateConfigurationComponent
                                 currentUser={currentUser as CurrentUser}
                                 googleSheetsWorksheetStateConfiguration={worksheetStateConfiguration.googleSheets}
+                                history={this.props.history}
                                 onChange={this.onChangeGoogleSheetsWorksheetStateConfiguration}
                             />
                         </React.Fragment>
