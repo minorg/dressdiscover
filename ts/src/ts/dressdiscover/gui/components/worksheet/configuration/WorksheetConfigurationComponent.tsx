@@ -80,13 +80,13 @@ export class WorksheetConfigurationComponent extends React.Component<Props, Stat
                 </Nav>
                 <br />
                 <TabContent activeTab={activeTab}>
-                    <TabPane tabId={ActiveTab.DEFINITIONS}>
+                    <TabPane className={classnames({ active: activeTab === ActiveTab.DEFINITIONS })} tabId={ActiveTab.DEFINITIONS}>
                         <WorksheetDefinitionConfigurationComponent
                             onChange={this.onChangeWorksheetDefinitionConfiguration}
                             worksheetDefinitionConfiguration={worksheetConfiguration.definition}>
                         </WorksheetDefinitionConfigurationComponent>
                     </TabPane>
-                    <TabPane tabId={ActiveTab.STATE}>
+                    <TabPane className={classnames({ active: activeTab === ActiveTab.STATE })} tabId={ActiveTab.STATE}>
                         <WorksheetStateConfigurationComponent
                             history={this.props.history}
                             onChange={this.onChangeWorksheetStateConfiguration}
