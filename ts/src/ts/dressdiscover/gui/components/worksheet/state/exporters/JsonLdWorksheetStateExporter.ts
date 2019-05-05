@@ -16,7 +16,7 @@ export class JsonLdWorksheetStateExporter implements WorksheetStateExporter<any>
     private _export(worksheetDefinition: WorksheetDefinition, worksheetState: WorksheetState): any {
         const json: any = {};
         const context: any = {};
-        context.cc = "http://purl.org/costumeCore/ontology/";
+        context.cc = "https://w3id.org/costumeCore/ontology/";
         json["@context"] = context;
         let href = Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: worksheetState.id }));
         if (href.endsWith("/edit")) {
