@@ -16,10 +16,10 @@ import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import * as ReactLoader from 'react-loader';
-import { Redirect } from 'react-router';
+import { Redirect, RouteComponentProps } from 'react-router';
 import { Col, Container, Row } from 'reactstrap';
 
-interface Props {
+interface Props extends RouteComponentProps<any> {
     currentUserStore: CurrentUserStore;
 }
 
@@ -79,7 +79,7 @@ export class WorksheetStart extends React.Component<Props, State> {
         const { exception, existingWorksheetStateIds, newWorksheetStateId } = this.state;
 
         if (exception) {
-            return <GenericErrorHandler exception={exception}></GenericErrorHandler>;
+            return <GenericErrorHandler exception={exception} history={this.props.history}></GenericErrorHandler>;
         } else if (!existingWorksheetStateIds) {
             return <ReactLoader loaded={false} />;
         } else if (newWorksheetStateId) {

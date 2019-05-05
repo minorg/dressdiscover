@@ -21,6 +21,7 @@ export class WorksheetStateEdit extends React.Component<RouteComponentProps<Work
     render() {
         return (
             <WorksheetStateGetter
+                history={this.props.history}
                 render={(worksheetState: WorksheetStateWrapper) => <WorksheetStateEditImpl history={this.props.history} worksheetState={worksheetState} />}
                 worksheetStateMark={WorksheetStateMarkParser.parseRouteComponentProps(this.props)}
             />
