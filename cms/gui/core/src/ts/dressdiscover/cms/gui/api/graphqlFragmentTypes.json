@@ -1,0 +1,39 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "INTERFACE",
+        "name": "Agent",
+        "possibleTypes": [
+          {
+            "name": "Person"
+          },
+          {
+            "name": "Organization"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "Thing",
+        "possibleTypes": [
+          {
+            "name": "Person"
+          },
+          {
+            "name": "Work"
+          },
+          {
+            "name": "Creation"
+          },
+          {
+            "name": "Derivation"
+          },
+          {
+            "name": "Organization"
+          }
+        ]
+      }
+    ]
+  }
+}
