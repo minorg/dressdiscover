@@ -1,7 +1,0 @@
-namespace * dressdiscover.api.services.user
-
-include "dressdiscover/api/models/user/user_bookmark_id.thrift"
-
-exception NoSuchUserBookmarkException {
-	optional user_bookmark_id.UserBookmarkId id;
-}
