@@ -1,0 +1,15 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+GET         /                    controllers.Assets.at(path="/public", file="index.html")
+GET         /graphiql       controllers.Assets.at(path="/public", file="graphiql.html")
+
+# GraphQL
+GET        /graphql              controllers.GraphQlController.graphql(query: String, variables: Option[String], operation: Option[String])
+POST       /graphql              controllers.GraphQlController.graphqlBody
+GET        /render-schema        controllers.GraphQlController.renderSchema
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
