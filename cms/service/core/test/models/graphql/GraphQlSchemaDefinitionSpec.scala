@@ -1,14 +1,12 @@
-package models
+package models.graphql
 
-import org.collaborationnetworks.data.hopl.HoplDataSet
 import org.scalatest.{Matchers, WordSpec}
-import play.api.libs.json.{JsArray, JsObject, JsString, Json}
+import play.api.libs.json.{JsArray, JsObject, Json}
 import sangria.ast.Document
 import sangria.execution.Executor
-import sangria.execution.deferred.DeferredResolver
 import sangria.macros._
 import sangria.marshalling.playJson._
-import services.DataService
+import stores.TestStore
 
 import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -16,20 +14,20 @@ import scala.concurrent.duration._
 
 class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
   "GraphQL schema" should {
-    "return a list of things" in {
+    "return a list of institutions" in {
       val query =
         graphql"""
-         query ThingsQuery {
-           things {
-             id
+         query InstitutionsQuery {
+           institutions {
+             uri
              labels {
                prefLabel
              }
            }
          }
        """
-      val things = executeQuery(query).as[JsObject].value("data").result.get.as[JsObject].value("things").result.get.as[JsArray].value
-      things.size should be > 0
+      val institutions = executeQuery(query).as[JsObject].value("data").result.get.as[JsObject].value("institutions").result.get.as[JsArray].value
+      institutions.size should equal(1)
     }
 
 ////    "allow to fetch Han Solo using his ID provided through variables" in {
@@ -76,10 +74,8 @@ class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
   def executeQuery(query: Document, vars: JsObject = Json.obj()) = {
     val futureResult = Executor.execute(GraphQlSchemaDefinition.schema, query,
       variables = vars,
-      userContext = new GraphQlSchemaContext(new DataService(HoplDataSet.toModel()))
-//      deferredResolver = DeferredResolver.fetchers(SchemaDefinition.characters)
+      userContext = new GraphQlSchemaContext(TestStore)
     )
-
     Await.result(futureResult, 10.seconds)
   }
 }

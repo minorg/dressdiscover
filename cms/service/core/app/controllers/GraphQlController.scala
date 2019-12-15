@@ -1,14 +1,13 @@
 package controllers
 
 import akka.actor.ActorSystem
-import javax.inject.Inject
-import javax.inject.Singleton
+import javax.inject.{Inject, Singleton}
+import models.graphql.{GraphQlSchemaContext, GraphQlSchemaDefinition}
 import play.api.libs.json._
 import play.api.mvc._
 import sangria.execution._
-import sangria.parser.{QueryParser, SyntaxError}
 import sangria.marshalling.playJson._
-import models.{GraphQlSchemaContext, GraphQlSchemaDefinition}
+import sangria.parser.{QueryParser, SyntaxError}
 import sangria.renderer.SchemaRenderer
 import sangria.slowlog.SlowLog
 
@@ -19,21 +18,13 @@ import scala.util.{Failure, Success}
 class GraphQlController @Inject()(context: GraphQlSchemaContext, system: ActorSystem) extends InjectedController {
   import system.dispatcher
 
-  def graphql(query: String, variables: Option[String], operation: Option[String]) = Action.async { request ⇒
-    executeQuery(query, variables map parseVariables, operation, isTracingEnabled(request))
+  lazy val exceptionHandler = ExceptionHandler {
+    case (_, error @ TooComplexQueryError) ⇒ HandledException(error.getMessage)
+    case (_, error @ MaxQueryDepthReachedError(_)) ⇒ HandledException(error.getMessage)
   }
 
-  def graphqlBody = Action.async(parse.json) { request ⇒
-    val query = (request.body \ "query").as[String]
-    val operation = (request.body \ "operationName").asOpt[String]
-
-    val variables = (request.body \ "variables").toOption.flatMap {
-      case JsString(vars) ⇒ Some(parseVariables(vars))
-      case obj: JsObject ⇒ Some(obj)
-      case _ ⇒ None
-    }
-
-    executeQuery(query, variables, operation, isTracingEnabled(request))
+  def graphql(query: String, variables: Option[String], operation: Option[String]) = Action.async { request ⇒
+    executeQuery(query, variables map parseVariables, operation, isTracingEnabled(request))
   }
 
   private def parseVariables(variables: String) =
@@ -73,13 +64,21 @@ class GraphQlController @Inject()(context: GraphQlSchemaContext, system: ActorSy
 
   def isTracingEnabled(request: Request[_]) = request.headers.get("X-Apollo-Tracing").isDefined
 
-  def renderSchema = Action {
-    Ok(SchemaRenderer.renderSchema(GraphQlSchemaDefinition.schema))
+  def graphqlBody = Action.async(parse.json) { request ⇒
+    val query = (request.body \ "query").as[String]
+    val operation = (request.body \ "operationName").asOpt[String]
+
+    val variables = (request.body \ "variables").toOption.flatMap {
+      case JsString(vars) ⇒ Some(parseVariables(vars))
+      case obj: JsObject ⇒ Some(obj)
+      case _ ⇒ None
+    }
+
+    executeQuery(query, variables, operation, isTracingEnabled(request))
   }
 
-  lazy val exceptionHandler = ExceptionHandler {
-    case (_, error @ TooComplexQueryError) ⇒ HandledException(error.getMessage)
-    case (_, error @ MaxQueryDepthReachedError(_)) ⇒ HandledException(error.getMessage)
+  def renderSchema = Action {
+    Ok(SchemaRenderer.renderSchema(GraphQlSchemaDefinition.schema))
   }
 
   case object TooComplexQueryError extends Exception("Query is too expensive.")
