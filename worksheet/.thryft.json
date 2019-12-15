@@ -8,7 +8,7 @@
         "generate": [{
                 "description": "api worksheet models",
                 "thrift_root_dir": "thrift/src",
-                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_include_dirs": ["../../thryft-waf/thrift/src"],
                 "thrift_files": [
                     "thrift/src/dressdiscover/api/models/worksheet/**/*.thrift",
                     "thrift/src/dressdiscover/api/models/user/user.thrift",
@@ -23,7 +23,7 @@
             {
                 "description": "api worksheet service exceptions",
                 "thrift_root_dir": "thrift/src",
-                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_include_dirs": ["../../thryft-waf/thrift/src"],
                 "thrift_files": [
                     "thrift/src/dressdiscover/api/services/authentication_exception.thrift",
                     "thrift/src/dressdiscover/api/services/authorization_exception.thrift",
@@ -39,7 +39,7 @@
             {
                 "description": "api worksheet services",
                 "thrift_root_dir": "thrift/src",
-                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_include_dirs": ["../../thryft-waf/thrift/src"],
                 "thrift_files": [
                     "thrift/src/dressdiscover/api/services/user/user_settings_command_service.thrift",
                     "thrift/src/dressdiscover/api/services/user/user_settings_query_service.thrift",
@@ -53,10 +53,10 @@
         ],
         "lint": [{
             "thrift_root_dir": "thrift/src",
-            "thrift_include_dirs": ["../thryft-waf/thrift/src"]
+            "thrift_include_dirs": ["../../thryft-waf/thrift/src"]
         }]
 
     },
 
-    "pythonpath": ["../thryft-waf/thrift/src/thryft"]
+    "pythonpath": ["../../thryft-waf/thrift/src/thryft"]
 }
