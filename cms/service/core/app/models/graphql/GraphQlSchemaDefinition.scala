@@ -39,6 +39,7 @@ object GraphQlSchemaDefinition {
 
   // Query types
   val RootQueryType = ObjectType("RootQuery", fields[GraphQlSchemaContext, Unit](
+    Field("firstInstitution", OptionType(InstitutionType), resolve = _.ctx.store.firstInstitution),
     //    Field("person", PersonType, arguments = ThingIdArgument :: Nil, resolve = (ctx) => ctx.ctx.dataService.personById(ctx.args.arg("id"))),
     Field("institutions", ListType(InstitutionType), resolve = _.ctx.store.institutions)
   ))

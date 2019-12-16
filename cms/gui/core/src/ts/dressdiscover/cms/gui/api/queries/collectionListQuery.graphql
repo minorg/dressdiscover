@@ -1,0 +1,10 @@
+query CollectionListQuery {
+    firstInstitution {
+        collections {
+            uri
+            labels {
+                prefLabel
+            }
+        }
+    }
+}

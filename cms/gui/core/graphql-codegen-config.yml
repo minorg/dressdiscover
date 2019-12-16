@@ -2,6 +2,6 @@ schema: http://localhost:9000/graphql
 documents: ./src/ts/*.graphql
 overwrite: true
 generates:
-  ./src/ts/dressdiscover/gui/api/graphqlFragmentTypes.json:
+  ./src/ts/dressdiscover/cms/gui/api/graphqlFragmentTypes.json:
     plugins:
       - fragment-matcher

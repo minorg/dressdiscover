@@ -1,12 +1,12 @@
 package models.graphql
 
 import org.scalatest.{Matchers, WordSpec}
-import play.api.libs.json.{JsArray, JsObject, Json}
+import play.api.libs.json.{JsArray, JsObject, JsString, Json}
 import sangria.ast.Document
 import sangria.execution.Executor
 import sangria.macros._
 import sangria.marshalling.playJson._
-import stores.TestStore
+import stores.{TestData, TestStore}
 
 import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -14,6 +14,19 @@ import scala.concurrent.duration._
 
 class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
   "GraphQL schema" should {
+    "return the first institution" in {
+      val query =
+        graphql"""
+         query InstitutionQuery {
+           firstInstitution {
+             uri
+           }
+         }
+       """
+      val institutionUri = executeQuery(query).as[JsObject].value("data").result.get.as[JsObject].value("firstInstitution").result.get.as[JsObject].value("uri").result.get.as[JsString].value
+      institutionUri should equal(TestData.institution.uri.toString)
+    }
+
     "return a list of institutions" in {
       val query =
         graphql"""
