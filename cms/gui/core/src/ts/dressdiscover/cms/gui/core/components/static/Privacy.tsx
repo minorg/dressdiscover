@@ -27,9 +27,11 @@ export class Privacy extends React.Component {
                                 <CardBody>
                                     <Container fluid>
                                         <p>
-                                            This privacy notice discloses the privacy practices for the Collaboration Networks web site (https://collaborationnetworks.org). This privacy notice applies
+                                            This privacy notice discloses the privacy practices for the DressDiscover
+                                            web site (https://dressdiscover.org). This privacy notice
+                                            applies
                                             solely to information collected by this website.
-                    </p>
+                                        </p>
 
                                         <h4>Information Collection, Use, and Sharing</h4>
                                         <p>We are the sole owners of the information collected on this site. We only have access to/collect information
