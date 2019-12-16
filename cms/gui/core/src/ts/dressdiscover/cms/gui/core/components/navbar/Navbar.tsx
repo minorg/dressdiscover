@@ -1,5 +1,5 @@
-import { ActiveNavbarItem } from 'dressdiscover/cms/gui/components/navbar/ActiveNavbarItem';
-import { Hrefs } from 'dressdiscover/cms/gui/Hrefs';
+import { ActiveNavbarItem } from 'dressdiscover/cms/gui/core/components/navbar/ActiveNavbarItem';
+import { Hrefs } from 'dressdiscover/cms/gui/core/Hrefs';
 import * as React from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import {

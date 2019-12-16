@@ -1,7 +1,7 @@
-import {Frame} from 'dressdiscover/cms/gui/components/frame/Frame';
-import {Headline} from 'dressdiscover/cms/gui/components/frame/Headline';
-import {ActiveNavbarItem} from 'dressdiscover/cms/gui/components/navbar/ActiveNavbarItem';
-import {Hrefs} from 'dressdiscover/cms/gui/Hrefs';
+import {Frame} from 'dressdiscover/cms/gui/core/components/frame/Frame';
+import {Headline} from 'dressdiscover/cms/gui/core/components/frame/Headline';
+import {ActiveNavbarItem} from 'dressdiscover/cms/gui/core/components/navbar/ActiveNavbarItem';
+import {Hrefs} from 'dressdiscover/cms/gui/core/Hrefs';
 import * as React from 'react';
 import {Col, Container, Row} from 'reactstrap';
 import Card from 'reactstrap/lib/Card';

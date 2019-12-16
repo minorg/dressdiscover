@@ -1,18 +1,18 @@
-import 'dressdiscover/cms/gui/custom_bootstrap.scss';
+import 'dressdiscover/cms/gui/core/custom_bootstrap.scss';
 
-import { apolloClient } from "dressdiscover/cms/gui/api/apolloClient";
+import { apolloClient } from "dressdiscover/cms/gui/core/api/apolloClient";
 import { createBrowserHistory } from 'history';
-import { NoRoute } from 'dressdiscover/cms/gui/components/error/NoRoute';
-import { Home } from 'dressdiscover/cms/gui/components/home/Home';
-import { Privacy } from 'dressdiscover/cms/gui/components/static/Privacy';
-import { Hrefs } from 'dressdiscover/cms/gui/Hrefs';
-import { ConsoleLogger } from 'dressdiscover/cms/gui/util/logging/ConsoleLogger';
+import { NoRoute } from 'dressdiscover/cms/gui/core/components/error/NoRoute';
+import { Home } from 'dressdiscover/cms/gui/core/components/home/Home';
+import { Privacy } from 'dressdiscover/cms/gui/core/components/static/Privacy';
+import { Hrefs } from 'dressdiscover/cms/gui/core/Hrefs';
+import { ConsoleLogger } from 'dressdiscover/cms/gui/core/util/logging/ConsoleLogger';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "@apollo/react-hooks";
 import { Route, Router, Switch } from 'react-router';
-import { LoggerContext } from 'dressdiscover/cms/gui/util/logging/LoggerContext';
+import { LoggerContext } from 'dressdiscover/cms/gui/core/util/logging/LoggerContext';
 import { PersonOverview } from './components/person/PersonOverview';
 
 // Logger

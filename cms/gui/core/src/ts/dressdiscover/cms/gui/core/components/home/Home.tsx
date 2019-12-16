@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Frame} from "dressdiscover/cms/gui/components/frame/Frame";
-import {ActiveNavbarItem} from "dressdiscover/cms/gui/components/navbar/ActiveNavbarItem";
+import {Frame} from "dressdiscover/cms/gui/core/components/frame/Frame";
+import {ActiveNavbarItem} from "dressdiscover/cms/gui/core/components/navbar/ActiveNavbarItem";
 import {Col, Container, Row} from "reactstrap";
 import Card from "reactstrap/lib/Card";
 import CardBody from "reactstrap/lib/CardBody";
-import {ThingsList} from "dressdiscover/cms/gui/components/thing/ThingsList";
+import {ThingsList} from "dressdiscover/cms/gui/core/components/thing/ThingsList";
 
 export const Home: React.FunctionComponent<{}> = () => (
     <Frame

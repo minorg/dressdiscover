@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
-import {Exception} from "dressdiscover/cms/gui/Exception";
+import {Exception} from "dressdiscover/cms/gui/core/Exception";
 
 interface Props {
     error?: Error;

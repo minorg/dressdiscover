@@ -1,4 +1,4 @@
-import {Hrefs} from 'dressdiscover/cms/gui/Hrefs';
+import {Hrefs} from 'dressdiscover/cms/gui/core/Hrefs';
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {Col, Container, Row} from 'reactstrap';

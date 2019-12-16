@@ -1,4 +1,4 @@
-import { Logger } from 'dressdiscover/cms/gui/util/logging/Logger';
+import { Logger } from 'dressdiscover/cms/gui/core/util/logging/Logger';
 
 export class ConsoleLogger implements Logger {
   debug(msg: any) {

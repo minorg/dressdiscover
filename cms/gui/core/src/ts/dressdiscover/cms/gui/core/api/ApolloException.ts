@@ -1,7 +1,7 @@
 import { ApolloError } from "apollo-boost";
-import { Exception } from "dressdiscover/cms/gui/Exception";
+import { Exception } from "dressdiscover/cms/gui/core/Exception";
 import { get } from "lodash";
-import { Environment } from "dressdiscover/cms/gui/Environment";
+import { Environment } from "dressdiscover/cms/gui/core/Environment";
 
 export class ApolloException extends Exception {
   constructor(readonly apolloError: ApolloError) {

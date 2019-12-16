@@ -1,4 +1,4 @@
-import { Frame } from 'dressdiscover/cms/gui/components/frame/Frame';
+import { Frame } from 'dressdiscover/cms/gui/core/components/frame/Frame';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Col, Container, Row } from 'reactstrap';

@@ -1,9 +1,9 @@
-import { Hrefs } from 'dressdiscover/cms/gui/Hrefs';
+import { Hrefs } from 'dressdiscover/cms/gui/core/Hrefs';
 import * as React from 'react';
 import { Redirect } from 'react-router';
 
 import { FatalErrorModal } from './FatalErrorModal';
-import { Exception } from 'dressdiscover/cms/gui/Exception';
+import { Exception } from 'dressdiscover/cms/gui/core/Exception';
 
 interface Props {
   error?: any;
