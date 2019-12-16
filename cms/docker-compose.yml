@@ -16,6 +16,6 @@ services:
     ports:
       - 127.0.0.1:3030:3030
     volumes:
-      - fuseki-databases:/fuseki-base/databases
+      - fuseki-databases:/fuseki-base/databases/
 volumes:
   fuseki-databases:
