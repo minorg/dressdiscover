@@ -3,7 +3,7 @@ package stores
 import io.lemonlabs.uri.Uri
 import models.domain.{Collection, Institution}
 
-class SparqlStore {
+class SparqlStore extends Store {
   def collectionObjects(collectionUri: Uri): List[Object] = List()
 
   def institutionCollections(institutionUri: Uri): List[Collection] = List()
