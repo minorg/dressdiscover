@@ -2,8 +2,8 @@ var webpack = require('webpack');
 var path = require('path');
 
 // variables
-var distPath = path.join(__dirname, '../public');
-var srcPath = path.join(__dirname, './src');
+var distPath = path.join(__dirname, 'dist');
+var srcPath = path.join(__dirname, 'src');
 
 // plugins
 var CopyWebpackPlugin = require('copy-webpack-plugin');
