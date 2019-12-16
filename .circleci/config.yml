@@ -1,22 +1,22 @@
 version: 2
 jobs:
-  gui:
+  cms-gui:
     working_directory: ~/project
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - restore_cache:
-          key: gui-core-dependency-cache-v1-{{ checksum "gui/core/package.json" }}
+          key: gui-core-dependency-cache-v1-{{ checksum "cms/gui/core/package.json" }}
       - run:
-          command: cd gui/core && npm install
+          command: cd cms/gui/core && npm install
       - save_cache:
-          key: gui-core-dependency-cache-v1-{{ checksum "gui/core/package.json" }}
+          key: gui-core-dependency-cache-v1-{{ checksum "cms/gui/core/package.json" }}
           paths:
-            - ./gui/core/node_modules
+            - ./cms/gui/core/node_modules
       - run:
-          command: cd gui/core && npm run build
-  service:
+          command: cd cms/gui/core && npm run build
+  cms-service:
     working_directory: ~/project
     docker:
       - image: circleci/openjdk:11
@@ -26,11 +26,11 @@ jobs:
           key: sbt-cache-v1
       - run:
           name: Create test-results directory
-          command: mkdir -p ~/project/test-results/scala
+          command: mkdir -p test-results/scala
       - run:
           name: Test service/core
           command: |
-            cd service/core
+            cd cms/service/core
             sbt clean update package test
             cp target/test-reports/*.xml ~/project/test-results/scala
       - save_cache:
@@ -43,7 +43,7 @@ jobs:
           path: test-results
 workflows:
   version: 2
-  build_and_test:
+  build-and-test-cms:
     jobs:
-      - gui
-      - service
+      - cms-gui
+      - cms-service
