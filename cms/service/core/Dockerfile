@@ -4,4 +4,6 @@ WORKDIR /app
 COPY . /app
 RUN sbt package
 
+EXPOSE 9000
+
 CMD ["sbt", "run"]
