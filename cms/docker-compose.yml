@@ -7,14 +7,10 @@ services:
   core-gui:
     build:
       context: gui/core
-    links:
-      - core-service
     container_name: core-gui
   core-service:
     build:
       context: service/core
-    links:
-      - fuseki
     container_name: core-service
     stdin_open: true
   fuseki:
