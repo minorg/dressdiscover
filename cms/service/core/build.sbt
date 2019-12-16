@@ -1,4 +1,4 @@
-name := """core-service"""
+name := """core"""
 organization := "org.dressdiscover.cms"
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 version := "1.0.0-SNAPSHOT"
