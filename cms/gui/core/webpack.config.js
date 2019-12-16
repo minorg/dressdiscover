@@ -41,7 +41,7 @@ module.exports = function (env, argv) {
     // https://webpack.js.org/configuration/devtool/
     devtool: argv.mode === "production" ? 'hidden-source-map' : 'cheap-module-eval-source-map',
     entry: {
-      collaborationnetworks: './ts/dressdiscover/cms/gui/core/main.tsx'
+      "core-gui": './ts/dressdiscover/cms/gui/core/main.tsx'
     },
     module: {
       rules: [

@@ -1,14 +1,8 @@
-import { ActiveNavbarItem } from 'dressdiscover/cms/gui/core/components/navbar/ActiveNavbarItem';
-import { Hrefs } from 'dressdiscover/cms/gui/core/Hrefs';
+import {ActiveNavbarItem} from 'dressdiscover/cms/gui/core/components/navbar/ActiveNavbarItem';
+import {Hrefs} from 'dressdiscover/cms/gui/core/Hrefs';
 import * as React from 'react';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import {
-  Nav,
-  Navbar as BootstrapNavbar,
-  NavbarBrand,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
+import {Link, RouteComponentProps, withRouter} from 'react-router-dom';
+import {Nav, Navbar as BootstrapNavbar, NavbarBrand, NavItem, NavLink,} from 'reactstrap';
 
 interface Props extends RouteComponentProps {
   activeNavItem?: ActiveNavbarItem;
@@ -17,7 +11,7 @@ interface Props extends RouteComponentProps {
 const Navbar: React.FunctionComponent<Props> = ({activeNavItem}) =>
     <div>
       <BootstrapNavbar className="py-0" color="light" light expand="md">
-        <NavbarBrand href={Hrefs.home}>Collaboration Networks</NavbarBrand>
+        <NavbarBrand href={Hrefs.home}>DressDiscover</NavbarBrand>
         <Nav>
           <NavItem active={activeNavItem === ActiveNavbarItem.Home}>
             <NavLink
