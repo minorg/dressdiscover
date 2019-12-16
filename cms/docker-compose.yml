@@ -1,0 +1,20 @@
+version: "3"
+services:
+  core-service:
+    build:
+      context: service/core
+    container_name: core-service
+    #- 443:443
+    volumes:
+      # - /etc/ssl/certs/ssl-cert-snakeoil.pem:/etc/nginx/server.crt:ro
+      # - /etc/ssl/private/ssl-cert-snakeoil.key:/etc/nginx/server.key:ro
+      - /etc/letsencrypt/live/victor.annexagriculture.com/fullchain.pem:/etc/nginx/server.crt:ro
+      - /etc/letsencrypt/live/victor.annexagriculture.com/privkey.pem:/etc/nginx/server.key:ro
+      - app-data:/app/instance/blob
+      - ../../../configuration/uat/config_private.py:/app/instance/config_private.py:ro
+      - ../../../configuration/uat/config_public.py:/app/instance/config_public.py:ro
+      - ../../../configuration/uat/annex-service.json:/app/instance/annex-service.json:ro
+      - ../../../configuration/uat/nginx.conf:/app/nginx.conf:ro
+      - /var/www/letsencrypt:/var/www/letsencrypt
+volumes:
+  app-data:
