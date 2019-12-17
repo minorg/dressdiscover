@@ -25,5 +25,9 @@ class FilePipelineStorage(_PipelineStorage):
         file_path = self.__key_to_file_path(key)
         if isinstance(value, IOBase):
             value = value.read()
+        elif isinstance(value, str):
+            value = value.encode("utf-8")
+        result = os.path.isfile(file_path)
         with open(file_path, "w+b") as f:
             f.write(value)
+        return result
