@@ -6,7 +6,7 @@ from dressdiscover.cms.etl.lib.pipeline._pipeline_storage import _PipelineStorag
 
 
 class _Extractor(ABC):
-    def __init__(self, storage: _PipelineStorage):
+    def __init__(self, storage: _PipelineStorage, **kwds):
         self._storage = storage
 
     def _download(self, from_url: str, force: bool = False) -> None:

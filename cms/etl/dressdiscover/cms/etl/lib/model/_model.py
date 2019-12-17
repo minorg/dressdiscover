@@ -1,4 +1,5 @@
 from abc import ABC
+from typing import Optional
 
 from rdflib import Graph, Literal, RDFS, URIRef
 from rdflib.resource import Resource
@@ -14,7 +15,12 @@ class _Model(ABC):
     def resource(self) -> Resource:
         return self.__resource
 
-    @property.setter
+    @property
+    def label(self) -> Optional[str]:
+        raise NotImplementedError
+        # return self.resource.objects(RDFS.label)
+
+    @label.setter
     def label(self, value):
         self.resource.add(RDFS.label, Literal(value))
 
