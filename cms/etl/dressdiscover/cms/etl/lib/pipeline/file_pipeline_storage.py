@@ -10,6 +10,12 @@ class FilePipelineStorage(_PipelineStorage):
     def __init__(self, root_dir_path: str):
         self.__root_dir_path = root_dir_path
 
+    @classmethod
+    def create(cls, root_dir_path: str):
+        if not os.path.isdir(root_dir_path):
+            os.makedirs(root_dir_path)
+        return cls(root_dir_path)
+
     def get(self, key):
         file_path = self.__key_to_file_path(key)
         return open(file_path)

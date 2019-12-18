@@ -1,3 +1,4 @@
+import logging
 from abc import ABC, abstractmethod
 from typing import Dict, Optional
 from urllib.request import urlopen
@@ -6,14 +7,14 @@ from dressdiscover.cms.etl.lib.pipeline._pipeline_storage import _PipelineStorag
 
 
 class _Extractor(ABC):
-    def __init__(self, storage: _PipelineStorage, **kwds):
-        self._storage = storage
+    def __init__(self):
+        self._logger = logging.getLogger(self.__class__.__module__ + self.__class__.__name__)
 
-    def _download(self, from_url: str, force: bool = False) -> None:
+    def _download(self, from_url: str, force: bool, storage: _PipelineStorage) -> None:
         """
         Utility method to download a file from a URL to a local file path.
         """
-        if not force and self._storage.head(from_url):
+        if not force and storage.head(from_url):
             self._logger.info(
                 "%s already download and force not specified, skipping download",
                 from_url)
@@ -21,11 +22,11 @@ class _Extractor(ABC):
 
         self._logger.info("downloading %s to %s", from_url)
         f = urlopen(from_url)
-        self._storage.put(from_url, f)
+        storage.put(from_url, f)
         self._logger.info("downloaded %s", from_url)
 
     @abstractmethod
-    def extract(self, *, force: bool) -> Optional[Dict[str, object]]:
+    def extract(self, *, force: bool, storage: _PipelineStorage) -> Optional[Dict[str, object]]:
         """
         Extract data from a source.
         :param force: force extraction, ignoring any cached data

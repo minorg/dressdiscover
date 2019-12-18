@@ -7,8 +7,9 @@ class OmekaClassicPipeline(_Pipeline):
     def __init__(self, *, api_key: str, endpoint_url: str, **kwds):
         _Pipeline.__init__(
             self,
-            extractor=OmekaClassicExtractor(api_key=api_key, endpoint_url=endpoint_url, **kwds),
-            transformer=OmekaClassicTransformer(**kwds)
+            extractor=OmekaClassicExtractor(api_key=api_key, endpoint_url=endpoint_url),
+            transformer=OmekaClassicTransformer(),
+            **kwds
         )
 
     @classmethod
