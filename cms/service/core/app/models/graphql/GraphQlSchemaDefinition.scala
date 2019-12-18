@@ -1,7 +1,7 @@
 package models.graphql
 
 import io.lemonlabs.uri.{Uri, Url}
-import models.domain.{Collection, Institution, Labels}
+import models.domain.{Collection, Institution}
 import sangria.macros.derive._
 import sangria.schema._
 
@@ -13,10 +13,6 @@ object GraphQlSchemaDefinition {
 
   implicit val UrlType = ScalarAlias[Url, String](
     StringType, _.toString, uri => Right(Url.parse(uri))
-  )
-
-  // Helper Object types, must be first
-  implicit val LabelsType = deriveObjectType[Unit, Labels](
   )
 
   // Domain model types

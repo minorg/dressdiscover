@@ -32,10 +32,8 @@ class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
         graphql"""
          query InstitutionsQuery {
            institutions {
+             name
              uri
-             labels {
-               prefLabel
-             }
            }
          }
        """
