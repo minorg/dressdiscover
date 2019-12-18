@@ -1,8 +1,6 @@
 from abc import ABC
-from typing import Optional
 
-from rdflib import Graph, Literal, URIRef
-from rdflib.namespace import DC
+from rdflib import Graph, URIRef
 from rdflib.resource import Resource
 
 
@@ -13,26 +11,8 @@ class _Model(ABC):
         self.__uri = uri
 
     @property
-    def description(self) -> Optional[str]:
-        raise NotImplementedError
-
-    @description.setter
-    def description(self, value):
-        if value:
-            self.resource.add(DC.description, Literal(value))
-
-    @property
     def graph(self):
         return self.__graph
-
-    @property
-    def title(self) -> Optional[str]:
-        raise NotImplementedError
-
-    @title.setter
-    def title(self, value):
-        if value:
-            self.resource.add(DC.title, Literal(value))
 
     @property
     def resource(self) -> Resource:

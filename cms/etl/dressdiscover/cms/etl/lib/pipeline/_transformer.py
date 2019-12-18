@@ -7,7 +7,7 @@ from dressdiscover.cms.etl.lib.model._model import _Model
 
 class _Transformer(ABC):
     def __init__(self):
-        self._logger = logging.getLogger(self.__class__.__module__ + self.__class__.__name__)
+        self._logger = logging.getLogger(self.__class__.__name__)
 
     @abstractmethod
     def transform(self, **kwds) -> Generator[_Model, None, None]:

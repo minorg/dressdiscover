@@ -8,7 +8,7 @@ from dressdiscover.cms.etl.lib.pipeline._pipeline_storage import _PipelineStorag
 
 class _Extractor(ABC):
     def __init__(self):
-        self._logger = logging.getLogger(self.__class__.__module__ + self.__class__.__name__)
+        self._logger = logging.getLogger(self.__class__.__name__)
 
     def _download(self, from_url: str, force: bool, storage: _PipelineStorage) -> None:
         """
