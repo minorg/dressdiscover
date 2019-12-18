@@ -112,5 +112,10 @@ class Cli:
 
         self.__load(ttl_file_path)
 
+
 def main():
     Cli().main()
+
+
+if __name__ == '__main__':
+    main()

@@ -11,21 +11,19 @@ class OmekaClassicExtractor(_Extractor):
         self.__endpoint_url = endpoint_url
 
     def extract(self, *, force: bool):
-        collections_key = self.__endpoint_url + " collections"
-        files_key = self.__endpoint_url + " files"
-        items_key = self.__endpoint_url + " items"
+        collections_key = self.__endpoint_url + " collections.json"
+        files_key = self.__endpoint_url + " files.json"
+        items_key = self.__endpoint_url + " items.json"
 
         if not self._storage.head(collections_key) or force:
             self._storage.put(collections_key, json.dumps(
-                [json.loads(collection.json) for collection in self.__client.get_all_collections()]), force=force)
+                [json.loads(collection.json) for collection in self.__client.get_all_collections()]))
             self._storage.put(files_key,
-                              json.dumps([json.loads(file_.json) for file_ in self.__client.get_all_files()]),
-                              force=force)
-            self._storage.put(items_key, json.dumps([json.loads(item.json) for item in self.__client.get_all_items()]),
-                              force=force)
+                              json.dumps([json.loads(file_.json) for file_ in self.__client.get_all_files()]))
+            self._storage.put(items_key, json.dumps([json.loads(item.json) for item in self.__client.get_all_items()]))
 
         return {
-            "collections": json.loads(self._storage.get(collections_key)),
-            "files": json.loads(self._storage.get(files_key)),
-            "items": json.loads(self._storage.get(items_key))
+            "collections": json.load(self._storage.get(collections_key)),
+            "files": json.load(self._storage.get(files_key)),
+            "items": json.load(self._storage.get(items_key))
         }
