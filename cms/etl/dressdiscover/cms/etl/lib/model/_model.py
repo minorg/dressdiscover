@@ -18,7 +18,8 @@ class _Model(ABC):
 
     @description.setter
     def description(self, value):
-        self.resource.add(DC.description, Literal(value))
+        if value:
+            self.resource.add(DC.description, Literal(value))
 
     @property
     def graph(self):
@@ -30,7 +31,8 @@ class _Model(ABC):
 
     @title.setter
     def title(self, value):
-        self.resource.add(DC.title, Literal(value))
+        if value:
+            self.resource.add(DC.title, Literal(value))
 
     @property
     def resource(self) -> Resource:
