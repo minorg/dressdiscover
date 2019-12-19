@@ -7,6 +7,7 @@ from dressdiscover.cms.etl.lib.model._model import _Model
 from dressdiscover.cms.etl.lib.model.collection import Collection
 from dressdiscover.cms.etl.lib.model.institution import Institution
 from dressdiscover.cms.etl.lib.model.object import Object
+from dressdiscover.cms.etl.lib.namespace import CMS
 from dressdiscover.cms.etl.lib.pipeline._transformer import _Transformer
 
 ElementTextTree = Dict[str, Dict[str, str]]
@@ -18,19 +19,31 @@ class OmekaClassicTransformer(_Transformer):
         self.__institution_uri = institution_uri
 
     def transform(self, collections, files, items):
-        institution = Institution(uri=URIRef(self.__institution_uri))
-        institution.resource.add(FOAF.name, Literal(self.__institution_name))
-        yield institution
-
-        for omeka_collection in collections:
-            yield self.__transform_collection(omeka_collection)
         files_by_item_id = {}
         for file_ in files:
             files_by_item_id.setdefault(file_["item"]["id"], []).append(file_)
+
+        transformed_item_uris_by_collection_id = {}
         for item in items:
             if not item["public"]:
                 continue
-            yield self.__transform_item(files_by_item_id, item)
+            transformed_item = self.__transform_item(files_by_item_id, item)
+            transformed_item_uris_by_collection_id.setdefault(item["collection"]["id"], []).append(transformed_item.uri)
+            yield transformed_item
+
+        transformed_collection_uris = []
+        for collection in collections:
+            transformed_collection = self.__transform_collection(collection)
+            for transformed_item_uri in transformed_item_uris_by_collection_id.get(collection["id"], []):
+                transformed_collection.resource.add(CMS.object, URIRef(transformed_item_uri))
+            transformed_collection_uris.append(transformed_collection.uri)
+            yield transformed_collection
+
+        institution = Institution(uri=URIRef(self.__institution_uri))
+        institution.resource.add(FOAF.name, Literal(self.__institution_name))
+        for transformed_collection_uri in transformed_collection_uris:
+            institution.resource.add(CMS.collection, URIRef(transformed_collection_uri))
+        yield institution
 
     def __get_element_texts_as_tree(self, omeka_resource) -> ElementTextTree:
         result = {}
