@@ -4,6 +4,7 @@ from argparse import ArgumentParser
 from importlib import import_module
 from inspect import isclass
 
+import requests
 from rdflib import Graph
 
 from dressdiscover.cms.etl.lib.pipeline._pipeline import _Pipeline
@@ -29,6 +30,7 @@ class Cli:
                                             help="force extract, ignoring any cached data")
         self.__argument_parser.add_argument("--force-transform", action="store_true",
                                             help="force transform, ignoring any cached data")
+        self.__argument_parser.add_argument("--fuseki-data-url", default="http://fuseki:3030/ds/data")
         self.__argument_parser.add_argument(
             '--logging-level',
             help='set logging-level level (see Python logging module)'
@@ -95,8 +97,16 @@ class Cli:
         pipeline_kwds.update(kwds)
         return pipeline_class(**pipeline_kwds)
 
-    def __load(self, ttl_file_path: str) -> None:
-        pass
+    def __load(self, args, ttl: str) -> None:
+        # Post to a named graph, since the Fuseki default graph is the union of all named graphs
+        # https://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321/#http-post
+        requests.post(
+            args.fuseki_data_url + "?graph=urn:pipeline:" + args.pipeline_id,
+            data=ttl,
+            headers={
+                "Content-Type": "text/turtle;charset=utf-8"
+            }
+        )
 
     def main(self):
         self.__add_arguments()
@@ -128,6 +138,8 @@ class Cli:
             graph += model.graph
         graph_ttl = graph.serialize(format="ttl")
         transformed_storage.put(args.pipeline_id + ".ttl", graph_ttl)
+
+        self.__load(args, graph_ttl)
 
 
 def main():
