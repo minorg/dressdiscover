@@ -4,6 +4,8 @@ import io.lemonlabs.uri.Uri
 import models.domain.{Collection, Institution, Object}
 
 trait Store {
+  def collectionByUri(collectionUri: Uri): Collection
+
   def collectionObjects(collectionUri: Uri): List[Object]
 
   def firstInstitution(): Institution = institutions().head

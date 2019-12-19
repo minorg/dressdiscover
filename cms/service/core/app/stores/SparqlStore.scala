@@ -19,7 +19,24 @@ class SparqlStore(endpointUrl: Url) extends Store {
        |}
        |""".stripMargin)
 
-  def collectionObjects(collectionUri: Uri): List[Object] = {
+  override def collectionByUri(collectionUri: Uri): Collection = {
+    val query = QueryFactory.create(
+      s"""
+         |PREFIX cms: <${CMS.URI}>
+         |PREFIX rdf: <${RDF.getURI}>
+         |CONSTRUCT WHERE {
+         |  <${collectionUri.toString()}> rdf:type cms:Collection .
+         |  <${collectionUri.toString()}> ?p ?o .
+         |}
+         |""".stripMargin)
+    withQueryExecution(query) { queryExecution =>
+      val model = queryExecution.execConstruct()
+      val collections = model.listSubjectsWithProperty(RDF.`type`, CMS.Collection).asScala.toList.map(resource => Collection(resource))
+      if (!collections.isEmpty) collections(0) else throw new NoSuchElementException
+    }
+  }
+
+  override def collectionObjects(collectionUri: Uri): List[Object] = {
     val query = QueryFactory.create(
       s"""
          |PREFIX cms: <${CMS.URI}>
@@ -36,7 +53,7 @@ class SparqlStore(endpointUrl: Url) extends Store {
     }
   }
 
-  def institutionCollections(institutionUri: Uri): List[Collection] = {
+  override def institutionCollections(institutionUri: Uri): List[Collection] = {
     val query = QueryFactory.create(
       s"""
          |PREFIX cms: <${CMS.URI}>
@@ -53,7 +70,7 @@ class SparqlStore(endpointUrl: Url) extends Store {
     }
   }
 
-  def institutions(): List[Institution] = {
+  override def institutions(): List[Institution] = {
     withQueryExecution(institutionsQuery) { queryExecution =>
       val model = queryExecution.execConstruct()
       model.listSubjectsWithProperty(RDF.`type`, CMS.Institution).asScala.toList.map(resource => Institution(resource))
