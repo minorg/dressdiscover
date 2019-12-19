@@ -6,6 +6,12 @@
 // GraphQL query operation: CollectionOverviewQuery
 // ====================================================
 
+export interface CollectionOverviewQuery_firstInstitution {
+  __typename: "Institution";
+  name: string;
+  uri: string;
+}
+
 export interface CollectionOverviewQuery_collectionByUri_objects {
   __typename: "Object";
   description: string | null;
@@ -14,10 +20,13 @@ export interface CollectionOverviewQuery_collectionByUri_objects {
 
 export interface CollectionOverviewQuery_collectionByUri {
   __typename: "Collection";
+  description: string | null;
+  name: string;
   objects: CollectionOverviewQuery_collectionByUri_objects[];
 }
 
 export interface CollectionOverviewQuery {
+  firstInstitution: CollectionOverviewQuery_firstInstitution;
   collectionByUri: CollectionOverviewQuery_collectionByUri;
 }
 

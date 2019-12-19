@@ -14,3 +14,4 @@ object Institution extends DomainModelCompanion {
       uri = resource.uri
     )
 }
+

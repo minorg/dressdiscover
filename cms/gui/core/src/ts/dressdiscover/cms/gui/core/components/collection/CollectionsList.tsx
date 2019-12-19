@@ -12,7 +12,7 @@ export const CollectionsList: React.FunctionComponent<{}> = () =>
             <ListGroup>
                 {data.firstInstitution.collections.map(collection =>
                     <ListGroupItem key={collection.uri}><Link
-                        to={Hrefs.collection(collection.uri)}>${collection.name}</Link></ListGroupItem>
+                        to={Hrefs.collection(collection.uri)}>{collection.name}</Link></ListGroupItem>
                 )}
             </ListGroup>
         }
