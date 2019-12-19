@@ -4,7 +4,7 @@ import {ActiveNavbarItem} from "dressdiscover/cms/gui/core/components/navbar/Act
 import {Col, Container, Row} from "reactstrap";
 import Card from "reactstrap/lib/Card";
 import CardBody from "reactstrap/lib/CardBody";
-import {CollectionList} from "dressdiscover/cms/gui/core/components/collection/CollectionList";
+import {CollectionsList} from "dressdiscover/cms/gui/core/components/collection/CollectionsList";
 
 export const Home: React.FunctionComponent<{}> = () => (
     <Frame
@@ -17,7 +17,7 @@ export const Home: React.FunctionComponent<{}> = () => (
             <Card>
               <CardBody>
                 <Container fluid>
-                  <CollectionList/>
+                  <CollectionsList/>
                   {/*<Row className="text-center">*/}
                   {/*  <Col xs="12">*/}
                   {/*    <a href="https://xkcd.com/356/"><img className="img-fluid"*/}

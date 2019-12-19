@@ -1,0 +1,8 @@
+query CollectionOverviewQuery($collectionUri: String!) {
+    collectionByUri(uri: $collectionUri) {
+        objects {
+            description
+            title
+        }
+    }
+}
