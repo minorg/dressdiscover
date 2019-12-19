@@ -16,7 +16,8 @@ class SparqlStoreTest extends WordSpec with Matchers {
         val institution = store.firstInstitution()
         institution should not equal (None)
       } catch {
-        case e: QueryException => e.getCause match { case e1: UnknownHostException => }
+        case e: QueryException => e.getCause match {
+          case _: UnknownHostException =>
         }
       }
     }
