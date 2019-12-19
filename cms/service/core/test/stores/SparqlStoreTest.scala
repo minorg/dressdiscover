@@ -36,14 +36,14 @@ class SparqlStoreTest extends WordSpec with Matchers {
 
     "institution collections" in {
       withUnknownHostExceptionCatch { () =>
-        val collections = store.institutionCollections(store.firstInstitution().get.uri)
+        val collections = store.institutionCollections(store.firstInstitution().uri)
         collections.size should be > 0
       }
     }
 
     "collection objects" in {
       withUnknownHostExceptionCatch { () =>
-        val institution = store.firstInstitution().get
+        val institution = store.firstInstitution()
         val collection = store.institutionCollections(institution.uri)(0)
         val objects = store.collectionObjects(collection.uri)
         objects.size should be > 0

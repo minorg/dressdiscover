@@ -6,7 +6,7 @@ import models.domain.{Collection, Institution, Object}
 trait Store {
   def collectionObjects(collectionUri: Uri): List[Object]
 
-  def firstInstitution(): Option[Institution] = institutions().headOption
+  def firstInstitution(): Institution = institutions().head
 
   def institutionCollections(institutionUri: Uri): List[Collection]
 

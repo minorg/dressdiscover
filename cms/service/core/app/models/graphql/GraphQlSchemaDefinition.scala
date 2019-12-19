@@ -3,7 +3,7 @@ package models.graphql
 import io.lemonlabs.uri.{Uri, Url}
 import models.domain.{Collection, Institution, Object}
 import sangria.macros.derive._
-import sangria.schema.{Argument, Field, ListType, OptionType, ScalarAlias, Schema, StringType, fields}
+import sangria.schema.{Argument, Field, ListType, ScalarAlias, Schema, StringType, fields}
 
 object GraphQlSchemaDefinition {
   // Scalar aliases
@@ -40,7 +40,8 @@ object GraphQlSchemaDefinition {
 
   // Query types
   val RootQueryType = sangria.schema.ObjectType("RootQuery", fields[GraphQlSchemaContext, Unit](
-    Field("firstInstitution", OptionType(InstitutionType), resolve = _.ctx.store.firstInstitution),
+    //    Field("collection", CollectionType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.collection(ctx.args.arg("uri"))),
+    Field("firstInstitution", InstitutionType, resolve = _.ctx.store.firstInstitution),
     Field("institutions", ListType(InstitutionType), resolve = _.ctx.store.institutions)
   ))
 
