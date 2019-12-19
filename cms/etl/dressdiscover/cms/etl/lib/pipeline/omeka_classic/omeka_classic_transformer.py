@@ -1,10 +1,11 @@
 from typing import Dict
 
-from rdflib import Literal
-from rdflib.namespace import DC, DCTERMS
+from rdflib import Literal, URIRef
+from rdflib.namespace import DC, DCTERMS, FOAF
 
 from dressdiscover.cms.etl.lib.model._model import _Model
 from dressdiscover.cms.etl.lib.model.collection import Collection
+from dressdiscover.cms.etl.lib.model.institution import Institution
 from dressdiscover.cms.etl.lib.model.object import Object
 from dressdiscover.cms.etl.lib.pipeline._transformer import _Transformer
 
@@ -12,7 +13,15 @@ ElementTextTree = Dict[str, Dict[str, str]]
 
 
 class OmekaClassicTransformer(_Transformer):
+    def __init__(self, *, institution_name: str, institution_uri: str):
+        self.__institution_name = institution_name
+        self.__institution_uri = institution_uri
+
     def transform(self, collections, files, items):
+        institution = Institution(uri=URIRef(self.__institution_uri))
+        institution.resource.add(FOAF.name, Literal(self.__institution_name))
+        yield institution
+
         for omeka_collection in collections:
             yield self.__transform_collection(omeka_collection)
         files_by_item_id = {}

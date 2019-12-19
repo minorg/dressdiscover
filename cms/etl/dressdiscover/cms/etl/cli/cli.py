@@ -31,7 +31,6 @@ class Cli:
         self.__argument_parser.add_argument("--force-transform", action="store_true",
                                             help="force transform, ignoring any cached data")
         self.__argument_parser.add_argument("--fuseki-data-url", default="http://fuseki:3030/ds/data")
-        self.__argument_parser.add
         self.__argument_parser.add_argument(
             '--logging-level',
             help='set logging-level level (see Python logging module)'

@@ -10,7 +10,7 @@ final case class Institution(
 object Institution extends DomainModelCompanion {
   def apply(resource: ResourceWrapper): Institution =
     Institution(
-      name = resource.dublinCore.title.get,
+      name = resource.foaf.name.get,
       uri = resource.uri
     )
 }
