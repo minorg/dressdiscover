@@ -1,9 +1,9 @@
 package stores
 
-import io.lemonlabs.uri.Uri
+import io.lemonlabs.uri.{Uri, Url}
 import models.domain.{Collection, Institution}
 
-class SparqlStore extends Store {
+class SparqlStore(endpointUrl: Url) extends Store {
   def collectionObjects(collectionUri: Uri): List[Object] = List()
 
   def institutionCollections(institutionUri: Uri): List[Collection] = List()
