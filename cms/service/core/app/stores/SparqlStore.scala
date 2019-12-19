@@ -2,8 +2,8 @@ package stores
 
 import io.lemonlabs.uri.{Uri, Url}
 import models.domain.vocabulary.CMS
-import models.domain.{Collection, Institution}
-import org.apache.jena.query.{QueryExecutionFactory, QueryFactory}
+import models.domain.{Collection, Institution, Object}
+import org.apache.jena.query.{Query, QueryExecution, QueryExecutionFactory, QueryFactory}
 import org.apache.jena.vocabulary.RDF
 
 import scala.collection.JavaConverters._
@@ -12,22 +12,58 @@ class SparqlStore(endpointUrl: Url) extends Store {
   private val institutionsQuery = QueryFactory.create(
     s"""
        |PREFIX cms: <${CMS.URI}>
-       |PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+       |PREFIX rdf: <${RDF.getURI}>
        |CONSTRUCT WHERE {
        |  ?institution rdf:type cms:Institution .
        |  ?institution ?p ?o .
        |}
        |""".stripMargin)
 
-  def collectionObjects(collectionUri: Uri): List[Object] = List()
+  def collectionObjects(collectionUri: Uri): List[Object] = {
+    val query = QueryFactory.create(
+      s"""
+         |PREFIX cms: <${CMS.URI}>
+         |PREFIX rdf: <${RDF.getURI}>
+         |CONSTRUCT WHERE {
+         |  <${collectionUri.toString()}> cms:object ?object .
+         |  ?object rdf:type cms:Object .
+         |  ?object ?p ?o .
+         |}
+         |""".stripMargin)
+    withQueryExecution(query) { queryExecution =>
+      val model = queryExecution.execConstruct()
+      model.listSubjectsWithProperty(RDF.`type`, CMS.Object).asScala.toList.map(resource => Object(resource))
+    }
+  }
 
-  def institutionCollections(institutionUri: Uri): List[Collection] = List()
+  def institutionCollections(institutionUri: Uri): List[Collection] = {
+    val query = QueryFactory.create(
+      s"""
+         |PREFIX cms: <${CMS.URI}>
+         |PREFIX rdf: <${RDF.getURI}>
+         |CONSTRUCT WHERE {
+         |  <${institutionUri.toString()}> cms:collection ?collection .
+         |  ?collection rdf:type cms:Collection .
+         |  ?collection ?p ?o .
+         |}
+         |""".stripMargin)
+    withQueryExecution(query) { queryExecution =>
+      val model = queryExecution.execConstruct()
+      model.listSubjectsWithProperty(RDF.`type`, CMS.Collection).asScala.toList.map(resource => Collection(resource))
+    }
+  }
 
   def institutions(): List[Institution] = {
-    val queryExecution = QueryExecutionFactory.sparqlService(endpointUrl.toString(), institutionsQuery)
-    try {
+    withQueryExecution(institutionsQuery) { queryExecution =>
       val model = queryExecution.execConstruct()
       model.listSubjectsWithProperty(RDF.`type`, CMS.Institution).asScala.toList.map(resource => Institution(resource))
+    }
+  }
+
+  private def withQueryExecution[T](query: Query)(f: (QueryExecution) => T): T = {
+    val queryExecution = QueryExecutionFactory.sparqlService(endpointUrl.toString(), query)
+    try {
+      f(queryExecution)
     } finally {
       queryExecution.close()
     }
