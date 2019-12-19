@@ -1,9 +1,9 @@
 package models.graphql
 
 import io.lemonlabs.uri.{Uri, Url}
-import models.domain.{Collection, Institution}
+import models.domain.{Collection, Institution, Object}
 import sangria.macros.derive._
-import sangria.schema._
+import sangria.schema.{Argument, Field, ListType, OptionType, ScalarAlias, Schema, StringType, fields}
 
 object GraphQlSchemaDefinition {
   // Scalar aliases
@@ -16,7 +16,12 @@ object GraphQlSchemaDefinition {
   )
 
   // Domain model types
-  implicit val CollectionType = deriveObjectType[Unit, Collection](
+  implicit val ObjectType = deriveObjectType[GraphQlSchemaContext, Object](
+    ReplaceField("uri", Field("uri", UriType, resolve = _.value.uri))
+  )
+
+  implicit val CollectionType = deriveObjectType[GraphQlSchemaContext, Collection](
+    AddFields(Field("objects", ListType(ObjectType), resolve = ctx => ctx.ctx.store.collectionObjects(ctx.value.uri))),
     ReplaceField("uri", Field("uri", UriType, resolve = _.value.uri))
   )
 
@@ -34,9 +39,8 @@ object GraphQlSchemaDefinition {
   val UriArgument = Argument("uri", UriType, description = "URI")
 
   // Query types
-  val RootQueryType = ObjectType("RootQuery", fields[GraphQlSchemaContext, Unit](
+  val RootQueryType = sangria.schema.ObjectType("RootQuery", fields[GraphQlSchemaContext, Unit](
     Field("firstInstitution", OptionType(InstitutionType), resolve = _.ctx.store.firstInstitution),
-    //    Field("person", PersonType, arguments = ThingIdArgument :: Nil, resolve = (ctx) => ctx.ctx.dataService.personById(ctx.args.arg("id"))),
     Field("institutions", ListType(InstitutionType), resolve = _.ctx.store.institutions)
   ))
 

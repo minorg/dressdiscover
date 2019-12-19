@@ -1,7 +1,7 @@
 package stores
 
 import io.lemonlabs.uri.Uri
-import models.domain.{Collection, Institution}
+import models.domain.{Collection, Institution, Object}
 
 object TestStore extends Store {
   override def collectionObjects(collectionUri: Uri): List[Object] = List(TestData.object_)
