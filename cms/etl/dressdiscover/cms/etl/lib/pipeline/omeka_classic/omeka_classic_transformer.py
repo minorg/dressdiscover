@@ -7,7 +7,6 @@ from rdflib.namespace import DCTERMS, FOAF
 from dressdiscover.cms.etl.lib.model._model import _Model
 from dressdiscover.cms.etl.lib.model.collection import Collection
 from dressdiscover.cms.etl.lib.model.image import Image
-from dressdiscover.cms.etl.lib.model.institution import Institution
 from dressdiscover.cms.etl.lib.model.object import Object
 from dressdiscover.cms.etl.lib.namespace import CMS, PROV
 from dressdiscover.cms.etl.lib.pipeline._transformer import _Transformer
@@ -16,10 +15,9 @@ ElementTextTree = Dict[str, Dict[str, str]]
 
 
 class OmekaClassicTransformer(_Transformer):
-    def __init__(self, *, institution_name: str, institution_uri: str, square_thumbnail_height_px: int,
+    def __init__(self, *, institution_kwds: Dict[str, str], square_thumbnail_height_px: int,
                  square_thumbnail_width_px: int):
-        self.__institution_name = institution_name
-        self.__institution_uri = institution_uri
+        self.__institution_kwds = institution_kwds
         self.__square_thumbnail_height_px = square_thumbnail_height_px
         self.__square_thumbnail_width_px = square_thumbnail_width_px
 
@@ -44,8 +42,7 @@ class OmekaClassicTransformer(_Transformer):
                 transformed_collection.resource.add(CMS.object, URIRef(transformed_item_uri))
             transformed_collection_uris.append(transformed_collection.uri)
 
-        institution = Institution(graph=graph, uri=URIRef(self.__institution_uri))
-        institution.resource.add(FOAF.name, Literal(self.__institution_name))
+        institution = self._transform_institution_from_arguments(graph=graph, **self.__institution_kwds)
         for transformed_collection_uri in transformed_collection_uris:
             institution.resource.add(CMS.collection, URIRef(transformed_collection_uri))
 

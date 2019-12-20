@@ -8,8 +8,6 @@ class OmekaClassicPipeline(_Pipeline):
             self, *,
             api_key: str,
             endpoint_url: str,
-            institution_name: str,
-            institution_uri: str,
             pipeline_id: str,
             square_thumbnail_height_px: int,
             square_thumbnail_width_px: int,
@@ -23,10 +21,9 @@ class OmekaClassicPipeline(_Pipeline):
             ),
             id=pipeline_id,
             transformer=OmekaClassicTransformer(
-                institution_name=institution_name,
-                institution_uri=institution_uri,
+                institution_kwds=kwds,
                 square_thumbnail_height_px=square_thumbnail_height_px,
-                square_thumbnail_width_px=square_thumbnail_width_px
+                square_thumbnail_width_px=square_thumbnail_width_px,
             ),
             **kwds
         )
@@ -35,8 +32,6 @@ class OmekaClassicPipeline(_Pipeline):
     def add_arguments(cls, argument_parser):
         argument_parser.add_argument('--api-key', help="Omeka API key", required=True)
         argument_parser.add_argument("--endpoint-url", help="Omeka API endpoint URL", required=True)
-        argument_parser.add_argument("--institution-name", required=True)
-        argument_parser.add_argument("--institution-uri", required=True)
         argument_parser.add_argument(
             '--pipeline-id',
             help='unique identifier for this pipeline, used to isolate its cache',
@@ -52,3 +47,4 @@ class OmekaClassicPipeline(_Pipeline):
             default=200,
             type=int
         )
+        cls._add_institution_arguments(argument_parser)

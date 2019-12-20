@@ -22,3 +22,9 @@ class _Pipeline(ABC):
         """
         Add pipeline-specific arguments. The parsed arguments are passed to the constructor as keywords.
         """
+
+    @classmethod
+    def _add_institution_arguments(cls, argument_parser: ArgumentParser) -> None:
+        argument_parser.add_argument("--institution-name", required=True)
+        argument_parser.add_argument("--institution-rights", required=True)
+        argument_parser.add_argument("--institution-uri", required=True)
