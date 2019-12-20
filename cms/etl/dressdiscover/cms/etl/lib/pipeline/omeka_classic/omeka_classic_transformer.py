@@ -1,7 +1,7 @@
 from typing import Dict
 
 from rdflib import Literal, URIRef
-from rdflib.namespace import DC, DCTERMS, FOAF
+from rdflib.namespace import DCTERMS, FOAF
 
 from dressdiscover.cms.etl.lib.model._model import _Model
 from dressdiscover.cms.etl.lib.model.collection import Collection
@@ -78,25 +78,25 @@ class OmekaClassicTransformer(_Transformer):
             return
 
         for creator in dc_element_text_tree.pop("Creator", []):
-            model.resource.add(DC.creator, Literal(creator))
+            model.resource.add(DCTERMS.creator, Literal(creator))
 
         for date in dc_element_text_tree.pop("Date", []):
-            model.resource.add(DC.date, Literal(date))
+            model.resource.add(DCTERMS.date, Literal(date))
 
         for description in dc_element_text_tree.pop("Description", []):
-            model.resource.add(DC.description, Literal(description))
+            model.resource.add(DCTERMS.description, Literal(description))
 
         for extent in dc_element_text_tree.pop("Extent", []):
             model.resource.add(DCTERMS.extent, Literal(extent))
 
         for identifier in dc_element_text_tree.pop("Identifier", []):
-            model.resource.add(DC.identifier, Literal(identifier))
+            model.resource.add(DCTERMS.identifier, Literal(identifier))
 
         for is_referenced_by in dc_element_text_tree.pop("Is Referenced By", []):
             model.resource.add(DCTERMS.isReferencedBy, Literal(is_referenced_by))
 
         for language in dc_element_text_tree.pop("Language", []):
-            model.resource.add(DC.language, Literal(language))
+            model.resource.add(DCTERMS.language, Literal(language))
 
         for medium in dc_element_text_tree.pop("Medium", []):
             model.resource.add(DCTERMS.medium, Literal(medium))
@@ -105,31 +105,31 @@ class OmekaClassicTransformer(_Transformer):
             model.resource.add(DCTERMS.provenance, Literal(provenance))
 
         for publisher in dc_element_text_tree.pop("Publisher", []):
-            model.resource.add(DC.publisher, Literal(publisher))
+            model.resource.add(DCTERMS.publisher, Literal(publisher))
 
         for relation in dc_element_text_tree.pop("Relation", []):
-            model.resource.add(DC.relation, Literal(relation))
+            model.resource.add(DCTERMS.relation, Literal(relation))
 
         for rights in dc_element_text_tree.pop("Rights", []):
-            model.resource.add(DC.rights, Literal(rights))
+            model.resource.add(DCTERMS.rights, Literal(rights))
 
         for rights_holder in dc_element_text_tree.pop("Rights Holder", []):
             model.resource.add(DCTERMS.rightsHolder, Literal(rights_holder))
 
         for source in dc_element_text_tree.pop("Source", []):
-            model.resource.add(DC.source, Literal(source))
+            model.resource.add(DCTERMS.source, Literal(source))
 
         for spatial in dc_element_text_tree.pop("Spatial Coverage", []):
             model.resource.add(DCTERMS.spatial, Literal(spatial))
 
         for subject in dc_element_text_tree.pop("Subject", []):
-            model.resource.add(DC.subject, Literal(subject))
+            model.resource.add(DCTERMS.subject, Literal(subject))
 
         for title in dc_element_text_tree.pop("Title", []):
-            model.resource.add(DC.title, Literal(title))
+            model.resource.add(DCTERMS.title, Literal(title))
 
         for type_ in dc_element_text_tree.pop("Type", []):
-            model.resource.add(DC.type, Literal(type_))
+            model.resource.add(DCTERMS.type, Literal(type_))
 
         if dc_element_text_tree:
             self._logger.warn("unknown Dublin Core element names: %s", tuple(dc_element_text_tree.keys()))
