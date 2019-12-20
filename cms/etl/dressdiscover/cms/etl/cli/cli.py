@@ -5,7 +5,6 @@ from importlib import import_module
 from inspect import isclass
 
 import requests
-from rdflib import Graph
 
 from dressdiscover.cms.etl.lib.pipeline._pipeline import _Pipeline
 from dressdiscover.cms.etl.lib.pipeline.file_pipeline_storage import FilePipelineStorage
@@ -55,11 +54,8 @@ class Cli:
             )
 
         def transform(self, force: bool, **extract_kwds):
-            models = self.__pipeline.transformer.transform(**extract_kwds)
-            graph = Graph()
+            graph = self.__pipeline.transformer.transform(**extract_kwds)
             transformed_storage = FilePipelineStorage.create(os.path.join(self.__data_dir_path, "transformed"))
-            for model in models:
-                graph += model.graph
             graph_ttl = graph.serialize(format="ttl")
             transformed_storage.put(self.__pipeline.id + ".ttl", graph_ttl)
             return graph_ttl

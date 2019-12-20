@@ -1,24 +1,31 @@
-from typing import Dict
+from typing import Dict, Tuple
 
-from rdflib import Literal, URIRef
+import dateparser
+from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import DCTERMS, FOAF
 
 from dressdiscover.cms.etl.lib.model._model import _Model
 from dressdiscover.cms.etl.lib.model.collection import Collection
+from dressdiscover.cms.etl.lib.model.image import Image
 from dressdiscover.cms.etl.lib.model.institution import Institution
 from dressdiscover.cms.etl.lib.model.object import Object
-from dressdiscover.cms.etl.lib.namespace import CMS
+from dressdiscover.cms.etl.lib.namespace import CMS, PROV
 from dressdiscover.cms.etl.lib.pipeline._transformer import _Transformer
 
 ElementTextTree = Dict[str, Dict[str, str]]
 
 
 class OmekaClassicTransformer(_Transformer):
-    def __init__(self, *, institution_name: str, institution_uri: str):
+    def __init__(self, *, institution_name: str, institution_uri: str, square_thumbnail_height_px: int,
+                 square_thumbnail_width_px: int):
         self.__institution_name = institution_name
         self.__institution_uri = institution_uri
+        self.__square_thumbnail_height_px = square_thumbnail_height_px
+        self.__square_thumbnail_width_px = square_thumbnail_width_px
 
     def transform(self, collections, files, items):
+        graph = Graph()
+
         files_by_item_id = {}
         for file_ in files:
             files_by_item_id.setdefault(file_["item"]["id"], []).append(file_)
@@ -27,23 +34,22 @@ class OmekaClassicTransformer(_Transformer):
         for item in items:
             if not item["public"]:
                 continue
-            transformed_item = self.__transform_item(files_by_item_id, item)
+            transformed_item = self.__transform_item(files_by_item_id=files_by_item_id, graph=graph, item=item)
             transformed_item_uris_by_collection_id.setdefault(item["collection"]["id"], []).append(transformed_item.uri)
-            yield transformed_item
 
         transformed_collection_uris = []
         for collection in collections:
-            transformed_collection = self.__transform_collection(collection)
+            transformed_collection = self.__transform_collection(graph=graph, omeka_collection=collection)
             for transformed_item_uri in transformed_item_uris_by_collection_id.get(collection["id"], []):
                 transformed_collection.resource.add(CMS.object, URIRef(transformed_item_uri))
             transformed_collection_uris.append(transformed_collection.uri)
-            yield transformed_collection
 
-        institution = Institution(uri=URIRef(self.__institution_uri))
+        institution = Institution(graph=graph, uri=URIRef(self.__institution_uri))
         institution.resource.add(FOAF.name, Literal(self.__institution_name))
         for transformed_collection_uri in transformed_collection_uris:
             institution.resource.add(CMS.collection, URIRef(transformed_collection_uri))
-        yield institution
+
+        return graph
 
     def __get_element_texts_as_tree(self, omeka_resource) -> ElementTextTree:
         result = {}
@@ -63,16 +69,18 @@ class OmekaClassicTransformer(_Transformer):
                 self._logger.warn("unknown %s element names: %s", element_set_name,
                                   tuple(element_text_tree[element_set_name]))
 
-    def __transform_collection(self, omeka_collection) -> Collection:
+    def __transform_collection(self, *, graph: Graph, omeka_collection) -> Collection:
         collection = Collection(
-            uri=omeka_collection["url"]
+            graph=graph,
+            uri=URIRef(omeka_collection["url"])
         )
         element_text_tree = self.__get_element_texts_as_tree(omeka_collection)
-        self.__transform_dublin_core_elements(element_text_tree, collection)
+        self.__transform_dublin_core_elements(element_text_tree=element_text_tree, model=collection)
         self.__log_unknown_element_texts(element_text_tree)
         return collection
 
-    def __transform_dublin_core_elements(self, element_text_tree: ElementTextTree, model: _Model) -> None:
+    def __transform_dublin_core_elements(self, *, element_text_tree: ElementTextTree,
+                                         model: _Model) -> None:
         dc_element_text_tree = element_text_tree.pop("Dublin Core", None)
         if not dc_element_text_tree:
             return
@@ -134,10 +142,42 @@ class OmekaClassicTransformer(_Transformer):
         if dc_element_text_tree:
             self._logger.warn("unknown Dublin Core element names: %s", tuple(dc_element_text_tree.keys()))
 
-    def __transform_item(self, files_by_item_id, item) -> Object:
+    def __transform_file(self, *, file_, graph: Graph) -> Tuple[Image, ...]:
+        if not file_["mime_type"].startswith("image/"):
+            return ()
+
+        images = []
+        for key, url in file_["file_urls"].items():
+            if url is None:
+                continue
+            if key not in ("original", "square_thumbnail"):
+                continue
+            image = Image(graph=graph, uri=URIRef(url))
+            if key == "original":
+                image.height = file_["metadata"]["video"]["resolution_y"]
+                image.width = file_["metadata"]["video"]["resolution_x"]
+            elif key == "square_thumbnail":
+                image.height = self.__square_thumbnail_height_px
+                image.width = self.__square_thumbnail_width_px
+                image.resource.add(PROV.wasDerivedFrom, URIRef(file_["file_urls"]["original"]))
+            else:
+                raise NotImplementedError
+            image.created = dateparser.parse(file_["added"], settings={"STRICT_PARSING": True})
+            image.format = file_["mime_type"]
+            image.modified = dateparser.parse(file_["modified"], settings={"STRICT_PARSING": True})
+            images.append(image)
+
+        return tuple(images)
+
+    def __transform_item(self, *, files_by_item_id, graph: Graph, item) -> Object:
         object_ = Object(
-            uri=item["url"]
+            graph=graph,
+            uri=URIRef(item["url"])
         )
-        element_text_tree = self.__get_element_texts_as_tree(item)
-        self.__transform_dublin_core_elements(element_text_tree, object_)
+        item_element_text_tree = self.__get_element_texts_as_tree(item)
+        self.__transform_dublin_core_elements(element_text_tree=item_element_text_tree, model=object_)
+        for file_ in files_by_item_id.get(item["id"], []):
+            for image in self.__transform_file(file_=file_, graph=graph):
+                image.resource.add(FOAF.depicts, object_.uri)
+                object_.resource.add(FOAF.depiction, image.uri)
         return object_

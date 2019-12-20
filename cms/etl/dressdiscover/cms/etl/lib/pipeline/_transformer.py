@@ -1,8 +1,7 @@
 import logging
 from abc import ABC, abstractmethod
-from typing import Generator
 
-from dressdiscover.cms.etl.lib.model._model import _Model
+from rdflib import Graph
 
 
 class _Transformer(ABC):
@@ -10,9 +9,9 @@ class _Transformer(ABC):
         self._logger = logging.getLogger(self.__class__.__name__)
 
     @abstractmethod
-    def transform(self, **kwds) -> Generator[_Model, None, None]:
+    def transform(self, **kwds) -> Graph:
         """
         Transform previously-extracted data.
         :param kwds: merged dictionary of initial extract kwds and the result of extract
-        :return generator of transformed models
+        :return: Graph containing models
         """
