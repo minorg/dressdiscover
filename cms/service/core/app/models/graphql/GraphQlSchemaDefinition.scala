@@ -1,9 +1,9 @@
 package models.graphql
 
 import io.lemonlabs.uri.{Uri, Url}
-import models.domain.{Collection, Institution, Labels}
+import models.domain.{Collection, Institution, Object}
 import sangria.macros.derive._
-import sangria.schema._
+import sangria.schema.{Argument, Field, ListType, ScalarAlias, Schema, StringType, fields}
 
 object GraphQlSchemaDefinition {
   // Scalar aliases
@@ -15,12 +15,13 @@ object GraphQlSchemaDefinition {
     StringType, _.toString, uri => Right(Url.parse(uri))
   )
 
-  // Helper Object types, must be first
-  implicit val LabelsType = deriveObjectType[Unit, Labels](
+  // Domain model types
+  implicit val ObjectType = deriveObjectType[GraphQlSchemaContext, Object](
+    ReplaceField("uri", Field("uri", UriType, resolve = _.value.uri))
   )
 
-  // Domain model types
-  implicit val CollectionType = deriveObjectType[Unit, Collection](
+  implicit val CollectionType = deriveObjectType[GraphQlSchemaContext, Collection](
+    AddFields(Field("objects", ListType(ObjectType), resolve = ctx => ctx.ctx.store.collectionObjects(ctx.value.uri))),
     ReplaceField("uri", Field("uri", UriType, resolve = _.value.uri))
   )
 
@@ -38,9 +39,9 @@ object GraphQlSchemaDefinition {
   val UriArgument = Argument("uri", UriType, description = "URI")
 
   // Query types
-  val RootQueryType = ObjectType("RootQuery", fields[GraphQlSchemaContext, Unit](
-    Field("firstInstitution", OptionType(InstitutionType), resolve = _.ctx.store.firstInstitution),
-    //    Field("person", PersonType, arguments = ThingIdArgument :: Nil, resolve = (ctx) => ctx.ctx.dataService.personById(ctx.args.arg("id"))),
+  val RootQueryType = sangria.schema.ObjectType("RootQuery", fields[GraphQlSchemaContext, Unit](
+    Field("collectionByUri", CollectionType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.collectionByUri(ctx.args.arg("uri"))),
+    Field("firstInstitution", InstitutionType, resolve = _.ctx.store.firstInstitution),
     Field("institutions", ListType(InstitutionType), resolve = _.ctx.store.institutions)
   ))
 

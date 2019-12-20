@@ -1,6 +1,6 @@
-import { ApolloQueryResult, DocumentNode, OperationVariables } from "apollo-boost";
+import {ApolloQueryResult, DocumentNode, OperationVariables} from "apollo-boost";
 import * as React from "react";
-import { Query } from "react-apollo";
+import {Query} from "react-apollo";
 import {ApolloException} from "dressdiscover/cms/gui/core/api/ApolloException";
 import {GenericErrorHandler} from "dressdiscover/cms/gui/core/components/error/GenericErrorHandler";
 import * as ReactLoader from "react-loader";
@@ -21,13 +21,13 @@ export class ApolloQueryWrapper<DataT, VariablesT = OperationVariables> extends 
   render() {
     const { children, ...queryProps } = this.props;
     return (
-      <Query<DataT, VariablesT> fetchPolicy="network-only" {...queryProps}>
-        {queryResult => {
-            const { data, error, loading, refetch } = queryResult;
+        <Query<DataT, VariablesT> {...queryProps}>
+          {queryResult => {
+            const {data, error, loading, refetch} = queryResult;
 
             if (error) {
               const exception = new ApolloException(error);
-              if (typeof(exception.httpStatusCode) !== "undefined") {
+              if (typeof (exception.httpStatusCode) !== "undefined") {
                 throw new EvalError("handle non-failure exceptions");
               }
 

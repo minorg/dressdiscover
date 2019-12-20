@@ -13,6 +13,7 @@ import {ApolloProvider} from "react-apollo";
 import {ApolloProvider as ApolloHooksProvider} from "@apollo/react-hooks";
 import {Route, Router, Switch} from 'react-router';
 import {LoggerContext} from 'dressdiscover/cms/gui/core/util/logging/LoggerContext';
+import {CollectionOverview} from "dressdiscover/cms/gui/core/components/collection/CollectionOverview";
 
 // Logger
 const logger = new ConsoleLogger();
@@ -25,12 +26,13 @@ ReactDOM.render(
       <ApolloHooksProvider client={apolloClient}>
         <LoggerContext.Provider value={logger}>
           <Router history={browserHistory}>
-            <Switch>
-              <Route exact path={Hrefs.home} component={Home} />
-              {/*<Route path={Hrefs.person(":id")} component={PersonOverview} />*/}
-              <Route exact path={Hrefs.privacy} component={Privacy} />
-              <Route component={NoRoute} />
-            </Switch>
+              <Switch>
+                  <Route exact path={Hrefs.home} component={Home}/>
+                  <Route path="/collection/" component={CollectionOverview}/>
+                  {/*<Route path={Hrefs.person(":id")} component={PersonOverview} />*/}
+                  <Route exact path={Hrefs.privacy} component={Privacy}/>
+                  <Route component={NoRoute}/>
+              </Switch>
           </Router>
         </LoggerContext.Provider>
       </ApolloHooksProvider>

@@ -1,0 +1,14 @@
+query CollectionOverviewQuery($collectionUri: String!) {
+    firstInstitution {
+        name
+        uri
+    }
+    collectionByUri(uri: $collectionUri) {
+        description
+        name
+        objects {
+            description
+            title
+        }
+    }
+}
