@@ -17,7 +17,7 @@ class _PipelineStorage(ABC):
         """
 
     @abstractmethod
-    def put(self, key: str, value: Union[bytearray, IOBase]) -> bool:
+    def put(self, key: str, value: Union[bytearray, IOBase, str]) -> bool:
         """
         Put a file-like object or value associated with the given key
         :return true if there was a value previously associated with the key
