@@ -18,7 +18,9 @@ class FilePipelineStorage(_PipelineStorage):
 
     def get(self, key):
         file_path = self.__key_to_file_path(key)
-        return open(file_path)
+        if not os.path.isfile(file_path):
+            return
+        return open(file_path, "rb")
 
     def head(self, key):
         file_path = self.__key_to_file_path(key)

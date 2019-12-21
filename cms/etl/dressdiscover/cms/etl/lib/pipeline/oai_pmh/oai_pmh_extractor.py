@@ -1,3 +1,4 @@
+import json
 from typing import Optional
 from urllib.request import urlopen
 from xml.dom.minidom import parseString
@@ -13,9 +14,16 @@ class OaiPmhExtractor(_Extractor):
         self.__set = set_
 
     def extract(self, *, force, storage):
-        base_url = self.__endpoint_url + '?verb=ListRecords'
+        record_identifiers_json = storage.get("record_identifiers.json")
+        if record_identifiers_json is not None:
+            try:
+                record_identifiers = tuple(json.load(record_identifiers_json))
+            finally:
+                record_identifiers_json.close()
+            return {"record_identifiers": record_identifiers}
 
-        record_count = 0
+        base_url = self.__endpoint_url + '?verb=ListRecords'
+        record_identifiers = []
         resumption_token = None
         while True:
             if resumption_token is not None:
@@ -41,13 +49,16 @@ class OaiPmhExtractor(_Extractor):
                 record_identifier = \
                     record_element.getElementsByTagName('header')[0].getElementsByTagName('identifier')[0].childNodes[
                         0].data
-                storage.put(record_identifier, record_element.toxml())
-                record_count = record_count + 1
-                if record_count % 50 == 0:
-                    self._logger.info("read %d records", record_count)
+                storage.put(record_identifier + ".xml", record_element.toxml())
+                record_identifiers.append(record_identifier)
+                if len(record_identifiers) % 50 == 0:
+                    self._logger.info("read %d records", len(record_identifiers))
             resumption_token = None
             for resumption_token_element in ListRecords_element.getElementsByTagName('resumptionToken'):
                 resumption_token = resumption_token_element.childNodes[0].data
                 break
             if resumption_token is None:
                 break
+
+        storage.put("record_identifiers.json", json.dumps(record_identifiers))
+        return {"record_identifiers": tuple(record_identifiers)}
