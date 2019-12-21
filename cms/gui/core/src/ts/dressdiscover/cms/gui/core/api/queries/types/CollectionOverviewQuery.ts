@@ -12,10 +12,17 @@ export interface CollectionOverviewQuery_firstInstitution {
   uri: string;
 }
 
+export interface CollectionOverviewQuery_collectionByUri_objects_thumbnail {
+  __typename: "Image";
+  url: string;
+}
+
 export interface CollectionOverviewQuery_collectionByUri_objects {
   __typename: "Object";
   description: string | null;
   title: string;
+  thumbnail: CollectionOverviewQuery_collectionByUri_objects_thumbnail | null;
+  uri: string;
 }
 
 export interface CollectionOverviewQuery_collectionByUri {

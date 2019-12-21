@@ -9,6 +9,10 @@ query CollectionOverviewQuery($collectionUri: String!) {
         objects {
             description
             title
+            thumbnail {
+                url
+            }
+            uri
         }
     }
 }
