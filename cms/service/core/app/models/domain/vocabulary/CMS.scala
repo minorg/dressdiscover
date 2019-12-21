@@ -7,6 +7,7 @@ object CMS {
 
   // Resources
   val Collection = ResourceFactory.createResource(URI + "Collection")
+  val Image = ResourceFactory.createResource(URI + "Image")
   val Institution = ResourceFactory.createResource(URI + "Institution")
   val Object = ResourceFactory.createResource(URI + "Object")
 }

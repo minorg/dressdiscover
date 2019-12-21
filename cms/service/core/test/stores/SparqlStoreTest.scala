@@ -17,6 +17,7 @@ class SparqlStoreTest extends WordSpec with Matchers {
       } catch {
         case e: QueryException => e.getCause match {
           case _: UnknownHostException => assert(true)
+          case _ => throw e
         }
       }
 
@@ -46,6 +47,10 @@ class SparqlStoreTest extends WordSpec with Matchers {
         val institution = store.firstInstitution()
         val collection = store.institutionCollections(institution.uri)(0)
         val objects = store.collectionObjects(collection.uri)
+        val objectWithImages = objects.find(object_ => !object_.images.isEmpty)
+        objectWithImages should not be (null)
+        val objectWithThumbnail = objects.find(object_ => object_.images.exists(image => image.thumbnail.isDefined))
+        objectWithThumbnail should not be (null)
         objects.size should be > 0
       }
     }

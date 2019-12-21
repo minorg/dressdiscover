@@ -1,7 +1,13 @@
 package models.domain
 
-final case class ImagePair(original: Image, thumbnail: Option[Image])
+import org.apache.jena.sparql.vocabulary.FOAF
 
-object ImagePair extends DomainModelCompanion {
-  def apply(originalResource: ResourceWrapper): ImagePair =
+final case class DerivedImageSet(original: Image, thumbnail: Option[Image])
+
+object DerivedImageSet extends DomainModelCompanion {
+  def apply(originalResource: ResourceWrapper): DerivedImageSet =
+    DerivedImageSet(
+      original = Image(originalResource.resource),
+      thumbnail = originalResource.getPropertyObject(FOAF.thumbnail).flatMap(object_ => if (object_.isResource()) Some(Image(object_.asResource())) else None)
+    )
 }

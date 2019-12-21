@@ -1,18 +1,22 @@
 package models.domain
 
-import io.lemonlabs.uri.Uri
+import io.lemonlabs.uri.Url
+import models.domain.vocabulary.EXIF
 
-final case class Collection(
-                             description: Option[String] = None,
-                             name: String,
-                             uri: Uri
-                           ) extends DomainModel
+final case class Image(
+                        height: Int,
+                        url: Url,
+                        width: Int
+                      ) extends DomainModel {
+  val uri = url
+}
 
-object Collection extends DomainModelCompanion {
-  def apply(resource: ResourceWrapper): Collection =
-    Collection(
-      description = resource.dublinCore.description,
-      name = resource.dublinCore.title.get,
-      uri = resource.uri
+object Image extends DomainModelCompanion {
+  def apply(resource: ResourceWrapper): Image = {
+    Image(
+      height = resource.getPropertyObjectInt(EXIF.height).get,
+      url = resource.uri.asInstanceOf[Url],
+      width = resource.getPropertyObjectInt(EXIF.width).get
     )
+  }
 }

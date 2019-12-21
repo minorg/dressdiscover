@@ -4,6 +4,7 @@ import io.lemonlabs.uri.{Uri, Url}
 import models.domain.vocabulary.CMS
 import models.domain.{Collection, Institution, Object}
 import org.apache.jena.query.{Query, QueryExecution, QueryExecutionFactory, QueryFactory}
+import org.apache.jena.sparql.vocabulary.FOAF
 import org.apache.jena.vocabulary.RDF
 
 import scala.collection.JavaConverters._
@@ -40,15 +41,33 @@ class SparqlStore(endpointUrl: Url) extends Store {
     val query = QueryFactory.create(
       s"""
          |PREFIX cms: <${CMS.URI}>
+         |PREFIX foaf: <${FOAF.getURI}>
          |PREFIX rdf: <${RDF.getURI}>
-         |CONSTRUCT WHERE {
+         |CONSTRUCT {
+         |  ?object ?objectP ?objectO .
+         |  ?object foaf:depiction ?originalImage .
+         |  ?originalImage ?originalImageP ?originalImageO .
+         |  ?originalImage foaf:thumbnail ?thumbnailImage .
+         |  ?thumbnailImage ?thumbnailImageP ?thumbnailImageO .
+         |} WHERE {
          |  <${collectionUri.toString()}> cms:object ?object .
          |  ?object rdf:type cms:Object .
-         |  ?object ?p ?o .
+         |  ?object ?objectP ?objectO .
+         |  OPTIONAL {
+         |    ?object foaf:depiction ?originalImage .
+         |    ?originalImage rdf:type cms:Image .
+         |    ?originalImage ?originalImageP ?originalImageO .
+         |    OPTIONAL {
+         |      ?originalImage foaf:thumbnail ?thumbnailImage .
+         |      ?thumbnailImage rdf:type cms:Image .
+         |      ?thumbnailImage ?thumbnailImageP ?thumbnailImageO .
+         |    }
+         |  }
          |}
          |""".stripMargin)
     withQueryExecution(query) { queryExecution =>
       val model = queryExecution.execConstruct()
+      //      model.listSubjectsWithProperty(RDF.`type`, CMS.Object).asScala.toList.foreach(resource => model.listStatements(resource, null, null).asScala.foreach(System.out.println(_)))
       model.listSubjectsWithProperty(RDF.`type`, CMS.Object).asScala.toList.map(resource => Object(resource))
     }
   }
