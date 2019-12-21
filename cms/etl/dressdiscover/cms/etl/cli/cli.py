@@ -43,10 +43,14 @@ class Cli:
             return extract_kwds if extract_kwds is not None else {}
 
         def load(self, ttl: str) -> None:
+            url = self.__args.fuseki_data_url + "?graph=urn:pipeline:" + self.__pipeline.id
+
+            requests.delete(url)
+
             # Post to a named graph, since the Fuseki default graph is the union of all named graphs
             # https://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321/#http-post
             requests.post(
-                self.__args.fuseki_data_url + "?graph=urn:pipeline:" + self.__pipeline.id,
+                url,
                 data=ttl,
                 headers={
                     "Content-Type": "text/turtle;charset=utf-8"

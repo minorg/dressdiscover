@@ -141,9 +141,9 @@ class OmekaClassicTransformer(_Transformer):
 
     def __transform_file(self, *, file_, graph: Graph) -> Tuple[Image, ...]:
         if not file_["mime_type"].startswith("image/"):
-            return ()
+            return None, None
 
-        images = []
+        original = thumbnail = None
         for key, url in file_["file_urls"].items():
             if url is None:
                 continue
@@ -156,15 +156,22 @@ class OmekaClassicTransformer(_Transformer):
             elif key == "square_thumbnail":
                 image.height = self.__square_thumbnail_height_px
                 image.width = self.__square_thumbnail_width_px
-                image.resource.add(PROV.wasDerivedFrom, URIRef(file_["file_urls"]["original"]))
+                original_uri = URIRef(file_["file_urls"]["original"])
+                image.resource.add(PROV.wasDerivedFrom, original_uri)
+                graph.add((original_uri, FOAF.thumbnail, image.uri))
             else:
                 raise NotImplementedError
             image.created = dateparser.parse(file_["added"], settings={"STRICT_PARSING": True})
             image.format = file_["mime_type"]
             image.modified = dateparser.parse(file_["modified"], settings={"STRICT_PARSING": True})
-            images.append(image)
+            if key == "original":
+                original = image
+            elif key == "square_thumbnail":
+                thumbnail = image
+            else:
+                raise NotImplementedError
 
-        return tuple(images)
+        return original, thumbnail
 
     def __transform_item(self, *, files_by_item_id, graph: Graph, item) -> Object:
         object_ = Object(
@@ -174,7 +181,9 @@ class OmekaClassicTransformer(_Transformer):
         item_element_text_tree = self.__get_element_texts_as_tree(item)
         self.__transform_dublin_core_elements(element_text_tree=item_element_text_tree, model=object_)
         for file_ in files_by_item_id.get(item["id"], []):
-            for image in self.__transform_file(file_=file_, graph=graph):
-                image.resource.add(FOAF.depicts, object_.uri)
-                object_.resource.add(FOAF.depiction, image.uri)
+            original_image, thumbnail_image = self.__transform_file(file_=file_, graph=graph)
+            if not original_image:
+                continue
+            original_image.resource.add(FOAF.depicts, object_.uri)
+            object_.resource.add(FOAF.depiction, original_image.uri)
         return object_
