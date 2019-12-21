@@ -28,11 +28,17 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps> = 
                             <Col xs={{offset: 1, size: 10}}>
                                 <h2 className="text-center">{data.collectionByUri.name}</h2>
                                 {data.collectionByUri.description ?
-                                    <p>{stripHtml(data.collectionByUri.description)}<br/><br/></p> : null}
+                                    <p>{stripHtml(data.collectionByUri.description)}</p> : null}
                             </Col>
                         </Row>
-                        <Row>
-                            <Col className="p-0" xs={{offset: 1, size: 10}}>
+                        {data.firstInstitution.rights ?
+                            <Row>
+                                <Col xs={{offset: 1, size: 10}}>
+                                    <small>{data.firstInstitution.rights.text}</small>
+                                </Col>
+                            </Row> : null}
+                        <Row className="mt-4">
+                            <Col xs={{offset: 1, size: 10}}>
                                 <Container fluid>
                                     <Row>
                                         {data.collectionByUri.objects.map(object =>
