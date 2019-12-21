@@ -1,6 +1,9 @@
 query CollectionOverviewQuery($collectionUri: String!) {
     firstInstitution {
         name
+        rights {
+            text
+        }
         uri
     }
     collectionByUri(uri: $collectionUri) {

@@ -1,7 +1,7 @@
 package models.graphql
 
 import io.lemonlabs.uri.{Uri, Url}
-import models.domain.{Collection, DerivedImageSet, Image, Institution, Object}
+import models.domain.{Collection, DerivedImageSet, Image, Institution, Object, Rights}
 import sangria.macros.derive._
 import sangria.schema.{Argument, Field, ListType, OptionType, ScalarAlias, Schema, StringType, fields}
 
@@ -18,6 +18,9 @@ object GraphQlSchemaDefinition {
   // Domain model types, in dependence order
   implicit val ImageType = deriveObjectType[GraphQlSchemaContext, Image](
     ReplaceField("url", Field("url", UrlType, resolve = _.value.url))
+  )
+
+  implicit val RightsType = deriveObjectType[GraphQlSchemaContext, Rights](
   )
 
   implicit val DerivedImageSetType = deriveObjectType[GraphQlSchemaContext, DerivedImageSet](

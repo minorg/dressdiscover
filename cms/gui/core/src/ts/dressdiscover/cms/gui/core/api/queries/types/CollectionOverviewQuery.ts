@@ -6,9 +6,15 @@
 // GraphQL query operation: CollectionOverviewQuery
 // ====================================================
 
+export interface CollectionOverviewQuery_firstInstitution_rights {
+  __typename: "Rights";
+  text: string;
+}
+
 export interface CollectionOverviewQuery_firstInstitution {
   __typename: "Institution";
   name: string;
+  rights: CollectionOverviewQuery_firstInstitution_rights | null;
   uri: string;
 }
 
