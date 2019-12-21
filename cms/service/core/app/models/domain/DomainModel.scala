@@ -1,9 +1,9 @@
 package models.domain
 
 import io.lemonlabs.uri.Uri
-import org.apache.jena.rdf.model.Resource
+import org.apache.jena.rdf.model.{Literal, Property, RDFNode, Resource}
 import org.apache.jena.sparql.vocabulary.FOAF
-import org.apache.jena.vocabulary.DC_11
+import org.apache.jena.vocabulary.{DCTerms, DC_11}
 
 trait DomainModel {
   val uri: Uri
@@ -11,20 +11,29 @@ trait DomainModel {
 
 trait DomainModelCompanion {
 
-  implicit class ResourceWrapper(resource: Resource) {
+  implicit class ResourceWrapper(val resource: Resource) {
 
     object dublinCore {
-      def description(): Option[String] =
-        Option(resource.getProperty(DC_11.description)).flatMap(statement => if (statement.getObject.isLiteral) Some(statement.getObject.asLiteral().getString) else None)
+      def description(): Option[String] = getPropertyObjectString(DCTerms.description).orElse(getPropertyObjectString(DC_11.description))
 
-      def title(): Option[String] =
-        Option(resource.getProperty(DC_11.title)).flatMap(statement => if (statement.getObject.isLiteral) Some(statement.getObject.asLiteral().getString) else None)
+      def title(): Option[String] = getPropertyObjectString(DCTerms.title).orElse(getPropertyObjectString(DC_11.title))
     }
 
     object foaf {
-      def name(): Option[String] =
-        Option(resource.getProperty(FOAF.name)).flatMap(statement => if (statement.getObject.isLiteral) Some(statement.getObject.asLiteral().getString) else None)
+      def name(): Option[String] = getPropertyObjectString(FOAF.name)
     }
+
+    def getPropertyObject(property: Property): Option[RDFNode] =
+      Option(resource.getProperty(property)).map(statement => statement.getObject)
+
+    def getPropertyObjectInt(property: Property): Option[Int] =
+      getPropertyObjectLiteral(property).map(literal => literal.getInt)
+
+    def getPropertyObjectLiteral(property: Property): Option[Literal] =
+      getPropertyObject(property).flatMap(object_ => if (object_.isLiteral) Some(object_.asLiteral()) else None)
+
+    def getPropertyObjectString(property: Property): Option[String] =
+      getPropertyObjectLiteral(property).map(literal => literal.getString)
 
     def uri: Uri = Uri.parse(resource.getURI)
   }

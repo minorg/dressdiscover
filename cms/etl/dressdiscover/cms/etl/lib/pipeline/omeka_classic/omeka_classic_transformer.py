@@ -1,24 +1,29 @@
-from typing import Dict
+from typing import Dict, Tuple
 
-from rdflib import Literal, URIRef
-from rdflib.namespace import DC, DCTERMS, FOAF
+import dateparser
+from rdflib import Graph, Literal, URIRef
+from rdflib.namespace import DCTERMS, FOAF
 
 from dressdiscover.cms.etl.lib.model._model import _Model
 from dressdiscover.cms.etl.lib.model.collection import Collection
-from dressdiscover.cms.etl.lib.model.institution import Institution
+from dressdiscover.cms.etl.lib.model.image import Image
 from dressdiscover.cms.etl.lib.model.object import Object
-from dressdiscover.cms.etl.lib.namespace import CMS
+from dressdiscover.cms.etl.lib.namespace import CMS, PROV
 from dressdiscover.cms.etl.lib.pipeline._transformer import _Transformer
 
 ElementTextTree = Dict[str, Dict[str, str]]
 
 
 class OmekaClassicTransformer(_Transformer):
-    def __init__(self, *, institution_name: str, institution_uri: str):
-        self.__institution_name = institution_name
-        self.__institution_uri = institution_uri
+    def __init__(self, *, institution_kwds: Dict[str, str], square_thumbnail_height_px: int,
+                 square_thumbnail_width_px: int):
+        self.__institution_kwds = institution_kwds
+        self.__square_thumbnail_height_px = square_thumbnail_height_px
+        self.__square_thumbnail_width_px = square_thumbnail_width_px
 
     def transform(self, collections, files, items):
+        graph = Graph()
+
         files_by_item_id = {}
         for file_ in files:
             files_by_item_id.setdefault(file_["item"]["id"], []).append(file_)
@@ -27,23 +32,21 @@ class OmekaClassicTransformer(_Transformer):
         for item in items:
             if not item["public"]:
                 continue
-            transformed_item = self.__transform_item(files_by_item_id, item)
+            transformed_item = self.__transform_item(files_by_item_id=files_by_item_id, graph=graph, item=item)
             transformed_item_uris_by_collection_id.setdefault(item["collection"]["id"], []).append(transformed_item.uri)
-            yield transformed_item
 
         transformed_collection_uris = []
         for collection in collections:
-            transformed_collection = self.__transform_collection(collection)
+            transformed_collection = self.__transform_collection(graph=graph, omeka_collection=collection)
             for transformed_item_uri in transformed_item_uris_by_collection_id.get(collection["id"], []):
                 transformed_collection.resource.add(CMS.object, URIRef(transformed_item_uri))
             transformed_collection_uris.append(transformed_collection.uri)
-            yield transformed_collection
 
-        institution = Institution(uri=URIRef(self.__institution_uri))
-        institution.resource.add(FOAF.name, Literal(self.__institution_name))
+        institution = self._transform_institution_from_arguments(graph=graph, **self.__institution_kwds)
         for transformed_collection_uri in transformed_collection_uris:
             institution.resource.add(CMS.collection, URIRef(transformed_collection_uri))
-        yield institution
+
+        return graph
 
     def __get_element_texts_as_tree(self, omeka_resource) -> ElementTextTree:
         result = {}
@@ -63,40 +66,42 @@ class OmekaClassicTransformer(_Transformer):
                 self._logger.warn("unknown %s element names: %s", element_set_name,
                                   tuple(element_text_tree[element_set_name]))
 
-    def __transform_collection(self, omeka_collection) -> Collection:
+    def __transform_collection(self, *, graph: Graph, omeka_collection) -> Collection:
         collection = Collection(
-            uri=omeka_collection["url"]
+            graph=graph,
+            uri=URIRef(omeka_collection["url"])
         )
         element_text_tree = self.__get_element_texts_as_tree(omeka_collection)
-        self.__transform_dublin_core_elements(element_text_tree, collection)
+        self.__transform_dublin_core_elements(element_text_tree=element_text_tree, model=collection)
         self.__log_unknown_element_texts(element_text_tree)
         return collection
 
-    def __transform_dublin_core_elements(self, element_text_tree: ElementTextTree, model: _Model) -> None:
+    def __transform_dublin_core_elements(self, *, element_text_tree: ElementTextTree,
+                                         model: _Model) -> None:
         dc_element_text_tree = element_text_tree.pop("Dublin Core", None)
         if not dc_element_text_tree:
             return
 
         for creator in dc_element_text_tree.pop("Creator", []):
-            model.resource.add(DC.creator, Literal(creator))
+            model.resource.add(DCTERMS.creator, Literal(creator))
 
         for date in dc_element_text_tree.pop("Date", []):
-            model.resource.add(DC.date, Literal(date))
+            model.resource.add(DCTERMS.date, Literal(date))
 
         for description in dc_element_text_tree.pop("Description", []):
-            model.resource.add(DC.description, Literal(description))
+            model.resource.add(DCTERMS.description, Literal(description))
 
         for extent in dc_element_text_tree.pop("Extent", []):
             model.resource.add(DCTERMS.extent, Literal(extent))
 
         for identifier in dc_element_text_tree.pop("Identifier", []):
-            model.resource.add(DC.identifier, Literal(identifier))
+            model.resource.add(DCTERMS.identifier, Literal(identifier))
 
         for is_referenced_by in dc_element_text_tree.pop("Is Referenced By", []):
             model.resource.add(DCTERMS.isReferencedBy, Literal(is_referenced_by))
 
         for language in dc_element_text_tree.pop("Language", []):
-            model.resource.add(DC.language, Literal(language))
+            model.resource.add(DCTERMS.language, Literal(language))
 
         for medium in dc_element_text_tree.pop("Medium", []):
             model.resource.add(DCTERMS.medium, Literal(medium))
@@ -105,39 +110,80 @@ class OmekaClassicTransformer(_Transformer):
             model.resource.add(DCTERMS.provenance, Literal(provenance))
 
         for publisher in dc_element_text_tree.pop("Publisher", []):
-            model.resource.add(DC.publisher, Literal(publisher))
+            model.resource.add(DCTERMS.publisher, Literal(publisher))
 
         for relation in dc_element_text_tree.pop("Relation", []):
-            model.resource.add(DC.relation, Literal(relation))
+            model.resource.add(DCTERMS.relation, Literal(relation))
 
         for rights in dc_element_text_tree.pop("Rights", []):
-            model.resource.add(DC.rights, Literal(rights))
+            model.resource.add(DCTERMS.rights, Literal(rights))
 
         for rights_holder in dc_element_text_tree.pop("Rights Holder", []):
             model.resource.add(DCTERMS.rightsHolder, Literal(rights_holder))
 
         for source in dc_element_text_tree.pop("Source", []):
-            model.resource.add(DC.source, Literal(source))
+            model.resource.add(DCTERMS.source, Literal(source))
 
         for spatial in dc_element_text_tree.pop("Spatial Coverage", []):
             model.resource.add(DCTERMS.spatial, Literal(spatial))
 
         for subject in dc_element_text_tree.pop("Subject", []):
-            model.resource.add(DC.subject, Literal(subject))
+            model.resource.add(DCTERMS.subject, Literal(subject))
 
         for title in dc_element_text_tree.pop("Title", []):
-            model.resource.add(DC.title, Literal(title))
+            model.resource.add(DCTERMS.title, Literal(title))
 
         for type_ in dc_element_text_tree.pop("Type", []):
-            model.resource.add(DC.type, Literal(type_))
+            model.resource.add(DCTERMS.type, Literal(type_))
 
         if dc_element_text_tree:
             self._logger.warn("unknown Dublin Core element names: %s", tuple(dc_element_text_tree.keys()))
 
-    def __transform_item(self, files_by_item_id, item) -> Object:
+    def __transform_file(self, *, file_, graph: Graph) -> Tuple[Image, ...]:
+        if not file_["mime_type"].startswith("image/"):
+            return None, None
+
+        original = thumbnail = None
+        for key, url in file_["file_urls"].items():
+            if url is None:
+                continue
+            if key not in ("original", "square_thumbnail"):
+                continue
+            image = Image(graph=graph, uri=URIRef(url))
+            if key == "original":
+                image.height = file_["metadata"]["video"]["resolution_y"]
+                image.width = file_["metadata"]["video"]["resolution_x"]
+            elif key == "square_thumbnail":
+                image.height = self.__square_thumbnail_height_px
+                image.width = self.__square_thumbnail_width_px
+                original_uri = URIRef(file_["file_urls"]["original"])
+                image.resource.add(PROV.wasDerivedFrom, original_uri)
+                graph.add((original_uri, FOAF.thumbnail, image.uri))
+            else:
+                raise NotImplementedError
+            image.created = dateparser.parse(file_["added"], settings={"STRICT_PARSING": True})
+            image.format = file_["mime_type"]
+            image.modified = dateparser.parse(file_["modified"], settings={"STRICT_PARSING": True})
+            if key == "original":
+                original = image
+            elif key == "square_thumbnail":
+                thumbnail = image
+            else:
+                raise NotImplementedError
+
+        return original, thumbnail
+
+    def __transform_item(self, *, files_by_item_id, graph: Graph, item) -> Object:
         object_ = Object(
-            uri=item["url"]
+            graph=graph,
+            uri=URIRef(item["url"])
         )
-        element_text_tree = self.__get_element_texts_as_tree(item)
-        self.__transform_dublin_core_elements(element_text_tree, object_)
+        item_element_text_tree = self.__get_element_texts_as_tree(item)
+        self.__transform_dublin_core_elements(element_text_tree=item_element_text_tree, model=object_)
+        for file_ in files_by_item_id.get(item["id"], []):
+            original_image, thumbnail_image = self.__transform_file(file_=file_, graph=graph)
+            if not original_image:
+                continue
+            original_image.resource.add(FOAF.depicts, object_.uri)
+            object_.resource.add(FOAF.depiction, original_image.uri)
         return object_

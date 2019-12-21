@@ -35,8 +35,10 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps> = 
                             <Col className="p-0" xs={{offset: 1, size: 10}}>
                                 <Container fluid>
                                     <Row>
-                                        {data.collectionByUri.objects.map(object => <Col xs={4}><ObjectCard
-                                            object={object}/><br/></Col>)}
+                                        {data.collectionByUri.objects.map(object =>
+                                            <div className="mr-4 mb-4" key={object.uri}>
+                                                <ObjectCard object={object}/>
+                                            </div>)}
                                     </Row>
                                 </Container>
                             </Col>

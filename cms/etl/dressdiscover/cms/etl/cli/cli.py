@@ -5,7 +5,6 @@ from importlib import import_module
 from inspect import isclass
 
 import requests
-from rdflib import Graph
 
 from dressdiscover.cms.etl.lib.pipeline._pipeline import _Pipeline
 from dressdiscover.cms.etl.lib.pipeline.file_pipeline_storage import FilePipelineStorage
@@ -44,10 +43,14 @@ class Cli:
             return extract_kwds if extract_kwds is not None else {}
 
         def load(self, ttl: str) -> None:
+            url = self.__args.fuseki_data_url + "?graph=urn:pipeline:" + self.__pipeline.id
+
+            requests.delete(url)
+
             # Post to a named graph, since the Fuseki default graph is the union of all named graphs
             # https://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321/#http-post
             requests.post(
-                self.__args.fuseki_data_url + "?graph=urn:pipeline:" + self.__pipeline.id,
+                url,
                 data=ttl,
                 headers={
                     "Content-Type": "text/turtle;charset=utf-8"
@@ -55,11 +58,8 @@ class Cli:
             )
 
         def transform(self, force: bool, **extract_kwds):
-            models = self.__pipeline.transformer.transform(**extract_kwds)
-            graph = Graph()
+            graph = self.__pipeline.transformer.transform(**extract_kwds)
             transformed_storage = FilePipelineStorage.create(os.path.join(self.__data_dir_path, "transformed"))
-            for model in models:
-                graph += model.graph
             graph_ttl = graph.serialize(format="ttl")
             transformed_storage.put(self.__pipeline.id + ".ttl", graph_ttl)
             return graph_ttl
