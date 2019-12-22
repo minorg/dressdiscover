@@ -1,6 +1,6 @@
 export class Hrefs {
-  static collection(uri: string) {
-    return "/collection/" + encodeURIComponent(encodeURIComponent(uri));
+  static collection(kwds: { collectionUri: string, institutionUri: string }) {
+    return Hrefs.institution(kwds.institutionUri) + "/collection/" + encodeURIComponent(encodeURIComponent(kwds.collectionUri));
   }
 
   static get contact() {
@@ -9,6 +9,10 @@ export class Hrefs {
 
   static get home() {
     return '/';
+  }
+
+  static institution(uri: string) {
+    return "/institution/" + encodeURIComponent(encodeURIComponent(uri));
   }
 
   static get privacy() {

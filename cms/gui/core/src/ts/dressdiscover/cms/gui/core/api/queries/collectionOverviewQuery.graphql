@@ -1,11 +1,4 @@
-query CollectionOverviewQuery($collectionUri: String!) {
-    firstInstitution {
-        name
-        rights {
-            text
-        }
-        uri
-    }
+query CollectionOverviewQuery($collectionUri: String!, $institutionUri: String!) {
     collectionByUri(uri: $collectionUri) {
         description
         name
@@ -17,5 +10,12 @@ query CollectionOverviewQuery($collectionUri: String!) {
             }
             uri
         }
+    }
+    institutionByUri(uri: $institutionUri) {
+        name
+        rights {
+            text
+        }
+        uri
     }
 }

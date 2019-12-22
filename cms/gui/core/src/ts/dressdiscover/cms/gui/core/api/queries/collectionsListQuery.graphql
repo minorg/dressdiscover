@@ -1,9 +1,0 @@
-query CollectionsListQuery {
-    firstInstitution {
-        collections {
-            description
-            name
-            uri
-        }
-    }
-}

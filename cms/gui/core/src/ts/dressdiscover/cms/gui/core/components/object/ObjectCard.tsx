@@ -1,15 +1,19 @@
 import * as React from "react";
 import {useState} from "react";
-import {Object} from "dressdiscover/cms/gui/core/models/Object";
 import {Card, CardBody, CardHeader, CardTitle, Collapse} from "reactstrap";
 import * as classnames from "classnames";
 
-interface State {
-    descriptionShown: boolean;
+interface Object {
+    description: string | null | undefined;
+    thumbnail: {
+        url: string;
+    } | null | undefined;
+    title: string;
+    uri: string;
 }
 
 export const ObjectCard: React.FunctionComponent<{ object: Object }> = ({object}) => {
-    const [state, setState] = useState<State>({descriptionShown: false});
+    const [state, setState] = useState<{ descriptionShown: boolean }>({descriptionShown: false});
 
     const onToggleDescription = () => setState((prevState) => ({descriptionShown: !prevState.descriptionShown}));
 

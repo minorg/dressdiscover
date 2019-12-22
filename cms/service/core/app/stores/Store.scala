@@ -8,7 +8,7 @@ trait Store {
 
   def collectionObjects(collectionUri: Uri): List[Object]
 
-  def firstInstitution(): Institution = institutions().head
+  def institutionByUri(institutionUri: Uri): Institution
 
   def institutionCollections(institutionUri: Uri): List[Collection]
 

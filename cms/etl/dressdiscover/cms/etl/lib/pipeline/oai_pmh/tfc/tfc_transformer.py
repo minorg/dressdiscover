@@ -5,10 +5,11 @@ from xml.etree.ElementTree import ElementTree
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import DCTERMS, FOAF, RDFS
 
+from dressdiscover.cms.etl.lib.model.collection import Collection
 from dressdiscover.cms.etl.lib.model.image import Image
 from dressdiscover.cms.etl.lib.model.institution import Institution
 from dressdiscover.cms.etl.lib.model.object import Object
-from dressdiscover.cms.etl.lib.namespace import DCMITYPE, PROV
+from dressdiscover.cms.etl.lib.namespace import CMS, DCMITYPE, PROV
 from dressdiscover.cms.etl.lib.pipeline._transformer import _Transformer
 
 
@@ -273,14 +274,18 @@ class TfcTransformer(_Transformer):
     def transform(self, record_etrees: Tuple[ElementTree, ...]) -> Graph:
         graph = Graph()
 
-        institution = Institution(graph=graph, uri=URIRef("http://tfc.unt.edu/"))
-        institution.resource.add(DCTERMS.rights,
-                                 Literal("All Texas Fashion Collection content and images are copyrighted."))
-        institution.resource.add(DCTERMS.rights, Literal(
+        institution = Institution(graph=graph, uri=URIRef("http://www.unt.edu/"))
+        institution.resource.add(FOAF.name, Literal("University of North Texas"))
+
+        collection = Collection(graph=graph, uri=URIRef("http://tfc.unt.edu/"))
+        collection.resource.add(DCTERMS.rights,
+                                Literal("All Texas Fashion Collection content and images are copyrighted."))
+        collection.resource.add(DCTERMS.rights, Literal(
             "The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see https://digital.library.unt.edu/terms-of-use/"))
-        institution.resource.add(DCTERMS.license, URIRef(self._LICENSE_URI))
-        institution.resource.add(DCTERMS.rightsHolder, Literal(self._RIGHTS_HOLDER))
-        institution.resource.add(FOAF.name, Literal("Texas Fashion Collection"))
+        collection.resource.add(DCTERMS.license, URIRef(self._LICENSE_URI))
+        collection.resource.add(DCTERMS.rightsHolder, Literal(self._RIGHTS_HOLDER))
+        collection.resource.add(DCTERMS.title, Literal("Texas Fashion Collection"))
+        institution.resource.add(CMS.collection, collection.uri)
 
         for record_etree in record_etrees:
             record_identifier = record_etree.find('header').find('identifier').text
@@ -297,6 +302,7 @@ class TfcTransformer(_Transformer):
                 continue
 
             object_ = Object(graph=graph, uri=URIRef(item_url))
+            collection.resource.add(CMS.object, object_.uri)
 
             for etree in metadata_etree:
                 assert etree.tag.startswith(self._UNTL_NS)

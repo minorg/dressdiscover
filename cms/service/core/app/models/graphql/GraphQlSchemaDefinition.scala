@@ -15,6 +15,9 @@ object GraphQlSchemaDefinition {
     StringType, _.toString, uri => Right(Url.parse(uri))
   )
 
+  // Scalar argument types
+  val UriArgument = Argument("uri", UriType, description = "URI")
+
   // Domain model types, in dependence order
   implicit val ImageType = deriveObjectType[GraphQlSchemaContext, Image](
     ReplaceField("url", Field("url", UrlType, resolve = _.value.url))
@@ -32,12 +35,15 @@ object GraphQlSchemaDefinition {
   )
 
   implicit val CollectionType = deriveObjectType[GraphQlSchemaContext, Collection](
-    AddFields(Field("objects", ListType(ObjectType), resolve = ctx => ctx.ctx.store.collectionObjects(ctx.value.uri))),
+    AddFields(
+      Field("objects", ListType(ObjectType), resolve = ctx => ctx.ctx.store.collectionObjects(ctx.value.uri))
+    ),
     ReplaceField("uri", Field("uri", UriType, resolve = _.value.uri))
   )
 
   implicit val InstitutionType = deriveObjectType[GraphQlSchemaContext, Institution](
     AddFields(
+      Field("collectionByUri", CollectionType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.collectionByUri(ctx.args.arg("uri"))),
       Field("collections", ListType(CollectionType), resolve = ctx => ctx.ctx.store.institutionCollections(ctx.value.uri))
     ),
     ReplaceField("uri", Field("uri", UriType, resolve = _.value.uri))
@@ -46,13 +52,10 @@ object GraphQlSchemaDefinition {
   //  implicit val ObjectType = deriveObjectType[Unit, Object](
   //  )
 
-  // Argument types
-  val UriArgument = Argument("uri", UriType, description = "URI")
-
   // Query types
   val RootQueryType = sangria.schema.ObjectType("RootQuery", fields[GraphQlSchemaContext, Unit](
     Field("collectionByUri", CollectionType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.collectionByUri(ctx.args.arg("uri"))),
-    Field("firstInstitution", InstitutionType, resolve = _.ctx.store.firstInstitution),
+    Field("institutionByUri", InstitutionType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.institutionByUri(ctx.args.arg("uri"))),
     Field("institutions", ListType(InstitutionType), resolve = _.ctx.store.institutions)
   ))
 
