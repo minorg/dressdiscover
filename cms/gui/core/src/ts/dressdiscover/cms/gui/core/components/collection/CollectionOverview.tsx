@@ -2,10 +2,10 @@ import {RouteComponentProps} from "react-router";
 import * as React from "react";
 import {useState} from "react";
 import {Frame} from "dressdiscover/cms/gui/core/components/frame/Frame";
-import {ApolloQueryWrapper} from "dressdiscover/cms/gui/core/api/ApolloQueryWrapper";
 import * as collectionOverviewQuery from "dressdiscover/cms/gui/core/api/queries/collectionOverviewQuery.graphql";
 import {
     CollectionOverviewQuery,
+    CollectionOverviewQuery_collectionByUri_objects,
     CollectionOverviewQueryVariables
 } from "dressdiscover/cms/gui/core/api/queries/types/CollectionOverviewQuery";
 import {ObjectsGallery} from "dressdiscover/cms/gui/core/components/object/ObjectsGallery";
@@ -18,8 +18,9 @@ import {
 } from "dressdiscover/cms/gui/core/api/queries/types/CollectionOverviewObjectsPaginationQuery";
 import * as collectionOverviewObjectsPaginationQuery
     from "dressdiscover/cms/gui/core/api/queries/collectionOverviewObjectsPaginationQuery.graphql";
-import {useQuery} from "@apollo/react-hooks";
+import {useLazyQuery, useQuery} from "@apollo/react-hooks";
 import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
+import * as ReactLoader from "react-loader";
 
 type Object = ObjectCardObject;
 
@@ -33,80 +34,91 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
         return tmp.textContent || tmp.innerText || "";
     }
 
-    const [state, setState] = useState<{ currentObjectsPage: number, objects: Object[] }>({
+    const [state, setState] = useState<{ currentObjectsPage: number, objects: Object[] | null }>({
         currentObjectsPage: 0,
-        objects: []
+        objects: null
     });
 
-    const onObjectsPageRequest = (page: number) => {
-        const {loading, error, data} = useQuery<CollectionOverviewObjectsPaginationQuery, CollectionOverviewObjectsPaginationQueryVariables>(collectionOverviewObjectsPaginationQuery);
-        if (loading) {
-            return;
-        } else if (error) {
-            return;
+    const setObjects = (objects: CollectionOverviewQuery_collectionByUri_objects[]) => {
+        setState(prevState => Object.assign({}, prevState, ({
+            objects: objects.map(object_ => ({
+                collectionUri,
+                institutionUri, ...object_
+            }))
+        })));
+    }
+
+    const {loading: initialLoading, data: initialData} = useQuery<CollectionOverviewQuery, CollectionOverviewQueryVariables>(collectionOverviewQuery, {
+        variables: {
+            collectionUri,
+            institutionUri
         }
-        setState(prevState => Object.assign({}, prevState, ({objects: data!.collectionByUri.objects})));
+    });
+
+    const [getMoreObjects, {loading: moreObjectsLoading, data: moreObjectsData}] = useLazyQuery<CollectionOverviewObjectsPaginationQuery, CollectionOverviewObjectsPaginationQueryVariables>(collectionOverviewObjectsPaginationQuery);
+
+    if (initialLoading || moreObjectsLoading) {
+        return <ReactLoader loaded={false}/>;
+    } else if (state.objects === null) {
+        if (moreObjectsData) {
+            console.info("setting objects from more objects data");
+            setObjects(moreObjectsData.collectionByUri.objects);
+        } else if (initialData) {
+            console.info("setting objects from initial data");
+            setObjects(initialData.collectionByUri.objects);
+        }
+        return <ReactLoader loaded={false}/>;
+    }
+
+    const onObjectsPageRequest = (page: number) => {
+        console.info("request page " + page);
+        setState(prevState => Object.assign({}, prevState, {currentObjectsPage: page, objects: null}));
+        getMoreObjects({variables: {collectionUri: collectionUri, limit: 20, offset: page * 20}});
     }
 
     return (
         <Frame id="collection-overview">
-            <ApolloQueryWrapper<CollectionOverviewQuery, CollectionOverviewQueryVariables>
-                query={collectionOverviewQuery}
-                variables={{
-                    collectionUri,
-                    institutionUri
-                }}>
-                {({data}) => {
-                    setState(prevState => (Object.assign({}, prevState, {objects: data.collectionByUri.objects})));
-
-                    return (
-                        <Container fluid>
-                            <Row>
-                                <Col xs={{offset: 1, size: 10}}>
-                                    <Breadcrumb>
-                                        <BreadcrumbItem><Link to={Hrefs.home}>Home</Link></BreadcrumbItem>
-                                        <BreadcrumbItem>Institutions</BreadcrumbItem>
-                                        <BreadcrumbItem><Link
-                                            to={Hrefs.institution(institutionUri)}>{data.institutionByUri.name}</Link></BreadcrumbItem>
-                                        <BreadcrumbItem>Collections</BreadcrumbItem>
-                                        <BreadcrumbItem><Link
-                                            to={Hrefs.collection({
-                                                collectionUri,
-                                                institutionUri
-                                            })}>{data.collectionByUri.name}</Link></BreadcrumbItem>
-                                        <BreadcrumbItem>Objects</BreadcrumbItem>
-                                    </Breadcrumb>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={{offset: 1, size: 10}}>
-                                    <h2 className="text-center">{data.collectionByUri.name}</h2>
-                                    {data.collectionByUri.description ?
-                                        <p>{stripHtml(data.collectionByUri.description)}</p> : null}
-                                </Col>
-                            </Row>
-                            {data.institutionByUri.rights ?
-                                <Row>
-                                    <Col xs={{offset: 1, size: 10}}>
-                                        <small>{data.institutionByUri.rights.text}</small>
-                                    </Col>
-                                </Row> : null}
-                            <Row className="mt-4">
-                                <Col xs={{offset: 1, size: 10}}>
-                                    <ObjectsGallery
-                                        currentPage={state.currentObjectsPage}
-                                        maxPage={data.collectionByUri.objectsCount}
-                                        objects={state.objects.map(object_ => ({
-                                            collectionUri,
-                                            institutionUri,
-                                            ...object_
-                                        }))}
-                                        onPageRequest={onObjectsPageRequest}
-                                    />
-                                </Col>
-                            </Row>
-                        </Container>);
-                }}
-            </ApolloQueryWrapper>
+            <Container fluid>
+                <Row>
+                    <Col xs={{offset: 1, size: 10}}>
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to={Hrefs.home}>Home</Link></BreadcrumbItem>
+                            <BreadcrumbItem>Institutions</BreadcrumbItem>
+                            <BreadcrumbItem><Link
+                                to={Hrefs.institution(institutionUri)}>{initialData!.institutionByUri.name}</Link></BreadcrumbItem>
+                            <BreadcrumbItem>Collections</BreadcrumbItem>
+                            <BreadcrumbItem><Link
+                                to={Hrefs.collection({
+                                    collectionUri,
+                                    institutionUri
+                                })}>{initialData!.collectionByUri.name}</Link></BreadcrumbItem>
+                            <BreadcrumbItem>Objects</BreadcrumbItem>
+                        </Breadcrumb>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={{offset: 1, size: 10}}>
+                        <h2 className="text-center">{initialData!.collectionByUri.name}</h2>
+                        {initialData!.collectionByUri.description ?
+                            <p>{stripHtml(initialData!.collectionByUri.description)}</p> : null}
+                    </Col>
+                </Row>
+                {initialData!.institutionByUri.rights ?
+                    <Row>
+                        <Col xs={{offset: 1, size: 10}}>
+                            <small>{initialData!.institutionByUri.rights.text}</small>
+                        </Col>
+                    </Row> : null}
+                <Row className="mt-4">
+                    <Col xs={{offset: 1, size: 10}}>
+                        <ObjectsGallery
+                            currentPage={state.currentObjectsPage}
+                            maxPage={Math.ceil(initialData!.collectionByUri.objectsCount / 20)}
+                            objects={state.objects}
+                            onPageRequest={onObjectsPageRequest}
+                        />
+                    </Col>
+                </Row>
+            </Container>
         </Frame>);
 }
