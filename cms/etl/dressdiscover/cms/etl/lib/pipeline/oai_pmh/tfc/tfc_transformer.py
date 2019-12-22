@@ -275,7 +275,7 @@ class TfcTransformer(_Transformer):
         graph = Graph()
 
         institution = Institution(graph=graph, uri=URIRef("http://www.unt.edu/"))
-        institution.resource.add(FOAF.name, Literal("Univeristy of North Texas"))
+        institution.resource.add(FOAF.name, Literal("University of North Texas"))
 
         collection = Collection(graph=graph, uri=URIRef("http://tfc.unt.edu/"))
         collection.resource.add(DCTERMS.rights,

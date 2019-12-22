@@ -1,9 +1,10 @@
-query CollectionsListQuery($institutionUri: String!) {
+query InstitutionOverviewQuery($institutionUri: String!) {
     institutionByUri(uri: $institutionUri) {
         collections {
             description
             name
             uri
         }
+        name
     }
 }

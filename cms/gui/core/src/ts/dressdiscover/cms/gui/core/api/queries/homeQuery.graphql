@@ -1,4 +1,4 @@
-query InstitutionsListQuery {
+query HomeQuery {
     institutions {
         name
         uri

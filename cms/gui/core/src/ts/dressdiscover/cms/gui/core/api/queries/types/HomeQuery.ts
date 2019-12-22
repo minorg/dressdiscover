@@ -3,15 +3,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: InstitutionsListQuery
+// GraphQL query operation: HomeQuery
 // ====================================================
 
-export interface InstitutionsListQuery_institutions {
+export interface HomeQuery_institutions {
   __typename: "Institution";
   name: string;
   uri: string;
 }
 
-export interface InstitutionsListQuery {
-  institutions: InstitutionsListQuery_institutions[];
+export interface HomeQuery {
+  institutions: HomeQuery_institutions[];
 }

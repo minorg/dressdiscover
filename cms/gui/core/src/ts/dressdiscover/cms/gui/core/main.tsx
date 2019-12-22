@@ -14,6 +14,7 @@ import {ApolloProvider as ApolloHooksProvider} from "@apollo/react-hooks";
 import {Route, Router, Switch} from 'react-router';
 import {LoggerContext} from 'dressdiscover/cms/gui/core/util/logging/LoggerContext';
 import {CollectionOverview} from "dressdiscover/cms/gui/core/components/collection/CollectionOverview";
+import {InstitutionOverview} from "dressdiscover/cms/gui/core/components/institution/InstitutionOverview";
 
 // Logger
 const logger = new ConsoleLogger();
