@@ -48,7 +48,7 @@ class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
         graphql"""
          query ObjectsQuery($$collectionUri: String!) {
            collectionByUri(uri: $$collectionUri) {
-             objects {
+             objects(limit: 1, offset: 0) {
                uri
              }
            }
