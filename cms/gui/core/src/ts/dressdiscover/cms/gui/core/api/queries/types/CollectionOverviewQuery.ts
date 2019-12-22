@@ -24,6 +24,7 @@ export interface CollectionOverviewQuery_collectionByUri {
   description: string | null;
   name: string;
   objects: CollectionOverviewQuery_collectionByUri_objects[];
+  objectsCount: number;
 }
 
 export interface CollectionOverviewQuery_institutionByUri_rights {

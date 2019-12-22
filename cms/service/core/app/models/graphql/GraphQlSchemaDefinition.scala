@@ -43,6 +43,11 @@ object GraphQlSchemaDefinition {
         ListType(ObjectType),
         arguments = LimitArgument :: OffsetArgument :: Nil,
         resolve = ctx => ctx.ctx.store.collectionObjects(collectionUri = ctx.value.uri, limit = ctx.args.arg("limit"), offset = ctx.args.arg("offset"))
+      ),
+      Field(
+        "objectsCount",
+        IntType,
+        resolve = ctx => ctx.ctx.store.collectionObjectsCount(collectionUri = ctx.value.uri)
       )
     ),
     ReplaceField("uri", Field("uri", UriType, resolve = _.value.uri))

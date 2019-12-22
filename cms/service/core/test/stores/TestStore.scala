@@ -8,7 +8,7 @@ object TestStore extends Store {
 
   override def collectionObjects(collectionUri: Uri, limit: Int, offset: Int): List[Object] = if (offset == 0) List(TestData.object_) else List()
 
-  override def collectObjectsCount(collectionUri: Uri): Int = 1
+  override def collectionObjectsCount(collectionUri: Uri): Int = 1
 
   override def institutionByUri(institutionUri: Uri): Institution = if (institutionUri == TestData.institution.uri) TestData.institution else throw new NoSuchElementException
 

@@ -41,7 +41,7 @@ class SparqlStore(endpointUrl: Url) extends Store {
     objectsByUris(collectionObjectUris(collectionUri = collectionUri, limit = limit, offset = offset))
   }
 
-  override def collectObjectsCount(collectionUri: Uri): Int = {
+  override def collectionObjectsCount(collectionUri: Uri): Int = {
     val query = QueryFactory.create(
       s"""
          |PREFIX cms: <${CMS.URI}>
