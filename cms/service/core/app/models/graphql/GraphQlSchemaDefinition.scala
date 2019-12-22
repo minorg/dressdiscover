@@ -3,7 +3,7 @@ package models.graphql
 import io.lemonlabs.uri.{Uri, Url}
 import models.domain.{Collection, DerivedImageSet, Image, Institution, Object, Rights}
 import sangria.macros.derive._
-import sangria.schema.{Argument, Field, ListType, OptionType, ScalarAlias, Schema, StringType, fields}
+import sangria.schema.{Argument, Field, IntType, ListType, OptionType, ScalarAlias, Schema, StringType, fields}
 
 object GraphQlSchemaDefinition {
   // Scalar aliases
@@ -16,6 +16,8 @@ object GraphQlSchemaDefinition {
   )
 
   // Scalar argument types
+  val LimitArgument = Argument("limit", IntType, description = "Limit")
+  val OffsetArgument = Argument("offset", IntType, description = "Offset")
   val UriArgument = Argument("uri", UriType, description = "URI")
 
   // Domain model types, in dependence order
@@ -36,7 +38,17 @@ object GraphQlSchemaDefinition {
 
   implicit val CollectionType = deriveObjectType[GraphQlSchemaContext, Collection](
     AddFields(
-      Field("objects", ListType(ObjectType), resolve = ctx => ctx.ctx.store.collectionObjects(ctx.value.uri))
+      Field(
+        "objects",
+        ListType(ObjectType),
+        arguments = LimitArgument :: OffsetArgument :: Nil,
+        resolve = ctx => ctx.ctx.store.collectionObjects(collectionUri = ctx.value.uri, limit = ctx.args.arg("limit"), offset = ctx.args.arg("offset"))
+      ),
+      Field(
+        "objectsCount",
+        IntType,
+        resolve = ctx => ctx.ctx.store.collectionObjectsCount(collectionUri = ctx.value.uri)
+      )
     ),
     ReplaceField("uri", Field("uri", UriType, resolve = _.value.uri))
   )

@@ -2,15 +2,9 @@ import * as React from "react";
 import {useState} from "react";
 import {Card, CardBody, CardHeader, CardTitle, Collapse} from "reactstrap";
 import * as classnames from "classnames";
+import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
 
-interface Object {
-    description: string | null | undefined;
-    thumbnail: {
-        url: string;
-    } | null | undefined;
-    title: string;
-    uri: string;
-}
+type Object = ObjectCardObject;
 
 export const ObjectCard: React.FunctionComponent<{ object: Object }> = ({object}) => {
     const [state, setState] = useState<{ descriptionShown: boolean }>({descriptionShown: false});

@@ -1,15 +1,13 @@
+#import "./objectsGalleryObjectFragment.graphql"
+
 query CollectionOverviewQuery($collectionUri: String!, $institutionUri: String!) {
     collectionByUri(uri: $collectionUri) {
         description
         name
-        objects {
-            description
-            title
-            thumbnail {
-                url
-            }
-            uri
+        objects(limit: 20, offset: 0) {
+            ...ObjectsGalleryObjectFragment
         }
+        objectsCount
     }
     institutionByUri(uri: $institutionUri) {
         name
