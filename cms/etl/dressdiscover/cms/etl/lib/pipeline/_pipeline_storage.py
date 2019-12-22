@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 from io import IOBase
-from typing import Optional, Union
+from typing import Union
 
 
 class _PipelineStorage(ABC):
     @abstractmethod
-    def get(self, key: str) -> Optional[IOBase]:
+    def get(self, key: str) -> IOBase:
         """
         Get a file-like object associated with the given key
         """

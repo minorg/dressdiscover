@@ -2,6 +2,7 @@ import json
 from typing import Optional
 from urllib.request import urlopen
 from xml.dom.minidom import parseString
+from xml.etree.ElementTree import ElementTree
 
 from dressdiscover.cms.etl.lib.pipeline._extractor import _Extractor
 
@@ -14,15 +15,20 @@ class OaiPmhExtractor(_Extractor):
         self.__set = set_
 
     def extract(self, *, force, storage):
-        record_identifiers_json = storage.get("record_identifiers.json")
-        if record_identifiers_json is not None:
-            try:
-                record_identifiers = tuple(json.load(record_identifiers_json))
-            finally:
-                record_identifiers_json.close()
-            return {"record_identifiers": record_identifiers}
+        record_identifiers_key = "record_identifiers.json"
+        if storage.head(record_identifiers_key):
+            with storage.get(record_identifiers_key) as record_identifiers_file:
+                record_identifiers = tuple(json.load(record_identifiers_file))
+                record_etrees = []
+                for record_identifier in record_identifiers:
+                    with storage.get(record_identifier + ".xml") as f:
+                        record_etree = ElementTree()
+                        record_etree.parse(f)
+                        record_etrees.append(record_etree)
+                return {"record_etrees": tuple(record_etrees)}
 
         base_url = self.__endpoint_url + '?verb=ListRecords'
+        record_etrees = []
         record_identifiers = []
         resumption_token = None
         while True:
@@ -49,8 +55,12 @@ class OaiPmhExtractor(_Extractor):
                 record_identifier = \
                     record_element.getElementsByTagName('header')[0].getElementsByTagName('identifier')[0].childNodes[
                         0].data
-                storage.put(record_identifier + ".xml", record_element.toxml())
                 record_identifiers.append(record_identifier)
+
+                record_element_xml = record_element.toxml()
+                storage.put(record_identifier + ".xml", record_element_xml)
+                record_etrees.append(ElementTree.fromstring(record_element_xml))
+
                 if len(record_identifiers) % 50 == 0:
                     self._logger.info("read %d records", len(record_identifiers))
             resumption_token = None
@@ -61,4 +71,5 @@ class OaiPmhExtractor(_Extractor):
                 break
 
         storage.put("record_identifiers.json", json.dumps(record_identifiers))
-        return {"record_identifiers": tuple(record_identifiers)}
+
+        return {"record_etrees": tuple(record_etrees)}
