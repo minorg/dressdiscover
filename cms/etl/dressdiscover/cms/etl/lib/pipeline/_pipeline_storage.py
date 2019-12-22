@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 from io import IOBase
-from typing import Optional, Union
+from typing import Union
 
 
 class _PipelineStorage(ABC):
     @abstractmethod
-    def get(self, key: str) -> Optional[IOBase]:
+    def get(self, key: str) -> IOBase:
         """
         Get a file-like object associated with the given key
         """
@@ -17,7 +17,7 @@ class _PipelineStorage(ABC):
         """
 
     @abstractmethod
-    def put(self, key: str, value: Union[bytearray, IOBase]) -> bool:
+    def put(self, key: str, value: Union[bytearray, IOBase, str]) -> bool:
         """
         Put a file-like object or value associated with the given key
         :return true if there was a value previously associated with the key
