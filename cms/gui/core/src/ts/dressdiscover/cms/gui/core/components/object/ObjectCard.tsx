@@ -1,12 +1,14 @@
 import * as React from "react";
 import {useState} from "react";
-import {Object} from "dressdiscover/cms/gui/core/models/Object";
 import {Card, CardBody, CardHeader, CardTitle, Collapse} from "reactstrap";
 import * as classnames from "classnames";
+import {CollectionOverviewQuery_collectionByUri_objects} from "dressdiscover/cms/gui/core/api/queries/types/CollectionOverviewQuery";
 
 interface State {
     descriptionShown: boolean;
 }
+
+type Object = CollectionOverviewQuery_collectionByUri_objects;
 
 export const ObjectCard: React.FunctionComponent<{ object: Object }> = ({object}) => {
     const [state, setState] = useState<State>({descriptionShown: false});

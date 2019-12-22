@@ -6,7 +6,8 @@ final case class Institution(
                               name: String,
                               rights: Option[Rights] = None,
                               uri: Uri
-                            ) extends DomainModel
+                            ) extends DomainModel {
+}
 
 object Institution extends DomainModelCompanion {
   def apply(resource: ResourceWrapper): Institution =

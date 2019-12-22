@@ -22,7 +22,7 @@ module.exports = function (env, argv) {
       // host: '0.0.0.0',
       hot: true,
       inline: true,
-      open: true,
+      open: false,
       port: 9001,
       proxy: {
         "/graphql": {

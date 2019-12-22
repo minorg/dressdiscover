@@ -29,7 +29,7 @@ ReactDOM.render(
               <Switch>
                   <Route exact path={Hrefs.home} component={Home}/>
                   <Route path="/institution/:institutionUri/collection/:collectionUri" component={CollectionOverview}/>
-                  <Route path="/institution/:institutionUri" component={CollectionOverview}/>
+                  <Route path="/institution/:institutionUri" component={InstitutionOverview}/>
                   <Route exact path={Hrefs.privacy} component={Privacy}/>
                   <Route component={NoRoute}/>
               </Switch>

@@ -1,0 +1,6 @@
+query InstitutionsListQuery {
+    institutions {
+        name
+        uri
+    }
+}

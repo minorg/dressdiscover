@@ -6,18 +6,22 @@
 // GraphQL query operation: CollectionsListQuery
 // ====================================================
 
-export interface CollectionsListQuery_firstInstitution_collections {
+export interface CollectionsListQuery_institutionByUri_collections {
   __typename: "Collection";
   description: string | null;
   name: string;
   uri: string;
 }
 
-export interface CollectionsListQuery_firstInstitution {
+export interface CollectionsListQuery_institutionByUri {
   __typename: "Institution";
-  collections: CollectionsListQuery_firstInstitution_collections[];
+  collections: CollectionsListQuery_institutionByUri_collections[];
 }
 
 export interface CollectionsListQuery {
-  firstInstitution: CollectionsListQuery_firstInstitution;
+  institutionByUri: CollectionsListQuery_institutionByUri;
+}
+
+export interface CollectionsListQueryVariables {
+  institutionUri: string;
 }

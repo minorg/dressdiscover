@@ -34,10 +34,10 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
                                     <p>{stripHtml(data.collectionByUri.description)}</p> : null}
                             </Col>
                         </Row>
-                        {data.firstInstitution.rights ?
+                        {data.institutionByUri.rights ?
                             <Row>
                                 <Col xs={{offset: 1, size: 10}}>
-                                    <small>{data.firstInstitution.rights.text}</small>
+                                    <small>{data.institutionByUri.rights.text}</small>
                                 </Col>
                             </Row> : null}
                         <Row className="mt-4">

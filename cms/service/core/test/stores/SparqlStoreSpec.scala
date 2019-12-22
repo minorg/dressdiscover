@@ -21,21 +21,38 @@ class SparqlStoreSpec extends WordSpec with Matchers {
         }
       }
 
-    "return all institutions" in {
+    "list all institutions" in {
       withUnknownHostExceptionCatch { () =>
         val institutions = store.institutions()
         institutions.size should be > 0
       }
     }
 
-    "institution collections" in {
+    "return an institution by URI" in {
+      withUnknownHostExceptionCatch { () =>
+        val leftInstitution = store.institutions()(0)
+        val rightInstitution = store.institutionByUri(leftInstitution.uri)
+        leftInstitution should equal(rightInstitution)
+      }
+    }
+
+    "list institution collections" in {
       withUnknownHostExceptionCatch { () =>
         val collections = store.institutionCollections(store.institutions()(0).uri)
         collections.size should be > 0
       }
     }
 
-    "collection objects" in {
+    "return collection by URI" in {
+      withUnknownHostExceptionCatch { () =>
+        val institution = store.institutions()(0)
+        val leftCollection = store.institutionCollections(institution.uri)(0)
+        val rightCollection = store.collectionByUri(leftCollection.uri)
+        leftCollection should equal(rightCollection)
+      }
+    }
+
+    "list collection objects" in {
       withUnknownHostExceptionCatch { () =>
         val institution = store.institutions()(0)
         val collection = store.institutionCollections(institution.uri)(0)
@@ -45,23 +62,6 @@ class SparqlStoreSpec extends WordSpec with Matchers {
         val objectWithThumbnail = objects.find(object_ => object_.images.exists(image => image.thumbnail.isDefined))
         objectWithThumbnail should not be (null)
         objects.size should be > 0
-      }
-    }
-
-    "collection by URI" in {
-      withUnknownHostExceptionCatch { () =>
-        val institution = store.institutions()(0)
-        val leftCollection = store.institutionCollections(institution.uri)(0)
-        val rightCollection = store.collectionByUri(leftCollection.uri)
-        leftCollection should equal(rightCollection)
-      }
-    }
-
-    "institution by URI" in {
-      withUnknownHostExceptionCatch { () =>
-        val leftInstitution = store.institutions()(0)
-        val rightInstitution = store.institutionByUri(leftInstitution.uri)
-        leftInstitution should equal(rightInstitution)
       }
     }
   }

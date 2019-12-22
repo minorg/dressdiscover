@@ -6,18 +6,6 @@
 // GraphQL query operation: CollectionOverviewQuery
 // ====================================================
 
-export interface CollectionOverviewQuery_firstInstitution_rights {
-  __typename: "Rights";
-  text: string;
-}
-
-export interface CollectionOverviewQuery_firstInstitution {
-  __typename: "Institution";
-  name: string;
-  rights: CollectionOverviewQuery_firstInstitution_rights | null;
-  uri: string;
-}
-
 export interface CollectionOverviewQuery_collectionByUri_objects_thumbnail {
   __typename: "Image";
   url: string;
@@ -38,11 +26,24 @@ export interface CollectionOverviewQuery_collectionByUri {
   objects: CollectionOverviewQuery_collectionByUri_objects[];
 }
 
+export interface CollectionOverviewQuery_institutionByUri_rights {
+  __typename: "Rights";
+  text: string;
+}
+
+export interface CollectionOverviewQuery_institutionByUri {
+  __typename: "Institution";
+  name: string;
+  rights: CollectionOverviewQuery_institutionByUri_rights | null;
+  uri: string;
+}
+
 export interface CollectionOverviewQuery {
-  firstInstitution: CollectionOverviewQuery_firstInstitution;
   collectionByUri: CollectionOverviewQuery_collectionByUri;
+  institutionByUri: CollectionOverviewQuery_institutionByUri;
 }
 
 export interface CollectionOverviewQueryVariables {
   collectionUri: string;
+  institutionUri: string;
 }
