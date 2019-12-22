@@ -56,12 +56,23 @@ class SparqlStoreSpec extends WordSpec with Matchers {
       withUnknownHostExceptionCatch { () =>
         val institution = store.institutions()(0)
         val collection = store.institutionCollections(institution.uri)(0)
-        val objects = store.collectionObjects(collection.uri)
+        val objects = store.collectionObjects(collection.uri, limit = 10, offset = 0)
         val objectWithImages = objects.find(object_ => !object_.images.isEmpty)
         objectWithImages should not be (null)
         val objectWithThumbnail = objects.find(object_ => object_.images.exists(image => image.thumbnail.isDefined))
         objectWithThumbnail should not be (null)
-        objects.size should be > 0
+        objects.size should be(10)
+        val nextObjects = store.collectionObjects(collection.uri, limit = 10, offset = 10)
+        nextObjects.size should be(10)
+        nextObjects.map(object_ => object_.uri).toSet.intersect(objects.map(object_ => object_.uri).toSet).size should be(0)
+      }
+    }
+
+    "count collection objects" in {
+      withUnknownHostExceptionCatch { () =>
+        val institution = store.institutions()(0)
+        val collection = store.institutionCollections(institution.uri)(0)
+        store.collectObjectsCount(collection.uri) should be > 0
       }
     }
   }

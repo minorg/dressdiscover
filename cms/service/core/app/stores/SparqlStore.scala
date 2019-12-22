@@ -37,38 +37,38 @@ class SparqlStore(endpointUrl: Url) extends Store {
     }
   }
 
-  override def collectionObjects(collectionUri: Uri): List[Object] = {
+  override def collectionObjects(collectionUri: Uri, limit: Int, offset: Int): List[Object] = {
+    objectsByUris(collectionObjectUris(collectionUri = collectionUri, limit = limit, offset = offset))
+  }
+
+  override def collectObjectsCount(collectionUri: Uri): Int = {
     val query = QueryFactory.create(
       s"""
          |PREFIX cms: <${CMS.URI}>
-         |PREFIX foaf: <${FOAF.getURI}>
          |PREFIX rdf: <${RDF.getURI}>
-         |CONSTRUCT {
-         |  ?object ?objectP ?objectO .
-         |  ?object foaf:depiction ?originalImage .
-         |  ?originalImage ?originalImageP ?originalImageO .
-         |  ?originalImage foaf:thumbnail ?thumbnailImage .
-         |  ?thumbnailImage ?thumbnailImageP ?thumbnailImageO .
-         |} WHERE {
+         |SELECT (COUNT(DISTINCT ?object) AS ?count)
+         |WHERE {
          |  <${collectionUri.toString()}> cms:object ?object .
          |  ?object rdf:type cms:Object .
-         |  ?object ?objectP ?objectO .
-         |  OPTIONAL {
-         |    ?object foaf:depiction ?originalImage .
-         |    ?originalImage rdf:type cms:Image .
-         |    ?originalImage ?originalImageP ?originalImageO .
-         |    OPTIONAL {
-         |      ?originalImage foaf:thumbnail ?thumbnailImage .
-         |      ?thumbnailImage rdf:type cms:Image .
-         |      ?thumbnailImage ?thumbnailImageP ?thumbnailImageO .
-         |    }
-         |  }
          |}
          |""".stripMargin)
     withQueryExecution(query) { queryExecution =>
-      val model = queryExecution.execConstruct()
-      //      model.listSubjectsWithProperty(RDF.`type`, CMS.Object).asScala.toList.foreach(resource => model.listStatements(resource, null, null).asScala.foreach(System.out.println(_)))
-      model.listSubjectsWithProperty(RDF.`type`, CMS.Object).asScala.toList.map(resource => Object(resource))
+      queryExecution.execSelect().next().get("count").asLiteral().getInt
+    }
+  }
+
+  private def collectionObjectUris(collectionUri: Uri, limit: Int, offset: Int): List[Uri] = {
+    val query = QueryFactory.create(
+      s"""
+         |PREFIX cms: <${CMS.URI}>
+         |PREFIX rdf: <${RDF.getURI}>
+         |SELECT DISTINCT ?object WHERE {
+         |  <${collectionUri.toString()}> cms:object ?object .
+         |  ?object rdf:type cms:Object .
+         |} LIMIT ${limit} OFFSET ${offset}
+         |""".stripMargin)
+    withQueryExecution(query) { queryExecution =>
+      queryExecution.execSelect().asScala.toList.map(querySolution => Uri.parse(querySolution.get("object").asResource().getURI))
     }
   }
 
@@ -110,6 +110,41 @@ class SparqlStore(endpointUrl: Url) extends Store {
     withQueryExecution(institutionsQuery) { queryExecution =>
       val model = queryExecution.execConstruct()
       model.listSubjectsWithProperty(RDF.`type`, CMS.Institution).asScala.toList.map(resource => Institution(resource))
+    }
+  }
+
+  private def objectsByUris(objectUris: List[Uri]): List[Object] = {
+    val query = QueryFactory.create(
+      s"""
+         |PREFIX cms: <${CMS.URI}>
+         |PREFIX foaf: <${FOAF.getURI}>
+         |PREFIX rdf: <${RDF.getURI}>
+         |CONSTRUCT {
+         |  ?object ?objectP ?objectO .
+         |  ?object foaf:depiction ?originalImage .
+         |  ?originalImage ?originalImageP ?originalImageO .
+         |  ?originalImage foaf:thumbnail ?thumbnailImage .
+         |  ?thumbnailImage ?thumbnailImageP ?thumbnailImageO .
+         |} WHERE {
+         |  VALUES ?object { ${objectUris.map(objectUri => "<" + objectUri.toString() + ">").mkString(" ")} }
+         |  ?object rdf:type cms:Object .
+         |  ?object ?objectP ?objectO .
+         |  OPTIONAL {
+         |    ?object foaf:depiction ?originalImage .
+         |    ?originalImage rdf:type cms:Image .
+         |    ?originalImage ?originalImageP ?originalImageO .
+         |    OPTIONAL {
+         |      ?originalImage foaf:thumbnail ?thumbnailImage .
+         |      ?thumbnailImage rdf:type cms:Image .
+         |      ?thumbnailImage ?thumbnailImageP ?thumbnailImageO .
+         |    }
+         |  }
+         |}
+         |""".stripMargin)
+    withQueryExecution(query) { queryExecution =>
+      val model = queryExecution.execConstruct()
+      //      model.listSubjectsWithProperty(RDF.`type`, CMS.Object).asScala.toList.foreach(resource => model.listStatements(resource, null, null).asScala.foreach(System.out.println(_)))
+      model.listSubjectsWithProperty(RDF.`type`, CMS.Object).asScala.toList.map(resource => Object(resource))
     }
   }
 
