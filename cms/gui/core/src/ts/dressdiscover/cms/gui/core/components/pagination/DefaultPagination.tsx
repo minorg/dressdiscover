@@ -3,15 +3,18 @@ import * as React from "react";
 import {DefaultPaginationProps} from "dressdiscover/cms/gui/core/components/pagination/DefaultPaginationProps";
 import * as _ from "lodash";
 
+const PAGINATION_ITEMS_COUNT_LEFT = 5;
+const PAGINATION_ITEMS_COUNT_RIGHT = 5;
+
 export const DefaultPagination: React.FunctionComponent<DefaultPaginationProps> = ({currentPage, maxPage, onPageRequest}) => (
-    <Pagination>
+    <Pagination listClassName="justify-content-center" size="lg">
         <PaginationItem disabled={currentPage === 0}>
             <PaginationLink first onClick={() => onPageRequest(0)}/>
         </PaginationItem>
         <PaginationItem disabled={currentPage === 0}>
             <PaginationLink previous onClick={() => onPageRequest(currentPage - 1)}/>
         </PaginationItem>
-        {currentPage > 0 ? _.range(currentPage - 1, (currentPage - 5 >= 0 ? currentPage - 5 : 0) - 1, -1).reverse().map(page =>
+        {currentPage > 0 ? _.range(currentPage - 1, (currentPage - PAGINATION_ITEMS_COUNT_LEFT >= 0 ? currentPage - PAGINATION_ITEMS_COUNT_LEFT : 0) - 1, -1).reverse().map(page =>
                 <PaginationItem>
                     <PaginationLink onClick={() => onPageRequest(page)}>{page + 1}</PaginationLink>
                 </PaginationItem>)
@@ -19,7 +22,7 @@ export const DefaultPagination: React.FunctionComponent<DefaultPaginationProps> 
         <PaginationItem active>
             <PaginationLink href="#">{currentPage + 1}</PaginationLink>
         </PaginationItem>
-        {currentPage + 1 <= maxPage ? _.range(currentPage + 1, (currentPage + 5 <= maxPage ? currentPage + 5 : maxPage) + 1).map(page =>
+        {currentPage + 1 <= maxPage ? _.range(currentPage + 1, (currentPage + PAGINATION_ITEMS_COUNT_RIGHT <= maxPage ? currentPage + PAGINATION_ITEMS_COUNT_RIGHT : maxPage) + 1).map(page =>
                 <PaginationItem>
                     <PaginationLink onClick={() => onPageRequest(page)}>{page + 1}</PaginationLink>
                 </PaginationItem>)

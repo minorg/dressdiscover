@@ -1,6 +1,6 @@
 import * as React from "react";
 import {ObjectCard} from "dressdiscover/cms/gui/core/components/object/ObjectCard";
-import {Container, Row} from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
 import {DefaultPaginationProps} from "dressdiscover/cms/gui/core/components/pagination/DefaultPaginationProps";
 import {DefaultPagination} from "dressdiscover/cms/gui/core/components/pagination/DefaultPagination";
@@ -20,6 +20,8 @@ export const ObjectsGallery: React.FunctionComponent<Props> = ({objects, ...pagi
                 </div>)}
         </Row>
         <Row>
-            <DefaultPagination {...paginationProps}/>
+            <Col className="p-0" xs="12">
+                <DefaultPagination {...paginationProps}/>
+            </Col>
         </Row>
     </Container>);
