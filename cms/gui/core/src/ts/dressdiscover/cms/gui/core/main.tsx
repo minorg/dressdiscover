@@ -28,8 +28,8 @@ ReactDOM.render(
           <Router history={browserHistory}>
               <Switch>
                   <Route exact path={Hrefs.home} component={Home}/>
-                  <Route path="/collection/" component={CollectionOverview}/>
-                  {/*<Route path={Hrefs.person(":id")} component={PersonOverview} />*/}
+                  <Route path="/institution/:institutionUri/collection/:collectionUri" component={CollectionOverview}/>
+                  <Route path="/institution/:institutionUri" component={CollectionOverview}/>
                   <Route exact path={Hrefs.privacy} component={Privacy}/>
                   <Route component={NoRoute}/>
               </Switch>

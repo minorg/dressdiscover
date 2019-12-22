@@ -10,9 +10,9 @@ import {ObjectCard} from "dressdiscover/cms/gui/core/components/object/ObjectCar
 import {Col, Container, Row} from "reactstrap";
 import {Frame} from "dressdiscover/cms/gui/core/components/frame/Frame";
 
-
-export const CollectionOverview: React.FunctionComponent<RouteComponentProps> = ({location}) => {
-    const collectionUri = decodeURIComponent(location.pathname.split("/").pop() as string);
+export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ collectionUri: string; institutionUri: string; }>> = ({match}) => {
+    const collectionUri = decodeURIComponent(match.params.collectionUri);
+    const institutionUri = decodeURIComponent(match.params.institutionUri);
     const stripHtml = (html: string) => {
         var tmp = document.createElement("DIV");
         tmp.innerHTML = html;
@@ -20,7 +20,10 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps> = 
     }
     return (
         <ApolloQueryWrapper<CollectionOverviewQuery, CollectionOverviewQueryVariables> query={collectionOverviewQuery}
-                                                                                       variables={{collectionUri}}>
+                                                                                       variables={{
+                                                                                           collectionUri,
+                                                                                           institutionUri
+                                                                                       }}>
             {({data}) =>
                 <Frame id="collection-overview">
                     <Container className="mt-4" fluid>

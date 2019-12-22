@@ -24,27 +24,24 @@ class OmekaClassicTransformer(_Transformer):
     def transform(self, collections, files, items):
         graph = Graph()
 
+        institution = self._transform_institution_from_arguments(graph=graph, **self.__institution_kwds)
+
+        transformed_collections_by_id = {}
+        for collection in collections:
+            transformed_collection = self.__transform_collection(graph=graph, omeka_collection=collection)
+            transformed_collections_by_id[collection["id"]] = transformed_collection
+            institution.resource.add(CMS.collection, transformed_collection.uri)
+
         files_by_item_id = {}
         for file_ in files:
             files_by_item_id.setdefault(file_["item"]["id"], []).append(file_)
 
-        transformed_item_uris_by_collection_id = {}
         for item in items:
             if not item["public"]:
                 continue
             transformed_item = self.__transform_item(files_by_item_id=files_by_item_id, graph=graph, item=item)
-            transformed_item_uris_by_collection_id.setdefault(item["collection"]["id"], []).append(transformed_item.uri)
-
-        transformed_collection_uris = []
-        for collection in collections:
-            transformed_collection = self.__transform_collection(graph=graph, omeka_collection=collection)
-            for transformed_item_uri in transformed_item_uris_by_collection_id.get(collection["id"], []):
-                transformed_collection.resource.add(CMS.object, URIRef(transformed_item_uri))
-            transformed_collection_uris.append(transformed_collection.uri)
-
-        institution = self._transform_institution_from_arguments(graph=graph, **self.__institution_kwds)
-        for transformed_collection_uri in transformed_collection_uris:
-            institution.resource.add(CMS.collection, URIRef(transformed_collection_uri))
+            transformed_collections_by_id[item["collection"]["id"]].resource.add(CMS.object,
+                                                                                 transformed_item.uri)
 
         return graph
 

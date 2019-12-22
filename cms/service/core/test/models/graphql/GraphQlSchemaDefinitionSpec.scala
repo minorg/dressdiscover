@@ -1,7 +1,7 @@
 package models.graphql
 
 import org.scalatest.{Matchers, WordSpec}
-import play.api.libs.json.{JsArray, JsObject, JsString, Json}
+import play.api.libs.json.{JsArray, JsObject, Json}
 import sangria.ast.Document
 import sangria.execution.Executor
 import sangria.macros._
@@ -14,19 +14,6 @@ import scala.concurrent.duration._
 
 class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
   "GraphQL schema" should {
-    "return the first institution" in {
-      val query =
-        graphql"""
-         query InstitutionQuery {
-           firstInstitution {
-             uri
-           }
-         }
-       """
-      val institutionUri = executeQuery(query).as[JsObject].value("data").result.get.as[JsObject].value("firstInstitution").result.get.as[JsObject].value("uri").result.get.as[JsString].value
-      institutionUri should equal(TestData.institution.uri.toString)
-    }
-
     "return a list of institutions" in {
       val query =
         graphql"""
@@ -44,32 +31,30 @@ class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
     "return institution collections" in {
       val query =
         graphql"""
-         query CollectionsQuery {
-           firstInstitution {
+         query CollectionsQuery($$institutionUri: String!) {
+           institutionByUri(uri: $$institutionUri) {
              collections {
                uri
              }
            }
          }
        """
-      val collections = executeQuery(query).as[JsObject].value("data").result.get.as[JsObject].value("firstInstitution").result.get.as[JsObject].value("collections").result.get.as[JsArray].value
+      val collections = executeQuery(query, vars = Json.obj("institutionUri" -> TestData.institution.uri.toString())).as[JsObject].value("data").result.get.as[JsObject].value("institutionByUri").result.get.as[JsObject].value("collections").result.get.as[JsArray].value
       collections.size should equal(1)
     }
 
     "return collection objects" in {
       val query =
         graphql"""
-         query ObjectsQuery {
-           firstInstitution {
-             collections {
-               objects {
-                 uri
-               }
+         query ObjectsQuery($$collectionUri: String!) {
+           collectionByUri(uri: $$collectionUri) {
+             objects {
+               uri
              }
            }
          }
        """
-      val objects = executeQuery(query).as[JsObject].value("data").result.get.as[JsObject].value("firstInstitution").result.get.as[JsObject].value("collections").result.get.as[JsArray].value.apply(0).result.get.as[JsObject].value.get("objects").get.as[JsArray].value
+      val objects = executeQuery(query, vars = Json.obj("collectionUri" -> TestData.collection.uri.toString())).as[JsObject].value("data").result.get.as[JsObject].value("collectionByUri").result.get.as[JsObject].value.get("objects").get.as[JsArray].value
       objects.size should equal(1)
     }
 
@@ -87,6 +72,22 @@ class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
            |{"data":{"collectionByUri":{"uri":"${TestData.collection.uri.toString()}"}}}
            |""".stripMargin))
     }
+
+    "return institution by URI" in {
+      val query =
+        graphql"""
+         query InstitutionByUriQuery($$institutionUri: String!) {
+           institutionByUri(uri: $$institutionUri) {
+               uri
+           }
+         }
+       """
+      executeQuery(query, vars = Json.obj("institutionUri" -> TestData.institution.uri.toString())) should be(Json.parse(
+        s"""
+           |{"data":{"institutionByUri":{"uri":"${TestData.institution.uri.toString()}"}}}
+           |""".stripMargin))
+    }
+
 
     ////    "allow to fetch Han Solo using his ID provided through variables" in {
     ////      val query =
