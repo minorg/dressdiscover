@@ -8,7 +8,9 @@ import {
     CollectionOverviewQueryVariables
 } from "dressdiscover/cms/gui/core/api/queries/types/CollectionOverviewQuery";
 import {ObjectsGallery} from "dressdiscover/cms/gui/core/components/object/ObjectsGallery";
-import {Col, Container, Row} from "reactstrap";
+import {Breadcrumb, BreadcrumbItem, Col, Container, Row} from "reactstrap";
+import {Hrefs} from "dressdiscover/cms/gui/core/Hrefs";
+import {Link} from "react-router-dom";
 
 export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ collectionUri: string; institutionUri: string; }>> = ({match}) => {
     const collectionUri = decodeURIComponent(match.params.collectionUri);
@@ -28,6 +30,23 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
                 }}>
                 {({data}) =>
                     <Container fluid>
+                        <Row>
+                            <Col xs={{offset: 1, size: 10}}>
+                                <Breadcrumb>
+                                    <BreadcrumbItem><Link to={Hrefs.home}>Home</Link></BreadcrumbItem>
+                                    <BreadcrumbItem>Institutions</BreadcrumbItem>
+                                    <BreadcrumbItem><Link
+                                        to={Hrefs.institution(institutionUri)}>{data.institutionByUri.name}</Link></BreadcrumbItem>
+                                    <BreadcrumbItem>Collections</BreadcrumbItem>
+                                    <BreadcrumbItem><Link
+                                        to={Hrefs.collection({
+                                            collectionUri,
+                                            institutionUri
+                                        })}>{data.collectionByUri.name}</Link></BreadcrumbItem>
+                                    <BreadcrumbItem>Objects</BreadcrumbItem>
+                                </Breadcrumb>
+                            </Col>
+                        </Row>
                         <Row>
                             <Col xs={{offset: 1, size: 10}}>
                                 <h2 className="text-center">{data.collectionByUri.name}</h2>
