@@ -1,0 +1,3 @@
+fragment RightsFragment on Rights {
+    text
+}

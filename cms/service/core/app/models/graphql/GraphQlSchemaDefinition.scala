@@ -26,6 +26,7 @@ object GraphQlSchemaDefinition {
   )
 
   implicit val RightsType = deriveObjectType[GraphQlSchemaContext, Rights](
+    ReplaceField("license", Field("license", OptionType(UriType), resolve = _.value.license))
   )
 
   implicit val DerivedImageSetType = deriveObjectType[GraphQlSchemaContext, DerivedImageSet](

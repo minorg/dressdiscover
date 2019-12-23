@@ -7,7 +7,7 @@ const PAGINATION_ITEMS_COUNT_LEFT = 5;
 const PAGINATION_ITEMS_COUNT_RIGHT = 5;
 
 export const DefaultPagination: React.FunctionComponent<DefaultPaginationProps> = ({currentPage, maxPage, onPageRequest}) => (
-    <Pagination listClassName="justify-content-center" size="lg">
+    <Pagination listClassName="justify-content-center" size="md">
         <PaginationItem disabled={currentPage === 0}>
             <PaginationLink first onClick={() => onPageRequest(0)}/>
         </PaginationItem>

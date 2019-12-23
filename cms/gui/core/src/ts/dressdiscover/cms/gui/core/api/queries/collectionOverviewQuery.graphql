@@ -1,4 +1,5 @@
 #import "./objectsGalleryObjectFragment.graphql"
+#import "./rightsFragment.graphql"
 
 query CollectionOverviewQuery($collectionUri: String!, $institutionUri: String!) {
     collectionByUri(uri: $collectionUri) {
@@ -8,11 +9,14 @@ query CollectionOverviewQuery($collectionUri: String!, $institutionUri: String!)
             ...ObjectsGalleryObjectFragment
         }
         objectsCount
+        rights {
+            ...RightsFragment
+        }
     }
     institutionByUri(uri: $institutionUri) {
         name
         rights {
-            text
+            ...RightsFragment
         }
         uri
     }
