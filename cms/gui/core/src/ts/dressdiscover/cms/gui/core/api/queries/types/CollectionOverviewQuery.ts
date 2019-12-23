@@ -19,12 +19,18 @@ export interface CollectionOverviewQuery_collectionByUri_objects {
   uri: string;
 }
 
+export interface CollectionOverviewQuery_collectionByUri_rights {
+  __typename: "Rights";
+  text: string;
+}
+
 export interface CollectionOverviewQuery_collectionByUri {
   __typename: "Collection";
   description: string | null;
   name: string;
   objects: CollectionOverviewQuery_collectionByUri_objects[];
   objectsCount: number;
+  rights: CollectionOverviewQuery_collectionByUri_rights | null;
 }
 
 export interface CollectionOverviewQuery_institutionByUri_rights {

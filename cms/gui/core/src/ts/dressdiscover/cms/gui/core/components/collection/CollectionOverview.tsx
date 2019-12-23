@@ -76,6 +76,8 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
         getMoreObjects({variables: {collectionUri: collectionUri, limit: 20, offset: page * 20}});
     }
 
+    const rights = initialData ? (initialData.collectionByUri.rights ? initialData.collectionByUri.rights : initialData.institutionByUri.rights) : undefined;
+
     return (
         <Frame id="collection-overview">
             <Container fluid>
@@ -103,10 +105,10 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
                             <p>{stripHtml(initialData!.collectionByUri.description)}</p> : null}
                     </Col>
                 </Row>
-                {initialData!.institutionByUri.rights ?
+                {rights ?
                     <Row>
                         <Col xs={{offset: 1, size: 10}}>
-                            <small>{initialData!.institutionByUri.rights.text}</small>
+                            <small>{rights.text}</small>
                         </Col>
                     </Row> : null}
                 <Row className="mt-4">

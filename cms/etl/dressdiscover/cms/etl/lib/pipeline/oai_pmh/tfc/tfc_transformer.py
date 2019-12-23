@@ -278,11 +278,10 @@ class TfcTransformer(_Transformer):
         institution.resource.add(FOAF.name, Literal("University of North Texas"))
 
         collection = Collection(graph=graph, uri=URIRef("http://tfc.unt.edu/"))
-        collection.resource.add(DCTERMS.rights,
-                                Literal("All Texas Fashion Collection content and images are copyrighted."))
-        collection.resource.add(DCTERMS.rights, Literal(
-            "The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see https://digital.library.unt.edu/terms-of-use/"))
         collection.resource.add(DCTERMS.license, URIRef(self._LICENSE_URI))
+        collection.resource.add(DCTERMS.rights,
+                                Literal(
+                                    "All Texas Fashion Collection content and images are copyrighted. The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see https://digital.library.unt.edu/terms-of-use/"))
         collection.resource.add(DCTERMS.rightsHolder, Literal(self._RIGHTS_HOLDER))
         collection.resource.add(DCTERMS.title, Literal("Texas Fashion Collection"))
         institution.resource.add(CMS.collection, collection.uri)
