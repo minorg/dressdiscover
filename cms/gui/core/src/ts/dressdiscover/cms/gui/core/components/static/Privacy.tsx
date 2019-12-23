@@ -10,7 +10,7 @@ import {StaticHeadline} from "dressdiscover/cms/gui/core/components/static/Stati
 export class Privacy extends React.Component {
     render() {
         return (
-            <Frame activeNavItem={ActiveNavbarItem.Home}>
+            <Frame activeNavItem={ActiveNavbarItem.Home} documentTitle="Privacy">
                 <Container fluid>
                     <Row>
                         <Col xs="12">

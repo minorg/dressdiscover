@@ -20,7 +20,8 @@ export const InstitutionCollectionObjectOverview: React.FunctionComponent<{
     objectUri?: string;
     title: string
 }> = (props) => (
-    <Frame>
+    <Frame
+        documentTitle={[props.institutionName, props.collectionName, props.objectTitle].filter(name => !!name).join(" - ")}>
         <Container fluid>
             <Row>
                 <Col xs={{size: 10, offset: 1}}>

@@ -7,6 +7,7 @@ import {
     ObjectOverviewQueryVariables
 } from "dressdiscover/cms/gui/core/api/queries/types/ObjectOverviewQuery";
 import * as objectOverviewQuery from "dressdiscover/cms/gui/core/api/queries/objectOverviewQuery.graphql";
+import {Container} from "reactstrap";
 
 // type Object = ObjectCardObject;
 
@@ -27,6 +28,9 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                     rights={data.objectByUri.rights ? data.objectByUri.rights : (data.collectionByUri.rights ? data.collectionByUri.rights : data.institutionByUri.rights)}
                     title={data.objectByUri.title}
                 >
+                    <Container fluid>
+
+                    </Container>
                 </InstitutionCollectionObjectOverview>
             }
         </ApolloQueryWrapper>
