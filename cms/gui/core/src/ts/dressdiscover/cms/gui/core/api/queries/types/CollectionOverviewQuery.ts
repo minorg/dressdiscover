@@ -42,7 +42,6 @@ export interface CollectionOverviewQuery_institutionByUri {
   __typename: "Institution";
   name: string;
   rights: CollectionOverviewQuery_institutionByUri_rights | null;
-  uri: string;
 }
 
 export interface CollectionOverviewQuery {

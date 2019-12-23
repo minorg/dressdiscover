@@ -1,13 +1,12 @@
-import { Frame } from 'dressdiscover/cms/gui/core/components/frame/Frame';
+import {Frame} from 'dressdiscover/cms/gui/core/components/frame/Frame';
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
-import { Col, Container, Row } from 'reactstrap';
+import {RouteComponentProps} from 'react-router';
+import {Col, Container, Row} from 'reactstrap';
 
 export class NoRoute extends React.Component<RouteComponentProps> {
     render() {
         return (
-            <Frame
-                id="no-route">
+            <Frame>
                 <Container fluid>
                     <Row>
                         <Col className="text-center" xs="12">

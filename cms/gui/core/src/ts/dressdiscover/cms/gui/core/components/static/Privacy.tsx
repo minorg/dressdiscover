@@ -1,26 +1,23 @@
 import {Frame} from 'dressdiscover/cms/gui/core/components/frame/Frame';
-import {Headline} from 'dressdiscover/cms/gui/core/components/frame/Headline';
 import {ActiveNavbarItem} from 'dressdiscover/cms/gui/core/components/navbar/ActiveNavbarItem';
 import {Hrefs} from 'dressdiscover/cms/gui/core/Hrefs';
 import * as React from 'react';
 import {Col, Container, Row} from 'reactstrap';
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
+import {StaticHeadline} from "dressdiscover/cms/gui/core/components/static/StaticHeadline";
 
 export class Privacy extends React.Component {
     render() {
         return (
-            <Frame
-                activeNavItem={ActiveNavbarItem.Home}
-                id="privacy"
-            >
+            <Frame activeNavItem={ActiveNavbarItem.Home}>
                 <Container fluid>
                     <Row>
                         <Col xs="12">
-                            <Headline>Privacy</Headline>
+                            <StaticHeadline>Privacy</StaticHeadline>
                         </Col>
                     </Row>
-                    <Row />
+                    <Row/>
                     <Row>
                         <Col xs={{size: 8, offset: 2}}>
                             <Card>

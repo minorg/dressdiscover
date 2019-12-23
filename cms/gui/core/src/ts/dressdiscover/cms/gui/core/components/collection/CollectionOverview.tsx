@@ -1,7 +1,6 @@
 import {RouteComponentProps} from "react-router";
 import * as React from "react";
 import {useState} from "react";
-import {Frame} from "dressdiscover/cms/gui/core/components/frame/Frame";
 import * as collectionOverviewQuery from "dressdiscover/cms/gui/core/api/queries/collectionOverviewQuery.graphql";
 import {
     CollectionOverviewQuery,
@@ -9,9 +8,6 @@ import {
     CollectionOverviewQueryVariables
 } from "dressdiscover/cms/gui/core/api/queries/types/CollectionOverviewQuery";
 import {ObjectsGallery} from "dressdiscover/cms/gui/core/components/object/ObjectsGallery";
-import {Breadcrumb, BreadcrumbItem, Col, Container, Row} from "reactstrap";
-import {Hrefs} from "dressdiscover/cms/gui/core/Hrefs";
-import {Link} from "react-router-dom";
 import {
     CollectionOverviewObjectsPaginationQuery,
     CollectionOverviewObjectsPaginationQueryVariables
@@ -21,18 +17,13 @@ import * as collectionOverviewObjectsPaginationQuery
 import {useLazyQuery, useQuery} from "@apollo/react-hooks";
 import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
 import * as ReactLoader from "react-loader";
+import {InstitutionCollectionObjectOverview} from "dressdiscover/cms/gui/core/components/frame/InstitutionCollectionObjectOverview";
 
 type Object = ObjectCardObject;
 
 export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ collectionUri: string; institutionUri: string; }>> = ({match}) => {
     const collectionUri = decodeURIComponent(match.params.collectionUri);
     const institutionUri = decodeURIComponent(match.params.institutionUri);
-
-    const stripHtml = (html: string) => {
-        var tmp = document.createElement("DIV");
-        tmp.innerHTML = html;
-        return tmp.textContent || tmp.innerText || "";
-    }
 
     const [state, setState] = useState<{ currentObjectsPage: number, objects: Object[] | null }>({
         currentObjectsPage: 0,
@@ -79,48 +70,30 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
     const rights = initialData ? (initialData.collectionByUri.rights ? initialData.collectionByUri.rights : initialData.institutionByUri.rights) : undefined;
 
     return (
-        <Frame id="collection-overview">
-            <Container fluid>
-                <Row>
-                    <Col xs={{offset: 1, size: 10}}>
-                        <Breadcrumb>
-                            <BreadcrumbItem><Link to={Hrefs.home}>Home</Link></BreadcrumbItem>
-                            <BreadcrumbItem>Institutions</BreadcrumbItem>
-                            <BreadcrumbItem><Link
-                                to={Hrefs.institution(institutionUri)}>{initialData!.institutionByUri.name}</Link></BreadcrumbItem>
-                            <BreadcrumbItem>Collections</BreadcrumbItem>
-                            <BreadcrumbItem><Link
-                                to={Hrefs.collection({
-                                    collectionUri,
-                                    institutionUri
-                                })}>{initialData!.collectionByUri.name}</Link></BreadcrumbItem>
-                            <BreadcrumbItem>Objects</BreadcrumbItem>
-                        </Breadcrumb>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={{offset: 1, size: 10}}>
-                        <h2 className="text-center">{initialData!.collectionByUri.name}</h2>
-                        {initialData!.collectionByUri.description ?
-                            <p>{stripHtml(initialData!.collectionByUri.description)}</p> : null}
-                    </Col>
-                </Row>
-                {rights ?
-                    <Row>
-                        <Col xs={{offset: 1, size: 10}}>
-                            <small>{rights.text}</small>
-                        </Col>
-                    </Row> : null}
-                <Row className="mt-4">
-                    <Col xs={{offset: 1, size: 10}}>
-                        <ObjectsGallery
-                            currentPage={state.currentObjectsPage}
-                            maxPage={Math.ceil(initialData!.collectionByUri.objectsCount / 20)}
-                            objects={state.objects}
-                            onPageRequest={onObjectsPageRequest}
-                        />
-                    </Col>
-                </Row>
-            </Container>
-        </Frame>);
+        <InstitutionCollectionObjectOverview
+            collectionName={initialData!.collectionByUri.name} collectionUri={collectionUri}
+            institutionName={initialData!.institutionByUri.name} institutionUri={institutionUri}
+            rights={rights}
+            title={initialData!.collectionByUri.name}
+        >
+            <ObjectsGallery
+                currentPage={state.currentObjectsPage}
+                maxPage={Math.ceil(initialData!.collectionByUri.objectsCount / 20)}
+                objects={state.objects}
+                onPageRequest={onObjectsPageRequest}
+            />
+        </InstitutionCollectionObjectOverview>
+    );
+
+    //         <Row>
+    //             <Col xs={{offset: 1, size: 10}}>
+    //                 <h2 className="text-center">{initialData!.collectionByUri.name}</h2>
+    //             </Col>
+    //         </Row>
+    //         <Row className="mt-4">
+    //             <Col xs={{offset: 1, size: 10}}>
+    //             </Col>
+    //         </Row>
+    //     </Container>
+    // </Frame>);
 }

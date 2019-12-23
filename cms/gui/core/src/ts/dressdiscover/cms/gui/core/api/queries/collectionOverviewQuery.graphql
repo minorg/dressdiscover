@@ -18,6 +18,5 @@ query CollectionOverviewQuery($collectionUri: String!, $institutionUri: String!)
         rights {
             ...RightsFragment
         }
-        uri
     }
 }

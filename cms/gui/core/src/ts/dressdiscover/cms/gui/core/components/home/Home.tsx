@@ -14,7 +14,6 @@ export const Home: React.FunctionComponent<{}> = () => (
         {({data}) =>
             <Frame
                 activeNavItem={ActiveNavbarItem.Home}
-                id="home"
             >
                 <Container fluid>
                     <Row>

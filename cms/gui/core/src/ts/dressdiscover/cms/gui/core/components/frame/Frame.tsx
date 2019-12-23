@@ -10,12 +10,11 @@ export const Frame: React.FunctionComponent<{
     activeNavItem?: ActiveNavbarItem;
     className?: string;
     children: React.ReactNode;
-    id: string;
-}> = ({activeNavItem, className, children, id}) =>
-    <div className={classnames(["frame", className])} id={id}>
+}> = ({activeNavItem, className, children}) =>
+    <div className={classnames(["frame", className])}>
         <Navbar activeNavItem={activeNavItem}/>
         <div className="mb-4"></div>
         {children}
-        <Footer />
+        <Footer/>
         {/*{Environment.development ? <DevTools /> : null}*/}
-      </div>
+    </div>
