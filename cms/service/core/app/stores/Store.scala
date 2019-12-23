@@ -15,4 +15,6 @@ trait Store {
   def institutionCollections(institutionUri: Uri): List[Collection]
 
   def institutions(): List[Institution]
+
+  def objectByUri(objectUri: Uri): Object
 }

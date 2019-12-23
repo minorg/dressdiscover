@@ -113,6 +113,11 @@ class SparqlStore(endpointUrl: Url) extends Store {
     }
   }
 
+  override def objectByUri(objectUri: Uri): Object = {
+    val objects = objectsByUris(List(objectUri))
+    if (!objects.isEmpty) objects(0) else throw new NoSuchElementException
+  }
+
   private def objectsByUris(objectUris: List[Uri]): List[Object] = {
     val query = QueryFactory.create(
       s"""

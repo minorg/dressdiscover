@@ -75,5 +75,17 @@ class SparqlStoreSpec extends WordSpec with Matchers {
         store.collectionObjectsCount(collection.uri) should be > 0
       }
     }
+
+    "get an object by URI" in {
+      withUnknownHostExceptionCatch { () =>
+        val institution = store.institutions()(0)
+        val collection = store.institutionCollections(institution.uri)(0)
+        val objects = store.collectionObjects(collection.uri, limit = 1, offset = 0)
+        objects.size should be(1)
+        val expected = objects(0)
+        val actual = store.objectByUri(expected.uri)
+        actual should equal(expected)
+      }
+    }
   }
 }

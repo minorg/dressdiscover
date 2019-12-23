@@ -15,4 +15,6 @@ object TestStore extends Store {
   override def institutionCollections(institutionUri: Uri): List[Collection] = List(TestData.collection)
 
   override def institutions(): List[Institution] = List(TestData.institution)
+
+  override def objectByUri(objectUri: Uri): Object = if (objectUri == TestData.object_.uri) TestData.object_ else throw new NoSuchElementException
 }
