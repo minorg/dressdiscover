@@ -7,7 +7,7 @@ RUN sbt playUpdateSecret dist
 FROM openjdk:11-jre
 
 COPY --from=build /app/target/universal/core-1.0.0-SNAPSHOT.zip /
-RUN unzip core-1.0.0-SNAPSHOT.zip && mv /core-1.0.0-SNAPSHOT /app && chmod +x /app/bin/core
+RUN unzip -q core-1.0.0-SNAPSHOT.zip && mv /core-1.0.0-SNAPSHOT /app && chmod +x /app/bin/core
 
 EXPOSE 9000
 
