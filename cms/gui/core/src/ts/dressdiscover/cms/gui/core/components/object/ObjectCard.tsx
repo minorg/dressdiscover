@@ -3,6 +3,8 @@ import {useState} from "react";
 import {Card, CardBody, CardHeader, CardTitle, Collapse} from "reactstrap";
 import * as classnames from "classnames";
 import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
+import {Hrefs} from "dressdiscover/cms/gui/core/Hrefs";
+import {Link} from "react-router-dom";
 
 type Object = ObjectCardObject;
 
@@ -10,17 +12,24 @@ export const ObjectCard: React.FunctionComponent<{ object: Object }> = ({object}
     const [state, setState] = useState<{ descriptionShown: boolean }>({descriptionShown: false});
 
     const onToggleDescription = () => setState((prevState) => ({descriptionShown: !prevState.descriptionShown}));
+    const objectHref = Hrefs.object({
+        collectionUri: object.collectionUri,
+        institutionUri: object.institutionUri,
+        objectUri: object.uri
+    });
 
     return (
         <Card>
             <CardHeader>
-                <CardTitle><strong>{object.title}</strong></CardTitle>
+                <CardTitle><strong><Link to={objectHref}>{object.title}</Link></strong></CardTitle>
             </CardHeader>
             <CardBody>
                 {object.thumbnail ?
                     <figure className="figure text-center w-100">
-                        <img className="figure-img rounded" src={object.thumbnail!.url}
-                             style={{height: "200px", width: "200px"}}/>
+                        <Link to={objectHref}>
+                            <img className="figure-img rounded" src={object.thumbnail!.url}
+                                 style={{height: "200px", width: "200px"}}/>
+                        </Link>
                     </figure> : null}
                 {object.description ?
                     <div className="card-text w-100">
