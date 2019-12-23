@@ -67,13 +67,11 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
         getMoreObjects({variables: {collectionUri: collectionUri, limit: 20, offset: page * 20}});
     }
 
-    const rights = initialData ? (initialData.collectionByUri.rights ? initialData.collectionByUri.rights : initialData.institutionByUri.rights) : undefined;
-
     return (
         <InstitutionCollectionObjectOverview
             collectionName={initialData!.collectionByUri.name} collectionUri={collectionUri}
             institutionName={initialData!.institutionByUri.name} institutionUri={institutionUri}
-            rights={rights}
+            rights={initialData ? (initialData.collectionByUri.rights ? initialData.collectionByUri.rights : initialData.institutionByUri.rights) : undefined}
             title={initialData!.collectionByUri.name}
         >
             <ObjectsGallery
@@ -84,16 +82,4 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
             />
         </InstitutionCollectionObjectOverview>
     );
-
-    //         <Row>
-    //             <Col xs={{offset: 1, size: 10}}>
-    //                 <h2 className="text-center">{initialData!.collectionByUri.name}</h2>
-    //             </Col>
-    //         </Row>
-    //         <Row className="mt-4">
-    //             <Col xs={{offset: 1, size: 10}}>
-    //             </Col>
-    //         </Row>
-    //     </Container>
-    // </Frame>);
 }

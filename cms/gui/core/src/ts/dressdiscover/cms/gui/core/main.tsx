@@ -15,6 +15,7 @@ import {Route, Router, Switch} from 'react-router';
 import {LoggerContext} from 'dressdiscover/cms/gui/core/util/logging/LoggerContext';
 import {CollectionOverview} from "dressdiscover/cms/gui/core/components/collection/CollectionOverview";
 import {InstitutionOverview} from "dressdiscover/cms/gui/core/components/institution/InstitutionOverview";
+import {ObjectOverview} from "dressdiscover/cms/gui/core/components/object/ObjectOverview";
 
 // Logger
 const logger = new ConsoleLogger();
@@ -29,6 +30,8 @@ ReactDOM.render(
           <Router history={browserHistory}>
               <Switch>
                   <Route exact path={Hrefs.home} component={Home}/>
+                  <Route path="/institution/:institutionUri/collection/:collectionUri/object/:objectUri"
+                         component={ObjectOverview}/>
                   <Route path="/institution/:institutionUri/collection/:collectionUri" component={CollectionOverview}/>
                   <Route path="/institution/:institutionUri" component={InstitutionOverview}/>
                   <Route exact path={Hrefs.privacy} component={Privacy}/>

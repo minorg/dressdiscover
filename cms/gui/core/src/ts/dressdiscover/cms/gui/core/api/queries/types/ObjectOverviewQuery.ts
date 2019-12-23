@@ -35,8 +35,8 @@ export interface ObjectOverviewQuery_objectByUri_rights {
 
 export interface ObjectOverviewQuery_objectByUri {
   __typename: "Object";
-  rights: ObjectOverviewQuery_objectByUri_rights | null;
   title: string;
+  rights: ObjectOverviewQuery_objectByUri_rights | null;
 }
 
 export interface ObjectOverviewQuery {
