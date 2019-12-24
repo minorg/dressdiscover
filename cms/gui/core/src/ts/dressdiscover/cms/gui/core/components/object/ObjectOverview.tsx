@@ -9,6 +9,7 @@ import {
 import * as objectOverviewQuery from "dressdiscover/cms/gui/core/api/queries/objectOverviewQuery.graphql";
 import {Card, CardBody, CardHeader, CardTitle, Container, ListGroup, ListGroupItem, Row} from "reactstrap";
 import {ObjectImagesCarousel} from "dressdiscover/cms/gui/core/components/object/ObjectImagesCarousel";
+import {RightsTable} from "dressdiscover/cms/gui/core/components/rights/RightsTable";
 
 // type Object = ObjectCardObject;
 
@@ -24,12 +25,12 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
             variables={{collectionUri, institutionUri, objectUri}}>
             {({data}) => {
                 const object_ = data.objectByUri;
+                const rights = data.objectByUri.rights ? data.objectByUri.rights : (data.collectionByUri.rights ? data.collectionByUri.rights : data.institutionByUri.rights);
                 return (
                     <InstitutionCollectionObjectOverview
                         collectionName={data.collectionByUri.name} collectionUri={collectionUri}
                         institutionName={data.institutionByUri.name} institutionUri={institutionUri}
                         objectTitle={data.objectByUri.title} objectUri={objectUri}
-                        rights={data.objectByUri.rights ? data.objectByUri.rights : (data.collectionByUri.rights ? data.collectionByUri.rights : data.institutionByUri.rights)}
                         title={data.objectByUri.title}
                     >
                         <Container fluid>
@@ -58,6 +59,13 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                                     key={subject}>{subject}</ListGroupItem>)}
                                             </ListGroup>
                                         </CardBody>
+                                    </Card>
+                                </Row> : null}
+                            {rights ?
+                                <Row className="pb-4">
+                                    <Card className="w-100">
+                                        <CardHeader><CardTitle><h5>Rights</h5></CardTitle></CardHeader>
+                                        <CardBody><RightsTable rights={rights}/></CardBody>
                                     </Card>
                                 </Row> : null}
                         </Container>

@@ -4,10 +4,6 @@ import {Hrefs} from "dressdiscover/cms/gui/core/Hrefs";
 import * as React from "react";
 import {Frame} from "dressdiscover/cms/gui/core/components/frame/Frame";
 import {stripHtml} from "dressdiscover/cms/gui/core/util/stripHtml";
-import {CollectionOverviewQuery_collectionByUri_rights} from "dressdiscover/cms/gui/core/api/queries/types/CollectionOverviewQuery";
-import {Uris} from "dressdiscover/cms/gui/core/util/Uris";
-
-type Rights = CollectionOverviewQuery_collectionByUri_rights;
 
 export const InstitutionCollectionObjectOverview: React.FunctionComponent<{
     children: React.ReactNode;
@@ -16,7 +12,6 @@ export const InstitutionCollectionObjectOverview: React.FunctionComponent<{
     institutionUri: string;
     collectionName?: string;
     collectionUri?: string;
-    rights?: Rights | null;
     objectTitle?: string;
     objectUri?: string;
     title: string
@@ -60,29 +55,6 @@ export const InstitutionCollectionObjectOverview: React.FunctionComponent<{
                             <CardTitle><h2>{props.title}</h2></CardTitle>
                             {props.description ?
                                 <p>{stripHtml(props.description)}</p> : null}
-                            {props.rights ?
-                                <small>
-                                    <table className="table-bordered">
-                                        <tr>
-                                            <td className="px-2"><strong>Rights</strong></td>
-                                            <td className="px-2">{props.rights.text}</td>
-                                        </tr>
-                                        {props.rights.holder ?
-                                            <tr>
-                                                <td className="px-2"><strong>Holder</strong></td>
-                                                <td className="px-2">{props.rights.holder}</td>
-                                            </tr>
-                                            : null}
-                                        {props.rights.license ?
-                                            <tr>
-                                                <td className="px-2"><strong>License</strong></td>
-                                                <td className="px-2">{Uris.isUrl(props.rights.license) ?
-                                                    <a href={props.rights.license}>{props.rights.license}</a> :
-                                                    <React.Fragment>{props.rights.license}</React.Fragment>}</td>
-                                            </tr>
-                                            : null}
-                                    </table>
-                                </small> : null}
                         </CardHeader>
                         <CardBody>
                             {props.children}

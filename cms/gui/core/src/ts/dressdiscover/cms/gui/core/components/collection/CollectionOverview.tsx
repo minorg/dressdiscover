@@ -18,6 +18,8 @@ import {useLazyQuery, useQuery} from "@apollo/react-hooks";
 import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
 import * as ReactLoader from "react-loader";
 import {InstitutionCollectionObjectOverview} from "dressdiscover/cms/gui/core/components/frame/InstitutionCollectionObjectOverview";
+import {RightsTable} from "dressdiscover/cms/gui/core/components/rights/RightsTable";
+import {Container, Row} from "reactstrap";
 
 type Object = ObjectCardObject;
 
@@ -67,19 +69,25 @@ export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ c
         getMoreObjects({variables: {collectionUri: collectionUri, limit: 20, offset: page * 20}});
     }
 
+    const rights = initialData ? (initialData.collectionByUri.rights ? initialData.collectionByUri.rights : initialData.institutionByUri.rights) : undefined;
+
     return (
         <InstitutionCollectionObjectOverview
             collectionName={initialData!.collectionByUri.name} collectionUri={collectionUri}
             institutionName={initialData!.institutionByUri.name} institutionUri={institutionUri}
-            rights={initialData ? (initialData.collectionByUri.rights ? initialData.collectionByUri.rights : initialData.institutionByUri.rights) : undefined}
             title={initialData!.collectionByUri.name}
         >
-            <ObjectsGallery
-                currentPage={state.currentObjectsPage}
-                maxPage={Math.ceil(initialData!.collectionByUri.objectsCount / 20)}
-                objects={state.objects}
-                onPageRequest={onObjectsPageRequest}
-            />
+            <Container fluid>
+                {rights ? <Row className="pb-4"><RightsTable rights={rights}/></Row> : null}
+                <Row>
+                    <ObjectsGallery
+                        currentPage={state.currentObjectsPage}
+                        maxPage={Math.ceil(initialData!.collectionByUri.objectsCount / 20)}
+                        objects={state.objects}
+                        onPageRequest={onObjectsPageRequest}
+                    />
+                </Row>
+            </Container>
         </InstitutionCollectionObjectOverview>
     );
 }
