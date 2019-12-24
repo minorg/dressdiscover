@@ -14,6 +14,7 @@
     "@types/react": "16.8.2",
     "@types/react-dom": "16.8.0",
     "@types/react-loader": "2.4.3",
+    "@types/react-medium-image-zoom": "^3.0.0",
     "@types/react-router": "4.0.31",
     "@types/react-router-dom": "4.3.1",
     "@types/reactstrap": "^8.2.0",
@@ -62,6 +63,7 @@
     "react-apollo": "2.5.7",
     "react-dom": "16.8.1",
     "react-loader": "2.4.5",
+    "react-medium-image-zoom": "3.1.2",
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
     "reactstrap": "^8.2.0"

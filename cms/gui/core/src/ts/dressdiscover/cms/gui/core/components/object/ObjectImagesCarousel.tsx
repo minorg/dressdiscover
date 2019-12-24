@@ -1,6 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
 import {Carousel, CarouselControl, CarouselIndicators, CarouselItem} from "reactstrap";
+import ImageZoom from "react-medium-image-zoom";
 
 interface DerivedImageSet {
     original: Image;
@@ -48,8 +49,20 @@ export const ObjectImagesCarousel: React.FunctionComponent<{ images: DerivedImag
                     onExited={() => setAnimating(false)}
                     key={image.original.url}
                 >
-                    {image.thumbnail ? <img src={image.thumbnail.url}/> :
-                        <img src={image.original.url} style={{height: "200px", width: "200px"}}/>}
+                    <ImageZoom
+                        image={{
+                            className: "img",
+                            height: image.thumbnail ? image.thumbnail.height : 200,
+                            src: image.thumbnail ? image.thumbnail.url : "https://place-hold.it/200x200?text=Missing%20thumbnail",
+                            width: image.thumbnail ? image.thumbnail.width : 200
+                        }}
+                        zoomImage={{
+                            className: "img--zoomed",
+                            height: image.original.height,
+                            src: image.original.url,
+                            width: image.original.width
+                        }}
+                    />
                     {/*<CarouselCaption captionText={item.caption} captionHeader={item.caption}/>*/}
                 </CarouselItem>)
             }
