@@ -18,7 +18,8 @@ trait DomainModelCompanion {
     object dublinCore {
       def description(): Option[String] = getPropertyObjectString(DCTerms.description).orElse(getPropertyObjectString(DC_11.description))
 
-      def rights(): Option[String] = getPropertyObjectString(DCTerms.rights).orElse(getPropertyObjectString(DC_11.rights))
+      def rights(): List[String] =
+        getPropertyObjectStrings(DCTerms.rights) ::: getPropertyObjectStrings(DC_11.rights)
 
       def rightsHolder(): Option[String] = getPropertyObjectString(DCTerms.rightsHolder)
 

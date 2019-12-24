@@ -21,6 +21,8 @@ export interface CollectionOverviewQuery_collectionByUri_objects {
 
 export interface CollectionOverviewQuery_collectionByUri_rights {
   __typename: "Rights";
+  holder: string | null;
+  license: string | null;
   text: string;
 }
 
@@ -35,6 +37,8 @@ export interface CollectionOverviewQuery_collectionByUri {
 
 export interface CollectionOverviewQuery_institutionByUri_rights {
   __typename: "Rights";
+  holder: string | null;
+  license: string | null;
   text: string;
 }
 
