@@ -58,6 +58,7 @@ export interface ObjectOverviewQuery_objectByUri {
   description: string | null;
   images: ObjectOverviewQuery_objectByUri_images[];
   rights: ObjectOverviewQuery_objectByUri_rights | null;
+  subjects: string[];
   title: string;
 }
 

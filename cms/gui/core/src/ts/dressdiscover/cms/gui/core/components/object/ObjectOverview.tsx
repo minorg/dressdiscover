@@ -7,7 +7,7 @@ import {
     ObjectOverviewQueryVariables
 } from "dressdiscover/cms/gui/core/api/queries/types/ObjectOverviewQuery";
 import * as objectOverviewQuery from "dressdiscover/cms/gui/core/api/queries/objectOverviewQuery.graphql";
-import {Card, CardBody, CardHeader, CardTitle, Container, Row} from "reactstrap";
+import {Card, CardBody, CardHeader, CardTitle, Container, ListGroup, ListGroupItem, Row} from "reactstrap";
 import {ObjectImagesCarousel} from "dressdiscover/cms/gui/core/components/object/ObjectImagesCarousel";
 
 // type Object = ObjectCardObject;
@@ -35,7 +35,7 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                         <Container fluid>
                             {object_.images.length > 0 ?
                                 <Row className="pb-4">
-                                    <Card>
+                                    <Card className="w-100">
                                         <CardBody>
                                             <ObjectImagesCarousel images={object_.images}/>
                                         </CardBody>
@@ -43,9 +43,21 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                 </Row> : null}
                             {object_.description ?
                                 <Row className="pb-4">
-                                    <Card>
+                                    <Card className="w-100">
                                         <CardHeader><CardTitle><h5>Description</h5></CardTitle></CardHeader>
                                         <CardBody>{object_.description}</CardBody>
+                                    </Card>
+                                </Row> : null}
+                            {object_.subjects.length > 0 ?
+                                <Row className="pb-4">
+                                    <Card className="w-100">
+                                        <CardHeader><CardTitle><h5>Subjects</h5></CardTitle></CardHeader>
+                                        <CardBody>
+                                            <ListGroup>
+                                                {object_.subjects.map(subject => <ListGroupItem
+                                                    key={subject}>{subject}</ListGroupItem>)}
+                                            </ListGroup>
+                                        </CardBody>
                                     </Card>
                                 </Row> : null}
                         </Container>

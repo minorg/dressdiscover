@@ -30,6 +30,7 @@ query ObjectOverviewQuery($collectionUri: String!, $institutionUri: String!, $ob
         rights {
             ...RightsFragment
         }
+        subjects
         title
     }
 }
