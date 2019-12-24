@@ -28,6 +28,26 @@ export interface ObjectOverviewQuery_institutionByUri {
   rights: ObjectOverviewQuery_institutionByUri_rights | null;
 }
 
+export interface ObjectOverviewQuery_objectByUri_images_original {
+  __typename: "Image";
+  height: number | null;
+  url: string;
+  width: number | null;
+}
+
+export interface ObjectOverviewQuery_objectByUri_images_thumbnail {
+  __typename: "Image";
+  height: number | null;
+  url: string;
+  width: number | null;
+}
+
+export interface ObjectOverviewQuery_objectByUri_images {
+  __typename: "DerivedImageSet";
+  original: ObjectOverviewQuery_objectByUri_images_original;
+  thumbnail: ObjectOverviewQuery_objectByUri_images_thumbnail | null;
+}
+
 export interface ObjectOverviewQuery_objectByUri_rights {
   __typename: "Rights";
   text: string;
@@ -35,8 +55,10 @@ export interface ObjectOverviewQuery_objectByUri_rights {
 
 export interface ObjectOverviewQuery_objectByUri {
   __typename: "Object";
-  title: string;
+  description: string | null;
+  images: ObjectOverviewQuery_objectByUri_images[];
   rights: ObjectOverviewQuery_objectByUri_rights | null;
+  title: string;
 }
 
 export interface ObjectOverviewQuery {

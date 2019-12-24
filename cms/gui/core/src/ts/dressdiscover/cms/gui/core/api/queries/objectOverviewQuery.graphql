@@ -14,6 +14,19 @@ query ObjectOverviewQuery($collectionUri: String!, $institutionUri: String!, $ob
         }
     }
     objectByUri(uri: $objectUri) {
+        description
+        images {
+            original {
+                height
+                url
+                width
+            }
+            thumbnail {
+                height
+                url
+                width
+            }
+        }
         rights {
             ...RightsFragment
         }
