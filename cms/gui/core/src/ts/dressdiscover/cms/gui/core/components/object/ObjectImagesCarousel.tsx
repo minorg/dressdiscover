@@ -45,6 +45,7 @@ export const ObjectImagesCarousel: React.FunctionComponent<{ images: DerivedImag
                 <CarouselIndicators items={images} activeIndex={activeIndex} onClickHandler={goToIndex}/> : null}
             {images.map((image) =>
                 <CarouselItem
+                    className="text-center"
                     onExiting={() => setAnimating(true)}
                     onExited={() => setAnimating(false)}
                     key={image.original.url}

@@ -20,9 +20,17 @@ trait DomainModelCompanion {
 
       def creators(): List[String] = getPropertyObjectStrings(DCTerms.creator) ::: getPropertyObjectStrings(DC_11.creator)
 
+      def dates(): List[String] = getPropertyObjectStrings(DCTerms.date) ::: getPropertyObjectStrings(DC_11.date)
+
       def descriptions(): List[String] = getPropertyObjectStrings(DCTerms.description) ::: getPropertyObjectStrings(DC_11.description)
 
+      def extents(): List[String] = getPropertyObjectStrings(DCTerms.extent)
+
       def identifiers(): List[String] = getPropertyObjectStrings(DCTerms.identifier) ::: getPropertyObjectStrings(DC_11.identifier)
+
+      def languages(): List[String] = getPropertyObjectStrings(DCTerms.language) ::: getPropertyObjectStrings(DC_11.language)
+
+      def media(): List[String] = getPropertyObjectStrings(DCTerms.medium)
 
       def provenances(): List[String] = getPropertyObjectStrings(DCTerms.provenance)
 
@@ -34,6 +42,8 @@ trait DomainModelCompanion {
       def rightsHolder(): Option[String] = getPropertyObjectString(DCTerms.rightsHolder)
 
       def sources(): List[String] = getPropertyObjectStrings(DCTerms.source) ::: getPropertyObjectStrings(DC_11.source)
+
+      def spatialCoverages(): List[String] = getPropertyObjectStrings(DCTerms.spatial)
 
       def subjects(): List[String] = getPropertyObjectStrings(DCTerms.subject)
 

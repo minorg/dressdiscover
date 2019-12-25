@@ -20,7 +20,7 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
 
     const nameValueTableRows = (name: string, values: string[]) => values.map(value =>
         <tr>
-            <td className="px-2">{name}</td>
+            <td className="px-2"><strong>{name}</strong></td>
             <td className="px-2">{value}</td>
         </tr>);
 
@@ -86,6 +86,21 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                                 {nameValueTableRows("Publisher", object_.publishers)}
                                                 {nameValueTableRows("Provenance", object_.provenances)}
                                                 {nameValueTableRows("Source", object_.sources)}
+                                            </table>
+                                        </CardBody>
+                                    </Card>
+                                </Row> : null}
+                            {object_.dates.length > 0 || object_.extents.length > 0 || object_.languages.length > 0 || object_.media.length > 0 || object_.spatialCoverages.length > 0 ?
+                                <Row className="pb-4">
+                                    <Card className="w-100">
+                                        <CardHeader><CardTitle><h5>Extent</h5></CardTitle></CardHeader>
+                                        <CardBody>
+                                            <table className="table-bordered w-100">
+                                                {nameValueTableRows("Date", object_.dates)}
+                                                {nameValueTableRows("Extent", object_.extents)}
+                                                {nameValueTableRows("Language", object_.languages)}
+                                                {nameValueTableRows("Medium", object_.media)}
+                                                {nameValueTableRows("Spatial coverage", object_.spatialCoverages)}
                                             </table>
                                         </CardBody>
                                     </Card>

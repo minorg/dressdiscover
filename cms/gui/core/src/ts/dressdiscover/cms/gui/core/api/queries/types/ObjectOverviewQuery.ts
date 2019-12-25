@@ -63,13 +63,18 @@ export interface ObjectOverviewQuery_objectByUri {
   __typename: "Object";
   alternativeTitles: string[];
   creators: string[];
+  dates: string[];
   descriptions: string[];
+  extents: string[];
   identifiers: string[];
   images: ObjectOverviewQuery_objectByUri_images[];
+  languages: string[];
+  media: string[];
   provenances: string[];
   publishers: string[];
   rights: ObjectOverviewQuery_objectByUri_rights | null;
   sources: string[];
+  spatialCoverages: string[];
   subjects: string[];
   title: string;
   titles: string[];

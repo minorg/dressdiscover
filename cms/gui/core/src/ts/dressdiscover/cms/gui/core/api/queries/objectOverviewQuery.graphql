@@ -16,7 +16,9 @@ query ObjectOverviewQuery($collectionUri: String!, $institutionUri: String!, $ob
     objectByUri(uri: $objectUri) {
         alternativeTitles
         creators
+        dates
         descriptions
+        extents
         identifiers
         images {
             original {
@@ -30,12 +32,15 @@ query ObjectOverviewQuery($collectionUri: String!, $institutionUri: String!, $ob
                 width
             }
         }
+        languages
+        media
         provenances
         publishers
         rights {
             ...RightsFragment
         }
         sources
+        spatialCoverages
         subjects
         title
         titles
