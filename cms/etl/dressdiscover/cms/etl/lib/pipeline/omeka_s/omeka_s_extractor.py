@@ -45,9 +45,9 @@ class OmekaSExtractor(_Extractor):
 
     def extract(self, *, force: bool, storage: _PipelineStorage):
         session = requests.Session()
-        api_context_url = self.__endpoint_url + "-context"
 
-        api_context = self.__get_api_context(session=session, url=api_context_url)
+        api_context = None  # Retrieve lazily
+        api_context_url = self.__endpoint_url + "-context"
 
         resources_names = ("item_sets", "items", "media")
 
@@ -68,6 +68,8 @@ class OmekaSExtractor(_Extractor):
                 for resource in resources:
                     # Replace the @context reference with the resolved context
                     assert resource["@context"] == api_context_url
+                    if api_context is None:
+                        api_context = self.__get_api_context(session=session, url=api_context_url)
                     resource["@context"] = api_context
                 storage.put(storage_key, json.dumps(resources))
             results[resources_name] = resources
