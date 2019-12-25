@@ -1,4 +1,5 @@
 import json
+from typing import Dict
 
 import requests
 
@@ -43,10 +44,14 @@ class OmekaSExtractor(_Extractor):
             url = next_url
 
     def extract(self, *, force: bool, storage: _PipelineStorage):
+        session = requests.Session()
+        api_context_url = self.__endpoint_url + "-context"
+
+        api_context = self.__get_api_context(session=session, url=api_context_url)
+
         resources_names = ("item_sets", "items", "media")
 
         results = {}
-        session = requests.Session()
         use_cache = False
         for resources_name_i, resources_name in enumerate(resources_names):
             url = self.__endpoint_url + "/" + resources_name
@@ -60,6 +65,15 @@ class OmekaSExtractor(_Extractor):
 
             if resources is None:
                 resources = self.__extract_all_pages(session=session, url=url)
+                for resource in resources:
+                    # Replace the @context reference with the resolved context
+                    assert resource["@context"] == api_context_url
+                    resource["@context"] = api_context
                 storage.put(storage_key, json.dumps(resources))
             results[resources_name] = resources
         return results
+
+    def __get_api_context(self, *, session: requests.Session, url: str) -> Dict[str, object]:
+        response = session.get(url)
+        response_json = response.json()
+        return response_json["@context"]
