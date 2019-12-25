@@ -5,7 +5,7 @@ import * as React from "react";
 type Rights = CollectionOverviewQuery_collectionByUri_rights;
 
 export const RightsTable: React.FunctionComponent<{ rights: Rights }> = ({rights}) => (
-    <table className="table-bordered">
+    <table className="table-bordered w-100">
         <tr>
             <td className="px-2"><strong>Rights</strong></td>
             <td className="px-2">{rights.text}</td>

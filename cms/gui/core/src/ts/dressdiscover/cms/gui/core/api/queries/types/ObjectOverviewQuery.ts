@@ -61,11 +61,17 @@ export interface ObjectOverviewQuery_objectByUri_rights {
 
 export interface ObjectOverviewQuery_objectByUri {
   __typename: "Object";
-  description: string | null;
+  alternativeTitles: string[];
+  creators: string[];
+  descriptions: string[];
   images: ObjectOverviewQuery_objectByUri_images[];
+  provenances: string[];
+  publishers: string[];
   rights: ObjectOverviewQuery_objectByUri_rights | null;
+  sources: string[];
   subjects: string[];
   title: string;
+  titles: string[];
 }
 
 export interface ObjectOverviewQuery {

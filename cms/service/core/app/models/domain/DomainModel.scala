@@ -16,16 +16,26 @@ trait DomainModelCompanion {
   implicit class ResourceWrapper(val resource: Resource) {
 
     object dublinCore {
-      def description(): Option[String] = getPropertyObjectString(DCTerms.description).orElse(getPropertyObjectString(DC_11.description))
+      def alternativeTitles(): List[String] = getPropertyObjectStrings(DCTerms.alternative)
+
+      def creators(): List[String] = getPropertyObjectStrings(DCTerms.creator) ::: getPropertyObjectStrings(DC_11.creator)
+
+      def descriptions(): List[String] = getPropertyObjectStrings(DCTerms.description) ::: getPropertyObjectStrings(DC_11.description)
+
+      def provenances(): List[String] = getPropertyObjectStrings(DCTerms.provenance)
+
+      def publishers(): List[String] = getPropertyObjectStrings(DCTerms.publisher) ::: getPropertyObjectStrings(DC_11.publisher)
 
       def rights(): List[String] =
         getPropertyObjectStrings(DCTerms.rights) ::: getPropertyObjectStrings(DC_11.rights)
 
       def rightsHolder(): Option[String] = getPropertyObjectString(DCTerms.rightsHolder)
 
+      def sources(): List[String] = getPropertyObjectStrings(DCTerms.source) ::: getPropertyObjectStrings(DC_11.source)
+
       def subjects(): List[String] = getPropertyObjectStrings(DCTerms.subject)
 
-      def title(): Option[String] = getPropertyObjectString(DCTerms.title).orElse(getPropertyObjectString(DC_11.title))
+      def titles(): List[String] = getPropertyObjectStrings(DCTerms.title) ::: getPropertyObjectStrings(DC_11.title)
     }
 
     object foaf {

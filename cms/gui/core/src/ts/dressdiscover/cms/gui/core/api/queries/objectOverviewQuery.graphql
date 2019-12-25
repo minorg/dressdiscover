@@ -14,7 +14,9 @@ query ObjectOverviewQuery($collectionUri: String!, $institutionUri: String!, $ob
         }
     }
     objectByUri(uri: $objectUri) {
-        description
+        alternativeTitles
+        creators
+        descriptions
         images {
             original {
                 height
@@ -27,10 +29,14 @@ query ObjectOverviewQuery($collectionUri: String!, $institutionUri: String!, $ob
                 width
             }
         }
+        provenances
+        publishers
         rights {
             ...RightsFragment
         }
+        sources
         subjects
         title
+        titles
     }
 }

@@ -18,6 +18,11 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
     const institutionUri = decodeURIComponent(match.params.institutionUri);
     const objectUri = decodeURIComponent(match.params.objectUri);
 
+    const nameValueTableRows = (name: string, values: string[]) => values.map(value =>
+        <tr>
+            <td className="px-2">{name}</td>
+            <td className="px-2">{value}</td>
+        </tr>);
 
     return (
         <ApolloQueryWrapper<ObjectOverviewQuery, ObjectOverviewQueryVariables>
@@ -42,11 +47,33 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                         </CardBody>
                                     </Card>
                                 </Row> : null}
-                            {object_.description ?
+                            {object_.descriptions.length > 0 ?
                                 <Row className="pb-4">
                                     <Card className="w-100">
-                                        <CardHeader><CardTitle><h5>Description</h5></CardTitle></CardHeader>
-                                        <CardBody>{object_.description}</CardBody>
+                                        <CardHeader><CardTitle>
+                                            <h5>Description{object_.descriptions.length > 1 ? "s" : ""}</h5>
+                                        </CardTitle></CardHeader>
+                                        <CardBody>
+                                            {object_.descriptions.length > 1 ?
+                                                <table className="table-bordered w-100">
+                                                    {object_.descriptions.map(description => <tr>
+                                                        <td>{description}</td>
+                                                    </tr>)}
+                                                </table> : <React.Fragment>{object_.descriptions[0]}</React.Fragment>
+                                            }
+                                        </CardBody>
+                                    </Card>
+                                </Row> : null}
+                            {(object_.titles.length > 1 || object_.alternativeTitles.length > 0) || object_.titles[0] != object_.title ?
+                                <Row className="pb-4">
+                                    <Card className="w-100">
+                                        <CardHeader><CardTitle><h5>Titles</h5></CardTitle></CardHeader>
+                                        <CardBody>
+                                            <table className="table-bordered w-100">
+                                                {nameValueTableRows("Title", object_.titles)}
+                                                {nameValueTableRows("Alternative title", object_.alternativeTitles)}
+                                            </table>
+                                        </CardBody>
                                     </Card>
                                 </Row> : null}
                             {object_.subjects.length > 0 ?
@@ -58,6 +85,20 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                                 {object_.subjects.map(subject => <ListGroupItem
                                                     key={subject}>{subject}</ListGroupItem>)}
                                             </ListGroup>
+                                        </CardBody>
+                                    </Card>
+                                </Row> : null}
+                            {object_.creators.length > 0 || object_.provenances.length > 0 || object_.publishers.length > 0 || object_.sources.length > 0 ?
+                                <Row className="pb-4">
+                                    <Card className="w-100">
+                                        <CardHeader><CardTitle><h5>Provenance</h5></CardTitle></CardHeader>
+                                        <CardBody>
+                                            <table className="table-bordered w-100">
+                                                {nameValueTableRows("Creator", object_.creators)}
+                                                {nameValueTableRows("Publisher", object_.publishers)}
+                                                {nameValueTableRows("Provenance", object_.provenances)}
+                                                {nameValueTableRows("Source", object_.sources)}
+                                            </table>
                                         </CardBody>
                                     </Card>
                                 </Row> : null}

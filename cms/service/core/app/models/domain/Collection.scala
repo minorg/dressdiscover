@@ -12,8 +12,8 @@ final case class Collection(
 object Collection extends DomainModelCompanion {
   def apply(resource: ResourceWrapper): Collection =
     Collection(
-      description = resource.dublinCore.description,
-      name = resource.dublinCore.title.get,
+      description = resource.dublinCore.descriptions.headOption,
+      name = resource.dublinCore.titles.headOption.orElse(resource.foaf.name).get,
       rights = Rights(resource.resource),
       uri = resource.uri
     )
