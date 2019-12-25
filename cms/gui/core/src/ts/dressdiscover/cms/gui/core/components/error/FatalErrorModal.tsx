@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Modal, ModalBody, ModalHeader } from 'reactstrap';
+import {Modal, ModalBody, ModalHeader} from 'reactstrap';
 import {Exception} from "dressdiscover/cms/gui/core/Exception";
 
 interface Props {
@@ -20,7 +20,7 @@ export class FatalErrorModal extends React.Component<Props> {
             if (error) {
                 message = error.toString();
             } else if (exception) {
-                message = exception.toString();
+                message = exception.message;
             } else {
                 message = "";
             }

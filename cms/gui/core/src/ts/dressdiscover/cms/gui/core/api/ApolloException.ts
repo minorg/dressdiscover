@@ -1,7 +1,7 @@
-import { ApolloError } from "apollo-boost";
-import { Exception } from "dressdiscover/cms/gui/core/Exception";
-import { get } from "lodash";
-import { Environment } from "dressdiscover/cms/gui/core/Environment";
+import {ApolloError} from "apollo-boost";
+import {Exception} from "dressdiscover/cms/gui/core/Exception";
+import {get} from "lodash";
+import {Environment} from "dressdiscover/cms/gui/core/Environment";
 
 export class ApolloException extends Exception {
   constructor(readonly apolloError: ApolloError) {
@@ -9,7 +9,16 @@ export class ApolloException extends Exception {
   }
 
   get httpStatusCode(): number | undefined {
-    throw new EvalError("pull off graphQLErrors")
+    for (const graphQlError of this.apolloError.graphQLErrors) {
+      if (typeof (graphQlError.extensions) === "undefined") {
+        continue;
+      }
+      if (typeof (graphQlError.extensions.httpStatusCode) === "undefined") {
+        continue;
+      }
+      return graphQlError.extensions.httpStatusCode;
+    }
+    return undefined;
   }
 
   get message() {

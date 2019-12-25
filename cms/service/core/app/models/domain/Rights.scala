@@ -10,13 +10,16 @@ final case class Rights(
                        )
 
 object Rights extends DomainModelCompanion {
-  def apply(resource: ResourceWrapper): Option[Rights] =
-    resource.dublinCore.rights.map(text =>
-      Rights(
-        holder = resource.dublinCore.rightsHolder(),
-        license = resource.getPropertyObject(DCTerms.license).flatMap(object_ => if (object_.isURIResource) Some(Uri.parse(object_.asResource().getURI)) else None),
-        text = text
-      )
-    )
+  def apply(resource: ResourceWrapper): Option[Rights] = {
+    val texts = resource.dublinCore.rights()
+    if (texts.isEmpty) {
+      return None
+    }
+    Some(Rights(
+      holder = resource.dublinCore.rightsHolder(),
+      license = resource.getPropertyObject(DCTerms.license).flatMap(object_ => if (object_.isURIResource) Some(Uri.parse(object_.asResource().getURI)) else None),
+      text = texts.mkString("\n"),
+    ))
+  }
 }
 

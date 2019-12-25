@@ -88,6 +88,20 @@ class GraphQlSchemaDefinitionSpec extends WordSpec with Matchers {
            |""".stripMargin))
     }
 
+    "return object by URI" in {
+      val query =
+        graphql"""
+         query ObjectByUriQuery($$objectUri: String!) {
+           objectByUri(uri: $$objectUri) {
+               uri
+           }
+         }
+       """
+      executeQuery(query, vars = Json.obj("objectUri" -> TestData.object_.uri.toString())) should be(Json.parse(
+        s"""
+           |{"data":{"objectByUri":{"uri":"${TestData.object_.uri.toString()}"}}}
+           |""".stripMargin))
+    }
 
     ////    "allow to fetch Han Solo using his ID provided through variables" in {
     ////      val query =

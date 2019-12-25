@@ -15,7 +15,7 @@ export const DefaultPagination: React.FunctionComponent<DefaultPaginationProps> 
             <PaginationLink previous onClick={() => onPageRequest(currentPage - 1)}/>
         </PaginationItem>
         {currentPage > 0 ? _.range(currentPage - 1, (currentPage - PAGINATION_ITEMS_COUNT_LEFT >= 0 ? currentPage - PAGINATION_ITEMS_COUNT_LEFT : 0) - 1, -1).reverse().map(page =>
-                <PaginationItem>
+                <PaginationItem key={page}>
                     <PaginationLink onClick={() => onPageRequest(page)}>{page + 1}</PaginationLink>
                 </PaginationItem>)
             : null}
@@ -23,7 +23,7 @@ export const DefaultPagination: React.FunctionComponent<DefaultPaginationProps> 
             <PaginationLink href="#">{currentPage + 1}</PaginationLink>
         </PaginationItem>
         {currentPage + 1 <= maxPage ? _.range(currentPage + 1, (currentPage + PAGINATION_ITEMS_COUNT_RIGHT <= maxPage ? currentPage + PAGINATION_ITEMS_COUNT_RIGHT : maxPage) + 1).map(page =>
-                <PaginationItem>
+                <PaginationItem key={page}>
                     <PaginationLink onClick={() => onPageRequest(page)}>{page + 1}</PaginationLink>
                 </PaginationItem>)
             : null}

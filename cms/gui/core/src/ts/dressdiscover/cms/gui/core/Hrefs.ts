@@ -15,6 +15,10 @@ export class Hrefs {
     return "/institution/" + encodeURIComponent(encodeURIComponent(uri));
   }
 
+  static object(kwds: { collectionUri: string, institutionUri: string, objectUri: string }) {
+    return Hrefs.collection(kwds) + "/object/" + encodeURIComponent(encodeURIComponent(kwds.objectUri));
+  }
+
   static get privacy() {
     return "/privacy";
   }

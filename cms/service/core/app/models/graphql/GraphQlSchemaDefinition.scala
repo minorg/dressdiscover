@@ -69,7 +69,8 @@ object GraphQlSchemaDefinition {
   val RootQueryType = sangria.schema.ObjectType("RootQuery", fields[GraphQlSchemaContext, Unit](
     Field("collectionByUri", CollectionType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.collectionByUri(ctx.args.arg("uri"))),
     Field("institutionByUri", InstitutionType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.institutionByUri(ctx.args.arg("uri"))),
-    Field("institutions", ListType(InstitutionType), resolve = _.ctx.store.institutions)
+    Field("institutions", ListType(InstitutionType), resolve = _.ctx.store.institutions),
+    Field("objectByUri", ObjectType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.objectByUri(ctx.args.arg("uri")))
   ))
 
   // Schema
