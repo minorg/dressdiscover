@@ -22,6 +22,8 @@ trait DomainModelCompanion {
 
       def descriptions(): List[String] = getPropertyObjectStrings(DCTerms.description) ::: getPropertyObjectStrings(DC_11.description)
 
+      def identifiers(): List[String] = getPropertyObjectStrings(DCTerms.identifier) ::: getPropertyObjectStrings(DC_11.identifier)
+
       def provenances(): List[String] = getPropertyObjectStrings(DCTerms.provenance)
 
       def publishers(): List[String] = getPropertyObjectStrings(DCTerms.publisher) ::: getPropertyObjectStrings(DC_11.publisher)

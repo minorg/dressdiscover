@@ -24,6 +24,20 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
             <td className="px-2">{value}</td>
         </tr>);
 
+    const listGroupSection = (title: string, values: string[]) => (
+        values.length > 0 ?
+            <Row className="pb-4">
+                <Card className="w-100">
+                    <CardHeader><CardTitle><h5>{title}</h5></CardTitle></CardHeader>
+                    <CardBody>
+                        <ListGroup>
+                            {values.map(value => <ListGroupItem
+                                key={value}>{value}</ListGroupItem>)}
+                        </ListGroup>
+                    </CardBody>
+                </Card>
+            </Row> : null);
+
     return (
         <ApolloQueryWrapper<ObjectOverviewQuery, ObjectOverviewQueryVariables>
             query={objectOverviewQuery}
@@ -47,23 +61,7 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                         </CardBody>
                                     </Card>
                                 </Row> : null}
-                            {object_.descriptions.length > 0 ?
-                                <Row className="pb-4">
-                                    <Card className="w-100">
-                                        <CardHeader><CardTitle>
-                                            <h5>Description{object_.descriptions.length > 1 ? "s" : ""}</h5>
-                                        </CardTitle></CardHeader>
-                                        <CardBody>
-                                            {object_.descriptions.length > 1 ?
-                                                <table className="table-bordered w-100">
-                                                    {object_.descriptions.map(description => <tr>
-                                                        <td>{description}</td>
-                                                    </tr>)}
-                                                </table> : <React.Fragment>{object_.descriptions[0]}</React.Fragment>
-                                            }
-                                        </CardBody>
-                                    </Card>
-                                </Row> : null}
+                            {listGroupSection("Descriptions", object_.descriptions)}
                             {(object_.titles.length > 1 || object_.alternativeTitles.length > 0) || object_.titles[0] != object_.title ?
                                 <Row className="pb-4">
                                     <Card className="w-100">
@@ -76,18 +74,8 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                         </CardBody>
                                     </Card>
                                 </Row> : null}
-                            {object_.subjects.length > 0 ?
-                                <Row className="pb-4">
-                                    <Card className="w-100">
-                                        <CardHeader><CardTitle><h5>Subjects</h5></CardTitle></CardHeader>
-                                        <CardBody>
-                                            <ListGroup>
-                                                {object_.subjects.map(subject => <ListGroupItem
-                                                    key={subject}>{subject}</ListGroupItem>)}
-                                            </ListGroup>
-                                        </CardBody>
-                                    </Card>
-                                </Row> : null}
+                            {listGroupSection("Identifiers", object_.identifiers)}
+                            {listGroupSection("Subjects", object_.subjects)}
                             {object_.creators.length > 0 || object_.provenances.length > 0 || object_.publishers.length > 0 || object_.sources.length > 0 ?
                                 <Row className="pb-4">
                                     <Card className="w-100">

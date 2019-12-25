@@ -10,6 +10,7 @@ final case class Object(
                          creators: List[String] = List(),
                          description: Option[String] = None,
                          descriptions: List[String] = List(),
+                         identifiers: List[String] = List(),
                          images: List[DerivedImageSet] = List(),
                          rights: Option[Rights] = None,
                          provenances: List[String] = List(),
@@ -27,9 +28,9 @@ object Object extends DomainModelCompanion {
     Object(
       alternativeTitles = resource.dublinCore.alternativeTitles,
       creators = resource.dublinCore.creators,
-      //      dates = resource.d
       description = if (!descriptions.isEmpty) Some(descriptions(0)) else None,
       descriptions = descriptions,
+      identifiers = resource.dublinCore.identifiers(),
       images = resource.resource.listProperties(FOAF.depiction).asScala.toList.map(statement => DerivedImageSet(statement.getObject.asResource())),
       provenances = resource.dublinCore.provenances,
       publishers = resource.dublinCore.publishers,

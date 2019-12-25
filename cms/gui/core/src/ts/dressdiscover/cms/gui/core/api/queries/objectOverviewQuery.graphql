@@ -17,6 +17,7 @@ query ObjectOverviewQuery($collectionUri: String!, $institutionUri: String!, $ob
         alternativeTitles
         creators
         descriptions
+        identifiers
         images {
             original {
                 height

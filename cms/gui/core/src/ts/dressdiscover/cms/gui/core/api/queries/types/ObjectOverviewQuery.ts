@@ -64,6 +64,7 @@ export interface ObjectOverviewQuery_objectByUri {
   alternativeTitles: string[];
   creators: string[];
   descriptions: string[];
+  identifiers: string[];
   images: ObjectOverviewQuery_objectByUri_images[];
   provenances: string[];
   publishers: string[];
