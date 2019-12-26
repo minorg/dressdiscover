@@ -9,14 +9,24 @@ from dressdiscover.cms.etl.lib.namespace import CMS
 
 
 class _Model(ABC):
-    def __init__(self, *, graph: Graph, uri: URIRef, rdf_type: Optional[URIRef] = None):
-        assert isinstance(uri, URIRef)
+    def __init__(self, *, graph: Optional[Graph] = None, resource: Optional[Resource] = None,
+                 rdf_type: Optional[URIRef] = None, uri: Optional[URIRef] = None):
+        """
+        Construct a model from a resource xor a (graph, URI) pair
+        """
+        if resource is not None:
+            assert graph is None
+            assert uri is None
+        else:
+            assert graph is not None
+            assert uri is not None
+            assert isinstance(uri, URIRef)
+            resource = graph.resource(uri)
         self._logger = logging.getLogger(self.__class__.__name__)
-        self.__resource = graph.resource(uri)
+        self.__resource = resource
         if rdf_type is None:
             rdf_type = getattr(CMS, self.__class__.__name__)
         self.__resource.add(RDF.type, rdf_type)
-        self.__uri = uri
 
     def _get_single_literal(self, predicate) -> Optional[Literal]:
         """
@@ -69,4 +79,4 @@ class _Model(ABC):
 
     @property
     def uri(self) -> URIRef:
-        return self.__uri
+        return self.resource.identifier
