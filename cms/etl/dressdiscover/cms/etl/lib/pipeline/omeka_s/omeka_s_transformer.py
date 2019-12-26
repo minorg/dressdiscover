@@ -55,6 +55,8 @@ class OmekaSTransformer(_Transformer):
             graph=target_graph,
             uri=item_set.identifier
         )
+        for p, o in item_set.predicate_objects():
+            collection.resource.add(p.identifier, o)
         return collection
 
     # def __transform_file(self, *, file_, graph: Graph) -> Tuple[Image, ...]:
