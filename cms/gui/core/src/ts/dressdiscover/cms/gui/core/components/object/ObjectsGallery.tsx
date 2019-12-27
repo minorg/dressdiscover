@@ -17,9 +17,10 @@ export const ObjectsGallery: React.FunctionComponent<Props> = ({objects, ...pagi
                     <ObjectCard object={object}/>
                 </div>)}
         </Row>
-        <Row>
-            <Col className="p-0" xs="12">
-                <DefaultPagination {...paginationProps}/>
-            </Col>
-        </Row>
+        {(paginationProps.currentPage != 0 || paginationProps.maxPage > 0) ?
+            <Row>
+                <Col className="p-0" xs="12">
+                    <DefaultPagination {...paginationProps}/>
+                </Col>
+            </Row> : null}
     </Container>);

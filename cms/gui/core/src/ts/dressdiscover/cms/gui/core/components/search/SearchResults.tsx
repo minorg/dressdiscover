@@ -6,6 +6,8 @@ import {
     SearchResultsQuery,
     SearchResultsQueryVariables
 } from "dressdiscover/cms/gui/core/api/queries/types/SearchResultsQuery";
+import {ObjectsGallery} from "dressdiscover/cms/gui/core/components/object/ObjectsGallery";
+import {Frame} from "dressdiscover/cms/gui/core/components/frame/Frame";
 
 export const SearchResults: React.FunctionComponent<RouteComponentProps<{ text: string }>> = ({match}) => {
     const searchText = decodeURIComponent(match.params.text);
@@ -15,7 +17,19 @@ export const SearchResults: React.FunctionComponent<RouteComponentProps<{ text: 
             query={searchResultsQuery}
             variables={{limit: 10, text: searchText}}>
             {({data}) => {
-                return <div></div>;
+                const objects = data.searchObjects.map(result => ({
+                    collectionName: result.collection.name,
+                    collectionUri: result.collection.uri,
+                    institutionName: result.institution.name,
+                    institutionUri: result.institution.uri,
+                    ...result.object
+                }));
+                return (
+                    <Frame documentTitle={"Search results: " + searchText}>
+                        <ObjectsGallery objects={objects} currentPage={0} maxPage={0} onPageRequest={() => {
+                        }}/>
+                    </Frame>
+                );
             }}
         </ApolloQueryWrapper>);
 }
