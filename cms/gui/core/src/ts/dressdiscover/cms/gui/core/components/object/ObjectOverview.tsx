@@ -68,8 +68,10 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                         <CardHeader><CardTitle><h5>Titles</h5></CardTitle></CardHeader>
                                         <CardBody>
                                             <table className="table-bordered w-100">
+                                                <tbody>
                                                 {nameValueTableRows("Title", object_.titles)}
                                                 {nameValueTableRows("Alternative title", object_.alternativeTitles)}
+                                                </tbody>
                                             </table>
                                         </CardBody>
                                     </Card>
@@ -82,10 +84,12 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                         <CardHeader><CardTitle><h5>Provenance</h5></CardTitle></CardHeader>
                                         <CardBody>
                                             <table className="table-bordered w-100">
+                                                <tbody>
                                                 {nameValueTableRows("Creator", object_.creators)}
                                                 {nameValueTableRows("Publisher", object_.publishers)}
                                                 {nameValueTableRows("Provenance", object_.provenances)}
                                                 {nameValueTableRows("Source", object_.sources)}
+                                                </tbody>
                                             </table>
                                         </CardBody>
                                     </Card>
@@ -96,11 +100,13 @@ export const ObjectOverview: React.FunctionComponent<RouteComponentProps<{ colle
                                         <CardHeader><CardTitle><h5>Extent</h5></CardTitle></CardHeader>
                                         <CardBody>
                                             <table className="table-bordered w-100">
+                                                <tbody>
                                                 {nameValueTableRows("Date", object_.dates)}
                                                 {nameValueTableRows("Extent", object_.extents)}
                                                 {nameValueTableRows("Language", object_.languages)}
                                                 {nameValueTableRows("Medium", object_.media)}
                                                 {nameValueTableRows("Spatial coverage", object_.spatialCoverages)}
+                                                </tbody>
                                             </table>
                                         </CardBody>
                                     </Card>
