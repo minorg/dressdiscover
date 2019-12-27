@@ -190,6 +190,7 @@ class SparqlStore(endpointUrl: Url) extends Store {
       s"""
          |PREFIX cms: <${CMS.URI}>
          |PREFIX rdf: <${RDF.getURI}>
+         |PREFIX text: <http://jena.apache.org/text#>
          |SELECT ?collection ?institution ?object WHERE {
          |  ?collection cms:object ?object .
          |  ?institution cms:collection ?collection .
@@ -218,15 +219,6 @@ class SparqlStore(endpointUrl: Url) extends Store {
         institution = institutionsByUri(querySolution._2),
         object_ = objectsByUri(querySolution._3)
       ))
-
-
-
-      //      objects.map(object_ => ObjectSearchResult(
-      //
-      //        object_ = object_
-      //      )
-      //
-      //      )
     }
   }
 
