@@ -10,6 +10,8 @@
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
 @prefix spatial: <http://jena.apache.org/spatial#> .
 @prefix schema:  <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcelements: <http://purl.org/dc/elements/1.1/> .
 @prefix :        <#> .
 
 <#service> rdf:type fuseki:Service ;
@@ -73,6 +75,10 @@
     text:uidField "uid" ;
     text:langField "lang" ;
     text:map (
+         [ text:field "text" ; text:predicate dcterms:title ]
+         [ text:field "text" ; text:predicate dcelements:title ]
+         [ text:field "text" ; text:predicate dcterms:description ]
+         [ text:field "text" ; text:predicate dcelements:description ]
          [ text:field "text" ; text:predicate skos:prefLabel ]
          [ text:field "text" ; text:predicate skos:altLabel ]
          [ text:field "text" ; text:predicate skos:hiddenLabel ]
