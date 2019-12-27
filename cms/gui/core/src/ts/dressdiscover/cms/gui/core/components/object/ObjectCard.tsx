@@ -2,13 +2,11 @@ import * as React from "react";
 import {useState} from "react";
 import {Card, CardBody, CardHeader, CardTitle, Collapse} from "reactstrap";
 import * as classnames from "classnames";
-import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
 import {Hrefs} from "dressdiscover/cms/gui/core/Hrefs";
 import {Link} from "react-router-dom";
+import {ObjectSummary} from "dressdiscover/cms/gui/core/components/object/ObjectSummary";
 
-type Object = ObjectCardObject;
-
-export const ObjectCard: React.FunctionComponent<{ object: Object }> = ({object}) => {
+export const ObjectCard: React.FunctionComponent<{ object: ObjectSummary }> = ({object}) => {
     const [state, setState] = useState<{ descriptionShown: boolean }>({descriptionShown: false});
 
     const onToggleDescription = () => setState((prevState) => ({descriptionShown: !prevState.descriptionShown}));

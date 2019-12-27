@@ -3,18 +3,18 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: ObjectsGalleryObjectFragment
+// GraphQL fragment: ObjectSummaryFragment
 // ====================================================
 
-export interface ObjectsGalleryObjectFragment_thumbnail {
+export interface ObjectSummaryFragment_thumbnail {
   __typename: "Image";
   url: string;
 }
 
-export interface ObjectsGalleryObjectFragment {
+export interface ObjectSummaryFragment {
   __typename: "Object";
   description: string | null;
   title: string;
-  thumbnail: ObjectsGalleryObjectFragment_thumbnail | null;
+  thumbnail: ObjectSummaryFragment_thumbnail | null;
   uri: string;
 }

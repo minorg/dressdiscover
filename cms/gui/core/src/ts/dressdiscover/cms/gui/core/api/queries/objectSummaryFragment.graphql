@@ -1,4 +1,4 @@
-fragment ObjectsGalleryObjectFragment on Object {
+fragment ObjectSummaryFragment on Object {
     description
     title
     thumbnail {

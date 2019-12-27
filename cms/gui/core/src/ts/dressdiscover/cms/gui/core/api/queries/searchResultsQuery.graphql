@@ -1,0 +1,17 @@
+#import "./objectSummaryFragment.graphql"
+
+query SearchResultsQuery($limit: Int!, $text: String!) {
+    searchObjects(limit: $limit, text: $text) {
+        collection {
+            name
+            uri
+        }
+        institution {
+            name
+            uri
+        }
+        object {
+            ...ObjectSummaryFragment
+        }
+    }
+}

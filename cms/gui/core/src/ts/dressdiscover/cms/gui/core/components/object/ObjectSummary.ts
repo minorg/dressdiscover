@@ -1,6 +1,8 @@
-export interface ObjectCardObject {
+export interface ObjectSummary {
+    collectionName?: string;
     collectionUri: string;
     description: string | null | undefined;
+    institutionName?: string;
     institutionUri: string;
     thumbnail: {
         url: string;

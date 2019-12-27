@@ -1,14 +1,12 @@
 import * as React from "react";
 import {ObjectCard} from "dressdiscover/cms/gui/core/components/object/ObjectCard";
 import {Col, Container, Row} from "reactstrap";
-import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
+import {ObjectSummary} from "dressdiscover/cms/gui/core/components/object/ObjectSummary";
 import {DefaultPaginationProps} from "dressdiscover/cms/gui/core/components/pagination/DefaultPaginationProps";
 import {DefaultPagination} from "dressdiscover/cms/gui/core/components/pagination/DefaultPagination";
 
-type Object = ObjectCardObject;
-
 interface Props extends DefaultPaginationProps {
-    objects: Object[];
+    objects: ObjectSummary[];
 }
 
 export const ObjectsGallery: React.FunctionComponent<Props> = ({objects, ...paginationProps}) => (
