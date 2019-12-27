@@ -90,7 +90,7 @@ class SparqlStoreSpec extends WordSpec with Matchers {
 
     "search objects" in {
       withUnknownHostExceptionCatch { () =>
-        val objects = store.searchObjects("")
+        val objects = store.searchObjects(10, "back")
         objects.size should be > 1
       }
     }

@@ -18,5 +18,5 @@ object TestStore extends Store {
 
   override def objectByUri(objectUri: Uri): Object = if (objectUri == TestData.object_.uri) TestData.object_ else throw new NoSuchElementException
 
-  override def searchObjects(text: String): List[ObjectSearchResult] = List(new ObjectSearchResult(collection = TestData.collection, institution = TestData.institution, object_ = TestData.object_))
+  override def searchObjects(limit: Int, text: String): List[ObjectSearchResult] = List(new ObjectSearchResult(collection = TestData.collection, institution = TestData.institution, object_ = TestData.object_))
 }

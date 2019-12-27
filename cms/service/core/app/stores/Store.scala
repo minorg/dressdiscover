@@ -18,5 +18,5 @@ trait Store {
 
   def objectByUri(objectUri: Uri): Object
 
-  def searchObjects(text: String): List[ObjectSearchResult]
+  def searchObjects(limit: Int, text: String): List[ObjectSearchResult]
 }

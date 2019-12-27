@@ -73,7 +73,7 @@ object GraphQlSchemaDefinition {
     Field("institutionByUri", InstitutionType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.institutionByUri(ctx.args.arg("uri"))),
     Field("institutions", ListType(InstitutionType), resolve = _.ctx.store.institutions),
     Field("objectByUri", ObjectType, arguments = UriArgument :: Nil, resolve = (ctx) => ctx.ctx.store.objectByUri(ctx.args.arg("uri"))),
-    Field("searchObjects", ListType(ObjectSearchResultType), arguments = TextArgument :: Nil, resolve = (ctx) => ctx.ctx.store.searchObjects(ctx.args.arg("text")))
+    Field("searchObjects", ListType(ObjectSearchResultType), arguments = LimitArgument :: TextArgument :: Nil, resolve = (ctx) => ctx.ctx.store.searchObjects(ctx.args.arg("limit"), ctx.args.arg("text")))
   ))
 
   // Schema
