@@ -2,7 +2,7 @@ package stores
 
 import io.lemonlabs.uri.{Uri, Url}
 import models.domain.vocabulary.CMS
-import models.domain.{Collection, Institution, Object}
+import models.domain.{Collection, Institution, Object, ObjectSearchResult}
 import org.apache.jena.query.{Query, QueryExecution, QueryExecutionFactory, QueryFactory}
 import org.apache.jena.sparql.vocabulary.FOAF
 import org.apache.jena.vocabulary.RDF
@@ -152,6 +152,8 @@ class SparqlStore(endpointUrl: Url) extends Store {
       model.listSubjectsWithProperty(RDF.`type`, CMS.Object).asScala.toList.map(resource => Object(resource))
     }
   }
+
+  override def searchObjects(text: String): List[ObjectSearchResult] = throw new UnsupportedOperationException
 
   private def withQueryExecution[T](query: Query)(f: (QueryExecution) => T): T = {
     val queryExecution = QueryExecutionFactory.sparqlService(endpointUrl.toString(), query)
