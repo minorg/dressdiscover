@@ -1,5 +1,4 @@
 import * as React from "react";
-import {useState} from "react";
 import {Card, CardBody, CardHeader, CardTitle, Col, Container, Row} from "reactstrap";
 import {Hrefs} from "dressdiscover/cms/gui/core/Hrefs";
 import {Link} from "react-router-dom";
@@ -7,9 +6,6 @@ import {ObjectSummary} from "dressdiscover/cms/gui/core/components/object/Object
 import {TextDisclosurePanel} from "dressdiscover/cms/gui/core/components/TextDisclosurePanel";
 
 export const ObjectCard: React.FunctionComponent<{ object: ObjectSummary }> = ({object}) => {
-    const [state, setState] = useState<{ descriptionShown: boolean }>({descriptionShown: false});
-
-    const onToggleDescription = () => setState((prevState) => ({descriptionShown: !prevState.descriptionShown}));
     const objectHref = Hrefs.object({
         collectionUri: object.collectionUri,
         institutionUri: object.institutionUri,

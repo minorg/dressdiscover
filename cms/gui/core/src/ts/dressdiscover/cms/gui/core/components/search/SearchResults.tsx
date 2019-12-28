@@ -15,9 +15,9 @@ export const SearchResults: React.FunctionComponent<RouteComponentProps<{ text: 
     return (
         <ApolloQueryWrapper<SearchResultsQuery, SearchResultsQueryVariables>
             query={searchResultsQuery}
-            variables={{limit: 20, text: searchText}}>
+            variables={{limit: 20, offset: 0, text: searchText}}>
             {({data}) => {
-                const objects = data.searchObjects.map(result => {
+                const objects = data.matchingObjects.map(result => {
                     const {collection, institution, object} = result;
                     const {rights: objectRights, ...otherObjectProps} = object;
                     const rights = objectRights ? objectRights : (collection.rights ? collection.rights : institution.rights);

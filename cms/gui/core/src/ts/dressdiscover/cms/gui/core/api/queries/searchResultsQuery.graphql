@@ -1,7 +1,7 @@
 #import "./objectSummaryFragment.graphql"
 
-query SearchResultsQuery($limit: Int!, $text: String!) {
-    searchObjects(limit: $limit, text: $text) {
+query SearchResultsQuery($limit: Int!, $offset: Int!, $text: String!) {
+    matchingObjects(limit: $limit, offset: $offset, text: $text) {
         collection {
             name
             rights {
@@ -23,4 +23,5 @@ query SearchResultsQuery($limit: Int!, $text: String!) {
             }
         }
     }
+    matchingObjectsCount(text: $text)
 }

@@ -27,7 +27,7 @@ export const TextDisclosurePanel: React.FunctionComponent<{
             </div>
             <br/>
             <Collapse isOpen={open}>
-                <div className={classnames("text-left", textClassName} style={textStyle}>{text}</div>
+                <div className={classnames("text-left", textClassName)} style={textStyle}>{text}</div>
             </Collapse>
         </div>
     );
