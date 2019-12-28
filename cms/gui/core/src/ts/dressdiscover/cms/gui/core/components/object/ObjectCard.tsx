@@ -1,17 +1,11 @@
 import * as React from "react";
-import {useState} from "react";
-import {Card, CardBody, CardHeader, CardTitle, Collapse} from "reactstrap";
-import * as classnames from "classnames";
-import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
+import {Card, CardBody, CardHeader, CardTitle, Col, Container, Row} from "reactstrap";
 import {Hrefs} from "dressdiscover/cms/gui/core/Hrefs";
 import {Link} from "react-router-dom";
+import {ObjectSummary} from "dressdiscover/cms/gui/core/components/object/ObjectSummary";
+import {TextDisclosurePanel} from "dressdiscover/cms/gui/core/components/TextDisclosurePanel";
 
-type Object = ObjectCardObject;
-
-export const ObjectCard: React.FunctionComponent<{ object: Object }> = ({object}) => {
-    const [state, setState] = useState<{ descriptionShown: boolean }>({descriptionShown: false});
-
-    const onToggleDescription = () => setState((prevState) => ({descriptionShown: !prevState.descriptionShown}));
+export const ObjectCard: React.FunctionComponent<{ object: ObjectSummary }> = ({object}) => {
     const objectHref = Hrefs.object({
         collectionUri: object.collectionUri,
         institutionUri: object.institutionUri,
@@ -24,33 +18,45 @@ export const ObjectCard: React.FunctionComponent<{ object: Object }> = ({object}
                 <CardTitle><strong><Link to={objectHref}>{object.title}</Link></strong></CardTitle>
             </CardHeader>
             <CardBody>
-                {object.thumbnail ?
-                    <figure className="figure text-center w-100">
-                        <Link to={objectHref}>
-                            <img className="figure-img rounded" src={object.thumbnail!.url}
-                                 style={{height: "200px", width: "200px"}}/>
-                        </Link>
-                    </figure> : null}
+                <Container fluid>
+                    <Row>
+                        {object.thumbnail ?
+                            <figure className="figure text-center w-100">
+                                <Link to={objectHref}>
+                                    <img className="figure-img rounded" src={object.thumbnail!.url}
+                                         style={{height: "200px", width: "200px"}}/>
+                                </Link>
+                            </figure> : null}
+                    </Row>
+                </Container>
+                {object.institutionName ?
+                    <Row className="pt-1">
+                        <Col xs="12">
+                            Institution: <Link
+                            to={Hrefs.institution(object.institutionUri)}>{object.institutionName}</Link>
+                        </Col>
+                    </Row> : null}
+                {object.collectionName ?
+                    <Row className="pt-1">
+                        <Col xs="12">
+                            Collection: <Link to={Hrefs.collection(object)}>{object.collectionName}</Link>
+                        </Col>
+                    </Row> : null}
                 {object.description ?
-                    <div className="card-text w-100">
-                        <div>
-                            <a onClick={onToggleDescription} className="description-toggle">Description</a>
-                            <div className="float-right">
-                                <a onClick={onToggleDescription} className="description-toggle">
-                                    <i className={classnames({
-                                        fas: true,
-                                        "fa-chevron-down": state.descriptionShown,
-                                        "fa-chevron-right": !state.descriptionShown
-                                    })}></i>
-                                </a>
-                            </div>
-                            <br/>
-                            <Collapse isOpen={state.descriptionShown}>
-                                <div className="text-left"
-                                     style={{fontSize: "small", maxWidth: "200px"}}>{object.description}</div>
-                            </Collapse>
-                        </div>
-                    </div> : null}
+                    <Row className="pt-1">
+                        <Col xs="12">
+                            <TextDisclosurePanel text={object.description}
+                                                 textStyle={{fontSize: "x-small", maxWidth: "16em"}}
+                                                 title="Description"/>
+                        </Col>
+                    </Row> : null}
+                {object.rights ?
+                    <Row className="pt-1">
+                        <Col xs="12">
+                            <TextDisclosurePanel text={object.rights}
+                                                 textStyle={{fontSize: "x-small", maxWidth: "16em"}} title="Rights"/>
+                        </Col>
+                    </Row> : null}
             </CardBody>
         </Card>);
 }

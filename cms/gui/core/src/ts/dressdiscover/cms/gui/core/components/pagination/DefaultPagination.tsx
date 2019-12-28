@@ -27,10 +27,10 @@ export const DefaultPagination: React.FunctionComponent<DefaultPaginationProps> 
                     <PaginationLink onClick={() => onPageRequest(page)}>{page + 1}</PaginationLink>
                 </PaginationItem>)
             : null}
-        <PaginationItem disabled={currentPage + 1 === maxPage}>
+        <PaginationItem disabled={currentPage === maxPage}>
             <PaginationLink next onClick={() => onPageRequest(currentPage + 1)}/>
         </PaginationItem>
-        <PaginationItem disabled={currentPage + 1 === maxPage}>
-            <PaginationLink last onClick={() => onPageRequest(maxPage - 1)}/>
+        <PaginationItem disabled={currentPage === maxPage}>
+            <PaginationLink last onClick={() => onPageRequest(maxPage)}/>
         </PaginationItem>
     </Pagination>);

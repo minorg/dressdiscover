@@ -1,7 +1,7 @@
 package stores
 
 import io.lemonlabs.uri.Uri
-import models.domain.{Collection, Institution, Object}
+import models.domain.{Collection, Institution, Object, ObjectSearchResult}
 
 object TestStore extends Store {
   override def collectionByUri(collectionUri: Uri): Collection = if (collectionUri == TestData.collection.uri) TestData.collection else throw new NoSuchElementException
@@ -15,6 +15,10 @@ object TestStore extends Store {
   override def institutionCollections(institutionUri: Uri): List[Collection] = List(TestData.collection)
 
   override def institutions(): List[Institution] = List(TestData.institution)
+
+  override def matchingObjects(limit: Int, offset: Int, text: String): List[ObjectSearchResult] = if (offset == 0) List(new ObjectSearchResult(collection = TestData.collection, institution = TestData.institution, object_ = TestData.object_)) else List()
+
+  override def matchingObjectsCount(text: String) = 1
 
   override def objectByUri(objectUri: Uri): Object = if (objectUri == TestData.object_.uri) TestData.object_ else throw new NoSuchElementException
 }

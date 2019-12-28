@@ -16,6 +16,7 @@ import {LoggerContext} from 'dressdiscover/cms/gui/core/util/logging/LoggerConte
 import {CollectionOverview} from "dressdiscover/cms/gui/core/components/collection/CollectionOverview";
 import {InstitutionOverview} from "dressdiscover/cms/gui/core/components/institution/InstitutionOverview";
 import {ObjectOverview} from "dressdiscover/cms/gui/core/components/object/ObjectOverview";
+import {SearchResults} from "dressdiscover/cms/gui/core/components/search/SearchResults";
 
 // Logger
 const logger = new ConsoleLogger();
@@ -35,6 +36,7 @@ ReactDOM.render(
                   <Route path="/institution/:institutionUri/collection/:collectionUri" component={CollectionOverview}/>
                   <Route path="/institution/:institutionUri" component={InstitutionOverview}/>
                   <Route exact path={Hrefs.privacy} component={Privacy}/>
+                  <Route path="/search/:text" component={SearchResults}/>
                   <Route component={NoRoute}/>
               </Switch>
           </Router>

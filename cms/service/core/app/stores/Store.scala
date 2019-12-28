@@ -1,7 +1,7 @@
 package stores
 
 import io.lemonlabs.uri.Uri
-import models.domain.{Collection, Institution, Object}
+import models.domain.{Collection, Institution, Object, ObjectSearchResult}
 
 trait Store {
   def collectionByUri(collectionUri: Uri): Collection
@@ -15,6 +15,10 @@ trait Store {
   def institutionCollections(institutionUri: Uri): List[Collection]
 
   def institutions(): List[Institution]
+
+  def matchingObjects(limit: Int, offset: Int, text: String): List[ObjectSearchResult]
+
+  def matchingObjectsCount(text: String): Int
 
   def objectByUri(objectUri: Uri): Object
 }

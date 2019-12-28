@@ -15,19 +15,17 @@ import {
 import * as collectionOverviewObjectsPaginationQuery
     from "dressdiscover/cms/gui/core/api/queries/collectionOverviewObjectsPaginationQuery.graphql";
 import {useLazyQuery, useQuery} from "@apollo/react-hooks";
-import {ObjectCardObject} from "dressdiscover/cms/gui/core/components/object/ObjectCardObject";
+import {ObjectSummary} from "dressdiscover/cms/gui/core/components/object/ObjectSummary";
 import * as ReactLoader from "react-loader";
 import {InstitutionCollectionObjectOverview} from "dressdiscover/cms/gui/core/components/frame/InstitutionCollectionObjectOverview";
 import {RightsTable} from "dressdiscover/cms/gui/core/components/rights/RightsTable";
 import {Container, Row} from "reactstrap";
 
-type Object = ObjectCardObject;
-
 export const CollectionOverview: React.FunctionComponent<RouteComponentProps<{ collectionUri: string; institutionUri: string; }>> = ({match}) => {
     const collectionUri = decodeURIComponent(match.params.collectionUri);
     const institutionUri = decodeURIComponent(match.params.institutionUri);
 
-    const [state, setState] = useState<{ currentObjectsPage: number, objects: Object[] | null }>({
+    const [state, setState] = useState<{ currentObjectsPage: number, objects: ObjectSummary[] | null }>({
         currentObjectsPage: 0,
         objects: null
     });

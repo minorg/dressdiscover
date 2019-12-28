@@ -22,4 +22,8 @@ export class Hrefs {
   static get privacy() {
     return "/privacy";
   }
+
+  static search(text: string) {
+    return "/search/" + encodeURIComponent(encodeURIComponent(text));
+  }
 }

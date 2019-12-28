@@ -6,6 +6,7 @@ type Rights = CollectionOverviewQuery_collectionByUri_rights;
 
 export const RightsTable: React.FunctionComponent<{ rights: Rights }> = ({rights}) => (
     <table className="table-bordered w-100">
+        <tbody>
         <tr>
             <td className="px-2"><strong>Rights</strong></td>
             <td className="px-2">{rights.text}</td>
@@ -24,5 +25,6 @@ export const RightsTable: React.FunctionComponent<{ rights: Rights }> = ({rights
                     <React.Fragment>{rights.license}</React.Fragment>}</td>
             </tr>
             : null}
+        </tbody>
     </table>);
     
