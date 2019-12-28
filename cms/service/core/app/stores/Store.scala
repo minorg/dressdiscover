@@ -16,7 +16,9 @@ trait Store {
 
   def institutions(): List[Institution]
 
-  def objectByUri(objectUri: Uri): Object
+  def matchingObjects(limit: Int, offset: Int, text: String): List[ObjectSearchResult]
 
-  def searchObjects(limit: Int, text: String): List[ObjectSearchResult]
+  def matchingObjectsCount(text: String): Int
+
+  def objectByUri(objectUri: Uri): Object
 }

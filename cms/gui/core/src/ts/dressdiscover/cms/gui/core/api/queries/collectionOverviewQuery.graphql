@@ -8,7 +8,6 @@ query CollectionOverviewQuery($collectionUri: String!, $institutionUri: String!)
         objects(limit: 20, offset: 0) {
             ...ObjectSummaryFragment
         }
-        objectsCount
         rights {
             ...RightsFragment
         }
