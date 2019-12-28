@@ -15,15 +15,21 @@ export const SearchResults: React.FunctionComponent<RouteComponentProps<{ text: 
     return (
         <ApolloQueryWrapper<SearchResultsQuery, SearchResultsQueryVariables>
             query={searchResultsQuery}
-            variables={{limit: 10, text: searchText}}>
+            variables={{limit: 20, text: searchText}}>
             {({data}) => {
-                const objects = data.searchObjects.map(result => ({
-                    collectionName: result.collection.name,
-                    collectionUri: result.collection.uri,
-                    institutionName: result.institution.name,
-                    institutionUri: result.institution.uri,
-                    ...result.object
-                }));
+                const objects = data.searchObjects.map(result => {
+                    const {collection, institution, object} = result;
+                    const {rights: objectRights, ...otherObjectProps} = object;
+                    const rights = objectRights ? objectRights : (collection.rights ? collection.rights : institution.rights);
+                    return {
+                        collectionName: collection.name,
+                        collectionUri: collection.uri,
+                        institutionName: institution.name,
+                        institutionUri: institution.uri,
+                        rights: rights ? rights.text : undefined,
+                        ...otherObjectProps
+                    };
+                });
                 return (
                     <Frame documentTitle={"Search results: " + searchText}>
                         <ObjectsGallery objects={objects} currentPage={0} maxPage={0} onPageRequest={() => {

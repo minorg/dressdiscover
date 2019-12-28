@@ -4,14 +4,23 @@ query SearchResultsQuery($limit: Int!, $text: String!) {
     searchObjects(limit: $limit, text: $text) {
         collection {
             name
+            rights {
+                text
+            }
             uri
         }
         institution {
             name
+            rights {
+                text
+            }
             uri
         }
         object {
             ...ObjectSummaryFragment
+            rights {
+                text
+            }
         }
     }
 }
