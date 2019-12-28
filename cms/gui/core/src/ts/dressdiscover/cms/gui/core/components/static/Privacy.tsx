@@ -2,47 +2,34 @@ import {Frame} from 'dressdiscover/cms/gui/core/components/frame/Frame';
 import {ActiveNavbarItem} from 'dressdiscover/cms/gui/core/components/navbar/ActiveNavbarItem';
 import {Hrefs} from 'dressdiscover/cms/gui/core/Hrefs';
 import * as React from 'react';
-import {Col, Container, Row} from 'reactstrap';
-import Card from 'reactstrap/lib/Card';
-import CardBody from 'reactstrap/lib/CardBody';
-import {StaticHeadline} from "dressdiscover/cms/gui/core/components/static/StaticHeadline";
 
 export class Privacy extends React.Component {
     render() {
         return (
             <Frame activeNavItem={ActiveNavbarItem.Home} documentTitle="Privacy">
-                <Container fluid>
-                    <Row>
-                        <Col xs="12">
-                            <StaticHeadline>Privacy</StaticHeadline>
-                        </Col>
-                    </Row>
-                    <Row/>
-                    <Row>
-                        <Col xs={{size: 8, offset: 2}}>
-                            <Card>
-                                <CardBody>
-                                    <Container fluid>
-                                        <p>
-                                            This privacy notice discloses the privacy practices for the DressDiscover
-                                            web site (https://dressdiscover.org). This privacy notice
-                                            applies
-                                            solely to information collected by this website.
-                                        </p>
+                <p>
+                    This privacy notice discloses the privacy practices for the DressDiscover
+                    web site (https://dressdiscover.org). This privacy notice
+                    applies
+                    solely to information collected by this website.
+                </p>
 
-                                        <h4>Information Collection, Use, and Sharing</h4>
-                                        <p>We are the sole owners of the information collected on this site. We only have access to/collect information
-                                            that you voluntarily give us via email or other direct contact from you. We will not sell or rent
-                        this information to anyone.</p>
+                <h4>Information Collection, Use, and Sharing</h4>
+                <p>We are the sole owners of the information collected on this site. We only have access to/collect
+                    information
+                    that you voluntarily give us via email or other direct contact from you. We will not sell or rent
+                    this information to anyone.</p>
 
-                                        <p>We will use your information to respond to you, regarding the reason you contacted us. We will not share
-                                            your information with any third party outside of our organization, other than as necessary to fulfill
-                        your request.</p>
+                <p>We will use your information to respond to you, regarding the reason you contacted us. We will not
+                    share
+                    your information with any third party outside of our organization, other than as necessary to
+                    fulfill
+                    your request.</p>
 
-                                        <p>Unless you ask us not to, we may contact you via email in the future to tell you about specials, new
-                        products or services, or changes to this privacy policy.</p>
+                <p>Unless you ask us not to, we may contact you via email in the future to tell you about specials, new
+                    products or services, or changes to this privacy policy.</p>
 
-                                        <h4>Your Access to and Control Over Information</h4>
+                <h4>Your Access to and Control Over Information</h4>
                                         <p>You may opt out of any future contacts from us at any time. You can do the following at any time by contacting
                         us via the email address given on our website:</p>
                                         <ul>
@@ -82,11 +69,6 @@ export class Privacy extends React.Component {
 
                                         <p>If you feel that we are not abiding by this privacy policy, you should&nbsp;
                             <a href={Hrefs.contact}>contact us immediately</a>.</p>
-                                    </Container>    </CardBody>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
             </Frame>
         );
     }
