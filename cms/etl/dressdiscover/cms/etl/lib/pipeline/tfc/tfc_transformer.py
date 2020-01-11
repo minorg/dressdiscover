@@ -275,18 +275,21 @@ class TfcTransformer(_Transformer):
         graph = Graph()
 
         institution = Institution(graph=graph, uri=URIRef("http://www.unt.edu/"))
-        institution.resource.add(FOAF.name, Literal("University of North Texas"))
+        institution.name = "University of North Texas"
+        institution.owner = CMS.public
+        # institution.owner = URIRef("urn:example:nonextant")
 
         collection = Collection(graph=graph, uri=URIRef("http://tfc.unt.edu/"))
+        collection.owner = CMS.inherit
+        # collection.owner = URIRef("urn:example:nonextant")
+        collection.title = "Texas Fashion Collection"
         collection.resource.add(DCTERMS.license, URIRef(self._LICENSE_URI))
         collection.resource.add(DCTERMS.rights,
                                 Literal(
                                     "All Texas Fashion Collection content and images are copyrighted. The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see https://digital.library.unt.edu/terms-of-use/"))
         collection.resource.add(DCTERMS.rightsHolder, Literal(self._RIGHTS_HOLDER))
-        collection.resource.add(DCTERMS.title, Literal("Texas Fashion Collection"))
-        institution.resource.add(CMS.collection, collection.uri)
 
-        for record_etree in record_etrees:
+        for record_etree_i, record_etree in enumerate(record_etrees):
             record_identifier = record_etree.find('header').find('identifier').text
 
             metadata_etree = record_etree.find("metadata").find(self._UNTL_NS + 'metadata')
@@ -301,7 +304,10 @@ class TfcTransformer(_Transformer):
                 continue
 
             object_ = Object(graph=graph, uri=URIRef(item_url))
-            collection.resource.add(CMS.object, object_.uri)
+            # if record_etree_i + 1 == len(record_etrees):
+            #     object_.owner = URIRef("urn:example:nonextant")
+            # else:
+            object_.owner = CMS.inherit
 
             for etree in metadata_etree:
                 assert etree.tag.startswith(self._UNTL_NS)
@@ -320,5 +326,9 @@ class TfcTransformer(_Transformer):
                     object_=object_,
                     record_identifier=record_identifier
                 )
+
+            collection.add_object(object_)
+
+        institution.add_collection(collection)
 
         return graph
