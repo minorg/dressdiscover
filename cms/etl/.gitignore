@@ -1,3 +1,4 @@
+/config/
 /data/
 *.pyc
 /venv/
