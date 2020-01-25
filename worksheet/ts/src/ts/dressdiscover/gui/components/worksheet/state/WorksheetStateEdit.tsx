@@ -9,7 +9,6 @@ import { inject } from 'mobx-react';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Button, Input, Table } from 'reactstrap';
-import { update } from 'space-lift';
 
 import { WorksheetStateWrapper } from '../../../models/worksheet/state/WorksheetStateWrapper';
 import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
@@ -54,7 +53,7 @@ class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps
 
     onChangeDescription(e: any) {
         const text = e.target.value;
-        this.setState((prevState) => update(prevState, { description: text }));
+        this.setState((prevState) => Object.assign({}, prevState, { description: text }));
     }
 
     onToggleFeatureSet(featureSetId: WorksheetFeatureSetId) {
@@ -65,7 +64,7 @@ class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps
                 if (newSelectedFeatureIds.length === selectedFeatureSetIds.length) {
                     newSelectedFeatureIds.push(featureSetId);
                 }
-                return update(prevState, { selectedFeatureSetIds: newSelectedFeatureIds });
+                return Object.assign({}, prevState, { selectedFeatureSetIds: newSelectedFeatureIds });
             });
     }
 
