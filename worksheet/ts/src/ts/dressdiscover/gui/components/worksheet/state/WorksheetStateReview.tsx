@@ -158,9 +158,9 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
     }
 
     private readonly stringExporters: StringWorksheetStateExporter[] = [
+        new TextWorksheetStateExporter(),
         new CsvStringWorksheetStateExporter(),
         new JsonStringWorksheetStateExporter(),
-        new JsonLdStringWorksheetStateExporter(),
-        new TextWorksheetStateExporter()
+        new JsonLdStringWorksheetStateExporter()
     ];
 }
