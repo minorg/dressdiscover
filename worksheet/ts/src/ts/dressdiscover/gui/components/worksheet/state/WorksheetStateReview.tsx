@@ -23,6 +23,7 @@ import { Button, Form, Input } from 'reactstrap';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';
 import { WorksheetStateMarkParser } from './WorksheetStateMarkParser';
+import {TextWorksheetStateExporter} from "dressdiscover/gui/components/worksheet/state/exporters/string/TextWorksheetStateExporter";
 
 
 export class WorksheetStateReview extends React.Component<RouteComponentProps<WorksheetStateMarkRouteParams>> {
@@ -156,5 +157,10 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
         return this.stringExporters[this.state.selectedFormatIndex];
     }
 
-    private readonly stringExporters: StringWorksheetStateExporter[] = [new CsvStringWorksheetStateExporter(), new JsonStringWorksheetStateExporter(), new JsonLdStringWorksheetStateExporter()];
+    private readonly stringExporters: StringWorksheetStateExporter[] = [
+        new CsvStringWorksheetStateExporter(),
+        new JsonStringWorksheetStateExporter(),
+        new JsonLdStringWorksheetStateExporter(),
+        new TextWorksheetStateExporter()
+    ];
 }
