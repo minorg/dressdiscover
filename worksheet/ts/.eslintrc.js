@@ -13,7 +13,8 @@ module.exports = {
     },
     "plugins": [
         "@typescript-eslint",
-        "@typescript-eslint/tslint"
+        "@typescript-eslint/tslint",
+        "eslint-plugin-prefer-arrow"
     ],
     "rules": {
         "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -53,18 +54,18 @@ module.exports = {
             "smart"
         ],
         "guard-for-in": "error",
-        "id-blacklist": [
-            "error",
-            "any",
-            "Number",
-            "number",
-            "String",
-            "string",
-            "Boolean",
-            "boolean",
-            "Undefined",
-            "undefined"
-        ],
+        // "id-blacklist": [
+        //     "error",
+        //     "any",
+        //     "Number",
+        //     "number",
+        //     "String",
+        //     "string",
+        //     "Boolean",
+        //     "boolean",
+        //     "Undefined",
+        //     "undefined"
+        // ],
         "id-match": "error",
         "max-classes-per-file": "off",
         "max-len": "off",

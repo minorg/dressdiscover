@@ -1,28 +1,21 @@
 import './WorksheetStateReview.scss';
 
-import {
-    CsvStringWorksheetStateExporter,
-} from 'dressdiscover/gui/components/worksheet/state/exporters/string/CsvStringWorksheetStateExporter';
-import {
-    JsonLdStringWorksheetStateExporter,
-} from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonLdStringWorksheetStateExporter';
-import {
-    JsonStringWorksheetStateExporter,
-} from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonStringWorksheetStateExporter';
-import {
-    StringWorksheetStateExporter,
-} from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringWorksheetStateExporter';
-import { WorksheetFeatureSetStateTable } from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureSetStateTable';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
-import { History } from 'history';
+import {CsvStringWorksheetStateExporter,} from 'dressdiscover/gui/components/worksheet/state/exporters/string/CsvStringWorksheetStateExporter';
+import {JsonLdStringWorksheetStateExporter,} from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonLdStringWorksheetStateExporter';
+import {JsonStringWorksheetStateExporter,} from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonStringWorksheetStateExporter';
+import {StringWorksheetStateExporter,} from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringWorksheetStateExporter';
+import {WorksheetFeatureSetStateTable} from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureSetStateTable';
+import {WorksheetStateWrapper} from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
+import {History} from 'history';
 import * as React from 'react';
 import Clipboard from 'react-clipboard.js';
-import { RouteComponentProps } from 'react-router';
-import { Button, Form, Input } from 'reactstrap';
+import {RouteComponentProps} from 'react-router';
+import {Button, Col, Container, Form, Input, Row} from 'reactstrap';
 
-import { WorksheetStateFrame } from './WorksheetStateFrame';
-import { WorksheetStateGetter } from './WorksheetStateGetter';
-import { WorksheetStateMarkParser } from './WorksheetStateMarkParser';
+import {WorksheetStateFrame} from './WorksheetStateFrame';
+import {WorksheetStateGetter} from './WorksheetStateGetter';
+import {WorksheetStateMarkParser} from './WorksheetStateMarkParser';
+import {TextWorksheetStateExporter} from "dressdiscover/gui/components/worksheet/state/exporters/string/TextWorksheetStateExporter";
 
 
 export class WorksheetStateReview extends React.Component<RouteComponentProps<WorksheetStateMarkRouteParams>> {
@@ -30,7 +23,8 @@ export class WorksheetStateReview extends React.Component<RouteComponentProps<Wo
         return (
             <WorksheetStateGetter
                 history={this.props.history}
-                render={(worksheetState: WorksheetStateWrapper) => <WorksheetStateReviewImpl history={this.props.history} worksheetState={worksheetState} />}
+                render={(worksheetState: WorksheetStateWrapper) => <WorksheetStateReviewImpl
+                    history={this.props.history} worksheetState={worksheetState}/>}
                 worksheetStateMark={WorksheetStateMarkParser.parseRouteComponentProps(this.props)}
             />
         );
@@ -106,49 +100,68 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
                 previousButtonEnabled={true}
                 worksheetState={this.props.worksheetState}
             >
-                <div className="w-100">
-                    <div className="float-left">
-                        <h3 className="card-title">Review</h3>
-                    </div>
-                    <div className="float-right">
-                        <Form inline>
-                            <Clipboard className="btn btn-secondary copy-button" component="a" option-text={this.export}>
-                                Copy
-                            </Clipboard>&nbsp;
-                            <Button color="secondary" onClick={this.onClickEmailButton}>Email</Button>&nbsp;
-                            <Button color="secondary" onClick={this.onClickDownloadButton}>Download</Button>&nbsp;
-                            <Input onChange={this.onChangeFormat} value={this.state.selectedFormatIndex} type="select">
-                                {this.stringExporters.map((stringStringExporter, formatIndex) =>
-                                    <option key={stringStringExporter.fileExtension} value={formatIndex.toString()}>{stringStringExporter.displayName}</option>
-                                )}
-                            </Input>
-                        </Form>
-                    </div>
-                </div>
-                <div className="clearfix"></div>
-                {worksheetState.featureSetStates.map((featureSetState) => {
-                    const featureSetDefinition = worksheetState.worksheetDefinition.featureSetById(featureSetState.id);
-                    return (
-                        <React.Fragment key={featureSetState.id.toString()}>
-                            <h4 className="text-center">{featureSetDefinition.displayName}</h4>
-                            <WorksheetFeatureSetStateTable
-                                featureSetDefinition={featureSetDefinition}
-                                featureSetState={featureSetState}
-                                includeFeatureDescriptions={false}
-                                worksheetState={worksheetState}
-                            />
-                        </React.Fragment>
-                    );
-                })}
-                {worksheetState.text ? (
-                    <React.Fragment>
-                        <br />
-                        <hr />
-                        <br />
-                        <h4>Freetext description</h4>
-                        <p>{worksheetState.text}</p>
-                    </React.Fragment>
-                ) : null}
+                <Container fluid>
+                    <Row>
+                        <Col className="p-0" xs="12">
+                            <div className="float-left">
+                                <h3 className="card-title">Review</h3>
+                            </div>
+                            <div className="float-right">
+                                <Form inline>
+                                    <Clipboard className="btn btn-secondary copy-button" component="a"
+                                               option-text={this.export}>
+                                        Copy
+                                    </Clipboard>&nbsp;
+                                    <Button color="secondary" onClick={this.onClickEmailButton}>Email</Button>&nbsp;
+                                    <Button color="secondary"
+                                            onClick={this.onClickDownloadButton}>Download</Button>&nbsp;
+                                    <Input onChange={this.onChangeFormat} value={this.state.selectedFormatIndex}
+                                           type="select">
+                                        {this.stringExporters.map((stringStringExporter, formatIndex) =>
+                                            <option key={stringStringExporter.fileExtension}
+                                                    value={formatIndex.toString()}>{stringStringExporter.displayName}</option>
+                                        )}
+                                    </Input>
+                                </Form>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="p-0" xs="6">
+                            <strong>Generated text</strong>
+                            <p>{new TextWorksheetStateExporter().export(worksheetState.worksheetDefinition.definition, [worksheetState.toWorksheetState()])}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="p-0" xs="12">
+                            {worksheetState.featureSetStates.map((featureSetState) => {
+                                const featureSetDefinition = worksheetState.worksheetDefinition.featureSetById(featureSetState.id);
+                                return (
+                                    <React.Fragment key={featureSetState.id.toString()}>
+                                        <h4 className="text-center">{featureSetDefinition.displayName}</h4>
+                                        <WorksheetFeatureSetStateTable
+                                            featureSetDefinition={featureSetDefinition}
+                                            featureSetState={featureSetState}
+                                            includeFeatureDescriptions={false}
+                                            worksheetState={worksheetState}
+                                        />
+                                    </React.Fragment>
+                                );
+                            })}
+                        </Col>
+                    </Row>
+                    {worksheetState.text ? (
+                        <Row>
+                            <Col className="p-0" xs="12">
+                                <br/>
+                                <hr/>
+                                <br/>
+                                <h4>Freetext description</h4>
+                                <p>{worksheetState.text}</p>
+                            </Col>
+                        </Row>
+                    ) : null}
+                </Container>
             </WorksheetStateFrame>);
     }
 
@@ -156,5 +169,10 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
         return this.stringExporters[this.state.selectedFormatIndex];
     }
 
-    private readonly stringExporters: StringWorksheetStateExporter[] = [new CsvStringWorksheetStateExporter(), new JsonStringWorksheetStateExporter(), new JsonLdStringWorksheetStateExporter()];
+    private readonly stringExporters: StringWorksheetStateExporter[] = [
+        new TextWorksheetStateExporter(),
+        new CsvStringWorksheetStateExporter(),
+        new JsonStringWorksheetStateExporter(),
+        new JsonLdStringWorksheetStateExporter()
+    ];
 }

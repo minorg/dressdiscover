@@ -10,37 +10,14 @@ import {
     WorksheetFeatureValueDefinitionWrapper,
 } from 'dressdiscover/gui/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 import * as React from 'react';
-import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader } from 'reactstrap';
+import {DisclosurePanel} from "dressdiscover/gui/components/disclosure/DisclosurePanel";
 
-interface Props {
+export const WorksheetFeatureValueStateEdit: React.FunctionComponent<{
     featureValueDefinition: WorksheetFeatureValueDefinitionWrapper;
     onToggleSelected: (featureValueId: WorksheetFeatureValueId) => void;
     selected: boolean;
-}
-
-interface State {
-    descriptionShown: boolean;
-}
-
-export class WorksheetFeatureValueStateEdit extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-        this.onToggleDescription = this.onToggleDescription.bind(this);
-        this.onToggleSelected = this.onToggleSelected.bind(this);
-        this.state = { descriptionShown: false };
-    }
-
-    onToggleDescription() {
-        this.setState((prevState) => ({ descriptionShown: !prevState.descriptionShown }));
-    }
-
-    onToggleSelected() {
-        this.props.onToggleSelected(this.props.featureValueDefinition.id);
-    }
-
-    render() {
-        const { featureValueDefinition: definition } = this.props;
-
+}> = ({featureValueDefinition : definition, onToggleSelected, selected}) => {
         let thumbnailImgSrc: string | undefined;
         if (definition.image && definition.image.thumbnailUrl) {
             if (definition.image.thumbnailUrl.absolute) {
@@ -53,14 +30,16 @@ export class WorksheetFeatureValueStateEdit extends React.Component<Props, State
             thumbnailImgSrc = 'http://via.placeholder.com/200x200?text=Missing%20image';
         }
 
+        const onToggleSelectedWrapper = () => onToggleSelected(definition.id);
+
         return (
-            <Card className={classnames({ "border-info": this.props.selected, "mb-4": true, "mr-4": true, "worksheet-feature-value-state": true})}>
+            <Card className={classnames({ "border-info": selected, "mb-4": true, "mr-4": true, "worksheet-feature-value-state": true})}>
                 <CardHeader>
-                    <Button color="link" onClick={this.onToggleSelected}>{definition.displayName}</Button>
+                    <Button color="link" onClick={onToggleSelectedWrapper}>{definition.displayName}</Button>
                 </CardHeader>
                 <CardBody style={{ width: "240px" }}>
                     <figure className="figure">
-                        <a onClick={this.onToggleSelected}>
+                        <a onClick={onToggleSelectedWrapper}>
                             <img
                                 className="figure-img rounded"
                                 src={thumbnailImgSrc}
@@ -77,21 +56,12 @@ export class WorksheetFeatureValueStateEdit extends React.Component<Props, State
                         ) : null}
                     </figure>
                     {definition.description ? (
-                        <div className="card-text">
-                            <a onClick={this.onToggleDescription} className="description-toggle">Description</a>
-                            <div className="float-right">
-                                <a onClick={this.onToggleDescription} className="description-toggle">
-                                    <i className={classnames({ fas: true, "fa-chevron-down": this.state.descriptionShown, "fa-chevron-right": !this.state.descriptionShown })}></i>
-                                </a>
-                            </div>
-                            <br />
-                            <Collapse isOpen={this.state.descriptionShown}>
-                                <WorksheetDescriptionComponent description={definition.description}></WorksheetDescriptionComponent>
-                            </Collapse>
-                        </div>
+                        <DisclosurePanel title="Description">
+                            <br/>
+                            <WorksheetDescriptionComponent description={definition.description}></WorksheetDescriptionComponent>
+                        </DisclosurePanel>
                     ) : null}
                 </CardBody>
             </Card>
         );
     }
-}
