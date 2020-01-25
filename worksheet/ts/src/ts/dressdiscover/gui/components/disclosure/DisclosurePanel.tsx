@@ -5,8 +5,9 @@ import {useState} from "react";
 
 export const DisclosurePanel: React.FunctionComponent<{
     children?: React.ReactNode;
+    toggleClassName?: string;
     title: string;
-}> = ({children, title}) => {
+}> = ({children, title, toggleClassName}) => {
     const [state, setState] = useState<{ open: boolean }>({open: false});
     const {open} = state;
     const onToggle = () => setState((prevState) => ({open: !prevState.open}));
@@ -14,7 +15,7 @@ export const DisclosurePanel: React.FunctionComponent<{
     return (
         <div>
             <a onClick={onToggle}>{title}</a>
-            <div className="float-right">
+            <div className={toggleClassName ? toggleClassName : "float-right"}>
                 <a onClick={onToggle}>
                     <i className={classnames({
                         fas: true,

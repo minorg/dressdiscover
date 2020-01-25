@@ -8,7 +8,8 @@ export const TextDisclosurePanel: React.FunctionComponent<{
     textClassName?: string;
     textStyle?: CSSProperties;
     title: string;
-}> = ({text, textClassName, textStyle, title}) => (
-    <DisclosurePanel title={title}>
+    toggleClassName?: string;
+}> = ({text, textClassName, textStyle, title, toggleClassName}) => (
+    <DisclosurePanel title={title} toggleClassName={toggleClassName}>
         <div className={classnames("text-left", textClassName)} style={textStyle}>{text}</div>
     </DisclosurePanel>);
