@@ -111,7 +111,7 @@ class SchccTransformer(_CsvFileTransformer):
                     collection = Collection(graph=graph, uri=URIRef("http://schistoricclothing.com/"))
                     collection.owner = CMS.inherit
                     collection.title = csv_row["Holding Institution"]
-                    collection.resource.add(DCTERMS.license, URIRef(csv_row["Rights"]))
+                    collection.resource.add(DCTERMS.rights, URIRef(csv_row["Rights"]))
                     collection.resource.add(DCTERMS.rights,
                                             Literal(
                                                 csv_row["Rights Holder"]))
