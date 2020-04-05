@@ -87,4 +87,8 @@ class CostumeCoreTransformer(_Transformer):
             if term.wikidata_id:
                 resource.add(OWL.sameAs, URIRef("http://www.wikidata.org/entity/" + term.wikidata_id))
 
-        return graph
+        return {
+            "graph": graph,
+            "predicates": tuple(predicates),
+            "terms": tuple(terms)
+        }
