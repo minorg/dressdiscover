@@ -3,6 +3,7 @@ from pathlib import Path
 
 from paradicms.etl.lib.pipeline._transformer import _Transformer
 from rdflib import BNode, Graph, Literal, RDF, RDFS, URIRef
+from rdflib.collection import Collection
 from rdflib.namespace import DCTERMS, OWL
 
 from dressdiscover.cms.etl.lib.model.costume_core_description import CostumeCoreDescription
@@ -21,6 +22,7 @@ class CostumeCoreTransformer(_Transformer):
                     CostumeCorePredicate(display_name_en=row["display_name_en"], id=row["id"], uri=row["URI"]))
 
         terms = []
+        terms_by_features = {}
         with open(cc_terms_csv_file_path, "r") as cc_terms_csv_file:
             for row in csv.DictReader(cc_terms_csv_file):
                 if not row["id"].startswith("CC"):
@@ -51,25 +53,48 @@ class CostumeCoreTransformer(_Transformer):
                 else:
                     description = None
 
-                terms.append(CostumeCoreTerm(
-                    aat_id=row.get("AATID"),
-                    description=description,
-                    display_name_en=row["display_name_en"],
-                    id=row["id"],
-                    uri=row.get("CC_URI", str(CC[row["id"]])),
-                    wikidata_id=row.get("WikidataID")
-                ))
+                term = \
+                    CostumeCoreTerm(
+                        aat_id=row.get("AATID"),
+                        description=description,
+                        display_name_en=row["display_name_en"],
+                        features=row.get("features"),
+                        id=row["id"],
+                        uri=row.get("CC_URI", str(CC[row["id"]])),
+                        wikidata_id=row.get("WikidataID")
+                    )
+                terms.append(term)
+                if term.features:
+                    terms_by_features.setdefault(term.features, []).append(term)
 
         graph = Graph()
         graph.namespace_manager.bind("cc", CC)
         graph.namespace_manager.bind("owl", OWL)
+
         for predicate in predicates:
-            if not predicate.uri.startswith(str(CC)):
-                continue
-            resource = graph.resource(URIRef(predicate.uri))
-            resource.add(RDF.type, RDF.Property)
-            resource.add(RDFS.label, Literal(predicate.display_name_en, lang="en"))
-            resource.add(DCTERMS.identifier, Literal(predicate.id))
+            try:
+                predicate_terms = tuple(terms_by_features.pop(predicate.id))
+            except KeyError:
+                predicate_terms = tuple()
+
+            if predicate.uri.startswith(str(CC)):
+                resource = graph.resource(URIRef(predicate.uri))
+                resource.add(RDF.type, RDF.Property)
+                resource.add(RDFS.label, Literal(predicate.display_name_en, lang="en"))
+                resource.add(DCTERMS.identifier, Literal(predicate.id))
+                if predicate_terms:
+                    range_class_resource = graph.resource(BNode())
+                    range_class_resource.add(RDF.type, OWL.Class)
+                    range_individuals_collection = Collection(graph, BNode())
+                    for predicate_term in predicate_terms:
+                        range_individuals_collection.append(URIRef(predicate_term.uri))
+                    range_class_resource.add(OWL.oneOf, range_individuals_collection.uri)
+                    resource.add(RDFS.range, range_class_resource)
+
+        if terms_by_features:
+            print("Terms that have a 'features' that doesn't correspond to a predicate:")
+            for predicate_id, predicate_terms in terms_by_features.items():
+                print(predicate_id, ", ".join(term.id for term in predicate_terms))
         for term in terms:
             resource = graph.resource(URIRef(term.uri))
             resource.add(RDFS.label, Literal(term.display_name_en, lang="en"))
