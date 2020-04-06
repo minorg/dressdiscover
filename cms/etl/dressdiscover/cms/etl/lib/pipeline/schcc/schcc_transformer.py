@@ -10,6 +10,8 @@ from paradicms.etl.lib.pipeline.csv._csv_file_transformer import _CsvFileTransfo
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import DCTERMS, XSD
 
+from dressdiscover.cms.etl.lib.model import costume_core_predicates
+
 
 class SchccTransformer(_CsvFileTransformer):
     class __SchccObject(Object):
@@ -23,9 +25,11 @@ class SchccTransformer(_CsvFileTransformer):
             self.__transform_single_value_literal_property(csv_column_key="Alternative Title",
                                                            property=DCTERMS.alternative)
             self.__csv_row.pop("Cataloguer With Date", None)  # Ignore
-            self.__csv_row.pop("Classification")  # Same for all objects
+            self.__transform_single_value_literal_property(csv_column_key="Classification",
+                                                           property=URIRef(costume_core_predicates.classification.uri))
             self.__transform_single_value_literal_property(csv_column_key="Creator", property=DCTERMS.creator)
-            # self.__transform_multi_value_literal_property(csv_column_key="Culture", property=DCTERMS.coverage)
+            self.__transform_multi_value_literal_property(csv_column_key="Culture",
+                                                          property=URIRef(costume_core_predicates.culture.uri))
             self.__transform_single_value_literal_property(csv_column_key="Date", property=DCTERMS.date)
             for (date_csv_column_key, date_property) in (
                     ("Date Earliest", VRA.earliestDate),
@@ -39,21 +43,23 @@ class SchccTransformer(_CsvFileTransformer):
             self.__transform_single_value_literal_property(csv_column_key="Description", property=DCTERMS.description)
             self.__csv_row.pop("Description Autofill", None)  # Created from other columns
             # Skip Donor
-            # self.__transform_multi_value_literal_property(csv_column_key="Function",
-            #                                               property=CMS.function)  # TODO: use Costume Core?
-            self.__csv_row.pop("Gender", None)  # Only set to "womenswear"
+            self.__transform_multi_value_literal_property(csv_column_key="Function",
+                                                          property=URIRef(costume_core_predicates.function.uri))
+            self.__transform_single_value_literal_property(csv_column_key="gender",
+                                                           property=URIRef(costume_core_predicates.gender.uri))
             self.__csv_row.pop("Holding Institution", None)  # Handled in collection/institution transform
             self.__transform_single_value_literal_property(csv_column_key="Identifier", property=DCTERMS.identifier)
             # Skip Label
-            # self.__transform_multi_value_literal_property(csv_column_key="Life Stages",
-            #                                               property=DCTERMS.coverage)  # TODO: use Costume Core?
+            self.__transform_multi_value_literal_property(csv_column_key="Life Stages",
+                                                          property=URIRef(costume_core_predicates.lifeStages.uri))
             # self.__transform_single_value_literal_property(csv_column_key="Measurements Display",
-            #                                                property=DCTERMS["format"])  # TODO: use Costume Core?
+            #                                                property=URIRef(costume_core_predicates.))  # TODO: use Costume Core?
             self.__csv_row.pop("Measurements Autofill", None)  # Created from other columns
             self.__transform_multi_value_literal_property(csv_column_key="Medium", property=DCTERMS.medium)
-            # self.__transform_multi_value_literal_property(csv_column_key="Technique",
-            #                                               property=CMS.technique)  # TODO: use Costume Core?
-            # Skip Region
+            self.__transform_multi_value_literal_property(csv_column_key="Technique",
+                                                          property=URIRef(costume_core_predicates.technique.uri))
+            self.__transform_multi_value_literal_property(csv_column_key="Region",
+                                                          property=URIRef(costume_core_predicates.region.uri))
             self.__csv_row.pop("Rights", None)  # Handled in collection/institution transform
             self.__csv_row.pop("Rights Holder", None)  # Handled in collection/institution transform
             # Shared Shelf fields
@@ -63,13 +69,15 @@ class SchccTransformer(_CsvFileTransformer):
             self.__csv_row.pop("SC Batch Number[66863]", None)
             self.__csv_row.pop("SC Order[66860]", None)
             self.__csv_row.pop("SC Work Number[66862]", None)
-            # self.__transform_multi_value_literal_property(csv_column_key="Style Period", property=DCTERMS.coverage)
+            self.__transform_multi_value_literal_property(csv_column_key="Style Period",
+                                                          property=URIRef(costume_core_predicates.period.uri))
             self.__transform_single_value_literal_property(csv_column_key="Subject", property=DCTERMS.subject)
             self.__transform_single_value_literal_property(csv_column_key="Title", property=DCTERMS.title)
             type_ = self.__csv_row.pop("Type")
             assert type_ == "Physical object", type_
             self.resource.add(DCTERMS.type, DCMITYPE.PhysicalObject)
-            self.__transform_single_value_literal_property(csv_column_key="Work Type", property=DCTERMS.type)
+            self.__transform_single_value_literal_property(csv_column_key="Work Type",
+                                                           property=DCTERMS.type)  # CC also has a workType
 
             for key, value in self.__csv_row.items():
                 print(self.uri, ": unaccounted", key, "=", value)

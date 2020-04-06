@@ -23,6 +23,11 @@ class CostumeCoreTransformer(_Transformer):
         terms = []
         with open(cc_terms_csv_file_path, "r") as cc_terms_csv_file:
             for row in csv.DictReader(cc_terms_csv_file):
+                if not row["id"].startswith("CC"):
+                    # All term ID's start with CC.
+                    # The predicates are appended to the end of the terms spreadsheet, and don't start with CC.
+                    continue
+
                 row_copy = {}
                 for key, value in row.items():
                     value = value.strip()

@@ -15,25 +15,33 @@ class CostumeCoreTerm:
         self.__wikidata_id = wikidata_id
 
     @property
-    def aat_id(self):
+    def aat_id(self) -> Optional[str]:
         return self.__aat_id
 
     @property
-    def description(self):
+    def description(self) -> CostumeCoreDescription:
         return self.__description
 
     @property
-    def display_name_en(self):
+    def display_name_en(self) -> str:
         return self.__display_name_en
 
     @property
-    def id(self):
+    def id(self) -> str:
         return self.__id
 
+    def __repr__(self):
+        def quote_string(value: Optional[str]):
+            if value is None:
+                return None
+            return "'" + value + "'"
+
+        return f"{self.__class__.__name__}(aat_id={quote_string(self.aat_id)}, description={repr(self.description)}, display_name_en='''{self.display_name_en}''', id='{self.id}', uri='{self.uri}', wikidata_id={quote_string(self.wikidata_id)})"
+
     @property
-    def uri(self):
+    def uri(self) -> str:
         return self.__uri
 
     @property
-    def wikidata_id(self):
+    def wikidata_id(self) -> Optional[str]:
         return self.__wikidata_id

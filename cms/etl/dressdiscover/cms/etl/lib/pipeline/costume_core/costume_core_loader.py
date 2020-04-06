@@ -20,9 +20,17 @@ class CostumeCoreLoader(_Loader):
              terms: Tuple[CostumeCoreTerm, ...]):
         self.__file_loader.load(force=force, graph=graph, storage=storage)
 
-        with open(Path(__file__).parent.parent.parent / "model" / "costume_core_predicates.py",
-                  "w+") as predicates_py_file:
+        model_dir_path = Path(__file__).parent.parent.parent / "model"
+        with open(model_dir_path / "costume_core_predicates.py", "w+") as predicates_py_file:
             print('from .costume_core_predicate import CostumeCorePredicate', file=predicates_py_file)
             print(file=predicates_py_file)
             for predicate in predicates:
                 print(f"{predicate.id} = {predicate}", file=predicates_py_file)
+
+        with open(model_dir_path / "costume_core_terms.py", "w+") as terms_py_file:
+            print('from .costume_core_description import CostumeCoreDescription', file=terms_py_file)
+            print('from .costume_core_rights import CostumeCoreRights', file=terms_py_file)
+            print('from .costume_core_term import CostumeCoreTerm', file=terms_py_file)
+            print(file=terms_py_file)
+            for term in terms:
+                print(f"{term.id} = {term}", file=terms_py_file)
