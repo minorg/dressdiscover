@@ -32,3 +32,4 @@ subject = CostumeCorePredicate(display_name_en='''subject''', id='subject', uri=
 technique = CostumeCorePredicate(display_name_en='''technique''', id='technique', uri='http://purl.org/vra/hasTechnique')
 waistline = CostumeCorePredicate(display_name_en='''waistline''', id='waistline', uri='https://w3id.org/costumeCore/ontology/waistline')
 workType = CostumeCorePredicate(display_name_en='''work type''', id='workType', uri='https://w3id.org/costumeCore/ontology/workType')
+COSTUME_CORE_PREDICATES = (classification, closure, closurePlacement, collar, color, condition, costumeComponents, culture, DCMItype, dressType, function, gender, grain, ICOMtype, lifeStages, liturgicalType, material, neckline, pantsType, pattern, period, region, silhouette, skirtLength, skirtType, sleeveLength, sleeveType, socioEconomicClass, subject, technique, waistline, workType)

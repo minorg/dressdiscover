@@ -26,6 +26,8 @@ class CostumeCoreLoader(_Loader):
             print(file=predicates_py_file)
             for predicate in predicates:
                 print(f"{predicate.id} = {predicate}", file=predicates_py_file)
+            print(f"COSTUME_CORE_PREDICATES = ({', '.join(predicate.id for predicate in predicates)})",
+                  file=predicates_py_file)
 
         with open(model_dir_path / "costume_core_terms.py", "w+") as terms_py_file:
             print('from .costume_core_description import CostumeCoreDescription', file=terms_py_file)
@@ -34,3 +36,4 @@ class CostumeCoreLoader(_Loader):
             print(file=terms_py_file)
             for term in terms:
                 print(f"{term.id} = {term}", file=terms_py_file)
+            print(f"COSTUME_CORE_TERMS = ({', '.join(term.id for term in terms)})", file=terms_py_file)
