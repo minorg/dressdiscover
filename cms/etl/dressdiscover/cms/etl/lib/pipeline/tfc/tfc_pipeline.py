@@ -1,5 +1,6 @@
 from paradicms.etl.lib.pipeline._pipeline import _Pipeline
 from paradicms.etl.lib.pipeline.oai_pmh.oai_pmh_extractor import OaiPmhExtractor
+
 from .tfc_transformer import TfcTransformer
 
 
@@ -18,3 +19,7 @@ class TfcPipeline(_Pipeline):
             id="tfc",
             transformer=TfcTransformer()
         )
+
+
+if __name__ == "__main__":
+    TfcPipeline.main()

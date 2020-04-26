@@ -17,3 +17,8 @@ class CostumeCorePipeline(_Pipeline):
             transformer=CostumeCoreTransformer(),
             **kwds
         )
+
+
+if __name__ == "__main__":
+    CostumeCorePipeline.main()
+   
