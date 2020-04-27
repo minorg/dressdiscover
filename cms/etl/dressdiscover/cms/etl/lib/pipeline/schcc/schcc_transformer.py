@@ -12,13 +12,13 @@ from rdflib.namespace import DCTERMS, XSD
 
 from dressdiscover.cms.etl.lib.model import costume_core_predicates
 from dressdiscover.cms.etl.lib.model.costume_core_term import CostumeCoreTerm
-from dressdiscover.cms.etl.lib.model.costume_core_terms import COSTUME_CORE_TERMS
+from dressdiscover.cms.etl.lib.model.costume_core_terms_by_features import COSTUME_CORE_TERMS_BY_FEATURES
 from dressdiscover.cms.etl.lib.namespace import bind_namespaces
 
 
 class SchccTransformer(_CsvFileTransformer):
     class __SchccObject(Object):
-        def __init__(self, *, costume_core_terms_by_features: Dict[str, List[CostumeCoreTerm]], csv_row: Dict[str, str],
+        def __init__(self, *, csv_row: Dict[str, str],
                      graph: Graph):
             int(csv_row["SSID"])
             Object.__init__(self, graph=graph, rdf_type=CMS.Object,
@@ -31,18 +31,18 @@ class SchccTransformer(_CsvFileTransformer):
             self.__csv_row.pop("Cataloguer With Date", None)  # Ignore
             self.__transform(multi=False, csv_column_key="Classification",
                              property=URIRef(costume_core_predicates.classification.uri),
-                             costume_core_terms=costume_core_terms_by_features["classification"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["classification"])
             self.__transform(multi=False, csv_column_key="Collar", property=URIRef(costume_core_predicates.collar.uri),
-                             costume_core_terms=costume_core_terms_by_features["collar"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["collar"])
             self.__transform(multi=False, csv_column_key="Color Main",
                              property=URIRef(costume_core_predicates.color.uri),
-                             costume_core_terms=costume_core_terms_by_features["color"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["color"])
             self.__transform(multi=False, csv_column_key="Color Secondary",
                              property=URIRef(costume_core_predicates.color.uri),
-                             costume_core_terms=costume_core_terms_by_features["color"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["color"])
             self.__transform(multi=False, csv_column_key="Condition Term",
                              property=URIRef(costume_core_predicates.condition.uri),
-                             costume_core_terms=costume_core_terms_by_features["condition"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["condition"])
             self.__transform(multi=False, csv_column_key="Creator", property=DCTERMS.creator)
             self.__transform(multi=True, csv_column_key="Culture",
                              property=URIRef(costume_core_predicates.culture.uri))
@@ -60,14 +60,14 @@ class SchccTransformer(_CsvFileTransformer):
             self.__csv_row.pop("Description Autofill", None)  # Created from other columns
             self.__transform(multi=True, csv_column_key="Dress Type",
                              property=URIRef(costume_core_predicates.dressType.uri),
-                             costume_core_terms=costume_core_terms_by_features["dressType"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["dressType"])
             # Skip Donor
             self.__transform(multi=True, csv_column_key="Function",
                              property=URIRef(costume_core_predicates.function.uri),
-                             costume_core_terms=costume_core_terms_by_features["function"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["function"])
             self.__transform(multi=False, csv_column_key="Gender",
                              property=URIRef(costume_core_predicates.gender.uri),
-                             costume_core_terms=costume_core_terms_by_features["gender"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["gender"])
             self.__transform(multi=False, csv_column_key="Grain",
                              property=URIRef(costume_core_predicates.grain.uri))
             self.__csv_row.pop("Holding Institution", None)  # Handled in collection/institution transform
@@ -75,16 +75,16 @@ class SchccTransformer(_CsvFileTransformer):
             # Skip Label
             self.__transform(multi=True, csv_column_key="Life Stages",
                              property=URIRef(costume_core_predicates.lifeStages.uri),
-                             costume_core_terms=costume_core_terms_by_features["lifeStages"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["lifeStages"])
             self.__csv_row.pop("Measurements Display", None)  # Ignore for now, no predicates
             self.__csv_row.pop("Measurements Autofill", None)  # Created from other columns
             self.__transform(multi=True, csv_column_key="Medium", property=DCTERMS.medium)
             self.__transform(multi=False, csv_column_key="Neckline",
                              property=URIRef(costume_core_predicates.neckline.uri),
-                             costume_core_terms=costume_core_terms_by_features["neckline"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["neckline"])
             self.__transform(multi=True, csv_column_key="Technique",
                              property=URIRef(costume_core_predicates.technique.uri),
-                             costume_core_terms=costume_core_terms_by_features["technique"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["technique"])
             self.__transform(multi=True, csv_column_key="Region",
                              property=URIRef(costume_core_predicates.region.uri))
             self.__csv_row.pop("Rights", None)  # Handled in collection/institution transform
@@ -98,16 +98,16 @@ class SchccTransformer(_CsvFileTransformer):
             self.__csv_row.pop("SC Work Number[66862]", None)
             self.__transform(multi=False, csv_column_key="Skirt Type",
                              property=URIRef(costume_core_predicates.skirtType.uri),
-                             costume_core_terms=costume_core_terms_by_features["skirtType"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["skirtType"])
             self.__transform(multi=False, csv_column_key="Skirt Length",
                              property=URIRef(costume_core_predicates.skirtLength.uri),
-                             costume_core_terms=costume_core_terms_by_features["skirtLength"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["skirtLength"])
             self.__transform(multi=False, csv_column_key="Sleeve Type",
                              property=URIRef(costume_core_predicates.sleeveType.uri),
-                             costume_core_terms=costume_core_terms_by_features["sleeveType"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["sleeveType"])
             self.__transform(multi=False, csv_column_key="Sleeve Length",
                              property=URIRef(costume_core_predicates.sleeveLength.uri),
-                             costume_core_terms=costume_core_terms_by_features["sleeveLength"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["sleeveLength"])
             self.__transform(multi=True, csv_column_key="Style Period",
                              property=URIRef(costume_core_predicates.period.uri))
             self.__transform(multi=False, csv_column_key="Subject", property=DCTERMS.subject)
@@ -117,10 +117,10 @@ class SchccTransformer(_CsvFileTransformer):
             self.resource.add(DCTERMS.type, DCMITYPE.PhysicalObject)
             self.__transform(multi=False, csv_column_key="Waistline",
                              property=URIRef(costume_core_predicates.waistline.uri),
-                             costume_core_terms=costume_core_terms_by_features["waistline"])
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["waistline"])
             self.__transform(multi=False, csv_column_key="Work Type",
                              property=DCTERMS.type,
-                             costume_core_terms=costume_core_terms_by_features["workType"])  # CC also has a workType
+                             costume_core_terms=COSTUME_CORE_TERMS_BY_FEATURES["workType"])  # CC also has a workType
 
             for key, value in self.__csv_row.items():
                 print(self.uri, ": unaccounted", key, "=", value)
@@ -151,11 +151,6 @@ class SchccTransformer(_CsvFileTransformer):
     def _transform_csv_file(self, *, csv_file_path: Path, graph: Graph) -> None:
         bind_namespaces(graph.namespace_manager)
 
-        costume_core_terms_by_features = {}
-        for costume_core_term in COSTUME_CORE_TERMS:
-            if costume_core_term.features:
-                costume_core_terms_by_features.setdefault(costume_core_term.features, []).append(costume_core_term)
-
         collection = None
         institution = None
 
@@ -184,8 +179,7 @@ class SchccTransformer(_CsvFileTransformer):
                 else:
                     assert collection is not None
 
-                object_ = self.__SchccObject(costume_core_terms_by_features=costume_core_terms_by_features,
-                                             csv_row=csv_row, graph=graph)
+                object_ = self.__SchccObject(csv_row=csv_row, graph=graph)
                 if object_.title is None:
                     continue
                 collection.add_object(object_)
