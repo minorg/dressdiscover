@@ -2,8 +2,7 @@ from paradicms.etl.lib.pipeline._pipeline import _Pipeline
 from paradicms.etl.lib.pipeline.omeka_classic.omeka_classic_extractor import OmekaClassicExtractor
 
 from dressdiscover.cms.etl.lib.path import DATA_DIR_PATH
-from dressdiscover.cms.etl.lib.pipeline.vccc.costume_core_omeka_classic_transformer import \
-    CostumeCoreOmekaClassicTransformer
+from dressdiscover.cms.etl.lib.pipeline.vccc.vccc_transformer import VccTransformer
 
 
 class VcccPipeline(_Pipeline):
@@ -15,15 +14,7 @@ class VcccPipeline(_Pipeline):
                 endpoint_url="https://vcomeka.com/vccc/",
             ),
             id="vccc",
-            transformer=CostumeCoreOmekaClassicTransformer(
-                institution_kwds={
-                    "institution_name": "Vassar College Costume Collection",
-                    "institution_rights": "Copyright Vassar College. All rights reserved.",
-                    "institution_uri": "https://vcomeka.com/vccc/",
-                },
-                square_thumbnail_height_px=75,
-                square_thumbnail_width_px=75,
-            ),
+            transformer=VccTransformer(),
             **kwds
         )
 
