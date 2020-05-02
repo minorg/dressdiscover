@@ -17,8 +17,8 @@ class VccTransformer(CostumeCoreOmekaClassicTransformer):
             },
             fullsize_max_height_px=600,
             fullsize_max_width_px=600,
-            square_thumbnail_height_px=75,
-            square_thumbnail_width_px=75,
+            square_thumbnail_height_px=150,
+            square_thumbnail_width_px=150,
             thumbnail_max_height_px=200,
             thumbnail_max_width_px=200
         )
