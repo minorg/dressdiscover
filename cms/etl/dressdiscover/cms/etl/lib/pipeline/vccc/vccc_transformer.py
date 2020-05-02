@@ -15,12 +15,12 @@ class VccTransformer(CostumeCoreOmekaClassicTransformer):
                 "institution_rights": "Copyright Vassar College. All rights reserved.",
                 "institution_uri": "https://vcomeka.com/vccc/",
             },
-            fullsize_height_px=600,
-            fullsize_width_px=450,
+            fullsize_max_height_px=600,
+            fullsize_max_width_px=600,
             square_thumbnail_height_px=75,
             square_thumbnail_width_px=75,
-            thumbnail_height_px=150,
-            thumbnail_width_px=113
+            thumbnail_max_height_px=200,
+            thumbnail_max_width_px=200
         )
 
     def _transform_collection(self, *, graph: Graph, omeka_collection) -> Optional[Collection]:
