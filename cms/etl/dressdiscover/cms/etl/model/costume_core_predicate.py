@@ -13,7 +13,7 @@ class CostumeCorePredicate:
         return self.__display_name_en
 
     def __repr__(self):
-        return f"{self.__class__.__name__}(display_name_en='{self.display_name_en}', id='{self.id}', uri='{self.uri}')"
+        return f"{self.__class__.__name__}(display_name_en='''{self.display_name_en}''', id='{self.id}', uri='{self.uri}')"
 
     @property
     def uri(self) -> str:

@@ -2,15 +2,14 @@ import os.path
 from typing import Tuple
 from xml.etree.ElementTree import ElementTree
 
+from paradicms_etl.model.collection import Collection
+from paradicms_etl.model.image import Image
+from paradicms_etl.model.institution import Institution
+from paradicms_etl.model.object import Object
+from paradicms_etl.namespace import CMS, DCMITYPE, PROV
+from paradicms_etl.pipeline._transformer import _Transformer
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import DCTERMS, FOAF, RDFS
-
-from paradicms.etl.lib.model.collection import Collection
-from paradicms.etl.lib.model.image import Image
-from paradicms.etl.lib.model.institution import Institution
-from paradicms.etl.lib.model.object import Object
-from paradicms.etl.lib.namespace import CMS, DCMITYPE, PROV
-from paradicms.etl.lib.pipeline._transformer import _Transformer
 
 
 class TfcTransformer(_Transformer):
