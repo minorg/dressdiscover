@@ -1,5 +1,5 @@
-from paradicms.etl.lib.pipeline._pipeline import _Pipeline
-from paradicms.etl.lib.pipeline.oai_pmh.oai_pmh_extractor import OaiPmhExtractor
+from paradicms_etl.pipeline._pipeline import _Pipeline
+from paradicms_etl.pipeline.oai_pmh.oai_pmh_extractor import OaiPmhExtractor
 
 from .tfc_transformer import TfcTransformer
 

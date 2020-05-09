@@ -2,18 +2,18 @@ import csv
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from paradicms.etl.lib.model.collection import Collection
-from paradicms.etl.lib.model.institution import Institution
-from paradicms.etl.lib.model.object import Object
-from paradicms.etl.lib.namespace import CMS, DCMITYPE, VRA
-from paradicms.etl.lib.pipeline.csv._csv_file_transformer import _CsvFileTransformer
+from paradicms_etl.model.collection import Collection
+from paradicms_etl.model.institution import Institution
+from paradicms_etl.model.object import Object
+from paradicms_etl.namespace import CMS, DCMITYPE, VRA
+from paradicms_etl.pipeline.csv._csv_file_transformer import _CsvFileTransformer
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import DCTERMS, XSD
 
-from dressdiscover.cms.etl.lib.model import costume_core_predicates
-from dressdiscover.cms.etl.lib.model.costume_core_term import CostumeCoreTerm
-from dressdiscover.cms.etl.lib.model.costume_core_terms_by_features import COSTUME_CORE_TERMS_BY_FEATURES
-from dressdiscover.cms.etl.lib.namespace import bind_namespaces
+from dressdiscover.cms.etl.model import costume_core_predicates
+from dressdiscover.cms.etl.model.costume_core_term import CostumeCoreTerm
+from dressdiscover.cms.etl.model.costume_core_terms_by_features import COSTUME_CORE_TERMS_BY_FEATURES
+from dressdiscover.cms.etl.namespace import bind_namespaces
 
 
 class SchccTransformer(_CsvFileTransformer):

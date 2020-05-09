@@ -1,8 +1,8 @@
-from paradicms.etl.lib.pipeline._pipeline import _Pipeline
-from paradicms.etl.lib.pipeline.omeka_classic.omeka_classic_extractor import OmekaClassicExtractor
+from paradicms_etl.pipeline._pipeline import _Pipeline
+from paradicms_etl.pipeline.omeka_classic.omeka_classic_extractor import OmekaClassicExtractor
 
-from dressdiscover.cms.etl.lib.path import DATA_DIR_PATH
-from dressdiscover.cms.etl.lib.pipeline.vccc.vccc_transformer import VccTransformer
+from dressdiscover.cms.etl.path import DATA_DIR_PATH
+from dressdiscover.cms.etl.pipeline.vccc.vccc_transformer import VccTransformer
 
 
 class VcccPipeline(_Pipeline):

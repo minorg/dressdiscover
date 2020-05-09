@@ -1,3 +1,3 @@
-from paradicms.etl.cli.cli import main
+from paradicms_etl.cli.cli import main
 
 main()

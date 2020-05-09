@@ -1,7 +1,7 @@
 from typing import Dict, Optional
 
-from paradicms.etl.lib.pipeline._extractor import _Extractor
-from paradicms.etl.lib.pipeline.pipeline_storage import PipelineStorage
+from paradicms_etl.pipeline._extractor import _Extractor
+from paradicms_etl.pipeline.pipeline_storage import PipelineStorage
 
 
 class CostumeCoreExtractor(_Extractor):

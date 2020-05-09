@@ -1,11 +1,11 @@
-from paradicms.etl.lib.namespace import VRA
-from paradicms.etl.lib.pipeline.omeka_classic.omeka_classic_transformer import OmekaClassicTransformer
+from paradicms_etl.namespace import VRA
+from paradicms_etl.pipeline.omeka_classic.omeka_classic_transformer import OmekaClassicTransformer
 from rdflib import Literal, URIRef, XSD
 from rdflib.namespace import DCTERMS
 
-from dressdiscover.cms.etl.lib.model import costume_core_predicates
-from dressdiscover.cms.etl.lib.model.costume_core_terms_by_features import COSTUME_CORE_TERMS_BY_FEATURES
-from dressdiscover.cms.etl.lib.namespace import bind_namespaces
+from dressdiscover.cms.etl.model import costume_core_predicates
+from dressdiscover.cms.etl.model.costume_core_terms_by_features import COSTUME_CORE_TERMS_BY_FEATURES
+from dressdiscover.cms.etl.namespace import bind_namespaces
 
 
 class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):

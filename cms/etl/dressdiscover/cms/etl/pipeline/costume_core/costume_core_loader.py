@@ -1,13 +1,13 @@
 from pathlib import Path
 from typing import Tuple
 
-from paradicms.etl.lib.pipeline._loader import _Loader
-from paradicms.etl.lib.pipeline.file_loader import FileLoader
-from paradicms.etl.lib.pipeline.pipeline_storage import PipelineStorage
+from paradicms_etl.pipeline._loader import _Loader
+from paradicms_etl.pipeline.file_loader import FileLoader
+from paradicms_etl.pipeline.pipeline_storage import PipelineStorage
 from rdflib import Graph
 
-from dressdiscover.cms.etl.lib.model.costume_core_predicate import CostumeCorePredicate
-from dressdiscover.cms.etl.lib.model.costume_core_term import CostumeCoreTerm
+from dressdiscover.cms.etl.model.costume_core_predicate import CostumeCorePredicate
+from dressdiscover.cms.etl.model.costume_core_term import CostumeCoreTerm
 
 
 class CostumeCoreLoader(_Loader):

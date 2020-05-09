@@ -1,16 +1,16 @@
 import csv
 from pathlib import Path
 
-from paradicms.etl.lib.pipeline._transformer import _Transformer
+from paradicms_etl.pipeline._transformer import _Transformer
 from rdflib import BNode, Graph, Literal, RDF, RDFS, URIRef
 from rdflib.collection import Collection
 from rdflib.namespace import DCTERMS, OWL
 
-from dressdiscover.cms.etl.lib.model.costume_core_description import CostumeCoreDescription
-from dressdiscover.cms.etl.lib.model.costume_core_predicate import CostumeCorePredicate
-from dressdiscover.cms.etl.lib.model.costume_core_rights import CostumeCoreRights
-from dressdiscover.cms.etl.lib.model.costume_core_term import CostumeCoreTerm
-from dressdiscover.cms.etl.lib.namespace import CC
+from dressdiscover.cms.etl.model.costume_core_description import CostumeCoreDescription
+from dressdiscover.cms.etl.model.costume_core_predicate import CostumeCorePredicate
+from dressdiscover.cms.etl.model.costume_core_rights import CostumeCoreRights
+from dressdiscover.cms.etl.model.costume_core_term import CostumeCoreTerm
+from dressdiscover.cms.etl.namespace import CC
 
 
 class CostumeCoreTransformer(_Transformer):

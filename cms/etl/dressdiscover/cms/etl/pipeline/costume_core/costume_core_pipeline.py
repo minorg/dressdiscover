@@ -1,8 +1,8 @@
-from paradicms.etl.lib.pipeline._pipeline import _Pipeline
+from paradicms_etl.pipeline._pipeline import _Pipeline
 
-from dressdiscover.cms.etl.lib.pipeline.costume_core.costume_core_extractor import CostumeCoreExtractor
-from dressdiscover.cms.etl.lib.pipeline.costume_core.costume_core_loader import CostumeCoreLoader
-from dressdiscover.cms.etl.lib.pipeline.costume_core.costume_core_transformer import CostumeCoreTransformer
+from dressdiscover.cms.etl.pipeline.costume_core.costume_core_extractor import CostumeCoreExtractor
+from dressdiscover.cms.etl.pipeline.costume_core.costume_core_loader import CostumeCoreLoader
+from dressdiscover.cms.etl.pipeline.costume_core.costume_core_transformer import CostumeCoreTransformer
 
 
 class CostumeCorePipeline(_Pipeline):

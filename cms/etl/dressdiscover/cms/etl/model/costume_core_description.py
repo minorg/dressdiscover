@@ -1,4 +1,4 @@
-from dressdiscover.cms.etl.lib.model.costume_core_rights import CostumeCoreRights
+from dressdiscover.cms.etl.model.costume_core_rights import CostumeCoreRights
 
 
 class CostumeCoreDescription:

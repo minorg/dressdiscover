@@ -1,6 +1,6 @@
 from typing import Optional
 
-from dressdiscover.cms.etl.lib.model.costume_core_description import CostumeCoreDescription
+from dressdiscover.cms.etl.model.costume_core_description import CostumeCoreDescription
 
 
 class CostumeCoreTerm:
