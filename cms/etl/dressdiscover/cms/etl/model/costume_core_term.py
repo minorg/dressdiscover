@@ -1,4 +1,4 @@
-from typing import NamedTuple, Optional
+from typing import NamedTuple, Optional, Tuple
 
 from dressdiscover.cms.etl.model.costume_core_description import CostumeCoreDescription
 
@@ -9,7 +9,7 @@ class CostumeCoreTerm(NamedTuple):
     id: str
     uri: str
     aat_id: Optional[str] = None
-    features: Optional[str] = None
+    features: Optional[Tuple[str, ...]] = None
     wikidata_id: Optional[str] = None
 
     def __repr__(self):
@@ -18,4 +18,9 @@ class CostumeCoreTerm(NamedTuple):
                 return None
             return "'" + value + "'"
 
-        return f"{self.__class__.__name__}(aat_id={quote_string(self.aat_id)}, description={repr(self.description)}, display_name_en='''{self.display_name_en}''', features={quote_string(self.features)}, id='{self.id}', uri='{self.uri}', wikidata_id={quote_string(self.wikidata_id)})"
+        if self.features:
+            features = f"({', '.join(quote_string(feature) for feature in self.features)})"
+        else:
+            features = None
+
+        return f"{self.__class__.__name__}(aat_id={quote_string(self.aat_id)}, description={repr(self.description)}, display_name_en='''{self.display_name_en}''', features={features}, id='{self.id}', uri='{self.uri}', wikidata_id={quote_string(self.wikidata_id)})"

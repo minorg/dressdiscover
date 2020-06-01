@@ -57,8 +57,7 @@ class CostumeCoreTransformer(_Transformer):
 
                 features = row.get("features")
                 if features:
-                    # Only use the first one right now
-                    features = features.split(",")[0]
+                    features = tuple(features.split(","))
 
                 term = \
                     CostumeCoreTerm(
@@ -95,7 +94,8 @@ class CostumeCoreTransformer(_Transformer):
         terms_by_features = {}
         for term in terms:
             if term.features:
-                terms_by_features.setdefault(term.features, []).append(term)
+                for feature in term.features:
+                    terms_by_features.setdefault(feature, []).append(term)
 
         for predicate in predicates:
             try:
