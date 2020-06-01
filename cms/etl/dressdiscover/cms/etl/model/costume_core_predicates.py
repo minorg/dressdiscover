@@ -35,7 +35,7 @@ closurePlacement = CostumeCorePredicate(display_name_en='closure placement', id=
 coatType = CostumeCorePredicate(display_name_en='coat type', id='coatType', uri='https://w3id.org/costumeCore/ontology/coatType')
 collar = CostumeCorePredicate(display_name_en='collar', id='collar', uri='https://w3id.org/costumeCore/ontology/collar')
 colorMain = CostumeCorePredicate(display_name_en='color main', id='colorMain', uri='https://w3id.org/costumeCore/ontology/colorMain')
-colorSecondary = CostumeCorePredicate(display_name_en='color secondary', id='colorSecondary', uri='https://w3id.org/costumeCore/ontology/colorMain')
+colorSecondary = CostumeCorePredicate(display_name_en='color secondary', id='colorSecondary', uri='https://w3id.org/costumeCore/ontology/colorSecondary')
 condition = CostumeCorePredicate(display_name_en='condition', id='condition', uri='https://w3id.org/costumeCore/ontology/condition')
 conditionDescription = CostumeCorePredicate(display_name_en='condition description', id='conditionDescription', uri='https://w3id.org/costumeCore/ontology/conditionDescription')
 costOriginal = CostumeCorePredicate(display_name_en='cost original', id='costOriginal', uri='https://w3id.org/costumeCore/ontology/costOriginal')
