@@ -21,7 +21,7 @@ class CostumeCoreTransformer(_Transformer):
             for row in csv.DictReader(cc_predicates_csv_file):
                 predicates.append(
                     CostumeCorePredicate(display_name_en=row["display_name_en"], id=row["id"], uri=row["URI"]))
-        return tuple(predicates)
+        return tuple(sorted(predicates, key=lambda predicate: predicate.id))
 
     def __parse_terms(self, cc_terms_csv_file_path: Path) -> Tuple[CostumeCoreTerm, ...]:
         terms = []
@@ -70,7 +70,7 @@ class CostumeCoreTransformer(_Transformer):
                         wikidata_id=row.get("WikidataID")
                     )
                 terms.append(term)
-        return tuple(terms)
+        return tuple(sorted(terms, key=lambda term: term.id))
 
     def transform(self, *, cc_predicates_csv_file_path: Path, cc_terms_csv_file_path: Path) -> Graph:
         predicates = self.__parse_predicates(cc_predicates_csv_file_path=cc_predicates_csv_file_path)
@@ -79,6 +79,14 @@ class CostumeCoreTransformer(_Transformer):
         graph = Graph()
         graph.namespace_manager.bind("cc", CC)
         graph.namespace_manager.bind("owl", OWL)
+
+        cc_ontology_uri = URIRef(str(CC)[:-1])
+        graph.add((cc_ontology_uri, RDF.type, OWL.Ontology))
+        graph.add((cc_ontology_uri, OWL.versionIRI, CC["0.4.0"]))
+
+        # Annotation properties
+        for annotation_property_local in ("creator", "description", "identifier", "license", "rights", "source"):
+            graph.add((DCTERMS[annotation_property_local], RDF.type, OWL.AnnotationProperty))
 
         self.__transform_predicates(graph=graph, predicates=predicates, terms=terms)
         self.__transform_terms(graph=graph, terms=terms)
@@ -106,7 +114,7 @@ class CostumeCoreTransformer(_Transformer):
             if not predicate.uri.startswith(str(CC)):
                 continue
             resource = graph.resource(URIRef(predicate.uri))
-            resource.add(RDF.type, RDF.Property)
+            resource.add(RDF.type, OWL.ObjectProperty)
             resource.add(RDFS.label, Literal(predicate.display_name_en, lang="en"))
             resource.add(DCTERMS.identifier, Literal(predicate.id))
             if predicate_terms:
@@ -128,6 +136,7 @@ class CostumeCoreTransformer(_Transformer):
             resource = graph.resource(URIRef(term.uri))
             resource.add(RDFS.label, Literal(term.display_name_en, lang="en"))
             resource.add(DCTERMS.identifier, Literal(term.id))
+            resource.add(RDF.type, OWL.NamedIndividual)
             if term.description:
                 resource.add(DCTERMS.description, Literal(term.description.text_en, lang="en"))
                 description_resource = graph.resource(BNode())
@@ -141,7 +150,12 @@ class CostumeCoreTransformer(_Transformer):
                     description_resource.add(DCTERMS.license, URIRef(term.description.rights.license_uri))
                 if term.description.rights.rights_statement_uri:
                     description_resource.add(DCTERMS.rights, URIRef(term.description.rights.rights_statement_uri))
+            same_as_uris = []
             if term.aat_id:
-                resource.add(OWL.sameAs, URIRef("http://vocab.getty.edu/aat/" + term.aat_id))
+                same_as_uris.append(URIRef("http://vocab.getty.edu/aat/" + term.aat_id))
             if term.wikidata_id:
-                resource.add(OWL.sameAs, URIRef("http://www.wikidata.org/entity/" + term.wikidata_id))
+                same_as_uris.append(URIRef("http://www.wikidata.org/entity/" + term.wikidata_id))
+            for same_as_uri in same_as_uris:
+                resource.add(OWL.sameAs, same_as_uri)
+                graph.add((same_as_uri, OWL.sameAs, resource.identifier))
+                graph.add((same_as_uri, RDF.type, OWL.NamedIndividual))
