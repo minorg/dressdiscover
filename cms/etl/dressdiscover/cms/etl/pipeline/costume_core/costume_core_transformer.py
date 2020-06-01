@@ -53,12 +53,17 @@ class CostumeCoreTransformer(_Transformer):
                 else:
                     description = None
 
+                features = row.get("features")
+                if features:
+                    # Only use the first one right now
+                    features = features.split(",")[0]
+
                 term = \
                     CostumeCoreTerm(
                         aat_id=row.get("AATID"),
                         description=description,
                         display_name_en=row["display_name_en"],
-                        features=row.get("features"),
+                        features=features,
                         id=row["id"],
                         uri=row.get("CC_URI", str(CC[row["id"]])),
                         wikidata_id=row.get("WikidataID")
