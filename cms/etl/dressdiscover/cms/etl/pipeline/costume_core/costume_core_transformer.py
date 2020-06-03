@@ -38,7 +38,8 @@ class CostumeCoreTransformer(_Transformer):
         with open(cc_predicates_csv_file_path, "r") as cc_predicates_csv_file:
             for row in csv.DictReader(cc_predicates_csv_file):
                 predicates.append(
-                    CostumeCorePredicate(display_name_en=row["display_name_en"], id=row["id"], uri=row["URI"]))
+                    CostumeCorePredicate(description_text_en=row["description_text_en"],
+                                         display_name_en=row["display_name_en"], id=row["id"], uri=row["URI"]))
         return tuple(sorted(predicates, key=lambda predicate: predicate.id))
 
     def __parse_terms(self, cc_terms_csv_file_path: Path) -> Tuple[CostumeCoreTerm, ...]:
@@ -130,6 +131,7 @@ class CostumeCoreTransformer(_Transformer):
                 continue
             resource = graph.resource(URIRef(predicate.uri))
             resource.add(RDF.type, OWL.ObjectProperty)
+            resource.add(RDFS.comment, Literal(predicate.description_text_en, lang="en"))
             resource.add(RDFS.label, Literal(predicate.display_name_en, lang="en"))
             resource.add(DCTERMS.identifier, Literal(predicate.id))
             if predicate_terms:
