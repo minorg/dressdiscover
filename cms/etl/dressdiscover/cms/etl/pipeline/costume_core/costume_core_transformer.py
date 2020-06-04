@@ -1,5 +1,6 @@
 import csv
 from pathlib import Path
+from typing import Tuple
 
 from paradicms_etl.pipeline._transformer import _Transformer
 from rdflib import BNode, Graph, Literal, RDF, RDFS, URIRef
@@ -14,15 +15,36 @@ from dressdiscover.cms.etl.namespace import CC
 
 
 class CostumeCoreTransformer(_Transformer):
-    def transform(self, *, cc_predicates_csv_file_path: Path, cc_terms_csv_file_path: Path) -> Graph:
+    def __init__(self, *, ontology_version: str):
+        _Transformer.__init__(self)
+        self.__ontology_version = ontology_version
+
+    def __add_ontology(self, graph: Graph):
+        ontology_resource = graph.resource(URIRef(str(CC)[:-1]))
+        ontology_resource.add(RDF.type, OWL.Ontology)
+        ontology_resource.add(OWL.versionIRI, CC[self.__ontology_version])
+        ontology_resource.add(OWL.versionInfo, Literal(self.__ontology_version))
+        ontology_resource.add(DCTERMS.title, Literal("Costume Core Ontology"))
+        ontology_resource.add(DCTERMS.creator, Literal("Arden Kirkland"))
+        ontology_resource.add(DCTERMS.contributor, Literal("Minor Gordon"))
+        ontology_resource.add(DCTERMS.rights, Literal(
+            "This ontology is distributed under a Creative Commons BY SA 4.0 license  - https://creativecommons.org/licenses/by-sa/4.0/"))
+        ontology_resource.add(RDFS.comment, Literal(
+            "The Costume Core ontology is for describing artifacts of historic clothing, and is meant to build upon VRA Core and Dublin Core. Work to develop this ontology was part of the Costume Core Toolkit project, funded by a Visual Resources Association Foundation Project Grant in 2019-2020. More information is at http://ardenkirkland.com/costumecore"))
+
+    def __parse_predicates(self, cc_predicates_csv_file_path: Path) -> Tuple[CostumeCorePredicate, ...]:
         predicates = []
+
         with open(cc_predicates_csv_file_path, "r") as cc_predicates_csv_file:
             for row in csv.DictReader(cc_predicates_csv_file):
                 predicates.append(
-                    CostumeCorePredicate(display_name_en=row["display_name_en"], id=row["id"], uri=row["URI"]))
+                    CostumeCorePredicate(description_text_en=row["description_text_en"],
+                                         display_name_en=row["display_name_en"], id=row["id"],
+                                         sub_property_of_uri=row.get("sub_property_of"), uri=row["URI"]))
+        return tuple(sorted(predicates, key=lambda predicate: predicate.id))
 
+    def __parse_terms(self, cc_terms_csv_file_path: Path) -> Tuple[CostumeCoreTerm, ...]:
         terms = []
-        terms_by_features = {}
         with open(cc_terms_csv_file_path, "r") as cc_terms_csv_file:
             for row in csv.DictReader(cc_terms_csv_file):
                 if not row["id"].startswith("CC"):
@@ -53,23 +75,52 @@ class CostumeCoreTransformer(_Transformer):
                 else:
                     description = None
 
+                features = row.get("features")
+                if features:
+                    features = tuple(features.split(","))
+
                 term = \
                     CostumeCoreTerm(
                         aat_id=row.get("AATID"),
                         description=description,
                         display_name_en=row["display_name_en"],
-                        features=row.get("features"),
+                        features=features,
                         id=row["id"],
                         uri=row.get("CC_URI", str(CC[row["id"]])),
                         wikidata_id=row.get("WikidataID")
                     )
                 terms.append(term)
-                if term.features:
-                    terms_by_features.setdefault(term.features, []).append(term)
+        return tuple(sorted(terms, key=lambda term: term.id))
+
+    def transform(self, *, cc_predicates_csv_file_path: Path, cc_terms_csv_file_path: Path) -> Graph:
+        predicates = self.__parse_predicates(cc_predicates_csv_file_path=cc_predicates_csv_file_path)
+        terms = self.__parse_terms(cc_terms_csv_file_path=cc_terms_csv_file_path)
 
         graph = Graph()
         graph.namespace_manager.bind("cc", CC)
         graph.namespace_manager.bind("owl", OWL)
+
+        # Annotation properties
+        for annotation_property_local in ("creator", "description", "identifier", "license", "rights", "source"):
+            graph.add((DCTERMS[annotation_property_local], RDF.type, OWL.AnnotationProperty))
+
+        self.__add_ontology(graph=graph)
+        self.__transform_predicates(graph=graph, predicates=predicates, terms=terms)
+        self.__transform_terms(graph=graph, terms=terms)
+
+        return {
+            "graph": graph,
+            "predicates": tuple(predicates),
+            "terms": tuple(terms)
+        }
+
+    def __transform_predicates(self, *, graph: Graph, predicates: Tuple[CostumeCorePredicate, ...],
+                               terms: Tuple[CostumeCoreTerm, ...]):
+        terms_by_features = {}
+        for term in terms:
+            if term.features:
+                for feature in term.features:
+                    terms_by_features.setdefault(feature, []).append(term)
 
         for predicate in predicates:
             try:
@@ -77,28 +128,35 @@ class CostumeCoreTransformer(_Transformer):
             except KeyError:
                 predicate_terms = tuple()
 
-            if predicate.uri.startswith(str(CC)):
-                resource = graph.resource(URIRef(predicate.uri))
-                resource.add(RDF.type, RDF.Property)
-                resource.add(RDFS.label, Literal(predicate.display_name_en, lang="en"))
-                resource.add(DCTERMS.identifier, Literal(predicate.id))
-                if predicate_terms:
-                    range_class_resource = graph.resource(BNode())
-                    range_class_resource.add(RDF.type, OWL.Class)
-                    range_individuals_collection = Collection(graph, BNode())
-                    for predicate_term in predicate_terms:
-                        range_individuals_collection.append(URIRef(predicate_term.uri))
-                    range_class_resource.add(OWL.oneOf, range_individuals_collection.uri)
-                    resource.add(RDFS.range, range_class_resource)
+            if not predicate.uri.startswith(str(CC)):
+                continue
+            resource = graph.resource(URIRef(predicate.uri))
+            resource.add(RDF.type, OWL.ObjectProperty)
+            resource.add(RDFS.comment, Literal(predicate.description_text_en, lang="en"))
+            resource.add(RDFS.label, Literal(predicate.display_name_en, lang="en"))
+            resource.add(DCTERMS.identifier, Literal(predicate.id))
+            if predicate.sub_property_of_uri:
+                resource.add(RDFS.subPropertyOf, URIRef(predicate.sub_property_of_uri))
+            if predicate_terms:
+                range_class_resource = graph.resource(BNode())
+                range_class_resource.add(RDF.type, OWL.Class)
+                range_individuals_collection = Collection(graph, BNode())
+                for predicate_term in predicate_terms:
+                    range_individuals_collection.append(URIRef(predicate_term.uri))
+                range_class_resource.add(OWL.oneOf, range_individuals_collection.uri)
+                resource.add(RDFS.range, range_class_resource)
 
         if terms_by_features:
             print("Terms that have a 'features' that doesn't correspond to a predicate:")
             for predicate_id, predicate_terms in terms_by_features.items():
                 print(predicate_id, ", ".join(term.id for term in predicate_terms))
+
+    def __transform_terms(self, *, graph, terms: Tuple[CostumeCoreTerm, ...]):
         for term in terms:
             resource = graph.resource(URIRef(term.uri))
             resource.add(RDFS.label, Literal(term.display_name_en, lang="en"))
             resource.add(DCTERMS.identifier, Literal(term.id))
+            resource.add(RDF.type, OWL.NamedIndividual)
             if term.description:
                 resource.add(DCTERMS.description, Literal(term.description.text_en, lang="en"))
                 description_resource = graph.resource(BNode())
@@ -112,13 +170,12 @@ class CostumeCoreTransformer(_Transformer):
                     description_resource.add(DCTERMS.license, URIRef(term.description.rights.license_uri))
                 if term.description.rights.rights_statement_uri:
                     description_resource.add(DCTERMS.rights, URIRef(term.description.rights.rights_statement_uri))
+            same_as_uris = []
             if term.aat_id:
-                resource.add(OWL.sameAs, URIRef("http://vocab.getty.edu/aat/" + term.aat_id))
+                same_as_uris.append(URIRef("http://vocab.getty.edu/aat/" + term.aat_id))
             if term.wikidata_id:
-                resource.add(OWL.sameAs, URIRef("http://www.wikidata.org/entity/" + term.wikidata_id))
-
-        return {
-            "graph": graph,
-            "predicates": tuple(predicates),
-            "terms": tuple(terms)
-        }
+                same_as_uris.append(URIRef("http://www.wikidata.org/entity/" + term.wikidata_id))
+            for same_as_uri in same_as_uris:
+                resource.add(OWL.sameAs, same_as_uri)
+                graph.add((same_as_uri, OWL.sameAs, resource.identifier))
+                graph.add((same_as_uri, RDF.type, OWL.NamedIndividual))

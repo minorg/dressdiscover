@@ -14,11 +14,13 @@ class CostumeCoreLoader(_Loader):
     def __init__(self, **kwds):
         from .costume_core_pipeline import CostumeCorePipeline
         _Loader.__init__(self, pipeline_id=CostumeCorePipeline.ID, **kwds)
-        self.__file_loader = FileLoader(pipeline_id=CostumeCorePipeline.ID, **kwds)
+        self.__ttl_file_loader = FileLoader(pipeline_id=CostumeCorePipeline.ID, format="ttl", **kwds)
+        self.__xml_file_loader = FileLoader(pipeline_id=CostumeCorePipeline.ID, format="xml", **kwds)
 
     def load(self, *, force: bool, graph: Graph, predicates: Tuple[CostumeCorePredicate, ...], storage: PipelineStorage,
              terms: Tuple[CostumeCoreTerm, ...]):
-        self.__file_loader.load(force=force, graph=graph, storage=storage)
+        self.__ttl_file_loader.load(force=force, graph=graph, storage=storage)
+        self.__xml_file_loader.load(force=force, graph=graph, storage=storage)
 
         model_dir_path = Path(__file__).parent.parent.parent / "model"
         with open(model_dir_path / "costume_core_predicates.py", "w+") as predicates_py_file:
