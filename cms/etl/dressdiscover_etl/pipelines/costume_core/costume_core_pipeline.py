@@ -22,7 +22,7 @@ class CostumeCorePipeline(_Pipeline):
 
     @classmethod
     def add_arguments(cls, arg_parser: ArgParser, **kwds):
-        _Pipeline.add_arguments(arg_parser, data_dir_path_default=DATA_DIR_PATH, **kwds)
+        _Pipeline.add_arguments(arg_parser, data_dir_path_default=str(DATA_DIR_PATH), **kwds)
         arg_parser.add_argument("--ontology-version", required=True)
 
 
