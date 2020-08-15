@@ -1,6 +1,6 @@
 from typing import NamedTuple
 
-from dressdiscover.cms.etl.model.costume_core_rights import CostumeCoreRights
+from dressdiscover_etl.models.costume_core_rights import CostumeCoreRights
 
 
 class CostumeCoreDescription(NamedTuple):

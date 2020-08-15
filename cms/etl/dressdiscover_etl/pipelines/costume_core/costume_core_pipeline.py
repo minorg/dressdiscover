@@ -1,9 +1,9 @@
 from configargparse import ArgParser
-from paradicms_etl.pipeline._pipeline import _Pipeline
+from paradicms_etl.pipelines._pipeline import _Pipeline
 
-from dressdiscover.cms.etl.pipeline.costume_core.costume_core_extractor import CostumeCoreExtractor
-from dressdiscover.cms.etl.pipeline.costume_core.costume_core_loader import CostumeCoreLoader
-from dressdiscover.cms.etl.pipeline.costume_core.costume_core_transformer import CostumeCoreTransformer
+from dressdiscover_etl.pipelines.costume_core.costume_core_extractor import CostumeCoreExtractor
+from dressdiscover_etl.pipelines.costume_core.costume_core_loader import CostumeCoreLoader
+from dressdiscover_etl.pipelines.costume_core.costume_core_transformer import CostumeCoreTransformer
 
 
 class CostumeCorePipeline(_Pipeline):

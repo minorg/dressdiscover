@@ -2,7 +2,7 @@ from typing import Collection, Optional
 
 from rdflib import Graph
 
-from dressdiscover.cms.etl.pipeline.vccc.costume_core_omeka_classic_transformer import \
+from dressdiscover_etl.pipelines.vccc.costume_core_omeka_classic_transformer import \
     CostumeCoreOmekaClassicTransformer
 
 

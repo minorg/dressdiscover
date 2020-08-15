@@ -2,16 +2,16 @@ import csv
 from pathlib import Path
 from typing import Tuple
 
-from paradicms_etl.pipeline._transformer import _Transformer
+from paradicms_etl.pipelines._transformer import _Transformer
 from rdflib import BNode, Graph, Literal, RDF, RDFS, URIRef
 from rdflib.collection import Collection
 from rdflib.namespace import DCTERMS, OWL
 
-from dressdiscover.cms.etl.model.costume_core_description import CostumeCoreDescription
-from dressdiscover.cms.etl.model.costume_core_predicate import CostumeCorePredicate
-from dressdiscover.cms.etl.model.costume_core_rights import CostumeCoreRights
-from dressdiscover.cms.etl.model.costume_core_term import CostumeCoreTerm
-from dressdiscover.cms.etl.namespace import CC
+from dressdiscover_etl.models.costume_core_description import CostumeCoreDescription
+from dressdiscover_etl.models.costume_core_predicate import CostumeCorePredicate
+from dressdiscover_etl.models.costume_core_rights import CostumeCoreRights
+from dressdiscover_etl.models.costume_core_term import CostumeCoreTerm
+from dressdiscover_etl.namespace import CC
 
 
 class CostumeCoreTransformer(_Transformer):

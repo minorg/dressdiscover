@@ -1,6 +1,6 @@
 from typing import NamedTuple, Optional, Tuple
 
-from dressdiscover.cms.etl.model.costume_core_description import CostumeCoreDescription
+from dressdiscover_etl.models.costume_core_description import CostumeCoreDescription
 
 
 class CostumeCoreTerm(NamedTuple):
