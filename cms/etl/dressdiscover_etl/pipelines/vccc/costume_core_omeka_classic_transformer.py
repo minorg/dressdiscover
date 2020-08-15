@@ -3,7 +3,7 @@ from paradicms_etl.pipelines.omeka_classic.omeka_classic_transformer import Omek
 from rdflib import Literal, URIRef, XSD
 from rdflib.namespace import DCTERMS
 
-from dressdiscover_etl.model import costume_core_predicates
+from dressdiscover_etl.models import costume_core_predicates
 from dressdiscover_etl.models.costume_core_terms_by_features import COSTUME_CORE_TERMS_BY_FEATURES
 from dressdiscover_etl.namespace import bind_namespaces
 

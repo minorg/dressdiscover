@@ -1,9 +1,15 @@
 from typing import NamedTuple, Optional, Tuple
 
+from paradicms_etl._model import _Model
+from rdflib import BNode, Graph, Literal, RDF, RDFS, URIRef
+from rdflib.namespace import DCTERMS, OWL
+from rdflib.resource import Resource
+
 from dressdiscover_etl.models.costume_core_description import CostumeCoreDescription
 
 
-class CostumeCoreTerm(NamedTuple):
+@dataclass(frozen=True)
+class CostumeCoreTerm(_Model):
     description: CostumeCoreDescription
     display_name_en: str
     id: str
@@ -24,3 +30,32 @@ class CostumeCoreTerm(NamedTuple):
             features = None
 
         return f"{self.__class__.__name__}(aat_id={quote_string(self.aat_id)}, description={repr(self.description)}, display_name_en='''{self.display_name_en}''', features={features}, id='{self.id}', uri='{self.uri}', wikidata_id={quote_string(self.wikidata_id)})"
+
+    def to_rdf(self, *, graph: Graph) -> Resource:
+        resource = graph.resource(URIRef(self.uri))
+        resource.add(RDFS.label, Literal(self.display_name_en, lang="en"))
+        resource.add(DCTERMS.identifier, Literal(self.id))
+        resource.add(RDF.type, OWL.NamedIndividual)
+        if self.description:
+            resource.add(DCTERMS.description, Literal(self.description.text_en, lang="en"))
+            description_resource = graph.resource(BNode())
+            resource.add(DCTERMS.description, description_resource)
+            description_resource.add(RDFS.label, Literal(self.description.text_en, lang="en"))
+            description_resource.add(DCTERMS.creator, Literal(self.description.rights.author))
+            source_resource = graph.resource(URIRef(self.description.rights.source_url))
+            # source_resource.add(RDFS.label, Literal(self.description.rights.source_name))
+            description_resource.add(DCTERMS.source, source_resource)
+            if self.description.rights.license_uri:
+                description_resource.add(DCTERMS.license, URIRef(self.description.rights.license_uri))
+            if self.description.rights.rights_statement_uri:
+                description_resource.add(DCTERMS.rights, URIRef(self.description.rights.rights_statement_uri))
+        same_as_uris = []
+        if self.aat_id:
+            same_as_uris.append(URIRef("http://vocab.getty.edu/aat/" + self.aat_id))
+        if self.wikidata_id:
+            same_as_uris.append(URIRef("http://www.wikidata.org/entity/" + self.wikidata_id))
+        for same_as_uri in same_as_uris:
+            resource.add(OWL.sameAs, same_as_uri)
+            graph.add((same_as_uri, OWL.sameAs, resource.identifier))
+            graph.add((same_as_uri, RDF.type, OWL.NamedIndividual))
+        return resource
