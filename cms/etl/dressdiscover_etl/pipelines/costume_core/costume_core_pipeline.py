@@ -13,16 +13,16 @@ class CostumeCorePipeline(_Pipeline):
     def __init__(self, *, ontology_version: str, **kwds):
         _Pipeline.__init__(
             self,
-            extractor=CostumeCoreExtractor(data_dir_path=DATA_DIR_PATH, pipeline_id=self.ID),
+            extractor=CostumeCoreExtractor(pipeline_id=self.ID, **kwds),
             id=self.ID,
-            loader=CostumeCoreLoader(data_dir_path=DATA_DIR_PATH, pipeline_id=self.ID),
-            transformer=CostumeCoreTransformer(data_dir_path=DATA_DIR_PATH, ontology_version=ontology_version, pipeline_id=self.ID),
+            loader=CostumeCoreLoader(pipeline_id=self.ID, **kwds),
+            transformer=CostumeCoreTransformer(ontology_version=ontology_version, pipeline_id=self.ID, **kwds),
             **kwds
         )
 
     @classmethod
     def add_arguments(cls, arg_parser: ArgParser, **kwds):
-        _Pipeline.add_arguments(arg_parser, **kwds)
+        _Pipeline.add_arguments(arg_parser, data_dir_path_default=DATA_DIR_PATH, **kwds)
         arg_parser.add_argument("--ontology-version", required=True)
 
 
