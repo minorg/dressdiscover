@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import NamedTuple, Optional, Tuple
 
 from paradicms_etl._model import _Model

@@ -22,8 +22,8 @@ class CostumeCoreOntology(_Model):
 
         ontology_resource = graph.resource(URIRef(str(CC)[:-1]))
         ontology_resource.add(RDF.type, OWL.Ontology)
-        ontology_resource.add(OWL.versionIRI, CC[self.__ontology_version])
-        ontology_resource.add(OWL.versionInfo, Literal(self.__ontology_version))
+        ontology_resource.add(OWL.versionIRI, CC[self.version])
+        ontology_resource.add(OWL.versionInfo, Literal(self.version))
         ontology_resource.add(DCTERMS.title, Literal("Costume Core Ontology"))
         ontology_resource.add(DCTERMS.creator, Literal("Arden Kirkland"))
         ontology_resource.add(DCTERMS.contributor, Literal("Minor Gordon"))

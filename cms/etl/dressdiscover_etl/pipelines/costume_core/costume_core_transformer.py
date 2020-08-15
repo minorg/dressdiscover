@@ -16,8 +16,8 @@ from models.costume_core_ontology import CostumeCoreOntology
 
 
 class CostumeCoreTransformer(_Transformer):
-    def __init__(self, *, ontology_version: str):
-        _Transformer.__init__(self)
+    def __init__(self, *, ontology_version: str, **kwds):
+        _Transformer.__init__(self, **kwds)
         self.__ontology_version = ontology_version
 
     def __parse_predicates(self, *, cc_predicates_csv_file_path: Path, terms_by_features: Dict[str, List[CostumeCoreTerm]]) -> Tuple[CostumeCorePredicate, ...]:
@@ -89,7 +89,7 @@ class CostumeCoreTransformer(_Transformer):
         return tuple(sorted(terms, key=lambda term: term.id))
 
     def transform(self, *, cc_predicates_csv_file_path: Path, cc_terms_csv_file_path: Path) -> Graph:
-        yield CostumeCoreOntology(version=self.__ontology_version)
+        yield CostumeCoreOntology(uri=URIRef(str(CC)), version=self.__ontology_version)
 
         terms = self.__parse_terms(cc_terms_csv_file_path=cc_terms_csv_file_path)
         yield from terms
