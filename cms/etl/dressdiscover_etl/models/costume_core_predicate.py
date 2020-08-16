@@ -7,7 +7,7 @@ from rdflib.collection import Collection
 from rdflib.namespace import DCTERMS
 from rdflib.resource import Resource
 
-from models.costume_core_term import CostumeCoreTerm
+from dressdiscover_etl.models.costume_core_term import CostumeCoreTerm
 
 
 @dataclass(frozen=True)

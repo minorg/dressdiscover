@@ -1,6 +1,6 @@
 from typing import NamedTuple, Optional
 
-from models.quote_repr_string import quote_repr_string
+from dressdiscover_etl.models.quote_repr_string import quote_repr_string
 
 
 class CostumeCoreRights(NamedTuple):

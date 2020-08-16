@@ -14,8 +14,8 @@ from dressdiscover_etl.models import costume_core_predicates
 from dressdiscover_etl.models.costume_core_terms_by_features import (
     COSTUME_CORE_TERMS_BY_FEATURES,
 )
-from models.costume_core_predicates import COSTUME_CORE_PREDICATES
-from namespace import CC
+from dressdiscover_etl.models.costume_core_predicates import COSTUME_CORE_PREDICATES
+from dressdiscover_etl.namespace import CC
 
 
 class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):

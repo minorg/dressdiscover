@@ -12,7 +12,7 @@ from dressdiscover_etl.models.costume_core_predicate import CostumeCorePredicate
 from dressdiscover_etl.models.costume_core_rights import CostumeCoreRights
 from dressdiscover_etl.models.costume_core_term import CostumeCoreTerm
 from dressdiscover_etl.namespace import CC
-from models.costume_core_ontology import CostumeCoreOntology
+from dressdiscover_etl.models.costume_core_ontology import CostumeCoreOntology
 
 
 class CostumeCoreTransformer(_Transformer):
@@ -20,10 +20,17 @@ class CostumeCoreTransformer(_Transformer):
         _Transformer.__init__(self, **kwds)
         self.__ontology_version = ontology_version
 
-    def __parse_predicates(self, *, cc_predicates_csv_file_path: Path, terms_by_features: Dict[str, List[CostumeCoreTerm]]) -> Tuple[CostumeCorePredicate, ...]:
+    def __parse_predicates(
+        self,
+        *,
+        cc_predicates_csv_file_path: Path,
+        terms_by_features: Dict[str, List[CostumeCoreTerm]]
+    ) -> Tuple[CostumeCorePredicate, ...]:
         predicates = []
 
-        with open(cc_predicates_csv_file_path, "r", encoding="UTF-8") as cc_predicates_csv_file:
+        with open(
+            cc_predicates_csv_file_path, "r", encoding="UTF-8"
+        ) as cc_predicates_csv_file:
             for row in csv.DictReader(cc_predicates_csv_file):
                 uri = row["URI"]
                 if not uri.startswith(str(CC)):
@@ -34,12 +41,20 @@ class CostumeCoreTransformer(_Transformer):
                 except KeyError:
                     predicate_terms = tuple()
                 predicates.append(
-                    CostumeCorePredicate(description_text_en=row["description_text_en"],
-                                         display_name_en=row["display_name_en"], id=id,
-                                         sub_property_of_uri=row.get("sub_property_of"), terms=predicate_terms, uri=uri))
+                    CostumeCorePredicate(
+                        description_text_en=row["description_text_en"],
+                        display_name_en=row["display_name_en"],
+                        id=id,
+                        sub_property_of_uri=row.get("sub_property_of"),
+                        terms=predicate_terms,
+                        uri=uri,
+                    )
+                )
         return tuple(sorted(predicates, key=lambda predicate: predicate.id))
 
-    def __parse_terms(self, *, cc_terms_csv_file_path: Path) -> Tuple[CostumeCoreTerm, ...]:
+    def __parse_terms(
+        self, *, cc_terms_csv_file_path: Path
+    ) -> Tuple[CostumeCoreTerm, ...]:
         terms = []
         with open(cc_terms_csv_file_path, "r") as cc_terms_csv_file:
             for row in csv.DictReader(cc_terms_csv_file):
@@ -57,17 +72,18 @@ class CostumeCoreTransformer(_Transformer):
 
                 description_text_en = row.get("description_text_en")
                 if description_text_en:
-                    description = \
-                        CostumeCoreDescription(
-                            rights=CostumeCoreRights(
-                                author=row["description_rights_author"],
-                                license_uri=row.get("description_rights_license"),
-                                rights_statement_uri=row.get("description_rights_statement"),
-                                source_name=row["description_rights_source_name"],
-                                source_url=row["description_rights_source_url"],
+                    description = CostumeCoreDescription(
+                        rights=CostumeCoreRights(
+                            author=row["description_rights_author"],
+                            license_uri=row.get("description_rights_license"),
+                            rights_statement_uri=row.get(
+                                "description_rights_statement"
                             ),
-                            text_en=row["description_text_en"]
-                        )
+                            source_name=row["description_rights_source_name"],
+                            source_url=row["description_rights_source_url"],
+                        ),
+                        text_en=row["description_text_en"],
+                    )
                 else:
                     description = None
 
@@ -75,20 +91,21 @@ class CostumeCoreTransformer(_Transformer):
                 if features:
                     features = tuple(features.split(","))
 
-                term = \
-                    CostumeCoreTerm(
-                        aat_id=row.get("AATID"),
-                        description=description,
-                        display_name_en=row["display_name_en"],
-                        features=features,
-                        id=row["id"],
-                        uri=row.get("CC_URI", str(CC[row["id"]])),
-                        wikidata_id=row.get("WikidataID")
-                    )
+                term = CostumeCoreTerm(
+                    aat_id=row.get("AATID"),
+                    description=description,
+                    display_name_en=row["display_name_en"],
+                    features=features,
+                    id=row["id"],
+                    uri=row.get("CC_URI", str(CC[row["id"]])),
+                    wikidata_id=row.get("WikidataID"),
+                )
                 terms.append(term)
         return tuple(sorted(terms, key=lambda term: term.id))
 
-    def transform(self, *, cc_predicates_csv_file_path: Path, cc_terms_csv_file_path: Path) -> Graph:
+    def transform(
+        self, *, cc_predicates_csv_file_path: Path, cc_terms_csv_file_path: Path
+    ) -> Graph:
         yield CostumeCoreOntology(uri=URIRef(str(CC)), version=self.__ontology_version)
 
         terms = self.__parse_terms(cc_terms_csv_file_path=cc_terms_csv_file_path)
@@ -100,9 +117,14 @@ class CostumeCoreTransformer(_Transformer):
                 for feature in term.features:
                     terms_by_features.setdefault(feature, []).append(term)
 
-        yield from self.__parse_predicates(cc_predicates_csv_file_path=cc_predicates_csv_file_path, terms_by_features=terms_by_features)
+        yield from self.__parse_predicates(
+            cc_predicates_csv_file_path=cc_predicates_csv_file_path,
+            terms_by_features=terms_by_features,
+        )
 
         if terms_by_features:
-            print("Terms that have a 'features' that doesn't correspond to a predicate:")
+            print(
+                "Terms that have a 'features' that doesn't correspond to a predicate:"
+            )
             for predicate_id, predicate_terms in terms_by_features.items():
                 print(predicate_id, ", ".join(term.id for term in predicate_terms))
