@@ -20,6 +20,7 @@ class DressdiscoverPipeline(_Pipeline):
                 clean=True,
                 pipeline_id=self.__ID,
                 strategy=JsonDirectoryLoader.Strategy.FILE_PER_MODEL_TYPE,
+                **kwds
             ),
             transformer=NopTransformer(pipeline_id=self.__ID, **kwds),
         )
