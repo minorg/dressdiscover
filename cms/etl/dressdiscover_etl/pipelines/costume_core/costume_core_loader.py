@@ -22,7 +22,7 @@ class CostumeCoreLoader(_Loader):
         self.__xml_file_loader.load(force=force, models=models_tuple)
 
         models_dir_path = Path(__file__).parent.parent.parent / "models"
-        with open(models_dir_path / "costume_core_predicates.py", "w+") as predicates_py_file:
+        with open(models_dir_path / "costume_core_predicates.py", "w+", encoding="ascii") as predicates_py_file:
             print('from .costume_core_predicate import CostumeCorePredicate', file=predicates_py_file)
             print(file=predicates_py_file)
             predicates = tuple(filter(lambda model: isinstance(model, CostumeCorePredicate), models_tuple))
@@ -31,7 +31,7 @@ class CostumeCoreLoader(_Loader):
             print(f"COSTUME_CORE_PREDICATES = ({', '.join(predicate.id for predicate in predicates)})",
                   file=predicates_py_file)
 
-        with open(models_dir_path / "costume_core_terms.py", "w+") as terms_py_file:
+        with open(models_dir_path / "costume_core_terms.py", "w+", encoding="ascii") as terms_py_file:
             print('from .costume_core_description import CostumeCoreDescription', file=terms_py_file)
             print('from .costume_core_rights import CostumeCoreRights', file=terms_py_file)
             print('from .costume_core_term import CostumeCoreTerm', file=terms_py_file)

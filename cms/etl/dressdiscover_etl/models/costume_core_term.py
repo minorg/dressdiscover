@@ -7,6 +7,7 @@ from rdflib.namespace import DCTERMS, OWL
 from rdflib.resource import Resource
 
 from dressdiscover_etl.models.costume_core_description import CostumeCoreDescription
+from models.quote_repr_string import quote_repr_string
 
 
 @dataclass(frozen=True)
@@ -20,17 +21,12 @@ class CostumeCoreTerm(_Model):
     wikidata_id: Optional[str] = None
 
     def __repr__(self):
-        def quote_string(value: Optional[str]):
-            if value is None:
-                return None
-            return "'" + value + "'"
-
         if self.features:
-            features = f"({', '.join(quote_string(feature) for feature in self.features)})"
+            features = f"({', '.join(quote_repr_string(feature) for feature in self.features)})"
         else:
             features = None
 
-        return f"{self.__class__.__name__}(aat_id={quote_string(self.aat_id)}, description={repr(self.description)}, display_name_en='''{self.display_name_en}''', features={features}, id='{self.id}', uri='{self.uri}', wikidata_id={quote_string(self.wikidata_id)})"
+        return f"{self.__class__.__name__}(aat_id={quote_repr_string(self.aat_id)}, description={repr(self.description)}, display_name_en='''{self.display_name_en.encode('unicode-escape').decode('ascii')}''', features={features}, id='{self.id}', uri='{self.uri}', wikidata_id={quote_repr_string(self.wikidata_id)})"
 
     def to_rdf(self, *, graph: Graph) -> Resource:
         resource = graph.resource(URIRef(self.uri))

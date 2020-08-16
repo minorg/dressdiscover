@@ -23,7 +23,7 @@ class CostumeCoreTransformer(_Transformer):
     def __parse_predicates(self, *, cc_predicates_csv_file_path: Path, terms_by_features: Dict[str, List[CostumeCoreTerm]]) -> Tuple[CostumeCorePredicate, ...]:
         predicates = []
 
-        with open(cc_predicates_csv_file_path, "r") as cc_predicates_csv_file:
+        with open(cc_predicates_csv_file_path, "r", encoding="UTF-8") as cc_predicates_csv_file:
             for row in csv.DictReader(cc_predicates_csv_file):
                 uri = row["URI"]
                 if not uri.startswith(str(CC)):
