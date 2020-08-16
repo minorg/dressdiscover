@@ -1,8 +1,8 @@
-from paradicms_etl.pipeline._pipeline import _Pipeline
-from paradicms_etl.pipeline.csv.existing_csv_file_extractor import ExistingCsvFileExtractor
+from paradicms_etl.pipelines._pipeline import _Pipeline
+from paradicms_etl.pipelines.csv.existing_csv_file_extractor import ExistingCsvFileExtractor
 
-from dressdiscover.cms.etl.path import DATA_DIR_PATH
-from dressdiscover.cms.etl.pipeline.schcc.schcc_transformer import SchccTransformer
+from dressdiscover_etl.path import DATA_DIR_PATH
+from dressdiscover_etl.pipelines.schcc.schcc_transformer import SchccTransformer
 
 
 class SchccPipeline(_Pipeline):

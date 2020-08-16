@@ -2,12 +2,12 @@ import os.path
 from typing import Tuple
 from xml.etree.ElementTree import ElementTree
 
-from paradicms_etl.model.collection import Collection
-from paradicms_etl.model.image import Image
-from paradicms_etl.model.institution import Institution
-from paradicms_etl.model.object import Object
+from paradicms_etl.models.collection import Collection
+from paradicms_etl.models.image import Image
+from paradicms_etl.models.institution import Institution
+from paradicms_etl.models.object import Object
 from paradicms_etl.namespace import CMS, DCMITYPE, PROV
-from paradicms_etl.pipeline._transformer import _Transformer
+from paradicms_etl.pipelines._transformer import _Transformer
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import DCTERMS, FOAF, RDFS
 

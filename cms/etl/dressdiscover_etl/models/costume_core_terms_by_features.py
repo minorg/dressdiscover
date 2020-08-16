@@ -1,4 +1,4 @@
-from dressdiscover.cms.etl.model.costume_core_terms import COSTUME_CORE_TERMS
+from dressdiscover_etl.models.costume_core_terms import COSTUME_CORE_TERMS
 
 COSTUME_CORE_TERMS_BY_FEATURES = {}
 for costume_core_term in COSTUME_CORE_TERMS:
