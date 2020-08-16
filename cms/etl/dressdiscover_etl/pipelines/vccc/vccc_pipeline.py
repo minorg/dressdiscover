@@ -2,7 +2,7 @@ from paradicms_etl._pipeline import _Pipeline
 from paradicms_etl.pipelines.omeka_classic.omeka_classic_extractor import OmekaClassicExtractor
 
 from dressdiscover_etl.path import DATA_DIR_PATH
-from dressdiscover_etl.pipelines.vccc.vccc_transformer import VccTransformer
+from dressdiscover_etl.pipelines.vccc.vccc_transformer import VcccTransformer
 
 
 class VcccPipeline(_Pipeline):
@@ -18,7 +18,7 @@ class VcccPipeline(_Pipeline):
                 **kwds
             ),
             id=self.__ID,
-            transformer=VccTransformer(pipeline_id=self.__ID, **kwds),
+            transformer=VcccTransformer(pipeline_id=self.__ID, **kwds),
             **kwds
         )
 
