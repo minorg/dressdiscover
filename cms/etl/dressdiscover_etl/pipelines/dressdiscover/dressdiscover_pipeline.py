@@ -1,7 +1,7 @@
 from configargparse import ArgParser
 from paradicms_etl._pipeline import _Pipeline
 from paradicms_etl.extractors.nop_extractor import NopExtractor
-from paradicms_etl.loaders.json_directory_loader import JsonDirectoryLoader
+from paradicms_etl.loaders.gui_loader import GuiLoader
 from paradicms_etl.transformers.nop_transformer import NopTransformer
 
 from dressdiscover_etl.path import DATA_DIR_PATH
@@ -16,12 +16,7 @@ class DressdiscoverPipeline(_Pipeline):
             self,
             extractor=NopExtractor(pipeline_id=self.__ID, **kwds),
             id=self.__ID,
-            loader=JsonDirectoryLoader(
-                clean=True,
-                pipeline_id=self.__ID,
-                strategy=JsonDirectoryLoader.Strategy.FILE_PER_MODEL_TYPE,
-                **kwds
-            ),
+            loader=GuiLoader(pipeline_id=self.__ID, **kwds),
             transformer=NopTransformer(pipeline_id=self.__ID, **kwds),
         )
         self.__pipelines = (

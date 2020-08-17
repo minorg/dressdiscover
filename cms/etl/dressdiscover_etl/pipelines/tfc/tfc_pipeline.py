@@ -14,10 +14,10 @@ class TfcPipeline(_Pipeline):
             self,
             extractor=OaiPmhExtractor(
                 endpoint_url="http://digital.library.unt.edu/explore/collections/TXFC/oai/",
-                metadata_prefix="untl"
+                metadata_prefix="untl",
             ),
             id="tfc",
-            transformer=TfcTransformer()
+            transformer=TfcTransformer(),
         )
 
 
