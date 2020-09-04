@@ -77,10 +77,10 @@ export class WorksheetStateWrapper {
 
   get currentFeatureSetStateMark(): WorksheetStateMark | undefined {
     return this.currentStateMark.featureSetId
-      ? new WorksheetStateMark({
+      ? {
           worksheetStateId: this.currentStateMark.worksheetStateId,
           featureSetId: this.currentStateMark.featureSetId,
-        })
+        }
       : undefined;
   }
 
@@ -135,7 +135,9 @@ export class WorksheetStateWrapper {
     this.worksheetState.mtime = new Date();
   }
 
-  selectFeatureValues(featureValueIds: WorksheetFeatureValueId[] | undefined) {
+  selectFeatureValues(
+    featureValueIds: readonly WorksheetFeatureValueId[] | undefined
+  ) {
     let featureState = this.currentFeatureState;
     let featureSetState = this.currentFeatureSetState;
 
@@ -145,23 +147,23 @@ export class WorksheetStateWrapper {
           console.debug(
             "creating new feature set " + this.currentStateMark.featureSetId
           );
-          featureSetState = new WorksheetFeatureSetState({
+          featureSetState = {
             features: [],
             id: this.currentStateMark.featureSetId as WorksheetFeatureSetId,
-          });
+          };
           this.worksheetState.featureSets.push(featureSetState);
         }
 
         console.debug(
           "creating new feature " + this.currentStateMark.featureId
         );
-        featureState = new WorksheetFeatureState({
+        featureState = {
           id: this.currentStateMark.featureId as WorksheetFeatureId,
-        });
+        };
         featureSetState.features.push(featureState);
       }
 
-      featureState.selectedValueIds = featureValueIds;
+      featureState.selectedValueIds = featureValueIds?.concat();
     } else if (featureState && featureSetState) {
       // No selected values, remove the feature
       console.debug(
@@ -190,7 +192,7 @@ export class WorksheetStateWrapper {
   }
 
   toJsonObject() {
-    return this.worksheetState.toJsonObject();
+    return this.worksheetState;
   }
 
   toWorksheetState() {

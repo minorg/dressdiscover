@@ -35,7 +35,7 @@ export class WorksheetDefinitionWrapper {
         return featureSetDefinition;
       }
     }
-    throw new NoSuchWorksheetFeatureSetDefinitionException({id: featureSetId});
+    throw new NoSuchWorksheetFeatureSetDefinitionException(featureSetId);
   }
 
   featureById(
@@ -46,7 +46,7 @@ export class WorksheetDefinitionWrapper {
         return featureDefinition;
       }
     }
-    throw new NoSuchWorksheetFeatureDefinitionException({id: featureId});
+    throw new NoSuchWorksheetFeatureDefinitionException(featureId);
   }
 
   featureValueById(
@@ -57,9 +57,7 @@ export class WorksheetDefinitionWrapper {
         return featureValueDefinition;
       }
     }
-    throw new NoSuchWorksheetFeatureValueDefinitionException({
-      id: featureValueId,
-    });
+    throw new NoSuchWorksheetFeatureValueDefinitionException(featureValueId);
   }
 
   // getNextFeatureId(kwds: { currentFeatureId: WorksheetFeatureId, currentFeatureSetDefinition: WorksheetFeatureSetDefinition }): WorksheetFeatureId | undefined {

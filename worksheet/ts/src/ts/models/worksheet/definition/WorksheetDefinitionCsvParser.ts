@@ -7,7 +7,6 @@ import {WorksheetFeatureValueImage} from "~/models/worksheet/definition/Workshee
 import {WorksheetFeatureValueImageUrl} from "~/models/worksheet/definition/WorksheetFeatureValueImageUrl";
 import {WorksheetRights} from "~/models/worksheet/definition/WorksheetRights";
 import {WorksheetRightsLicense} from "~/models/worksheet/definition/WorksheetRightsLicense";
-import {WorksheetRightsSource} from "~/models/worksheet/definition/WorksheetRightsSource";
 import {WorksheetFeatureId} from "~/models/worksheet/WorksheetFeatureId";
 import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
 import {WorksheetFeatureValueId} from "~/models/worksheet/WorksheetFeatureValueId";
@@ -32,7 +31,7 @@ export class WorksheetDefinitionCsvParser {
     const rightsLicensesByUri = this._parseRightsLicensesCsv(
       kwds.rightsLicensesCsv
     );
-    return new WorksheetDefinition({
+    return {
       featureSets: this._parseFeatureSetsCsv(
         kwds.featureSetsCsv,
         rightsLicensesByUri
@@ -42,7 +41,7 @@ export class WorksheetDefinitionCsvParser {
         rightsLicensesByUri
       ),
       features: this._parseFeaturesCsv(kwds.featuresCsv, rightsLicensesByUri),
-    });
+    };
   }
 
   private _parseCsv(csv: string, csvName: string, config?: Papa.ParseConfig) {
@@ -61,13 +60,13 @@ export class WorksheetDefinitionCsvParser {
   private _parseDescription(
     rightsLicensesByUri: RightsLicensesByUri,
     row: CsvRowObjectType
-  ) {
+  ): WorksheetDescription | undefined {
     const descriptionTextEn = row.description_text_en as string;
     if (!_.isEmpty(descriptionTextEn)) {
-      return new WorksheetDescription({
+      return {
         rights: this._parseRights("description_", rightsLicensesByUri, row),
         textEn: descriptionTextEn,
-      });
+      };
     } else {
       return undefined;
     }
@@ -128,16 +127,14 @@ export class WorksheetDefinitionCsvParser {
         return;
       }
       try {
-        features.push(
-          new WorksheetFeatureDefinition({
-            description: this._parseDescription(rightsLicensesByUri, row),
-            displayNameEn: row.display_name_en as string,
-            id: WorksheetFeatureId.parse(row.id as string),
-            valueIds: (row.value as string[]).map((id: string) =>
-              WorksheetFeatureValueId.parse(id)
-            ),
-          })
-        );
+        features.push({
+          description: this._parseDescription(rightsLicensesByUri, row),
+          displayNameEn: row.display_name_en as string,
+          id: WorksheetFeatureId.parse(row.id as string),
+          valueIds: (row.value as string[]).map((id: string) =>
+            WorksheetFeatureValueId.parse(id)
+          ),
+        });
       } catch (e) {
         if (e instanceof RangeError) {
           console.error("feature row " + (rowI + 2) + " error: " + e.message);
@@ -161,16 +158,14 @@ export class WorksheetDefinitionCsvParser {
         return;
       }
       try {
-        featureSets.push(
-          new WorksheetFeatureSetDefinition({
-            description: this._parseDescription(rightsLicensesByUri, row),
-            displayNameEn: row.display_name_en as string,
-            featureIds: (row.feature as string[]).map((id: string) =>
-              WorksheetFeatureId.parse(id)
-            ),
-            id: WorksheetFeatureSetId.parse(row.id as string),
-          })
-        );
+        featureSets.push({
+          description: this._parseDescription(rightsLicensesByUri, row),
+          displayNameEn: row.display_name_en as string,
+          featureIds: (row.feature as string[]).map((id: string) =>
+            WorksheetFeatureId.parse(id)
+          ),
+          id: WorksheetFeatureSetId.parse(row.id as string),
+        });
       } catch (e) {
         if (e instanceof RangeError) {
           console.error(
@@ -205,24 +200,24 @@ export class WorksheetDefinitionCsvParser {
           row
         );
         if (imageThumbnailUrl) {
-          image = new WorksheetFeatureValueImage({
+          image = {
             fullSizeUrl: this._parseFeatureValueImageUrl(
               "image_full_size_",
               row
             ),
             rights: this._parseRights("image_", rightsLicensesByUri, row),
             thumbnailUrl: imageThumbnailUrl,
-          });
+          };
         } else {
           // console.warn("feature value row " + (rowI + 2) + " (" + valueId + ") has no image");
         }
 
-        const value = new WorksheetFeatureValueDefinition({
+        const value = {
           description: this._parseDescription(rightsLicensesByUri, row),
           displayNameEn: row.display_name_en as string,
           id: WorksheetFeatureValueId.parse(valueId),
           image,
-        });
+        };
         values.push(value);
       } catch (e) {
         if (e instanceof RangeError) {
@@ -243,11 +238,11 @@ export class WorksheetDefinitionCsvParser {
   ): WorksheetFeatureValueImageUrl | undefined {
     const absolute = row[prefix + "url"] as string;
     if (!_.isEmpty(absolute)) {
-      return new WorksheetFeatureValueImageUrl({absolute});
+      return {absolute};
     }
     const relative = row[prefix + "rel_path"] as string;
     if (!_.isEmpty(relative)) {
-      return new WorksheetFeatureValueImageUrl({relative});
+      return {relative};
     }
     return undefined;
   }
@@ -263,14 +258,14 @@ export class WorksheetDefinitionCsvParser {
       if (!license) {
         throw new RangeError("missing license " + licenseUri);
       }
-      return new WorksheetRights({
+      return {
         author: row[columnNamePrefix + "rights_author"] as string,
         license,
-        source: new WorksheetRightsSource({
+        source: {
           name: row[columnNamePrefix + "rights_source_name"] as string,
           url: row[columnNamePrefix + "rights_source_url"] as string,
-        }),
-      });
+        },
+      };
     } catch (e) {
       if (e instanceof RangeError) {
         throw new RangeError(columnNamePrefix + " rights error: " + e.message);
@@ -291,11 +286,11 @@ export class WorksheetDefinitionCsvParser {
       }
 
       try {
-        const license = new WorksheetRightsLicense({
+        const license = {
           nickname: row.Nickname as string,
           statement: row.Statement as string,
           uri: row.URL as string,
-        });
+        };
         result[license.uri] = license;
       } catch (e) {
         if (e instanceof RangeError) {

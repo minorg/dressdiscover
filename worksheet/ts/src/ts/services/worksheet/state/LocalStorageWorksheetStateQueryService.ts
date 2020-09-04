@@ -14,7 +14,7 @@ export class LocalStorageWorksheetStateQueryService
         reject(new NoSuchWorksheetStateException(kwds.id));
         return;
       }
-      resolve(WorksheetState.fromThryftJsonObject(JSON.parse(jsonString)));
+      resolve(JSON.parse(jsonString));
     });
   }
 

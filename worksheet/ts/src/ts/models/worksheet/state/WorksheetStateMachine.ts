@@ -2,6 +2,7 @@ import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
 import {WorksheetStateMark} from "~/models/worksheet/state/WorksheetStateMark";
 
 import {WorksheetDefinitionWrapper} from "../definition/WorksheetDefinitionWrapper";
+import * as _ from "lodash";
 
 export class WorksheetStateMachine {
   constructor(
@@ -21,7 +22,7 @@ export class WorksheetStateMachine {
       stateMarkI < this.stateMarks.length;
       stateMarkI++
     ) {
-      if (this.stateMarks[stateMarkI].equals(stateMark)) {
+      if (_.isEqual(this.stateMarks, stateMark)) {
         return stateMarkI;
       }
     }
@@ -57,7 +58,7 @@ export class WorksheetStateMachine {
 
     // First state, always the worksheet start
     const worksheetStateId = worksheetState.id;
-    this.stateMarks.push(new WorksheetStateMark({worksheetStateId}));
+    this.stateMarks.push({worksheetStateId});
 
     if (worksheetState.featureSets.length > 0) {
       for (const featureSetState of worksheetState.featureSets) {
@@ -67,42 +68,34 @@ export class WorksheetStateMachine {
         );
 
         // Feature set start
-        this.stateMarks.push(
-          new WorksheetStateMark({
-            featureSetId,
-            worksheetStateId,
-          })
-        );
+        this.stateMarks.push({
+          featureSetId,
+          worksheetStateId,
+        });
 
         for (const featureId of featureSetDefinition.featureIds) {
           // Feature start is the same as review
-          this.stateMarks.push(
-            new WorksheetStateMark({
-              featureId,
-              featureSetId,
-              worksheetStateId,
-            })
-          );
+          this.stateMarks.push({
+            featureId,
+            featureSetId,
+            worksheetStateId,
+          });
         }
 
         // Feature set review
-        this.stateMarks.push(
-          new WorksheetStateMark({
-            featureSetId,
-            review: true,
-            worksheetStateId,
-          })
-        );
+        this.stateMarks.push({
+          featureSetId,
+          review: true,
+          worksheetStateId,
+        });
       }
     }
 
     // Worksheet review, always the last state
-    this.stateMarks.push(
-      new WorksheetStateMark({
-        review: true,
-        worksheetStateId,
-      })
-    );
+    this.stateMarks.push({
+      review: true,
+      worksheetStateId,
+    });
   }
 
   private stateMarks: WorksheetStateMark[] = [];

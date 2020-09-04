@@ -1,8 +1,8 @@
-import { Hrefs } from '~/Hrefs';
-import { CurrentUserStore } from '~/stores/current_user/CurrentUserStore';
-import { inject, observer } from 'mobx-react';
-import * as React from 'react';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import {Hrefs} from "~/Hrefs";
+import {CurrentUserStore} from "~/stores/current_user/CurrentUserStore";
+import {inject, observer} from "mobx-react";
+import * as React from "react";
+import {Link, RouteComponentProps, withRouter} from "react-router-dom";
 import {
   Collapse,
   DropdownItem,
@@ -14,17 +14,17 @@ import {
   NavItem,
   NavLink,
   UncontrolledDropdown,
-} from 'reactstrap';
+} from "reactstrap";
 
-import { Environment } from '../../Environment';
-import { ActiveNavbarItem } from './ActiveNavbarItem';
+import {Environment} from "../../Environment";
+import {ActiveNavbarItem} from "./ActiveNavbarItem";
 
 interface Props extends RouteComponentProps {
   activeNavItem?: ActiveNavbarItem;
   currentUserStore?: CurrentUserStore;
 }
 
-@inject('currentUserStore')
+@inject("currentUserStore")
 @observer
 class Navbar extends React.Component<Props> {
   render() {
@@ -39,17 +39,19 @@ class Navbar extends React.Component<Props> {
               {currentUser.name}
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem><Link to={Hrefs.userSettings}>Settings</Link></DropdownItem>
-              <DropdownItem><Link to={Hrefs.logout}>Logout</Link></DropdownItem>
+              <DropdownItem>
+                <Link to={Hrefs.userSettings}>Settings</Link>
+              </DropdownItem>
+              <DropdownItem>
+                <Link to={Hrefs.logout}>Logout</Link>
+              </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         );
       } else {
         currentUserJsx = (
           <NavItem>
-            <NavLink href={Hrefs.login}>
-              Login
-            </NavLink>
+            <NavLink href={Hrefs.login}>Login</NavLink>
           </NavItem>
         );
       }
@@ -69,7 +71,9 @@ class Navbar extends React.Component<Props> {
         <BootstrapNavbar color="light" light expand="md">
           <NavbarBrand href={Hrefs.home}>DressDiscover Worksheet</NavbarBrand>
           <Nav>
-            <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Home}>
+            <NavItem
+              active={this.props.activeNavItem === ActiveNavbarItem.Home}
+            >
               <NavLink
                 active={this.props.activeNavItem === ActiveNavbarItem.Home}
                 tag={Link}
@@ -78,9 +82,13 @@ class Navbar extends React.Component<Props> {
                 Home
               </NavLink>
             </NavItem>
-            <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Worksheets}>
+            <NavItem
+              active={this.props.activeNavItem === ActiveNavbarItem.Worksheets}
+            >
               <NavLink
-                active={this.props.activeNavItem === ActiveNavbarItem.Worksheets}
+                active={
+                  this.props.activeNavItem === ActiveNavbarItem.Worksheets
+                }
                 tag={Link}
                 to={Hrefs.worksheetStart}
               >

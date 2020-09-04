@@ -1,4 +1,4 @@
-﻿import {GoogleSheetsWorksheetStateConfiguration} from "~/models/worksheet/configuration/GoogleSheetsWorksheetStateonfiguration";
+﻿import {GoogleSheetsWorksheetStateConfiguration} from "~/models/worksheet/configuration/GoogleSheetsWorksheetStateConfiguration";
 import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
 import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {WorksheetDefinitionQueryService} from "~/services/worksheet/definition/WorksheetDefinitionQueryService";
@@ -78,7 +78,7 @@ export class GoogleSheetsWorksheetStateCommandService
             newWorksheetStates.push(worksheetState);
           }
           if (!renamed) {
-            reject(new NoSuchWorksheetStateException({id: kwds.oldId}));
+            reject(new NoSuchWorksheetStateException(kwds.oldId));
             return;
           }
 

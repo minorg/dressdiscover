@@ -5,6 +5,6 @@ import {WorksheetFeatureValueId} from "../WorksheetFeatureValueId";
 export interface WorksheetFeatureDefinition {
   readonly displayNameEn: string;
   readonly id: WorksheetFeatureId;
-  readonly valueIds: readonly WorksheetFeatureValueId[];
+  readonly valueIds: WorksheetFeatureValueId[];
   readonly description?: WorksheetDescription;
 }

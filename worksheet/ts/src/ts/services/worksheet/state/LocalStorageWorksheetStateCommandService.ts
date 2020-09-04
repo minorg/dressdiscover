@@ -19,7 +19,7 @@ export class LocalStorageWorksheetStateCommandService
       LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(
         kwds.state.id
       ),
-      JSON.stringify(kwds.state.toThryftJsonObject())
+      JSON.stringify(kwds.state)
     );
     return new Promise((resolve, reject) => resolve());
   }
@@ -37,24 +37,22 @@ export class LocalStorageWorksheetStateCommandService
       );
 
       if (localStorage.getItem(newKey)) {
-        reject(new DuplicateWorksheetStateException({id: kwds.newId}));
+        reject(new DuplicateWorksheetStateException(kwds.newId));
         return;
       }
 
       const oldJsonString = localStorage.getItem(oldKey);
       if (!oldJsonString) {
-        reject(new NoSuchWorksheetStateException({id: kwds.oldId}));
+        reject(new NoSuchWorksheetStateException(kwds.oldId));
         return;
       }
 
       // Change the id in the value, too
-      const value = WorksheetState.fromThryftJsonObject(
-        JSON.parse(oldJsonString)
-      );
-      value.id = kwds.newId;
+      let value: WorksheetState = JSON.parse(oldJsonString);
+      value = {...value, id: kwds.newId};
 
       localStorage.removeItem(oldKey);
-      localStorage.setItem(newKey, JSON.stringify(value.toThryftJsonObject()));
+      localStorage.setItem(newKey, JSON.stringify(value));
       resolve();
     });
   }
