@@ -11,7 +11,7 @@ export class LocalStorageWorksheetStateQueryService
         LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id)
       );
       if (jsonString == null) {
-        reject(new NoSuchWorksheetStateException({id: kwds.id}));
+        reject(new NoSuchWorksheetStateException(kwds.id));
         return;
       }
       resolve(WorksheetState.fromThryftJsonObject(JSON.parse(jsonString)));

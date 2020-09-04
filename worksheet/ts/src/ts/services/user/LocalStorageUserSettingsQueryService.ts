@@ -14,7 +14,7 @@ export class LocalStorageUserSettingsQueryService
     const value = localStorage.getItem(key);
     // console.info("read user settings from key=%s: %s (%s)", key, value);
     if (!value) {
-      return Promise.reject(new NoSuchUserSettingsException(kwds));
+      return Promise.reject(new NoSuchUserSettingsException(kwds.id));
     }
     return Promise.resolve(JSON.parse(value));
   }

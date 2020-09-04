@@ -1,5 +1,8 @@
 import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
+import {Exception} from "~/Exception";
 
-export class NoSuchWorksheetFeatureSetDefinitionException {
-  constructor(readonly id: WorksheetFeatureSetId) {}
+export class NoSuchWorksheetFeatureSetDefinitionException extends Exception {
+  constructor(readonly id: WorksheetFeatureSetId) {
+    super();
+  }
 }

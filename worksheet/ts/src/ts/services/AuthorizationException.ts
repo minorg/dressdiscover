@@ -1,4 +1,7 @@
-export class AuthorizationException {
-    constructor(readonly causeMessage: string) {
-    }
+import {Exception} from "~/Exception";
+
+export class AuthorizationException extends Exception {
+  constructor(readonly causeMessage: string) {
+    super();
+  }
 }

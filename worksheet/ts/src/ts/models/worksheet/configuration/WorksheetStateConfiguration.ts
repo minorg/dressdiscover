@@ -1,4 +1,4 @@
-import {GoogleSheetsWorksheetStateConfiguration} from "./GoogleSheetsWorksheetStateonfiguration";
+import {GoogleSheetsWorksheetStateConfiguration} from "./GoogleSheetsWorksheetStateConfiguration";
 import {LocalStorageWorksheetStateConfiguration} from "./LocalStorageWorksheetStateConfiguration";
 
 export interface WorksheetStateConfiguration {

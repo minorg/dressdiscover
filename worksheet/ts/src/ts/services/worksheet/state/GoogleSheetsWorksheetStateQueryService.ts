@@ -44,7 +44,7 @@ export class GoogleSheetsWorksheetStateQueryService
             return;
           }
         }
-        reject(new NoSuchWorksheetStateException(kwds));
+        reject(new NoSuchWorksheetStateException(kwds.id));
       }, reject);
     });
   }

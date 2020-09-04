@@ -84,7 +84,7 @@ export class WorksheetStateWrapper {
       : undefined;
   }
 
-  get featureSetStates(): WorksheetFeatureSetState[] {
+  get featureSetStates(): readonly WorksheetFeatureSetState[] {
     return this.worksheetState.featureSets;
   }
 
@@ -118,7 +118,7 @@ export class WorksheetStateWrapper {
     return this.worksheetStateMachine.previousStateMark(this.currentStateMark);
   }
 
-  selectFeatureSets(featureSetIds: WorksheetFeatureSetId[]): void {
+  selectFeatureSets(featureSetIds: readonly WorksheetFeatureSetId[]): void {
     const selectedFeatureSetStates: WorksheetFeatureSetState[] = [];
     for (const featureSetId of featureSetIds) {
       const existingFeatureSetState = this.worksheetState.featureSets.find(
@@ -127,9 +127,7 @@ export class WorksheetStateWrapper {
       if (existingFeatureSetState) {
         selectedFeatureSetStates.push(existingFeatureSetState);
       } else {
-        selectedFeatureSetStates.push(
-          new WorksheetFeatureSetState({features: [], id: featureSetId})
-        );
+        selectedFeatureSetStates.push({features: [], id: featureSetId});
       }
     }
     this.worksheetState.featureSets = selectedFeatureSetStates;
