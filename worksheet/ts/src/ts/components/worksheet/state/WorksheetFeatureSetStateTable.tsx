@@ -1,20 +1,20 @@
-import { WorksheetFeatureSetState } from '~/models/worksheet/state/worksheet_feature_set_state';
-import { WorksheetFeatureState } from '~/models/worksheet/state/worksheet_feature_state';
-import { WorksheetStateMark } from '~/models/worksheet/state/worksheet_state_mark';
+import { WorksheetFeatureSetState } from '~/models/worksheet/state/WorksheetFeatureSetState';
+import { WorksheetFeatureState } from '~/models/worksheet/state/WorksheetFeatureState';
+import { WorksheetStateMark } from '~/models/worksheet/state/WorksheetStateMark';
 import { WorksheetStateWrapper } from '~/models/worksheet/state/WorksheetStateWrapper';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 
 import { Hrefs } from '../../../Hrefs';
-import { WorksheetDefinitionWrapper } from '../../../models/worksheet/definition/WorksheetDefinitionWrapper';
-import { WorksheetFeatureDefinitionWrapper } from '../../../models/worksheet/definition/WorksheetFeatureDefinitionWrapper';
+import { WorksheetDefinitionWrapper } from '../~/models/worksheet/definition/WorksheetDefinitionWrapper';
+import { WorksheetFeatureDefinitionWrapper } from '../~/models/worksheet/definition/WorksheetFeatureDefinitionWrapper';
 import {
     WorksheetFeatureSetDefinitionWrapper,
-} from '../../../models/worksheet/definition/WorksheetFeatureSetDefinitionWrapper';
+} from '../~/models/worksheet/definition/WorksheetFeatureSetDefinitionWrapper';
 import {
     WorksheetFeatureValueDefinitionWrapper,
-} from '../../../models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
+} from '../~/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
 
 interface Props {

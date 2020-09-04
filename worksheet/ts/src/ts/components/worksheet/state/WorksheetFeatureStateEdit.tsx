@@ -1,4 +1,4 @@
-import { WorksheetFeatureValueId } from '~/models/worksheet/worksheet_feature_value_id';
+import { WorksheetFeatureValueId } from '~/models/worksheet/WorksheetFeatureValueId';
 import { WorksheetFeatureValueStateEdit } from '~/components/worksheet/state/WorksheetFeatureValueStateEdit';
 import { WorksheetStateFrame } from '~/components/worksheet/state/WorksheetStateFrame';
 import { WorksheetStateGetter } from '~/components/worksheet/state/WorksheetStateGetter';

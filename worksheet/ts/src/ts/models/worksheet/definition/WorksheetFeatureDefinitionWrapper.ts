@@ -1,5 +1,5 @@
-import { WorksheetFeatureDefinition } from '~/models/worksheet/definition/worksheet_feature_definition';
-import { WorksheetFeatureId } from '~/models/worksheet/worksheet_feature_id';
+import { WorksheetFeatureDefinition } from '~/models/worksheet/definition/WorksheetFeatureDefinition';
+import { WorksheetFeatureId } from '~/models/worksheet/WorksheetFeatureId';
 import { AbstractDefinitionWrapper } from '~/models/worksheet/definition/AbstractDefinitionWrapper';
 import { WorksheetDefinitionWrapper } from '~/models/worksheet/definition/WorksheetDefinitionWrapper';
 import {

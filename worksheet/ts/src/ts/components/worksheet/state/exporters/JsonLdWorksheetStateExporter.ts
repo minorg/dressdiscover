@@ -1,6 +1,6 @@
-import { WorksheetDefinition } from '~/models/worksheet/definition/worksheet_definition';
-import { WorksheetState } from '~/models/worksheet/state/worksheet_state';
-import { WorksheetStateMark } from '~/models/worksheet/state/worksheet_state_mark';
+import { WorksheetDefinition } from '~/models/worksheet/definition/WorksheetDefinition';
+import { WorksheetState } from '~/models/worksheet/state/WorksheetState';
+import { WorksheetStateMark } from '~/models/worksheet/state/WorksheetStateMark';
 import { WorksheetStateExporter } from '~/components/worksheet/state/exporters/WorksheetStateExporter';
 import { Hrefs } from '~/Hrefs';
 

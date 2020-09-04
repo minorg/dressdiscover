@@ -1,7 +1,7 @@
-import { WorksheetDefinition } from '~/models/worksheet/definition/worksheet_definition';
-import { WorksheetState } from '~/models/worksheet/state/worksheet_state';
-import { WorksheetFeatureId } from '~/models/worksheet/worksheet_feature_id';
-import { WorksheetFeatureSetId } from '~/models/worksheet/worksheet_feature_set_id';
+import { WorksheetDefinition } from '~/models/worksheet/definition/WorksheetDefinition';
+import { WorksheetState } from '~/models/worksheet/state/WorksheetState';
+import { WorksheetFeatureId } from '~/models/worksheet/WorksheetFeatureId';
+import { WorksheetFeatureSetId } from '~/models/worksheet/WorksheetFeatureSetId';
 import { WorksheetStateExporter } from '~/components/worksheet/state/exporters/WorksheetStateExporter';
 import * as _ from 'lodash';
 

@@ -3,7 +3,7 @@ import { History } from 'history';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-import { WorksheetStateWrapper } from '../../../models/worksheet/state/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from '../~/models/worksheet/state/WorksheetStateWrapper';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';
 import { WorksheetStateMarkParser } from './WorksheetStateMarkParser';

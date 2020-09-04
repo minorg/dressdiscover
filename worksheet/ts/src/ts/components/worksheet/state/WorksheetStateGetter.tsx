@@ -1,6 +1,6 @@
-import { WorksheetDefinition } from '~/models/worksheet/definition/worksheet_definition';
-import { WorksheetState } from '~/models/worksheet/state/worksheet_state';
-import { WorksheetStateMark } from '~/models/worksheet/state/worksheet_state_mark';
+import { WorksheetDefinition } from '~/models/worksheet/definition/WorksheetDefinition';
+import { WorksheetState } from '~/models/worksheet/state/WorksheetState';
+import { WorksheetStateMark } from '~/models/worksheet/state/WorksheetStateMark';
 import { GenericErrorHandler } from '~/components/error/GenericErrorHandler';
 import { WorksheetDefinitionWrapper } from '~/models/worksheet/definition/WorksheetDefinitionWrapper';
 import { WorksheetStateWrapper } from '~/models/worksheet/state/WorksheetStateWrapper';

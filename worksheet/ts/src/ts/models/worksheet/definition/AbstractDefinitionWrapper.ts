@@ -1,24 +1,26 @@
-import { WorksheetDescription } from '~/models/worksheet/definition/worksheet_description';
+import {WorksheetDescription} from "~/models/worksheet/definition/WorksheetDescription";
 
 interface Definition<IdT> {
-    description?: WorksheetDescription;
-    displayNameEn: string;
-    id: IdT;
+  readonly description?: WorksheetDescription;
+  readonly displayNameEn: string;
+  readonly id: IdT;
 }
 
-export abstract class AbstractDefinitionWrapper<DefinitionT extends Definition<IdT>, IdT> {
-    constructor(public readonly definition: DefinitionT) {
-    }
+export abstract class AbstractDefinitionWrapper<
+  DefinitionT extends Definition<IdT>,
+  IdT
+> {
+  constructor(public readonly definition: DefinitionT) {}
 
-    get description() {
-        return this.definition.description;
-    }
+  get description() {
+    return this.definition.description;
+  }
 
-    get displayName() {
-        return this.definition.displayNameEn;
-    }
+  get displayName() {
+    return this.definition.displayNameEn;
+  }
 
-    get id() {
-        return this.definition.id;
-    }
+  get id() {
+    return this.definition.id;
+  }
 }

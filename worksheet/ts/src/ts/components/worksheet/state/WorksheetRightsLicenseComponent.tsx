@@ -1,4 +1,4 @@
-import { WorksheetRightsLicense } from '~/models/worksheet/definition/worksheet_rights_license';
+import { WorksheetRightsLicense } from '~/models/worksheet/definition/WorksheetRightsLicense';
 import * as React from 'react';
 
 export class WorksheetRightsLicenseComponent extends React.Component<{ license: WorksheetRightsLicense }> {

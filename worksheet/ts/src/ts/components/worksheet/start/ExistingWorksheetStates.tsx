@@ -1,5 +1,5 @@
 import * as classnames from 'classnames';
-import { WorksheetStateId } from '~/models/worksheet/state/worksheet_state_id';
+import { WorksheetStateId } from '~/models/worksheet/state/WorksheetStateId';
 import {
     ExistingWorksheetState,
     OnDeleteWorksheetStateCallback,

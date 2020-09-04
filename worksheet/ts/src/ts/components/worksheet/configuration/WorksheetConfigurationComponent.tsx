@@ -1,5 +1,5 @@
 import * as classnames from 'classnames';
-import { WorksheetConfiguration } from '~/models/worksheet/configuration/worksheet_configuration';
+import { WorksheetConfiguration } from '~/models/worksheet/configuration/WorksheetConfiguration';
 import {
     WorksheetDefinitionConfiguration,
 } from '~/models/worksheet/configuration/worksheet_definition_configuration';

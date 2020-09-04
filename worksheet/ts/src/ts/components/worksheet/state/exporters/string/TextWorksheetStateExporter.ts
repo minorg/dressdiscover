@@ -1,5 +1,5 @@
-import { WorksheetDefinition } from '~/models/worksheet/definition/worksheet_definition';
-import { WorksheetState } from '~/models/worksheet/state/worksheet_state';
+import { WorksheetDefinition } from '~/models/worksheet/definition/WorksheetDefinition';
+import { WorksheetState } from '~/models/worksheet/state/WorksheetState';
 import {
     StringWorksheetStateExporter,
 } from '~/components/worksheet/state/exporters/string/StringWorksheetStateExporter';

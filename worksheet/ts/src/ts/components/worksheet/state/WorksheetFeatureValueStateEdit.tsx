@@ -1,7 +1,7 @@
 import './WorksheetFeatureValueStateEdit.scss';
 
 import * as classnames from 'classnames';
-import { WorksheetFeatureValueId } from '~/models/worksheet/worksheet_feature_value_id';
+import { WorksheetFeatureValueId } from '~/models/worksheet/WorksheetFeatureValueId';
 import { WorksheetDescriptionComponent } from '~/components/worksheet/state/WorksheetDescriptionComponent';
 import {
     WorksheetRightsLicenseComponent,

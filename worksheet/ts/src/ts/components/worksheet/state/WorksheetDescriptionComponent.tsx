@@ -1,4 +1,4 @@
-import { WorksheetDescription } from '~/models/worksheet/definition/worksheet_description';
+import { WorksheetDescription } from '~/models/worksheet/definition/WorksheetDescription';
 import {
     WorksheetRightsLicenseComponent,
 } from '~/components/worksheet/state/WorksheetRightsLicenseComponent';

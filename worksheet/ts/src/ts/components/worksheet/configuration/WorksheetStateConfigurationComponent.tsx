@@ -1,4 +1,4 @@
-import {UserIdentityProvider} from '~/models/user/user_identity_provider';
+import {UserIdentityProvider} from '~/models/user/UserIdentityProvider';
 import {GoogleSheetsWorksheetStateConfiguration,} from '~/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
 import {WorksheetStateConfiguration} from '~/models/worksheet/configuration/worksheet_state_configuration';
 import {GoogleSheetsWorksheetStateConfigurationComponent,} from '~/components/worksheet/configuration/GoogleSheetsWorksheetStateConfigurationComponent';

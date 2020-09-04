@@ -1,7 +1,7 @@
 import './WorksheetStateEdit.scss';
 
 import * as classnames from 'classnames';
-import { WorksheetFeatureSetId } from '~/models/worksheet/worksheet_feature_set_id';
+import { WorksheetFeatureSetId } from '~/models/worksheet/WorksheetFeatureSetId';
 import { CurrentUserStore } from '~/stores/current_user/CurrentUserStore';
 import { History } from 'history';
 import * as _ from 'lodash';
@@ -10,7 +10,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Button, Input, Table } from 'reactstrap';
 
-import { WorksheetStateWrapper } from '../../../models/worksheet/state/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from '../~/models/worksheet/state/WorksheetStateWrapper';
 import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';

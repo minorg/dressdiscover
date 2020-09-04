@@ -1,4 +1,4 @@
-import { WorksheetStateMark } from '~/models/worksheet/state/worksheet_state_mark';
+import { WorksheetStateMark } from '~/models/worksheet/state/WorksheetStateMark';
 
 export class Hrefs {
   static get about() {

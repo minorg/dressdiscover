@@ -1,4 +1,4 @@
-import {WorksheetConfiguration} from '~/models/worksheet/configuration/worksheet_configuration';
+import {WorksheetConfiguration} from '~/models/worksheet/configuration/WorksheetConfiguration';
 import {Frame} from '~/components/frame/Frame';
 import {Headline} from '~/components/frame/Headline';
 import {WorksheetConfigurationComponent,} from '~/components/worksheet/configuration/WorksheetConfigurationComponent';

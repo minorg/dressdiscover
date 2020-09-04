@@ -1,9 +1,9 @@
 import './WorksheetStart.scss';
 
 import * as classnames from 'classnames';
-import { WorksheetState } from '~/models/worksheet/state/worksheet_state';
-import { WorksheetStateId } from '~/models/worksheet/state/worksheet_state_id';
-import { WorksheetStateMark } from '~/models/worksheet/state/worksheet_state_mark';
+import { WorksheetState } from '~/models/worksheet/state/WorksheetState';
+import { WorksheetStateId } from '~/models/worksheet/state/WorksheetStateId';
+import { WorksheetStateMark } from '~/models/worksheet/state/WorksheetStateMark';
 import { GenericErrorHandler } from '~/components/error/GenericErrorHandler';
 import { Frame } from '~/components/frame/Frame';
 import { Headline } from '~/components/frame/Headline';

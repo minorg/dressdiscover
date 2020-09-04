@@ -1,7 +1,7 @@
-import { WorksheetStateId } from '~/models/worksheet/state/worksheet_state_id';
-import { WorksheetStateMark } from '~/models/worksheet/state/worksheet_state_mark';
-import { WorksheetFeatureId } from '~/models/worksheet/worksheet_feature_id';
-import { WorksheetFeatureSetId } from '~/models/worksheet/worksheet_feature_set_id';
+import { WorksheetStateId } from '~/models/worksheet/state/WorksheetStateId';
+import { WorksheetStateMark } from '~/models/worksheet/state/WorksheetStateMark';
+import { WorksheetFeatureId } from '~/models/worksheet/WorksheetFeatureId';
+import { WorksheetFeatureSetId } from '~/models/worksheet/WorksheetFeatureSetId';
 import { RouteComponentProps } from 'react-router';
 
 export class WorksheetStateMarkParser {
