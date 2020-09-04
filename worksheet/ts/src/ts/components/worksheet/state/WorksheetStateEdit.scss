@@ -1,0 +1,10 @@
+@import "~/bootstrap_variables.scss";
+
+#worksheet-state-edit {
+    tr.feature-set.selected {
+        td {
+            border-color: $primary;
+            border-width: 4px;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@import "~/bootstrap_variables.scss";
+
+.worksheet-state-frame {
+    ol.breadcrumb {
+        margin-bottom: 0 !important;
+    }
+
+    .progress-wrapper {
+        background-color: $gray-300;
+        height: 20px;
+        width: 100%;
+    }
+}

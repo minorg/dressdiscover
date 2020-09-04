@@ -40,7 +40,7 @@ module.exports = (env, argv) => ({
   // https://webpack.js.org/configuration/devtool/
   devtool: argv.mode === "production" ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   entry: {
-    app: './ts/dressdiscover/gui/main.tsx'
+    app: './ts/main.tsx'
   },
   module: {
     rules: [
@@ -108,7 +108,7 @@ module.exports = (env, argv) => ({
     mainFields: ['module', 'browser', 'main'],
     alias: {
       definitions: path.resolve(__dirname, 'definitions'),
-      dressdiscover: path.resolve(__dirname, 'src/ts/dressdiscover')
+      "~": path.resolve(__dirname, 'src/ts')
     }
   },
   target: 'web'
