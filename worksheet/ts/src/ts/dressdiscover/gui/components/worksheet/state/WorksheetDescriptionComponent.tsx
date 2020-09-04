@@ -1,4 +1,4 @@
-import { WorksheetDescription } from 'dressdiscover/api/models/worksheet/definition/worksheet_description';
+import { WorksheetDescription } from 'dressdiscover/gui/models/worksheet/definition/worksheet_description';
 import {
     WorksheetRightsLicenseComponent,
 } from 'dressdiscover/gui/components/worksheet/state/WorksheetRightsLicenseComponent';

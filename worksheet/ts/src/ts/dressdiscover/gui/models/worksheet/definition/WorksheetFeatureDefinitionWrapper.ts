@@ -1,5 +1,5 @@
-import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_definition';
-import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
+import { WorksheetFeatureDefinition } from 'dressdiscover/gui/models/worksheet/definition/worksheet_feature_definition';
+import { WorksheetFeatureId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_id';
 import { AbstractDefinitionWrapper } from 'dressdiscover/gui/models/worksheet/definition/AbstractDefinitionWrapper';
 import { WorksheetDefinitionWrapper } from 'dressdiscover/gui/models/worksheet/definition/WorksheetDefinitionWrapper';
 import {

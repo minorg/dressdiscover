@@ -1,4 +1,4 @@
-import { AuthorizationException } from 'dressdiscover/api/services/authorization_exception';
+import { AuthorizationException } from 'dressdiscover/gui/services/authorization_exception';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { History } from 'history';

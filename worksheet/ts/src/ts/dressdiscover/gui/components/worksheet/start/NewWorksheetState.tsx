@@ -1,5 +1,5 @@
 import * as classnames from 'classnames';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
+import { WorksheetStateId } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_id';
 import {
     WorksheetStateConfigurationHeadline,
 } from 'dressdiscover/gui/components/worksheet/start/WorksheetStateConfigurationHeadline';

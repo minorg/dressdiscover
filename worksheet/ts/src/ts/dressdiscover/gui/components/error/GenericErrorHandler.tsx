@@ -1,4 +1,4 @@
-import { AuthorizationException } from 'dressdiscover/api/services/authorization_exception';
+import { AuthorizationException } from 'dressdiscover/gui/services/authorization_exception';
 import { AuthorizationExceptionModal } from 'dressdiscover/gui/components/error/AuthorizationExceptionModal';
 import { FatalErrorModal } from 'dressdiscover/gui/components/error/FatalErrorModal';
 import { History } from 'history';

@@ -1,6 +1,6 @@
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
-import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
+import { WorksheetDefinition } from 'dressdiscover/gui/models/worksheet/definition/worksheet_definition';
+import { WorksheetState } from 'dressdiscover/gui/models/worksheet/state/worksheet_state';
+import { WorksheetStateMark } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_mark';
 import { WorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/WorksheetStateExporter';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
 

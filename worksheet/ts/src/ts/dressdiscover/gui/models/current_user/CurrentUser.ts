@@ -1,6 +1,6 @@
-import { User } from 'dressdiscover/api/models/user/user';
-import { UserId } from 'dressdiscover/api/models/user/user_id';
-import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
+import { User } from 'dressdiscover/gui/models/user/user';
+import { UserId } from 'dressdiscover/gui/models/user/user_id';
+import { UserSettings } from 'dressdiscover/gui/models/user/user_settings';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
 import {
     DefaultWorksheetConfiguration,

@@ -1,7 +1,7 @@
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
-import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
-import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
-import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { WorksheetStateId } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_id';
+import { WorksheetStateMark } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_mark';
+import { WorksheetFeatureId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_id';
+import { WorksheetFeatureSetId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_set_id';
 import { RouteComponentProps } from 'react-router';
 
 export class WorksheetStateMarkParser {

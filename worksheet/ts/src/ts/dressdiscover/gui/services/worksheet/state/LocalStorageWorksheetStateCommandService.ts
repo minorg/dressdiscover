@@ -1,10 +1,10 @@
-﻿import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
+﻿import { WorksheetState } from 'dressdiscover/gui/models/worksheet/state/worksheet_state';
+import { WorksheetStateId } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_id';
 import {
   DuplicateWorksheetStateException,
-} from 'dressdiscover/api/services/worksheet/state/duplicate_worksheet_state_exception';
-import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
-import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
+} from 'dressdiscover/gui/services/worksheet/state/duplicate_worksheet_state_exception';
+import { NoSuchWorksheetStateException } from 'dressdiscover/gui/services/worksheet/state/no_such_worksheet_state_exception';
+import { WorksheetStateCommandService } from 'dressdiscover/gui/services/worksheet/state/worksheet_state_command_service';
 import {
   LocalStorageWorksheetStateQueryService,
 } from 'dressdiscover/gui/services/worksheet/state/LocalStorageWorksheetStateQueryService';

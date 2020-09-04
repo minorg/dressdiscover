@@ -1,7 +1,7 @@
-﻿import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
-import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
-import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
+﻿import { WorksheetState } from 'dressdiscover/gui/models/worksheet/state/worksheet_state';
+import { WorksheetStateId } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_id';
+import { NoSuchWorksheetStateException } from 'dressdiscover/gui/services/worksheet/state/no_such_worksheet_state_exception';
+import { WorksheetStateQueryService } from 'dressdiscover/gui/services/worksheet/state/worksheet_state_query_service';
 
 export class LocalStorageWorksheetStateQueryService implements WorksheetStateQueryService {
     getWorksheetState(kwds: { id: WorksheetStateId; }): Promise<WorksheetState> {

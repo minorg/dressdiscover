@@ -1,6 +1,6 @@
 import * as classnames from 'classnames';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
-import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
+import { WorksheetStateId } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_id';
+import { WorksheetStateMark } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_mark';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
 import * as invariant from 'invariant';
 import * as React from 'react';

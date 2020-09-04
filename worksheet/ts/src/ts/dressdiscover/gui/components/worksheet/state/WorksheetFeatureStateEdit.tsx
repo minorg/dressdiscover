@@ -1,4 +1,4 @@
-import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
+import { WorksheetFeatureValueId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_value_id';
 import { WorksheetFeatureValueStateEdit } from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureValueStateEdit';
 import { WorksheetStateFrame } from 'dressdiscover/gui/components/worksheet/state/WorksheetStateFrame';
 import { WorksheetStateGetter } from 'dressdiscover/gui/components/worksheet/state/WorksheetStateGetter';

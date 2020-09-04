@@ -1,6 +1,6 @@
-import { UserId } from 'dressdiscover/api/models/user/user_id';
-import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
-import { UserSettingsCommandService } from 'dressdiscover/api/services/user/user_settings_command_service';
+import { UserId } from 'dressdiscover/gui/models/user/user_id';
+import { UserSettings } from 'dressdiscover/gui/models/user/user_settings';
+import { UserSettingsCommandService } from 'dressdiscover/gui/services/user/user_settings_command_service';
 import { LocalStorageUserSettingsQueryService } from 'dressdiscover/gui/services/user/LocalStorageUserSettingsQueryService';
 
 export class LocalStorageUserSettingsCommandService implements UserSettingsCommandService {

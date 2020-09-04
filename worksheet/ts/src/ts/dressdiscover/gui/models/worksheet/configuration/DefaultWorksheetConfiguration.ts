@@ -1,14 +1,14 @@
 import {
     BundledWorksheetDefinitionConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/bundled_worksheet_definition_configuration';
+} from 'dressdiscover/gui/models/worksheet/configuration/bundled_worksheet_definition_configuration';
 import {
     LocalStorageWorksheetStateConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/local_storage_worksheet_state_configuration';
-import { WorksheetConfiguration } from 'dressdiscover/api/models/worksheet/configuration/worksheet_configuration';
+} from 'dressdiscover/gui/models/worksheet/configuration/local_storage_worksheet_state_configuration';
+import { WorksheetConfiguration } from 'dressdiscover/gui/models/worksheet/configuration/worksheet_configuration';
 import {
     WorksheetDefinitionConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/worksheet_definition_configuration';
-import { WorksheetStateConfiguration } from 'dressdiscover/api/models/worksheet/configuration/worksheet_state_configuration';
+} from 'dressdiscover/gui/models/worksheet/configuration/worksheet_definition_configuration';
+import { WorksheetStateConfiguration } from 'dressdiscover/gui/models/worksheet/configuration/worksheet_state_configuration';
 
 export class DefaultWorksheetConfiguration {
     static readonly instance = new WorksheetConfiguration({

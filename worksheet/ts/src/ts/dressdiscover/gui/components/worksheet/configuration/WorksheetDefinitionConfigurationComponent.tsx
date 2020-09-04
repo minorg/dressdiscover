@@ -1,9 +1,9 @@
 import {
     BundledWorksheetDefinitionConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/bundled_worksheet_definition_configuration';
+} from 'dressdiscover/gui/models/worksheet/configuration/bundled_worksheet_definition_configuration';
 import {
     WorksheetDefinitionConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/worksheet_definition_configuration';
+} from 'dressdiscover/gui/models/worksheet/configuration/worksheet_definition_configuration';
 import * as React from 'react';
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 

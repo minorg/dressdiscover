@@ -1,7 +1,7 @@
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
-import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
-import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { WorksheetDefinition } from 'dressdiscover/gui/models/worksheet/definition/worksheet_definition';
+import { WorksheetState } from 'dressdiscover/gui/models/worksheet/state/worksheet_state';
+import { WorksheetFeatureId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_id';
+import { WorksheetFeatureSetId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_set_id';
 import { WorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/WorksheetStateExporter';
 import * as _ from 'lodash';
 

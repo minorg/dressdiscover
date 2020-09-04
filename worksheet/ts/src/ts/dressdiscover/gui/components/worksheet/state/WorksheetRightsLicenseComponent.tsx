@@ -1,4 +1,4 @@
-import { WorksheetRightsLicense } from 'dressdiscover/api/models/worksheet/definition/worksheet_rights_license';
+import { WorksheetRightsLicense } from 'dressdiscover/gui/models/worksheet/definition/worksheet_rights_license';
 import * as React from 'react';
 
 export class WorksheetRightsLicenseComponent extends React.Component<{ license: WorksheetRightsLicense }> {

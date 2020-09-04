@@ -1,7 +1,7 @@
 import './WorksheetFeatureValueStateEdit.scss';
 
 import * as classnames from 'classnames';
-import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
+import { WorksheetFeatureValueId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_value_id';
 import { WorksheetDescriptionComponent } from 'dressdiscover/gui/components/worksheet/state/WorksheetDescriptionComponent';
 import {
     WorksheetRightsLicenseComponent,

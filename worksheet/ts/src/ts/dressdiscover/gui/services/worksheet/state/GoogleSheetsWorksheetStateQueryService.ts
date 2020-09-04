@@ -1,10 +1,10 @@
 ﻿import {
     GoogleSheetsWorksheetStateConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
-import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
-import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
+} from 'dressdiscover/gui/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
+import { WorksheetState } from 'dressdiscover/gui/models/worksheet/state/worksheet_state';
+import { WorksheetStateId } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_id';
+import { NoSuchWorksheetStateException } from 'dressdiscover/gui/services/worksheet/state/no_such_worksheet_state_exception';
+import { WorksheetStateQueryService } from 'dressdiscover/gui/services/worksheet/state/worksheet_state_query_service';
 import {
     GoogleSheetsWorksheetStateImporter,
 } from 'dressdiscover/gui/components/worksheet/state/importers/GoogleSheetsWorksheetStateImporter';

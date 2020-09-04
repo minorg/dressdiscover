@@ -1,22 +1,22 @@
-﻿import { WorksheetConfiguration } from 'dressdiscover/api/models/worksheet/configuration/worksheet_configuration';
-import { LoggingUserSettingsCommandService } from 'dressdiscover/api/services/user/logging_user_settings_command_service';
-import { LoggingUserSettingsQueryService } from 'dressdiscover/api/services/user/logging_user_settings_query_service';
-import { UserSettingsCommandService } from 'dressdiscover/api/services/user/user_settings_command_service';
-import { UserSettingsQueryService } from 'dressdiscover/api/services/user/user_settings_query_service';
+﻿import { WorksheetConfiguration } from 'dressdiscover/gui/models/worksheet/configuration/worksheet_configuration';
+import { LoggingUserSettingsCommandService } from 'dressdiscover/gui/services/user/logging_user_settings_command_service';
+import { LoggingUserSettingsQueryService } from 'dressdiscover/gui/services/user/logging_user_settings_query_service';
+import { UserSettingsCommandService } from 'dressdiscover/gui/services/user/user_settings_command_service';
+import { UserSettingsQueryService } from 'dressdiscover/gui/services/user/user_settings_query_service';
 import {
   LoggingWorksheetDefinitionQueryService,
-} from 'dressdiscover/api/services/worksheet/definition/logging_worksheet_definition_query_service';
+} from 'dressdiscover/gui/services/worksheet/definition/logging_worksheet_definition_query_service';
 import {
   WorksheetDefinitionQueryService,
-} from 'dressdiscover/api/services/worksheet/definition/worksheet_definition_query_service';
+} from 'dressdiscover/gui/services/worksheet/definition/worksheet_definition_query_service';
 import {
   LoggingWorksheetStateCommandService,
-} from 'dressdiscover/api/services/worksheet/state/logging_worksheet_state_command_service';
+} from 'dressdiscover/gui/services/worksheet/state/logging_worksheet_state_command_service';
 import {
   LoggingWorksheetStateQueryService,
-} from 'dressdiscover/api/services/worksheet/state/logging_worksheet_state_query_service';
-import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
-import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
+} from 'dressdiscover/gui/services/worksheet/state/logging_worksheet_state_query_service';
+import { WorksheetStateCommandService } from 'dressdiscover/gui/services/worksheet/state/worksheet_state_command_service';
+import { WorksheetStateQueryService } from 'dressdiscover/gui/services/worksheet/state/worksheet_state_query_service';
 import {
   DefaultWorksheetConfiguration,
 } from 'dressdiscover/gui/models/worksheet/configuration/DefaultWorksheetConfiguration';

@@ -1,7 +1,7 @@
 import './WorksheetStateEdit.scss';
 
 import * as classnames from 'classnames';
-import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { WorksheetFeatureSetId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_set_id';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { History } from 'history';
 import * as _ from 'lodash';

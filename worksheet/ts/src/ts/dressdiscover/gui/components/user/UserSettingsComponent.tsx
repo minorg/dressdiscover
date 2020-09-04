@@ -1,5 +1,5 @@
-import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
-import { WorksheetConfiguration } from 'dressdiscover/api/models/worksheet/configuration/worksheet_configuration';
+import { UserSettings } from 'dressdiscover/gui/models/user/user_settings';
+import { WorksheetConfiguration } from 'dressdiscover/gui/models/worksheet/configuration/worksheet_configuration';
 import { Frame } from 'dressdiscover/gui/components/frame/Frame';
 import { Headline } from 'dressdiscover/gui/components/frame/Headline';
 import {

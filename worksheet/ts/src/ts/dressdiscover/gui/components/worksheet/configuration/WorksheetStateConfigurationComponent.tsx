@@ -1,11 +1,11 @@
-import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
+import { UserIdentityProvider } from 'dressdiscover/gui/models/user/user_identity_provider';
 import {
     GoogleSheetsWorksheetStateConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
+} from 'dressdiscover/gui/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
 import {
     LocalStorageWorksheetStateConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/local_storage_worksheet_state_configuration';
-import { WorksheetStateConfiguration } from 'dressdiscover/api/models/worksheet/configuration/worksheet_state_configuration';
+} from 'dressdiscover/gui/models/worksheet/configuration/local_storage_worksheet_state_configuration';
+import { WorksheetStateConfiguration } from 'dressdiscover/gui/models/worksheet/configuration/worksheet_state_configuration';
 import {
     GoogleSheetsWorksheetStateConfigurationComponent,
 } from 'dressdiscover/gui/components/worksheet/configuration/GoogleSheetsWorksheetStateConfigurationComponent';

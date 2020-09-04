@@ -1,5 +1,5 @@
-import { AuthorizationException } from 'dressdiscover/api/services/authorization_exception';
-import { IoException } from 'dressdiscover/api/services/io_exception';
+import { AuthorizationException } from 'dressdiscover/gui/services/authorization_exception';
+import { IoException } from 'dressdiscover/gui/services/io_exception';
 
 export type GapiException = AuthorizationException | IoException;
 

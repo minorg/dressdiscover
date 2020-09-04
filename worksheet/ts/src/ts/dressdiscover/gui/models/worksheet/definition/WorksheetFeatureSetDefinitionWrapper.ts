@@ -1,7 +1,7 @@
 import {
   WorksheetFeatureSetDefinition,
-} from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_set_definition';
-import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+} from 'dressdiscover/gui/models/worksheet/definition/worksheet_feature_set_definition';
+import { WorksheetFeatureSetId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_set_id';
 import { AbstractDefinitionWrapper } from 'dressdiscover/gui/models/worksheet/definition/AbstractDefinitionWrapper';
 import { WorksheetDefinitionWrapper } from 'dressdiscover/gui/models/worksheet/definition/WorksheetDefinitionWrapper';
 import {

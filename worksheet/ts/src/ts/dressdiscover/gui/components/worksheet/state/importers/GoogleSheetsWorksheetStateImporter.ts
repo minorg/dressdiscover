@@ -1,10 +1,10 @@
-import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/state/worksheet_feature_set_state';
-import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/state/worksheet_feature_state';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
-import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
-import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
-import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
+import { WorksheetFeatureSetState } from 'dressdiscover/gui/models/worksheet/state/worksheet_feature_set_state';
+import { WorksheetFeatureState } from 'dressdiscover/gui/models/worksheet/state/worksheet_feature_state';
+import { WorksheetState } from 'dressdiscover/gui/models/worksheet/state/worksheet_state';
+import { WorksheetStateId } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_id';
+import { WorksheetFeatureId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_id';
+import { WorksheetFeatureSetId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_set_id';
+import { WorksheetFeatureValueId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_value_id';
 import {
     GoogleSheetsWorksheetStateExporter,
 } from 'dressdiscover/gui/components/worksheet/state/exporters/GoogleSheetsWorksheetStateExporter';

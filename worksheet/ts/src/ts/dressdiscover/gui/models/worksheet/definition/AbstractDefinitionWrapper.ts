@@ -1,4 +1,4 @@
-import { WorksheetDescription } from 'dressdiscover/api/models/worksheet/definition/worksheet_description';
+import { WorksheetDescription } from 'dressdiscover/gui/models/worksheet/definition/worksheet_description';
 
 interface Definition<IdT> {
     description?: WorksheetDescription;

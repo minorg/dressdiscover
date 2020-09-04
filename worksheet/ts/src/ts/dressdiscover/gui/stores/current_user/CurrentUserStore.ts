@@ -1,8 +1,8 @@
-import { User } from 'dressdiscover/api/models/user/user';
-import { UserId } from 'dressdiscover/api/models/user/user_id';
-import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
-import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
-import { NoSuchUserSettingsException } from 'dressdiscover/api/services/user/no_such_user_settings_exception';
+import { User } from 'dressdiscover/gui/models/user/user';
+import { UserId } from 'dressdiscover/gui/models/user/user_id';
+import { UserIdentityProvider } from 'dressdiscover/gui/models/user/user_identity_provider';
+import { UserSettings } from 'dressdiscover/gui/models/user/user_settings';
+import { NoSuchUserSettingsException } from 'dressdiscover/gui/services/user/no_such_user_settings_exception';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
 import { convertGapiErrorToException } from 'dressdiscover/gui/services/GapiException';

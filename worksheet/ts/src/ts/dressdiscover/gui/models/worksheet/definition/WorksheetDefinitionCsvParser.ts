@@ -1,22 +1,22 @@
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
-import { WorksheetDescription } from 'dressdiscover/api/models/worksheet/definition/worksheet_description';
-import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_definition';
+import { WorksheetDefinition } from 'dressdiscover/gui/models/worksheet/definition/worksheet_definition';
+import { WorksheetDescription } from 'dressdiscover/gui/models/worksheet/definition/worksheet_description';
+import { WorksheetFeatureDefinition } from 'dressdiscover/gui/models/worksheet/definition/worksheet_feature_definition';
 import {
     WorksheetFeatureSetDefinition,
-} from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_set_definition';
+} from 'dressdiscover/gui/models/worksheet/definition/worksheet_feature_set_definition';
 import {
     WorksheetFeatureValueDefinition,
-} from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_definition';
-import { WorksheetFeatureValueImage } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_image';
+} from 'dressdiscover/gui/models/worksheet/definition/worksheet_feature_value_definition';
+import { WorksheetFeatureValueImage } from 'dressdiscover/gui/models/worksheet/definition/worksheet_feature_value_image';
 import {
     WorksheetFeatureValueImageUrl,
-} from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_image_url';
-import { WorksheetRights } from 'dressdiscover/api/models/worksheet/definition/worksheet_rights';
-import { WorksheetRightsLicense } from 'dressdiscover/api/models/worksheet/definition/worksheet_rights_license';
-import { WorksheetRightsSource } from 'dressdiscover/api/models/worksheet/definition/worksheet_rights_source';
-import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
-import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
-import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
+} from 'dressdiscover/gui/models/worksheet/definition/worksheet_feature_value_image_url';
+import { WorksheetRights } from 'dressdiscover/gui/models/worksheet/definition/worksheet_rights';
+import { WorksheetRightsLicense } from 'dressdiscover/gui/models/worksheet/definition/worksheet_rights_license';
+import { WorksheetRightsSource } from 'dressdiscover/gui/models/worksheet/definition/worksheet_rights_source';
+import { WorksheetFeatureId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_id';
+import { WorksheetFeatureSetId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_set_id';
+import { WorksheetFeatureValueId } from 'dressdiscover/gui/models/worksheet/worksheet_feature_value_id';
 import * as _ from 'lodash';
 import * as Papa from 'papaparse';
 

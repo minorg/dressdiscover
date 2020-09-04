@@ -1,7 +1,7 @@
 import * as classnames from 'classnames';
 import {
     GoogleSheetsWorksheetStateConfiguration,
-} from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
+} from 'dressdiscover/gui/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
 import { GenericErrorHandler } from 'dressdiscover/gui/components/error/GenericErrorHandler';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { convertGapiErrorToException, GapiException } from 'dressdiscover/gui/services/GapiException';

@@ -1,6 +1,6 @@
-import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/state/worksheet_feature_set_state';
-import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/state/worksheet_feature_state';
-import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
+import { WorksheetFeatureSetState } from 'dressdiscover/gui/models/worksheet/state/worksheet_feature_set_state';
+import { WorksheetFeatureState } from 'dressdiscover/gui/models/worksheet/state/worksheet_feature_state';
+import { WorksheetStateMark } from 'dressdiscover/gui/models/worksheet/state/worksheet_state_mark';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
