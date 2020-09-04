@@ -115,7 +115,7 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
     }
 
     onClickExistingFile(file: gapi.client.drive.File) {
-        this.props.onChange(new GoogleSheetsWorksheetStateConfiguration({ spreadsheetId: file.id as string }));
+        this.props.onChange({ spreadsheetId: file.id as string });
     }
 
     onChangeNewSheetName(changeEvent: React.ChangeEvent<HTMLInputElement>) {

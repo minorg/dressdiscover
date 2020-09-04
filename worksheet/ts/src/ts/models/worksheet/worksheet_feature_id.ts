@@ -17,9 +17,6 @@ export class WorksheetFeatureId {
         return this.id;
     }
 
-    private constructor(id: string) {
-        this.id = id;
+    private constructor(private readonly id: string) {
     }
-
-    private id: string;
 }

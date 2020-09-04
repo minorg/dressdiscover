@@ -1,11 +1,6 @@
-import {
-    BundledWorksheetDefinitionConfiguration,
-} from '~/models/worksheet/configuration/bundled_worksheet_definition_configuration';
-import {
-    WorksheetDefinitionConfiguration,
-} from '~/models/worksheet/configuration/worksheet_definition_configuration';
+import {WorksheetDefinitionConfiguration,} from '~/models/worksheet/configuration/worksheet_definition_configuration';
 import * as React from 'react';
-import { Form, FormGroup, Input, Label } from 'reactstrap';
+import {Form, FormGroup, Input, Label} from 'reactstrap';
 
 interface Props {
     onChange: (newWorksheetDefinitionConfiguration: WorksheetDefinitionConfiguration) => void;
@@ -25,7 +20,7 @@ export class WorksheetDefinitionConfigurationComponent extends React.Component<P
     onChangeType(changeEvent: React.ChangeEvent<HTMLInputElement>) {
         const newValue = changeEvent.target.value;
         if (newValue === WorksheetDefinitionConfigurationType.BUNDLED) {
-            this.props.onChange(new WorksheetDefinitionConfiguration({ bundled: new BundledWorksheetDefinitionConfiguration() }));
+            this.props.onChange({ bundled: {} });
         } else {
             throw new RangeError();
         }

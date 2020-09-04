@@ -39,17 +39,17 @@ export class WorksheetConfigurationComponent extends React.Component<Props, Stat
     }
 
     onChangeWorksheetDefinitionConfiguration(newWorksheetDefinitionConfiguration: WorksheetDefinitionConfiguration) {
-        this.props.onChange(new WorksheetConfiguration({
+        this.props.onChange({
             definition: newWorksheetDefinitionConfiguration,
             state: this.props.worksheetConfiguration.state
-        }));
+        });
     }
 
     onChangeWorksheetStateConfiguration(newWorksheetStateConfiguration: WorksheetStateConfiguration) {
-        this.props.onChange(new WorksheetConfiguration({
+        this.props.onChange({
             definition: this.props.worksheetConfiguration.definition,
             state: newWorksheetStateConfiguration
-        }));
+        });
     }
 
     render() {

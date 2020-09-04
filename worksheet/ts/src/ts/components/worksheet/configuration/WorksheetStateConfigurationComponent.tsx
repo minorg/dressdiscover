@@ -1,20 +1,13 @@
-import { UserIdentityProvider } from '~/models/user/user_identity_provider';
-import {
-    GoogleSheetsWorksheetStateConfiguration,
-} from '~/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
-import {
-    LocalStorageWorksheetStateConfiguration,
-} from '~/models/worksheet/configuration/local_storage_worksheet_state_configuration';
-import { WorksheetStateConfiguration } from '~/models/worksheet/configuration/worksheet_state_configuration';
-import {
-    GoogleSheetsWorksheetStateConfigurationComponent,
-} from '~/components/worksheet/configuration/GoogleSheetsWorksheetStateConfigurationComponent';
-import { CurrentUser } from '~/models/current_user/CurrentUser';
-import { CurrentUserStore } from '~/stores/current_user/CurrentUserStore';
-import { History } from 'history';
-import { inject } from 'mobx-react';
+import {UserIdentityProvider} from '~/models/user/user_identity_provider';
+import {GoogleSheetsWorksheetStateConfiguration,} from '~/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
+import {WorksheetStateConfiguration} from '~/models/worksheet/configuration/worksheet_state_configuration';
+import {GoogleSheetsWorksheetStateConfigurationComponent,} from '~/components/worksheet/configuration/GoogleSheetsWorksheetStateConfigurationComponent';
+import {CurrentUser} from '~/models/current_user/CurrentUser';
+import {CurrentUserStore} from '~/stores/current_user/CurrentUserStore';
+import {History} from 'history';
+import {inject} from 'mobx-react';
 import * as React from 'react';
-import { Form, FormGroup, Input, Label } from 'reactstrap';
+import {Form, FormGroup, Input, Label} from 'reactstrap';
 
 interface Props {
     currentUserStore?: CurrentUserStore;
@@ -47,7 +40,7 @@ export class WorksheetStateConfigurationComponent extends React.Component<Props,
     }
 
     onChangeGoogleSheetsWorksheetStateConfiguration(newGoogleSheetsWorksheetStateConfiguration: GoogleSheetsWorksheetStateConfiguration) {
-        this.props.onChange(new WorksheetStateConfiguration({ googleSheets: newGoogleSheetsWorksheetStateConfiguration }));
+        this.props.onChange({ googleSheets: newGoogleSheetsWorksheetStateConfiguration });
         // Should propagate back to set selectedType via props.
     }
 
@@ -58,7 +51,7 @@ export class WorksheetStateConfigurationComponent extends React.Component<Props,
             this.setState((prevState) => ({ selectedType: WorksheetStateConfigurationType.GOOGLE_SHEETS }));
         } else if (newValue === WorksheetStateConfigurationType.LOCAL_STORAGE) {
             // Sub-configuration is already valid, call onChange.
-            this.props.onChange(new WorksheetStateConfiguration({ localStorage: new LocalStorageWorksheetStateConfiguration() }));
+            this.props.onChange({ localStorage: {} });
             // Should propagate back to set selectedType via props.
         } else {
             throw new RangeError();
