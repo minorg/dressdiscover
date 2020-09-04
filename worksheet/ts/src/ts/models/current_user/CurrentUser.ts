@@ -17,7 +17,7 @@ export class CurrentUser {
     }
 
     static fromJsonObject(json: any) {
-        const delegate = User.fromThryftJsonObject(json);
+        const delegate = Object.assign({}, json);
         const id = UserId.parse(json.id);
         const session = CurrentUserSession.fromJsonObject(json.session);
         return new CurrentUser({ delegate, id, session });
@@ -36,7 +36,7 @@ export class CurrentUser {
     }
 
     toJsonObject() {
-        const json: any = this.delegate.toThryftJsonObject();
+        const json: any = Object.assign({}, this.delegate);
         json.id = this.id.toString();
         json.session = this.session.toJsonObject();
         return json;

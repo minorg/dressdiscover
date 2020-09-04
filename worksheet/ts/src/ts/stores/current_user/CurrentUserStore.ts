@@ -1,15 +1,14 @@
-import { User } from '~/models/user/user';
-import { UserId } from '~/models/user/user_id';
-import { UserIdentityProvider } from '~/models/user/user_identity_provider';
-import { UserSettings } from '~/models/user/user_settings';
-import { NoSuchUserSettingsException } from '~/services/user/no_such_user_settings_exception';
-import { CurrentUser } from '~/models/current_user/CurrentUser';
-import { CurrentUserSession } from '~/models/current_user/CurrentUserSession';
-import { convertGapiErrorToException } from '~/services/GapiException';
-import { Services } from '~/services/Services';
-import { ILogger } from '~/util/logging/ILogger';
+import {UserId} from '~/models/user/user_id';
+import {UserIdentityProvider} from '~/models/user/user_identity_provider';
+import {UserSettings} from '~/models/user/user_settings';
+import {NoSuchUserSettingsException} from '~/services/user/no_such_user_settings_exception';
+import {CurrentUser} from '~/models/current_user/CurrentUser';
+import {CurrentUserSession} from '~/models/current_user/CurrentUserSession';
+import {convertGapiErrorToException} from '~/services/GapiException';
+import {Services} from '~/services/Services';
+import {ILogger} from '~/util/logging/ILogger';
 import * as invariant from 'invariant';
-import { action, computed, observable, runInAction } from 'mobx';
+import {action, computed, observable, runInAction} from 'mobx';
 
 export class CurrentUserStore {
     private static readonly CURRENT_USER_ITEM_KEY = "currentUser";
@@ -44,7 +43,7 @@ export class CurrentUserStore {
                 const result = response.result;
 
                 const currentUser = new CurrentUser({
-                    delegate: new User({
+                    delegate: {
                         emailAddress: result.email as string,
                         emailAddressVerified: result.verified_email,
                         familyName: result.family_name,
@@ -54,7 +53,7 @@ export class CurrentUserStore {
                         locale: result.locale,
                         name: result.name,
                         pictureUrl: result.picture
-                    }),
+                    },
                     id: UserId.parse(result.id as string),
                     session: currentUserSession
                 });
