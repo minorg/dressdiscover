@@ -1,19 +1,14 @@
-import { UserSettings } from '~/models/user/user_settings';
-import { WorksheetConfiguration } from '~/models/worksheet/configuration/worksheet_configuration';
-import { Frame } from '~/components/frame/Frame';
-import { Headline } from '~/components/frame/Headline';
-import {
-    WorksheetConfigurationComponent,
-} from '~/components/worksheet/configuration/WorksheetConfigurationComponent';
-import { Hrefs } from '~/Hrefs';
-import {
-    DefaultWorksheetConfiguration,
-} from '~/models/worksheet/configuration/DefaultWorksheetConfiguration';
-import { CurrentUserStore } from '~/stores/current_user/CurrentUserStore';
-import { inject } from 'mobx-react';
+import {WorksheetConfiguration} from '~/models/worksheet/configuration/worksheet_configuration';
+import {Frame} from '~/components/frame/Frame';
+import {Headline} from '~/components/frame/Headline';
+import {WorksheetConfigurationComponent,} from '~/components/worksheet/configuration/WorksheetConfigurationComponent';
+import {Hrefs} from '~/Hrefs';
+import {DefaultWorksheetConfiguration,} from '~/models/worksheet/configuration/DefaultWorksheetConfiguration';
+import {CurrentUserStore} from '~/stores/current_user/CurrentUserStore';
+import {inject} from 'mobx-react';
 import * as React from 'react';
-import { Redirect, RouteComponentProps } from 'react-router';
-import { Button, Col, Container, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import {Redirect, RouteComponentProps} from 'react-router';
+import {Button, Col, Container, Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap';
 import Row from 'reactstrap/lib/Row';
 
 interface Props extends RouteComponentProps<any> {
@@ -42,7 +37,7 @@ export class UserSettingsComponent extends React.Component<Props, State> {
         if (!unsavedWorksheetConfiguration) {
             return;
         }
-        this.props.currentUserStore.setCurrentUserSettings(new UserSettings({ worksheetConfiguration: unsavedWorksheetConfiguration }));
+        this.props.currentUserStore.setCurrentUserSettings({ worksheetConfiguration: unsavedWorksheetConfiguration });
         this.setState((prevState) => ({ unsavedWorksheetConfiguration: undefined }));
     }
 

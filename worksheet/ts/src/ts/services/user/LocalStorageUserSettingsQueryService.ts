@@ -1,7 +1,7 @@
-import { UserId } from '~/models/user/user_id';
-import { UserSettings } from '~/models/user/user_settings';
-import { NoSuchUserSettingsException } from '~/services/user/no_such_user_settings_exception';
-import { UserSettingsQueryService } from '~/services/user/user_settings_query_service';
+import {UserId} from '~/models/user/user_id';
+import {UserSettings} from '~/models/user/user_settings';
+import {NoSuchUserSettingsException} from '~/services/user/no_such_user_settings_exception';
+import {UserSettingsQueryService} from '~/services/user/user_settings_query_service';
 
 export class LocalStorageUserSettingsQueryService implements UserSettingsQueryService {
     private static readonly USER_SETTINGS_ITEM_KEY_PREFIX = "userSettings";
@@ -13,7 +13,7 @@ export class LocalStorageUserSettingsQueryService implements UserSettingsQuerySe
         if (!value) {
             return Promise.reject(new NoSuchUserSettingsException(kwds));
         }
-        return Promise.resolve(UserSettings.fromThryftJsonObject(JSON.parse(value)));
+        return Promise.resolve(JSON.parse(value));
     }
 
     static getUserSettingsItemKey(id: UserId): string {
