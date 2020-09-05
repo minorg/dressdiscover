@@ -1,0 +1,10 @@
+@import "~/bootstrap_variables.scss";
+
+.frame {
+    margin: 40px;
+
+    .headline {
+        background-color: $primary;
+        color: white;
+    }
+}

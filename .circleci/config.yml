@@ -1,49 +1,23 @@
 version: 2
 jobs:
-  cms-gui:
-    working_directory: ~/project
+  build:
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:12
     steps:
       - checkout
       - restore_cache:
-          key: gui-core-dependency-cache-v1-{{ checksum "cms/gui/core/package.json" }}
+          key: worksheet-dependency-cache-v1-{{ checksum "worksheet/ts/package.json" }}
       - run:
-          command: cd cms/gui/core && npm install
-      - save_cache:
-          key: gui-core-dependency-cache-v1-{{ checksum "cms/gui/core/package.json" }}
-          paths:
-            - ./cms/gui/core/node_modules
-      - run:
-          command: cd cms/gui/core && npm run build
-  cms-service:
-    working_directory: ~/project
-    docker:
-      - image: circleci/openjdk:11
-    steps:
-      - checkout
-      - restore_cache:
-          key: sbt-cache-v1
-      - run:
-          name: Create test-results directory
-          command: mkdir -p test-results/scala
-      - run:
-          name: Test service/core
+          name: Install worksheet dependencies
           command: |
-            cd cms/service/core
-            sbt clean update package test
-            cp target/test-reports/*.xml ~/project/test-results/scala
+            cd worksheet/ts
+            npm install
       - save_cache:
-          key: sbt-cache-v1
+          key: worksheet-dependency-cache-v1-{{ checksum "worksheet/ts/package.json" }}
           paths:
-            - "~/.ivy2/cache"
-            - "~/.sbt"
-            - "~/.m2"
-      - store_test_results:
-          path: test-results
-workflows:
-  version: 2
-  build-and-test-cms:
-    jobs:
-      - cms-gui
-      - cms-service
+            - worksheet/ts/node_modules
+      - run:
+          name: Build worksheet
+          command: |
+            cd worksheet/ts
+            npm run build
