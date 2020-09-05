@@ -10,16 +10,9 @@ from dressdiscover_etl.models.costume_core_predicate import CostumeCorePredicate
 from dressdiscover_etl.models.costume_core_term import CostumeCoreTerm
 
 
-class CostumeCoreLoader(_Loader):
-    def __init__(self, **kwds):
-        _Loader.__init__(self, **kwds)
-        self.__ttl_file_loader = RdfFileLoader(format="ttl", **kwds)
-        self.__xml_file_loader = RdfFileLoader(format="xml", **kwds)
-
+class CostumeCoreOntologyPyLoader(_Loader):
     def load(self, *, force: bool, models: Generator[_Model, None, None]):
         models_tuple = tuple(models)
-        self.__ttl_file_loader.load(force=force, models=models_tuple)
-        self.__xml_file_loader.load(force=force, models=models_tuple)
 
         models_dir_path = Path(__file__).parent.parent.parent / "models"
         with open(

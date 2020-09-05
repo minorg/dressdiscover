@@ -3,7 +3,7 @@ from typing import Dict, Optional
 from paradicms_etl._extractor import _Extractor
 
 
-class CostumeCoreExtractor(_Extractor):
+class CostumeCoreOntologyCsvExtractor(_Extractor):
     def extract(self, *, force: bool) -> Optional[Dict[str, object]]:
         return {
             "cc_predicates_csv_file_path": self._download(

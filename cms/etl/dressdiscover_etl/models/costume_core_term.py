@@ -28,7 +28,7 @@ class CostumeCoreTerm(_Model):
 
         return f"{self.__class__.__name__}(aat_id={quote_repr_string(self.aat_id)}, description={repr(self.description)}, display_name_en='''{self.display_name_en.encode('unicode-escape').decode('ascii')}''', features={features}, id='{self.id}', uri='{self.uri}', wikidata_id={quote_repr_string(self.wikidata_id)})"
 
-    def to_rdf(self, *, graph: Graph) -> Resource:
+    def to_rdf(self, *, graph: Graph, **kwds) -> Resource:
         resource = graph.resource(URIRef(self.uri))
         resource.add(RDFS.label, Literal(self.display_name_en, lang="en"))
         resource.add(DCTERMS.identifier, Literal(self.id))

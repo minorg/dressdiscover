@@ -12,7 +12,7 @@ from dressdiscover_etl.namespace import CC
 class CostumeCoreOntology(_Model):
     version: str
 
-    def to_rdf(self, *, graph: Graph) -> Resource:
+    def to_rdf(self, *, graph: Graph, **kwds) -> Resource:
         graph.namespace_manager.bind("cc", CC)
         graph.namespace_manager.bind("owl", OWL)
 
