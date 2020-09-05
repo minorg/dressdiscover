@@ -1,7 +1,7 @@
-from paradicms_etl.pipelines._pipeline import _Pipeline
-from paradicms_etl.pipelines.oai_pmh.oai_pmh_extractor import OaiPmhExtractor
+from paradicms_etl._pipeline import _Pipeline
+from paradicms_etl.extractors.oai_pmh_extractor import OaiPmhExtractor
 
-from .tfc_transformer import TfcTransformer
+from dressdiscover_etl.transformers.tfc_transformer import TfcTransformer
 
 
 class TfcPipeline(_Pipeline):

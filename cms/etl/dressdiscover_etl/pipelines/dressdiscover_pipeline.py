@@ -4,8 +4,7 @@ from paradicms_etl.extractors.nop_extractor import NopExtractor
 from paradicms_etl.loaders.gui_loader import GuiLoader
 from paradicms_etl.transformers.nop_transformer import NopTransformer
 
-from dressdiscover_etl.path import DATA_DIR_PATH
-from dressdiscover_etl.pipelines.vccc.vccc_pipeline import VcccPipeline
+from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
 
 
 class DressdiscoverPipeline(_Pipeline):
@@ -25,7 +24,7 @@ class DressdiscoverPipeline(_Pipeline):
 
     @classmethod
     def add_arguments(cls, arg_parser: ArgParser):
-        _Pipeline.add_arguments(arg_parser, data_dir_path_default=str(DATA_DIR_PATH))
+        _Pipeline.add_arguments(arg_parser)
         arg_parser.add_argument("--vccc-omeka-api-key", required=True)
 
     def extract_transform_load(self, **kwds):
