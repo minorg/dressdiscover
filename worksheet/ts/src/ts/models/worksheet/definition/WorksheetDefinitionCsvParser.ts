@@ -7,9 +7,6 @@ import {WorksheetFeatureValueImage} from "~/models/worksheet/definition/Workshee
 import {WorksheetFeatureValueImageUrl} from "~/models/worksheet/definition/WorksheetFeatureValueImageUrl";
 import {WorksheetRights} from "~/models/worksheet/definition/WorksheetRights";
 import {WorksheetRightsLicense} from "~/models/worksheet/definition/WorksheetRightsLicense";
-import {WorksheetFeatureId} from "~/models/worksheet/WorksheetFeatureId";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
-import {WorksheetFeatureValueId} from "~/models/worksheet/WorksheetFeatureValueId";
 import * as _ from "lodash";
 import * as Papa from "papaparse";
 
@@ -130,10 +127,8 @@ export class WorksheetDefinitionCsvParser {
         features.push({
           description: this._parseDescription(rightsLicensesByUri, row),
           displayNameEn: row.display_name_en as string,
-          id: WorksheetFeatureId.parse(row.id as string),
-          valueIds: (row.value as string[]).map((id: string) =>
-            WorksheetFeatureValueId.parse(id)
-          ),
+          id: row.id as string,
+          valueIds: row.value as string[],
         });
       } catch (e) {
         if (e instanceof RangeError) {
@@ -161,10 +156,8 @@ export class WorksheetDefinitionCsvParser {
         featureSets.push({
           description: this._parseDescription(rightsLicensesByUri, row),
           displayNameEn: row.display_name_en as string,
-          featureIds: (row.feature as string[]).map((id: string) =>
-            WorksheetFeatureId.parse(id)
-          ),
-          id: WorksheetFeatureSetId.parse(row.id as string),
+          featureIds: row.feature as string[],
+          id: row.id as string,
         });
       } catch (e) {
         if (e instanceof RangeError) {
@@ -215,7 +208,7 @@ export class WorksheetDefinitionCsvParser {
         const value = {
           description: this._parseDescription(rightsLicensesByUri, row),
           displayNameEn: row.display_name_en as string,
-          id: WorksheetFeatureValueId.parse(valueId),
+          id: valueId,
           image,
         };
         values.push(value);

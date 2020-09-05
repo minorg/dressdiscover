@@ -1,7 +1,6 @@
 import "./WorksheetStateEdit.scss";
 
 import * as classnames from "classnames";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
 import {CurrentUserStore} from "~/stores/current_user/CurrentUserStore";
 import {History} from "history";
 import * as _ from "lodash";
@@ -48,7 +47,7 @@ class WorksheetStateEditImpl extends React.Component<
   WorksheetStateEditImplProps,
   {
     description?: string;
-    selectedFeatureSetIds: WorksheetFeatureSetId[];
+    selectedFeatureSetIds: string[];
   }
 > {
   constructor(props: WorksheetStateEditImplProps) {
@@ -62,9 +61,9 @@ class WorksheetStateEditImpl extends React.Component<
     };
   }
 
-  isFeatureSetSelected(featureSetId: WorksheetFeatureSetId): boolean {
-    return this.state.selectedFeatureSetIds.some((selectedFeatureSetId) =>
-      selectedFeatureSetId.equals(featureSetId)
+  isFeatureSetSelected(featureSetId: string): boolean {
+    return this.state.selectedFeatureSetIds.some(
+      (selectedFeatureSetId) => selectedFeatureSetId === featureSetId
     );
   }
 
@@ -75,12 +74,12 @@ class WorksheetStateEditImpl extends React.Component<
     );
   }
 
-  onToggleFeatureSet(featureSetId: WorksheetFeatureSetId) {
+  onToggleFeatureSet(featureSetId: string) {
     this.setState((prevState) => {
       const selectedFeatureSetIds = prevState.selectedFeatureSetIds;
       const newSelectedFeatureIds = _.filter(
         selectedFeatureSetIds,
-        (selected) => !selected.equals(featureSetId)
+        (selected) => selected !== featureSetId
       );
       if (newSelectedFeatureIds.length === selectedFeatureSetIds.length) {
         newSelectedFeatureIds.push(featureSetId);

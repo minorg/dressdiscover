@@ -1,7 +1,4 @@
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {WorksheetStateMark} from "~/models/worksheet/state/WorksheetStateMark";
-import {WorksheetFeatureId} from "~/models/worksheet/WorksheetFeatureId";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
 import {RouteComponentProps} from "react-router";
 
 export class WorksheetStateMarkParser {
@@ -18,16 +15,10 @@ export class WorksheetStateMarkParser {
     }
 
     return {
-      featureId: props.match.params.featureId
-        ? WorksheetFeatureId.parse(props.match.params.featureId)
-        : undefined,
-      featureSetId: props.match.params.featureSetId
-        ? WorksheetFeatureSetId.parse(props.match.params.featureSetId)
-        : undefined,
+      featureId: props.match.params.featureId,
+      featureSetId: props.match.params.featureSetId,
       review: review ? review : undefined,
-      worksheetStateId: WorksheetStateId.parse(
-        props.match.params.worksheetStateId
-      ),
+      worksheetStateId: props.match.params.worksheetStateId,
     };
   }
 }

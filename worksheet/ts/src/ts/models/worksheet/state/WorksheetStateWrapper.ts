@@ -2,9 +2,6 @@ import {WorksheetFeatureSetState} from "~/models/worksheet/state/WorksheetFeatur
 import {WorksheetFeatureState} from "~/models/worksheet/state/WorksheetFeatureState";
 import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
 import {WorksheetStateMark} from "~/models/worksheet/state/WorksheetStateMark";
-import {WorksheetFeatureId} from "~/models/worksheet/WorksheetFeatureId";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
-import {WorksheetFeatureValueId} from "~/models/worksheet/WorksheetFeatureValueId";
 import * as _ from "lodash";
 
 import {WorksheetDefinitionWrapper} from "../definition/WorksheetDefinitionWrapper";
@@ -57,8 +54,8 @@ export class WorksheetStateWrapper {
     if (!featureSetState) {
       return undefined;
     }
-    return featureSetState.features.find((featureState) =>
-      featureState.id.equals(this.currentStateMark.featureId)
+    return featureSetState.features.find(
+      (featureState) => featureState.id === this.currentStateMark.featureId
     );
   }
 
@@ -70,8 +67,9 @@ export class WorksheetStateWrapper {
     if (!this.currentStateMark.featureSetId) {
       return undefined;
     }
-    return this.worksheetState.featureSets.find((featureSetState) =>
-      featureSetState.id.equals(this.currentStateMark.featureSetId)
+    return this.worksheetState.featureSets.find(
+      (featureSetState) =>
+        featureSetState.id === this.currentStateMark.featureSetId
     );
   }
 
@@ -118,11 +116,11 @@ export class WorksheetStateWrapper {
     return this.worksheetStateMachine.previousStateMark(this.currentStateMark);
   }
 
-  selectFeatureSets(featureSetIds: readonly WorksheetFeatureSetId[]): void {
+  selectFeatureSets(featureSetIds: readonly string[]): void {
     const selectedFeatureSetStates: WorksheetFeatureSetState[] = [];
     for (const featureSetId of featureSetIds) {
       const existingFeatureSetState = this.worksheetState.featureSets.find(
-        (featureSet) => featureSet.id.equals(featureSetId)
+        (featureSet) => featureSet.id === featureSetId
       );
       if (existingFeatureSetState) {
         selectedFeatureSetStates.push(existingFeatureSetState);
@@ -135,9 +133,7 @@ export class WorksheetStateWrapper {
     this.worksheetState.mtime = new Date();
   }
 
-  selectFeatureValues(
-    featureValueIds: readonly WorksheetFeatureValueId[] | undefined
-  ) {
+  selectFeatureValues(featureValueIds: readonly string[] | undefined) {
     let featureState = this.currentFeatureState;
     let featureSetState = this.currentFeatureSetState;
 
@@ -149,7 +145,7 @@ export class WorksheetStateWrapper {
           );
           featureSetState = {
             features: [],
-            id: this.currentStateMark.featureSetId as WorksheetFeatureSetId,
+            id: this.currentStateMark.featureSetId as string,
           };
           this.worksheetState.featureSets.push(featureSetState);
         }
@@ -158,7 +154,7 @@ export class WorksheetStateWrapper {
           "creating new feature " + this.currentStateMark.featureId
         );
         featureState = {
-          id: this.currentStateMark.featureId as WorksheetFeatureId,
+          id: this.currentStateMark.featureId,
         };
         featureSetState.features.push(featureState);
       }
@@ -169,8 +165,9 @@ export class WorksheetStateWrapper {
       console.debug(
         "removing empty feature " + this.currentStateMark.featureId
       );
-      _.remove(featureSetState.features, (feature) =>
-        feature.id.equals(this.currentStateMark.featureId)
+      _.remove(
+        featureSetState.features,
+        (feature) => feature.id === this.currentStateMark.featureId
       );
       // Don't remove empty feature sets, they're used to indicate which were selected.
     }
@@ -179,7 +176,7 @@ export class WorksheetStateWrapper {
     this.worksheetState.mtime = new Date();
   }
 
-  get selectedFeatureSetIds(): WorksheetFeatureSetId[] {
+  get selectedFeatureSetIds(): string[] {
     return this.worksheetState.featureSets.map((featureSet) => featureSet.id);
   }
 

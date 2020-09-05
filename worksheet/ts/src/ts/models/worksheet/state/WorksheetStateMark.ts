@@ -1,10 +1,6 @@
-import {WorksheetFeatureId} from "../WorksheetFeatureId";
-import {WorksheetFeatureSetId} from "../WorksheetFeatureSetId";
-import {WorksheetStateId} from "./WorksheetStateId";
-
 export interface WorksheetStateMark {
-  readonly worksheetStateId: WorksheetStateId;
-  readonly featureId?: WorksheetFeatureId;
-  readonly featureSetId?: WorksheetFeatureSetId;
+  readonly worksheetStateId: string;
+  readonly featureId?: string;
+  readonly featureSetId?: string;
   readonly review?: boolean;
 }

@@ -1,10 +1,6 @@
 import {WorksheetFeatureSetState} from "~/models/worksheet/state/WorksheetFeatureSetState";
 import {WorksheetFeatureState} from "~/models/worksheet/state/WorksheetFeatureState";
 import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
-import {WorksheetFeatureId} from "~/models/worksheet/WorksheetFeatureId";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
-import {WorksheetFeatureValueId} from "~/models/worksheet/WorksheetFeatureValueId";
 import {GoogleSheetsWorksheetStateExporter} from "~/components/worksheet/state/exporters/GoogleSheetsWorksheetStateExporter";
 import * as _ from "lodash";
 import * as Papa from "papaparse";
@@ -40,7 +36,7 @@ export class GoogleSheetsWorksheetStateImporter {
       if (!dataRow[0].length) {
         continue;
       }
-      const id = WorksheetStateId.parse(dataRow[0]);
+      const id = dataRow[0];
       const ctime = new Date(Date.parse(dataRow[1]));
       const mtime = new Date(Date.parse(dataRow[2]));
 
@@ -49,7 +45,7 @@ export class GoogleSheetsWorksheetStateImporter {
 
       // Build a map of maps of feature value id's.
       const featureSetValueIds: {
-        [index: string]: {[index: string]: WorksheetFeatureValueId[]};
+        [index: string]: {[index: string]: string[]};
       } = {};
       dataRow
         .slice(GoogleSheetsWorksheetStateExporter.FIRST_FEATURE_COLUMN_INDEX)
@@ -64,26 +60,17 @@ export class GoogleSheetsWorksheetStateImporter {
           }
           featureSetValueIds[featureSetId.toString()][
             featureId.toString()
-          ] = dataColumn.length
-            ? dataColumn
-                .split(";")
-                .map((valueId) => WorksheetFeatureValueId.parse(valueId))
-            : [];
+          ] = dataColumn.length ? dataColumn.split(";") : [];
         });
       console.info(
         "Feature set value ids: " + JSON.stringify(featureSetValueIds)
       );
 
       const featureSetStates: WorksheetFeatureSetState[] = [];
-      for (const featureSetIdString of _.keys(featureSetValueIds)) {
-        const featureSetId = WorksheetFeatureSetId.parse(featureSetIdString);
+      for (const featureSetId of _.keys(featureSetValueIds)) {
         const featureStates: WorksheetFeatureState[] = [];
-        for (const featureIdString of _.keys(
-          featureSetValueIds[featureSetIdString]
-        )) {
-          const featureId = WorksheetFeatureId.parse(featureIdString);
-          const selectedValueIds =
-            featureSetValueIds[featureSetIdString][featureIdString];
+        for (const featureId of _.keys(featureSetValueIds[featureSetId])) {
+          const selectedValueIds = featureSetValueIds[featureSetId][featureId];
           featureStates.push({
             id: featureId,
             selectedValueIds: selectedValueIds.length

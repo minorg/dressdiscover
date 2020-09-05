@@ -1,7 +1,5 @@
 import {WorksheetDefinition} from "~/models/worksheet/definition/WorksheetDefinition";
 import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
-import {WorksheetFeatureId} from "~/models/worksheet/WorksheetFeatureId";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
 import {WorksheetStateExporter} from "~/components/worksheet/state/exporters/WorksheetStateExporter";
 import * as _ from "lodash";
 
@@ -15,10 +13,7 @@ export class CsvWorksheetStateExporter
   ): string[][] {
     const rows: string[][] = [];
 
-    const featureHeader = (
-      featureSetId: WorksheetFeatureSetId,
-      featureId: WorksheetFeatureId
-    ) => {
+    const featureHeader = (featureSetId: string, featureId: string) => {
       if (worksheetStates.length === 1) {
         const worksheetState = worksheetStates[0];
         if (
@@ -32,7 +27,7 @@ export class CsvWorksheetStateExporter
 
       const featureSetDefinition = worksheetDefinition.featureSets.find(
         (checkFeatureSetDefinition) =>
-          checkFeatureSetDefinition.id.equals(featureSetId)
+          checkFeatureSetDefinition.id === featureSetId
       );
       if (!featureSetDefinition) {
         return undefined;
@@ -70,7 +65,7 @@ export class CsvWorksheetStateExporter
       for (const featureSetState of worksheetState.featureSets) {
         const featureSetDefinition = worksheetDefinition.featureSets.find(
           (featureSetDefinition) =>
-            featureSetDefinition.id.equals(featureSetState.id)
+            featureSetDefinition.id === featureSetState.id
         );
         if (featureSetDefinition) {
           workType.push(featureSetDefinition.displayNameEn);
@@ -108,7 +103,7 @@ export class CsvWorksheetStateExporter
           for (const selectedValueId of featureState.selectedValueIds) {
             const featureValueDefinition = worksheetDefinition.featureValues.find(
               (featureValueDefinition) =>
-                featureValueDefinition.id.equals(selectedValueId)
+                featureValueDefinition.id === selectedValueId
             );
             if (!featureValueDefinition) {
               console.warn(

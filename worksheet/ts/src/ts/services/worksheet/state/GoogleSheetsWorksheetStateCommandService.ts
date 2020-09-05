@@ -1,6 +1,5 @@
 ﻿import {GoogleSheetsWorksheetStateConfiguration} from "~/models/worksheet/configuration/GoogleSheetsWorksheetStateConfiguration";
 import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {WorksheetDefinitionQueryService} from "~/services/worksheet/definition/WorksheetDefinitionQueryService";
 import {NoSuchWorksheetStateException} from "~/services/worksheet/state/NoSuchWorksheetStateException";
 import {WorksheetStateCommandService} from "~/services/worksheet/state/WorksheetStateCommandService";
@@ -15,13 +14,13 @@ export class GoogleSheetsWorksheetStateCommandService
     private readonly worksheetDefinitionQueryService: WorksheetDefinitionQueryService
   ) {}
 
-  deleteWorksheetState(kwds: {id: WorksheetStateId}): Promise<void> {
+  deleteWorksheetState(kwds: {id: string}): Promise<void> {
     return new Promise((resolve, reject) => {
       this.getWorksheetStates().then(
         (worksheetStates) => {
           this.replaceWorksheetStates(
             worksheetStates.filter(
-              (worksheetState) => !worksheetState.id.equals(kwds.id)
+              (worksheetState) => worksheetState.id !== kwds.id
             )
           ).then(
             () => resolve(),
@@ -40,7 +39,7 @@ export class GoogleSheetsWorksheetStateCommandService
           const newWorksheetStates: WorksheetState[] = [];
           let replaced: boolean = false;
           for (const oldWorksheetState of oldWorksheetStates) {
-            if (!replaced && oldWorksheetState.id.equals(kwds.state.id)) {
+            if (!replaced && oldWorksheetState.id === kwds.state.id) {
               newWorksheetStates.push(kwds.state);
               replaced = true;
             } else {
@@ -61,17 +60,14 @@ export class GoogleSheetsWorksheetStateCommandService
     });
   }
 
-  renameWorksheetState(kwds: {
-    newId: WorksheetStateId;
-    oldId: WorksheetStateId;
-  }): Promise<void> {
+  renameWorksheetState(kwds: {newId: string; oldId: string}): Promise<void> {
     return new Promise((resolve, reject) => {
       this.getWorksheetStates().then(
         (worksheetStates) => {
           const newWorksheetStates: WorksheetState[] = [];
           let renamed: boolean = false;
           for (const worksheetState of worksheetStates) {
-            if (!renamed && worksheetState.id.equals(kwds.oldId)) {
+            if (!renamed && worksheetState.id === kwds.oldId) {
               worksheetState.id = kwds.newId;
               renamed = true;
             }

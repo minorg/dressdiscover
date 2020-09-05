@@ -1,5 +1,4 @@
 import {User} from "~/models/user/User";
-import {UserId} from "~/models/user/UserId";
 import {UserSettings} from "~/models/user/UserSettings";
 import {CurrentUserSession} from "~/models/current_user/CurrentUserSession";
 import {DefaultWorksheetConfiguration} from "~/models/worksheet/configuration/DefaultWorksheetConfiguration";
@@ -8,7 +7,7 @@ import {Services} from "~/services/Services";
 export class CurrentUser {
   constructor(kwds: {
     delegate: User;
-    id: UserId;
+    id: string;
     session: CurrentUserSession;
     settings?: UserSettings;
   }) {
@@ -25,7 +24,7 @@ export class CurrentUser {
 
   static fromJsonObject(json: any) {
     const delegate = Object.assign({}, json);
-    const id = UserId.parse(json.id);
+    const id = json.id;
     const session = CurrentUserSession.fromJsonObject(json.session);
     return new CurrentUser({delegate, id, session});
   }
@@ -55,7 +54,7 @@ export class CurrentUser {
   }
 
   private readonly delegate: User;
-  readonly id: UserId;
+  readonly id: string;
   readonly services: Services;
   readonly session: CurrentUserSession;
   readonly settings?: UserSettings;

@@ -1,7 +1,5 @@
 import {WorksheetDefinition} from "~/models/worksheet/definition/WorksheetDefinition";
 import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
-import {WorksheetFeatureId} from "~/models/worksheet/WorksheetFeatureId";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
 import {WorksheetStateExporter} from "~/components/worksheet/state/exporters/WorksheetStateExporter";
 import * as _ from "lodash";
 
@@ -9,17 +7,12 @@ export class GoogleSheetsWorksheetStateExporter
   implements WorksheetStateExporter<string[][]> {
   static readonly FIRST_FEATURE_COLUMN_INDEX = 4;
 
-  static parseFeatureHeader(
-    featureHeader: string
-  ): [WorksheetFeatureSetId, WorksheetFeatureId] {
+  static parseFeatureHeader(featureHeader: string): [string, string] {
     const split = featureHeader.split("/", 2);
     if (split.length !== 2) {
       throw new RangeError();
     }
-    return [
-      WorksheetFeatureSetId.parse(split[0]),
-      WorksheetFeatureId.parse(split[1]),
-    ];
+    return split;
   }
 
   export(
@@ -64,7 +57,7 @@ export class GoogleSheetsWorksheetStateExporter
         const featureSetState = _.find(
           worksheetState.featureSets,
           (existingFeatureSetState) =>
-            existingFeatureSetState.id.equals(featureSetId)
+            existingFeatureSetState.id === featureSetId
         );
         if (!featureSetState) {
           dataRow.push("");
@@ -72,7 +65,7 @@ export class GoogleSheetsWorksheetStateExporter
         }
         const featureState = _.find(
           featureSetState.features,
-          (existingFeatureState) => existingFeatureState.id.equals(featureId)
+          (existingFeatureState) => existingFeatureState.id === featureId
         );
         if (!featureState) {
           dataRow.push("");

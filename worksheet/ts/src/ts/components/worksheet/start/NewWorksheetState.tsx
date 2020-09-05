@@ -1,5 +1,4 @@
 import * as classnames from "classnames";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {WorksheetStateConfigurationHeadline} from "~/components/worksheet/start/WorksheetStateConfigurationHeadline";
 import * as React from "react";
 import Hammer from "react-hammerjs";
@@ -16,8 +15,8 @@ import {
 } from "reactstrap";
 
 interface Props {
-  existingWorksheetStateIds: WorksheetStateId[];
-  onSubmit: (kwds: {newWorksheetStateId: WorksheetStateId}) => void;
+  existingWorksheetStateIds: string[];
+  onSubmit: (kwds: {newWorksheetStateId: string}) => void;
 }
 
 export class NewWorksheetState extends React.Component<
@@ -76,7 +75,7 @@ export class NewWorksheetState extends React.Component<
     }
 
     this.props.onSubmit({
-      newWorksheetStateId: WorksheetStateId.parse(newWorksheetStateId),
+      newWorksheetStateId: string.parse(newWorksheetStateId),
     });
   }
 

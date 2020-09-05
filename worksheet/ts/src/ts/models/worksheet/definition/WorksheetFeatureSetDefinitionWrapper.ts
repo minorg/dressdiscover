@@ -1,12 +1,10 @@
 import {WorksheetFeatureSetDefinition} from "~/models/worksheet/definition/WorksheetFeatureSetDefinition";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
 import {AbstractDefinitionWrapper} from "~/models/worksheet/definition/AbstractDefinitionWrapper";
 import {WorksheetDefinitionWrapper} from "~/models/worksheet/definition/WorksheetDefinitionWrapper";
 import {WorksheetFeatureDefinitionWrapper} from "~/models/worksheet/definition/WorksheetFeatureDefinitionWrapper";
 
 export class WorksheetFeatureSetDefinitionWrapper extends AbstractDefinitionWrapper<
-  WorksheetFeatureSetDefinition,
-  WorksheetFeatureSetId
+  WorksheetFeatureSetDefinition
 > {
   constructor(
     definition: WorksheetFeatureSetDefinition,

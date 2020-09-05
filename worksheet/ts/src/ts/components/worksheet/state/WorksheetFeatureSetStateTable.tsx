@@ -32,8 +32,9 @@ export class WorksheetFeatureSetStateTable extends React.Component<Props> {
       (featureDefinition) => {
         const featureState: WorksheetFeatureState | undefined = this.props
           .featureSetState
-          ? this.props.featureSetState.features.find((checkFeatureState) =>
-              checkFeatureState.id.equals(featureDefinition.id)
+          ? this.props.featureSetState.features.find(
+              (checkFeatureState) =>
+                checkFeatureState.id === featureDefinition.id
             )
           : undefined;
 

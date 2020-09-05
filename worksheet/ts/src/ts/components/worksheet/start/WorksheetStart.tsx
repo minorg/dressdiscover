@@ -1,7 +1,6 @@
 import "./WorksheetStart.scss";
 
 import * as classnames from "classnames";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {GenericErrorHandler} from "~/components/error/GenericErrorHandler";
 import {Frame} from "~/components/frame/Frame";
 import {Headline} from "~/components/frame/Headline";
@@ -24,8 +23,8 @@ interface Props extends RouteComponentProps<any> {
 
 interface State {
   exception?: Exception;
-  existingWorksheetStateIds?: WorksheetStateId[];
-  newWorksheetStateId?: WorksheetStateId;
+  existingWorksheetStateIds?: string[];
+  newWorksheetStateId?: string;
 }
 
 @inject("currentUserStore")
@@ -58,24 +57,21 @@ export class WorksheetStart extends React.Component<Props, State> {
     }
   }
 
-  async onDeleteWorksheetState(kwds: {id: WorksheetStateId}) {
+  async onDeleteWorksheetState(kwds: {id: string}) {
     await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.deleteWorksheetState(
       kwds
     );
     this.getExistingWorksheetStateIds(this.props);
   }
 
-  async onRenameWorksheetState(kwds: {
-    oldId: WorksheetStateId;
-    newId: WorksheetStateId;
-  }) {
+  async onRenameWorksheetState(kwds: {oldId: string; newId: string}) {
     await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.renameWorksheetState(
       kwds
     );
     this.getExistingWorksheetStateIds(this.props);
   }
 
-  async onStartNewWorksheet(kwds: {newWorksheetStateId: WorksheetStateId}) {
+  async onStartNewWorksheet(kwds: {newWorksheetStateId: string}) {
     const mtime = new Date();
     await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.putWorksheetState(
       {

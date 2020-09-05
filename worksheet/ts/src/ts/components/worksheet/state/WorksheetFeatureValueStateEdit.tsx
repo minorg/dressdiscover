@@ -1,7 +1,6 @@
 import "./WorksheetFeatureValueStateEdit.scss";
 
 import * as classnames from "classnames";
-import {WorksheetFeatureValueId} from "~/models/worksheet/WorksheetFeatureValueId";
 import {WorksheetDescriptionComponent} from "~/components/worksheet/state/WorksheetDescriptionComponent";
 import {WorksheetRightsLicenseComponent} from "~/components/worksheet/state/WorksheetRightsLicenseComponent";
 import {WorksheetFeatureValueDefinitionWrapper} from "~/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper";
@@ -11,7 +10,7 @@ import {DisclosurePanel} from "~/components/disclosure/DisclosurePanel";
 
 export const WorksheetFeatureValueStateEdit: React.FunctionComponent<{
   featureValueDefinition: WorksheetFeatureValueDefinitionWrapper;
-  onToggleSelected: (featureValueId: WorksheetFeatureValueId) => void;
+  onToggleSelected: (featureValueId: string) => void;
   selected: boolean;
 }> = ({featureValueDefinition: definition, onToggleSelected, selected}) => {
   let thumbnailImgSrc: string | undefined;

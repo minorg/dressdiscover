@@ -1,5 +1,4 @@
 ﻿import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {DuplicateWorksheetStateException} from "~/services/worksheet/state/DuplicateWorksheetStateException";
 import {NoSuchWorksheetStateException} from "~/services/worksheet/state/NoSuchWorksheetStateException";
 import {WorksheetStateCommandService} from "~/services/worksheet/state/WorksheetStateCommandService";
@@ -7,7 +6,7 @@ import {LocalStorageWorksheetStateQueryService} from "~/services/worksheet/state
 
 export class LocalStorageWorksheetStateCommandService
   implements WorksheetStateCommandService {
-  deleteWorksheetState(kwds: {id: WorksheetStateId}): Promise<void> {
+  deleteWorksheetState(kwds: {id: string}): Promise<void> {
     localStorage.removeItem(
       LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id)
     );
@@ -24,10 +23,7 @@ export class LocalStorageWorksheetStateCommandService
     return new Promise((resolve, reject) => resolve());
   }
 
-  renameWorksheetState(kwds: {
-    newId: WorksheetStateId;
-    oldId: WorksheetStateId;
-  }): Promise<void> {
+  renameWorksheetState(kwds: {newId: string; oldId: string}): Promise<void> {
     return new Promise((resolve, reject) => {
       const newKey = LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(
         kwds.newId

@@ -1,4 +1,3 @@
-import {UserId} from "~/models/user/UserId";
 import {UserIdentityProvider} from "~/models/user/UserIdentityProvider";
 import {UserSettings} from "~/models/user/UserSettings";
 import {NoSuchUserSettingsException} from "~/services/user/NoSuchUserSettingsException";
@@ -58,7 +57,7 @@ export class CurrentUserStore {
               name: result.name,
               pictureUrl: result.picture,
             },
-            id: UserId.parse(result.id as string),
+            id: result.id as string,
             session: currentUserSession,
           });
 

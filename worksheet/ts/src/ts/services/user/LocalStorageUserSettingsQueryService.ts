@@ -7,7 +7,7 @@ export class LocalStorageUserSettingsQueryService
   implements UserSettingsQueryService {
   private static readonly USER_SETTINGS_ITEM_KEY_PREFIX = "userSettings";
 
-  getUserSettings(kwds: {id: UserId}): Promise<UserSettings> {
+  getUserSettings(kwds: {id: string}): Promise<UserSettings> {
     const key = LocalStorageUserSettingsQueryService.getUserSettingsItemKey(
       kwds.id
     );
@@ -19,7 +19,7 @@ export class LocalStorageUserSettingsQueryService
     return Promise.resolve(JSON.parse(value));
   }
 
-  static getUserSettingsItemKey(id: UserId): string {
+  static getUserSettingsItemKey(id: string): string {
     return (
       LocalStorageUserSettingsQueryService.USER_SETTINGS_ITEM_KEY_PREFIX +
       id.toString()

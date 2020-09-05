@@ -1,4 +1,3 @@
-import {WorksheetFeatureValueId} from "~/models/worksheet/WorksheetFeatureValueId";
 import {WorksheetFeatureValueStateEdit} from "~/components/worksheet/state/WorksheetFeatureValueStateEdit";
 import {WorksheetStateFrame} from "~/components/worksheet/state/WorksheetStateFrame";
 import {WorksheetStateGetter} from "~/components/worksheet/state/WorksheetStateGetter";
@@ -49,7 +48,7 @@ class WorksheetFeatureStateEditImpl extends React.Component<
     this.save = this.save.bind(this);
   }
 
-  onToggleFeatureValue(featureValueId: WorksheetFeatureValueId) {
+  onToggleFeatureValue(featureValueId: string) {
     const featureState = this.props.worksheetState.currentFeatureState;
     let selectedValueIds =
       featureState &&
@@ -61,7 +60,7 @@ class WorksheetFeatureStateEditImpl extends React.Component<
       selectedValueIds = [featureValueId];
     } else {
       const otherSelectedValueIds = selectedValueIds.filter(
-        (selectedValueId) => !selectedValueId.equals(featureValueId)
+        (selectedValueId) => selectedValueId !== featureValueId
       );
       if (otherSelectedValueIds.length === selectedValueIds.length) {
         selectedValueIds = selectedValueIds.concat(featureValueId);
@@ -108,8 +107,9 @@ class WorksheetFeatureStateEditImpl extends React.Component<
                   onToggleSelected={this.onToggleFeatureValue}
                   selected={
                     !!selectedValueIds &&
-                    selectedValueIds.some((selectedValueId) =>
-                      selectedValueId.equals(featureValueDefinition.id)
+                    selectedValueIds.some(
+                      (selectedValueId) =>
+                        selectedValueId === featureValueDefinition.id
                     )
                   }
                 />

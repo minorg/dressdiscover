@@ -1,11 +1,7 @@
 import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 
 export interface WorksheetStateCommandService {
-  deleteWorksheetState(kwds: {id: WorksheetStateId}): Promise<void>;
+  deleteWorksheetState(kwds: {id: string}): Promise<void>;
   putWorksheetState(kwds: {state: WorksheetState}): Promise<void>;
-  renameWorksheetState(kwds: {
-    newId: WorksheetStateId;
-    oldId: WorksheetStateId;
-  }): Promise<void>;
+  renameWorksheetState(kwds: {newId: string; oldId: string}): Promise<void>;
 }

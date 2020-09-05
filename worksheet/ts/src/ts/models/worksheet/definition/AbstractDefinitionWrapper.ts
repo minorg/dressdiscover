@@ -1,14 +1,11 @@
 import {WorksheetDescription} from "~/models/worksheet/definition/WorksheetDescription";
 
-interface Definition<IdT> {
-  readonly description?: WorksheetDescription;
-  readonly displayNameEn: string;
-  readonly id: IdT;
-}
-
 export abstract class AbstractDefinitionWrapper<
-  DefinitionT extends Definition<IdT>,
-  IdT
+  DefinitionT extends {
+    readonly description?: WorksheetDescription;
+    readonly displayNameEn: string;
+    readonly id: string;
+  }
 > {
   constructor(public readonly definition: DefinitionT) {}
 

@@ -22,7 +22,7 @@ export class WorksheetStateMachine {
       stateMarkI < this.stateMarks.length;
       stateMarkI++
     ) {
-      if (_.isEqual(this.stateMarks, stateMark)) {
+      if (_.isEqual(this.stateMarks[stateMarkI], stateMark)) {
         return stateMarkI;
       }
     }

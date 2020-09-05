@@ -1,23 +1,20 @@
 import * as classnames from "classnames";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {Hrefs} from "~/Hrefs";
 import * as invariant from "invariant";
 import * as React from "react";
 import {Link} from "react-router-dom";
 import {Button, Input} from "reactstrap";
 
-export type OnDeleteWorksheetStateCallback = (kwds: {
-  id: WorksheetStateId;
-}) => void;
+export type OnDeleteWorksheetStateCallback = (kwds: {id: string}) => void;
 export type OnRenameWorksheetStateCallback = (kwds: {
-  oldId: WorksheetStateId;
-  newId: WorksheetStateId;
+  oldId: string;
+  newId: string;
 }) => void;
 
 interface Props {
   onDeleteWorksheetState: OnDeleteWorksheetStateCallback;
   onRenameWorksheetState: OnRenameWorksheetStateCallback;
-  worksheetStateId: WorksheetStateId;
+  worksheetStateId: string;
 }
 
 interface State {
@@ -89,7 +86,7 @@ export class ExistingWorksheetState extends React.Component<Props, State> {
     }
     this.props.onRenameWorksheetState({
       oldId: this.props.worksheetStateId,
-      newId: WorksheetStateId.parse(this.state.newId as string),
+      newId: string.parse(this.state.newId as string),
     });
   }
 

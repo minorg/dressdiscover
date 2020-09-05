@@ -1,6 +1,5 @@
 ﻿import {GoogleSheetsWorksheetStateConfiguration} from "~/models/worksheet/configuration/GoogleSheetsWorksheetStateConfiguration";
 import {WorksheetState} from "~/models/worksheet/state/WorksheetState";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {NoSuchWorksheetStateException} from "~/services/worksheet/state/NoSuchWorksheetStateException";
 import {WorksheetStateQueryService} from "~/services/worksheet/state/WorksheetStateQueryService";
 import {GoogleSheetsWorksheetStateImporter} from "~/components/worksheet/state/importers/GoogleSheetsWorksheetStateImporter";
@@ -32,14 +31,14 @@ export class GoogleSheetsWorksheetStateQueryService
     });
   }
 
-  getWorksheetState(kwds: {id: WorksheetStateId}): Promise<WorksheetState> {
+  getWorksheetState(kwds: {id: string}): Promise<WorksheetState> {
     const spreadsheetId = this.configuration.spreadsheetId;
     return new Promise((resolve, reject) => {
       GoogleSheetsWorksheetStateQueryService.getWorksheetStates({
         spreadsheetId,
       }).then((worksheetStates) => {
         for (const worksheetState of worksheetStates) {
-          if (worksheetState.id.equals(kwds.id)) {
+          if (worksheetState.id === kwds.id) {
             resolve(worksheetState);
             return;
           }
@@ -49,7 +48,7 @@ export class GoogleSheetsWorksheetStateQueryService
     });
   }
 
-  getWorksheetStateIds(): Promise<WorksheetStateId[]> {
+  getWorksheetStateIds(): Promise<string[]> {
     const spreadsheetId = this.configuration.spreadsheetId;
     return new Promise((resolve, reject) => {
       GoogleSheetsWorksheetStateQueryService.getWorksheetStates({

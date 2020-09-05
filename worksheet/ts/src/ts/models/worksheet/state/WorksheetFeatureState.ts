@@ -1,8 +1,5 @@
-import {WorksheetFeatureId} from "../WorksheetFeatureId";
-import {WorksheetFeatureValueId} from "../WorksheetFeatureValueId";
-
 export interface WorksheetFeatureState {
-  readonly id: WorksheetFeatureId;
-  selectedValueIds?: WorksheetFeatureValueId[];
+  readonly id: string;
+  selectedValueIds?: string[];
   text?: string;
 }

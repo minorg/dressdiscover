@@ -1,4 +1,3 @@
-import {UserId} from "~/models/user/UserId";
 import {UserSettings} from "~/models/user/UserSettings";
 import {UserSettingsCommandService} from "~/services/user/UserSettingsCommandService";
 import {LocalStorageUserSettingsQueryService} from "~/services/user/LocalStorageUserSettingsQueryService";
@@ -6,7 +5,7 @@ import {LocalStorageUserSettingsQueryService} from "~/services/user/LocalStorage
 export class LocalStorageUserSettingsCommandService
   implements UserSettingsCommandService {
   putUserSettings(kwds: {
-    id: UserId;
+    id: string;
     userSettings: UserSettings;
   }): Promise<void> {
     const key = LocalStorageUserSettingsQueryService.getUserSettingsItemKey(

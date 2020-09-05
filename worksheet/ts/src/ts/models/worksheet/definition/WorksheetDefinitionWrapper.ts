@@ -1,7 +1,4 @@
 import {WorksheetDefinition} from "~/models/worksheet/definition/WorksheetDefinition";
-import {WorksheetFeatureId} from "~/models/worksheet/WorksheetFeatureId";
-import {WorksheetFeatureSetId} from "~/models/worksheet/WorksheetFeatureSetId";
-import {WorksheetFeatureValueId} from "~/models/worksheet/WorksheetFeatureValueId";
 import {NoSuchWorksheetFeatureDefinitionException} from "~/services/worksheet/definition/NoSuchWorksheetFeatureDefinitionException";
 import {NoSuchWorksheetFeatureSetDefinitionException} from "~/services/worksheet/definition/NoSuchWorksheetFeatureSetDefinitionException";
 import {NoSuchWorksheetFeatureValueDefinitionException} from "~/services/worksheet/definition/NoSuchWorksheetFeatureValueDefinitionException";
@@ -27,9 +24,7 @@ export class WorksheetDefinitionWrapper {
     }
   }
 
-  featureSetById(
-    featureSetId: WorksheetFeatureSetId
-  ): WorksheetFeatureSetDefinitionWrapper {
+  featureSetById(featureSetId: string): WorksheetFeatureSetDefinitionWrapper {
     for (const featureSetDefinition of this.featureSets) {
       if (featureSetDefinition.id.equals(featureSetId)) {
         return featureSetDefinition;
@@ -38,11 +33,9 @@ export class WorksheetDefinitionWrapper {
     throw new NoSuchWorksheetFeatureSetDefinitionException(featureSetId);
   }
 
-  featureById(
-    featureId: WorksheetFeatureId
-  ): WorksheetFeatureDefinitionWrapper {
+  featureById(featureId: string): WorksheetFeatureDefinitionWrapper {
     for (const featureDefinition of this.features) {
-      if (featureDefinition.id.equals(featureId)) {
+      if (featureDefinition.id === featureId) {
         return featureDefinition;
       }
     }
@@ -50,10 +43,10 @@ export class WorksheetDefinitionWrapper {
   }
 
   featureValueById(
-    featureValueId: WorksheetFeatureValueId
+    featureValueId: string
   ): WorksheetFeatureValueDefinitionWrapper {
     for (const featureValueDefinition of this.featureValues) {
-      if (featureValueDefinition.id.equals(featureValueId)) {
+      if (featureValueDefinition.id === featureValueId) {
         return featureValueDefinition;
       }
     }

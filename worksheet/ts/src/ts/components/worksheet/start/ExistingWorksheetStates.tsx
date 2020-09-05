@@ -1,5 +1,4 @@
 import * as classnames from "classnames";
-import {WorksheetStateId} from "~/models/worksheet/state/WorksheetStateId";
 import {
   ExistingWorksheetState,
   OnDeleteWorksheetStateCallback,
@@ -21,7 +20,7 @@ import {
 export class ExistingWorksheetStates extends React.Component<{
   onDeleteWorksheetState: OnDeleteWorksheetStateCallback;
   onRenameWorksheetState: OnRenameWorksheetStateCallback;
-  worksheetStateIds: WorksheetStateId[];
+  worksheetStateIds: string[];
 }> {
   render() {
     const {worksheetStateIds, ...passThroughProps} = this.props;
