@@ -22,11 +22,30 @@ export class WorksheetStateMachine {
       stateMarkI < this.stateMarks.length;
       stateMarkI++
     ) {
-      if (_.isEqual(this.stateMarks[stateMarkI], stateMark)) {
+      if (this.isEqual(this.stateMarks[stateMarkI], stateMark)) {
         return stateMarkI;
       }
     }
     throw new EvalError("state not found in state machine");
+  }
+
+  private isEqual(
+    leftStateMark: WorksheetStateMark,
+    rightStateMark: WorksheetStateMark
+  ): boolean {
+    if (leftStateMark.featureSetId !== rightStateMark.featureSetId) {
+      return false;
+    }
+    if (leftStateMark.featureId !== rightStateMark.featureId) {
+      return false;
+    }
+    if (leftStateMark.review !== rightStateMark.review) {
+      return false;
+    }
+    if (leftStateMark.worksheetStateId !== rightStateMark.worksheetStateId) {
+      return false;
+    }
+    return true;
   }
 
   get lastStateMark(): WorksheetStateMark {
