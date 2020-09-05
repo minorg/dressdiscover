@@ -35,8 +35,8 @@ export class GoogleSheetsWorksheetStateExporter
     for (const worksheetState of worksheetStates) {
       const dataRow = [
         worksheetState.id.toString(),
-        worksheetState.ctime.toISOString(),
-        worksheetState.mtime.toISOString(),
+        new Date(worksheetState.ctime).toISOString(),
+        new Date(worksheetState.mtime).toISOString(),
       ];
 
       if (worksheetState.text) {

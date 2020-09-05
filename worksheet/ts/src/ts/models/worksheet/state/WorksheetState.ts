@@ -1,9 +1,9 @@
 import {WorksheetFeatureSetState} from "./WorksheetFeatureSetState";
 
 export interface WorksheetState {
-  readonly ctime: Date;
+  readonly ctime: number;
   featureSets: WorksheetFeatureSetState[];
   id: string;
-  mtime: Date;
+  mtime: number;
   text?: string;
 }

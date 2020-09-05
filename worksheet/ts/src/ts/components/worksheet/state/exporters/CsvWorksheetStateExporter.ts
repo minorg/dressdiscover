@@ -50,8 +50,8 @@ export class CsvWorksheetStateExporter
     for (const worksheetState of worksheetStates) {
       const dataRow = new Array(headerRow.length).fill("");
       dataRow[0] = worksheetState.id.toString();
-      dataRow[1] = worksheetState.ctime.toISOString();
-      dataRow[2] = worksheetState.mtime.toISOString();
+      dataRow[1] = new Date(worksheetState.ctime).toISOString();
+      dataRow[2] = new Date(worksheetState.mtime).toISOString();
 
       if (worksheetState.text) {
         dataRow[3] = worksheetState.text;

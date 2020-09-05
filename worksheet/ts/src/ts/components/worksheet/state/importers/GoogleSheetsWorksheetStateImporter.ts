@@ -37,8 +37,8 @@ export class GoogleSheetsWorksheetStateImporter {
         continue;
       }
       const id = dataRow[0];
-      const ctime = new Date(Date.parse(dataRow[1]));
-      const mtime = new Date(Date.parse(dataRow[2]));
+      const ctime = Date.parse(dataRow[1]);
+      const mtime = Date.parse(dataRow[2]);
 
       let description: string | undefined = dataRow[3];
       description = description.length ? description : undefined;

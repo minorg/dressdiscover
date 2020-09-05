@@ -76,10 +76,10 @@ export class WorksheetStart extends React.Component<Props, State> {
     await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.putWorksheetState(
       {
         state: {
-          ctime: mtime,
+          ctime: mtime.getTime(),
           featureSets: [],
           id: kwds.newWorksheetStateId,
-          mtime,
+          mtime: mtime.getTime(),
         },
       }
     );

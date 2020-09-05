@@ -130,7 +130,7 @@ export class WorksheetStateWrapper {
     }
     this.worksheetState.featureSets = selectedFeatureSetStates;
     this.worksheetStateMachine.recalculateStateMarks(this.worksheetState);
-    this.worksheetState.mtime = new Date();
+    this.worksheetState.mtime = new Date().getTime();
   }
 
   selectFeatureValues(featureValueIds: readonly string[] | undefined) {
@@ -173,7 +173,7 @@ export class WorksheetStateWrapper {
     }
 
     this.worksheetStateMachine.recalculateStateMarks(this.worksheetState);
-    this.worksheetState.mtime = new Date();
+    this.worksheetState.mtime = new Date().getTime();
   }
 
   get selectedFeatureSetIds(): string[] {
