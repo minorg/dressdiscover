@@ -25,11 +25,14 @@ class CostumeCoreAirtablePipeline(_Pipeline):
             ),
             id=pipeline_id,
             transformer=CostumeCoreAirtableTransformer(pipeline_id=pipeline_id, **kwds),
+            **kwds
         )
 
     @classmethod
     def add_arguments(cls, arg_parser):
         _Pipeline.add_arguments(arg_parser)
+        _Pipeline._add_collection_arguments(arg_parser)
+        _Pipeline._add_institution_arguments(arg_parser)
         arg_parser.add_argument("--api-key", required=True)
         arg_parser.add_argument("--base-id", required=True)
         arg_parser.add_argument("--pipeline-id")
