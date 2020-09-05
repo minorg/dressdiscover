@@ -15,7 +15,7 @@ from dressdiscover_etl.namespace import CC
 from dressdiscover_etl.models.costume_core_ontology import CostumeCoreOntology
 
 
-class CostumeCoreTransformer(_Transformer):
+class CostumeCoreOntologyTransformer(_Transformer):
     def __init__(self, *, ontology_version: str, **kwds):
         _Transformer.__init__(self, **kwds)
         self.__ontology_version = ontology_version

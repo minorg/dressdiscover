@@ -19,7 +19,7 @@ class CostumeCorePredicate(_Model):
     uri: str
     terms: Optional[Tuple[CostumeCoreTerm, ...]] = None
 
-    def to_rdf(self, *, graph: Graph) -> Resource:
+    def to_rdf(self, *, graph: Graph, **kwds) -> Resource:
         assert self.terms is not None
         resource = graph.resource(URIRef(self.uri))
         resource.add(RDF.type, OWL.ObjectProperty)
