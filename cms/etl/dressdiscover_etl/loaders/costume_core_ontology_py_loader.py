@@ -14,7 +14,9 @@ class CostumeCoreOntologyPyLoader(_Loader):
     def load(self, *, force: bool, models: Generator[_Model, None, None]):
         models_tuple = tuple(models)
 
-        models_dir_path = Path(__file__).parent.parent.parent / "models"
+        models_dir_path = Path(__file__).parent.parent / "models"
+        assert models_dir_path.is_dir(), models_dir_path
+
         with open(
             models_dir_path / "costume_core_predicates.py", "w+", encoding="ascii"
         ) as predicates_py_file:

@@ -1,18 +1,19 @@
-from paradicms_etl.pipelines._pipeline import _Pipeline
-from paradicms_etl.pipelines.csv.existing_csv_file_extractor import (
+from pathlib import Path
+
+from paradicms_etl._pipeline import _Pipeline
+from paradicms_etl.extractors.existing_csv_file_extractor import (
     ExistingCsvFileExtractor,
 )
 
-from dressdiscover_etl.path import DATA_DIR_PATH
-from dressdiscover_etl.pipelines.schcc.schcc_transformer import SchccTransformer
+from dressdiscover_etl.transformers.schcc_transformer import SchccTransformer
 
 
 class SchccPipeline(_Pipeline):
-    def __init__(self, **kwds):
+    def __init__(self, data_dir_path: Path, **kwds):
         _Pipeline.__init__(
             self,
             extractor=ExistingCsvFileExtractor(
-                csv_file_path=DATA_DIR_PATH
+                csv_file_path=data_dir_path
                 / "schcc"
                 / "extracted"
                 / "Smith CostumeCoreToolkit-MappingTemplate2 - Remediated.csv"

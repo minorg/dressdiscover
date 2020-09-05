@@ -3,16 +3,15 @@ from paradicms_etl._pipeline import _Pipeline
 from paradicms_etl.loaders.composite_loader import CompositeLoader
 from paradicms_etl.loaders.rdf_file_loader import RdfFileLoader
 
-from dressdiscover_etl.pipelines.costume_core.costume_core_ontology_csv_extractor import (
+from dressdiscover_etl.extractors.costume_core_ontology_csv_extractor import (
     CostumeCoreOntologyCsvExtractor,
 )
-from dressdiscover_etl.pipelines.costume_core.costume_core_ontology_py_loader import (
+from dressdiscover_etl.loaders.costume_core_ontology_py_loader import (
     CostumeCoreOntologyPyLoader,
 )
-from dressdiscover_etl.pipelines.costume_core.costume_core_ontology_transformer import (
+from dressdiscover_etl.transformers.costume_core_ontology_transformer import (
     CostumeCoreOntologyTransformer,
 )
-from dressdiscover_etl.path import DATA_DIR_PATH
 
 
 class CostumeCoreOntologyPipeline(_Pipeline):

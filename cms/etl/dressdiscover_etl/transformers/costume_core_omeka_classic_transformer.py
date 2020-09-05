@@ -3,12 +3,8 @@ from typing import Tuple
 from paradicms_etl.models.property import Property
 from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.models.property_definitions import PropertyDefinitions
-from paradicms_etl.namespace import VRA
-from paradicms_etl.pipelines.omeka_classic.omeka_classic_transformer import (
-    OmekaClassicTransformer,
-)
-from rdflib import Literal, URIRef, XSD
-from rdflib.namespace import DCTERMS
+from paradicms_etl.transformers.omeka_classic_transformer import OmekaClassicTransformer
+from rdflib import URIRef
 
 from dressdiscover_etl.models import costume_core_predicates
 from dressdiscover_etl.models.costume_core_terms_by_features import (
