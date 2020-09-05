@@ -26,7 +26,7 @@ export class WorksheetDefinitionWrapper {
 
   featureSetById(featureSetId: string): WorksheetFeatureSetDefinitionWrapper {
     for (const featureSetDefinition of this.featureSets) {
-      if (featureSetDefinition.id.equals(featureSetId)) {
+      if (featureSetDefinition.id === featureSetId) {
         return featureSetDefinition;
       }
     }

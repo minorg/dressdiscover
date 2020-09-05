@@ -4,8 +4,7 @@ import {WorksheetDefinitionWrapper} from "~/models/worksheet/definition/Workshee
 import {WorksheetFeatureValueDefinitionWrapper} from "~/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper";
 
 export class WorksheetFeatureDefinitionWrapper extends AbstractDefinitionWrapper<
-  WorksheetFeatureDefinition,
-  string
+  WorksheetFeatureDefinition
 > {
   constructor(
     definition: WorksheetFeatureDefinition,

@@ -12,7 +12,7 @@ export class GoogleSheetsWorksheetStateExporter
     if (split.length !== 2) {
       throw new RangeError();
     }
-    return split;
+    return [split[0], split[1]];
   }
 
   export(

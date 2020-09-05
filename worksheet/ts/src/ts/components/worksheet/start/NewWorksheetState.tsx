@@ -75,7 +75,7 @@ export class NewWorksheetState extends React.Component<
     }
 
     this.props.onSubmit({
-      newWorksheetStateId: string.parse(newWorksheetStateId),
+      newWorksheetStateId,
     });
   }
 

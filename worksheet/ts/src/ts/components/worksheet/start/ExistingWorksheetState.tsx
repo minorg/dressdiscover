@@ -86,7 +86,7 @@ export class ExistingWorksheetState extends React.Component<Props, State> {
     }
     this.props.onRenameWorksheetState({
       oldId: this.props.worksheetStateId,
-      newId: string.parse(this.state.newId as string),
+      newId: this.state.newId as string,
     });
   }
 

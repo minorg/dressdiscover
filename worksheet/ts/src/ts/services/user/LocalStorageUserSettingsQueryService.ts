@@ -1,4 +1,3 @@
-import {UserId} from "~/models/user/UserId";
 import {UserSettings} from "~/models/user/UserSettings";
 import {NoSuchUserSettingsException} from "~/services/user/NoSuchUserSettingsException";
 import {UserSettingsQueryService} from "~/services/user/UserSettingsQueryService";

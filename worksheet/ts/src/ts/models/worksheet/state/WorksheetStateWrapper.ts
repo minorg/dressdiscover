@@ -154,7 +154,7 @@ export class WorksheetStateWrapper {
           "creating new feature " + this.currentStateMark.featureId
         );
         featureState = {
-          id: this.currentStateMark.featureId,
+          id: this.currentStateMark.featureId as string,
         };
         featureSetState.features.push(featureState);
       }
