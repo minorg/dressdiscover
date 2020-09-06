@@ -1,0 +1,6 @@
+*.~lock*
+/*.csv
+/data/*
+!/data/.gitkeep
+*.pyc
+/venv/
