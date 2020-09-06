@@ -8,6 +8,7 @@ from paradicms_etl.models.object import Object
 from paradicms_etl.models.property import Property
 from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.models.property_definitions import PropertyDefinitions
+from paradicms_etl.models.rights import Rights
 from rdflib import URIRef
 
 
@@ -105,7 +106,7 @@ class CostumeCoreAirtableTransformer(_Transformer):
             features.append(
                 self.__Feature(
                     custom_property_definition=PropertyDefinition(
-                        faceted=True,
+                        faceted=len(feature_term_records) > 0,
                         key=id_,
                         label_singular=label,
                         label_plural=label,
@@ -231,6 +232,7 @@ class CostumeCoreAirtableTransformer(_Transformer):
                 institution_uri=institution_uri,
                 collection_uris=(collection_uri,),
                 properties=tuple(properties),
+                rights=Rights.from_properties(properties),
                 title=object_record["fields"]["Title"],
                 uri=object_uri,
             )
