@@ -35,7 +35,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 uri = row["URI"]
                 if not uri.startswith(str(CC)):
                     continue
-                id = row["id"]
+                id = row["id"].lstrip()
                 try:
                     predicate_terms = tuple(terms_by_features.pop(id))
                 except KeyError:

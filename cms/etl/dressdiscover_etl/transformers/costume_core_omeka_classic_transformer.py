@@ -1,17 +1,16 @@
 from typing import Tuple
 
 from paradicms_etl.models.property import Property
-from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.transformers.omeka_classic_transformer import OmekaClassicTransformer
-from rdflib import URIRef
 
 from dressdiscover_etl.models import costume_core_predicates
 from dressdiscover_etl.models.costume_core_terms_by_features import (
     COSTUME_CORE_TERMS_BY_FEATURES,
 )
-from dressdiscover_etl.models.costume_core_predicates import COSTUME_CORE_PREDICATES
-from dressdiscover_etl.namespace import CC
+from dressdiscover_etl.transformers.costume_core_property_definitions import (
+    COSTUME_CORE_PROPERTY_DEFINITIONS,
+)
 
 
 class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
@@ -19,17 +18,7 @@ class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
     __UNKNOWN_CC_TERMS = {}
 
     def transform(self, **kwds):
-        for costume_core_predicate in COSTUME_CORE_PREDICATES:
-            if not costume_core_predicate.uri.startswith(str(CC)):
-                continue
-            yield PropertyDefinition(
-                faceted=costume_core_predicate.id in COSTUME_CORE_TERMS_BY_FEATURES,
-                key=costume_core_predicate.id,
-                label_plural=costume_core_predicate.display_name_en,
-                label_singular=costume_core_predicate.display_name_en,
-                uri=URIRef(costume_core_predicate.uri),
-            )
-
+        yield from COSTUME_CORE_PROPERTY_DEFINITIONS
         yield from OmekaClassicTransformer.transform(self, **kwds)
 
     def _transform_item_type_metadata(self, element_text_tree) -> Tuple[Property, ...]:
