@@ -8,7 +8,7 @@ class Classification(NamedTuple):
     gold_standard: bool
     id: int
     metadata: Dict
-    subject_data: Dict
+    subject_data: object
     subject_ids: str
     user_id: int
     user_ip: str
