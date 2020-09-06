@@ -20,11 +20,20 @@ class CostumeCoreAirtablePipeline(_Pipeline):
                 api_key=api_key,
                 base_id=base_id,
                 pipeline_id=pipeline_id,
-                tables=("Objects",),
+                tables=(
+                    "Features",
+                    "Feature Sets",
+                    "Images",
+                    "Names",
+                    "Objects",
+                    "Terms",
+                ),
                 **kwds
             ),
             id=pipeline_id,
-            transformer=CostumeCoreAirtableTransformer(pipeline_id=pipeline_id, **kwds),
+            transformer=CostumeCoreAirtableTransformer(
+                base_id=base_id, pipeline_id=pipeline_id, **kwds
+            ),
             **kwds
         )
 
