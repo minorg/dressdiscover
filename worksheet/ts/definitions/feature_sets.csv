@@ -1,7 +1,8 @@
-id,display_name_en,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature,feature
-CC00337,blouse,colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,closure,closurePlacement,neckline,collar,sleeveType,sleeveLength,waistline,length,costumeComponents,,
-CC00335,dress,colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,dressType,closure,closurePlacement,neckline,collar,sleeveType,sleeveLength,waistline,skirtType,length,costumeComponents
-CC00344,pants,colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,pantsType,closure,closurePlacement,waistline,length,costumeComponents,,,,,
-CC00341,skirt,colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,skirtType,closure,closurePlacement,waistline,length,costumeComponents,,,,,
-CC00339,jacket,colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,closure,closurePlacement,neckline,collar,sleeveType,sleeveLength,waistline,length,costumeComponents,,
-CC00106,coat,colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,closure,closurePlacement,neckline,collar,sleeveType,sleeveLength,waistline,length,costumeComponents,,
+﻿feature_sets,id,display_name_en,features
+Blouse,CC00337,blouse,"colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,closure,closurePlacement,neckline,collar,sleeveType,sleeveLength,waistline,length,costumeComponents"
+Dress,CC00335,dress,"colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,dressType,closure,closurePlacement,neckline,collar,sleeveType,sleeveLength,waistline,skirtType,length,costumeComponents"
+Pants,CC00344,pants,"colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,pantsType,closure,closurePlacement,waistline,length,costumeComponents"
+Skirt,CC00341,skirt,"colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,skirtType,closure,closurePlacement,waistline,length,costumeComponents"
+Jacket,CC00339,jacket,"colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,closure,closurePlacement,neckline,collar,sleeveType,sleeveLength,waistline,length,costumeComponents"
+Coat,CC00106,coat,"colorMain,colorSecondary,pattern,fiber,textileMaterials,trimming,otherMaterials,hasTechnique,closure,closurePlacement,neckline,collar,sleeveType,sleeveLength,waistline,length,costumeComponents"
+,,,
