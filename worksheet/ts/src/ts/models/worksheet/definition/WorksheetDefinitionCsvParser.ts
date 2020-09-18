@@ -128,7 +128,9 @@ export class WorksheetDefinitionCsvParser {
           description: this._parseDescription(rightsLicensesByUri, row),
           displayNameEn: row.display_name_en as string,
           id: row.id as string,
-          valueIds: row.value as string[],
+          valueIds: (row.feature_values_ids as string)
+            .split(",")
+            .map((featureValueId) => featureValueId.trim()),
         });
       } catch (e) {
         if (e instanceof RangeError) {
@@ -156,7 +158,9 @@ export class WorksheetDefinitionCsvParser {
         featureSets.push({
           description: this._parseDescription(rightsLicensesByUri, row),
           displayNameEn: row.display_name_en as string,
-          featureIds: row.feature as string[],
+          featureIds: (row.features as string)
+            .split(",")
+            .map((featureId) => featureId.trim()),
           id: row.id as string,
         });
       } catch (e) {
