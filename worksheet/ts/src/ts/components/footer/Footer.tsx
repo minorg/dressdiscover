@@ -18,16 +18,6 @@ export class Footer extends React.Component {
               <a href={Hrefs.gitHub}>GitHub</a>
             </Col>
           </Row>
-          <Row>&nbsp;</Row>
-          <Row>
-            <Col className="text-center" md="12">
-              <p className="muted">
-                &copy; Copyright 2020,&nbsp;
-                <a href="https://minorgordon.net">Minor Gordon</a>. All rights
-                reserved
-              </p>
-            </Col>
-          </Row>
         </Container>
       </footer>
     );
