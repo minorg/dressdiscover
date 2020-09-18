@@ -22,7 +22,7 @@ class CostumeCoreTerm(_Model):
 
     def __repr__(self):
         if self.features:
-            features = f"({', '.join(quote_repr_string(feature) for feature in self.features)})"
+            features = f"({', '.join(quote_repr_string(feature) for feature in self.features)},)"
         else:
             features = None
 
