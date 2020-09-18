@@ -49,7 +49,10 @@ class CostumeCoreOntologyPyLoader(_BufferingLoader):
                 filter(lambda model: isinstance(model, CostumeCoreTerm), models)
             )
             for term in terms:
-                print(f"{term.id} = {term}", file=terms_py_file)
+                try:
+                    print(f"{term.id} = {term}", file=terms_py_file)
+                except UnicodeEncodeError:
+                    pass
             print(
                 f"COSTUME_CORE_TERMS = ({', '.join(term.id for term in terms)})",
                 file=terms_py_file,
