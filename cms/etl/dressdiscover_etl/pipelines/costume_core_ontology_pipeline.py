@@ -7,6 +7,9 @@ from paradicms_etl.loaders.rdf_file_loader import RdfFileLoader
 from dressdiscover_etl.loaders.costume_core_ontology_py_loader import (
     CostumeCoreOntologyPyLoader,
 )
+from dressdiscover_etl.loaders.costume_core_ontology_rdf_file_loader import (
+    CostumeCoreOntologyRdfFileLoader,
+)
 from dressdiscover_etl.transformers.costume_core_ontology_transformer import (
     CostumeCoreOntologyTransformer,
 )
@@ -35,8 +38,12 @@ class CostumeCoreOntologyPipeline(_Pipeline):
                 pipeline_id=self.ID,
                 loaders=(
                     CostumeCoreOntologyPyLoader(pipeline_id=self.ID, **kwds),
-                    RdfFileLoader(format="ttl", pipeline_id=self.ID, **kwds),
-                    RdfFileLoader(format="xml", pipeline_id=self.ID, **kwds),
+                    CostumeCoreOntologyRdfFileLoader(
+                        format="ttl", pipeline_id=self.ID, **kwds
+                    ),
+                    CostumeCoreOntologyRdfFileLoader(
+                        format="xml", pipeline_id=self.ID, **kwds
+                    ),
                 ),
             ),
             transformer=CostumeCoreOntologyTransformer(
