@@ -1,4 +1,7 @@
+from typing import Optional
+
 from configargparse import ArgParser
+from paradicms_etl._loader import _Loader
 from paradicms_etl._pipeline import _Pipeline
 from paradicms_etl.extractors.airtable_extractor import AirtableExtractor
 from paradicms_etl.loaders.composite_loader import CompositeLoader
@@ -18,7 +21,28 @@ from dressdiscover_etl.transformers.costume_core_ontology_transformer import (
 class CostumeCoreOntologyPipeline(_Pipeline):
     ID = "costume_core_ontology"
 
-    def __init__(self, *, airtable_api_key: str, ontology_version: str, **kwds):
+    def __init__(
+        self,
+        *,
+        airtable_api_key: str,
+        ontology_version: str,
+        loader: Optional[_Loader] = None,
+        **kwds
+    ):
+        if loader is None:
+            loader = CompositeLoader(
+                pipeline_id=self.ID,
+                loaders=(
+                    CostumeCoreOntologyPyLoader(pipeline_id=self.ID, **kwds),
+                    CostumeCoreOntologyRdfFileLoader(
+                        format="ttl", pipeline_id=self.ID, **kwds
+                    ),
+                    CostumeCoreOntologyRdfFileLoader(
+                        format="xml", pipeline_id=self.ID, **kwds
+                    ),
+                ),
+            )
+
         _Pipeline.__init__(
             self,
             extractor=AirtableExtractor(
@@ -34,18 +58,7 @@ class CostumeCoreOntologyPipeline(_Pipeline):
                 **kwds
             ),
             id=self.ID,
-            loader=CompositeLoader(
-                pipeline_id=self.ID,
-                loaders=(
-                    CostumeCoreOntologyPyLoader(pipeline_id=self.ID, **kwds),
-                    CostumeCoreOntologyRdfFileLoader(
-                        format="ttl", pipeline_id=self.ID, **kwds
-                    ),
-                    CostumeCoreOntologyRdfFileLoader(
-                        format="xml", pipeline_id=self.ID, **kwds
-                    ),
-                ),
-            ),
+            loader=loader,
             transformer=CostumeCoreOntologyTransformer(
                 ontology_version=ontology_version, pipeline_id=self.ID, **kwds
             ),

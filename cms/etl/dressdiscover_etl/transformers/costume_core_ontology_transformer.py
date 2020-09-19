@@ -4,6 +4,11 @@ from typing import Dict, List, Optional, Tuple
 from urllib.parse import quote
 
 from paradicms_etl._transformer import _Transformer
+from paradicms_etl.models.collection import Collection
+from paradicms_etl.models.institution import Institution
+from paradicms_etl.models.object import Object
+from paradicms_etl.models.property_definitions import PropertyDefinitions
+from paradicms_etl.models.rights import Rights
 from rdflib import Graph, URIRef
 
 from dressdiscover_etl.models.costume_core_description import CostumeCoreDescription
@@ -136,14 +141,81 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 for feature in term.features:
                     terms_by_features.setdefault(feature, []).append(term)
 
-        yield from self.__parse_predicates(
+        terms_by_features_left = terms_by_features.copy()
+        predicates = self.__parse_predicates(
             feature_records=records_by_table["features"],
-            terms_by_features=terms_by_features,
+            terms_by_features=terms_by_features_left,
         )
+        yield from predicates
 
-        if terms_by_features:
+        if terms_by_features_left:
             print(
                 "Terms that have a 'features' that doesn't correspond to a predicate:"
             )
-            for predicate_id, predicate_terms in terms_by_features.items():
+            for predicate_id, predicate_terms in terms_by_features_left.items():
                 print(predicate_id, ", ".join(term.id for term in predicate_terms))
+
+        yield from self.__transform_paradicms_models(
+            feature_records=records_by_table["features"],
+            feature_value_records=records_by_table["feature_values"],
+            predicates=predicates,
+            terms=terms,
+        )
+
+    def __transform_paradicms_models(
+        self,
+        *,
+        feature_records,
+        feature_value_records,
+        predicates: Tuple[CostumeCorePredicate, ...],
+        terms: Tuple[CostumeCoreTerm, ...],
+    ):
+        yield from PropertyDefinitions.as_tuple()
+
+        institution = Institution(
+            name="Costume Core Ontology",
+            rights=Rights(
+                holder="Arden Kirkland", statements=("Copyright Arden Kirkland",),
+            ),
+            uri=URIRef("http://www.ardenkirkland.com/costumecore/"),
+        )
+        yield institution
+
+        feature_records_by_id = {
+            feature_record["fields"]["id"]: feature_record
+            for feature_record in feature_records
+        }
+        feature_value_records_by_id = {
+            feature_value_record["fields"]["id"]: feature_value_record
+            for feature_value_record in feature_value_records
+        }
+        predicates_by_id = {predicate.id: predicate for predicate in predicates}
+
+        for predicate in predicates:
+            feature_record = feature_records_by_id[predicate.id]
+            collection = Collection(
+                institution_uri=institution.uri,
+                title=predicate.display_name_en,
+                uri=URIRef(predicate.uri),
+            )
+            yield collection
+
+        for term in terms:
+            # A term can belong to multiple predicates/collections, so yield them separately
+            if not term.features:
+                continue  # Doesn't belong to any predicates/collections
+
+            feature_value_record = feature_value_records_by_id[term.id]
+
+            term_predicates = tuple(
+                predicates_by_id[feature_id] for feature_id in term.features
+            )
+
+            yield Object(
+                collection_uris=tuple(
+                    term_predicate.uri for term_predicate in term_predicates
+                ),
+                institution_uri=institution.uri,
+                title=term.display_name_en,
+                uri=URIRef(term.uri),
+            )
