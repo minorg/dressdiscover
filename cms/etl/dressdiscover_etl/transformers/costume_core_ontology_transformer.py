@@ -5,10 +5,13 @@ from urllib.parse import quote
 
 from paradicms_etl._transformer import _Transformer
 from paradicms_etl.models.collection import Collection
+from paradicms_etl.models.image import Image
+from paradicms_etl.models.image_dimensions import ImageDimensions
 from paradicms_etl.models.institution import Institution
 from paradicms_etl.models.object import Object
 from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.models.rights import Rights
+from paradicms_etl.models.rights_value import RightsValue
 from rdflib import Graph, URIRef
 
 from dressdiscover_etl.models.costume_core_description import CostumeCoreDescription
@@ -54,6 +57,31 @@ class CostumeCoreOntologyTransformer(_Transformer):
             )
         return tuple(sorted(predicates, key=lambda predicate: predicate.id))
 
+    def __parse_rights(self, fields: Dict[str, str], key_prefix: str):
+        def get_first_list_element(list_: Optional[List[str]]):
+            if list_ is None:
+                return None
+            if not isinstance(list_, list):
+                return list_
+            assert len(list_) == 1
+            return list_[0]
+
+        return CostumeCoreRights(
+            author=fields[f"{key_prefix}_rights_author"],
+            license_uri=get_first_list_element(
+                fields.get(f"{key_prefix}_rights_license")
+            ),
+            rights_statement_uri=get_first_list_element(
+                fields.get(f"{key_prefix}_rights_statement")
+            ),
+            source_name=get_first_list_element(
+                fields[f"{key_prefix}_rights_source_name"]
+            ),
+            source_url=get_first_list_element(
+                fields[f"{key_prefix}_rights_source_url"]
+            ),
+        )
+
     def __parse_terms(
         self, *, feature_records, feature_value_records
     ) -> Tuple[CostumeCoreTerm, ...]:
@@ -71,26 +99,8 @@ class CostumeCoreOntologyTransformer(_Transformer):
 
             description_text_en = fields.get("description_text_en")
             if description_text_en:
-
-                def get_first_list_element(list_: Optional[List[str]]):
-                    if list_ is None:
-                        return None
-                    assert isinstance(list_, list)
-                    assert len(list_) == 1
-                    return list_[0]
-
                 description = CostumeCoreDescription(
-                    rights=CostumeCoreRights(
-                        author=fields["description_rights_author"],
-                        license_uri=get_first_list_element(
-                            fields.get("description_rights_license")
-                        ),
-                        rights_statement_uri=get_first_list_element(
-                            fields.get("description_rights_statement")
-                        ),
-                        source_name=fields["description_rights_source_name"],
-                        source_url=fields["description_rights_source_url"],
-                    ),
+                    rights=self.__parse_rights(fields, "description"),
                     text_en=fields["description_text_en"],
                 )
             else:
@@ -155,14 +165,14 @@ class CostumeCoreOntologyTransformer(_Transformer):
             for predicate_id, predicate_terms in terms_by_features_left.items():
                 print(predicate_id, ", ".join(term.id for term in predicate_terms))
 
-        yield from self.__transform_paradicms_models(
+        yield from self.__transform_to_paradicms_models(
             feature_records=records_by_table["features"],
             feature_value_records=records_by_table["feature_values"],
             predicates=predicates,
             terms=terms,
         )
 
-    def __transform_paradicms_models(
+    def __transform_to_paradicms_models(
         self,
         *,
         feature_records,
@@ -175,7 +185,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
         institution = Institution(
             name="Costume Core Ontology",
             rights=Rights(
-                holder="Arden Kirkland", statements=("Copyright Arden Kirkland",),
+                holder="Arden Kirkland", statement="Copyright Arden Kirkland",
             ),
             uri=URIRef("http://www.ardenkirkland.com/costumecore/"),
         )
@@ -191,14 +201,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
         }
         predicates_by_id = {predicate.id: predicate for predicate in predicates}
 
-        for predicate in predicates:
-            feature_record = feature_records_by_id[predicate.id]
-            collection = Collection(
-                institution_uri=institution.uri,
-                title=predicate.display_name_en,
-                uri=URIRef(predicate.uri),
-            )
-            yield collection
+        yielded_collection_uris = set()
 
         for term in terms:
             # A term can belong to multiple predicates/collections, so yield them separately
@@ -211,11 +214,69 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 predicates_by_id[feature_id] for feature_id in term.features
             )
 
-            yield Object(
+            for predicate in term_predicates:
+                collection_uri = URIRef(predicate.uri)
+                if collection_uri in yielded_collection_uris:
+                    continue
+
+                feature_record = feature_records_by_id[predicate.id]
+                collection = Collection(
+                    institution_uri=institution.uri,
+                    title=predicate.display_name_en,
+                    uri=collection_uri,
+                )
+                yield collection
+                yielded_collection_uris.add(collection_uri)
+
+            object_ = Object(
+                abstract=term.description.text_en if term.description else None,
                 collection_uris=tuple(
                     term_predicate.uri for term_predicate in term_predicates
                 ),
                 institution_uri=institution.uri,
+                rights=self.__transform_to_paradicms_rights(term.description.rights)
+                if term.description
+                else None,
                 title=term.display_name_en,
                 uri=URIRef(term.uri),
             )
+            yield object_
+
+            images = feature_value_record["fields"].get("images", [])
+            if not images:
+                continue
+            image_rights = self.__transform_to_paradicms_rights(
+                self.__parse_rights(feature_value_record["fields"], "image")
+            )
+            for image in images:
+                filename = image["filename"]
+
+                original_image = Image(
+                    institution_uri=institution.uri,
+                    object_uri=object_.uri,
+                    rights=image_rights,
+                    uri=URIRef(
+                        f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{filename}"
+                    ),
+                )
+                yield original_image
+
+                yield Image(
+                    exact_dimensions=ImageDimensions(height=200, width=200),
+                    institution_uri=institution.uri,
+                    object_uri=object_.uri,
+                    original_image_uri=original_image.uri,
+                    rights=image_rights,
+                    uri=URIRef(
+                        f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{filename}"
+                    ),
+                )
+
+    def __transform_to_paradicms_rights(self, rights: CostumeCoreRights) -> Rights:
+        return Rights(
+            holder=RightsValue(text=rights.source_name, uri=rights.source_url),
+            license=RightsValue(uri=rights.license_uri) if rights.license_uri else None,
+            statement=RightsValue(
+                text=f"Copyright {rights.author}", uri=rights.rights_statement_uri
+            ),
+        )
