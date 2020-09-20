@@ -9,6 +9,7 @@ from paradicms_etl.models.image import Image
 from paradicms_etl.models.image_dimensions import ImageDimensions
 from paradicms_etl.models.institution import Institution
 from paradicms_etl.models.object import Object
+from paradicms_etl.models.property import Property
 from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.models.rights import Rights
 from paradicms_etl.models.rights_value import RightsValue
@@ -67,7 +68,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
             return list_[0]
 
         return CostumeCoreRights(
-            author=fields[f"{key_prefix}_rights_author"],
+            author=get_first_list_element(fields[f"{key_prefix}_rights_author"]),
             license_uri=get_first_list_element(
                 fields.get(f"{key_prefix}_rights_license")
             ),
@@ -169,6 +170,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
             feature_records=records_by_table["features"],
             feature_value_records=records_by_table["feature_values"],
             predicates=predicates,
+            rights_licenses_records=records_by_table["rights_licenses"],
             terms=terms,
         )
 
@@ -178,15 +180,13 @@ class CostumeCoreOntologyTransformer(_Transformer):
         feature_records,
         feature_value_records,
         predicates: Tuple[CostumeCorePredicate, ...],
+        rights_licenses_records,
         terms: Tuple[CostumeCoreTerm, ...],
     ):
         yield from PropertyDefinitions.as_tuple()
 
         institution = Institution(
             name="Costume Core Ontology",
-            rights=Rights(
-                holder="Arden Kirkland", statement="Copyright Arden Kirkland",
-            ),
             uri=URIRef("http://www.ardenkirkland.com/costumecore/"),
         )
         yield institution
@@ -228,13 +228,27 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 yield collection
                 yielded_collection_uris.add(collection_uri)
 
+            object_properties = []
+            if term.description:
+                object_properties.append(
+                    Property(PropertyDefinitions.DESCRIPTION, term.description.text_en)
+                )
+                object_properties.append(
+                    property(
+                        PropertyDefinitions.CREATOR, term.description.rights.author
+                    )
+                )
+
             object_ = Object(
                 abstract=term.description.text_en if term.description else None,
                 collection_uris=tuple(
                     term_predicate.uri for term_predicate in term_predicates
                 ),
                 institution_uri=institution.uri,
-                rights=self.__transform_to_paradicms_rights(term.description.rights)
+                rights=self.__transform_to_paradicms_rights(
+                    term.description.rights,
+                    rights_licenses_records=rights_licenses_records,
+                )
                 if term.description
                 else None,
                 title=term.display_name_en,
@@ -246,7 +260,8 @@ class CostumeCoreOntologyTransformer(_Transformer):
             if not images:
                 continue
             image_rights = self.__transform_to_paradicms_rights(
-                self.__parse_rights(feature_value_record["fields"], "image")
+                self.__parse_rights(feature_value_record["fields"], "image"),
+                rights_licenses_records=rights_licenses_records,
             )
             for image in images:
                 filename = image["filename"]
@@ -272,11 +287,27 @@ class CostumeCoreOntologyTransformer(_Transformer):
                     ),
                 )
 
-    def __transform_to_paradicms_rights(self, rights: CostumeCoreRights) -> Rights:
+    def __transform_to_paradicms_rights(
+        self, rights: CostumeCoreRights, rights_licenses_records
+    ) -> Rights:
+        def uri_text(uri: str):
+            for rights_license_record in rights_licenses_records:
+                if rights_license_record["fields"]["URL"] == uri:
+                    return rights_license_record["fields"]["Nickname"]
+            return uri
+
         return Rights(
+            creator=RightsValue(text=rights.author),
             holder=RightsValue(text=rights.source_name, uri=rights.source_url),
-            license=RightsValue(uri=rights.license_uri) if rights.license_uri else None,
+            license=RightsValue(
+                text=uri_text(rights.license_uri), uri=rights.license_uri
+            )
+            if rights.license_uri
+            else None,
             statement=RightsValue(
-                text=f"Copyright {rights.author}", uri=rights.rights_statement_uri
-            ),
+                text=uri_text(rights.rights_statement_uri),
+                uri=rights.rights_statement_uri,
+            )
+            if rights.rights_statement_uri
+            else None,
         )
