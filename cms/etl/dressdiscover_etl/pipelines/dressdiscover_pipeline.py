@@ -1,58 +1,100 @@
+from typing import Generator, Optional
+
 from configargparse import ArgParser
-from paradicms_etl._pipeline import _Pipeline
-from paradicms_etl.extractors.nop_extractor import NopExtractor
+from paradicms_etl._model import _Model
 from paradicms_etl.loaders.gui_loader import GuiLoader
-from paradicms_etl.transformers.nop_transformer import NopTransformer
+from paradicms_etl.models.collection import Collection
+from paradicms_etl.models.image import Image
+from paradicms_etl.models.institution import Institution
+from paradicms_etl.models.object import Object
+from paradicms_etl.models.property_definition import PropertyDefinition
+from paradicms_etl.pipelines._composite_pipeline import _CompositePipeline
 
 from dressdiscover_etl.pipelines.costume_core_airtable_pipeline import (
     CostumeCoreAirtablePipeline,
 )
+from dressdiscover_etl.pipelines.costume_core_ontology_pipeline import (
+    CostumeCoreOntologyPipeline,
+)
 from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
 
 
-class DressdiscoverPipeline(_Pipeline):
+class DressdiscoverPipeline(_CompositePipeline):
     __ID = "dressdiscover"
 
     def __init__(
         self,
+        costume_core_ontology_airtable_api_key: str,
         costume_core_template_airtable_api_key: str,
         vccc_omeka_api_key: str,
-        **kwds
+        load_data_only: Optional[bool] = None,
+        **kwds,
     ):
-        _Pipeline.__init__(
-            self,
-            extractor=NopExtractor(pipeline_id=self.__ID, **kwds),
-            id=self.__ID,
-            loader=GuiLoader(pipeline_id=self.__ID, **kwds),
-            transformer=NopTransformer(pipeline_id=self.__ID, **kwds),
+        loader = GuiLoader(
+            load_data_only=bool(load_data_only), pipeline_id=self.__ID, **kwds
         )
-        self.__pipelines = (
-            CostumeCoreAirtablePipeline(
-                api_key=costume_core_template_airtable_api_key,
-                base_id="appgU92SdGTwPIVNg",
-                collection_title="Costume Core Template Airtable",
-                collection_uri="https://airtable.com/tblUeStXG6w5MMGlF",
-                pipeline_id="costume-core-template-airtable",
-                institution_name="Costume Core",
-                institution_uri="http://www.ardenkirkland.com/costumecore/version-0-4/",
-                institution_rights="Copyright Arden Kirkland. All rights reserved.",
-                loader=self.loader,
-                **kwds
+
+        _CompositePipeline.__init__(
+            self,
+            id=self.__ID,
+            loader=loader,
+            pipelines=(
+                CostumeCoreOntologyPipeline(
+                    airtable_api_key=costume_core_ontology_airtable_api_key,
+                    loader=loader,
+                    ontology_version="0.0.0",
+                    **kwds,
+                ),
+                CostumeCoreAirtablePipeline(
+                    api_key=costume_core_template_airtable_api_key,
+                    base_id="appgU92SdGTwPIVNg",
+                    collection_title="Costume Core Template Airtable",
+                    collection_uri="https://airtable.com/tblUeStXG6w5MMGlF",
+                    pipeline_id="costume-core-template-airtable",
+                    institution_name="Costume Core",
+                    institution_uri="http://www.ardenkirkland.com/costumecore/version-0-4/",
+                    institution_rights="Copyright Arden Kirkland. All rights reserved.",
+                    loader=loader,
+                    **kwds,
+                ),
+                VcccPipeline(loader=loader, omeka_api_key=vccc_omeka_api_key, **kwds),
             ),
-            VcccPipeline(loader=self.loader, omeka_api_key=vccc_omeka_api_key, **kwds),
+            **kwds,
         )
 
     @classmethod
     def add_arguments(cls, arg_parser: ArgParser):
-        _Pipeline.add_arguments(arg_parser)
+        _CompositePipeline.add_arguments(arg_parser)
+        arg_parser.add_argument(
+            "--costume-core-ontology-airtable-api-key", required=True
+        )
         arg_parser.add_argument(
             "--costume-core-template-airtable-api-key", required=True
+        )
+        arg_parser.add_argument(
+            "--load-data-only",
+            action="store_true",
+            help="only load data, don't generate the GUI",
         )
         arg_parser.add_argument("--vccc-omeka-api-key", required=True)
 
     def extract_transform_load(self, **kwds):
-        for pipeline in self.__pipelines:
-            self.loader.load(models=pipeline.extract_transform(**kwds))
+        excluded_model_class_names = set()
+
+        def filter_models(models: Generator[_Model, None, None]):
+            for model in models:
+                if isinstance(
+                    model, (Collection, Image, Institution, Object, PropertyDefinition)
+                ):
+                    yield model
+                elif model.__class__.__name__ not in excluded_model_class_names:
+                    self._logger.info(
+                        "filtering out %s model", model.__class__.__name__
+                    )
+                    excluded_model_class_names.add(model.__class__.__name__)
+
+        for pipeline in self._pipelines:
+            self.loader.load(models=filter_models(pipeline.extract_transform(**kwds)))
         self.loader.flush()
 
 

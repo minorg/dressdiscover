@@ -10,9 +10,7 @@ from dressdiscover_etl.namespace import CC
 COSTUME_CORE_PROPERTY_DEFINITIONS = tuple(
     PropertyDefinition(
         faceted=costume_core_predicate.id in COSTUME_CORE_TERMS_BY_FEATURES,
-        key=costume_core_predicate.id,
-        label_plural=costume_core_predicate.display_name_en,
-        label_singular=costume_core_predicate.display_name_en,
+        label=costume_core_predicate.display_name_en,
         uri=URIRef(costume_core_predicate.uri),
     )
     for costume_core_predicate in COSTUME_CORE_PREDICATES
