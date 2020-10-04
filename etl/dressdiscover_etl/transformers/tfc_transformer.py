@@ -83,7 +83,7 @@ class TfcTransformer(_Transformer):
             # Already used to derive object_.uri
             pass
         elif qualifier == "thumbnailURL":
-            high_res_image = Image(
+            high_res_image = Image.create(
                 graph=graph,
                 uri=URIRef(
                     "http://digital.library.unt.edu/ark:"
@@ -94,7 +94,7 @@ class TfcTransformer(_Transformer):
             object_.resource.add(FOAF.depiction, high_res_image.uri)
             high_res_image.resource.add(FOAF.depicts, object_.uri)
 
-            med_res_image = Image(
+            med_res_image = Image.create(
                 graph=graph,
                 uri=URIRef(
                     "http://digital.library.unt.edu/ark:"
@@ -104,7 +104,7 @@ class TfcTransformer(_Transformer):
             )
             med_res_image.resource.add(PROV.wasDerivedFrom, high_res_image.uri)
 
-            square_thumbnail_image = Image(
+            square_thumbnail_image = Image.create(
                 graph=graph,
                 uri=URIRef(
                     "http://digital.library.unt.edu/ark:"
@@ -116,7 +116,7 @@ class TfcTransformer(_Transformer):
             square_thumbnail_image.width = self._SQUARE_THUMBNAIL_WIDTH_PX
             square_thumbnail_image.resource.add(PROV.wasDerivedFrom, high_res_image.uri)
 
-            thumbnail_image = Image(graph=graph, uri=URIRef(text))
+            thumbnail_image = Image.create(graph=graph, uri=URIRef(text))
             high_res_image.resource.add(FOAF.thumbnail, thumbnail_image.uri)
             thumbnail_image.resource.add(PROV.wasDerivedFrom, high_res_image.uri)
 

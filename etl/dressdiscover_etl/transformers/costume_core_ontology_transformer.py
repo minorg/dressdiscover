@@ -266,7 +266,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
             for image in images:
                 filename = image["filename"]
 
-                original_image = Image(
+                original_image = Image.create(
                     institution_uri=institution.uri,
                     object_uri=object_.uri,
                     rights=image_rights,
@@ -276,7 +276,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 )
                 yield original_image
 
-                yield Image(
+                yield Image.create(
                     exact_dimensions=ImageDimensions(height=200, width=200),
                     institution_uri=institution.uri,
                     object_uri=object_.uri,
