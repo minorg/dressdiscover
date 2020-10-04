@@ -51,6 +51,7 @@ class CostumeCoreOntologyPipeline(_Pipeline):
                     "feature_values",
                     "features",
                     "feature_sets",
+                    "images",
                     "rights_licenses",
                 ),
                 pipeline_id=self.ID,
