@@ -1,8 +1,11 @@
+from pathlib import Path
 from typing import Generator, Optional
 
 from configargparse import ArgParser
 from paradicms_etl._model import _Model
-from paradicms_etl.loaders.gui_loader import GuiLoader
+from paradicms_etl.image_archivers.s3_image_archiver import S3ImageArchiver
+from paradicms_etl.loaders.gui.gui_data_loader import GuiDataLoader
+from paradicms_etl.loaders.gui.gui_loader import GuiLoader
 from paradicms_etl.models.collection import Collection
 from paradicms_etl.models.image import Image
 from paradicms_etl.models.institution import Institution
@@ -26,13 +29,25 @@ class DressdiscoverPipeline(_CompositePipeline):
         self,
         costume_core_ontology_airtable_api_key: str,
         costume_core_template_airtable_api_key: str,
+        data_dir_path: Path,
         vccc_omeka_api_key: str,
         load_data_only: Optional[bool] = None,
         **kwds,
     ):
-        loader = GuiLoader(
-            load_data_only=bool(load_data_only), pipeline_id=self.__ID, **kwds
-        )
+        if load_data_only:
+            loader = GuiDataLoader(
+                loaded_data_dir_path=data_dir_path / "data",
+                pipeline_id=self.__ID,
+                **kwds,
+            )
+        else:
+            loader = GuiLoader(
+                image_archiver=S3ImageArchiver(
+                    s3_bucket_name="dressdiscover-images", **kwds
+                ),
+                pipeline_id=self.__ID,
+                **kwds,
+            )
 
         _CompositePipeline.__init__(
             self,
