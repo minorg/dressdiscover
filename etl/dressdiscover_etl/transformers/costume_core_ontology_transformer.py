@@ -116,7 +116,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
             features = tuple(features)
 
             cc_uri = fields.get("CC_URI")
-            inferred_uri = str(CC[quote(fields["display_name_en"])])
+            inferred_uri = str(CC[fields["id"]])
             if cc_uri is None:
                 uri = inferred_uri
             elif cc_uri != inferred_uri:
@@ -140,9 +140,25 @@ class CostumeCoreOntologyTransformer(_Transformer):
     def transform(self, *, records_by_table: Dict[str, Tuple]) -> Graph:
         yield CostumeCoreOntology(uri=URIRef(str(CC)), version=self.__ontology_version)
 
+        feature_records = tuple(
+            record
+            for record in records_by_table["features"]
+            if "id" in record["fields"]
+        )
+        feature_value_records = tuple(
+            record
+            for record in records_by_table["feature_values"]
+            if "id" in record["fields"]
+        )
+        rights_licenses_records = tuple(
+            record
+            for record in records_by_table["rights_licenses"]
+            if "Nickname" in record["fields"]
+        )
+
         terms = self.__parse_terms(
-            feature_records=records_by_table["features"],
-            feature_value_records=records_by_table["feature_values"],
+            feature_records=feature_records,
+            feature_value_records=feature_value_records,
         )
         yield from terms
 
@@ -154,8 +170,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
 
         terms_by_features_left = terms_by_features.copy()
         predicates = self.__parse_predicates(
-            feature_records=records_by_table["features"],
-            terms_by_features=terms_by_features_left,
+            feature_records=feature_records, terms_by_features=terms_by_features_left,
         )
         yield from predicates
 
@@ -167,10 +182,10 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 print(predicate_id, ", ".join(term.id for term in predicate_terms))
 
         yield from self.__transform_to_paradicms_models(
-            feature_records=records_by_table["features"],
-            feature_value_records=records_by_table["feature_values"],
+            feature_records=feature_records,
+            feature_value_records=feature_value_records,
             predicates=predicates,
-            rights_licenses_records=records_by_table["rights_licenses"],
+            rights_licenses_records=rights_licenses_records,
             terms=terms,
         )
 

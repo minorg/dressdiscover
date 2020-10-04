@@ -258,7 +258,7 @@ pantsType = CostumeCorePredicate(
 )
 pattern = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/pattern",
-    description_text_en="Each ornamental design, either on a flat surface or in relief, composed of repeated or combined motifs.",
+    description_text_en="Each design motif appearing on the object.",
     display_name_en="Pattern",
     id="pattern",
     sub_property_of_uri=None,
@@ -346,7 +346,7 @@ temporal = CostumeCorePredicate(
 )
 textileMaterials = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/textileMaterials",
-    description_text_en="Each term for materials produced by weaving, felting, knotting, twining, or otherwise processing natural or synthetic fibers so that they cohere into a form or unit, distinguished from the fibers, trimmings, or other materials.",
+    description_text_en="Each term for materials produced from component fibers, distinguished from the fibers, trimmings, or other materials.",
     display_name_en="Textile Materials",
     id="textileMaterials",
     sub_property_of_uri=None,
@@ -362,7 +362,7 @@ treatment = CostumeCorePredicate(
 )
 trimming = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/trimming",
-    description_text_en="Each term for decorative or additional material serving to finish, decorate, or complete an object, distinguished from the fibers, textile type,  or other materials.",
+    description_text_en="Each term for decorative material added to an object, distinguished from the fibers, textile type,  or other materials.",
     display_name_en="Trimming",
     id="trimming",
     sub_property_of_uri=None,
