@@ -116,7 +116,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
             features = tuple(features)
 
             cc_uri = fields.get("CC_URI")
-            inferred_uri = str(CC[quote(fields["display_name_en"])])
+            inferred_uri = str(CC[fields["id"]])
             if cc_uri is None:
                 uri = inferred_uri
             elif cc_uri != inferred_uri:
@@ -140,9 +140,30 @@ class CostumeCoreOntologyTransformer(_Transformer):
     def transform(self, *, records_by_table: Dict[str, Tuple]) -> Graph:
         yield CostumeCoreOntology(uri=URIRef(str(CC)), version=self.__ontology_version)
 
+        feature_records = tuple(
+            record
+            for record in records_by_table["features"]
+            if "id" in record["fields"]
+        )
+        feature_value_records = tuple(
+            record
+            for record in records_by_table["feature_values"]
+            if "id" in record["fields"]
+        )
+        image_records = tuple(
+            record
+            for record in records_by_table["images"]
+            if "filename" in record["fields"]
+        )
+        rights_licenses_records = tuple(
+            record
+            for record in records_by_table["rights_licenses"]
+            if "Nickname" in record["fields"]
+        )
+
         terms = self.__parse_terms(
-            feature_records=records_by_table["features"],
-            feature_value_records=records_by_table["feature_values"],
+            feature_records=feature_records,
+            feature_value_records=feature_value_records,
         )
         yield from terms
 
@@ -154,8 +175,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
 
         terms_by_features_left = terms_by_features.copy()
         predicates = self.__parse_predicates(
-            feature_records=records_by_table["features"],
-            terms_by_features=terms_by_features_left,
+            feature_records=feature_records, terms_by_features=terms_by_features_left,
         )
         yield from predicates
 
@@ -167,10 +187,11 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 print(predicate_id, ", ".join(term.id for term in predicate_terms))
 
         yield from self.__transform_to_paradicms_models(
-            feature_records=records_by_table["features"],
-            feature_value_records=records_by_table["feature_values"],
+            feature_records=feature_records,
+            feature_value_records=feature_value_records,
+            image_records=image_records,
             predicates=predicates,
-            rights_licenses_records=records_by_table["rights_licenses"],
+            rights_licenses_records=rights_licenses_records,
             terms=terms,
         )
 
@@ -179,6 +200,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
         *,
         feature_records,
         feature_value_records,
+        image_records,
         predicates: Tuple[CostumeCorePredicate, ...],
         rights_licenses_records,
         terms: Tuple[CostumeCoreTerm, ...],
@@ -198,6 +220,9 @@ class CostumeCoreOntologyTransformer(_Transformer):
         feature_value_records_by_id = {
             feature_value_record["fields"]["id"]: feature_value_record
             for feature_value_record in feature_value_records
+        }
+        image_records_by_id = {
+            image_record["id"]: image_record for image_record in image_records
         }
         predicates_by_id = {predicate.id: predicate for predicate in predicates}
 
@@ -256,36 +281,44 @@ class CostumeCoreOntologyTransformer(_Transformer):
             )
             yield object_
 
-            images = feature_value_record["fields"].get("images", [])
-            if not images:
+            image_record_id = feature_value_record["fields"].get("image_filename")
+            if not image_record_id:
+                self._logger.debug(
+                    "feature value record %s has no image_filename",
+                    feature_value_record["fields"]["id"],
+                )
                 continue
+            image_record_id = image_record_id[0]
+            assert image_record_id
+
+            image_record = image_records_by_id[image_record_id]
+            image_filename = image_record["fields"]["filename"]
+
             image_rights = self.__transform_to_paradicms_rights(
                 self.__parse_rights(feature_value_record["fields"], "image"),
                 rights_licenses_records=rights_licenses_records,
             )
-            for image in images:
-                filename = image["filename"]
 
-                original_image = Image.create(
-                    depicts_uri=object_.uri,
-                    institution_uri=institution.uri,
-                    rights=image_rights,
-                    uri=URIRef(
-                        f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{quote(filename)}"
-                    ),
-                )
-                yield original_image
+            original_image = Image.create(
+                depicts_uri=object_.uri,
+                institution_uri=institution.uri,
+                rights=image_rights,
+                uri=URIRef(
+                    f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{quote(image_filename)}"
+                ),
+            )
+            yield original_image
 
-                yield Image.create(
-                    depicts_uri=object_.uri,
-                    exact_dimensions=ImageDimensions(height=200, width=200),
-                    institution_uri=institution.uri,
-                    original_image_uri=original_image.uri,
-                    rights=image_rights,
-                    uri=URIRef(
-                        f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{quote(filename)}"
-                    ),
-                )
+            yield Image.create(
+                depicts_uri=object_.uri,
+                exact_dimensions=ImageDimensions(height=200, width=200),
+                institution_uri=institution.uri,
+                original_image_uri=original_image.uri,
+                rights=image_rights,
+                uri=URIRef(
+                    f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{quote(image_filename)}"
+                ),
+            )
 
     def __transform_to_paradicms_rights(
         self, rights: CostumeCoreRights, rights_licenses_records

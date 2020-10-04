@@ -5,7 +5,6 @@ from paradicms_etl._loader import _Loader
 from paradicms_etl._pipeline import _Pipeline
 from paradicms_etl.extractors.airtable_extractor import AirtableExtractor
 from paradicms_etl.loaders.composite_loader import CompositeLoader
-from paradicms_etl.loaders.rdf_file_loader import RdfFileLoader
 
 from dressdiscover_etl.loaders.costume_core_ontology_py_loader import (
     CostumeCoreOntologyPyLoader,
@@ -52,6 +51,7 @@ class CostumeCoreOntologyPipeline(_Pipeline):
                     "feature_values",
                     "features",
                     "feature_sets",
+                    "images",
                     "rights_licenses",
                 ),
                 pipeline_id=self.ID,

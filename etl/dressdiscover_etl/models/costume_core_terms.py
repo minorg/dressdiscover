@@ -8,7 +8,7 @@ CC00001 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -17,7 +17,7 @@ CC00001 = CostumeCoreTerm(
     display_name_en="""buckle""",
     features=("closure",),
     id="CC00001",
-    uri="https://w3id.org/costumeCore/ontology/buckle",
+    uri="https://w3id.org/costumeCore/ontology/CC00001",
     wikidata_id=None,
 )
 CC00002 = CostumeCoreTerm(
@@ -26,7 +26,7 @@ CC00002 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -35,7 +35,7 @@ CC00002 = CostumeCoreTerm(
     display_name_en="""buttons""",
     features=("closure",),
     id="CC00002",
-    uri="https://w3id.org/costumeCore/ontology/buttons",
+    uri="https://w3id.org/costumeCore/ontology/CC00002",
     wikidata_id=None,
 )
 CC00003 = CostumeCoreTerm(
@@ -44,7 +44,7 @@ CC00003 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -53,7 +53,7 @@ CC00003 = CostumeCoreTerm(
     display_name_en="""frogs""",
     features=("closure",),
     id="CC00003",
-    uri="https://w3id.org/costumeCore/ontology/frogs",
+    uri="https://w3id.org/costumeCore/ontology/CC00003",
     wikidata_id=None,
 )
 CC00004 = CostumeCoreTerm(
@@ -62,7 +62,7 @@ CC00004 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -71,7 +71,7 @@ CC00004 = CostumeCoreTerm(
     display_name_en="""hooks and eyes""",
     features=("closure",),
     id="CC00004",
-    uri="https://w3id.org/costumeCore/ontology/hooks%20and%20eyes",
+    uri="https://w3id.org/costumeCore/ontology/CC00004",
     wikidata_id=None,
 )
 CC00005 = CostumeCoreTerm(
@@ -89,7 +89,7 @@ CC00005 = CostumeCoreTerm(
     display_name_en="""lacing""",
     features=("closure",),
     id="CC00005",
-    uri="https://w3id.org/costumeCore/ontology/lacing",
+    uri="https://w3id.org/costumeCore/ontology/CC00005",
     wikidata_id="Q29514179",
 )
 CC00006 = CostumeCoreTerm(
@@ -98,7 +98,7 @@ CC00006 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -107,7 +107,7 @@ CC00006 = CostumeCoreTerm(
     display_name_en="""grommets""",
     features=("closure",),
     id="CC00006",
-    uri="https://w3id.org/costumeCore/ontology/grommets",
+    uri="https://w3id.org/costumeCore/ontology/CC00006",
     wikidata_id=None,
 )
 CC00007 = CostumeCoreTerm(
@@ -116,7 +116,7 @@ CC00007 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -125,7 +125,7 @@ CC00007 = CostumeCoreTerm(
     display_name_en="""wrap dress""",
     features=("dressType",),
     id="CC00007",
-    uri="https://w3id.org/costumeCore/ontology/wrap%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00007",
     wikidata_id=None,
 )
 CC00008 = CostumeCoreTerm(
@@ -134,7 +134,7 @@ CC00008 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -143,7 +143,7 @@ CC00008 = CostumeCoreTerm(
     display_name_en="""snaps""",
     features=("closure",),
     id="CC00008",
-    uri="https://w3id.org/costumeCore/ontology/snaps",
+    uri="https://w3id.org/costumeCore/ontology/CC00008",
     wikidata_id=None,
 )
 CC00009 = CostumeCoreTerm(
@@ -152,7 +152,7 @@ CC00009 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -161,7 +161,7 @@ CC00009 = CostumeCoreTerm(
     display_name_en="""eyelets""",
     features=("closure",),
     id="CC00009",
-    uri="https://w3id.org/costumeCore/ontology/eyelets",
+    uri="https://w3id.org/costumeCore/ontology/CC00009",
     wikidata_id=None,
 )
 CC00010 = CostumeCoreTerm(
@@ -170,7 +170,7 @@ CC00010 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -179,7 +179,7 @@ CC00010 = CostumeCoreTerm(
     display_name_en="""ties""",
     features=("closure",),
     id="CC00010",
-    uri="https://w3id.org/costumeCore/ontology/ties",
+    uri="https://w3id.org/costumeCore/ontology/CC00010",
     wikidata_id=None,
 )
 CC00011 = CostumeCoreTerm(
@@ -188,7 +188,7 @@ CC00011 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -197,7 +197,7 @@ CC00011 = CostumeCoreTerm(
     display_name_en="""toggles""",
     features=("closure",),
     id="CC00011",
-    uri="https://w3id.org/costumeCore/ontology/toggles",
+    uri="https://w3id.org/costumeCore/ontology/CC00011",
     wikidata_id=None,
 )
 CC00012 = CostumeCoreTerm(
@@ -206,7 +206,7 @@ CC00012 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -215,8 +215,8 @@ CC00012 = CostumeCoreTerm(
     display_name_en="""velcro""",
     features=("closure",),
     id="CC00012",
-    uri="https://w3id.org/costumeCore/ontology/velcro",
-    wikidata_id=None,
+    uri="https://w3id.org/costumeCore/ontology/CC00012",
+    wikidata_id="Q15411420",
 )
 CC00013 = CostumeCoreTerm(
     aat_id="300239276",
@@ -224,7 +224,7 @@ CC00013 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -233,7 +233,7 @@ CC00013 = CostumeCoreTerm(
     display_name_en="""zipper""",
     features=("closure",),
     id="CC00013",
-    uri="https://w3id.org/costumeCore/ontology/zipper",
+    uri="https://w3id.org/costumeCore/ontology/CC00013",
     wikidata_id=None,
 )
 CC00014 = CostumeCoreTerm(
@@ -251,7 +251,7 @@ CC00014 = CostumeCoreTerm(
     display_name_en="""boat neck""",
     features=("neckline",),
     id="CC00014",
-    uri="https://w3id.org/costumeCore/ontology/boat%20neck",
+    uri="https://w3id.org/costumeCore/ontology/CC00014",
     wikidata_id="Q2466122",
 )
 CC00015 = CostumeCoreTerm(
@@ -269,7 +269,7 @@ CC00015 = CostumeCoreTerm(
     display_name_en="""crew neck""",
     features=("neckline",),
     id="CC00015",
-    uri="https://w3id.org/costumeCore/ontology/crew%20neck",
+    uri="https://w3id.org/costumeCore/ontology/CC00015",
     wikidata_id="Q5184798",
 )
 CC00016 = CostumeCoreTerm(
@@ -278,7 +278,7 @@ CC00016 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -287,7 +287,7 @@ CC00016 = CostumeCoreTerm(
     display_name_en="""halterneck""",
     features=("neckline",),
     id="CC00016",
-    uri="https://w3id.org/costumeCore/ontology/halterneck",
+    uri="https://w3id.org/costumeCore/ontology/CC00016",
     wikidata_id=None,
 )
 CC00017 = CostumeCoreTerm(
@@ -305,7 +305,7 @@ CC00017 = CostumeCoreTerm(
     display_name_en="""henley neckline""",
     features=("neckline",),
     id="CC00017",
-    uri="https://w3id.org/costumeCore/ontology/henley%20neckline",
+    uri="https://w3id.org/costumeCore/ontology/CC00017",
     wikidata_id="Q77004674",
 )
 CC00018 = CostumeCoreTerm(
@@ -314,7 +314,7 @@ CC00018 = CostumeCoreTerm(
     display_name_en="""inset""",
     features=("costumeComponents",),
     id="CC00018",
-    uri="https://w3id.org/costumeCore/ontology/inset",
+    uri="https://w3id.org/costumeCore/ontology/CC00018",
     wikidata_id=None,
 )
 CC00019 = CostumeCoreTerm(
@@ -323,7 +323,7 @@ CC00019 = CostumeCoreTerm(
     display_name_en="""jewel""",
     features=None,
     id="CC00019",
-    uri="https://w3id.org/costumeCore/ontology/jewel",
+    uri="https://w3id.org/costumeCore/ontology/CC00019",
     wikidata_id=None,
 )
 CC00020 = CostumeCoreTerm(
@@ -332,7 +332,7 @@ CC00020 = CostumeCoreTerm(
     display_name_en="""keyhole neckline""",
     features=("neckline",),
     id="CC00020",
-    uri="https://w3id.org/costumeCore/ontology/keyhole%20neckline",
+    uri="https://w3id.org/costumeCore/ontology/CC00020",
     wikidata_id="Q1751458",
 )
 CC00021 = CostumeCoreTerm(
@@ -341,7 +341,7 @@ CC00021 = CostumeCoreTerm(
     display_name_en="""off-the-shoulder neckline""",
     features=("neckline",),
     id="CC00021",
-    uri="https://w3id.org/costumeCore/ontology/off-the-shoulder%20neckline",
+    uri="https://w3id.org/costumeCore/ontology/CC00021",
     wikidata_id="Q1043590",
 )
 CC00022 = CostumeCoreTerm(
@@ -350,7 +350,7 @@ CC00022 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -359,7 +359,7 @@ CC00022 = CostumeCoreTerm(
     display_name_en="""round gown""",
     features=None,
     id="CC00022",
-    uri="https://w3id.org/costumeCore/ontology/round%20gown",
+    uri="https://w3id.org/costumeCore/ontology/CC00022",
     wikidata_id=None,
 )
 CC00023 = CostumeCoreTerm(
@@ -368,7 +368,7 @@ CC00023 = CostumeCoreTerm(
     display_name_en="""scoop neck""",
     features=None,
     id="CC00023",
-    uri="https://w3id.org/costumeCore/ontology/scoop%20neck",
+    uri="https://w3id.org/costumeCore/ontology/CC00023",
     wikidata_id=None,
 )
 CC00024 = CostumeCoreTerm(
@@ -377,7 +377,7 @@ CC00024 = CostumeCoreTerm(
     display_name_en="""square neck""",
     features=("neckline",),
     id="CC00024",
-    uri="https://w3id.org/costumeCore/ontology/square%20neck",
+    uri="https://w3id.org/costumeCore/ontology/CC00024",
     wikidata_id="Q29583222",
 )
 CC00025 = CostumeCoreTerm(
@@ -395,7 +395,7 @@ CC00025 = CostumeCoreTerm(
     display_name_en="""strapless""",
     features=("neckline",),
     id="CC00025",
-    uri="https://w3id.org/costumeCore/ontology/strapless",
+    uri="https://w3id.org/costumeCore/ontology/CC00025",
     wikidata_id="Q83329964",
 )
 CC00026 = CostumeCoreTerm(
@@ -404,7 +404,7 @@ CC00026 = CostumeCoreTerm(
     display_name_en="""sweetheart neckline""",
     features=("neckline",),
     id="CC00026",
-    uri="https://w3id.org/costumeCore/ontology/sweetheart%20neckline",
+    uri="https://w3id.org/costumeCore/ontology/CC00026",
     wikidata_id="Q73419282",
 )
 CC00027 = CostumeCoreTerm(
@@ -413,7 +413,7 @@ CC00027 = CostumeCoreTerm(
     display_name_en="""v-neck""",
     features=("neckline",),
     id="CC00027",
-    uri="https://w3id.org/costumeCore/ontology/v-neck",
+    uri="https://w3id.org/costumeCore/ontology/CC00027",
     wikidata_id="Q29583212",
 )
 CC00028 = CostumeCoreTerm(
@@ -422,7 +422,7 @@ CC00028 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/vow/AATFullDisplay?find=ascot&logic=AND&note=&english=N&prev_page=1&subjectid=300210052",
         ),
@@ -431,7 +431,7 @@ CC00028 = CostumeCoreTerm(
     display_name_en="""ascot""",
     features=None,
     id="CC00028",
-    uri="https://w3id.org/costumeCore/ontology/ascot",
+    uri="https://w3id.org/costumeCore/ontology/CC00028",
     wikidata_id=None,
 )
 CC00029 = CostumeCoreTerm(
@@ -440,7 +440,7 @@ CC00029 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/vow/AATFullDisplay?find=band&logic=AND&note=&english=N&prev_page=1&subjectid=300217242",
         ),
@@ -449,7 +449,7 @@ CC00029 = CostumeCoreTerm(
     display_name_en="""band collar""",
     features=("collar",),
     id="CC00029",
-    uri="https://w3id.org/costumeCore/ontology/band%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00029",
     wikidata_id="Q4854234",
 )
 CC00030 = CostumeCoreTerm(
@@ -458,7 +458,7 @@ CC00030 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -467,7 +467,7 @@ CC00030 = CostumeCoreTerm(
     display_name_en="""bertha""",
     features=None,
     id="CC00030",
-    uri="https://w3id.org/costumeCore/ontology/bertha",
+    uri="https://w3id.org/costumeCore/ontology/CC00030",
     wikidata_id="Q64780667",
 )
 CC00031 = CostumeCoreTerm(
@@ -476,7 +476,7 @@ CC00031 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -485,7 +485,7 @@ CC00031 = CostumeCoreTerm(
     display_name_en="""bow collar""",
     features=None,
     id="CC00031",
-    uri="https://w3id.org/costumeCore/ontology/bow%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00031",
     wikidata_id=None,
 )
 CC00032 = CostumeCoreTerm(
@@ -503,7 +503,7 @@ CC00032 = CostumeCoreTerm(
     display_name_en="""Chelsea collar""",
     features=None,
     id="CC00032",
-    uri="https://w3id.org/costumeCore/ontology/Chelsea%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00032",
     wikidata_id="Q83328052",
 )
 CC00033 = CostumeCoreTerm(
@@ -521,7 +521,7 @@ CC00033 = CostumeCoreTerm(
     display_name_en="""convertible collar""",
     features=None,
     id="CC00033",
-    uri="https://w3id.org/costumeCore/ontology/convertible%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00033",
     wikidata_id="Q83328209",
 )
 CC00034 = CostumeCoreTerm(
@@ -539,7 +539,7 @@ CC00034 = CostumeCoreTerm(
     display_name_en="""cowl neck""",
     features=("neckline",),
     id="CC00034",
-    uri="https://w3id.org/costumeCore/ontology/cowl%20neck",
+    uri="https://w3id.org/costumeCore/ontology/CC00034",
     wikidata_id="Q83328363",
 )
 CC00035 = CostumeCoreTerm(
@@ -557,7 +557,7 @@ CC00035 = CostumeCoreTerm(
     display_name_en="""funnel neck""",
     features=("neckline",),
     id="CC00035",
-    uri="https://w3id.org/costumeCore/ontology/funnel%20neck",
+    uri="https://w3id.org/costumeCore/ontology/CC00035",
     wikidata_id="Q83328663",
 )
 CC00036 = CostumeCoreTerm(
@@ -566,7 +566,7 @@ CC00036 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -575,7 +575,7 @@ CC00036 = CostumeCoreTerm(
     display_name_en="""jabot""",
     features=None,
     id="CC00036",
-    uri="https://w3id.org/costumeCore/ontology/jabot",
+    uri="https://w3id.org/costumeCore/ontology/CC00036",
     wikidata_id=None,
 )
 CC00037 = CostumeCoreTerm(
@@ -593,7 +593,7 @@ CC00037 = CostumeCoreTerm(
     display_name_en="""Mandarin collar""",
     features=("collar",),
     id="CC00037",
-    uri="https://w3id.org/costumeCore/ontology/Mandarin%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00037",
     wikidata_id="Q1045372",
 )
 CC00038 = CostumeCoreTerm(
@@ -611,7 +611,7 @@ CC00038 = CostumeCoreTerm(
     display_name_en="""Napoleon collar""",
     features=None,
     id="CC00038",
-    uri="https://w3id.org/costumeCore/ontology/Napoleon%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00038",
     wikidata_id="Q83328812",
 )
 CC00039 = CostumeCoreTerm(
@@ -629,7 +629,7 @@ CC00039 = CostumeCoreTerm(
     display_name_en="""tailored collar""",
     features=("collar",),
     id="CC00039",
-    uri="https://w3id.org/costumeCore/ontology/tailored%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00039",
     wikidata_id="Q29473272",
 )
 CC00040 = CostumeCoreTerm(
@@ -647,7 +647,7 @@ CC00040 = CostumeCoreTerm(
     display_name_en="""Peter Pan collar""",
     features=("collar",),
     id="CC00040",
-    uri="https://w3id.org/costumeCore/ontology/Peter%20Pan%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00040",
     wikidata_id="Q997545",
 )
 CC00041 = CostumeCoreTerm(
@@ -656,7 +656,7 @@ CC00041 = CostumeCoreTerm(
     display_name_en="""polo shirt collar""",
     features=None,
     id="CC00041",
-    uri="https://w3id.org/costumeCore/ontology/polo%20shirt%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00041",
     wikidata_id=None,
 )
 CC00042 = CostumeCoreTerm(
@@ -665,7 +665,7 @@ CC00042 = CostumeCoreTerm(
     display_name_en="""portrait collar""",
     features=None,
     id="CC00042",
-    uri="https://w3id.org/costumeCore/ontology/portrait%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00042",
     wikidata_id=None,
 )
 CC00043 = CostumeCoreTerm(
@@ -683,7 +683,7 @@ CC00043 = CostumeCoreTerm(
     display_name_en="""Puritan collar""",
     features=("collar",),
     id="CC00043",
-    uri="https://w3id.org/costumeCore/ontology/Puritan%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00043",
     wikidata_id="Q83329279",
 )
 CC00044 = CostumeCoreTerm(
@@ -692,7 +692,7 @@ CC00044 = CostumeCoreTerm(
     display_name_en="""ruffled collar""",
     features=None,
     id="CC00044",
-    uri="https://w3id.org/costumeCore/ontology/ruffled%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00044",
     wikidata_id="Q29583225",
 )
 CC00045 = CostumeCoreTerm(
@@ -710,7 +710,7 @@ CC00045 = CostumeCoreTerm(
     display_name_en="""sailor collar""",
     features=("collar",),
     id="CC00045",
-    uri="https://w3id.org/costumeCore/ontology/sailor%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00045",
     wikidata_id="Q23301561",
 )
 CC00046 = CostumeCoreTerm(
@@ -719,7 +719,7 @@ CC00046 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -728,7 +728,7 @@ CC00046 = CostumeCoreTerm(
     display_name_en="""shawl""",
     features=("workType",),
     id="CC00046",
-    uri="https://w3id.org/costumeCore/ontology/shawl",
+    uri="https://w3id.org/costumeCore/ontology/CC00046",
     wikidata_id=None,
 )
 CC00047 = CostumeCoreTerm(
@@ -746,7 +746,7 @@ CC00047 = CostumeCoreTerm(
     display_name_en="""turtleneck""",
     features=("collar",),
     id="CC00047",
-    uri="https://w3id.org/costumeCore/ontology/turtleneck",
+    uri="https://w3id.org/costumeCore/ontology/CC00047",
     wikidata_id="Q1544262",
 )
 CC00048 = CostumeCoreTerm(
@@ -764,7 +764,7 @@ CC00048 = CostumeCoreTerm(
     display_name_en="""wingtip collar""",
     features=("collar",),
     id="CC00048",
-    uri="https://w3id.org/costumeCore/ontology/wingtip%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00048",
     wikidata_id="Q83328891",
 )
 CC00049 = CostumeCoreTerm(
@@ -773,7 +773,7 @@ CC00049 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -782,7 +782,7 @@ CC00049 = CostumeCoreTerm(
     display_name_en="""beige""",
     features=("colorMain", "colorSecondary",),
     id="CC00049",
-    uri="https://w3id.org/costumeCore/ontology/beige",
+    uri="https://w3id.org/costumeCore/ontology/CC00049",
     wikidata_id=None,
 )
 CC00050 = CostumeCoreTerm(
@@ -791,7 +791,7 @@ CC00050 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -800,7 +800,7 @@ CC00050 = CostumeCoreTerm(
     display_name_en="""black""",
     features=("colorMain", "colorSecondary",),
     id="CC00050",
-    uri="https://w3id.org/costumeCore/ontology/black",
+    uri="https://w3id.org/costumeCore/ontology/CC00050",
     wikidata_id=None,
 )
 CC00051 = CostumeCoreTerm(
@@ -809,7 +809,7 @@ CC00051 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -818,7 +818,7 @@ CC00051 = CostumeCoreTerm(
     display_name_en="""blue""",
     features=("colorMain", "colorSecondary",),
     id="CC00051",
-    uri="https://w3id.org/costumeCore/ontology/blue",
+    uri="https://w3id.org/costumeCore/ontology/CC00051",
     wikidata_id=None,
 )
 CC00052 = CostumeCoreTerm(
@@ -827,7 +827,7 @@ CC00052 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -836,7 +836,7 @@ CC00052 = CostumeCoreTerm(
     display_name_en="""brown""",
     features=("colorMain", "colorSecondary",),
     id="CC00052",
-    uri="https://w3id.org/costumeCore/ontology/brown",
+    uri="https://w3id.org/costumeCore/ontology/CC00052",
     wikidata_id=None,
 )
 CC00053 = CostumeCoreTerm(
@@ -854,7 +854,7 @@ CC00053 = CostumeCoreTerm(
     display_name_en="""burgundy""",
     features=("colorMain", "colorSecondary",),
     id="CC00053",
-    uri="https://w3id.org/costumeCore/ontology/burgundy",
+    uri="https://w3id.org/costumeCore/ontology/CC00053",
     wikidata_id="Q797446",
 )
 CC00054 = CostumeCoreTerm(
@@ -872,7 +872,7 @@ CC00054 = CostumeCoreTerm(
     display_name_en="""coral""",
     features=("colorMain", "colorSecondary",),
     id="CC00054",
-    uri="https://w3id.org/costumeCore/ontology/coral",
+    uri="https://w3id.org/costumeCore/ontology/CC00054",
     wikidata_id="Q2411228",
 )
 CC00055 = CostumeCoreTerm(
@@ -881,7 +881,7 @@ CC00055 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -890,7 +890,7 @@ CC00055 = CostumeCoreTerm(
     display_name_en="""cream""",
     features=("colorMain", "colorSecondary",),
     id="CC00055",
-    uri="https://w3id.org/costumeCore/ontology/cream",
+    uri="https://w3id.org/costumeCore/ontology/CC00055",
     wikidata_id=None,
 )
 CC00056 = CostumeCoreTerm(
@@ -899,7 +899,7 @@ CC00056 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -908,7 +908,7 @@ CC00056 = CostumeCoreTerm(
     display_name_en="""fuchsia""",
     features=("colorMain", "colorSecondary",),
     id="CC00056",
-    uri="https://w3id.org/costumeCore/ontology/fuchsia",
+    uri="https://w3id.org/costumeCore/ontology/CC00056",
     wikidata_id=None,
 )
 CC00057 = CostumeCoreTerm(
@@ -917,7 +917,7 @@ CC00057 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -926,7 +926,7 @@ CC00057 = CostumeCoreTerm(
     display_name_en="""gold""",
     features=("colorMain", "colorSecondary",),
     id="CC00057",
-    uri="https://w3id.org/costumeCore/ontology/gold",
+    uri="https://w3id.org/costumeCore/ontology/CC00057",
     wikidata_id=None,
 )
 CC00058 = CostumeCoreTerm(
@@ -935,7 +935,7 @@ CC00058 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -944,7 +944,7 @@ CC00058 = CostumeCoreTerm(
     display_name_en="""gray""",
     features=("colorMain", "colorSecondary",),
     id="CC00058",
-    uri="https://w3id.org/costumeCore/ontology/gray",
+    uri="https://w3id.org/costumeCore/ontology/CC00058",
     wikidata_id="Q42519",
 )
 CC00059 = CostumeCoreTerm(
@@ -953,7 +953,7 @@ CC00059 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -962,7 +962,7 @@ CC00059 = CostumeCoreTerm(
     display_name_en="""green""",
     features=("colorMain", "colorSecondary",),
     id="CC00059",
-    uri="https://w3id.org/costumeCore/ontology/green",
+    uri="https://w3id.org/costumeCore/ontology/CC00059",
     wikidata_id=None,
 )
 CC00060 = CostumeCoreTerm(
@@ -971,7 +971,7 @@ CC00060 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -980,7 +980,7 @@ CC00060 = CostumeCoreTerm(
     display_name_en="""lavender""",
     features=("colorMain", "colorSecondary",),
     id="CC00060",
-    uri="https://w3id.org/costumeCore/ontology/lavender",
+    uri="https://w3id.org/costumeCore/ontology/CC00060",
     wikidata_id=None,
 )
 CC00061 = CostumeCoreTerm(
@@ -989,7 +989,7 @@ CC00061 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -998,7 +998,7 @@ CC00061 = CostumeCoreTerm(
     display_name_en="""maroon""",
     features=("colorMain", "colorSecondary",),
     id="CC00061",
-    uri="https://w3id.org/costumeCore/ontology/maroon",
+    uri="https://w3id.org/costumeCore/ontology/CC00061",
     wikidata_id=None,
 )
 CC00062 = CostumeCoreTerm(
@@ -1007,7 +1007,7 @@ CC00062 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1016,7 +1016,7 @@ CC00062 = CostumeCoreTerm(
     display_name_en="""multicolored""",
     features=("colorMain", "colorSecondary",),
     id="CC00062",
-    uri="https://w3id.org/costumeCore/ontology/multicolored",
+    uri="https://w3id.org/costumeCore/ontology/CC00062",
     wikidata_id=None,
 )
 CC00063 = CostumeCoreTerm(
@@ -1025,7 +1025,7 @@ CC00063 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1034,7 +1034,7 @@ CC00063 = CostumeCoreTerm(
     display_name_en="""navy blue""",
     features=("colorMain", "colorSecondary",),
     id="CC00063",
-    uri="https://w3id.org/costumeCore/ontology/navy%20blue",
+    uri="https://w3id.org/costumeCore/ontology/CC00063",
     wikidata_id=None,
 )
 CC00064 = CostumeCoreTerm(
@@ -1043,7 +1043,7 @@ CC00064 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1052,7 +1052,7 @@ CC00064 = CostumeCoreTerm(
     display_name_en="""orange""",
     features=("colorMain", "colorSecondary",),
     id="CC00064",
-    uri="https://w3id.org/costumeCore/ontology/orange",
+    uri="https://w3id.org/costumeCore/ontology/CC00064",
     wikidata_id=None,
 )
 CC00065 = CostumeCoreTerm(
@@ -1061,7 +1061,7 @@ CC00065 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1070,7 +1070,7 @@ CC00065 = CostumeCoreTerm(
     display_name_en="""pink""",
     features=("colorMain", "colorSecondary",),
     id="CC00065",
-    uri="https://w3id.org/costumeCore/ontology/pink",
+    uri="https://w3id.org/costumeCore/ontology/CC00065",
     wikidata_id=None,
 )
 CC00066 = CostumeCoreTerm(
@@ -1079,7 +1079,7 @@ CC00066 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1088,7 +1088,7 @@ CC00066 = CostumeCoreTerm(
     display_name_en="""purple""",
     features=("colorMain", "colorSecondary",),
     id="CC00066",
-    uri="https://w3id.org/costumeCore/ontology/purple",
+    uri="https://w3id.org/costumeCore/ontology/CC00066",
     wikidata_id=None,
 )
 CC00067 = CostumeCoreTerm(
@@ -1097,7 +1097,7 @@ CC00067 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1106,7 +1106,7 @@ CC00067 = CostumeCoreTerm(
     display_name_en="""red""",
     features=("colorMain", "colorSecondary",),
     id="CC00067",
-    uri="https://w3id.org/costumeCore/ontology/red",
+    uri="https://w3id.org/costumeCore/ontology/CC00067",
     wikidata_id=None,
 )
 CC00068 = CostumeCoreTerm(
@@ -1124,7 +1124,7 @@ CC00068 = CostumeCoreTerm(
     display_name_en="""rust""",
     features=("colorMain", "colorSecondary",),
     id="CC00068",
-    uri="https://w3id.org/costumeCore/ontology/rust",
+    uri="https://w3id.org/costumeCore/ontology/CC00068",
     wikidata_id="Q543923",
 )
 CC00069 = CostumeCoreTerm(
@@ -1133,7 +1133,7 @@ CC00069 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1142,7 +1142,7 @@ CC00069 = CostumeCoreTerm(
     display_name_en="""tan""",
     features=("colorMain", "colorSecondary",),
     id="CC00069",
-    uri="https://w3id.org/costumeCore/ontology/tan",
+    uri="https://w3id.org/costumeCore/ontology/CC00069",
     wikidata_id=None,
 )
 CC00070 = CostumeCoreTerm(
@@ -1151,7 +1151,7 @@ CC00070 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1160,7 +1160,7 @@ CC00070 = CostumeCoreTerm(
     display_name_en="""teal""",
     features=("colorMain", "colorSecondary",),
     id="CC00070",
-    uri="https://w3id.org/costumeCore/ontology/teal",
+    uri="https://w3id.org/costumeCore/ontology/CC00070",
     wikidata_id=None,
 )
 CC00071 = CostumeCoreTerm(
@@ -1169,7 +1169,7 @@ CC00071 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1178,7 +1178,7 @@ CC00071 = CostumeCoreTerm(
     display_name_en="""turquoise""",
     features=("colorMain", "colorSecondary",),
     id="CC00071",
-    uri="https://w3id.org/costumeCore/ontology/turquoise",
+    uri="https://w3id.org/costumeCore/ontology/CC00071",
     wikidata_id=None,
 )
 CC00072 = CostumeCoreTerm(
@@ -1187,7 +1187,7 @@ CC00072 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1196,7 +1196,7 @@ CC00072 = CostumeCoreTerm(
     display_name_en="""white""",
     features=("colorMain", "colorSecondary",),
     id="CC00072",
-    uri="https://w3id.org/costumeCore/ontology/white",
+    uri="https://w3id.org/costumeCore/ontology/CC00072",
     wikidata_id=None,
 )
 CC00073 = CostumeCoreTerm(
@@ -1205,7 +1205,7 @@ CC00073 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1214,7 +1214,7 @@ CC00073 = CostumeCoreTerm(
     display_name_en="""yellow""",
     features=("colorMain", "colorSecondary",),
     id="CC00073",
-    uri="https://w3id.org/costumeCore/ontology/yellow",
+    uri="https://w3id.org/costumeCore/ontology/CC00073",
     wikidata_id=None,
 )
 CC00074 = CostumeCoreTerm(
@@ -1223,7 +1223,7 @@ CC00074 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1232,7 +1232,7 @@ CC00074 = CostumeCoreTerm(
     display_name_en="""applique""",
     features=("hasTechnique",),
     id="CC00074",
-    uri="https://w3id.org/costumeCore/ontology/applique",
+    uri="https://w3id.org/costumeCore/ontology/CC00074",
     wikidata_id=None,
 )
 CC00075 = CostumeCoreTerm(
@@ -1241,7 +1241,7 @@ CC00075 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1250,7 +1250,7 @@ CC00075 = CostumeCoreTerm(
     display_name_en="""beading""",
     features=("hasTechnique",),
     id="CC00075",
-    uri="https://w3id.org/costumeCore/ontology/beading",
+    uri="https://w3id.org/costumeCore/ontology/CC00075",
     wikidata_id=None,
 )
 CC00076 = CostumeCoreTerm(
@@ -1259,7 +1259,7 @@ CC00076 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1268,7 +1268,7 @@ CC00076 = CostumeCoreTerm(
     display_name_en="""braiding""",
     features=("hasTechnique",),
     id="CC00076",
-    uri="https://w3id.org/costumeCore/ontology/braiding",
+    uri="https://w3id.org/costumeCore/ontology/CC00076",
     wikidata_id=None,
 )
 CC00077 = CostumeCoreTerm(
@@ -1277,7 +1277,7 @@ CC00077 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1286,7 +1286,7 @@ CC00077 = CostumeCoreTerm(
     display_name_en="""devor\xe9 """,
     features=("hasTechnique",),
     id="CC00077",
-    uri="https://w3id.org/costumeCore/ontology/devor%C3%A9%20",
+    uri="https://w3id.org/costumeCore/ontology/CC00077",
     wikidata_id="Q778180",
 )
 CC00078 = CostumeCoreTerm(
@@ -1295,7 +1295,7 @@ CC00078 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1304,7 +1304,7 @@ CC00078 = CostumeCoreTerm(
     display_name_en="""crocheting""",
     features=("hasTechnique",),
     id="CC00078",
-    uri="https://w3id.org/costumeCore/ontology/crocheting",
+    uri="https://w3id.org/costumeCore/ontology/CC00078",
     wikidata_id=None,
 )
 CC00079 = CostumeCoreTerm(
@@ -1313,7 +1313,7 @@ CC00079 = CostumeCoreTerm(
     display_name_en="""drawloom""",
     features=None,
     id="CC00079",
-    uri="https://w3id.org/costumeCore/ontology/drawloom",
+    uri="https://w3id.org/costumeCore/ontology/CC00079",
     wikidata_id=None,
 )
 CC00080 = CostumeCoreTerm(
@@ -1322,7 +1322,7 @@ CC00080 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1331,7 +1331,7 @@ CC00080 = CostumeCoreTerm(
     display_name_en="""embossing""",
     features=("hasTechnique",),
     id="CC00080",
-    uri="https://w3id.org/costumeCore/ontology/embossing",
+    uri="https://w3id.org/costumeCore/ontology/CC00080",
     wikidata_id=None,
 )
 CC00081 = CostumeCoreTerm(
@@ -1340,7 +1340,7 @@ CC00081 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1349,7 +1349,7 @@ CC00081 = CostumeCoreTerm(
     display_name_en="""embroidery""",
     features=None,
     id="CC00081",
-    uri="https://w3id.org/costumeCore/ontology/embroidery",
+    uri="https://w3id.org/costumeCore/ontology/CC00081",
     wikidata_id=None,
 )
 CC00082 = CostumeCoreTerm(
@@ -1358,7 +1358,7 @@ CC00082 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1367,7 +1367,7 @@ CC00082 = CostumeCoreTerm(
     display_name_en="""flocking""",
     features=("hasTechnique",),
     id="CC00082",
-    uri="https://w3id.org/costumeCore/ontology/flocking",
+    uri="https://w3id.org/costumeCore/ontology/CC00082",
     wikidata_id=None,
 )
 CC00083 = CostumeCoreTerm(
@@ -1376,7 +1376,7 @@ CC00083 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1385,7 +1385,7 @@ CC00083 = CostumeCoreTerm(
     display_name_en="""glazing""",
     features=("hasTechnique",),
     id="CC00083",
-    uri="https://w3id.org/costumeCore/ontology/glazing",
+    uri="https://w3id.org/costumeCore/ontology/CC00083",
     wikidata_id=None,
 )
 CC00084 = CostumeCoreTerm(
@@ -1394,7 +1394,7 @@ CC00084 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1403,7 +1403,7 @@ CC00084 = CostumeCoreTerm(
     display_name_en="""hand sewing""",
     features=("hasTechnique",),
     id="CC00084",
-    uri="https://w3id.org/costumeCore/ontology/hand%20sewing",
+    uri="https://w3id.org/costumeCore/ontology/CC00084",
     wikidata_id=None,
 )
 CC00085 = CostumeCoreTerm(
@@ -1412,7 +1412,7 @@ CC00085 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1421,7 +1421,7 @@ CC00085 = CostumeCoreTerm(
     display_name_en="""hand weaving""",
     features=("hasTechnique",),
     id="CC00085",
-    uri="https://w3id.org/costumeCore/ontology/hand%20weaving",
+    uri="https://w3id.org/costumeCore/ontology/CC00085",
     wikidata_id=None,
 )
 CC00086 = CostumeCoreTerm(
@@ -1430,7 +1430,7 @@ CC00086 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1439,7 +1439,7 @@ CC00086 = CostumeCoreTerm(
     display_name_en="""knitting""",
     features=("hasTechnique",),
     id="CC00086",
-    uri="https://w3id.org/costumeCore/ontology/knitting",
+    uri="https://w3id.org/costumeCore/ontology/CC00086",
     wikidata_id=None,
 )
 CC00087 = CostumeCoreTerm(
@@ -1448,7 +1448,7 @@ CC00087 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1457,7 +1457,7 @@ CC00087 = CostumeCoreTerm(
     display_name_en="""lace making""",
     features=("hasTechnique",),
     id="CC00087",
-    uri="https://w3id.org/costumeCore/ontology/lace%20making",
+    uri="https://w3id.org/costumeCore/ontology/CC00087",
     wikidata_id="Q43065851",
 )
 CC00088 = CostumeCoreTerm(
@@ -1466,7 +1466,7 @@ CC00088 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1475,7 +1475,7 @@ CC00088 = CostumeCoreTerm(
     display_name_en="""machine sewing""",
     features=("hasTechnique",),
     id="CC00088",
-    uri="https://w3id.org/costumeCore/ontology/machine%20sewing",
+    uri="https://w3id.org/costumeCore/ontology/CC00088",
     wikidata_id=None,
 )
 CC00089 = CostumeCoreTerm(
@@ -1484,7 +1484,7 @@ CC00089 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1493,7 +1493,7 @@ CC00089 = CostumeCoreTerm(
     display_name_en="""mercerizing""",
     features=("hasTechnique",),
     id="CC00089",
-    uri="https://w3id.org/costumeCore/ontology/mercerizing",
+    uri="https://w3id.org/costumeCore/ontology/CC00089",
     wikidata_id=None,
 )
 CC00090 = CostumeCoreTerm(
@@ -1502,7 +1502,7 @@ CC00090 = CostumeCoreTerm(
     display_name_en="""needleworking""",
     features=("hasTechnique",),
     id="CC00090",
-    uri="https://w3id.org/costumeCore/ontology/needleworking",
+    uri="https://w3id.org/costumeCore/ontology/CC00090",
     wikidata_id=None,
 )
 CC00091 = CostumeCoreTerm(
@@ -1511,7 +1511,7 @@ CC00091 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1520,7 +1520,7 @@ CC00091 = CostumeCoreTerm(
     display_name_en="""needlepoint""",
     features=None,
     id="CC00091",
-    uri="https://w3id.org/costumeCore/ontology/needlepoint",
+    uri="https://w3id.org/costumeCore/ontology/CC00091",
     wikidata_id=None,
 )
 CC00092 = CostumeCoreTerm(
@@ -1529,7 +1529,7 @@ CC00092 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1538,7 +1538,7 @@ CC00092 = CostumeCoreTerm(
     display_name_en="""painting""",
     features=("hasTechnique",),
     id="CC00092",
-    uri="https://w3id.org/costumeCore/ontology/painting",
+    uri="https://w3id.org/costumeCore/ontology/CC00092",
     wikidata_id=None,
 )
 CC00093 = CostumeCoreTerm(
@@ -1547,7 +1547,7 @@ CC00093 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1556,7 +1556,7 @@ CC00093 = CostumeCoreTerm(
     display_name_en="""piecing""",
     features=("hasTechnique",),
     id="CC00093",
-    uri="https://w3id.org/costumeCore/ontology/piecing",
+    uri="https://w3id.org/costumeCore/ontology/CC00093",
     wikidata_id=None,
 )
 CC00094 = CostumeCoreTerm(
@@ -1565,7 +1565,7 @@ CC00094 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1574,7 +1574,7 @@ CC00094 = CostumeCoreTerm(
     display_name_en="""piping""",
     features=("hasTechnique",),
     id="CC00094",
-    uri="https://w3id.org/costumeCore/ontology/piping",
+    uri="https://w3id.org/costumeCore/ontology/CC00094",
     wikidata_id=None,
 )
 CC00095 = CostumeCoreTerm(
@@ -1583,7 +1583,7 @@ CC00095 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1592,7 +1592,7 @@ CC00095 = CostumeCoreTerm(
     display_name_en="""pleating""",
     features=("hasTechnique",),
     id="CC00095",
-    uri="https://w3id.org/costumeCore/ontology/pleating",
+    uri="https://w3id.org/costumeCore/ontology/CC00095",
     wikidata_id=None,
 )
 CC00096 = CostumeCoreTerm(
@@ -1601,7 +1601,7 @@ CC00096 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1610,7 +1610,7 @@ CC00096 = CostumeCoreTerm(
     display_name_en="""polishing""",
     features=("hasTechnique",),
     id="CC00096",
-    uri="https://w3id.org/costumeCore/ontology/polishing",
+    uri="https://w3id.org/costumeCore/ontology/CC00096",
     wikidata_id=None,
 )
 CC00097 = CostumeCoreTerm(
@@ -1619,7 +1619,7 @@ CC00097 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1628,7 +1628,7 @@ CC00097 = CostumeCoreTerm(
     display_name_en="""printing""",
     features=("hasTechnique",),
     id="CC00097",
-    uri="https://w3id.org/costumeCore/ontology/printing",
+    uri="https://w3id.org/costumeCore/ontology/CC00097",
     wikidata_id=None,
 )
 CC00098 = CostumeCoreTerm(
@@ -1637,7 +1637,7 @@ CC00098 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1646,7 +1646,7 @@ CC00098 = CostumeCoreTerm(
     display_name_en="""quilting""",
     features=("hasTechnique",),
     id="CC00098",
-    uri="https://w3id.org/costumeCore/ontology/quilting",
+    uri="https://w3id.org/costumeCore/ontology/CC00098",
     wikidata_id=None,
 )
 CC00099 = CostumeCoreTerm(
@@ -1655,7 +1655,7 @@ CC00099 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1664,7 +1664,7 @@ CC00099 = CostumeCoreTerm(
     display_name_en="""ruffle""",
     features=None,
     id="CC00099",
-    uri="https://w3id.org/costumeCore/ontology/ruffle",
+    uri="https://w3id.org/costumeCore/ontology/CC00099",
     wikidata_id="Q2204140",
 )
 CC00100 = CostumeCoreTerm(
@@ -1673,7 +1673,7 @@ CC00100 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1682,7 +1682,7 @@ CC00100 = CostumeCoreTerm(
     display_name_en="""smocking""",
     features=("hasTechnique",),
     id="CC00100",
-    uri="https://w3id.org/costumeCore/ontology/smocking",
+    uri="https://w3id.org/costumeCore/ontology/CC00100",
     wikidata_id=None,
 )
 CC00101 = CostumeCoreTerm(
@@ -1691,7 +1691,7 @@ CC00101 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1700,7 +1700,7 @@ CC00101 = CostumeCoreTerm(
     display_name_en="""weaving""",
     features=("hasTechnique",),
     id="CC00101",
-    uri="https://w3id.org/costumeCore/ontology/weaving",
+    uri="https://w3id.org/costumeCore/ontology/CC00101",
     wikidata_id=None,
 )
 CC00102 = CostumeCoreTerm(
@@ -1718,7 +1718,7 @@ CC00102 = CostumeCoreTerm(
     display_name_en="""a-line skirt""",
     features=("skirtType",),
     id="CC00102",
-    uri="https://w3id.org/costumeCore/ontology/a-line%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00102",
     wikidata_id="Q277835",
 )
 CC00103 = CostumeCoreTerm(
@@ -1727,7 +1727,7 @@ CC00103 = CostumeCoreTerm(
     display_name_en="""bias-cut""",
     features=("hasTechnique",),
     id="CC00103",
-    uri="https://w3id.org/costumeCore/ontology/bias-cut",
+    uri="https://w3id.org/costumeCore/ontology/CC00103",
     wikidata_id=None,
 )
 CC00104 = CostumeCoreTerm(
@@ -1736,7 +1736,7 @@ CC00104 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1745,7 +1745,7 @@ CC00104 = CostumeCoreTerm(
     display_name_en="""bustle""",
     features=None,
     id="CC00104",
-    uri="https://w3id.org/costumeCore/ontology/bustle",
+    uri="https://w3id.org/costumeCore/ontology/CC00104",
     wikidata_id=None,
 )
 CC00105 = CostumeCoreTerm(
@@ -1754,7 +1754,7 @@ CC00105 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1763,7 +1763,7 @@ CC00105 = CostumeCoreTerm(
     display_name_en="""chemise""",
     features=None,
     id="CC00105",
-    uri="https://w3id.org/costumeCore/ontology/chemise",
+    uri="https://w3id.org/costumeCore/ontology/CC00105",
     wikidata_id=None,
 )
 CC00106 = CostumeCoreTerm(
@@ -1772,7 +1772,7 @@ CC00106 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1781,7 +1781,7 @@ CC00106 = CostumeCoreTerm(
     display_name_en="""coat""",
     features=("workType",),
     id="CC00106",
-    uri="https://w3id.org/costumeCore/ontology/coat",
+    uri="https://w3id.org/costumeCore/ontology/CC00106",
     wikidata_id=None,
 )
 CC00107 = CostumeCoreTerm(
@@ -1790,7 +1790,7 @@ CC00107 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1799,7 +1799,7 @@ CC00107 = CostumeCoreTerm(
     display_name_en="""crinoline""",
     features=None,
     id="CC00107",
-    uri="https://w3id.org/costumeCore/ontology/crinoline",
+    uri="https://w3id.org/costumeCore/ontology/CC00107",
     wikidata_id=None,
 )
 CC00108 = CostumeCoreTerm(
@@ -1808,7 +1808,7 @@ CC00108 = CostumeCoreTerm(
     display_name_en="""drop-waist""",
     features=("dressType",),
     id="CC00108",
-    uri="https://w3id.org/costumeCore/ontology/drop-waist",
+    uri="https://w3id.org/costumeCore/ontology/CC00108",
     wikidata_id=None,
 )
 CC00109 = CostumeCoreTerm(
@@ -1826,7 +1826,7 @@ CC00109 = CostumeCoreTerm(
     display_name_en="""Empire silhouette""",
     features=("dressType",),
     id="CC00109",
-    uri="https://w3id.org/costumeCore/ontology/Empire%20silhouette",
+    uri="https://w3id.org/costumeCore/ontology/CC00109",
     wikidata_id="Q3603737",
 )
 CC00110 = CostumeCoreTerm(
@@ -1835,7 +1835,7 @@ CC00110 = CostumeCoreTerm(
     display_name_en="""fit and flare""",
     features=("dressType",),
     id="CC00110",
-    uri="https://w3id.org/costumeCore/ontology/fit%20and%20flare",
+    uri="https://w3id.org/costumeCore/ontology/CC00110",
     wikidata_id=None,
 )
 CC00111 = CostumeCoreTerm(
@@ -1844,7 +1844,7 @@ CC00111 = CostumeCoreTerm(
     display_name_en="""hourglass (silhouette)""",
     features=None,
     id="CC00111",
-    uri="https://w3id.org/costumeCore/ontology/hourglass%20%28silhouette%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00111",
     wikidata_id=None,
 )
 CC00112 = CostumeCoreTerm(
@@ -1853,7 +1853,7 @@ CC00112 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1862,7 +1862,7 @@ CC00112 = CostumeCoreTerm(
     display_name_en="""jumper""",
     features=("dressType",),
     id="CC00112",
-    uri="https://w3id.org/costumeCore/ontology/jumper",
+    uri="https://w3id.org/costumeCore/ontology/CC00112",
     wikidata_id=None,
 )
 CC00113 = CostumeCoreTerm(
@@ -1871,7 +1871,7 @@ CC00113 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1880,7 +1880,7 @@ CC00113 = CostumeCoreTerm(
     display_name_en="""mantua""",
     features=None,
     id="CC00113",
-    uri="https://w3id.org/costumeCore/ontology/mantua",
+    uri="https://w3id.org/costumeCore/ontology/CC00113",
     wikidata_id=None,
 )
 CC00114 = CostumeCoreTerm(
@@ -1889,7 +1889,7 @@ CC00114 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1898,7 +1898,7 @@ CC00114 = CostumeCoreTerm(
     display_name_en="""pinafore""",
     features=("dressType",),
     id="CC00114",
-    uri="https://w3id.org/costumeCore/ontology/pinafore",
+    uri="https://w3id.org/costumeCore/ontology/CC00114",
     wikidata_id="Q3247116",
 )
 CC00115 = CostumeCoreTerm(
@@ -1907,7 +1907,7 @@ CC00115 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1916,7 +1916,7 @@ CC00115 = CostumeCoreTerm(
     display_name_en="""Polonaise""",
     features=None,
     id="CC00115",
-    uri="https://w3id.org/costumeCore/ontology/Polonaise",
+    uri="https://w3id.org/costumeCore/ontology/CC00115",
     wikidata_id=None,
 )
 CC00116 = CostumeCoreTerm(
@@ -1934,7 +1934,7 @@ CC00116 = CostumeCoreTerm(
     display_name_en="""princess seams""",
     features=("hasTechnique",),
     id="CC00116",
-    uri="https://w3id.org/costumeCore/ontology/princess%20seams",
+    uri="https://w3id.org/costumeCore/ontology/CC00116",
     wikidata_id="Q2569037",
 )
 CC00117 = CostumeCoreTerm(
@@ -1943,7 +1943,7 @@ CC00117 = CostumeCoreTerm(
     display_name_en="""robe a l'Anglaise""",
     features=None,
     id="CC00117",
-    uri="https://w3id.org/costumeCore/ontology/robe%20a%20l%27Anglaise",
+    uri="https://w3id.org/costumeCore/ontology/CC00117",
     wikidata_id=None,
 )
 CC00118 = CostumeCoreTerm(
@@ -1952,7 +1952,7 @@ CC00118 = CostumeCoreTerm(
     display_name_en="""robe a la Francaise""",
     features=None,
     id="CC00118",
-    uri="https://w3id.org/costumeCore/ontology/robe%20a%20la%20Francaise",
+    uri="https://w3id.org/costumeCore/ontology/CC00118",
     wikidata_id=None,
 )
 CC00119 = CostumeCoreTerm(
@@ -1970,7 +1970,7 @@ CC00119 = CostumeCoreTerm(
     display_name_en="""round neck""",
     features=("neckline",),
     id="CC00119",
-    uri="https://w3id.org/costumeCore/ontology/round%20neck",
+    uri="https://w3id.org/costumeCore/ontology/CC00119",
     wikidata_id="Q29583217",
 )
 CC00120 = CostumeCoreTerm(
@@ -1979,7 +1979,7 @@ CC00120 = CostumeCoreTerm(
     display_name_en="""S-curve""",
     features=None,
     id="CC00120",
-    uri="https://w3id.org/costumeCore/ontology/S-curve",
+    uri="https://w3id.org/costumeCore/ontology/CC00120",
     wikidata_id=None,
 )
 CC00121 = CostumeCoreTerm(
@@ -1988,7 +1988,7 @@ CC00121 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -1997,7 +1997,7 @@ CC00121 = CostumeCoreTerm(
     display_name_en="""sheath dress""",
     features=("dressType",),
     id="CC00121",
-    uri="https://w3id.org/costumeCore/ontology/sheath%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00121",
     wikidata_id=None,
 )
 CC00122 = CostumeCoreTerm(
@@ -2006,7 +2006,7 @@ CC00122 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2015,7 +2015,7 @@ CC00122 = CostumeCoreTerm(
     display_name_en="""shirtwaist dress""",
     features=("dressType",),
     id="CC00122",
-    uri="https://w3id.org/costumeCore/ontology/shirtwaist%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00122",
     wikidata_id=None,
 )
 CC00123 = CostumeCoreTerm(
@@ -2024,7 +2024,7 @@ CC00123 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2033,7 +2033,7 @@ CC00123 = CostumeCoreTerm(
     display_name_en="""slip dress""",
     features=("dressType",),
     id="CC00123",
-    uri="https://w3id.org/costumeCore/ontology/slip%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00123",
     wikidata_id=None,
 )
 CC00124 = CostumeCoreTerm(
@@ -2042,7 +2042,7 @@ CC00124 = CostumeCoreTerm(
     display_name_en="""trapeze dress""",
     features=("dressType",),
     id="CC00124",
-    uri="https://w3id.org/costumeCore/ontology/trapeze%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00124",
     wikidata_id=None,
 )
 CC00125 = CostumeCoreTerm(
@@ -2051,7 +2051,7 @@ CC00125 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2060,7 +2060,7 @@ CC00125 = CostumeCoreTerm(
     display_name_en="""toga""",
     features=("dressType",),
     id="CC00125",
-    uri="https://w3id.org/costumeCore/ontology/toga",
+    uri="https://w3id.org/costumeCore/ontology/CC00125",
     wikidata_id=None,
 )
 CC00126 = CostumeCoreTerm(
@@ -2069,7 +2069,7 @@ CC00126 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2078,7 +2078,7 @@ CC00126 = CostumeCoreTerm(
     display_name_en="""tunic""",
     features=("dressType",),
     id="CC00126",
-    uri="https://w3id.org/costumeCore/ontology/tunic",
+    uri="https://w3id.org/costumeCore/ontology/CC00126",
     wikidata_id=None,
 )
 CC00127 = CostumeCoreTerm(
@@ -2087,7 +2087,7 @@ CC00127 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2096,7 +2096,7 @@ CC00127 = CostumeCoreTerm(
     display_name_en="""wrapping""",
     features=("hasTechnique",),
     id="CC00127",
-    uri="https://w3id.org/costumeCore/ontology/wrapping",
+    uri="https://w3id.org/costumeCore/ontology/CC00127",
     wikidata_id=None,
 )
 CC00128 = CostumeCoreTerm(
@@ -2114,7 +2114,7 @@ CC00128 = CostumeCoreTerm(
     display_name_en="""batwing sleeve""",
     features=("sleeveType",),
     id="CC00128",
-    uri="https://w3id.org/costumeCore/ontology/batwing%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00128",
     wikidata_id="Q29125416",
 )
 CC00129 = CostumeCoreTerm(
@@ -2132,7 +2132,7 @@ CC00129 = CostumeCoreTerm(
     display_name_en="""bell skirt""",
     features=("skirtType",),
     id="CC00129",
-    uri="https://w3id.org/costumeCore/ontology/bell%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00129",
     wikidata_id="Q83333837",
 )
 CC00130 = CostumeCoreTerm(
@@ -2150,7 +2150,7 @@ CC00130 = CostumeCoreTerm(
     display_name_en="""bishop sleeve""",
     features=("sleeveType",),
     id="CC00130",
-    uri="https://w3id.org/costumeCore/ontology/bishop%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00130",
     wikidata_id="Q73514132",
 )
 CC00131 = CostumeCoreTerm(
@@ -2159,7 +2159,7 @@ CC00131 = CostumeCoreTerm(
     display_name_en="""dolman sleeve""",
     features=("sleeveType",),
     id="CC00131",
-    uri="https://w3id.org/costumeCore/ontology/dolman%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00131",
     wikidata_id=None,
 )
 CC00132 = CostumeCoreTerm(
@@ -2168,7 +2168,7 @@ CC00132 = CostumeCoreTerm(
     display_name_en="""Juliet sleeve""",
     features=None,
     id="CC00132",
-    uri="https://w3id.org/costumeCore/ontology/Juliet%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00132",
     wikidata_id=None,
 )
 CC00133 = CostumeCoreTerm(
@@ -2177,7 +2177,7 @@ CC00133 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2186,7 +2186,7 @@ CC00133 = CostumeCoreTerm(
     display_name_en="""kimono""",
     features=None,
     id="CC00133",
-    uri="https://w3id.org/costumeCore/ontology/kimono",
+    uri="https://w3id.org/costumeCore/ontology/CC00133",
     wikidata_id=None,
 )
 CC00134 = CostumeCoreTerm(
@@ -2195,7 +2195,7 @@ CC00134 = CostumeCoreTerm(
     display_name_en="""lantern sleeve""",
     features=None,
     id="CC00134",
-    uri="https://w3id.org/costumeCore/ontology/lantern%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00134",
     wikidata_id=None,
 )
 CC00135 = CostumeCoreTerm(
@@ -2213,7 +2213,7 @@ CC00135 = CostumeCoreTerm(
     display_name_en="""leg-of-mutton sleeve""",
     features=("sleeveType",),
     id="CC00135",
-    uri="https://w3id.org/costumeCore/ontology/leg-of-mutton%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00135",
     wikidata_id="Q20732506",
 )
 CC00136 = CostumeCoreTerm(
@@ -2222,7 +2222,7 @@ CC00136 = CostumeCoreTerm(
     display_name_en="""petal sleeve""",
     features=("sleeveType",),
     id="CC00136",
-    uri="https://w3id.org/costumeCore/ontology/petal%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00136",
     wikidata_id=None,
 )
 CC00137 = CostumeCoreTerm(
@@ -2240,7 +2240,7 @@ CC00137 = CostumeCoreTerm(
     display_name_en="""puff sleeve""",
     features=("sleeveType",),
     id="CC00137",
-    uri="https://w3id.org/costumeCore/ontology/puff%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00137",
     wikidata_id="Q2117537",
 )
 CC00138 = CostumeCoreTerm(
@@ -2258,7 +2258,7 @@ CC00138 = CostumeCoreTerm(
     display_name_en="""raglan sleeve""",
     features=("sleeveType",),
     id="CC00138",
-    uri="https://w3id.org/costumeCore/ontology/raglan%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00138",
     wikidata_id="Q1333132",
 )
 CC00139 = CostumeCoreTerm(
@@ -2267,7 +2267,7 @@ CC00139 = CostumeCoreTerm(
     display_name_en="""roll-up sleeves""",
     features=("sleeveType",),
     id="CC00139",
-    uri="https://w3id.org/costumeCore/ontology/roll-up%20sleeves",
+    uri="https://w3id.org/costumeCore/ontology/CC00139",
     wikidata_id=None,
 )
 CC00140 = CostumeCoreTerm(
@@ -2276,7 +2276,7 @@ CC00140 = CostumeCoreTerm(
     display_name_en="""sleeve panes""",
     features=None,
     id="CC00140",
-    uri="https://w3id.org/costumeCore/ontology/sleeve%20panes",
+    uri="https://w3id.org/costumeCore/ontology/CC00140",
     wikidata_id=None,
 )
 CC00141 = CostumeCoreTerm(
@@ -2285,7 +2285,7 @@ CC00141 = CostumeCoreTerm(
     display_name_en="""straight""",
     features=("sleeveType",),
     id="CC00141",
-    uri="https://w3id.org/costumeCore/ontology/straight",
+    uri="https://w3id.org/costumeCore/ontology/CC00141",
     wikidata_id=None,
 )
 CC00142 = CostumeCoreTerm(
@@ -2294,7 +2294,7 @@ CC00142 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2303,7 +2303,7 @@ CC00142 = CostumeCoreTerm(
     display_name_en="""shoulder strap""",
     features=("costumeComponents",),
     id="CC00142",
-    uri="https://w3id.org/costumeCore/ontology/shoulder%20strap",
+    uri="https://w3id.org/costumeCore/ontology/CC00142",
     wikidata_id="#N/A",
 )
 CC00143 = CostumeCoreTerm(
@@ -2312,7 +2312,7 @@ CC00143 = CostumeCoreTerm(
     display_name_en="""sleeveless pullovers""",
     features=None,
     id="CC00143",
-    uri="https://w3id.org/costumeCore/ontology/sleeveless%20pullovers",
+    uri="https://w3id.org/costumeCore/ontology/CC00143",
     wikidata_id=None,
 )
 CC00144 = CostumeCoreTerm(
@@ -2321,7 +2321,7 @@ CC00144 = CostumeCoreTerm(
     display_name_en="""cap sleeve""",
     features=("sleeveLength",),
     id="CC00144",
-    uri="https://w3id.org/costumeCore/ontology/cap%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00144",
     wikidata_id=None,
 )
 CC00145 = CostumeCoreTerm(
@@ -2339,7 +2339,7 @@ CC00145 = CostumeCoreTerm(
     display_name_en="""short sleeve""",
     features=("sleeveLength",),
     id="CC00145",
-    uri="https://w3id.org/costumeCore/ontology/short%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00145",
     wikidata_id="Q29126275",
 )
 CC00146 = CostumeCoreTerm(
@@ -2357,7 +2357,7 @@ CC00146 = CostumeCoreTerm(
     display_name_en="""elbow-length sleeve""",
     features=("sleeveLength",),
     id="CC00146",
-    uri="https://w3id.org/costumeCore/ontology/elbow-length%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00146",
     wikidata_id="Q73545207",
 )
 CC00147 = CostumeCoreTerm(
@@ -2375,7 +2375,7 @@ CC00147 = CostumeCoreTerm(
     display_name_en="""three quarter sleeve""",
     features=("sleeveLength",),
     id="CC00147",
-    uri="https://w3id.org/costumeCore/ontology/three%20quarter%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00147",
     wikidata_id="Q29126653",
 )
 CC00148 = CostumeCoreTerm(
@@ -2393,7 +2393,7 @@ CC00148 = CostumeCoreTerm(
     display_name_en="""long sleeve""",
     features=("sleeveLength",),
     id="CC00148",
-    uri="https://w3id.org/costumeCore/ontology/long%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00148",
     wikidata_id="Q29125938",
 )
 CC00149 = CostumeCoreTerm(
@@ -2402,7 +2402,7 @@ CC00149 = CostumeCoreTerm(
     display_name_en="""extra long sleeve""",
     features=("sleeveLength",),
     id="CC00149",
-    uri="https://w3id.org/costumeCore/ontology/extra%20long%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00149",
     wikidata_id=None,
 )
 CC00150 = CostumeCoreTerm(
@@ -2411,7 +2411,7 @@ CC00150 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2420,7 +2420,7 @@ CC00150 = CostumeCoreTerm(
     display_name_en="""hanging sleeve""",
     features=("sleeveType",),
     id="CC00150",
-    uri="https://w3id.org/costumeCore/ontology/hanging%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00150",
     wikidata_id="http://www.wikidata.org/entity/Q29129637",
 )
 CC00151 = CostumeCoreTerm(
@@ -2429,7 +2429,7 @@ CC00151 = CostumeCoreTerm(
     display_name_en="""angled waistline""",
     features=("waistline",),
     id="CC00151",
-    uri="https://w3id.org/costumeCore/ontology/angled%20waistline",
+    uri="https://w3id.org/costumeCore/ontology/CC00151",
     wikidata_id=None,
 )
 CC00152 = CostumeCoreTerm(
@@ -2438,7 +2438,7 @@ CC00152 = CostumeCoreTerm(
     display_name_en="""asymmetrical""",
     features=("waistline",),
     id="CC00152",
-    uri="https://w3id.org/costumeCore/ontology/asymmetrical",
+    uri="https://w3id.org/costumeCore/ontology/CC00152",
     wikidata_id=None,
 )
 CC00153 = CostumeCoreTerm(
@@ -2447,7 +2447,7 @@ CC00153 = CostumeCoreTerm(
     display_name_en="""bare midriff""",
     features=("waistline",),
     id="CC00153",
-    uri="https://w3id.org/costumeCore/ontology/bare%20midriff",
+    uri="https://w3id.org/costumeCore/ontology/CC00153",
     wikidata_id=None,
 )
 CC00154 = CostumeCoreTerm(
@@ -2456,7 +2456,7 @@ CC00154 = CostumeCoreTerm(
     display_name_en="""basque""",
     features=None,
     id="CC00154",
-    uri="https://w3id.org/costumeCore/ontology/basque",
+    uri="https://w3id.org/costumeCore/ontology/CC00154",
     wikidata_id=None,
 )
 CC00155 = CostumeCoreTerm(
@@ -2465,7 +2465,7 @@ CC00155 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2474,7 +2474,7 @@ CC00155 = CostumeCoreTerm(
     display_name_en="""bolero""",
     features=None,
     id="CC00155",
-    uri="https://w3id.org/costumeCore/ontology/bolero",
+    uri="https://w3id.org/costumeCore/ontology/CC00155",
     wikidata_id=None,
 )
 CC00156 = CostumeCoreTerm(
@@ -2483,7 +2483,7 @@ CC00156 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2492,7 +2492,7 @@ CC00156 = CostumeCoreTerm(
     display_name_en="""curved""",
     features=("waistline",),
     id="CC00156",
-    uri="https://w3id.org/costumeCore/ontology/curved",
+    uri="https://w3id.org/costumeCore/ontology/CC00156",
     wikidata_id=None,
 )
 CC00157 = CostumeCoreTerm(
@@ -2501,7 +2501,7 @@ CC00157 = CostumeCoreTerm(
     display_name_en="""dropped""",
     features=("waistline",),
     id="CC00157",
-    uri="https://w3id.org/costumeCore/ontology/dropped",
+    uri="https://w3id.org/costumeCore/ontology/CC00157",
     wikidata_id=None,
 )
 CC00158 = CostumeCoreTerm(
@@ -2510,7 +2510,7 @@ CC00158 = CostumeCoreTerm(
     display_name_en="""high""",
     features=("waistline",),
     id="CC00158",
-    uri="https://w3id.org/costumeCore/ontology/high",
+    uri="https://w3id.org/costumeCore/ontology/CC00158",
     wikidata_id=None,
 )
 CC00159 = CostumeCoreTerm(
@@ -2519,7 +2519,7 @@ CC00159 = CostumeCoreTerm(
     display_name_en="""hip-level""",
     features=("waistline",),
     id="CC00159",
-    uri="https://w3id.org/costumeCore/ontology/hip-level",
+    uri="https://w3id.org/costumeCore/ontology/CC00159",
     wikidata_id=None,
 )
 CC00160 = CostumeCoreTerm(
@@ -2528,7 +2528,7 @@ CC00160 = CostumeCoreTerm(
     display_name_en="""natural fiber""",
     features=("fiber", "material",),
     id="CC00160",
-    uri="https://w3id.org/costumeCore/ontology/natural%20fiber",
+    uri="https://w3id.org/costumeCore/ontology/CC00160",
     wikidata_id=None,
 )
 CC00161 = CostumeCoreTerm(
@@ -2537,7 +2537,7 @@ CC00161 = CostumeCoreTerm(
     display_name_en="""no waistline""",
     features=("waistline",),
     id="CC00161",
-    uri="https://w3id.org/costumeCore/ontology/no%20waistline",
+    uri="https://w3id.org/costumeCore/ontology/CC00161",
     wikidata_id=None,
 )
 CC00162 = CostumeCoreTerm(
@@ -2546,7 +2546,7 @@ CC00162 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2555,7 +2555,7 @@ CC00162 = CostumeCoreTerm(
     display_name_en="""pointed""",
     features=("waistline",),
     id="CC00162",
-    uri="https://w3id.org/costumeCore/ontology/pointed",
+    uri="https://w3id.org/costumeCore/ontology/CC00162",
     wikidata_id=None,
 )
 CC00163 = CostumeCoreTerm(
@@ -2564,7 +2564,7 @@ CC00163 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2573,7 +2573,7 @@ CC00163 = CostumeCoreTerm(
     display_name_en="""accordion pleats""",
     features=None,
     id="CC00163",
-    uri="https://w3id.org/costumeCore/ontology/accordion%20pleats",
+    uri="https://w3id.org/costumeCore/ontology/CC00163",
     wikidata_id=None,
 )
 CC00164 = CostumeCoreTerm(
@@ -2591,7 +2591,7 @@ CC00164 = CostumeCoreTerm(
     display_name_en="""balloon skirt""",
     features=("skirtType",),
     id="CC00164",
-    uri="https://w3id.org/costumeCore/ontology/balloon%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00164",
     wikidata_id="Q83333769",
 )
 CC00165 = CostumeCoreTerm(
@@ -2600,7 +2600,7 @@ CC00165 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/vow/AATFullDisplay?find=pleat&logic=AND&note=&english=N&prev_page=1&subjectid=300228368",
         ),
@@ -2609,7 +2609,7 @@ CC00165 = CostumeCoreTerm(
     display_name_en="""box-pleated""",
     features=None,
     id="CC00165",
-    uri="https://w3id.org/costumeCore/ontology/box-pleated",
+    uri="https://w3id.org/costumeCore/ontology/CC00165",
     wikidata_id=None,
 )
 CC00166 = CostumeCoreTerm(
@@ -2627,7 +2627,7 @@ CC00166 = CostumeCoreTerm(
     display_name_en="""circle skirt""",
     features=("skirtType",),
     id="CC00166",
-    uri="https://w3id.org/costumeCore/ontology/circle%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00166",
     wikidata_id="Q83333946",
 )
 CC00167 = CostumeCoreTerm(
@@ -2636,7 +2636,7 @@ CC00167 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2645,7 +2645,7 @@ CC00167 = CostumeCoreTerm(
     display_name_en="""dirndl skirt""",
     features=("skirtType",),
     id="CC00167",
-    uri="https://w3id.org/costumeCore/ontology/dirndl%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00167",
     wikidata_id=None,
 )
 CC00168 = CostumeCoreTerm(
@@ -2663,7 +2663,7 @@ CC00168 = CostumeCoreTerm(
     display_name_en="""flared skirt""",
     features=("skirtType",),
     id="CC00168",
-    uri="https://w3id.org/costumeCore/ontology/flared%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00168",
     wikidata_id="Q83333994",
 )
 CC00169 = CostumeCoreTerm(
@@ -2672,7 +2672,7 @@ CC00169 = CostumeCoreTerm(
     display_name_en="""flounced skirt""",
     features=None,
     id="CC00169",
-    uri="https://w3id.org/costumeCore/ontology/flounced%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00169",
     wikidata_id=None,
 )
 CC00170 = CostumeCoreTerm(
@@ -2681,7 +2681,7 @@ CC00170 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2690,7 +2690,7 @@ CC00170 = CostumeCoreTerm(
     display_name_en="""gathering""",
     features=("hasTechnique",),
     id="CC00170",
-    uri="https://w3id.org/costumeCore/ontology/gathering",
+    uri="https://w3id.org/costumeCore/ontology/CC00170",
     wikidata_id=None,
 )
 CC00171 = CostumeCoreTerm(
@@ -2708,7 +2708,7 @@ CC00171 = CostumeCoreTerm(
     display_name_en="""gored skirt""",
     features=("skirtType",),
     id="CC00171",
-    uri="https://w3id.org/costumeCore/ontology/gored%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00171",
     wikidata_id="Q83334145",
 )
 CC00172 = CostumeCoreTerm(
@@ -2717,7 +2717,7 @@ CC00172 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2726,7 +2726,7 @@ CC00172 = CostumeCoreTerm(
     display_name_en="""handkerchief""",
     features=None,
     id="CC00172",
-    uri="https://w3id.org/costumeCore/ontology/handkerchief",
+    uri="https://w3id.org/costumeCore/ontology/CC00172",
     wikidata_id=None,
 )
 CC00173 = CostumeCoreTerm(
@@ -2735,7 +2735,7 @@ CC00173 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2744,7 +2744,7 @@ CC00173 = CostumeCoreTerm(
     display_name_en="""layering""",
     features=("hasTechnique",),
     id="CC00173",
-    uri="https://w3id.org/costumeCore/ontology/layering",
+    uri="https://w3id.org/costumeCore/ontology/CC00173",
     wikidata_id=None,
 )
 CC00174 = CostumeCoreTerm(
@@ -2753,7 +2753,7 @@ CC00174 = CostumeCoreTerm(
     display_name_en="""peg-top""",
     features=None,
     id="CC00174",
-    uri="https://w3id.org/costumeCore/ontology/peg-top",
+    uri="https://w3id.org/costumeCore/ontology/CC00174",
     wikidata_id=None,
 )
 CC00175 = CostumeCoreTerm(
@@ -2771,7 +2771,7 @@ CC00175 = CostumeCoreTerm(
     display_name_en="""pegged skirt""",
     features=("skirtType",),
     id="CC00175",
-    uri="https://w3id.org/costumeCore/ontology/pegged%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00175",
     wikidata_id="Q83332399",
 )
 CC00176 = CostumeCoreTerm(
@@ -2780,7 +2780,7 @@ CC00176 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2789,7 +2789,7 @@ CC00176 = CostumeCoreTerm(
     display_name_en="""peplum""",
     features=("costumeComponents",),
     id="CC00176",
-    uri="https://w3id.org/costumeCore/ontology/peplum",
+    uri="https://w3id.org/costumeCore/ontology/CC00176",
     wikidata_id=None,
 )
 CC00177 = CostumeCoreTerm(
@@ -2807,7 +2807,7 @@ CC00177 = CostumeCoreTerm(
     display_name_en="""pleated skirt""",
     features=("skirtType",),
     id="CC00177",
-    uri="https://w3id.org/costumeCore/ontology/pleated%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00177",
     wikidata_id="Q18121766",
 )
 CC00178 = CostumeCoreTerm(
@@ -2816,7 +2816,7 @@ CC00178 = CostumeCoreTerm(
     display_name_en="""prairie skirt""",
     features=None,
     id="CC00178",
-    uri="https://w3id.org/costumeCore/ontology/prairie%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00178",
     wikidata_id=None,
 )
 CC00179 = CostumeCoreTerm(
@@ -2825,7 +2825,7 @@ CC00179 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2834,7 +2834,7 @@ CC00179 = CostumeCoreTerm(
     display_name_en="""sarong""",
     features=("skirtType",),
     id="CC00179",
-    uri="https://w3id.org/costumeCore/ontology/sarong",
+    uri="https://w3id.org/costumeCore/ontology/CC00179",
     wikidata_id=None,
 )
 CC00180 = CostumeCoreTerm(
@@ -2843,7 +2843,7 @@ CC00180 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2852,7 +2852,7 @@ CC00180 = CostumeCoreTerm(
     display_name_en="""pencil skirt""",
     features=("skirtType",),
     id="CC00180",
-    uri="https://w3id.org/costumeCore/ontology/pencil%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00180",
     wikidata_id=None,
 )
 CC00181 = CostumeCoreTerm(
@@ -2861,7 +2861,7 @@ CC00181 = CostumeCoreTerm(
     display_name_en="""swagged""",
     features=None,
     id="CC00181",
-    uri="https://w3id.org/costumeCore/ontology/swagged",
+    uri="https://w3id.org/costumeCore/ontology/CC00181",
     wikidata_id=None,
 )
 CC00182 = CostumeCoreTerm(
@@ -2879,7 +2879,7 @@ CC00182 = CostumeCoreTerm(
     display_name_en="""tiered skirt""",
     features=("skirtType",),
     id="CC00182",
-    uri="https://w3id.org/costumeCore/ontology/tiered%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00182",
     wikidata_id="Q83334198",
 )
 CC00183 = CostumeCoreTerm(
@@ -2897,7 +2897,7 @@ CC00183 = CostumeCoreTerm(
     display_name_en="""trumpet skirt""",
     features=("skirtType",),
     id="CC00183",
-    uri="https://w3id.org/costumeCore/ontology/trumpet%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00183",
     wikidata_id="Q83332911",
 )
 CC00184 = CostumeCoreTerm(
@@ -2915,7 +2915,7 @@ CC00184 = CostumeCoreTerm(
     display_name_en="""yoke""",
     features=("costumeComponents",),
     id="CC00184",
-    uri="https://w3id.org/costumeCore/ontology/yoke",
+    uri="https://w3id.org/costumeCore/ontology/CC00184",
     wikidata_id="Q8054544",
 )
 CC00185 = CostumeCoreTerm(
@@ -2924,7 +2924,7 @@ CC00185 = CostumeCoreTerm(
     display_name_en="""above knee""",
     features=("length",),
     id="CC00185",
-    uri="https://w3id.org/costumeCore/ontology/above%20knee",
+    uri="https://w3id.org/costumeCore/ontology/CC00185",
     wikidata_id=None,
 )
 CC00186 = CostumeCoreTerm(
@@ -2933,7 +2933,7 @@ CC00186 = CostumeCoreTerm(
     display_name_en="""ankle length""",
     features=("length",),
     id="CC00186",
-    uri="https://w3id.org/costumeCore/ontology/ankle%20length",
+    uri="https://w3id.org/costumeCore/ontology/CC00186",
     wikidata_id=None,
 )
 CC00187 = CostumeCoreTerm(
@@ -2942,7 +2942,7 @@ CC00187 = CostumeCoreTerm(
     display_name_en="""floor length""",
     features=("length",),
     id="CC00187",
-    uri="https://w3id.org/costumeCore/ontology/floor%20length",
+    uri="https://w3id.org/costumeCore/ontology/CC00187",
     wikidata_id=None,
 )
 CC00188 = CostumeCoreTerm(
@@ -2951,7 +2951,7 @@ CC00188 = CostumeCoreTerm(
     display_name_en="""hip length""",
     features=("length",),
     id="CC00188",
-    uri="https://w3id.org/costumeCore/ontology/hip%20length",
+    uri="https://w3id.org/costumeCore/ontology/CC00188",
     wikidata_id=None,
 )
 CC00189 = CostumeCoreTerm(
@@ -2960,7 +2960,7 @@ CC00189 = CostumeCoreTerm(
     display_name_en="""knee length""",
     features=("length",),
     id="CC00189",
-    uri="https://w3id.org/costumeCore/ontology/knee%20length",
+    uri="https://w3id.org/costumeCore/ontology/CC00189",
     wikidata_id=None,
 )
 CC00190 = CostumeCoreTerm(
@@ -2969,7 +2969,7 @@ CC00190 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -2978,7 +2978,7 @@ CC00190 = CostumeCoreTerm(
     display_name_en="""maxi dress""",
     features=None,
     id="CC00190",
-    uri="https://w3id.org/costumeCore/ontology/maxi%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00190",
     wikidata_id=None,
 )
 CC00191 = CostumeCoreTerm(
@@ -2987,7 +2987,7 @@ CC00191 = CostumeCoreTerm(
     display_name_en="""mid calf length""",
     features=("length",),
     id="CC00191",
-    uri="https://w3id.org/costumeCore/ontology/mid%20calf%20length",
+    uri="https://w3id.org/costumeCore/ontology/CC00191",
     wikidata_id=None,
 )
 CC00192 = CostumeCoreTerm(
@@ -2996,7 +2996,7 @@ CC00192 = CostumeCoreTerm(
     display_name_en="""mid-thigh length""",
     features=("length",),
     id="CC00192",
-    uri="https://w3id.org/costumeCore/ontology/mid-thigh%20length",
+    uri="https://w3id.org/costumeCore/ontology/CC00192",
     wikidata_id=None,
 )
 CC00193 = CostumeCoreTerm(
@@ -3005,7 +3005,7 @@ CC00193 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3014,7 +3014,7 @@ CC00193 = CostumeCoreTerm(
     display_name_en="""midi dress""",
     features=None,
     id="CC00193",
-    uri="https://w3id.org/costumeCore/ontology/midi%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00193",
     wikidata_id=None,
 )
 CC00194 = CostumeCoreTerm(
@@ -3023,7 +3023,7 @@ CC00194 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3032,7 +3032,7 @@ CC00194 = CostumeCoreTerm(
     display_name_en="""train""",
     features=("length",),
     id="CC00194",
-    uri="https://w3id.org/costumeCore/ontology/train",
+    uri="https://w3id.org/costumeCore/ontology/CC00194",
     wikidata_id=None,
 )
 CC00195 = CostumeCoreTerm(
@@ -3050,7 +3050,7 @@ CC00195 = CostumeCoreTerm(
     display_name_en="""acetate""",
     features=("fiber", "material",),
     id="CC00195",
-    uri="https://w3id.org/costumeCore/ontology/acetate",
+    uri="https://w3id.org/costumeCore/ontology/CC00195",
     wikidata_id="Q212527",
 )
 CC00196 = CostumeCoreTerm(
@@ -3059,7 +3059,7 @@ CC00196 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3068,7 +3068,7 @@ CC00196 = CostumeCoreTerm(
     display_name_en="""acrylic""",
     features=("fiber", "material",),
     id="CC00196",
-    uri="https://w3id.org/costumeCore/ontology/acrylic",
+    uri="https://w3id.org/costumeCore/ontology/CC00196",
     wikidata_id=None,
 )
 CC00197 = CostumeCoreTerm(
@@ -3077,7 +3077,7 @@ CC00197 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3086,7 +3086,7 @@ CC00197 = CostumeCoreTerm(
     display_name_en="""angora""",
     features=("fiber", "material",),
     id="CC00197",
-    uri="https://w3id.org/costumeCore/ontology/angora",
+    uri="https://w3id.org/costumeCore/ontology/CC00197",
     wikidata_id=None,
 )
 CC00198 = CostumeCoreTerm(
@@ -3095,7 +3095,7 @@ CC00198 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3104,7 +3104,7 @@ CC00198 = CostumeCoreTerm(
     display_name_en="""basket weave""",
     features=None,
     id="CC00198",
-    uri="https://w3id.org/costumeCore/ontology/basket%20weave",
+    uri="https://w3id.org/costumeCore/ontology/CC00198",
     wikidata_id=None,
 )
 CC00199 = CostumeCoreTerm(
@@ -3122,7 +3122,7 @@ CC00199 = CostumeCoreTerm(
     display_name_en="""boning""",
     features=("otherMaterials", "material",),
     id="CC00199",
-    uri="https://w3id.org/costumeCore/ontology/boning",
+    uri="https://w3id.org/costumeCore/ontology/CC00199",
     wikidata_id="Q881659",
 )
 CC00200 = CostumeCoreTerm(
@@ -3131,7 +3131,7 @@ CC00200 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3140,7 +3140,7 @@ CC00200 = CostumeCoreTerm(
     display_name_en="""brocade""",
     features=("textileMaterials", "material",),
     id="CC00200",
-    uri="https://w3id.org/costumeCore/ontology/brocade",
+    uri="https://w3id.org/costumeCore/ontology/CC00200",
     wikidata_id=None,
 )
 CC00201 = CostumeCoreTerm(
@@ -3149,7 +3149,7 @@ CC00201 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3158,7 +3158,7 @@ CC00201 = CostumeCoreTerm(
     display_name_en="""camel hair""",
     features=("fiber", "material",),
     id="CC00201",
-    uri="https://w3id.org/costumeCore/ontology/camel%20hair",
+    uri="https://w3id.org/costumeCore/ontology/CC00201",
     wikidata_id=None,
 )
 CC00202 = CostumeCoreTerm(
@@ -3167,7 +3167,7 @@ CC00202 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3176,7 +3176,7 @@ CC00202 = CostumeCoreTerm(
     display_name_en="""cashmere""",
     features=("fiber", "material",),
     id="CC00202",
-    uri="https://w3id.org/costumeCore/ontology/cashmere",
+    uri="https://w3id.org/costumeCore/ontology/CC00202",
     wikidata_id=None,
 )
 CC00203 = CostumeCoreTerm(
@@ -3185,7 +3185,7 @@ CC00203 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3194,7 +3194,7 @@ CC00203 = CostumeCoreTerm(
     display_name_en="""chiffon""",
     features=("textileMaterials", "material",),
     id="CC00203",
-    uri="https://w3id.org/costumeCore/ontology/chiffon",
+    uri="https://w3id.org/costumeCore/ontology/CC00203",
     wikidata_id=None,
 )
 CC00204 = CostumeCoreTerm(
@@ -3203,7 +3203,7 @@ CC00204 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3212,7 +3212,7 @@ CC00204 = CostumeCoreTerm(
     display_name_en="""corduroy""",
     features=("textileMaterials", "material",),
     id="CC00204",
-    uri="https://w3id.org/costumeCore/ontology/corduroy",
+    uri="https://w3id.org/costumeCore/ontology/CC00204",
     wikidata_id=None,
 )
 CC00205 = CostumeCoreTerm(
@@ -3221,7 +3221,7 @@ CC00205 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3230,7 +3230,7 @@ CC00205 = CostumeCoreTerm(
     display_name_en="""cotton""",
     features=("fiber", "material",),
     id="CC00205",
-    uri="https://w3id.org/costumeCore/ontology/cotton",
+    uri="https://w3id.org/costumeCore/ontology/CC00205",
     wikidata_id=None,
 )
 CC00206 = CostumeCoreTerm(
@@ -3239,7 +3239,7 @@ CC00206 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3248,7 +3248,7 @@ CC00206 = CostumeCoreTerm(
     display_name_en="""crepe""",
     features=("textileMaterials", "material",),
     id="CC00206",
-    uri="https://w3id.org/costumeCore/ontology/crepe",
+    uri="https://w3id.org/costumeCore/ontology/CC00206",
     wikidata_id=None,
 )
 CC00207 = CostumeCoreTerm(
@@ -3257,7 +3257,7 @@ CC00207 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3266,7 +3266,7 @@ CC00207 = CostumeCoreTerm(
     display_name_en="""crochet""",
     features=None,
     id="CC00207",
-    uri="https://w3id.org/costumeCore/ontology/crochet",
+    uri="https://w3id.org/costumeCore/ontology/CC00207",
     wikidata_id=None,
 )
 CC00208 = CostumeCoreTerm(
@@ -3275,7 +3275,7 @@ CC00208 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3284,7 +3284,7 @@ CC00208 = CostumeCoreTerm(
     display_name_en="""damask""",
     features=("textileMaterials", "material",),
     id="CC00208",
-    uri="https://w3id.org/costumeCore/ontology/damask",
+    uri="https://w3id.org/costumeCore/ontology/CC00208",
     wikidata_id=None,
 )
 CC00209 = CostumeCoreTerm(
@@ -3293,7 +3293,7 @@ CC00209 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3302,7 +3302,7 @@ CC00209 = CostumeCoreTerm(
     display_name_en="""dobby weave""",
     features=None,
     id="CC00209",
-    uri="https://w3id.org/costumeCore/ontology/dobby%20weave",
+    uri="https://w3id.org/costumeCore/ontology/CC00209",
     wikidata_id=None,
 )
 CC00210 = CostumeCoreTerm(
@@ -3311,7 +3311,7 @@ CC00210 = CostumeCoreTerm(
     display_name_en="""double-weave""",
     features=None,
     id="CC00210",
-    uri="https://w3id.org/costumeCore/ontology/double-weave",
+    uri="https://w3id.org/costumeCore/ontology/CC00210",
     wikidata_id=None,
 )
 CC00211 = CostumeCoreTerm(
@@ -3320,7 +3320,7 @@ CC00211 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3329,7 +3329,7 @@ CC00211 = CostumeCoreTerm(
     display_name_en="""elastic""",
     features=("otherMaterials", "material",),
     id="CC00211",
-    uri="https://w3id.org/costumeCore/ontology/elastic",
+    uri="https://w3id.org/costumeCore/ontology/CC00211",
     wikidata_id=None,
 )
 CC00212 = CostumeCoreTerm(
@@ -3338,7 +3338,7 @@ CC00212 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3347,7 +3347,7 @@ CC00212 = CostumeCoreTerm(
     display_name_en="""felt""",
     features=("textileMaterials", "material",),
     id="CC00212",
-    uri="https://w3id.org/costumeCore/ontology/felt",
+    uri="https://w3id.org/costumeCore/ontology/CC00212",
     wikidata_id=None,
 )
 CC00213 = CostumeCoreTerm(
@@ -3356,7 +3356,7 @@ CC00213 = CostumeCoreTerm(
     display_name_en="""fiber blend""",
     features=("fiber", "material",),
     id="CC00213",
-    uri="https://w3id.org/costumeCore/ontology/fiber%20blend",
+    uri="https://w3id.org/costumeCore/ontology/CC00213",
     wikidata_id=None,
 )
 CC00214 = CostumeCoreTerm(
@@ -3365,7 +3365,7 @@ CC00214 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3374,7 +3374,7 @@ CC00214 = CostumeCoreTerm(
     display_name_en="""georgette""",
     features=("textileMaterials", "material",),
     id="CC00214",
-    uri="https://w3id.org/costumeCore/ontology/georgette",
+    uri="https://w3id.org/costumeCore/ontology/CC00214",
     wikidata_id=None,
 )
 CC00215 = CostumeCoreTerm(
@@ -3383,7 +3383,7 @@ CC00215 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3392,7 +3392,7 @@ CC00215 = CostumeCoreTerm(
     display_name_en="""glass""",
     features=("otherMaterials", "material",),
     id="CC00215",
-    uri="https://w3id.org/costumeCore/ontology/glass",
+    uri="https://w3id.org/costumeCore/ontology/CC00215",
     wikidata_id=None,
 )
 CC00216 = CostumeCoreTerm(
@@ -3401,7 +3401,7 @@ CC00216 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3410,7 +3410,7 @@ CC00216 = CostumeCoreTerm(
     display_name_en="""hemp""",
     features=("fiber", "material",),
     id="CC00216",
-    uri="https://w3id.org/costumeCore/ontology/hemp",
+    uri="https://w3id.org/costumeCore/ontology/CC00216",
     wikidata_id=None,
 )
 CC00217 = CostumeCoreTerm(
@@ -3419,7 +3419,7 @@ CC00217 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3428,7 +3428,7 @@ CC00217 = CostumeCoreTerm(
     display_name_en="""jacquard""",
     features=("textileMaterials", "material",),
     id="CC00217",
-    uri="https://w3id.org/costumeCore/ontology/jacquard",
+    uri="https://w3id.org/costumeCore/ontology/CC00217",
     wikidata_id=None,
 )
 CC00218 = CostumeCoreTerm(
@@ -3437,7 +3437,7 @@ CC00218 = CostumeCoreTerm(
     display_name_en="""knit""",
     features=("textileMaterials", "material",),
     id="CC00218",
-    uri="https://w3id.org/costumeCore/ontology/knit",
+    uri="https://w3id.org/costumeCore/ontology/CC00218",
     wikidata_id=None,
 )
 CC00219 = CostumeCoreTerm(
@@ -3446,7 +3446,7 @@ CC00219 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3455,7 +3455,7 @@ CC00219 = CostumeCoreTerm(
     display_name_en="""lace""",
     features=("textileMaterials", "material",),
     id="CC00219",
-    uri="https://w3id.org/costumeCore/ontology/lace",
+    uri="https://w3id.org/costumeCore/ontology/CC00219",
     wikidata_id=None,
 )
 CC00220 = CostumeCoreTerm(
@@ -3464,7 +3464,7 @@ CC00220 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3473,7 +3473,7 @@ CC00220 = CostumeCoreTerm(
     display_name_en="""leather""",
     features=("otherMaterials", "material",),
     id="CC00220",
-    uri="https://w3id.org/costumeCore/ontology/leather",
+    uri="https://w3id.org/costumeCore/ontology/CC00220",
     wikidata_id=None,
 )
 CC00221 = CostumeCoreTerm(
@@ -3482,7 +3482,7 @@ CC00221 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3491,7 +3491,7 @@ CC00221 = CostumeCoreTerm(
     display_name_en="""linen""",
     features=("textileMaterials", "material",),
     id="CC00221",
-    uri="https://w3id.org/costumeCore/ontology/linen",
+    uri="https://w3id.org/costumeCore/ontology/CC00221",
     wikidata_id=None,
 )
 CC00222 = CostumeCoreTerm(
@@ -3500,7 +3500,7 @@ CC00222 = CostumeCoreTerm(
     display_name_en="""looped pile""",
     features=("textileMaterials", "material",),
     id="CC00222",
-    uri="https://w3id.org/costumeCore/ontology/looped%20pile",
+    uri="https://w3id.org/costumeCore/ontology/CC00222",
     wikidata_id=None,
 )
 CC00223 = CostumeCoreTerm(
@@ -3509,7 +3509,7 @@ CC00223 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3518,7 +3518,7 @@ CC00223 = CostumeCoreTerm(
     display_name_en="""matelasse""",
     features=None,
     id="CC00223",
-    uri="https://w3id.org/costumeCore/ontology/matelasse",
+    uri="https://w3id.org/costumeCore/ontology/CC00223",
     wikidata_id=None,
 )
 CC00224 = CostumeCoreTerm(
@@ -3527,7 +3527,7 @@ CC00224 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3536,7 +3536,7 @@ CC00224 = CostumeCoreTerm(
     display_name_en="""metal""",
     features=("otherMaterials", "material",),
     id="CC00224",
-    uri="https://w3id.org/costumeCore/ontology/metal",
+    uri="https://w3id.org/costumeCore/ontology/CC00224",
     wikidata_id=None,
 )
 CC00225 = CostumeCoreTerm(
@@ -3545,7 +3545,7 @@ CC00225 = CostumeCoreTerm(
     display_name_en="""microfiber""",
     features=("fiber", "material",),
     id="CC00225",
-    uri="https://w3id.org/costumeCore/ontology/microfiber",
+    uri="https://w3id.org/costumeCore/ontology/CC00225",
     wikidata_id=None,
 )
 CC00226 = CostumeCoreTerm(
@@ -3554,7 +3554,7 @@ CC00226 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3563,7 +3563,7 @@ CC00226 = CostumeCoreTerm(
     display_name_en="""mohair""",
     features=("fiber", "material",),
     id="CC00226",
-    uri="https://w3id.org/costumeCore/ontology/mohair",
+    uri="https://w3id.org/costumeCore/ontology/CC00226",
     wikidata_id=None,
 )
 CC00227 = CostumeCoreTerm(
@@ -3572,7 +3572,7 @@ CC00227 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3581,7 +3581,7 @@ CC00227 = CostumeCoreTerm(
     display_name_en="""moire""",
     features=("textileMaterials", "material",),
     id="CC00227",
-    uri="https://w3id.org/costumeCore/ontology/moire",
+    uri="https://w3id.org/costumeCore/ontology/CC00227",
     wikidata_id=None,
 )
 CC00228 = CostumeCoreTerm(
@@ -3590,7 +3590,7 @@ CC00228 = CostumeCoreTerm(
     display_name_en="""natural waistline""",
     features=("waistline",),
     id="CC00228",
-    uri="https://w3id.org/costumeCore/ontology/natural%20waistline",
+    uri="https://w3id.org/costumeCore/ontology/CC00228",
     wikidata_id=None,
 )
 CC00229 = CostumeCoreTerm(
@@ -3599,7 +3599,7 @@ CC00229 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3608,7 +3608,7 @@ CC00229 = CostumeCoreTerm(
     display_name_en="""net""",
     features=("textileMaterials", "material",),
     id="CC00229",
-    uri="https://w3id.org/costumeCore/ontology/net",
+    uri="https://w3id.org/costumeCore/ontology/CC00229",
     wikidata_id=None,
 )
 CC00230 = CostumeCoreTerm(
@@ -3617,7 +3617,7 @@ CC00230 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3626,7 +3626,7 @@ CC00230 = CostumeCoreTerm(
     display_name_en="""nylon""",
     features=("fiber", "material",),
     id="CC00230",
-    uri="https://w3id.org/costumeCore/ontology/nylon",
+    uri="https://w3id.org/costumeCore/ontology/CC00230",
     wikidata_id=None,
 )
 CC00231 = CostumeCoreTerm(
@@ -3635,7 +3635,7 @@ CC00231 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3644,7 +3644,7 @@ CC00231 = CostumeCoreTerm(
     display_name_en="""plain weave""",
     features=None,
     id="CC00231",
-    uri="https://w3id.org/costumeCore/ontology/plain%20weave",
+    uri="https://w3id.org/costumeCore/ontology/CC00231",
     wikidata_id=None,
 )
 CC00232 = CostumeCoreTerm(
@@ -3653,7 +3653,7 @@ CC00232 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3662,7 +3662,7 @@ CC00232 = CostumeCoreTerm(
     display_name_en="""plastic""",
     features=("otherMaterials", "material",),
     id="CC00232",
-    uri="https://w3id.org/costumeCore/ontology/plastic",
+    uri="https://w3id.org/costumeCore/ontology/CC00232",
     wikidata_id=None,
 )
 CC00233 = CostumeCoreTerm(
@@ -3671,7 +3671,7 @@ CC00233 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3680,7 +3680,7 @@ CC00233 = CostumeCoreTerm(
     display_name_en="""polyester""",
     features=("fiber", "material",),
     id="CC00233",
-    uri="https://w3id.org/costumeCore/ontology/polyester",
+    uri="https://w3id.org/costumeCore/ontology/CC00233",
     wikidata_id=None,
 )
 CC00234 = CostumeCoreTerm(
@@ -3689,7 +3689,7 @@ CC00234 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3698,7 +3698,7 @@ CC00234 = CostumeCoreTerm(
     display_name_en="""ramie""",
     features=("fiber", "material",),
     id="CC00234",
-    uri="https://w3id.org/costumeCore/ontology/ramie",
+    uri="https://w3id.org/costumeCore/ontology/CC00234",
     wikidata_id=None,
 )
 CC00235 = CostumeCoreTerm(
@@ -3707,7 +3707,7 @@ CC00235 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3716,7 +3716,7 @@ CC00235 = CostumeCoreTerm(
     display_name_en="""rayon""",
     features=("fiber", "material",),
     id="CC00235",
-    uri="https://w3id.org/costumeCore/ontology/rayon",
+    uri="https://w3id.org/costumeCore/ontology/CC00235",
     wikidata_id=None,
 )
 CC00236 = CostumeCoreTerm(
@@ -3725,7 +3725,7 @@ CC00236 = CostumeCoreTerm(
     display_name_en="""rib knit""",
     features=("textileMaterials", "material",),
     id="CC00236",
-    uri="https://w3id.org/costumeCore/ontology/rib%20knit",
+    uri="https://w3id.org/costumeCore/ontology/CC00236",
     wikidata_id=None,
 )
 CC00237 = CostumeCoreTerm(
@@ -3734,7 +3734,7 @@ CC00237 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3743,7 +3743,7 @@ CC00237 = CostumeCoreTerm(
     display_name_en="""rib weave""",
     features=None,
     id="CC00237",
-    uri="https://w3id.org/costumeCore/ontology/rib%20weave",
+    uri="https://w3id.org/costumeCore/ontology/CC00237",
     wikidata_id=None,
 )
 CC00238 = CostumeCoreTerm(
@@ -3752,7 +3752,7 @@ CC00238 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3761,7 +3761,7 @@ CC00238 = CostumeCoreTerm(
     display_name_en="""ribbon""",
     features=("trimming", "material",),
     id="CC00238",
-    uri="https://w3id.org/costumeCore/ontology/ribbon",
+    uri="https://w3id.org/costumeCore/ontology/CC00238",
     wikidata_id=None,
 )
 CC00239 = CostumeCoreTerm(
@@ -3770,7 +3770,7 @@ CC00239 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3779,7 +3779,7 @@ CC00239 = CostumeCoreTerm(
     display_name_en="""satin""",
     features=("textileMaterials", "material",),
     id="CC00239",
-    uri="https://w3id.org/costumeCore/ontology/satin",
+    uri="https://w3id.org/costumeCore/ontology/CC00239",
     wikidata_id=None,
 )
 CC00240 = CostumeCoreTerm(
@@ -3788,7 +3788,7 @@ CC00240 = CostumeCoreTerm(
     display_name_en="""sheared pile""",
     features=None,
     id="CC00240",
-    uri="https://w3id.org/costumeCore/ontology/sheared%20pile",
+    uri="https://w3id.org/costumeCore/ontology/CC00240",
     wikidata_id=None,
 )
 CC00241 = CostumeCoreTerm(
@@ -3797,7 +3797,7 @@ CC00241 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3806,7 +3806,7 @@ CC00241 = CostumeCoreTerm(
     display_name_en="""shell""",
     features=("otherMaterials", "material",),
     id="CC00241",
-    uri="https://w3id.org/costumeCore/ontology/shell",
+    uri="https://w3id.org/costumeCore/ontology/CC00241",
     wikidata_id=None,
 )
 CC00242 = CostumeCoreTerm(
@@ -3815,7 +3815,7 @@ CC00242 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3824,7 +3824,7 @@ CC00242 = CostumeCoreTerm(
     display_name_en="""silk""",
     features=("fiber", "material",),
     id="CC00242",
-    uri="https://w3id.org/costumeCore/ontology/silk",
+    uri="https://w3id.org/costumeCore/ontology/CC00242",
     wikidata_id=None,
 )
 CC00243 = CostumeCoreTerm(
@@ -3833,7 +3833,7 @@ CC00243 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3842,7 +3842,7 @@ CC00243 = CostumeCoreTerm(
     display_name_en="""spandex""",
     features=("fiber", "material",),
     id="CC00243",
-    uri="https://w3id.org/costumeCore/ontology/spandex",
+    uri="https://w3id.org/costumeCore/ontology/CC00243",
     wikidata_id=None,
 )
 CC00244 = CostumeCoreTerm(
@@ -3851,7 +3851,7 @@ CC00244 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3860,7 +3860,7 @@ CC00244 = CostumeCoreTerm(
     display_name_en="""synthetic fiber""",
     features=("fiber", "material",),
     id="CC00244",
-    uri="https://w3id.org/costumeCore/ontology/synthetic%20fiber",
+    uri="https://w3id.org/costumeCore/ontology/CC00244",
     wikidata_id="Q5856",
 )
 CC00245 = CostumeCoreTerm(
@@ -3869,7 +3869,7 @@ CC00245 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3878,7 +3878,7 @@ CC00245 = CostumeCoreTerm(
     display_name_en="""taffeta""",
     features=("textileMaterials", "material",),
     id="CC00245",
-    uri="https://w3id.org/costumeCore/ontology/taffeta",
+    uri="https://w3id.org/costumeCore/ontology/CC00245",
     wikidata_id=None,
 )
 CC00246 = CostumeCoreTerm(
@@ -3887,7 +3887,7 @@ CC00246 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3896,7 +3896,7 @@ CC00246 = CostumeCoreTerm(
     display_name_en="""twill weave""",
     features=None,
     id="CC00246",
-    uri="https://w3id.org/costumeCore/ontology/twill%20weave",
+    uri="https://w3id.org/costumeCore/ontology/CC00246",
     wikidata_id=None,
 )
 CC00247 = CostumeCoreTerm(
@@ -3905,7 +3905,7 @@ CC00247 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3914,7 +3914,7 @@ CC00247 = CostumeCoreTerm(
     display_name_en="""velvet""",
     features=("textileMaterials", "material",),
     id="CC00247",
-    uri="https://w3id.org/costumeCore/ontology/velvet",
+    uri="https://w3id.org/costumeCore/ontology/CC00247",
     wikidata_id=None,
 )
 CC00248 = CostumeCoreTerm(
@@ -3923,7 +3923,7 @@ CC00248 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3932,7 +3932,7 @@ CC00248 = CostumeCoreTerm(
     display_name_en="""wax""",
     features=("otherMaterials", "material",),
     id="CC00248",
-    uri="https://w3id.org/costumeCore/ontology/wax",
+    uri="https://w3id.org/costumeCore/ontology/CC00248",
     wikidata_id=None,
 )
 CC00249 = CostumeCoreTerm(
@@ -3941,7 +3941,7 @@ CC00249 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3950,7 +3950,7 @@ CC00249 = CostumeCoreTerm(
     display_name_en="""wood""",
     features=("otherMaterials", "material",),
     id="CC00249",
-    uri="https://w3id.org/costumeCore/ontology/wood",
+    uri="https://w3id.org/costumeCore/ontology/CC00249",
     wikidata_id=None,
 )
 CC00250 = CostumeCoreTerm(
@@ -3959,7 +3959,7 @@ CC00250 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -3968,7 +3968,7 @@ CC00250 = CostumeCoreTerm(
     display_name_en="""wool""",
     features=("fiber", "material",),
     id="CC00250",
-    uri="https://w3id.org/costumeCore/ontology/wool",
+    uri="https://w3id.org/costumeCore/ontology/CC00250",
     wikidata_id=None,
 )
 CC00251 = CostumeCoreTerm(
@@ -3986,7 +3986,7 @@ CC00251 = CostumeCoreTerm(
     display_name_en="""bustle skirt""",
     features=("skirtType",),
     id="CC00251",
-    uri="https://w3id.org/costumeCore/ontology/bustle%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00251",
     wikidata_id="Q83333892",
 )
 CC00252 = CostumeCoreTerm(
@@ -3995,7 +3995,7 @@ CC00252 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4004,7 +4004,7 @@ CC00252 = CostumeCoreTerm(
     display_name_en="""chemise dress""",
     features=None,
     id="CC00252",
-    uri="https://w3id.org/costumeCore/ontology/chemise%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00252",
     wikidata_id=None,
 )
 CC00254 = CostumeCoreTerm(
@@ -4013,7 +4013,7 @@ CC00254 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4022,7 +4022,7 @@ CC00254 = CostumeCoreTerm(
     display_name_en="""embroidering""",
     features=("hasTechnique",),
     id="CC00254",
-    uri="https://w3id.org/costumeCore/ontology/embroidering",
+    uri="https://w3id.org/costumeCore/ontology/CC00254",
     wikidata_id=None,
 )
 CC00255 = CostumeCoreTerm(
@@ -4040,7 +4040,7 @@ CC00255 = CostumeCoreTerm(
     display_name_en="""handkerchief skirt""",
     features=("skirtType",),
     id="CC00255",
-    uri="https://w3id.org/costumeCore/ontology/handkerchief%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00255",
     wikidata_id="Q5647451",
 )
 CC00256 = CostumeCoreTerm(
@@ -4058,7 +4058,7 @@ CC00256 = CostumeCoreTerm(
     display_name_en="""kimono sleeve""",
     features=("sleeveType",),
     id="CC00256",
-    uri="https://w3id.org/costumeCore/ontology/kimono%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00256",
     wikidata_id="Q24016353",
 )
 CC00257 = CostumeCoreTerm(
@@ -4067,7 +4067,7 @@ CC00257 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4076,7 +4076,7 @@ CC00257 = CostumeCoreTerm(
     display_name_en="""needlepoint""",
     features=("hasTechnique",),
     id="CC00257",
-    uri="https://w3id.org/costumeCore/ontology/needlepoint",
+    uri="https://w3id.org/costumeCore/ontology/CC00257",
     wikidata_id=None,
 )
 CC00258 = CostumeCoreTerm(
@@ -4094,7 +4094,7 @@ CC00258 = CostumeCoreTerm(
     display_name_en="""shawl collar""",
     features=("collar",),
     id="CC00258",
-    uri="https://w3id.org/costumeCore/ontology/shawl%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00258",
     wikidata_id="Q29473093",
 )
 CC00259 = CostumeCoreTerm(
@@ -4103,7 +4103,7 @@ CC00259 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4112,7 +4112,7 @@ CC00259 = CostumeCoreTerm(
     display_name_en="""adhesive""",
     features=("otherMaterials", "material",),
     id="CC00259",
-    uri="https://w3id.org/costumeCore/ontology/adhesive",
+    uri="https://w3id.org/costumeCore/ontology/CC00259",
     wikidata_id=None,
 )
 CC00260 = CostumeCoreTerm(
@@ -4121,7 +4121,7 @@ CC00260 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4130,7 +4130,7 @@ CC00260 = CostumeCoreTerm(
     display_name_en="""batiste""",
     features=("textileMaterials", "material",),
     id="CC00260",
-    uri="https://w3id.org/costumeCore/ontology/batiste",
+    uri="https://w3id.org/costumeCore/ontology/CC00260",
     wikidata_id=None,
 )
 CC00261 = CostumeCoreTerm(
@@ -4139,7 +4139,7 @@ CC00261 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4148,7 +4148,7 @@ CC00261 = CostumeCoreTerm(
     display_name_en="""batting""",
     features=("otherMaterials", "material",),
     id="CC00261",
-    uri="https://w3id.org/costumeCore/ontology/batting",
+    uri="https://w3id.org/costumeCore/ontology/CC00261",
     wikidata_id=None,
 )
 CC00262 = CostumeCoreTerm(
@@ -4157,7 +4157,7 @@ CC00262 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4166,7 +4166,7 @@ CC00262 = CostumeCoreTerm(
     display_name_en="""beads""",
     features=("trimming", "material",),
     id="CC00262",
-    uri="https://w3id.org/costumeCore/ontology/beads",
+    uri="https://w3id.org/costumeCore/ontology/CC00262",
     wikidata_id=None,
 )
 CC00263 = CostumeCoreTerm(
@@ -4175,7 +4175,7 @@ CC00263 = CostumeCoreTerm(
     display_name_en="""cowl sleeve""",
     features=None,
     id="CC00263",
-    uri="https://w3id.org/costumeCore/ontology/cowl%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00263",
     wikidata_id=None,
 )
 CC00264 = CostumeCoreTerm(
@@ -4184,7 +4184,7 @@ CC00264 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4193,7 +4193,7 @@ CC00264 = CostumeCoreTerm(
     display_name_en="""braid""",
     features=("trimming", "material",),
     id="CC00264",
-    uri="https://w3id.org/costumeCore/ontology/braid",
+    uri="https://w3id.org/costumeCore/ontology/CC00264",
     wikidata_id=None,
 )
 CC00265 = CostumeCoreTerm(
@@ -4202,7 +4202,7 @@ CC00265 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4211,7 +4211,7 @@ CC00265 = CostumeCoreTerm(
     display_name_en="""brass""",
     features=None,
     id="CC00265",
-    uri="https://w3id.org/costumeCore/ontology/brass",
+    uri="https://w3id.org/costumeCore/ontology/CC00265",
     wikidata_id=None,
 )
 CC00266 = CostumeCoreTerm(
@@ -4220,7 +4220,7 @@ CC00266 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4229,7 +4229,7 @@ CC00266 = CostumeCoreTerm(
     display_name_en="""buckram""",
     features=("textileMaterials", "material",),
     id="CC00266",
-    uri="https://w3id.org/costumeCore/ontology/buckram",
+    uri="https://w3id.org/costumeCore/ontology/CC00266",
     wikidata_id=None,
 )
 CC00267 = CostumeCoreTerm(
@@ -4238,7 +4238,7 @@ CC00267 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4247,7 +4247,7 @@ CC00267 = CostumeCoreTerm(
     display_name_en="""cardboard""",
     features=("otherMaterials", "material",),
     id="CC00267",
-    uri="https://w3id.org/costumeCore/ontology/cardboard",
+    uri="https://w3id.org/costumeCore/ontology/CC00267",
     wikidata_id=None,
 )
 CC00268 = CostumeCoreTerm(
@@ -4256,7 +4256,7 @@ CC00268 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4265,7 +4265,7 @@ CC00268 = CostumeCoreTerm(
     display_name_en="""chenille""",
     features=("textileMaterials", "material",),
     id="CC00268",
-    uri="https://w3id.org/costumeCore/ontology/chenille",
+    uri="https://w3id.org/costumeCore/ontology/CC00268",
     wikidata_id=None,
 )
 CC00269 = CostumeCoreTerm(
@@ -4274,7 +4274,7 @@ CC00269 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4283,7 +4283,7 @@ CC00269 = CostumeCoreTerm(
     display_name_en="""China silk""",
     features=("textileMaterials", "material",),
     id="CC00269",
-    uri="https://w3id.org/costumeCore/ontology/China%20silk",
+    uri="https://w3id.org/costumeCore/ontology/CC00269",
     wikidata_id=None,
 )
 CC00270 = CostumeCoreTerm(
@@ -4292,7 +4292,7 @@ CC00270 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4301,7 +4301,7 @@ CC00270 = CostumeCoreTerm(
     display_name_en="""chintz""",
     features=("textileMaterials", "material",),
     id="CC00270",
-    uri="https://w3id.org/costumeCore/ontology/chintz",
+    uri="https://w3id.org/costumeCore/ontology/CC00270",
     wikidata_id=None,
 )
 CC00271 = CostumeCoreTerm(
@@ -4310,7 +4310,7 @@ CC00271 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4319,7 +4319,7 @@ CC00271 = CostumeCoreTerm(
     display_name_en="""cloth""",
     features=None,
     id="CC00271",
-    uri="https://w3id.org/costumeCore/ontology/cloth",
+    uri="https://w3id.org/costumeCore/ontology/CC00271",
     wikidata_id=None,
 )
 CC00272 = CostumeCoreTerm(
@@ -4328,7 +4328,7 @@ CC00272 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4337,7 +4337,7 @@ CC00272 = CostumeCoreTerm(
     display_name_en="""cord""",
     features=("trimming", "material",),
     id="CC00272",
-    uri="https://w3id.org/costumeCore/ontology/cord",
+    uri="https://w3id.org/costumeCore/ontology/CC00272",
     wikidata_id=None,
 )
 CC00273 = CostumeCoreTerm(
@@ -4346,7 +4346,7 @@ CC00273 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4355,7 +4355,7 @@ CC00273 = CostumeCoreTerm(
     display_name_en="""Dacron""",
     features=("fiber", "material",),
     id="CC00273",
-    uri="https://w3id.org/costumeCore/ontology/Dacron",
+    uri="https://w3id.org/costumeCore/ontology/CC00273",
     wikidata_id=None,
 )
 CC00274 = CostumeCoreTerm(
@@ -4364,7 +4364,7 @@ CC00274 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4373,7 +4373,7 @@ CC00274 = CostumeCoreTerm(
     display_name_en="""dupioni""",
     features=("fiber", "material",),
     id="CC00274",
-    uri="https://w3id.org/costumeCore/ontology/dupioni",
+    uri="https://w3id.org/costumeCore/ontology/CC00274",
     wikidata_id=None,
 )
 CC00275 = CostumeCoreTerm(
@@ -4382,7 +4382,7 @@ CC00275 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4391,7 +4391,7 @@ CC00275 = CostumeCoreTerm(
     display_name_en="""faille""",
     features=("textileMaterials", "material",),
     id="CC00275",
-    uri="https://w3id.org/costumeCore/ontology/faille",
+    uri="https://w3id.org/costumeCore/ontology/CC00275",
     wikidata_id=None,
 )
 CC00276 = CostumeCoreTerm(
@@ -4400,7 +4400,7 @@ CC00276 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4409,7 +4409,7 @@ CC00276 = CostumeCoreTerm(
     display_name_en="""feathers""",
     features=("trimming", "material",),
     id="CC00276",
-    uri="https://w3id.org/costumeCore/ontology/feathers",
+    uri="https://w3id.org/costumeCore/ontology/CC00276",
     wikidata_id=None,
 )
 CC00277 = CostumeCoreTerm(
@@ -4418,7 +4418,7 @@ CC00277 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4427,7 +4427,7 @@ CC00277 = CostumeCoreTerm(
     display_name_en="""floral patterns""",
     features=("pattern",),
     id="CC00277",
-    uri="https://w3id.org/costumeCore/ontology/floral%20patterns",
+    uri="https://w3id.org/costumeCore/ontology/CC00277",
     wikidata_id=None,
 )
 CC00278 = CostumeCoreTerm(
@@ -4445,7 +4445,7 @@ CC00278 = CostumeCoreTerm(
     display_name_en="""flowers""",
     features=("trimming", "material",),
     id="CC00278",
-    uri="https://w3id.org/costumeCore/ontology/flowers",
+    uri="https://w3id.org/costumeCore/ontology/CC00278",
     wikidata_id="Q44407651",
 )
 CC00279 = CostumeCoreTerm(
@@ -4454,7 +4454,7 @@ CC00279 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4463,7 +4463,7 @@ CC00279 = CostumeCoreTerm(
     display_name_en="""fur""",
     features=("otherMaterials", "material",),
     id="CC00279",
-    uri="https://w3id.org/costumeCore/ontology/fur",
+    uri="https://w3id.org/costumeCore/ontology/CC00279",
     wikidata_id=None,
 )
 CC00280 = CostumeCoreTerm(
@@ -4472,7 +4472,7 @@ CC00280 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4481,7 +4481,7 @@ CC00280 = CostumeCoreTerm(
     display_name_en="""gabardine""",
     features=("textileMaterials", "material",),
     id="CC00280",
-    uri="https://w3id.org/costumeCore/ontology/gabardine",
+    uri="https://w3id.org/costumeCore/ontology/CC00280",
     wikidata_id=None,
 )
 CC00281 = CostumeCoreTerm(
@@ -4490,7 +4490,7 @@ CC00281 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4499,7 +4499,7 @@ CC00281 = CostumeCoreTerm(
     display_name_en="""gauze""",
     features=("textileMaterials", "material",),
     id="CC00281",
-    uri="https://w3id.org/costumeCore/ontology/gauze",
+    uri="https://w3id.org/costumeCore/ontology/CC00281",
     wikidata_id=None,
 )
 CC00282 = CostumeCoreTerm(
@@ -4508,7 +4508,7 @@ CC00282 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4517,7 +4517,7 @@ CC00282 = CostumeCoreTerm(
     display_name_en="""horsehair""",
     features=("fiber", "material",),
     id="CC00282",
-    uri="https://w3id.org/costumeCore/ontology/horsehair",
+    uri="https://w3id.org/costumeCore/ontology/CC00282",
     wikidata_id=None,
 )
 CC00283 = CostumeCoreTerm(
@@ -4535,7 +4535,7 @@ CC00283 = CostumeCoreTerm(
     display_name_en="""jersey""",
     features=("textileMaterials", "material",),
     id="CC00283",
-    uri="https://w3id.org/costumeCore/ontology/jersey",
+    uri="https://w3id.org/costumeCore/ontology/CC00283",
     wikidata_id="Q1348773",
 )
 CC00284 = CostumeCoreTerm(
@@ -4544,7 +4544,7 @@ CC00284 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4553,7 +4553,7 @@ CC00284 = CostumeCoreTerm(
     display_name_en="""jet""",
     features=("otherMaterials", "material",),
     id="CC00284",
-    uri="https://w3id.org/costumeCore/ontology/jet",
+    uri="https://w3id.org/costumeCore/ontology/CC00284",
     wikidata_id=None,
 )
 CC00285 = CostumeCoreTerm(
@@ -4562,7 +4562,7 @@ CC00285 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4571,7 +4571,7 @@ CC00285 = CostumeCoreTerm(
     display_name_en="""lawn""",
     features=("textileMaterials", "material",),
     id="CC00285",
-    uri="https://w3id.org/costumeCore/ontology/lawn",
+    uri="https://w3id.org/costumeCore/ontology/CC00285",
     wikidata_id=None,
 )
 CC00286 = CostumeCoreTerm(
@@ -4580,7 +4580,7 @@ CC00286 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4589,7 +4589,7 @@ CC00286 = CostumeCoreTerm(
     display_name_en="""leaves""",
     features=("trimming", "material",),
     id="CC00286",
-    uri="https://w3id.org/costumeCore/ontology/leaves",
+    uri="https://w3id.org/costumeCore/ontology/CC00286",
     wikidata_id=None,
 )
 CC00287 = CostumeCoreTerm(
@@ -4598,7 +4598,7 @@ CC00287 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4607,7 +4607,7 @@ CC00287 = CostumeCoreTerm(
     display_name_en="""lining""",
     features=("costumeComponents",),
     id="CC00287",
-    uri="https://w3id.org/costumeCore/ontology/lining",
+    uri="https://w3id.org/costumeCore/ontology/CC00287",
     wikidata_id=None,
 )
 CC00288 = CostumeCoreTerm(
@@ -4616,7 +4616,7 @@ CC00288 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4625,7 +4625,7 @@ CC00288 = CostumeCoreTerm(
     display_name_en="""merino""",
     features=("fiber", "material",),
     id="CC00288",
-    uri="https://w3id.org/costumeCore/ontology/merino",
+    uri="https://w3id.org/costumeCore/ontology/CC00288",
     wikidata_id=None,
 )
 CC00289 = CostumeCoreTerm(
@@ -4634,7 +4634,7 @@ CC00289 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4643,7 +4643,7 @@ CC00289 = CostumeCoreTerm(
     display_name_en="""mesh""",
     features=("textileMaterials", "material",),
     id="CC00289",
-    uri="https://w3id.org/costumeCore/ontology/mesh",
+    uri="https://w3id.org/costumeCore/ontology/CC00289",
     wikidata_id=None,
 )
 CC00290 = CostumeCoreTerm(
@@ -4652,7 +4652,7 @@ CC00290 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4661,7 +4661,7 @@ CC00290 = CostumeCoreTerm(
     display_name_en="""metallic""",
     features=("colorMain", "colorSecondary",),
     id="CC00290",
-    uri="https://w3id.org/costumeCore/ontology/metallic",
+    uri="https://w3id.org/costumeCore/ontology/CC00290",
     wikidata_id=None,
 )
 CC00291 = CostumeCoreTerm(
@@ -4670,7 +4670,7 @@ CC00291 = CostumeCoreTerm(
     display_name_en="""mink fur""",
     features=None,
     id="CC00291",
-    uri="https://w3id.org/costumeCore/ontology/mink%20fur",
+    uri="https://w3id.org/costumeCore/ontology/CC00291",
     wikidata_id="Q1262096",
 )
 CC00292 = CostumeCoreTerm(
@@ -4679,7 +4679,7 @@ CC00292 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4688,7 +4688,7 @@ CC00292 = CostumeCoreTerm(
     display_name_en="""mother of pearl""",
     features=("otherMaterials", "material",),
     id="CC00292",
-    uri="https://w3id.org/costumeCore/ontology/mother%20of%20pearl",
+    uri="https://w3id.org/costumeCore/ontology/CC00292",
     wikidata_id=None,
 )
 CC00293 = CostumeCoreTerm(
@@ -4697,7 +4697,7 @@ CC00293 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4706,7 +4706,7 @@ CC00293 = CostumeCoreTerm(
     display_name_en="""muslin""",
     features=("textileMaterials", "material",),
     id="CC00293",
-    uri="https://w3id.org/costumeCore/ontology/muslin",
+    uri="https://w3id.org/costumeCore/ontology/CC00293",
     wikidata_id=None,
 )
 CC00294 = CostumeCoreTerm(
@@ -4715,7 +4715,7 @@ CC00294 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4724,7 +4724,7 @@ CC00294 = CostumeCoreTerm(
     display_name_en="""organza""",
     features=("textileMaterials", "material",),
     id="CC00294",
-    uri="https://w3id.org/costumeCore/ontology/organza",
+    uri="https://w3id.org/costumeCore/ontology/CC00294",
     wikidata_id=None,
 )
 CC00295 = CostumeCoreTerm(
@@ -4733,7 +4733,7 @@ CC00295 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4742,7 +4742,7 @@ CC00295 = CostumeCoreTerm(
     display_name_en="""paint""",
     features=("otherMaterials", "material",),
     id="CC00295",
-    uri="https://w3id.org/costumeCore/ontology/paint",
+    uri="https://w3id.org/costumeCore/ontology/CC00295",
     wikidata_id=None,
 )
 CC00296 = CostumeCoreTerm(
@@ -4751,7 +4751,7 @@ CC00296 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4760,7 +4760,7 @@ CC00296 = CostumeCoreTerm(
     display_name_en="""paper""",
     features=("otherMaterials", "material",),
     id="CC00296",
-    uri="https://w3id.org/costumeCore/ontology/paper",
+    uri="https://w3id.org/costumeCore/ontology/CC00296",
     wikidata_id=None,
 )
 CC00297 = CostumeCoreTerm(
@@ -4769,7 +4769,7 @@ CC00297 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4778,7 +4778,7 @@ CC00297 = CostumeCoreTerm(
     display_name_en="""pearl""",
     features=("otherMaterials", "material",),
     id="CC00297",
-    uri="https://w3id.org/costumeCore/ontology/pearl",
+    uri="https://w3id.org/costumeCore/ontology/CC00297",
     wikidata_id=None,
 )
 CC00298 = CostumeCoreTerm(
@@ -4787,7 +4787,7 @@ CC00298 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4796,7 +4796,7 @@ CC00298 = CostumeCoreTerm(
     display_name_en="""pi\xf1a cloth""",
     features=("textileMaterials", "material",),
     id="CC00298",
-    uri="https://w3id.org/costumeCore/ontology/pi%C3%B1a%20cloth",
+    uri="https://w3id.org/costumeCore/ontology/CC00298",
     wikidata_id=None,
 )
 CC00299 = CostumeCoreTerm(
@@ -4805,7 +4805,7 @@ CC00299 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4814,7 +4814,7 @@ CC00299 = CostumeCoreTerm(
     display_name_en="""pineapple fiber""",
     features=("fiber", "material",),
     id="CC00299",
-    uri="https://w3id.org/costumeCore/ontology/pineapple%20fiber",
+    uri="https://w3id.org/costumeCore/ontology/CC00299",
     wikidata_id=None,
 )
 CC00300 = CostumeCoreTerm(
@@ -4823,7 +4823,7 @@ CC00300 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4832,7 +4832,7 @@ CC00300 = CostumeCoreTerm(
     display_name_en="""plaid (pattern)""",
     features=("pattern",),
     id="CC00300",
-    uri="https://w3id.org/costumeCore/ontology/plaid%20%28pattern%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00300",
     wikidata_id=None,
 )
 CC00301 = CostumeCoreTerm(
@@ -4841,7 +4841,7 @@ CC00301 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4850,7 +4850,7 @@ CC00301 = CostumeCoreTerm(
     display_name_en="""pongee""",
     features=None,
     id="CC00301",
-    uri="https://w3id.org/costumeCore/ontology/pongee",
+    uri="https://w3id.org/costumeCore/ontology/CC00301",
     wikidata_id=None,
 )
 CC00302 = CostumeCoreTerm(
@@ -4859,7 +4859,7 @@ CC00302 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4868,7 +4868,7 @@ CC00302 = CostumeCoreTerm(
     display_name_en="""porcelain""",
     features=("otherMaterials", "material",),
     id="CC00302",
-    uri="https://w3id.org/costumeCore/ontology/porcelain",
+    uri="https://w3id.org/costumeCore/ontology/CC00302",
     wikidata_id=None,
 )
 CC00303 = CostumeCoreTerm(
@@ -4877,7 +4877,7 @@ CC00303 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4886,7 +4886,7 @@ CC00303 = CostumeCoreTerm(
     display_name_en="""raffia""",
     features=("fiber", "material",),
     id="CC00303",
-    uri="https://w3id.org/costumeCore/ontology/raffia",
+    uri="https://w3id.org/costumeCore/ontology/CC00303",
     wikidata_id=None,
 )
 CC00304 = CostumeCoreTerm(
@@ -4895,7 +4895,7 @@ CC00304 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4904,7 +4904,7 @@ CC00304 = CostumeCoreTerm(
     display_name_en="""rhinestones""",
     features=("trimming", "material",),
     id="CC00304",
-    uri="https://w3id.org/costumeCore/ontology/rhinestones",
+    uri="https://w3id.org/costumeCore/ontology/CC00304",
     wikidata_id=None,
 )
 CC00305 = CostumeCoreTerm(
@@ -4913,7 +4913,7 @@ CC00305 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4922,7 +4922,7 @@ CC00305 = CostumeCoreTerm(
     display_name_en="""rope""",
     features=("otherMaterials", "material",),
     id="CC00305",
-    uri="https://w3id.org/costumeCore/ontology/rope",
+    uri="https://w3id.org/costumeCore/ontology/CC00305",
     wikidata_id=None,
 )
 CC00306 = CostumeCoreTerm(
@@ -4931,7 +4931,7 @@ CC00306 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4940,7 +4940,7 @@ CC00306 = CostumeCoreTerm(
     display_name_en="""rubber""",
     features=("otherMaterials", "material",),
     id="CC00306",
-    uri="https://w3id.org/costumeCore/ontology/rubber",
+    uri="https://w3id.org/costumeCore/ontology/CC00306",
     wikidata_id=None,
 )
 CC00307 = CostumeCoreTerm(
@@ -4949,7 +4949,7 @@ CC00307 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4958,7 +4958,7 @@ CC00307 = CostumeCoreTerm(
     display_name_en="""sequins""",
     features=("trimming", "material",),
     id="CC00307",
-    uri="https://w3id.org/costumeCore/ontology/sequins",
+    uri="https://w3id.org/costumeCore/ontology/CC00307",
     wikidata_id=None,
 )
 CC00308 = CostumeCoreTerm(
@@ -4967,7 +4967,7 @@ CC00308 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4976,7 +4976,7 @@ CC00308 = CostumeCoreTerm(
     display_name_en="""skin""",
     features=("otherMaterials", "material",),
     id="CC00308",
-    uri="https://w3id.org/costumeCore/ontology/skin",
+    uri="https://w3id.org/costumeCore/ontology/CC00308",
     wikidata_id=None,
 )
 CC00309 = CostumeCoreTerm(
@@ -4985,7 +4985,7 @@ CC00309 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -4994,7 +4994,7 @@ CC00309 = CostumeCoreTerm(
     display_name_en="""starch""",
     features=None,
     id="CC00309",
-    uri="https://w3id.org/costumeCore/ontology/starch",
+    uri="https://w3id.org/costumeCore/ontology/CC00309",
     wikidata_id=None,
 )
 CC00310 = CostumeCoreTerm(
@@ -5003,7 +5003,7 @@ CC00310 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5012,7 +5012,7 @@ CC00310 = CostumeCoreTerm(
     display_name_en="""steel""",
     features=None,
     id="CC00310",
-    uri="https://w3id.org/costumeCore/ontology/steel",
+    uri="https://w3id.org/costumeCore/ontology/CC00310",
     wikidata_id=None,
 )
 CC00311 = CostumeCoreTerm(
@@ -5021,7 +5021,7 @@ CC00311 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5030,7 +5030,7 @@ CC00311 = CostumeCoreTerm(
     display_name_en="""straw""",
     features=("otherMaterials", "material",),
     id="CC00311",
-    uri="https://w3id.org/costumeCore/ontology/straw",
+    uri="https://w3id.org/costumeCore/ontology/CC00311",
     wikidata_id=None,
 )
 CC00312 = CostumeCoreTerm(
@@ -5039,7 +5039,7 @@ CC00312 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5048,7 +5048,7 @@ CC00312 = CostumeCoreTerm(
     display_name_en="""tassel""",
     features=("trimming", "material",),
     id="CC00312",
-    uri="https://w3id.org/costumeCore/ontology/tassel",
+    uri="https://w3id.org/costumeCore/ontology/CC00312",
     wikidata_id=None,
 )
 CC00313 = CostumeCoreTerm(
@@ -5057,7 +5057,7 @@ CC00313 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5066,7 +5066,7 @@ CC00313 = CostumeCoreTerm(
     display_name_en="""thread""",
     features=("otherMaterials", "material",),
     id="CC00313",
-    uri="https://w3id.org/costumeCore/ontology/thread",
+    uri="https://w3id.org/costumeCore/ontology/CC00313",
     wikidata_id=None,
 )
 CC00314 = CostumeCoreTerm(
@@ -5075,7 +5075,7 @@ CC00314 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5084,7 +5084,7 @@ CC00314 = CostumeCoreTerm(
     display_name_en="""trimming""",
     features=("material",),
     id="CC00314",
-    uri="https://w3id.org/costumeCore/ontology/trimming",
+    uri="https://w3id.org/costumeCore/ontology/CC00314",
     wikidata_id=None,
 )
 CC00315 = CostumeCoreTerm(
@@ -5093,7 +5093,7 @@ CC00315 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5102,7 +5102,7 @@ CC00315 = CostumeCoreTerm(
     display_name_en="""tulle""",
     features=("textileMaterials", "material",),
     id="CC00315",
-    uri="https://w3id.org/costumeCore/ontology/tulle",
+    uri="https://w3id.org/costumeCore/ontology/CC00315",
     wikidata_id=None,
 )
 CC00316 = CostumeCoreTerm(
@@ -5111,7 +5111,7 @@ CC00316 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5120,7 +5120,7 @@ CC00316 = CostumeCoreTerm(
     display_name_en="""twill""",
     features=("textileMaterials", "material",),
     id="CC00316",
-    uri="https://w3id.org/costumeCore/ontology/twill",
+    uri="https://w3id.org/costumeCore/ontology/CC00316",
     wikidata_id=None,
 )
 CC00317 = CostumeCoreTerm(
@@ -5129,7 +5129,7 @@ CC00317 = CostumeCoreTerm(
     display_name_en="""twill tape""",
     features=("trimming", "material",),
     id="CC00317",
-    uri="https://w3id.org/costumeCore/ontology/twill%20tape",
+    uri="https://w3id.org/costumeCore/ontology/CC00317",
     wikidata_id=None,
 )
 CC00318 = CostumeCoreTerm(
@@ -5138,7 +5138,7 @@ CC00318 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5147,7 +5147,7 @@ CC00318 = CostumeCoreTerm(
     display_name_en="""vinyl""",
     features=("otherMaterials", "material",),
     id="CC00318",
-    uri="https://w3id.org/costumeCore/ontology/vinyl",
+    uri="https://w3id.org/costumeCore/ontology/CC00318",
     wikidata_id=None,
 )
 CC00319 = CostumeCoreTerm(
@@ -5165,7 +5165,7 @@ CC00319 = CostumeCoreTerm(
     display_name_en="""voile""",
     features=("textileMaterials", "material",),
     id="CC00319",
-    uri="https://w3id.org/costumeCore/ontology/voile",
+    uri="https://w3id.org/costumeCore/ontology/CC00319",
     wikidata_id="Q2143346",
 )
 CC00320 = CostumeCoreTerm(
@@ -5174,7 +5174,7 @@ CC00320 = CostumeCoreTerm(
     display_name_en="""weave""",
     features=None,
     id="CC00320",
-    uri="https://w3id.org/costumeCore/ontology/weave",
+    uri="https://w3id.org/costumeCore/ontology/CC00320",
     wikidata_id="Q2862826",
 )
 CC00321 = CostumeCoreTerm(
@@ -5183,7 +5183,7 @@ CC00321 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5192,7 +5192,7 @@ CC00321 = CostumeCoreTerm(
     display_name_en="""webbing""",
     features=("trimming", "material",),
     id="CC00321",
-    uri="https://w3id.org/costumeCore/ontology/webbing",
+    uri="https://w3id.org/costumeCore/ontology/CC00321",
     wikidata_id=None,
 )
 CC00322 = CostumeCoreTerm(
@@ -5201,7 +5201,7 @@ CC00322 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5210,7 +5210,7 @@ CC00322 = CostumeCoreTerm(
     display_name_en="""wire""",
     features=("otherMaterials", "material",),
     id="CC00322",
-    uri="https://w3id.org/costumeCore/ontology/wire",
+    uri="https://w3id.org/costumeCore/ontology/CC00322",
     wikidata_id=None,
 )
 CC00323 = CostumeCoreTerm(
@@ -5219,7 +5219,7 @@ CC00323 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5228,7 +5228,7 @@ CC00323 = CostumeCoreTerm(
     display_name_en="""coatdress""",
     features=("dressType",),
     id="CC00323",
-    uri="https://w3id.org/costumeCore/ontology/coatdress",
+    uri="https://w3id.org/costumeCore/ontology/CC00323",
     wikidata_id="Q16949531",
 )
 CC00324 = CostumeCoreTerm(
@@ -5237,7 +5237,7 @@ CC00324 = CostumeCoreTerm(
     display_name_en="""hoop skirt""",
     features=None,
     id="CC00324",
-    uri="https://w3id.org/costumeCore/ontology/hoop%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00324",
     wikidata_id=None,
 )
 CC00325 = CostumeCoreTerm(
@@ -5255,7 +5255,7 @@ CC00325 = CostumeCoreTerm(
     display_name_en="""tucks""",
     features=("hasTechnique",),
     id="CC00325",
-    uri="https://w3id.org/costumeCore/ontology/tucks",
+    uri="https://w3id.org/costumeCore/ontology/CC00325",
     wikidata_id="Q858090",
 )
 CC00326 = CostumeCoreTerm(
@@ -5273,7 +5273,7 @@ CC00326 = CostumeCoreTerm(
     display_name_en="""sleeveless""",
     features=("sleeveType",),
     id="CC00326",
-    uri="https://w3id.org/costumeCore/ontology/sleeveless",
+    uri="https://w3id.org/costumeCore/ontology/CC00326",
     wikidata_id="Q29741669",
 )
 CC00327 = CostumeCoreTerm(
@@ -5282,7 +5282,7 @@ CC00327 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5291,7 +5291,7 @@ CC00327 = CostumeCoreTerm(
     display_name_en="""engageante""",
     features=("costumeComponents",),
     id="CC00327",
-    uri="https://w3id.org/costumeCore/ontology/engageante",
+    uri="https://w3id.org/costumeCore/ontology/CC00327",
     wikidata_id="Q1341710",
 )
 CC00328 = CostumeCoreTerm(
@@ -5309,7 +5309,7 @@ CC00328 = CostumeCoreTerm(
     display_name_en="""foresleeve""",
     features=None,
     id="CC00328",
-    uri="https://w3id.org/costumeCore/ontology/foresleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00328",
     wikidata_id="Q73540794",
 )
 CC00331 = CostumeCoreTerm(
@@ -5318,7 +5318,7 @@ CC00331 = CostumeCoreTerm(
     display_name_en="""straight grain""",
     features=None,
     id="CC00331",
-    uri="https://w3id.org/costumeCore/ontology/straight%20grain",
+    uri="https://w3id.org/costumeCore/ontology/CC00331",
     wikidata_id=None,
 )
 CC00332 = CostumeCoreTerm(
@@ -5327,7 +5327,7 @@ CC00332 = CostumeCoreTerm(
     display_name_en="""lengthwise grain""",
     features=None,
     id="CC00332",
-    uri="https://w3id.org/costumeCore/ontology/lengthwise%20grain",
+    uri="https://w3id.org/costumeCore/ontology/CC00332",
     wikidata_id=None,
 )
 CC00333 = CostumeCoreTerm(
@@ -5336,7 +5336,7 @@ CC00333 = CostumeCoreTerm(
     display_name_en="""crosswise grain""",
     features=None,
     id="CC00333",
-    uri="https://w3id.org/costumeCore/ontology/crosswise%20grain",
+    uri="https://w3id.org/costumeCore/ontology/CC00333",
     wikidata_id=None,
 )
 CC00334 = CostumeCoreTerm(
@@ -5345,7 +5345,7 @@ CC00334 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5354,7 +5354,7 @@ CC00334 = CostumeCoreTerm(
     display_name_en="""dolman""",
     features=None,
     id="CC00334",
-    uri="https://w3id.org/costumeCore/ontology/dolman",
+    uri="https://w3id.org/costumeCore/ontology/CC00334",
     wikidata_id=None,
 )
 CC00335 = CostumeCoreTerm(
@@ -5363,7 +5363,7 @@ CC00335 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5372,7 +5372,7 @@ CC00335 = CostumeCoreTerm(
     display_name_en="""dress""",
     features=("workType",),
     id="CC00335",
-    uri="https://w3id.org/costumeCore/ontology/dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00335",
     wikidata_id=None,
 )
 CC00336 = CostumeCoreTerm(
@@ -5381,7 +5381,7 @@ CC00336 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5390,7 +5390,7 @@ CC00336 = CostumeCoreTerm(
     display_name_en="""bodice""",
     features=None,
     id="CC00336",
-    uri="https://w3id.org/costumeCore/ontology/bodice",
+    uri="https://w3id.org/costumeCore/ontology/CC00336",
     wikidata_id=None,
 )
 CC00337 = CostumeCoreTerm(
@@ -5399,7 +5399,7 @@ CC00337 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5408,7 +5408,7 @@ CC00337 = CostumeCoreTerm(
     display_name_en="""blouse""",
     features=None,
     id="CC00337",
-    uri="https://w3id.org/costumeCore/ontology/blouse",
+    uri="https://w3id.org/costumeCore/ontology/CC00337",
     wikidata_id=None,
 )
 CC00338 = CostumeCoreTerm(
@@ -5426,7 +5426,7 @@ CC00338 = CostumeCoreTerm(
     display_name_en="""forward sleeve""",
     features=None,
     id="CC00338",
-    uri="https://w3id.org/costumeCore/ontology/forward%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00338",
     wikidata_id="Q67608772",
 )
 CC00339 = CostumeCoreTerm(
@@ -5435,7 +5435,7 @@ CC00339 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5444,7 +5444,7 @@ CC00339 = CostumeCoreTerm(
     display_name_en="""jacket""",
     features=("workType",),
     id="CC00339",
-    uri="https://w3id.org/costumeCore/ontology/jacket",
+    uri="https://w3id.org/costumeCore/ontology/CC00339",
     wikidata_id=None,
 )
 CC00340 = CostumeCoreTerm(
@@ -5453,7 +5453,7 @@ CC00340 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5462,7 +5462,7 @@ CC00340 = CostumeCoreTerm(
     display_name_en="""shirt""",
     features=None,
     id="CC00340",
-    uri="https://w3id.org/costumeCore/ontology/shirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00340",
     wikidata_id=None,
 )
 CC00341 = CostumeCoreTerm(
@@ -5471,7 +5471,7 @@ CC00341 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5480,7 +5480,7 @@ CC00341 = CostumeCoreTerm(
     display_name_en="""skirt""",
     features=("workType",),
     id="CC00341",
-    uri="https://w3id.org/costumeCore/ontology/skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00341",
     wikidata_id=None,
 )
 CC00342 = CostumeCoreTerm(
@@ -5489,7 +5489,7 @@ CC00342 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5498,7 +5498,7 @@ CC00342 = CostumeCoreTerm(
     display_name_en="""suit""",
     features=("workType",),
     id="CC00342",
-    uri="https://w3id.org/costumeCore/ontology/suit",
+    uri="https://w3id.org/costumeCore/ontology/CC00342",
     wikidata_id=None,
 )
 CC00343 = CostumeCoreTerm(
@@ -5507,7 +5507,7 @@ CC00343 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5516,7 +5516,7 @@ CC00343 = CostumeCoreTerm(
     display_name_en="""sweater""",
     features=("workType",),
     id="CC00343",
-    uri="https://w3id.org/costumeCore/ontology/sweater",
+    uri="https://w3id.org/costumeCore/ontology/CC00343",
     wikidata_id=None,
 )
 CC00344 = CostumeCoreTerm(
@@ -5525,7 +5525,7 @@ CC00344 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5534,7 +5534,7 @@ CC00344 = CostumeCoreTerm(
     display_name_en="""pants""",
     features=("workType",),
     id="CC00344",
-    uri="https://w3id.org/costumeCore/ontology/pants",
+    uri="https://w3id.org/costumeCore/ontology/CC00344",
     wikidata_id=None,
 )
 CC00345 = CostumeCoreTerm(
@@ -5543,7 +5543,7 @@ CC00345 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5552,7 +5552,7 @@ CC00345 = CostumeCoreTerm(
     display_name_en="""underwear""",
     features=("function", "icomType", "workType",),
     id="CC00345",
-    uri="https://w3id.org/costumeCore/ontology/underwear",
+    uri="https://w3id.org/costumeCore/ontology/CC00345",
     wikidata_id=None,
 )
 CC00346 = CostumeCoreTerm(
@@ -5561,7 +5561,7 @@ CC00346 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5570,7 +5570,7 @@ CC00346 = CostumeCoreTerm(
     display_name_en="""vest""",
     features=("workType",),
     id="CC00346",
-    uri="https://w3id.org/costumeCore/ontology/vest",
+    uri="https://w3id.org/costumeCore/ontology/CC00346",
     wikidata_id=None,
 )
 CC00348 = CostumeCoreTerm(
@@ -5579,7 +5579,7 @@ CC00348 = CostumeCoreTerm(
     display_name_en="""center back closure""",
     features=("closurePlacement",),
     id="CC00348",
-    uri="https://w3id.org/costumeCore/ontology/center%20back%20closure",
+    uri="https://w3id.org/costumeCore/ontology/CC00348",
     wikidata_id=None,
 )
 CC00349 = CostumeCoreTerm(
@@ -5588,7 +5588,7 @@ CC00349 = CostumeCoreTerm(
     display_name_en="""center front closure""",
     features=("closurePlacement",),
     id="CC00349",
-    uri="https://w3id.org/costumeCore/ontology/center%20front%20closure",
+    uri="https://w3id.org/costumeCore/ontology/CC00349",
     wikidata_id=None,
 )
 CC00350 = CostumeCoreTerm(
@@ -5606,7 +5606,7 @@ CC00350 = CostumeCoreTerm(
     display_name_en="""double-breasted""",
     features=("closurePlacement",),
     id="CC00350",
-    uri="https://w3id.org/costumeCore/ontology/double-breasted",
+    uri="https://w3id.org/costumeCore/ontology/CC00350",
     wikidata_id="Q3037506",
 )
 CC00351 = CostumeCoreTerm(
@@ -5615,7 +5615,7 @@ CC00351 = CostumeCoreTerm(
     display_name_en="""neck closure""",
     features=("closurePlacement",),
     id="CC00351",
-    uri="https://w3id.org/costumeCore/ontology/neck%20closure",
+    uri="https://w3id.org/costumeCore/ontology/CC00351",
     wikidata_id=None,
 )
 CC00352 = CostumeCoreTerm(
@@ -5624,7 +5624,7 @@ CC00352 = CostumeCoreTerm(
     display_name_en="""off-center back closure""",
     features=("closurePlacement",),
     id="CC00352",
-    uri="https://w3id.org/costumeCore/ontology/off-center%20back%20closure",
+    uri="https://w3id.org/costumeCore/ontology/CC00352",
     wikidata_id=None,
 )
 CC00353 = CostumeCoreTerm(
@@ -5633,7 +5633,7 @@ CC00353 = CostumeCoreTerm(
     display_name_en="""off-center front closure""",
     features=("closurePlacement",),
     id="CC00353",
-    uri="https://w3id.org/costumeCore/ontology/off-center%20front%20closure",
+    uri="https://w3id.org/costumeCore/ontology/CC00353",
     wikidata_id=None,
 )
 CC00354 = CostumeCoreTerm(
@@ -5642,7 +5642,7 @@ CC00354 = CostumeCoreTerm(
     display_name_en="""side closure""",
     features=("closurePlacement",),
     id="CC00354",
-    uri="https://w3id.org/costumeCore/ontology/side%20closure",
+    uri="https://w3id.org/costumeCore/ontology/CC00354",
     wikidata_id=None,
 )
 CC00355 = CostumeCoreTerm(
@@ -5660,7 +5660,7 @@ CC00355 = CostumeCoreTerm(
     display_name_en="""one sleeve""",
     features=("sleeveType",),
     id="CC00355",
-    uri="https://w3id.org/costumeCore/ontology/one%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00355",
     wikidata_id="Q29655994",
 )
 CC00356 = CostumeCoreTerm(
@@ -5669,7 +5669,7 @@ CC00356 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5678,7 +5678,7 @@ CC00356 = CostumeCoreTerm(
     display_name_en="""oversleeve""",
     features=("sleeveType",),
     id="CC00356",
-    uri="https://w3id.org/costumeCore/ontology/oversleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00356",
     wikidata_id="Q29129961",
 )
 CC00357 = CostumeCoreTerm(
@@ -5687,7 +5687,7 @@ CC00357 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5696,7 +5696,7 @@ CC00357 = CostumeCoreTerm(
     display_name_en="""pagoda sleeve""",
     features=("sleeveType",),
     id="CC00357",
-    uri="https://w3id.org/costumeCore/ontology/pagoda%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00357",
     wikidata_id="Q21972880",
 )
 CC00358 = CostumeCoreTerm(
@@ -5705,7 +5705,7 @@ CC00358 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5714,7 +5714,7 @@ CC00358 = CostumeCoreTerm(
     display_name_en="""sleeve""",
     features=None,
     id="CC00358",
-    uri="https://w3id.org/costumeCore/ontology/sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00358",
     wikidata_id=None,
 )
 CC00362 = CostumeCoreTerm(
@@ -5732,7 +5732,7 @@ CC00362 = CostumeCoreTerm(
     display_name_en="""water sleeve""",
     features=("sleeveType",),
     id="CC00362",
-    uri="https://w3id.org/costumeCore/ontology/water%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00362",
     wikidata_id="Q766204",
 )
 CC00363 = CostumeCoreTerm(
@@ -5750,7 +5750,7 @@ CC00363 = CostumeCoreTerm(
     display_name_en="""trumpet sleeve""",
     features=None,
     id="CC00363",
-    uri="https://w3id.org/costumeCore/ontology/trumpet%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00363",
     wikidata_id="Q73540348",
 )
 CC00364 = CostumeCoreTerm(
@@ -5759,7 +5759,7 @@ CC00364 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5768,7 +5768,7 @@ CC00364 = CostumeCoreTerm(
     display_name_en="""womenswear""",
     features=("gender",),
     id="CC00364",
-    uri="https://w3id.org/costumeCore/ontology/womenswear",
+    uri="https://w3id.org/costumeCore/ontology/CC00364",
     wikidata_id=None,
 )
 CC00365 = CostumeCoreTerm(
@@ -5777,7 +5777,7 @@ CC00365 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5786,7 +5786,7 @@ CC00365 = CostumeCoreTerm(
     display_name_en="""menswear""",
     features=("gender",),
     id="CC00365",
-    uri="https://w3id.org/costumeCore/ontology/menswear",
+    uri="https://w3id.org/costumeCore/ontology/CC00365",
     wikidata_id=None,
 )
 CC00366 = CostumeCoreTerm(
@@ -5795,7 +5795,7 @@ CC00366 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5804,7 +5804,7 @@ CC00366 = CostumeCoreTerm(
     display_name_en="""unisex clothing""",
     features=("gender",),
     id="CC00366",
-    uri="https://w3id.org/costumeCore/ontology/unisex%20clothing",
+    uri="https://w3id.org/costumeCore/ontology/CC00366",
     wikidata_id=None,
 )
 CC00367 = CostumeCoreTerm(
@@ -5813,7 +5813,7 @@ CC00367 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5822,7 +5822,7 @@ CC00367 = CostumeCoreTerm(
     display_name_en="""undersleeve""",
     features=("sleeveType",),
     id="CC00367",
-    uri="https://w3id.org/costumeCore/ontology/undersleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00367",
     wikidata_id="Q29130192",
 )
 CC00368 = CostumeCoreTerm(
@@ -5831,7 +5831,7 @@ CC00368 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5840,7 +5840,7 @@ CC00368 = CostumeCoreTerm(
     display_name_en="""day wear""",
     features=("function",),
     id="CC00368",
-    uri="https://w3id.org/costumeCore/ontology/day%20wear",
+    uri="https://w3id.org/costumeCore/ontology/CC00368",
     wikidata_id=None,
 )
 CC00369 = CostumeCoreTerm(
@@ -5849,7 +5849,7 @@ CC00369 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5858,7 +5858,7 @@ CC00369 = CostumeCoreTerm(
     display_name_en="""dinner dress""",
     features=None,
     id="CC00369",
-    uri="https://w3id.org/costumeCore/ontology/dinner%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00369",
     wikidata_id=None,
 )
 CC00370 = CostumeCoreTerm(
@@ -5867,7 +5867,7 @@ CC00370 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5876,7 +5876,7 @@ CC00370 = CostumeCoreTerm(
     display_name_en="""evening dress""",
     features=("function",),
     id="CC00370",
-    uri="https://w3id.org/costumeCore/ontology/evening%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00370",
     wikidata_id=None,
 )
 CC00371 = CostumeCoreTerm(
@@ -5885,7 +5885,7 @@ CC00371 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5894,7 +5894,7 @@ CC00371 = CostumeCoreTerm(
     display_name_en="""academic costume""",
     features=("function",),
     id="CC00371",
-    uri="https://w3id.org/costumeCore/ontology/academic%20costume",
+    uri="https://w3id.org/costumeCore/ontology/CC00371",
     wikidata_id="Q1349227",
 )
 CC00372 = CostumeCoreTerm(
@@ -5903,7 +5903,7 @@ CC00372 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5912,7 +5912,7 @@ CC00372 = CostumeCoreTerm(
     display_name_en="""military uniform""",
     features=("function",),
     id="CC00372",
-    uri="https://w3id.org/costumeCore/ontology/military%20uniform",
+    uri="https://w3id.org/costumeCore/ontology/CC00372",
     wikidata_id=None,
 )
 CC00373 = CostumeCoreTerm(
@@ -5921,7 +5921,7 @@ CC00373 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5930,7 +5930,7 @@ CC00373 = CostumeCoreTerm(
     display_name_en="""morning dress""",
     features=None,
     id="CC00373",
-    uri="https://w3id.org/costumeCore/ontology/morning%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00373",
     wikidata_id=None,
 )
 CC00374 = CostumeCoreTerm(
@@ -5939,7 +5939,7 @@ CC00374 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5948,7 +5948,7 @@ CC00374 = CostumeCoreTerm(
     display_name_en="""mourning dress""",
     features=("function",),
     id="CC00374",
-    uri="https://w3id.org/costumeCore/ontology/mourning%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00374",
     wikidata_id=None,
 )
 CC00375 = CostumeCoreTerm(
@@ -5957,7 +5957,7 @@ CC00375 = CostumeCoreTerm(
     display_name_en="""party dress""",
     features=None,
     id="CC00375",
-    uri="https://w3id.org/costumeCore/ontology/party%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00375",
     wikidata_id="Q7140985",
 )
 CC00376 = CostumeCoreTerm(
@@ -5966,7 +5966,7 @@ CC00376 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5975,7 +5975,7 @@ CC00376 = CostumeCoreTerm(
     display_name_en="""school uniform""",
     features=("function",),
     id="CC00376",
-    uri="https://w3id.org/costumeCore/ontology/school%20uniform",
+    uri="https://w3id.org/costumeCore/ontology/CC00376",
     wikidata_id=None,
 )
 CC00377 = CostumeCoreTerm(
@@ -5984,7 +5984,7 @@ CC00377 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -5993,7 +5993,7 @@ CC00377 = CostumeCoreTerm(
     display_name_en="""sports uniform""",
     features=None,
     id="CC00377",
-    uri="https://w3id.org/costumeCore/ontology/sports%20uniform",
+    uri="https://w3id.org/costumeCore/ontology/CC00377",
     wikidata_id=None,
 )
 CC00378 = CostumeCoreTerm(
@@ -6002,7 +6002,7 @@ CC00378 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6011,7 +6011,7 @@ CC00378 = CostumeCoreTerm(
     display_name_en="""uniform""",
     features=("function",),
     id="CC00378",
-    uri="https://w3id.org/costumeCore/ontology/uniform",
+    uri="https://w3id.org/costumeCore/ontology/CC00378",
     wikidata_id=None,
 )
 CC00379 = CostumeCoreTerm(
@@ -6020,7 +6020,7 @@ CC00379 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6029,7 +6029,7 @@ CC00379 = CostumeCoreTerm(
     display_name_en="""wedding dress""",
     features=("dressType",),
     id="CC00379",
-    uri="https://w3id.org/costumeCore/ontology/wedding%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00379",
     wikidata_id=None,
 )
 CC00380 = CostumeCoreTerm(
@@ -6038,7 +6038,7 @@ CC00380 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6047,7 +6047,7 @@ CC00380 = CostumeCoreTerm(
     display_name_en="""work clothes""",
     features=("function",),
     id="CC00380",
-    uri="https://w3id.org/costumeCore/ontology/work%20clothes",
+    uri="https://w3id.org/costumeCore/ontology/CC00380",
     wikidata_id=None,
 )
 CC00382 = CostumeCoreTerm(
@@ -6056,7 +6056,7 @@ CC00382 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6065,7 +6065,7 @@ CC00382 = CostumeCoreTerm(
     display_name_en="""childhood""",
     features=("lifeStages",),
     id="CC00382",
-    uri="https://w3id.org/costumeCore/ontology/childhood",
+    uri="https://w3id.org/costumeCore/ontology/CC00382",
     wikidata_id=None,
 )
 CC00383 = CostumeCoreTerm(
@@ -6074,7 +6074,7 @@ CC00383 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6083,7 +6083,7 @@ CC00383 = CostumeCoreTerm(
     display_name_en="""infancy""",
     features=("lifeStages",),
     id="CC00383",
-    uri="https://w3id.org/costumeCore/ontology/infancy",
+    uri="https://w3id.org/costumeCore/ontology/CC00383",
     wikidata_id=None,
 )
 CC00384 = CostumeCoreTerm(
@@ -6092,7 +6092,7 @@ CC00384 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6101,7 +6101,7 @@ CC00384 = CostumeCoreTerm(
     display_name_en="""adolescence""",
     features=("lifeStages",),
     id="CC00384",
-    uri="https://w3id.org/costumeCore/ontology/adolescence",
+    uri="https://w3id.org/costumeCore/ontology/CC00384",
     wikidata_id=None,
 )
 CC00385 = CostumeCoreTerm(
@@ -6110,7 +6110,7 @@ CC00385 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6119,7 +6119,7 @@ CC00385 = CostumeCoreTerm(
     display_name_en="""adulthood""",
     features=("lifeStages",),
     id="CC00385",
-    uri="https://w3id.org/costumeCore/ontology/adulthood",
+    uri="https://w3id.org/costumeCore/ontology/CC00385",
     wikidata_id=None,
 )
 CC00386 = CostumeCoreTerm(
@@ -6128,7 +6128,7 @@ CC00386 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6137,7 +6137,7 @@ CC00386 = CostumeCoreTerm(
     display_name_en="""middle age""",
     features=("lifeStages",),
     id="CC00386",
-    uri="https://w3id.org/costumeCore/ontology/middle%20age",
+    uri="https://w3id.org/costumeCore/ontology/CC00386",
     wikidata_id=None,
 )
 CC00387 = CostumeCoreTerm(
@@ -6146,7 +6146,7 @@ CC00387 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6155,7 +6155,7 @@ CC00387 = CostumeCoreTerm(
     display_name_en="""old age""",
     features=("lifeStages",),
     id="CC00387",
-    uri="https://w3id.org/costumeCore/ontology/old%20age",
+    uri="https://w3id.org/costumeCore/ontology/CC00387",
     wikidata_id=None,
 )
 CC00389 = CostumeCoreTerm(
@@ -6164,7 +6164,7 @@ CC00389 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6173,7 +6173,7 @@ CC00389 = CostumeCoreTerm(
     display_name_en="""working class""",
     features=("socioEconomicClass",),
     id="CC00389",
-    uri="https://w3id.org/costumeCore/ontology/working%20class",
+    uri="https://w3id.org/costumeCore/ontology/CC00389",
     wikidata_id=None,
 )
 CC00390 = CostumeCoreTerm(
@@ -6182,7 +6182,7 @@ CC00390 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6191,7 +6191,7 @@ CC00390 = CostumeCoreTerm(
     display_name_en="""middle class""",
     features=("socioEconomicClass",),
     id="CC00390",
-    uri="https://w3id.org/costumeCore/ontology/middle%20class",
+    uri="https://w3id.org/costumeCore/ontology/CC00390",
     wikidata_id=None,
 )
 CC00391 = CostumeCoreTerm(
@@ -6200,7 +6200,7 @@ CC00391 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6209,7 +6209,7 @@ CC00391 = CostumeCoreTerm(
     display_name_en="""upper class""",
     features=("socioEconomicClass",),
     id="CC00391",
-    uri="https://w3id.org/costumeCore/ontology/upper%20class",
+    uri="https://w3id.org/costumeCore/ontology/CC00391",
     wikidata_id=None,
 )
 CC00392 = CostumeCoreTerm(
@@ -6227,7 +6227,7 @@ CC00392 = CostumeCoreTerm(
     display_name_en="""virago sleeve""",
     features=None,
     id="CC00392",
-    uri="https://w3id.org/costumeCore/ontology/virago%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00392",
     wikidata_id="Q7933576",
 )
 CC00393 = CostumeCoreTerm(
@@ -6245,7 +6245,7 @@ CC00393 = CostumeCoreTerm(
     display_name_en="""darts""",
     features=("hasTechnique",),
     id="CC00393",
-    uri="https://w3id.org/costumeCore/ontology/darts",
+    uri="https://w3id.org/costumeCore/ontology/CC00393",
     wikidata_id="Q5225562",
 )
 CC00394 = CostumeCoreTerm(
@@ -6254,7 +6254,7 @@ CC00394 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6263,7 +6263,7 @@ CC00394 = CostumeCoreTerm(
     display_name_en="""cuff""",
     features=("costumeComponents",),
     id="CC00394",
-    uri="https://w3id.org/costumeCore/ontology/cuff",
+    uri="https://w3id.org/costumeCore/ontology/CC00394",
     wikidata_id=None,
 )
 CC00395 = CostumeCoreTerm(
@@ -6272,7 +6272,7 @@ CC00395 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6281,7 +6281,7 @@ CC00395 = CostumeCoreTerm(
     display_name_en="""epaulette""",
     features=("costumeComponents",),
     id="CC00395",
-    uri="https://w3id.org/costumeCore/ontology/epaulette",
+    uri="https://w3id.org/costumeCore/ontology/CC00395",
     wikidata_id=None,
 )
 CC00396 = CostumeCoreTerm(
@@ -6290,7 +6290,7 @@ CC00396 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6299,7 +6299,7 @@ CC00396 = CostumeCoreTerm(
     display_name_en="""facing""",
     features=("costumeComponents",),
     id="CC00396",
-    uri="https://w3id.org/costumeCore/ontology/facing",
+    uri="https://w3id.org/costumeCore/ontology/CC00396",
     wikidata_id=None,
 )
 CC00397 = CostumeCoreTerm(
@@ -6308,7 +6308,7 @@ CC00397 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6317,7 +6317,7 @@ CC00397 = CostumeCoreTerm(
     display_name_en="""pocket""",
     features=("costumeComponents",),
     id="CC00397",
-    uri="https://w3id.org/costumeCore/ontology/pocket",
+    uri="https://w3id.org/costumeCore/ontology/CC00397",
     wikidata_id=None,
 )
 CC00398 = CostumeCoreTerm(
@@ -6326,7 +6326,7 @@ CC00398 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6335,7 +6335,7 @@ CC00398 = CostumeCoreTerm(
     display_name_en="""shoulder pad""",
     features=("costumeComponents",),
     id="CC00398",
-    uri="https://w3id.org/costumeCore/ontology/shoulder%20pad",
+    uri="https://w3id.org/costumeCore/ontology/CC00398",
     wikidata_id=None,
 )
 CC00399 = CostumeCoreTerm(
@@ -6344,7 +6344,7 @@ CC00399 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6353,7 +6353,7 @@ CC00399 = CostumeCoreTerm(
     display_name_en="""waistband""",
     features=("costumeComponents",),
     id="CC00399",
-    uri="https://w3id.org/costumeCore/ontology/waistband",
+    uri="https://w3id.org/costumeCore/ontology/CC00399",
     wikidata_id=None,
 )
 CC00400 = CostumeCoreTerm(
@@ -6362,7 +6362,7 @@ CC00400 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6371,7 +6371,7 @@ CC00400 = CostumeCoreTerm(
     display_name_en="""wristband""",
     features=("costumeComponents",),
     id="CC00400",
-    uri="https://w3id.org/costumeCore/ontology/wristband",
+    uri="https://w3id.org/costumeCore/ontology/CC00400",
     wikidata_id=None,
 )
 CC00401 = CostumeCoreTerm(
@@ -6380,7 +6380,7 @@ CC00401 = CostumeCoreTerm(
     display_name_en="""two piece tailored sleeve""",
     features=("sleeveType",),
     id="CC00401",
-    uri="https://w3id.org/costumeCore/ontology/two%20piece%20tailored%20sleeve",
+    uri="https://w3id.org/costumeCore/ontology/CC00401",
     wikidata_id=None,
 )
 CC00402 = CostumeCoreTerm(
@@ -6389,7 +6389,7 @@ CC00402 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6398,7 +6398,7 @@ CC00402 = CostumeCoreTerm(
     display_name_en="""main garment""",
     features=None,
     id="CC00402",
-    uri="https://w3id.org/costumeCore/ontology/main%20garment",
+    uri="https://w3id.org/costumeCore/ontology/CC00402",
     wikidata_id=None,
 )
 CC00403 = CostumeCoreTerm(
@@ -6407,7 +6407,7 @@ CC00403 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6416,7 +6416,7 @@ CC00403 = CostumeCoreTerm(
     display_name_en="""Collection""",
     features=("type",),
     id="CC00403",
-    uri="https://w3id.org/costumeCore/ontology/Collection",
+    uri="https://w3id.org/costumeCore/ontology/CC00403",
     wikidata_id=None,
 )
 CC00404 = CostumeCoreTerm(
@@ -6425,7 +6425,7 @@ CC00404 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6434,7 +6434,7 @@ CC00404 = CostumeCoreTerm(
     display_name_en="""Dataset""",
     features=("type",),
     id="CC00404",
-    uri="https://w3id.org/costumeCore/ontology/Dataset",
+    uri="https://w3id.org/costumeCore/ontology/CC00404",
     wikidata_id=None,
 )
 CC00405 = CostumeCoreTerm(
@@ -6443,7 +6443,7 @@ CC00405 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6452,7 +6452,7 @@ CC00405 = CostumeCoreTerm(
     display_name_en="""Event""",
     features=("type",),
     id="CC00405",
-    uri="https://w3id.org/costumeCore/ontology/Event",
+    uri="https://w3id.org/costumeCore/ontology/CC00405",
     wikidata_id=None,
 )
 CC00406 = CostumeCoreTerm(
@@ -6461,7 +6461,7 @@ CC00406 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6470,7 +6470,7 @@ CC00406 = CostumeCoreTerm(
     display_name_en="""Image""",
     features=("type",),
     id="CC00406",
-    uri="https://w3id.org/costumeCore/ontology/Image",
+    uri="https://w3id.org/costumeCore/ontology/CC00406",
     wikidata_id=None,
 )
 CC00407 = CostumeCoreTerm(
@@ -6479,7 +6479,7 @@ CC00407 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6488,7 +6488,7 @@ CC00407 = CostumeCoreTerm(
     display_name_en="""Interactive Resource""",
     features=("type",),
     id="CC00407",
-    uri="https://w3id.org/costumeCore/ontology/Interactive%20Resource",
+    uri="https://w3id.org/costumeCore/ontology/CC00407",
     wikidata_id=None,
 )
 CC00408 = CostumeCoreTerm(
@@ -6497,7 +6497,7 @@ CC00408 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6506,7 +6506,7 @@ CC00408 = CostumeCoreTerm(
     display_name_en="""Moving Image""",
     features=("type",),
     id="CC00408",
-    uri="https://w3id.org/costumeCore/ontology/Moving%20Image",
+    uri="https://w3id.org/costumeCore/ontology/CC00408",
     wikidata_id=None,
 )
 CC00409 = CostumeCoreTerm(
@@ -6515,7 +6515,7 @@ CC00409 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6524,7 +6524,7 @@ CC00409 = CostumeCoreTerm(
     display_name_en="""Physical Object""",
     features=("type",),
     id="CC00409",
-    uri="https://w3id.org/costumeCore/ontology/Physical%20Object",
+    uri="https://w3id.org/costumeCore/ontology/CC00409",
     wikidata_id=None,
 )
 CC00410 = CostumeCoreTerm(
@@ -6533,7 +6533,7 @@ CC00410 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6542,7 +6542,7 @@ CC00410 = CostumeCoreTerm(
     display_name_en="""Service""",
     features=("type",),
     id="CC00410",
-    uri="https://w3id.org/costumeCore/ontology/Service",
+    uri="https://w3id.org/costumeCore/ontology/CC00410",
     wikidata_id=None,
 )
 CC00411 = CostumeCoreTerm(
@@ -6551,7 +6551,7 @@ CC00411 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6560,7 +6560,7 @@ CC00411 = CostumeCoreTerm(
     display_name_en="""Software""",
     features=("type",),
     id="CC00411",
-    uri="https://w3id.org/costumeCore/ontology/Software",
+    uri="https://w3id.org/costumeCore/ontology/CC00411",
     wikidata_id=None,
 )
 CC00412 = CostumeCoreTerm(
@@ -6569,7 +6569,7 @@ CC00412 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6578,7 +6578,7 @@ CC00412 = CostumeCoreTerm(
     display_name_en="""Sound""",
     features=("type",),
     id="CC00412",
-    uri="https://w3id.org/costumeCore/ontology/Sound",
+    uri="https://w3id.org/costumeCore/ontology/CC00412",
     wikidata_id=None,
 )
 CC00413 = CostumeCoreTerm(
@@ -6587,7 +6587,7 @@ CC00413 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6596,7 +6596,7 @@ CC00413 = CostumeCoreTerm(
     display_name_en="""Still Image""",
     features=("type",),
     id="CC00413",
-    uri="https://w3id.org/costumeCore/ontology/Still%20Image",
+    uri="https://w3id.org/costumeCore/ontology/CC00413",
     wikidata_id=None,
 )
 CC00414 = CostumeCoreTerm(
@@ -6605,7 +6605,7 @@ CC00414 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="Dublin Core Metadata Initiative (DCMI)",
             license_uri="https://creativecommons.org/licenses/by/3.0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Dublin Core Metadata Initiative (DCMI)",
             source_url="https://www.dublincore.org/specifications/dublin-core/dcmi-type-vocabulary/",
         ),
@@ -6614,7 +6614,7 @@ CC00414 = CostumeCoreTerm(
     display_name_en="""Text""",
     features=("type",),
     id="CC00414",
-    uri="https://w3id.org/costumeCore/ontology/Text",
+    uri="https://w3id.org/costumeCore/ontology/CC00414",
     wikidata_id=None,
 )
 CC00415 = CostumeCoreTerm(
@@ -6623,7 +6623,7 @@ CC00415 = CostumeCoreTerm(
     display_name_en="""poor""",
     features=("condition",),
     id="CC00415",
-    uri="https://w3id.org/costumeCore/ontology/poor",
+    uri="https://w3id.org/costumeCore/ontology/CC00415",
     wikidata_id=None,
 )
 CC00416 = CostumeCoreTerm(
@@ -6632,7 +6632,7 @@ CC00416 = CostumeCoreTerm(
     display_name_en="""fair""",
     features=("condition",),
     id="CC00416",
-    uri="https://w3id.org/costumeCore/ontology/fair",
+    uri="https://w3id.org/costumeCore/ontology/CC00416",
     wikidata_id=None,
 )
 CC00417 = CostumeCoreTerm(
@@ -6641,7 +6641,7 @@ CC00417 = CostumeCoreTerm(
     display_name_en="""good""",
     features=("condition",),
     id="CC00417",
-    uri="https://w3id.org/costumeCore/ontology/good",
+    uri="https://w3id.org/costumeCore/ontology/CC00417",
     wikidata_id=None,
 )
 CC00418 = CostumeCoreTerm(
@@ -6650,7 +6650,7 @@ CC00418 = CostumeCoreTerm(
     display_name_en="""very good""",
     features=("condition",),
     id="CC00418",
-    uri="https://w3id.org/costumeCore/ontology/very%20good",
+    uri="https://w3id.org/costumeCore/ontology/CC00418",
     wikidata_id=None,
 )
 CC00419 = CostumeCoreTerm(
@@ -6659,7 +6659,7 @@ CC00419 = CostumeCoreTerm(
     display_name_en="""excellent""",
     features=("condition",),
     id="CC00419",
-    uri="https://w3id.org/costumeCore/ontology/excellent",
+    uri="https://w3id.org/costumeCore/ontology/CC00419",
     wikidata_id=None,
 )
 CC00420 = CostumeCoreTerm(
@@ -6668,7 +6668,7 @@ CC00420 = CostumeCoreTerm(
     display_name_en="""bell-bottoms""",
     features=("pantsType",),
     id="CC00420",
-    uri="https://w3id.org/costumeCore/ontology/bell-bottoms",
+    uri="https://w3id.org/costumeCore/ontology/CC00420",
     wikidata_id=None,
 )
 CC00421 = CostumeCoreTerm(
@@ -6677,7 +6677,7 @@ CC00421 = CostumeCoreTerm(
     display_name_en="""braies""",
     features=None,
     id="CC00421",
-    uri="https://w3id.org/costumeCore/ontology/braies",
+    uri="https://w3id.org/costumeCore/ontology/CC00421",
     wikidata_id=None,
 )
 CC00422 = CostumeCoreTerm(
@@ -6686,7 +6686,7 @@ CC00422 = CostumeCoreTerm(
     display_name_en="""breeches""",
     features=("pantsType",),
     id="CC00422",
-    uri="https://w3id.org/costumeCore/ontology/breeches",
+    uri="https://w3id.org/costumeCore/ontology/CC00422",
     wikidata_id=None,
 )
 CC00423 = CostumeCoreTerm(
@@ -6695,7 +6695,7 @@ CC00423 = CostumeCoreTerm(
     display_name_en="""Capri pants""",
     features=("pantsType",),
     id="CC00423",
-    uri="https://w3id.org/costumeCore/ontology/Capri%20pants",
+    uri="https://w3id.org/costumeCore/ontology/CC00423",
     wikidata_id=None,
 )
 CC00424 = CostumeCoreTerm(
@@ -6704,7 +6704,7 @@ CC00424 = CostumeCoreTerm(
     display_name_en="""drop-front pants""",
     features=("pantsType",),
     id="CC00424",
-    uri="https://w3id.org/costumeCore/ontology/drop-front%20pants",
+    uri="https://w3id.org/costumeCore/ontology/CC00424",
     wikidata_id=None,
 )
 CC00425 = CostumeCoreTerm(
@@ -6713,7 +6713,7 @@ CC00425 = CostumeCoreTerm(
     display_name_en="""hiphuggers""",
     features=("pantsType",),
     id="CC00425",
-    uri="https://w3id.org/costumeCore/ontology/hiphuggers",
+    uri="https://w3id.org/costumeCore/ontology/CC00425",
     wikidata_id=None,
 )
 CC00426 = CostumeCoreTerm(
@@ -6722,7 +6722,7 @@ CC00426 = CostumeCoreTerm(
     display_name_en="""jeans""",
     features=("pantsType",),
     id="CC00426",
-    uri="https://w3id.org/costumeCore/ontology/jeans",
+    uri="https://w3id.org/costumeCore/ontology/CC00426",
     wikidata_id=None,
 )
 CC00427 = CostumeCoreTerm(
@@ -6731,7 +6731,7 @@ CC00427 = CostumeCoreTerm(
     display_name_en="""jodhpurs""",
     features=("pantsType",),
     id="CC00427",
-    uri="https://w3id.org/costumeCore/ontology/jodhpurs",
+    uri="https://w3id.org/costumeCore/ontology/CC00427",
     wikidata_id=None,
 )
 CC00428 = CostumeCoreTerm(
@@ -6740,7 +6740,7 @@ CC00428 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6749,7 +6749,7 @@ CC00428 = CostumeCoreTerm(
     display_name_en="""overalls""",
     features=("workType",),
     id="CC00428",
-    uri="https://w3id.org/costumeCore/ontology/overalls",
+    uri="https://w3id.org/costumeCore/ontology/CC00428",
     wikidata_id="Q13383825",
 )
 CC00429 = CostumeCoreTerm(
@@ -6758,7 +6758,7 @@ CC00429 = CostumeCoreTerm(
     display_name_en="""overtrousers""",
     features=("pantsType",),
     id="CC00429",
-    uri="https://w3id.org/costumeCore/ontology/overtrousers",
+    uri="https://w3id.org/costumeCore/ontology/CC00429",
     wikidata_id=None,
 )
 CC00430 = CostumeCoreTerm(
@@ -6767,7 +6767,7 @@ CC00430 = CostumeCoreTerm(
     display_name_en="""pantaloons""",
     features=None,
     id="CC00430",
-    uri="https://w3id.org/costumeCore/ontology/pantaloons",
+    uri="https://w3id.org/costumeCore/ontology/CC00430",
     wikidata_id=None,
 )
 CC00431 = CostumeCoreTerm(
@@ -6776,7 +6776,7 @@ CC00431 = CostumeCoreTerm(
     display_name_en="""pedal pushers""",
     features=None,
     id="CC00431",
-    uri="https://w3id.org/costumeCore/ontology/pedal%20pushers",
+    uri="https://w3id.org/costumeCore/ontology/CC00431",
     wikidata_id=None,
 )
 CC00432 = CostumeCoreTerm(
@@ -6785,7 +6785,7 @@ CC00432 = CostumeCoreTerm(
     display_name_en="""puffed pants""",
     features=("pantsType",),
     id="CC00432",
-    uri="https://w3id.org/costumeCore/ontology/puffed%20pants",
+    uri="https://w3id.org/costumeCore/ontology/CC00432",
     wikidata_id=None,
 )
 CC00433 = CostumeCoreTerm(
@@ -6794,7 +6794,7 @@ CC00433 = CostumeCoreTerm(
     display_name_en="""riding breeches""",
     features=("pantsType",),
     id="CC00433",
-    uri="https://w3id.org/costumeCore/ontology/riding%20breeches",
+    uri="https://w3id.org/costumeCore/ontology/CC00433",
     wikidata_id=None,
 )
 CC00434 = CostumeCoreTerm(
@@ -6803,7 +6803,7 @@ CC00434 = CostumeCoreTerm(
     display_name_en="""shalwar""",
     features=("pantsType",),
     id="CC00434",
-    uri="https://w3id.org/costumeCore/ontology/shalwar",
+    uri="https://w3id.org/costumeCore/ontology/CC00434",
     wikidata_id=None,
 )
 CC00435 = CostumeCoreTerm(
@@ -6812,7 +6812,7 @@ CC00435 = CostumeCoreTerm(
     display_name_en="""slacks""",
     features=("pantsType",),
     id="CC00435",
-    uri="https://w3id.org/costumeCore/ontology/slacks",
+    uri="https://w3id.org/costumeCore/ontology/CC00435",
     wikidata_id=None,
 )
 CC00436 = CostumeCoreTerm(
@@ -6821,7 +6821,7 @@ CC00436 = CostumeCoreTerm(
     display_name_en="""sweat pants""",
     features=("pantsType",),
     id="CC00436",
-    uri="https://w3id.org/costumeCore/ontology/sweat%20pants",
+    uri="https://w3id.org/costumeCore/ontology/CC00436",
     wikidata_id=None,
 )
 CC00437 = CostumeCoreTerm(
@@ -6830,7 +6830,7 @@ CC00437 = CostumeCoreTerm(
     display_name_en="""toreador pants""",
     features=None,
     id="CC00437",
-    uri="https://w3id.org/costumeCore/ontology/toreador%20pants",
+    uri="https://w3id.org/costumeCore/ontology/CC00437",
     wikidata_id=None,
 )
 CC00438 = CostumeCoreTerm(
@@ -6839,7 +6839,7 @@ CC00438 = CostumeCoreTerm(
     display_name_en="""athletic shorts""",
     features=None,
     id="CC00438",
-    uri="https://w3id.org/costumeCore/ontology/athletic%20shorts",
+    uri="https://w3id.org/costumeCore/ontology/CC00438",
     wikidata_id=None,
 )
 CC00439 = CostumeCoreTerm(
@@ -6848,7 +6848,7 @@ CC00439 = CostumeCoreTerm(
     display_name_en="""Bermuda shorts""",
     features=None,
     id="CC00439",
-    uri="https://w3id.org/costumeCore/ontology/Bermuda%20shorts",
+    uri="https://w3id.org/costumeCore/ontology/CC00439",
     wikidata_id=None,
 )
 CC00440 = CostumeCoreTerm(
@@ -6857,7 +6857,7 @@ CC00440 = CostumeCoreTerm(
     display_name_en="""short shorts""",
     features=None,
     id="CC00440",
-    uri="https://w3id.org/costumeCore/ontology/short%20shorts",
+    uri="https://w3id.org/costumeCore/ontology/CC00440",
     wikidata_id=None,
 )
 CC00441 = CostumeCoreTerm(
@@ -6866,7 +6866,7 @@ CC00441 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6875,7 +6875,7 @@ CC00441 = CostumeCoreTerm(
     display_name_en="""antependia""",
     features=("liturgicalType",),
     id="CC00441",
-    uri="https://w3id.org/costumeCore/ontology/antependia",
+    uri="https://w3id.org/costumeCore/ontology/CC00441",
     wikidata_id=None,
 )
 CC00442 = CostumeCoreTerm(
@@ -6884,7 +6884,7 @@ CC00442 = CostumeCoreTerm(
     display_name_en="""aprons""",
     features=("liturgicalType",),
     id="CC00442",
-    uri="https://w3id.org/costumeCore/ontology/aprons",
+    uri="https://w3id.org/costumeCore/ontology/CC00442",
     wikidata_id=None,
 )
 CC00443 = CostumeCoreTerm(
@@ -6893,7 +6893,7 @@ CC00443 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6902,7 +6902,7 @@ CC00443 = CostumeCoreTerm(
     display_name_en="""burses (corporal)""",
     features=("liturgicalType",),
     id="CC00443",
-    uri="https://w3id.org/costumeCore/ontology/burses%20%28corporal%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00443",
     wikidata_id=None,
 )
 CC00444 = CostumeCoreTerm(
@@ -6911,7 +6911,7 @@ CC00444 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6920,7 +6920,7 @@ CC00444 = CostumeCoreTerm(
     display_name_en="""cassocks (liturgical costume)""",
     features=("liturgicalType",),
     id="CC00444",
-    uri="https://w3id.org/costumeCore/ontology/cassocks%20%28liturgical%20costume%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00444",
     wikidata_id=None,
 )
 CC00445 = CostumeCoreTerm(
@@ -6929,7 +6929,7 @@ CC00445 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6938,7 +6938,7 @@ CC00445 = CostumeCoreTerm(
     display_name_en="""chasubles (liturgical vestments)""",
     features=("liturgicalType",),
     id="CC00445",
-    uri="https://w3id.org/costumeCore/ontology/chasubles%20%28liturgical%20vestments%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00445",
     wikidata_id=None,
 )
 CC00446 = CostumeCoreTerm(
@@ -6947,7 +6947,7 @@ CC00446 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6956,7 +6956,7 @@ CC00446 = CostumeCoreTerm(
     display_name_en="""chalice veils""",
     features=("liturgicalType",),
     id="CC00446",
-    uri="https://w3id.org/costumeCore/ontology/chalice%20veils",
+    uri="https://w3id.org/costumeCore/ontology/CC00446",
     wikidata_id=None,
 )
 CC00447 = CostumeCoreTerm(
@@ -6965,7 +6965,7 @@ CC00447 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6974,7 +6974,7 @@ CC00447 = CostumeCoreTerm(
     display_name_en="""collets""",
     features=("liturgicalType",),
     id="CC00447",
-    uri="https://w3id.org/costumeCore/ontology/collets",
+    uri="https://w3id.org/costumeCore/ontology/CC00447",
     wikidata_id=None,
 )
 CC00448 = CostumeCoreTerm(
@@ -6983,7 +6983,7 @@ CC00448 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -6992,7 +6992,7 @@ CC00448 = CostumeCoreTerm(
     display_name_en="""copes""",
     features=("liturgicalType",),
     id="CC00448",
-    uri="https://w3id.org/costumeCore/ontology/copes",
+    uri="https://w3id.org/costumeCore/ontology/CC00448",
     wikidata_id=None,
 )
 CC00449 = CostumeCoreTerm(
@@ -7001,7 +7001,7 @@ CC00449 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7010,7 +7010,7 @@ CC00449 = CostumeCoreTerm(
     display_name_en="""dalmatics""",
     features=("liturgicalType",),
     id="CC00449",
-    uri="https://w3id.org/costumeCore/ontology/dalmatics",
+    uri="https://w3id.org/costumeCore/ontology/CC00449",
     wikidata_id=None,
 )
 CC00450 = CostumeCoreTerm(
@@ -7019,7 +7019,7 @@ CC00450 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7028,7 +7028,7 @@ CC00450 = CostumeCoreTerm(
     display_name_en="""stoles (vestments)""",
     features=("liturgicalType",),
     id="CC00450",
-    uri="https://w3id.org/costumeCore/ontology/stoles%20%28vestments%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00450",
     wikidata_id=None,
 )
 CC00451 = CostumeCoreTerm(
@@ -7037,7 +7037,7 @@ CC00451 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7046,7 +7046,7 @@ CC00451 = CostumeCoreTerm(
     display_name_en="""tabernacle veils""",
     features=("liturgicalType",),
     id="CC00451",
-    uri="https://w3id.org/costumeCore/ontology/tabernacle%20veils",
+    uri="https://w3id.org/costumeCore/ontology/CC00451",
     wikidata_id=None,
 )
 CC00452 = CostumeCoreTerm(
@@ -7055,7 +7055,7 @@ CC00452 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7064,7 +7064,7 @@ CC00452 = CostumeCoreTerm(
     display_name_en="""tunicles""",
     features=("liturgicalType",),
     id="CC00452",
-    uri="https://w3id.org/costumeCore/ontology/tunicles",
+    uri="https://w3id.org/costumeCore/ontology/CC00452",
     wikidata_id=None,
 )
 CC00453 = CostumeCoreTerm(
@@ -7073,7 +7073,7 @@ CC00453 = CostumeCoreTerm(
     display_name_en="""diamonds (motifs)""",
     features=("pattern",),
     id="CC00453",
-    uri="https://w3id.org/costumeCore/ontology/diamonds%20%28motifs%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00453",
     wikidata_id=None,
 )
 CC00454 = CostumeCoreTerm(
@@ -7082,7 +7082,7 @@ CC00454 = CostumeCoreTerm(
     display_name_en="""stripes""",
     features=("pattern",),
     id="CC00454",
-    uri="https://w3id.org/costumeCore/ontology/stripes",
+    uri="https://w3id.org/costumeCore/ontology/CC00454",
     wikidata_id=None,
 )
 CC00455 = CostumeCoreTerm(
@@ -7091,7 +7091,7 @@ CC00455 = CostumeCoreTerm(
     display_name_en="""stars (motifs)""",
     features=("pattern",),
     id="CC00455",
-    uri="https://w3id.org/costumeCore/ontology/stars%20%28motifs%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00455",
     wikidata_id=None,
 )
 CC00456 = CostumeCoreTerm(
@@ -7100,7 +7100,7 @@ CC00456 = CostumeCoreTerm(
     display_name_en="""shells (motifs)""",
     features=("pattern",),
     id="CC00456",
-    uri="https://w3id.org/costumeCore/ontology/shells%20%28motifs%29",
+    uri="https://w3id.org/costumeCore/ontology/CC00456",
     wikidata_id=None,
 )
 CC00457 = CostumeCoreTerm(
@@ -7109,7 +7109,7 @@ CC00457 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7118,7 +7118,7 @@ CC00457 = CostumeCoreTerm(
     display_name_en="""main garments""",
     features=("icomType",),
     id="CC00457",
-    uri="https://w3id.org/costumeCore/ontology/main%20garments",
+    uri="https://w3id.org/costumeCore/ontology/CC00457",
     wikidata_id=None,
 )
 CC00458 = CostumeCoreTerm(
@@ -7127,7 +7127,7 @@ CC00458 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7136,7 +7136,7 @@ CC00458 = CostumeCoreTerm(
     display_name_en="""outerwear""",
     features=("function", "icomType",),
     id="CC00458",
-    uri="https://w3id.org/costumeCore/ontology/outerwear",
+    uri="https://w3id.org/costumeCore/ontology/CC00458",
     wikidata_id=None,
 )
 CC00459 = CostumeCoreTerm(
@@ -7145,7 +7145,7 @@ CC00459 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7154,7 +7154,7 @@ CC00459 = CostumeCoreTerm(
     display_name_en="""protective wear""",
     features=("icomType",),
     id="CC00459",
-    uri="https://w3id.org/costumeCore/ontology/protective%20wear",
+    uri="https://w3id.org/costumeCore/ontology/CC00459",
     wikidata_id=None,
 )
 CC00461 = CostumeCoreTerm(
@@ -7163,7 +7163,7 @@ CC00461 = CostumeCoreTerm(
     display_name_en="""underwear and accessories for shaping and supporting""",
     features=("icomType",),
     id="CC00461",
-    uri="https://w3id.org/costumeCore/ontology/underwear%20and%20accessories%20for%20shaping%20and%20supporting",
+    uri="https://w3id.org/costumeCore/ontology/CC00461",
     wikidata_id=None,
 )
 CC00462 = CostumeCoreTerm(
@@ -7172,7 +7172,7 @@ CC00462 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7181,7 +7181,7 @@ CC00462 = CostumeCoreTerm(
     display_name_en="""nightwear""",
     features=("icomType",),
     id="CC00462",
-    uri="https://w3id.org/costumeCore/ontology/nightwear",
+    uri="https://w3id.org/costumeCore/ontology/CC00462",
     wikidata_id=None,
 )
 CC00463 = CostumeCoreTerm(
@@ -7190,7 +7190,7 @@ CC00463 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7199,7 +7199,7 @@ CC00463 = CostumeCoreTerm(
     display_name_en="""worn costume accessories""",
     features=("icomType",),
     id="CC00463",
-    uri="https://w3id.org/costumeCore/ontology/worn%20costume%20accessories",
+    uri="https://w3id.org/costumeCore/ontology/CC00463",
     wikidata_id=None,
 )
 CC00464 = CostumeCoreTerm(
@@ -7208,7 +7208,7 @@ CC00464 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7217,7 +7217,7 @@ CC00464 = CostumeCoreTerm(
     display_name_en="""accessories by location on the head""",
     features=("icomType",),
     id="CC00464",
-    uri="https://w3id.org/costumeCore/ontology/accessories%20by%20location%20on%20the%20head",
+    uri="https://w3id.org/costumeCore/ontology/CC00464",
     wikidata_id=None,
 )
 CC00465 = CostumeCoreTerm(
@@ -7226,7 +7226,7 @@ CC00465 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7235,7 +7235,7 @@ CC00465 = CostumeCoreTerm(
     display_name_en="""hair accessories""",
     features=("icomType",),
     id="CC00465",
-    uri="https://w3id.org/costumeCore/ontology/hair%20accessories",
+    uri="https://w3id.org/costumeCore/ontology/CC00465",
     wikidata_id=None,
 )
 CC00466 = CostumeCoreTerm(
@@ -7244,7 +7244,7 @@ CC00466 = CostumeCoreTerm(
     display_name_en="""face coverings and additions""",
     features=("icomType",),
     id="CC00466",
-    uri="https://w3id.org/costumeCore/ontology/face%20coverings%20and%20additions",
+    uri="https://w3id.org/costumeCore/ontology/CC00466",
     wikidata_id=None,
 )
 CC00467 = CostumeCoreTerm(
@@ -7253,7 +7253,7 @@ CC00467 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7262,7 +7262,7 @@ CC00467 = CostumeCoreTerm(
     display_name_en="""accessories by location above the waist""",
     features=("icomType",),
     id="CC00467",
-    uri="https://w3id.org/costumeCore/ontology/accessories%20by%20location%20above%20the%20waist",
+    uri="https://w3id.org/costumeCore/ontology/CC00467",
     wikidata_id=None,
 )
 CC00468 = CostumeCoreTerm(
@@ -7271,7 +7271,7 @@ CC00468 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7280,7 +7280,7 @@ CC00468 = CostumeCoreTerm(
     display_name_en="""accessories by location at the waist or below""",
     features=("icomType",),
     id="CC00468",
-    uri="https://w3id.org/costumeCore/ontology/accessories%20by%20location%20at%20the%20waist%20or%20below",
+    uri="https://w3id.org/costumeCore/ontology/CC00468",
     wikidata_id=None,
 )
 CC00469 = CostumeCoreTerm(
@@ -7289,7 +7289,7 @@ CC00469 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7298,7 +7298,7 @@ CC00469 = CostumeCoreTerm(
     display_name_en="""accessories by location on arms or hands""",
     features=("icomType",),
     id="CC00469",
-    uri="https://w3id.org/costumeCore/ontology/accessories%20by%20location%20on%20arms%20or%20hands",
+    uri="https://w3id.org/costumeCore/ontology/CC00469",
     wikidata_id=None,
 )
 CC00470 = CostumeCoreTerm(
@@ -7307,7 +7307,7 @@ CC00470 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7316,7 +7316,7 @@ CC00470 = CostumeCoreTerm(
     display_name_en="""accessories by location on the legs or feet""",
     features=("icomType",),
     id="CC00470",
-    uri="https://w3id.org/costumeCore/ontology/accessories%20by%20location%20on%20the%20legs%20or%20feet",
+    uri="https://w3id.org/costumeCore/ontology/CC00470",
     wikidata_id=None,
 )
 CC00471 = CostumeCoreTerm(
@@ -7325,7 +7325,7 @@ CC00471 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7334,7 +7334,7 @@ CC00471 = CostumeCoreTerm(
     display_name_en="""costume accessories carried""",
     features=("icomType",),
     id="CC00471",
-    uri="https://w3id.org/costumeCore/ontology/costume%20accessories%20carried",
+    uri="https://w3id.org/costumeCore/ontology/CC00471",
     wikidata_id=None,
 )
 CC00472 = CostumeCoreTerm(
@@ -7343,7 +7343,7 @@ CC00472 = CostumeCoreTerm(
     display_name_en="""accessories added to body or clothing for ornament""",
     features=("icomType",),
     id="CC00472",
-    uri="https://w3id.org/costumeCore/ontology/accessories%20added%20to%20body%20or%20clothing%20for%20ornament",
+    uri="https://w3id.org/costumeCore/ontology/CC00472",
     wikidata_id=None,
 )
 CC00473 = CostumeCoreTerm(
@@ -7352,7 +7352,7 @@ CC00473 = CostumeCoreTerm(
     display_name_en="""equipment for grooming, hygiene and health care""",
     features=("icomType",),
     id="CC00473",
-    uri="https://w3id.org/costumeCore/ontology/equipment%20for%20grooming%2C%20hygiene%20and%20health%20care",
+    uri="https://w3id.org/costumeCore/ontology/CC00473",
     wikidata_id=None,
 )
 CC00474 = CostumeCoreTerm(
@@ -7361,7 +7361,7 @@ CC00474 = CostumeCoreTerm(
     display_name_en="""equipment for costume""",
     features=("icomType",),
     id="CC00474",
-    uri="https://w3id.org/costumeCore/ontology/equipment%20for%20costume",
+    uri="https://w3id.org/costumeCore/ontology/CC00474",
     wikidata_id=None,
 )
 CC00475 = CostumeCoreTerm(
@@ -7370,7 +7370,7 @@ CC00475 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7379,7 +7379,7 @@ CC00475 = CostumeCoreTerm(
     display_name_en="""textile working equipment""",
     features=("icomType",),
     id="CC00475",
-    uri="https://w3id.org/costumeCore/ontology/textile%20working%20equipment",
+    uri="https://w3id.org/costumeCore/ontology/CC00475",
     wikidata_id=None,
 )
 CC00476 = CostumeCoreTerm(
@@ -7388,7 +7388,7 @@ CC00476 = CostumeCoreTerm(
     display_name_en="""main garments for the lower body""",
     features=("icomType",),
     id="CC00476",
-    uri="https://w3id.org/costumeCore/ontology/main%20garments%20for%20the%20lower%20body",
+    uri="https://w3id.org/costumeCore/ontology/CC00476",
     wikidata_id=None,
 )
 CC00477 = CostumeCoreTerm(
@@ -7397,7 +7397,7 @@ CC00477 = CostumeCoreTerm(
     display_name_en="""main garments for the upper body""",
     features=("icomType",),
     id="CC00477",
-    uri="https://w3id.org/costumeCore/ontology/main%20garments%20for%20the%20upper%20body",
+    uri="https://w3id.org/costumeCore/ontology/CC00477",
     wikidata_id=None,
 )
 CC00478 = CostumeCoreTerm(
@@ -7406,7 +7406,7 @@ CC00478 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7415,7 +7415,7 @@ CC00478 = CostumeCoreTerm(
     display_name_en="""sports clothing""",
     features=("function",),
     id="CC00478",
-    uri="https://w3id.org/costumeCore/ontology/sports%20clothing",
+    uri="https://w3id.org/costumeCore/ontology/CC00478",
     wikidata_id=None,
 )
 CC00479 = CostumeCoreTerm(
@@ -7424,7 +7424,7 @@ CC00479 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7433,7 +7433,7 @@ CC00479 = CostumeCoreTerm(
     display_name_en="""boys' wear""",
     features=("gender",),
     id="CC00479",
-    uri="https://w3id.org/costumeCore/ontology/boys%27%20wear",
+    uri="https://w3id.org/costumeCore/ontology/CC00479",
     wikidata_id=None,
 )
 CC00480 = CostumeCoreTerm(
@@ -7442,7 +7442,7 @@ CC00480 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7451,7 +7451,7 @@ CC00480 = CostumeCoreTerm(
     display_name_en="""girls' wear""",
     features=("gender",),
     id="CC00480",
-    uri="https://w3id.org/costumeCore/ontology/girls%27%20wear",
+    uri="https://w3id.org/costumeCore/ontology/CC00480",
     wikidata_id=None,
 )
 CC00481 = CostumeCoreTerm(
@@ -7460,7 +7460,7 @@ CC00481 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7469,7 +7469,7 @@ CC00481 = CostumeCoreTerm(
     display_name_en="""Containers""",
     features=None,
     id="CC00481",
-    uri="https://w3id.org/costumeCore/ontology/Containers",
+    uri="https://w3id.org/costumeCore/ontology/CC00481",
     wikidata_id=None,
 )
 CC00482 = CostumeCoreTerm(
@@ -7478,7 +7478,7 @@ CC00482 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7487,7 +7487,7 @@ CC00482 = CostumeCoreTerm(
     display_name_en="""Costume""",
     features=("classification",),
     id="CC00482",
-    uri="https://w3id.org/costumeCore/ontology/Costume",
+    uri="https://w3id.org/costumeCore/ontology/CC00482",
     wikidata_id=None,
 )
 CC00483 = CostumeCoreTerm(
@@ -7496,7 +7496,7 @@ CC00483 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7505,7 +7505,7 @@ CC00483 = CostumeCoreTerm(
     display_name_en="""Furnishings""",
     features=None,
     id="CC00483",
-    uri="https://w3id.org/costumeCore/ontology/Furnishings",
+    uri="https://w3id.org/costumeCore/ontology/CC00483",
     wikidata_id=None,
 )
 CC00484 = CostumeCoreTerm(
@@ -7514,7 +7514,7 @@ CC00484 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7523,7 +7523,7 @@ CC00484 = CostumeCoreTerm(
     display_name_en="""Information Forms""",
     features=None,
     id="CC00484",
-    uri="https://w3id.org/costumeCore/ontology/Information%20Forms",
+    uri="https://w3id.org/costumeCore/ontology/CC00484",
     wikidata_id=None,
 )
 CC00485 = CostumeCoreTerm(
@@ -7532,7 +7532,7 @@ CC00485 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7541,7 +7541,7 @@ CC00485 = CostumeCoreTerm(
     display_name_en="""Recreational Artifacts""",
     features=None,
     id="CC00485",
-    uri="https://w3id.org/costumeCore/ontology/Recreational%20Artifacts",
+    uri="https://w3id.org/costumeCore/ontology/CC00485",
     wikidata_id=None,
 )
 CC00486 = CostumeCoreTerm(
@@ -7550,7 +7550,7 @@ CC00486 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7559,7 +7559,7 @@ CC00486 = CostumeCoreTerm(
     display_name_en="""Tools and Equipment""",
     features=None,
     id="CC00486",
-    uri="https://w3id.org/costumeCore/ontology/Tools%20and%20Equipment",
+    uri="https://w3id.org/costumeCore/ontology/CC00486",
     wikidata_id=None,
 )
 CC00487 = CostumeCoreTerm(
@@ -7568,7 +7568,7 @@ CC00487 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7577,7 +7577,7 @@ CC00487 = CostumeCoreTerm(
     display_name_en="""Visual Works""",
     features=None,
     id="CC00487",
-    uri="https://w3id.org/costumeCore/ontology/Visual%20Works",
+    uri="https://w3id.org/costumeCore/ontology/CC00487",
     wikidata_id=None,
 )
 CC00488 = CostumeCoreTerm(
@@ -7586,7 +7586,7 @@ CC00488 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7595,7 +7595,7 @@ CC00488 = CostumeCoreTerm(
     display_name_en="""Materials""",
     features=None,
     id="CC00488",
-    uri="https://w3id.org/costumeCore/ontology/Materials",
+    uri="https://w3id.org/costumeCore/ontology/CC00488",
     wikidata_id=None,
 )
 CC00489 = CostumeCoreTerm(
@@ -7613,7 +7613,7 @@ CC00489 = CostumeCoreTerm(
     display_name_en="""ballerina neckline""",
     features=("neckline",),
     id="CC00489",
-    uri="https://w3id.org/costumeCore/ontology/ballerina%20neckline",
+    uri="https://w3id.org/costumeCore/ontology/CC00489",
     wikidata_id="Q4851616",
 )
 CC00490 = CostumeCoreTerm(
@@ -7631,7 +7631,7 @@ CC00490 = CostumeCoreTerm(
     display_name_en="""d\xe9colletage""",
     features=("neckline",),
     id="CC00490",
-    uri="https://w3id.org/costumeCore/ontology/d%C3%A9colletage",
+    uri="https://w3id.org/costumeCore/ontology/CC00490",
     wikidata_id="Q116887",
 )
 CC00491 = CostumeCoreTerm(
@@ -7649,7 +7649,7 @@ CC00491 = CostumeCoreTerm(
     display_name_en="""surplice neckline""",
     features=("neckline",),
     id="CC00491",
-    uri="https://w3id.org/costumeCore/ontology/surplice%20neckline",
+    uri="https://w3id.org/costumeCore/ontology/CC00491",
     wikidata_id="Q29583224",
 )
 CC00492 = CostumeCoreTerm(
@@ -7667,7 +7667,7 @@ CC00492 = CostumeCoreTerm(
     display_name_en="""patch""",
     features=("costumeComponents",),
     id="CC00492",
-    uri="https://w3id.org/costumeCore/ontology/patch",
+    uri="https://w3id.org/costumeCore/ontology/CC00492",
     wikidata_id="Q2058306",
 )
 CC00493 = CostumeCoreTerm(
@@ -7676,7 +7676,7 @@ CC00493 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7685,7 +7685,7 @@ CC00493 = CostumeCoreTerm(
     display_name_en="""stomacher""",
     features=("costumeComponents",),
     id="CC00493",
-    uri="https://w3id.org/costumeCore/ontology/stomacher",
+    uri="https://w3id.org/costumeCore/ontology/CC00493",
     wikidata_id="Q1615371",
 )
 CC00494 = CostumeCoreTerm(
@@ -7703,7 +7703,7 @@ CC00494 = CostumeCoreTerm(
     display_name_en="""ball gown""",
     features=("dressType",),
     id="CC00494",
-    uri="https://w3id.org/costumeCore/ontology/ball%20gown",
+    uri="https://w3id.org/costumeCore/ontology/CC00494",
     wikidata_id="Q635784",
 )
 CC00495 = CostumeCoreTerm(
@@ -7721,7 +7721,7 @@ CC00495 = CostumeCoreTerm(
     display_name_en="""Bodycon dress""",
     features=None,
     id="CC00495",
-    uri="https://w3id.org/costumeCore/ontology/Bodycon%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00495",
     wikidata_id="Q30588951",
 )
 CC00496 = CostumeCoreTerm(
@@ -7739,7 +7739,7 @@ CC00496 = CostumeCoreTerm(
     display_name_en="""cheongsam""",
     features=("dressType",),
     id="CC00496",
-    uri="https://w3id.org/costumeCore/ontology/cheongsam",
+    uri="https://w3id.org/costumeCore/ontology/CC00496",
     wikidata_id="Q836934",
 )
 CC00497 = CostumeCoreTerm(
@@ -7757,7 +7757,7 @@ CC00497 = CostumeCoreTerm(
     display_name_en="""Delphos gown""",
     features=None,
     id="CC00497",
-    uri="https://w3id.org/costumeCore/ontology/Delphos%20gown",
+    uri="https://w3id.org/costumeCore/ontology/CC00497",
     wikidata_id="Q5254472",
 )
 CC00498 = CostumeCoreTerm(
@@ -7766,7 +7766,7 @@ CC00498 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7775,7 +7775,7 @@ CC00498 = CostumeCoreTerm(
     display_name_en="""dirndl""",
     features=None,
     id="CC00498",
-    uri="https://w3id.org/costumeCore/ontology/dirndl",
+    uri="https://w3id.org/costumeCore/ontology/CC00498",
     wikidata_id=None,
 )
 CC00499 = CostumeCoreTerm(
@@ -7793,7 +7793,7 @@ CC00499 = CostumeCoreTerm(
     display_name_en="""mini dress""",
     features=None,
     id="CC00499",
-    uri="https://w3id.org/costumeCore/ontology/mini%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00499",
     wikidata_id="Q11018285",
 )
 CC00500 = CostumeCoreTerm(
@@ -7811,7 +7811,7 @@ CC00500 = CostumeCoreTerm(
     display_name_en="""Mother Hubbard""",
     features=None,
     id="CC00500",
-    uri="https://w3id.org/costumeCore/ontology/Mother%20Hubbard",
+    uri="https://w3id.org/costumeCore/ontology/CC00500",
     wikidata_id="Q3434328",
 )
 CC00501 = CostumeCoreTerm(
@@ -7820,7 +7820,7 @@ CC00501 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7829,7 +7829,7 @@ CC00501 = CostumeCoreTerm(
     display_name_en="""muumuu""",
     features=("dressType",),
     id="CC00501",
-    uri="https://w3id.org/costumeCore/ontology/muumuu",
+    uri="https://w3id.org/costumeCore/ontology/CC00501",
     wikidata_id=None,
 )
 CC00502 = CostumeCoreTerm(
@@ -7847,7 +7847,7 @@ CC00502 = CostumeCoreTerm(
     display_name_en="""princess line""",
     features=("dressType",),
     id="CC00502",
-    uri="https://w3id.org/costumeCore/ontology/princess%20line",
+    uri="https://w3id.org/costumeCore/ontology/CC00502",
     wikidata_id="Q10638846",
 )
 CC00503 = CostumeCoreTerm(
@@ -7856,7 +7856,7 @@ CC00503 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7865,7 +7865,7 @@ CC00503 = CostumeCoreTerm(
     display_name_en="""redingote""",
     features=None,
     id="CC00503",
-    uri="https://w3id.org/costumeCore/ontology/redingote",
+    uri="https://w3id.org/costumeCore/ontology/CC00503",
     wikidata_id=None,
 )
 CC00504 = CostumeCoreTerm(
@@ -7883,7 +7883,7 @@ CC00504 = CostumeCoreTerm(
     display_name_en="""robe de style""",
     features=None,
     id="CC00504",
-    uri="https://w3id.org/costumeCore/ontology/robe%20de%20style",
+    uri="https://w3id.org/costumeCore/ontology/CC00504",
     wikidata_id="Q7341111",
 )
 CC00505 = CostumeCoreTerm(
@@ -7901,7 +7901,7 @@ CC00505 = CostumeCoreTerm(
     display_name_en="""afternoon dress""",
     features=None,
     id="CC00505",
-    uri="https://w3id.org/costumeCore/ontology/afternoon%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00505",
     wikidata_id="Q11284623",
 )
 CC00506 = CostumeCoreTerm(
@@ -7919,7 +7919,7 @@ CC00506 = CostumeCoreTerm(
     display_name_en="""court dress""",
     features=None,
     id="CC00506",
-    uri="https://w3id.org/costumeCore/ontology/court%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00506",
     wikidata_id="Q29405103",
 )
 CC00507 = CostumeCoreTerm(
@@ -7928,7 +7928,7 @@ CC00507 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7937,7 +7937,7 @@ CC00507 = CostumeCoreTerm(
     display_name_en="""maternity clothes""",
     features=("function",),
     id="CC00507",
-    uri="https://w3id.org/costumeCore/ontology/maternity%20clothes",
+    uri="https://w3id.org/costumeCore/ontology/CC00507",
     wikidata_id=None,
 )
 CC00508 = CostumeCoreTerm(
@@ -7955,7 +7955,7 @@ CC00508 = CostumeCoreTerm(
     display_name_en="""walking dress""",
     features=None,
     id="CC00508",
-    uri="https://w3id.org/costumeCore/ontology/walking%20dress",
+    uri="https://w3id.org/costumeCore/ontology/CC00508",
     wikidata_id="Q43299785",
 )
 CC00509 = CostumeCoreTerm(
@@ -7964,7 +7964,7 @@ CC00509 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -7973,7 +7973,7 @@ CC00509 = CostumeCoreTerm(
     display_name_en="""wedding clothes""",
     features=("function",),
     id="CC00509",
-    uri="https://w3id.org/costumeCore/ontology/wedding%20clothes",
+    uri="https://w3id.org/costumeCore/ontology/CC00509",
     wikidata_id=None,
 )
 CC00510 = CostumeCoreTerm(
@@ -7991,7 +7991,7 @@ CC00510 = CostumeCoreTerm(
     display_name_en="""hobble skirt""",
     features=("skirtType",),
     id="CC00510",
-    uri="https://w3id.org/costumeCore/ontology/hobble%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00510",
     wikidata_id="Q1637220",
 )
 CC00511 = CostumeCoreTerm(
@@ -8009,7 +8009,7 @@ CC00511 = CostumeCoreTerm(
     display_name_en="""kilt""",
     features=("skirtType",),
     id="CC00511",
-    uri="https://w3id.org/costumeCore/ontology/kilt",
+    uri="https://w3id.org/costumeCore/ontology/CC00511",
     wikidata_id="Q151948",
 )
 CC00512 = CostumeCoreTerm(
@@ -8027,7 +8027,7 @@ CC00512 = CostumeCoreTerm(
     display_name_en="""overskirt""",
     features=("skirtType",),
     id="CC00512",
-    uri="https://w3id.org/costumeCore/ontology/overskirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00512",
     wikidata_id="Q22921095",
 )
 CC00513 = CostumeCoreTerm(
@@ -8045,7 +8045,7 @@ CC00513 = CostumeCoreTerm(
     display_name_en="""wrap skirt""",
     features=("skirtType",),
     id="CC00513",
-    uri="https://w3id.org/costumeCore/ontology/wrap%20skirt",
+    uri="https://w3id.org/costumeCore/ontology/CC00513",
     wikidata_id="Q1485316",
 )
 CC00514 = CostumeCoreTerm(
@@ -8054,7 +8054,7 @@ CC00514 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -8063,7 +8063,7 @@ CC00514 = CostumeCoreTerm(
     display_name_en="""slashing""",
     features=("hasTechnique",),
     id="CC00514",
-    uri="https://w3id.org/costumeCore/ontology/slashing",
+    uri="https://w3id.org/costumeCore/ontology/CC00514",
     wikidata_id="Q10461476",
 )
 CC00515 = CostumeCoreTerm(
@@ -8072,7 +8072,7 @@ CC00515 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -8081,7 +8081,7 @@ CC00515 = CostumeCoreTerm(
     display_name_en="""clasp""",
     features=("closure",),
     id="CC00515",
-    uri="https://w3id.org/costumeCore/ontology/clasp",
+    uri="https://w3id.org/costumeCore/ontology/CC00515",
     wikidata_id=None,
 )
 CC00516 = CostumeCoreTerm(
@@ -8090,7 +8090,7 @@ CC00516 = CostumeCoreTerm(
     display_name_en="""mermaid""",
     features=None,
     id="CC00516",
-    uri="https://w3id.org/costumeCore/ontology/mermaid",
+    uri="https://w3id.org/costumeCore/ontology/CC00516",
     wikidata_id=None,
 )
 CC00517 = CostumeCoreTerm(
@@ -8099,7 +8099,7 @@ CC00517 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -8108,7 +8108,7 @@ CC00517 = CostumeCoreTerm(
     display_name_en="""knickerbockers""",
     features=("pantsType",),
     id="CC00517",
-    uri="https://w3id.org/costumeCore/ontology/knickerbockers",
+    uri="https://w3id.org/costumeCore/ontology/CC00517",
     wikidata_id=None,
 )
 CC00518 = CostumeCoreTerm(
@@ -8117,7 +8117,7 @@ CC00518 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -8126,7 +8126,7 @@ CC00518 = CostumeCoreTerm(
     display_name_en="""outerwear""",
     features=None,
     id="CC00518",
-    uri="https://w3id.org/costumeCore/ontology/outerwear",
+    uri="https://w3id.org/costumeCore/ontology/CC00518",
     wikidata_id=None,
 )
 CC00519 = CostumeCoreTerm(
@@ -8135,7 +8135,7 @@ CC00519 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -8144,7 +8144,7 @@ CC00519 = CostumeCoreTerm(
     display_name_en="""nightwear""",
     features=("function",),
     id="CC00519",
-    uri="https://w3id.org/costumeCore/ontology/nightwear",
+    uri="https://w3id.org/costumeCore/ontology/CC00519",
     wikidata_id=None,
 )
 CC00520 = CostumeCoreTerm(
@@ -8152,7 +8152,7 @@ CC00520 = CostumeCoreTerm(
     description=CostumeCoreDescription(
         rights=CostumeCoreRights(
             author="Wikidata contributors",
-            license_uri="https://creativecommons.org/publicdomain/zero/1.0/",
+            license_uri="https://creativecommons.org/publicdomain/mark/1.0/",
             rights_statement_uri="https://creativecommons.org/publicdomain/mark/1.0/",
             source_name="Wikidata",
             source_url="https://www.wikidata.org/wiki/Wikidata:Data_access/en",
@@ -8162,7 +8162,7 @@ CC00520 = CostumeCoreTerm(
     display_name_en="""tent""",
     features=("dressType",),
     id="CC00520",
-    uri="https://w3id.org/costumeCore/ontology/tent",
+    uri="https://w3id.org/costumeCore/ontology/CC00520",
     wikidata_id="Q10707950",
 )
 CC00521 = CostumeCoreTerm(
@@ -8170,7 +8170,7 @@ CC00521 = CostumeCoreTerm(
     description=CostumeCoreDescription(
         rights=CostumeCoreRights(
             author="Wikidata contributors",
-            license_uri="https://creativecommons.org/publicdomain/zero/1.0/",
+            license_uri="https://creativecommons.org/publicdomain/mark/1.0/",
             rights_statement_uri="https://creativecommons.org/publicdomain/mark/1.0/",
             source_name="Wikidata",
             source_url="https://www.wikidata.org/wiki/Wikidata:Data_access/en",
@@ -8180,7 +8180,7 @@ CC00521 = CostumeCoreTerm(
     display_name_en="""a-line""",
     features=None,
     id="CC00521",
-    uri="https://w3id.org/costumeCore/ontology/a-line",
+    uri="https://w3id.org/costumeCore/ontology/CC00521",
     wikidata_id="Q277835",
 )
 CC00522 = CostumeCoreTerm(
@@ -8189,7 +8189,7 @@ CC00522 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -8198,7 +8198,7 @@ CC00522 = CostumeCoreTerm(
     display_name_en="""shift""",
     features=("dressType",),
     id="CC00522",
-    uri="https://w3id.org/costumeCore/ontology/shift",
+    uri="https://w3id.org/costumeCore/ontology/CC00522",
     wikidata_id=None,
 )
 CC00523 = CostumeCoreTerm(
@@ -8207,7 +8207,7 @@ CC00523 = CostumeCoreTerm(
     display_name_en="""trews""",
     features=None,
     id="CC00523",
-    uri="https://w3id.org/costumeCore/ontology/trews",
+    uri="https://w3id.org/costumeCore/ontology/CC00523",
     wikidata_id=None,
 )
 CC00524 = CostumeCoreTerm(
@@ -8216,7 +8216,7 @@ CC00524 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -8225,7 +8225,7 @@ CC00524 = CostumeCoreTerm(
     display_name_en="""bloomers""",
     features=("pantsType",),
     id="CC00524",
-    uri="https://w3id.org/costumeCore/ontology/bloomers",
+    uri="https://w3id.org/costumeCore/ontology/CC00524",
     wikidata_id=None,
 )
 CC00525 = CostumeCoreTerm(
@@ -8234,7 +8234,7 @@ CC00525 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -8243,7 +8243,7 @@ CC00525 = CostumeCoreTerm(
     display_name_en="""shorts""",
     features=("workType",),
     id="CC00525",
-    uri="https://w3id.org/costumeCore/ontology/shorts",
+    uri="https://w3id.org/costumeCore/ontology/CC00525",
     wikidata_id="Q223269",
 )
 CC00526 = CostumeCoreTerm(
@@ -8251,7 +8251,7 @@ CC00526 = CostumeCoreTerm(
     description=CostumeCoreDescription(
         rights=CostumeCoreRights(
             author="Wikidata contributors",
-            license_uri="https://creativecommons.org/publicdomain/zero/1.0/",
+            license_uri="https://creativecommons.org/publicdomain/mark/1.0/",
             rights_statement_uri="https://creativecommons.org/publicdomain/mark/1.0/",
             source_name="Wikidata",
             source_url="https://www.wikidata.org/wiki/Wikidata:Data_access/en",
@@ -8261,7 +8261,7 @@ CC00526 = CostumeCoreTerm(
     display_name_en="""skort""",
     features=None,
     id="CC00526",
-    uri="https://w3id.org/costumeCore/ontology/skort",
+    uri="https://w3id.org/costumeCore/ontology/CC00526",
     wikidata_id="Q363031",
 )
 CC00527 = CostumeCoreTerm(
@@ -8279,7 +8279,7 @@ CC00527 = CostumeCoreTerm(
     display_name_en="""1500s""",
     features=("temporal",),
     id="CC00527",
-    uri="https://w3id.org/costumeCore/ontology/1500s",
+    uri="https://w3id.org/costumeCore/ontology/CC00527",
     wikidata_id="Q44140",
 )
 CC00528 = CostumeCoreTerm(
@@ -8297,7 +8297,7 @@ CC00528 = CostumeCoreTerm(
     display_name_en="""1510s""",
     features=("temporal",),
     id="CC00528",
-    uri="https://w3id.org/costumeCore/ontology/1510s",
+    uri="https://w3id.org/costumeCore/ontology/CC00528",
     wikidata_id="Q46245",
 )
 CC00529 = CostumeCoreTerm(
@@ -8315,7 +8315,7 @@ CC00529 = CostumeCoreTerm(
     display_name_en="""1520s""",
     features=("temporal",),
     id="CC00529",
-    uri="https://w3id.org/costumeCore/ontology/1520s",
+    uri="https://w3id.org/costumeCore/ontology/CC00529",
     wikidata_id="Q192244",
 )
 CC00530 = CostumeCoreTerm(
@@ -8333,7 +8333,7 @@ CC00530 = CostumeCoreTerm(
     display_name_en="""1530s""",
     features=("temporal",),
     id="CC00530",
-    uri="https://w3id.org/costumeCore/ontology/1530s",
+    uri="https://w3id.org/costumeCore/ontology/CC00530",
     wikidata_id="Q192500",
 )
 CC00531 = CostumeCoreTerm(
@@ -8351,7 +8351,7 @@ CC00531 = CostumeCoreTerm(
     display_name_en="""1540s""",
     features=("temporal",),
     id="CC00531",
-    uri="https://w3id.org/costumeCore/ontology/1540s",
+    uri="https://w3id.org/costumeCore/ontology/CC00531",
     wikidata_id="Q48158",
 )
 CC00532 = CostumeCoreTerm(
@@ -8369,7 +8369,7 @@ CC00532 = CostumeCoreTerm(
     display_name_en="""1550s""",
     features=("temporal",),
     id="CC00532",
-    uri="https://w3id.org/costumeCore/ontology/1550s",
+    uri="https://w3id.org/costumeCore/ontology/CC00532",
     wikidata_id="Q193242",
 )
 CC00533 = CostumeCoreTerm(
@@ -8387,7 +8387,7 @@ CC00533 = CostumeCoreTerm(
     display_name_en="""1560s""",
     features=("temporal",),
     id="CC00533",
-    uri="https://w3id.org/costumeCore/ontology/1560s",
+    uri="https://w3id.org/costumeCore/ontology/CC00533",
     wikidata_id="Q193480",
 )
 CC00534 = CostumeCoreTerm(
@@ -8405,7 +8405,7 @@ CC00534 = CostumeCoreTerm(
     display_name_en="""1570s""",
     features=("temporal",),
     id="CC00534",
-    uri="https://w3id.org/costumeCore/ontology/1570s",
+    uri="https://w3id.org/costumeCore/ontology/CC00534",
     wikidata_id="Q193679",
 )
 CC00535 = CostumeCoreTerm(
@@ -8423,7 +8423,7 @@ CC00535 = CostumeCoreTerm(
     display_name_en="""1580s""",
     features=("temporal",),
     id="CC00535",
-    uri="https://w3id.org/costumeCore/ontology/1580s",
+    uri="https://w3id.org/costumeCore/ontology/CC00535",
     wikidata_id="Q48563",
 )
 CC00536 = CostumeCoreTerm(
@@ -8441,7 +8441,7 @@ CC00536 = CostumeCoreTerm(
     display_name_en="""1590s""",
     features=("temporal",),
     id="CC00536",
-    uri="https://w3id.org/costumeCore/ontology/1590s",
+    uri="https://w3id.org/costumeCore/ontology/CC00536",
     wikidata_id="Q48595",
 )
 CC00537 = CostumeCoreTerm(
@@ -8459,7 +8459,7 @@ CC00537 = CostumeCoreTerm(
     display_name_en="""1600s""",
     features=("temporal",),
     id="CC00537",
-    uri="https://w3id.org/costumeCore/ontology/1600s",
+    uri="https://w3id.org/costumeCore/ontology/CC00537",
     wikidata_id="Q42995",
 )
 CC00538 = CostumeCoreTerm(
@@ -8477,7 +8477,7 @@ CC00538 = CostumeCoreTerm(
     display_name_en="""1610s""",
     features=("temporal",),
     id="CC00538",
-    uri="https://w3id.org/costumeCore/ontology/1610s",
+    uri="https://w3id.org/costumeCore/ontology/CC00538",
     wikidata_id="Q46050",
 )
 CC00539 = CostumeCoreTerm(
@@ -8495,7 +8495,7 @@ CC00539 = CostumeCoreTerm(
     display_name_en="""1620s""",
     features=("temporal",),
     id="CC00539",
-    uri="https://w3id.org/costumeCore/ontology/1620s",
+    uri="https://w3id.org/costumeCore/ontology/CC00539",
     wikidata_id="Q195923",
 )
 CC00540 = CostumeCoreTerm(
@@ -8513,7 +8513,7 @@ CC00540 = CostumeCoreTerm(
     display_name_en="""1630s""",
     features=("temporal",),
     id="CC00540",
-    uri="https://w3id.org/costumeCore/ontology/1630s",
+    uri="https://w3id.org/costumeCore/ontology/CC00540",
     wikidata_id="Q196292",
 )
 CC00541 = CostumeCoreTerm(
@@ -8531,7 +8531,7 @@ CC00541 = CostumeCoreTerm(
     display_name_en="""1640s""",
     features=("temporal",),
     id="CC00541",
-    uri="https://w3id.org/costumeCore/ontology/1640s",
+    uri="https://w3id.org/costumeCore/ontology/CC00541",
     wikidata_id="Q196375",
 )
 CC00542 = CostumeCoreTerm(
@@ -8549,7 +8549,7 @@ CC00542 = CostumeCoreTerm(
     display_name_en="""1650s""",
     features=("temporal",),
     id="CC00542",
-    uri="https://w3id.org/costumeCore/ontology/1650s",
+    uri="https://w3id.org/costumeCore/ontology/CC00542",
     wikidata_id="Q196467",
 )
 CC00543 = CostumeCoreTerm(
@@ -8567,7 +8567,7 @@ CC00543 = CostumeCoreTerm(
     display_name_en="""1660s""",
     features=("temporal",),
     id="CC00543",
-    uri="https://w3id.org/costumeCore/ontology/1660s",
+    uri="https://w3id.org/costumeCore/ontology/CC00543",
     wikidata_id="Q196549",
 )
 CC00544 = CostumeCoreTerm(
@@ -8585,7 +8585,7 @@ CC00544 = CostumeCoreTerm(
     display_name_en="""1670s""",
     features=("temporal",),
     id="CC00544",
-    uri="https://w3id.org/costumeCore/ontology/1670s",
+    uri="https://w3id.org/costumeCore/ontology/CC00544",
     wikidata_id="Q196647",
 )
 CC00545 = CostumeCoreTerm(
@@ -8603,7 +8603,7 @@ CC00545 = CostumeCoreTerm(
     display_name_en="""1680s""",
     features=("temporal",),
     id="CC00545",
-    uri="https://w3id.org/costumeCore/ontology/1680s",
+    uri="https://w3id.org/costumeCore/ontology/CC00545",
     wikidata_id="Q46011",
 )
 CC00546 = CostumeCoreTerm(
@@ -8621,7 +8621,7 @@ CC00546 = CostumeCoreTerm(
     display_name_en="""1690s""",
     features=("temporal",),
     id="CC00546",
-    uri="https://w3id.org/costumeCore/ontology/1690s",
+    uri="https://w3id.org/costumeCore/ontology/CC00546",
     wikidata_id="Q197012",
 )
 CC00547 = CostumeCoreTerm(
@@ -8639,7 +8639,7 @@ CC00547 = CostumeCoreTerm(
     display_name_en="""1700s""",
     features=("temporal",),
     id="CC00547",
-    uri="https://w3id.org/costumeCore/ontology/1700s",
+    uri="https://w3id.org/costumeCore/ontology/CC00547",
     wikidata_id="Q43370",
 )
 CC00548 = CostumeCoreTerm(
@@ -8657,7 +8657,7 @@ CC00548 = CostumeCoreTerm(
     display_name_en="""1710s""",
     features=("temporal",),
     id="CC00548",
-    uri="https://w3id.org/costumeCore/ontology/1710s",
+    uri="https://w3id.org/costumeCore/ontology/CC00548",
     wikidata_id="Q198144",
 )
 CC00549 = CostumeCoreTerm(
@@ -8675,7 +8675,7 @@ CC00549 = CostumeCoreTerm(
     display_name_en="""1720s""",
     features=("temporal",),
     id="CC00549",
-    uri="https://w3id.org/costumeCore/ontology/1720s",
+    uri="https://w3id.org/costumeCore/ontology/CC00549",
     wikidata_id="Q198469",
 )
 CC00550 = CostumeCoreTerm(
@@ -8693,7 +8693,7 @@ CC00550 = CostumeCoreTerm(
     display_name_en="""1730s""",
     features=("temporal",),
     id="CC00550",
-    uri="https://w3id.org/costumeCore/ontology/1730s",
+    uri="https://w3id.org/costumeCore/ontology/CC00550",
     wikidata_id="Q48121",
 )
 CC00551 = CostumeCoreTerm(
@@ -8711,7 +8711,7 @@ CC00551 = CostumeCoreTerm(
     display_name_en="""1740s""",
     features=("temporal",),
     id="CC00551",
-    uri="https://w3id.org/costumeCore/ontology/1740s",
+    uri="https://w3id.org/costumeCore/ontology/CC00551",
     wikidata_id="Q43970",
 )
 CC00552 = CostumeCoreTerm(
@@ -8729,7 +8729,7 @@ CC00552 = CostumeCoreTerm(
     display_name_en="""1750s""",
     features=("temporal",),
     id="CC00552",
-    uri="https://w3id.org/costumeCore/ontology/1750s",
+    uri="https://w3id.org/costumeCore/ontology/CC00552",
     wikidata_id="Q48528",
 )
 CC00553 = CostumeCoreTerm(
@@ -8747,7 +8747,7 @@ CC00553 = CostumeCoreTerm(
     display_name_en="""1760s""",
     features=("temporal",),
     id="CC00553",
-    uri="https://w3id.org/costumeCore/ontology/1760s",
+    uri="https://w3id.org/costumeCore/ontology/CC00553",
     wikidata_id="Q199545",
 )
 CC00554 = CostumeCoreTerm(
@@ -8765,7 +8765,7 @@ CC00554 = CostumeCoreTerm(
     display_name_en="""1770s""",
     features=("temporal",),
     id="CC00554",
-    uri="https://w3id.org/costumeCore/ontology/1770s",
+    uri="https://w3id.org/costumeCore/ontology/CC00554",
     wikidata_id="Q44859",
 )
 CC00555 = CostumeCoreTerm(
@@ -8783,7 +8783,7 @@ CC00555 = CostumeCoreTerm(
     display_name_en="""1780s""",
     features=("temporal",),
     id="CC00555",
-    uri="https://w3id.org/costumeCore/ontology/1780s",
+    uri="https://w3id.org/costumeCore/ontology/CC00555",
     wikidata_id="Q48058",
 )
 CC00556 = CostumeCoreTerm(
@@ -8801,7 +8801,7 @@ CC00556 = CostumeCoreTerm(
     display_name_en="""1790s""",
     features=("temporal",),
     id="CC00556",
-    uri="https://w3id.org/costumeCore/ontology/1790s",
+    uri="https://w3id.org/costumeCore/ontology/CC00556",
     wikidata_id="Q199912",
 )
 CC00557 = CostumeCoreTerm(
@@ -8819,7 +8819,7 @@ CC00557 = CostumeCoreTerm(
     display_name_en="""1800s""",
     features=("temporal",),
     id="CC00557",
-    uri="https://w3id.org/costumeCore/ontology/1800s",
+    uri="https://w3id.org/costumeCore/ontology/CC00557",
     wikidata_id="Q39577",
 )
 CC00558 = CostumeCoreTerm(
@@ -8837,7 +8837,7 @@ CC00558 = CostumeCoreTerm(
     display_name_en="""1810s""",
     features=("temporal",),
     id="CC00558",
-    uri="https://w3id.org/costumeCore/ontology/1810s",
+    uri="https://w3id.org/costumeCore/ontology/CC00558",
     wikidata_id="Q40196",
 )
 CC00559 = CostumeCoreTerm(
@@ -8855,7 +8855,7 @@ CC00559 = CostumeCoreTerm(
     display_name_en="""1820s""",
     features=("temporal",),
     id="CC00559",
-    uri="https://w3id.org/costumeCore/ontology/1820s",
+    uri="https://w3id.org/costumeCore/ontology/CC00559",
     wikidata_id="Q44659",
 )
 CC00560 = CostumeCoreTerm(
@@ -8873,7 +8873,7 @@ CC00560 = CostumeCoreTerm(
     display_name_en="""1830s""",
     features=("temporal",),
     id="CC00560",
-    uri="https://w3id.org/costumeCore/ontology/1830s",
+    uri="https://w3id.org/costumeCore/ontology/CC00560",
     wikidata_id="Q39484",
 )
 CC00561 = CostumeCoreTerm(
@@ -8891,7 +8891,7 @@ CC00561 = CostumeCoreTerm(
     display_name_en="""1840s""",
     features=("temporal",),
     id="CC00561",
-    uri="https://w3id.org/costumeCore/ontology/1840s",
+    uri="https://w3id.org/costumeCore/ontology/CC00561",
     wikidata_id="Q38324",
 )
 CC00562 = CostumeCoreTerm(
@@ -8909,7 +8909,7 @@ CC00562 = CostumeCoreTerm(
     display_name_en="""1850s""",
     features=("temporal",),
     id="CC00562",
-    uri="https://w3id.org/costumeCore/ontology/1850s",
+    uri="https://w3id.org/costumeCore/ontology/CC00562",
     wikidata_id="Q40927",
 )
 CC00563 = CostumeCoreTerm(
@@ -8927,7 +8927,7 @@ CC00563 = CostumeCoreTerm(
     display_name_en="""1860s""",
     features=("temporal",),
     id="CC00563",
-    uri="https://w3id.org/costumeCore/ontology/1860s",
+    uri="https://w3id.org/costumeCore/ontology/CC00563",
     wikidata_id="Q39844",
 )
 CC00564 = CostumeCoreTerm(
@@ -8945,7 +8945,7 @@ CC00564 = CostumeCoreTerm(
     display_name_en="""1870s""",
     features=("temporal",),
     id="CC00564",
-    uri="https://w3id.org/costumeCore/ontology/1870s",
+    uri="https://w3id.org/costumeCore/ontology/CC00564",
     wikidata_id="Q39847",
 )
 CC00565 = CostumeCoreTerm(
@@ -8963,7 +8963,7 @@ CC00565 = CostumeCoreTerm(
     display_name_en="""1880s""",
     features=("temporal",),
     id="CC00565",
-    uri="https://w3id.org/costumeCore/ontology/1880s",
+    uri="https://w3id.org/costumeCore/ontology/CC00565",
     wikidata_id="Q38674",
 )
 CC00566 = CostumeCoreTerm(
@@ -8981,7 +8981,7 @@ CC00566 = CostumeCoreTerm(
     display_name_en="""1890s""",
     features=("temporal",),
     id="CC00566",
-    uri="https://w3id.org/costumeCore/ontology/1890s",
+    uri="https://w3id.org/costumeCore/ontology/CC00566",
     wikidata_id="Q38971",
 )
 CC00567 = CostumeCoreTerm(
@@ -8999,7 +8999,7 @@ CC00567 = CostumeCoreTerm(
     display_name_en="""1900s""",
     features=("temporal",),
     id="CC00567",
-    uri="https://w3id.org/costumeCore/ontology/1900s",
+    uri="https://w3id.org/costumeCore/ontology/CC00567",
     wikidata_id="Q36574",
 )
 CC00568 = CostumeCoreTerm(
@@ -9017,7 +9017,7 @@ CC00568 = CostumeCoreTerm(
     display_name_en="""1910s""",
     features=("temporal",),
     id="CC00568",
-    uri="https://w3id.org/costumeCore/ontology/1910s",
+    uri="https://w3id.org/costumeCore/ontology/CC00568",
     wikidata_id="Q36585",
 )
 CC00569 = CostumeCoreTerm(
@@ -9035,7 +9035,7 @@ CC00569 = CostumeCoreTerm(
     display_name_en="""1920s""",
     features=("temporal",),
     id="CC00569",
-    uri="https://w3id.org/costumeCore/ontology/1920s",
+    uri="https://w3id.org/costumeCore/ontology/CC00569",
     wikidata_id="Q35736",
 )
 CC00570 = CostumeCoreTerm(
@@ -9053,7 +9053,7 @@ CC00570 = CostumeCoreTerm(
     display_name_en="""1930s""",
     features=("temporal",),
     id="CC00570",
-    uri="https://w3id.org/costumeCore/ontology/1930s",
+    uri="https://w3id.org/costumeCore/ontology/CC00570",
     wikidata_id="Q35702",
 )
 CC00571 = CostumeCoreTerm(
@@ -9071,7 +9071,7 @@ CC00571 = CostumeCoreTerm(
     display_name_en="""1940s""",
     features=("temporal",),
     id="CC00571",
-    uri="https://w3id.org/costumeCore/ontology/1940s",
+    uri="https://w3id.org/costumeCore/ontology/CC00571",
     wikidata_id="Q36561",
 )
 CC00572 = CostumeCoreTerm(
@@ -9089,7 +9089,7 @@ CC00572 = CostumeCoreTerm(
     display_name_en="""1950s""",
     features=("temporal",),
     id="CC00572",
-    uri="https://w3id.org/costumeCore/ontology/1950s",
+    uri="https://w3id.org/costumeCore/ontology/CC00572",
     wikidata_id="Q36297",
 )
 CC00573 = CostumeCoreTerm(
@@ -9107,7 +9107,7 @@ CC00573 = CostumeCoreTerm(
     display_name_en="""1960s""",
     features=("temporal",),
     id="CC00573",
-    uri="https://w3id.org/costumeCore/ontology/1960s",
+    uri="https://w3id.org/costumeCore/ontology/CC00573",
     wikidata_id="Q35724",
 )
 CC00574 = CostumeCoreTerm(
@@ -9125,7 +9125,7 @@ CC00574 = CostumeCoreTerm(
     display_name_en="""1970s""",
     features=("temporal",),
     id="CC00574",
-    uri="https://w3id.org/costumeCore/ontology/1970s",
+    uri="https://w3id.org/costumeCore/ontology/CC00574",
     wikidata_id="Q35014",
 )
 CC00575 = CostumeCoreTerm(
@@ -9143,7 +9143,7 @@ CC00575 = CostumeCoreTerm(
     display_name_en="""1980s""",
     features=("temporal",),
     id="CC00575",
-    uri="https://w3id.org/costumeCore/ontology/1980s",
+    uri="https://w3id.org/costumeCore/ontology/CC00575",
     wikidata_id="Q34644",
 )
 CC00576 = CostumeCoreTerm(
@@ -9161,7 +9161,7 @@ CC00576 = CostumeCoreTerm(
     display_name_en="""1990s""",
     features=("temporal",),
     id="CC00576",
-    uri="https://w3id.org/costumeCore/ontology/1990s",
+    uri="https://w3id.org/costumeCore/ontology/CC00576",
     wikidata_id="Q34653",
 )
 CC00577 = CostumeCoreTerm(
@@ -9179,7 +9179,7 @@ CC00577 = CostumeCoreTerm(
     display_name_en="""2000s""",
     features=("temporal",),
     id="CC00577",
-    uri="https://w3id.org/costumeCore/ontology/2000s",
+    uri="https://w3id.org/costumeCore/ontology/CC00577",
     wikidata_id="Q35024",
 )
 CC00578 = CostumeCoreTerm(
@@ -9197,7 +9197,7 @@ CC00578 = CostumeCoreTerm(
     display_name_en="""2010s""",
     features=("temporal",),
     id="CC00578",
-    uri="https://w3id.org/costumeCore/ontology/2010s",
+    uri="https://w3id.org/costumeCore/ontology/CC00578",
     wikidata_id="Q19022",
 )
 CC00579 = CostumeCoreTerm(
@@ -9215,7 +9215,7 @@ CC00579 = CostumeCoreTerm(
     display_name_en="""2020s""",
     features=("temporal",),
     id="CC00579",
-    uri="https://w3id.org/costumeCore/ontology/2020s",
+    uri="https://w3id.org/costumeCore/ontology/CC00579",
     wikidata_id="Q534495",
 )
 CC00580 = CostumeCoreTerm(
@@ -9224,7 +9224,7 @@ CC00580 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9233,7 +9233,7 @@ CC00580 = CostumeCoreTerm(
     display_name_en="""gusset""",
     features=("costumeComponents",),
     id="CC00580",
-    uri="https://w3id.org/costumeCore/ontology/gusset",
+    uri="https://w3id.org/costumeCore/ontology/CC00580",
     wikidata_id="Q244554",
 )
 CC00581 = CostumeCoreTerm(
@@ -9242,7 +9242,7 @@ CC00581 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9251,7 +9251,7 @@ CC00581 = CostumeCoreTerm(
     display_name_en="""ruffle""",
     features=("costumeComponents",),
     id="CC00581",
-    uri="https://w3id.org/costumeCore/ontology/ruffle",
+    uri="https://w3id.org/costumeCore/ontology/CC00581",
     wikidata_id="Q2204140",
 )
 CC00582 = CostumeCoreTerm(
@@ -9260,7 +9260,7 @@ CC00582 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9269,7 +9269,7 @@ CC00582 = CostumeCoreTerm(
     display_name_en="""ceremonial costume""",
     features=("function",),
     id="CC00582",
-    uri="https://w3id.org/costumeCore/ontology/ceremonial%20costume",
+    uri="https://w3id.org/costumeCore/ontology/CC00582",
     wikidata_id="Q5064153",
 )
 CC00583 = CostumeCoreTerm(
@@ -9278,7 +9278,7 @@ CC00583 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9287,7 +9287,7 @@ CC00583 = CostumeCoreTerm(
     display_name_en="""costume""",
     features=("function",),
     id="CC00583",
-    uri="https://w3id.org/costumeCore/ontology/costume",
+    uri="https://w3id.org/costumeCore/ontology/CC00583",
     wikidata_id="Q1410477",
 )
 CC00584 = CostumeCoreTerm(
@@ -9296,7 +9296,7 @@ CC00584 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9305,7 +9305,7 @@ CC00584 = CostumeCoreTerm(
     display_name_en="""moir\xe9""",
     features=("pattern",),
     id="CC00584",
-    uri="https://w3id.org/costumeCore/ontology/moir%C3%A9",
+    uri="https://w3id.org/costumeCore/ontology/CC00584",
     wikidata_id="Q26468",
 )
 CC00585 = CostumeCoreTerm(
@@ -9314,7 +9314,7 @@ CC00585 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9323,7 +9323,7 @@ CC00585 = CostumeCoreTerm(
     display_name_en="""scroll""",
     features=("pattern",),
     id="CC00585",
-    uri="https://w3id.org/costumeCore/ontology/scroll",
+    uri="https://w3id.org/costumeCore/ontology/CC00585",
     wikidata_id=None,
 )
 CC00586 = CostumeCoreTerm(
@@ -9332,7 +9332,7 @@ CC00586 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9341,7 +9341,7 @@ CC00586 = CostumeCoreTerm(
     display_name_en="""paisley""",
     features=("pattern",),
     id="CC00586",
-    uri="https://w3id.org/costumeCore/ontology/paisley",
+    uri="https://w3id.org/costumeCore/ontology/CC00586",
     wikidata_id="Q937704",
 )
 CC00587 = CostumeCoreTerm(
@@ -9350,7 +9350,7 @@ CC00587 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9359,7 +9359,7 @@ CC00587 = CostumeCoreTerm(
     display_name_en="""chevron""",
     features=("pattern",),
     id="CC00587",
-    uri="https://w3id.org/costumeCore/ontology/chevron",
+    uri="https://w3id.org/costumeCore/ontology/CC00587",
     wikidata_id=None,
 )
 CC00588 = CostumeCoreTerm(
@@ -9368,7 +9368,7 @@ CC00588 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9377,7 +9377,7 @@ CC00588 = CostumeCoreTerm(
     display_name_en="""houndstooth""",
     features=("pattern",),
     id="CC00588",
-    uri="https://w3id.org/costumeCore/ontology/houndstooth",
+    uri="https://w3id.org/costumeCore/ontology/CC00588",
     wikidata_id="Q911389",
 )
 CC00589 = CostumeCoreTerm(
@@ -9395,7 +9395,7 @@ CC00589 = CostumeCoreTerm(
     display_name_en="""check""",
     features=("pattern",),
     id="CC00589",
-    uri="https://w3id.org/costumeCore/ontology/check",
+    uri="https://w3id.org/costumeCore/ontology/CC00589",
     wikidata_id="Q14290457",
 )
 CC00590 = CostumeCoreTerm(
@@ -9404,7 +9404,7 @@ CC00590 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9413,7 +9413,7 @@ CC00590 = CostumeCoreTerm(
     display_name_en="""polka dots""",
     features=("pattern",),
     id="CC00590",
-    uri="https://w3id.org/costumeCore/ontology/polka%20dots",
+    uri="https://w3id.org/costumeCore/ontology/CC00590",
     wikidata_id="Q2429962",
 )
 CC00591 = CostumeCoreTerm(
@@ -9422,7 +9422,7 @@ CC00591 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9431,7 +9431,7 @@ CC00591 = CostumeCoreTerm(
     display_name_en="""ikat""",
     features=("pattern",),
     id="CC00591",
-    uri="https://w3id.org/costumeCore/ontology/ikat",
+    uri="https://w3id.org/costumeCore/ontology/CC00591",
     wikidata_id="Q140101",
 )
 CC00592 = CostumeCoreTerm(
@@ -9440,7 +9440,7 @@ CC00592 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9449,7 +9449,7 @@ CC00592 = CostumeCoreTerm(
     display_name_en="""camouflage""",
     features=("pattern",),
     id="CC00592",
-    uri="https://w3id.org/costumeCore/ontology/camouflage",
+    uri="https://w3id.org/costumeCore/ontology/CC00592",
     wikidata_id="Q196113",
 )
 CC00593 = CostumeCoreTerm(
@@ -9458,7 +9458,7 @@ CC00593 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9467,7 +9467,7 @@ CC00593 = CostumeCoreTerm(
     display_name_en="""animal print""",
     features=("pattern",),
     id="CC00593",
-    uri="https://w3id.org/costumeCore/ontology/animal%20print",
+    uri="https://w3id.org/costumeCore/ontology/CC00593",
     wikidata_id="Q4764964",
 )
 CC00594 = CostumeCoreTerm(
@@ -9476,7 +9476,7 @@ CC00594 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9485,7 +9485,7 @@ CC00594 = CostumeCoreTerm(
     display_name_en="""tweed""",
     features=("material", "textileMaterials",),
     id="CC00594",
-    uri="https://w3id.org/costumeCore/ontology/tweed",
+    uri="https://w3id.org/costumeCore/ontology/CC00594",
     wikidata_id="Q40601",
 )
 CC00595 = CostumeCoreTerm(
@@ -9494,7 +9494,7 @@ CC00595 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9503,7 +9503,7 @@ CC00595 = CostumeCoreTerm(
     display_name_en="""geometric""",
     features=("pattern",),
     id="CC00595",
-    uri="https://w3id.org/costumeCore/ontology/geometric",
+    uri="https://w3id.org/costumeCore/ontology/CC00595",
     wikidata_id=None,
 )
 CC00596 = CostumeCoreTerm(
@@ -9512,7 +9512,7 @@ CC00596 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9521,7 +9521,7 @@ CC00596 = CostumeCoreTerm(
     display_name_en="""bird's-eye twill""",
     features=("pattern",),
     id="CC00596",
-    uri="https://w3id.org/costumeCore/ontology/bird%27s-eye%20twill",
+    uri="https://w3id.org/costumeCore/ontology/CC00596",
     wikidata_id="Q2553036",
 )
 CC00597 = CostumeCoreTerm(
@@ -9530,7 +9530,7 @@ CC00597 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9539,7 +9539,7 @@ CC00597 = CostumeCoreTerm(
     display_name_en="""ombr\xe9""",
     features=("hasTechnique",),
     id="CC00597",
-    uri="https://w3id.org/costumeCore/ontology/ombr%C3%A9",
+    uri="https://w3id.org/costumeCore/ontology/CC00597",
     wikidata_id="Q1700971",
 )
 CC00598 = CostumeCoreTerm(
@@ -9548,7 +9548,7 @@ CC00598 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9557,7 +9557,7 @@ CC00598 = CostumeCoreTerm(
     display_name_en="""dress shield""",
     features=("costumeComponents",),
     id="CC00598",
-    uri="https://w3id.org/costumeCore/ontology/dress%20shield",
+    uri="https://w3id.org/costumeCore/ontology/CC00598",
     wikidata_id="Q63505185",
 )
 CC00599 = CostumeCoreTerm(
@@ -9566,7 +9566,7 @@ CC00599 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9575,7 +9575,7 @@ CC00599 = CostumeCoreTerm(
     display_name_en="""bow""",
     features=("costumeComponents",),
     id="CC00599",
-    uri="https://w3id.org/costumeCore/ontology/bow",
+    uri="https://w3id.org/costumeCore/ontology/CC00599",
     wikidata_id="Q2238808",
 )
 CC00600 = CostumeCoreTerm(
@@ -9584,7 +9584,7 @@ CC00600 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9593,7 +9593,7 @@ CC00600 = CostumeCoreTerm(
     display_name_en="""accessory""",
     features=("workType",),
     id="CC00600",
-    uri="https://w3id.org/costumeCore/ontology/accessory",
+    uri="https://w3id.org/costumeCore/ontology/CC00600",
     wikidata_id="Q362200",
 )
 CC00601 = CostumeCoreTerm(
@@ -9611,7 +9611,7 @@ CC00601 = CostumeCoreTerm(
     display_name_en="""bodysuit""",
     features=("workType",),
     id="CC00601",
-    uri="https://w3id.org/costumeCore/ontology/bodysuit",
+    uri="https://w3id.org/costumeCore/ontology/CC00601",
     wikidata_id="Q890119",
 )
 CC00602 = CostumeCoreTerm(
@@ -9620,7 +9620,7 @@ CC00602 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9629,7 +9629,7 @@ CC00602 = CostumeCoreTerm(
     display_name_en="""cape""",
     features=("workType",),
     id="CC00602",
-    uri="https://w3id.org/costumeCore/ontology/cape",
+    uri="https://w3id.org/costumeCore/ontology/CC00602",
     wikidata_id="Q1034198",
 )
 CC00603 = CostumeCoreTerm(
@@ -9638,7 +9638,7 @@ CC00603 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9647,7 +9647,7 @@ CC00603 = CostumeCoreTerm(
     display_name_en="""footwear""",
     features=("workType",),
     id="CC00603",
-    uri="https://w3id.org/costumeCore/ontology/footwear",
+    uri="https://w3id.org/costumeCore/ontology/CC00603",
     wikidata_id="Q161928",
 )
 CC00604 = CostumeCoreTerm(
@@ -9656,7 +9656,7 @@ CC00604 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9665,7 +9665,7 @@ CC00604 = CostumeCoreTerm(
     display_name_en="""robe""",
     features=("workType",),
     id="CC00604",
-    uri="https://w3id.org/costumeCore/ontology/robe",
+    uri="https://w3id.org/costumeCore/ontology/CC00604",
     wikidata_id="Q345127",
 )
 CC00605 = CostumeCoreTerm(
@@ -9674,7 +9674,7 @@ CC00605 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9683,7 +9683,7 @@ CC00605 = CostumeCoreTerm(
     display_name_en="""legwear""",
     features=("workType",),
     id="CC00605",
-    uri="https://w3id.org/costumeCore/ontology/legwear",
+    uri="https://w3id.org/costumeCore/ontology/CC00605",
     wikidata_id="Q2524539",
 )
 CC00606 = CostumeCoreTerm(
@@ -9692,7 +9692,7 @@ CC00606 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9701,7 +9701,7 @@ CC00606 = CostumeCoreTerm(
     display_name_en="""gloves""",
     features=("workType",),
     id="CC00606",
-    uri="https://w3id.org/costumeCore/ontology/gloves",
+    uri="https://w3id.org/costumeCore/ontology/CC00606",
     wikidata_id="Q169031",
 )
 CC00607 = CostumeCoreTerm(
@@ -9710,7 +9710,7 @@ CC00607 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9719,7 +9719,7 @@ CC00607 = CostumeCoreTerm(
     display_name_en="""top""",
     features=("workType",),
     id="CC00607",
-    uri="https://w3id.org/costumeCore/ontology/top",
+    uri="https://w3id.org/costumeCore/ontology/CC00607",
     wikidata_id="Q1435365",
 )
 CC00608 = CostumeCoreTerm(
@@ -9728,7 +9728,7 @@ CC00608 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9737,7 +9737,7 @@ CC00608 = CostumeCoreTerm(
     display_name_en="""headwear""",
     features=("workType",),
     id="CC00608",
-    uri="https://w3id.org/costumeCore/ontology/headwear",
+    uri="https://w3id.org/costumeCore/ontology/CC00608",
     wikidata_id="Q14952",
 )
 CC00609 = CostumeCoreTerm(
@@ -9746,7 +9746,7 @@ CC00609 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9755,7 +9755,7 @@ CC00609 = CostumeCoreTerm(
     display_name_en="""underpants""",
     features=None,
     id="CC00609",
-    uri="https://w3id.org/costumeCore/ontology/underpants",
+    uri="https://w3id.org/costumeCore/ontology/CC00609",
     wikidata_id="Q39908",
 )
 CC00610 = CostumeCoreTerm(
@@ -9764,7 +9764,7 @@ CC00610 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9773,7 +9773,7 @@ CC00610 = CostumeCoreTerm(
     display_name_en="""jewelry""",
     features=("workType",),
     id="CC00610",
-    uri="https://w3id.org/costumeCore/ontology/jewelry",
+    uri="https://w3id.org/costumeCore/ontology/CC00610",
     wikidata_id="Q161439",
 )
 CC00611 = CostumeCoreTerm(
@@ -9782,7 +9782,7 @@ CC00611 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9791,7 +9791,7 @@ CC00611 = CostumeCoreTerm(
     display_name_en="""ensemble""",
     features=("workType",),
     id="CC00611",
-    uri="https://w3id.org/costumeCore/ontology/ensemble",
+    uri="https://w3id.org/costumeCore/ontology/CC00611",
     wikidata_id="Q29353484",
 )
 CC00612 = CostumeCoreTerm(
@@ -9800,7 +9800,7 @@ CC00612 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -9809,7 +9809,7 @@ CC00612 = CostumeCoreTerm(
     display_name_en="""bag""",
     features=None,
     id="CC00612",
-    uri="https://w3id.org/costumeCore/ontology/bag",
+    uri="https://w3id.org/costumeCore/ontology/CC00612",
     wikidata_id="Q1323314",
 )
 CC00613 = CostumeCoreTerm(
@@ -9827,7 +9827,7 @@ CC00613 = CostumeCoreTerm(
     display_name_en="""CNE""",
     features=("rights",),
     id="CC00613",
-    uri="https://w3id.org/costumeCore/ontology/CNE",
+    uri="https://w3id.org/costumeCore/ontology/CC00613",
     wikidata_id=None,
 )
 CC00614 = CostumeCoreTerm(
@@ -9845,7 +9845,7 @@ CC00614 = CostumeCoreTerm(
     display_name_en="""UND""",
     features=("rights",),
     id="CC00614",
-    uri="https://w3id.org/costumeCore/ontology/UND",
+    uri="https://w3id.org/costumeCore/ontology/CC00614",
     wikidata_id=None,
 )
 CC00615 = CostumeCoreTerm(
@@ -9863,7 +9863,7 @@ CC00615 = CostumeCoreTerm(
     display_name_en="""InC""",
     features=("rights",),
     id="CC00615",
-    uri="https://w3id.org/costumeCore/ontology/InC",
+    uri="https://w3id.org/costumeCore/ontology/CC00615",
     wikidata_id=None,
 )
 CC00616 = CostumeCoreTerm(
@@ -9881,7 +9881,7 @@ CC00616 = CostumeCoreTerm(
     display_name_en="""InC-EDU""",
     features=("rights",),
     id="CC00616",
-    uri="https://w3id.org/costumeCore/ontology/InC-EDU",
+    uri="https://w3id.org/costumeCore/ontology/CC00616",
     wikidata_id=None,
 )
 CC00617 = CostumeCoreTerm(
@@ -9899,7 +9899,7 @@ CC00617 = CostumeCoreTerm(
     display_name_en="""InC-OW-EU""",
     features=("rights",),
     id="CC00617",
-    uri="https://w3id.org/costumeCore/ontology/InC-OW-EU",
+    uri="https://w3id.org/costumeCore/ontology/CC00617",
     wikidata_id=None,
 )
 CC00618 = CostumeCoreTerm(
@@ -9917,7 +9917,7 @@ CC00618 = CostumeCoreTerm(
     display_name_en="""InC-NC""",
     features=("rights",),
     id="CC00618",
-    uri="https://w3id.org/costumeCore/ontology/InC-NC",
+    uri="https://w3id.org/costumeCore/ontology/CC00618",
     wikidata_id=None,
 )
 CC00619 = CostumeCoreTerm(
@@ -9935,7 +9935,7 @@ CC00619 = CostumeCoreTerm(
     display_name_en="""InC-RUU""",
     features=("rights",),
     id="CC00619",
-    uri="https://w3id.org/costumeCore/ontology/InC-RUU",
+    uri="https://w3id.org/costumeCore/ontology/CC00619",
     wikidata_id=None,
 )
 CC00620 = CostumeCoreTerm(
@@ -9953,7 +9953,7 @@ CC00620 = CostumeCoreTerm(
     display_name_en="""NoC-CR""",
     features=("rights",),
     id="CC00620",
-    uri="https://w3id.org/costumeCore/ontology/NoC-CR",
+    uri="https://w3id.org/costumeCore/ontology/CC00620",
     wikidata_id=None,
 )
 CC00621 = CostumeCoreTerm(
@@ -9971,7 +9971,7 @@ CC00621 = CostumeCoreTerm(
     display_name_en="""NoC-NC""",
     features=("rights",),
     id="CC00621",
-    uri="https://w3id.org/costumeCore/ontology/NoC-NC",
+    uri="https://w3id.org/costumeCore/ontology/CC00621",
     wikidata_id=None,
 )
 CC00622 = CostumeCoreTerm(
@@ -9989,7 +9989,7 @@ CC00622 = CostumeCoreTerm(
     display_name_en="""NoC-OKLR""",
     features=("rights",),
     id="CC00622",
-    uri="https://w3id.org/costumeCore/ontology/NoC-OKLR",
+    uri="https://w3id.org/costumeCore/ontology/CC00622",
     wikidata_id=None,
 )
 CC00623 = CostumeCoreTerm(
@@ -10007,7 +10007,7 @@ CC00623 = CostumeCoreTerm(
     display_name_en="""NoC-US""",
     features=("rights",),
     id="CC00623",
-    uri="https://w3id.org/costumeCore/ontology/NoC-US",
+    uri="https://w3id.org/costumeCore/ontology/CC00623",
     wikidata_id=None,
 )
 CC00624 = CostumeCoreTerm(
@@ -10025,7 +10025,7 @@ CC00624 = CostumeCoreTerm(
     display_name_en="""NKC""",
     features=("rights",),
     id="CC00624",
-    uri="https://w3id.org/costumeCore/ontology/NKC",
+    uri="https://w3id.org/costumeCore/ontology/CC00624",
     wikidata_id=None,
 )
 CC00625 = CostumeCoreTerm(
@@ -10043,7 +10043,7 @@ CC00625 = CostumeCoreTerm(
     display_name_en="""NoC""",
     features=("rights",),
     id="CC00625",
-    uri="https://w3id.org/costumeCore/ontology/NoC",
+    uri="https://w3id.org/costumeCore/ontology/CC00625",
     wikidata_id=None,
 )
 CC00626 = CostumeCoreTerm(
@@ -10052,7 +10052,7 @@ CC00626 = CostumeCoreTerm(
     display_name_en="""waist length""",
     features=("length",),
     id="CC00626",
-    uri="https://w3id.org/costumeCore/ontology/waist%20length",
+    uri="https://w3id.org/costumeCore/ontology/CC00626",
     wikidata_id=None,
 )
 CC00627 = CostumeCoreTerm(
@@ -10061,7 +10061,7 @@ CC00627 = CostumeCoreTerm(
     display_name_en="""above waist length""",
     features=("length",),
     id="CC00627",
-    uri="https://w3id.org/costumeCore/ontology/above%20waist%20length",
+    uri="https://w3id.org/costumeCore/ontology/CC00627",
     wikidata_id=None,
 )
 CC00628 = CostumeCoreTerm(
@@ -10070,7 +10070,7 @@ CC00628 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -10079,7 +10079,7 @@ CC00628 = CostumeCoreTerm(
     display_name_en="""fringe""",
     features=("material", "trimming",),
     id="CC00628",
-    uri="https://w3id.org/costumeCore/ontology/fringe",
+    uri="https://w3id.org/costumeCore/ontology/CC00628",
     wikidata_id="Q1353860",
 )
 CC00629 = CostumeCoreTerm(
@@ -10097,7 +10097,7 @@ CC00629 = CostumeCoreTerm(
     display_name_en="""shirt collar""",
     features=("collar",),
     id="CC00629",
-    uri="https://w3id.org/costumeCore/ontology/shirt%20collar",
+    uri="https://w3id.org/costumeCore/ontology/CC00629",
     wikidata_id="Q29473382",
 )
 CC00630 = CostumeCoreTerm(
@@ -10106,7 +10106,7 @@ CC00630 = CostumeCoreTerm(
         rights=CostumeCoreRights(
             author="The J. Paul Getty Trust",
             license_uri="https://opendatacommons.org/licenses/by/1-0/",
-            rights_statement_uri="http://rightsstatements.org/vocab/InC/1.0/",
+            rights_statement_uri="https://rightsstatements.org/vocab/InC/1.0/",
             source_name="Art and Architecture Thesaurus (AAT)",
             source_url="http://www.getty.edu/research/tools/vocabularies/aat/",
         ),
@@ -10115,7 +10115,7 @@ CC00630 = CostumeCoreTerm(
     display_name_en="""flax""",
     features=("fiber", "material",),
     id="CC00630",
-    uri="https://w3id.org/costumeCore/ontology/flax",
+    uri="https://w3id.org/costumeCore/ontology/CC00630",
     wikidata_id="Q47089651",
 )
 COSTUME_CORE_TERMS = (
