@@ -42,6 +42,8 @@ class DressdiscoverPipeline(_CompositePipeline):
             )
         else:
             loader = GuiLoader(
+                data_dir_path=data_dir_path,
+                gui="union",
                 image_archiver=S3ImageArchiver(
                     s3_bucket_name="dressdiscover-images", **kwds
                 ),
@@ -56,6 +58,7 @@ class DressdiscoverPipeline(_CompositePipeline):
             pipelines=(
                 CostumeCoreOntologyPipeline(
                     airtable_api_key=costume_core_ontology_airtable_api_key,
+                    data_dir_path=data_dir_path,
                     loader=loader,
                     ontology_version="0.0.0",
                     **kwds,
@@ -65,6 +68,7 @@ class DressdiscoverPipeline(_CompositePipeline):
                     base_id="appgU92SdGTwPIVNg",
                     collection_title="Costume Core Template Airtable",
                     collection_uri="https://airtable.com/tblUeStXG6w5MMGlF",
+                    data_dir_path=data_dir_path,
                     pipeline_id="costume-core-template-airtable",
                     institution_name="Costume Core",
                     institution_uri="http://www.ardenkirkland.com/costumecore/version-0-4/",
@@ -72,7 +76,12 @@ class DressdiscoverPipeline(_CompositePipeline):
                     loader=loader,
                     **kwds,
                 ),
-                VcccPipeline(loader=loader, omeka_api_key=vccc_omeka_api_key, **kwds),
+                VcccPipeline(
+                    data_dir_path=data_dir_path,
+                    loader=loader,
+                    omeka_api_key=vccc_omeka_api_key,
+                    **kwds,
+                ),
             ),
             **kwds,
         )
@@ -80,6 +89,8 @@ class DressdiscoverPipeline(_CompositePipeline):
     @classmethod
     def add_arguments(cls, arg_parser: ArgParser):
         _CompositePipeline.add_arguments(arg_parser)
+        arg_parser.add_argument("--aws-access-key-id")
+        arg_parser.add_argument("--aws-secret-access-key")
         arg_parser.add_argument(
             "--costume-core-ontology-airtable-api-key", required=True
         )
