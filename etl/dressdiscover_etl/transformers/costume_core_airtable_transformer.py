@@ -241,7 +241,7 @@ class CostumeCoreAirtableTransformer(_Transformer):
         self, *, institution_uri: URIRef, object_images, object_uri: URIRef
     ):
         for object_image in object_images:
-            original_image = Image(
+            original_image = Image.create(
                 institution_uri=institution_uri,
                 object_uri=object_uri,
                 uri=URIRef(object_image["url"]),
@@ -249,7 +249,7 @@ class CostumeCoreAirtableTransformer(_Transformer):
             yield original_image
 
             for thumbnail in object_image["thumbnails"].values():
-                yield Image(
+                yield Image.create(
                     exact_dimensions=ImageDimensions(
                         height=thumbnail["height"], width=thumbnail["width"],
                     ),

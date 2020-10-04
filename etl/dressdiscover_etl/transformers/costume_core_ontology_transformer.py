@@ -266,24 +266,24 @@ class CostumeCoreOntologyTransformer(_Transformer):
             for image in images:
                 filename = image["filename"]
 
-                original_image = Image(
+                original_image = Image.create(
+                    depicts_uri=object_.uri,
                     institution_uri=institution.uri,
-                    object_uri=object_.uri,
                     rights=image_rights,
                     uri=URIRef(
-                        f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{filename}"
+                        f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{quote(filename)}"
                     ),
                 )
                 yield original_image
 
-                yield Image(
+                yield Image.create(
+                    depicts_uri=object_.uri,
                     exact_dimensions=ImageDimensions(height=200, width=200),
                     institution_uri=institution.uri,
-                    object_uri=object_.uri,
                     original_image_uri=original_image.uri,
                     rights=image_rights,
                     uri=URIRef(
-                        f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{filename}"
+                        f"https://worksheet.dressdiscover.org/img/worksheet/full_size/{quote(filename)}"
                     ),
                 )
 

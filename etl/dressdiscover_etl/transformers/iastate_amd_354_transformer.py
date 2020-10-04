@@ -148,7 +148,7 @@ class IastateAmd354Transformer(_Transformer):
         )
         yield object_
 
-        image = Image(
+        image = Image.create(
             depicts_uri=object_.uri,
             institution_uri=self.__INSTITUTION.uri,
             rights=Rights(
