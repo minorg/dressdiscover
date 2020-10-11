@@ -213,6 +213,13 @@ class CostumeCoreOntologyTransformer(_Transformer):
         )
         yield institution
 
+        yield Image.create(
+            depicts_uri=institution.uri,
+            exact_dimensions=ImageDimensions(height=446, width=808),
+            institution_uri=institution.uri,
+            uri=URIRef("http://www.ardenkirkland.com/costumecore/costumeCoreLogo.jpg"),
+        )
+
         feature_records_by_id = {
             feature_record["fields"]["id"]: feature_record
             for feature_record in feature_records
