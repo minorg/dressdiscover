@@ -6,6 +6,7 @@ from paradicms_etl._model import _Model
 from paradicms_etl.image_archivers.s3_image_archiver import S3ImageArchiver
 from paradicms_etl.loaders.gui.gui_data_loader import GuiDataLoader
 from paradicms_etl.loaders.gui.gui_loader import GuiLoader
+from paradicms_etl.loaders.gui.s3_gui_deployer import S3GuiDeployer
 from paradicms_etl.models.collection import Collection
 from paradicms_etl.models.image import Image
 from paradicms_etl.models.institution import Institution
@@ -44,6 +45,9 @@ class DressdiscoverPipeline(_CompositePipeline):
             loader = GuiLoader(
                 data_dir_path=data_dir_path,
                 gui="union",
+                deployer=S3GuiDeployer(
+                    s3_bucket_name="union.dressdiscover.org", **kwds
+                ),
                 image_archiver=S3ImageArchiver(
                     s3_bucket_name="dressdiscover-images", **kwds
                 ),
