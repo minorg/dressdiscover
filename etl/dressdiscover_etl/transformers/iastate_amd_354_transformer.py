@@ -8,6 +8,7 @@ from paradicms_etl.models.image import Image
 from paradicms_etl.models.institution import Institution
 from paradicms_etl.models.object import Object
 from paradicms_etl.models.property import Property
+from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.models.rights import Rights
 from paradicms_etl.models.rights_value import RightsValue
@@ -34,6 +35,8 @@ class IastateAmd354Transformer(_Transformer):
     )
 
     __GENDERS = {
+        "Boys": costume_core_terms.CC00479,
+        "Girls": costume_core_terms.CC00480,
         "Men": costume_core_terms.CC00365,
         "Women": costume_core_terms.CC00364,
     }
@@ -43,7 +46,7 @@ class IastateAmd354Transformer(_Transformer):
             text="CC BY-NC-SA 4.0",
             uri="https://creativecommons.org/licenses/by-nc-sa/4.0/",
         ),
-        "Creative Commons (CC0 1.0)": RightsValue(
+        "CC0 1.0": RightsValue(
             text="CC0 1.0", uri="https://creativecommons.org/publicdomain/zero/1.0/"
         ),
         "Digital image courtesy of the Getty's Open Content Program": RightsValue(
@@ -64,7 +67,7 @@ class IastateAmd354Transformer(_Transformer):
         "CC BY-NC-SA 4.0": RightsValue(
             text="In Copyright", uri="http://rightsstatements.org/vocab/InC/1.0/"
         ),
-        "Creative Commons (CC0 1.0)": None,
+        "CC0 1.0": None,
         "Digital image courtesy of the Getty's Open Content Program": RightsValue(
             text="Digital image courtesy of the Getty's Open Content Program",
             uri="https://www.getty.edu/about/whatwedo/opencontent.html",
@@ -76,10 +79,26 @@ class IastateAmd354Transformer(_Transformer):
         "Public Domain": None,
     }
 
+    __TEXTBOOK_CHAPTER_PROPERTY_DEFINITION = PropertyDefinition(
+        faceted=True,
+        label="Textbook chapter",
+        uri=URIRef(__URN_BASE + "property_definition:textbook_chapter"),
+    )
+
     def transform(self, *, file_path: Path):
-        yield PropertyDefinitions.as_tuple()
-        yield COSTUME_CORE_PROPERTY_DEFINITIONS
+        yield from PropertyDefinitions.as_tuple()
+        yield from COSTUME_CORE_PROPERTY_DEFINITIONS
+        yield self.__TEXTBOOK_CHAPTER_PROPERTY_DEFINITION
+
         yield self.__INSTITUTION
+        yield Image.create(
+            depicts_uri=self.__INSTITUTION.uri,
+            institution_uri=self.__INSTITUTION.uri,
+            uri=URIRef(
+                (file_path.parent / "brandelements-wordmark-with-modifier.png").as_uri()
+            ),
+        )
+
         yield self.__COLLECTION
 
         images_dir_path = file_path.parent / "AMD 354 Images"
@@ -96,7 +115,7 @@ class IastateAmd354Transformer(_Transformer):
         csv_row = strip_csv_row(csv_row)
 
         image_number = int(csv_row.pop("Image Number"))
-        self._logger.info("processing image number %d", image_number)
+        self._logger.debug("processing image number %d", image_number)
 
         try:
             image_file_name = csv_row.pop("File Name")
@@ -116,8 +135,14 @@ class IastateAmd354Transformer(_Transformer):
             object_source = image_source
 
         object_properties = []
+
+        # DC/VRA/custom string properties
         for key, property_uri in (
+            ("Century", PropertyDefinitions.DATE.uri),
             ("Country of Origin", PropertyDefinitions.SPATIAL.uri),
+            ("Earliest Date", PropertyDefinitions.EARLIEST_DATE.uri),
+            ("Latest Date", PropertyDefinitions.LATEST_DATE.uri),
+            ("Textbook Chapter", self.__TEXTBOOK_CHAPTER_PROPERTY_DEFINITION.uri),
         ):
             try:
                 value = csv_row.pop(key)
@@ -125,26 +150,63 @@ class IastateAmd354Transformer(_Transformer):
                 continue
             object_properties.append(Property(property_uri, value))
 
-        gender = csv_row.pop("Men/Women/Children/Undetermined")
-        if gender != "Undetermined":
+        # CC string properties
+        for key, costume_core_predicate in (
+            ("Additional Notes", costume_core_predicates.publicInformation),
+            ("Social Role/Occupation", costume_core_predicates.socioEconomicClass),
+        ):
+            try:
+                value = csv_row.pop(key)
+            except KeyError:
+                continue
             object_properties.append(
-                Property(
-                    URIRef(costume_core_predicates.gender.uri),
-                    self.__GENDERS[gender].display_name_en,
-                )
+                Property(URIRef(costume_core_predicate.uri), value)
             )
+
+        # CC components
+        component_i = 1
+        while True:
+            try:
+                value = csv_row.pop(f"Costume Component {component_i}")
+            except KeyError:
+                break
+            object_properties.append(
+                Property(URIRef(costume_core_predicates.costumeComponents.uri), value)
+            )
+            component_i += 1
+
+        # Item of Dress - ignore
+        item_of_dress_i = 1
+        while True:
+            try:
+                csv_row.pop(f"Item of Dress {item_of_dress_i}")
+            except KeyError:
+                break
+            item_of_dress_i += 1
+
+        # Gender property
+        gender = csv_row.pop("Men/Women/Boys/Girls/Undetermined")
+        if gender != "Undetermined":
+            for gender in gender.split(" and "):
+                object_properties.append(
+                    Property(
+                        URIRef(costume_core_predicates.gender.uri),
+                        self.__GENDERS[gender].display_name_en,
+                    )
+                )
 
         object_ = Object(
             abstract=image_description,
             collection_uris=(self.__COLLECTION.uri,),
             institution_uri=self.__INSTITUTION.uri,
+            properties=tuple(object_properties),
             rights=Rights(
                 holder=object_source,
                 license=self.__LICENSES[image_license],
                 statement=self.__RIGHTS_STATEMENTS[image_license],
             ),
             title=f"Image {image_number}",
-            uri=URIRef(image_url),
+            uri=URIRef(csv_row.pop("Object URL")),
         )
         yield object_
 
@@ -156,7 +218,8 @@ class IastateAmd354Transformer(_Transformer):
                 license=self.__LICENSES[image_license],
                 statement=self.__RIGHTS_STATEMENTS[image_license],
             ),
-            uri=URIRef(image_url),
+            uri=URIRef(image_file_path.as_uri()),
+            # uri=URIRef(image_url),
         )
         yield image
 

@@ -20,6 +20,7 @@ from dressdiscover_etl.pipelines.costume_core_airtable_pipeline import (
 from dressdiscover_etl.pipelines.costume_core_ontology_pipeline import (
     CostumeCoreOntologyPipeline,
 )
+from dressdiscover_etl.pipelines.iastate_amd_354_pipeline import IastateAmd354Pipeline
 from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
 
 
@@ -80,6 +81,7 @@ class DressdiscoverPipeline(_CompositePipeline):
                     loader=loader,
                     **kwds,
                 ),
+                IastateAmd354Pipeline(data_dir_path=data_dir_path, **kwds),
                 VcccPipeline(
                     data_dir_path=data_dir_path,
                     loader=loader,
