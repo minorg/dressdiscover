@@ -20,6 +20,10 @@ class CostumeCoreTerm(_Model):
     features: Optional[Tuple[str, ...]] = None
     wikidata_id: Optional[str] = None
 
+    @property
+    def label(self):
+        return self.display_name_en
+
     def __repr__(self):
         if self.features:
             features = f"({', '.join(quote_repr_string(feature) for feature in self.features)},)"
@@ -30,7 +34,7 @@ class CostumeCoreTerm(_Model):
 
     def to_rdf(self, *, graph: Graph, **kwds) -> Resource:
         resource = graph.resource(URIRef(self.uri))
-        resource.add(RDFS.label, Literal(self.display_name_en, lang="en"))
+        resource.add(RDFS.label, Literal(self.label, lang="en"))
         resource.add(DCTERMS.identifier, Literal(self.id))
         resource.add(RDF.type, OWL.NamedIndividual)
         if self.description:

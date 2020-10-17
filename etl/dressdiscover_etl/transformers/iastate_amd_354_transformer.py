@@ -191,7 +191,7 @@ class IastateAmd354Transformer(_Transformer):
                 object_properties.append(
                     Property(
                         URIRef(costume_core_predicates.gender.uri),
-                        self.__GENDERS[gender].display_name_en,
+                        self.__GENDERS[gender].label,
                     )
                 )
 

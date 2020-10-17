@@ -19,12 +19,16 @@ class CostumeCorePredicate(_Model):
     uri: str
     terms: Optional[Tuple[CostumeCoreTerm, ...]] = None
 
+    @property
+    def label(self):
+        return self.display_name_en
+
     def to_rdf(self, *, graph: Graph, **kwds) -> Resource:
         assert self.terms is not None
         resource = graph.resource(URIRef(self.uri))
         resource.add(RDF.type, OWL.ObjectProperty)
         resource.add(RDFS.comment, Literal(self.description_text_en, lang="en"))
-        resource.add(RDFS.label, Literal(self.display_name_en, lang="en"))
+        resource.add(RDFS.label, Literal(self.label, lang="en"))
         resource.add(DCTERMS.identifier, Literal(self.id))
         if self.sub_property_of_uri:
             resource.add(RDFS.subPropertyOf, URIRef(self.sub_property_of_uri))

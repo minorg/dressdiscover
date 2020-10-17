@@ -34,11 +34,11 @@ class CostumeCorePropertyExtractor:
 
         terms_by_label = {}
         for term in terms:
-            terms_by_label[term.display_name_en.lower()] = term
-            noun_chunks = self.__spacy(term.display_name_en)
+            terms_by_label[term.label.lower()] = term
+            noun_chunks = self.__spacy(term.label)
             if len(noun_chunks) != 1:
                 self.__logger.warning(
-                    "term has more than one noun chunk: %s", term.display_name_en
+                    "term has more than one noun chunk: %s", term.label
                 )
                 continue
             noun_chunk = noun_chunks[0]
@@ -72,5 +72,5 @@ class CostumeCorePropertyExtractor:
                 if predicate_id == "workType":
                     continue
                 predicate = self.__predicates_by_id[predicate_id]
-                properties.append(Property(URIRef(predicate.uri), term.display_name_en))
+                properties.append(Property(URIRef(predicate.uri), term.label))
         return tuple(properties)
