@@ -11,14 +11,16 @@ from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.models.rights import Rights
 from rdflib import URIRef
 
+from dressdiscover_etl.costume_core import CostumeCore
+
 
 class CostumeCoreAirtableTransformer(_Transformer):
-    __IGNORE_FEATURE_RECORD_IDS = {
-        # feature display
-        "recI7sxKzQwM5YKhT",
-        # Measurements autofill
-        "recJh1nbz5NlsFc76",
-    }
+    # __IGNORE_FEATURE_RECORD_IDS = {
+    #     # feature display
+    #     "recI7sxKzQwM5YKhT",
+    #     # Measurements autofill
+    #     "recJh1nbz5NlsFc76",
+    # }
     __IGNORE_OBJECT_RECORD_FIELD_KEYS = {
         "CreatedBy",
         "CreationTimestamp",
@@ -31,21 +33,28 @@ class CostumeCoreAirtableTransformer(_Transformer):
     }
     __OBJECTS_TABLE = "Objects"
 
-    class __Feature(NamedTuple):
-        custom_property_definition: PropertyDefinition
-        id: str
-        paradicms_property_definition: Optional[PropertyDefinition]
-        label: str
-        record: Dict
-        term_records: Tuple[Dict, ...]
+    # class __Feature(NamedTuple):
+    #     custom_property_definition: PropertyDefinition
+    #     id: str
+    #     paradicms_property_definition: Optional[PropertyDefinition]
+    #     label: str
+    #     record: Dict
+    #     term_records: Tuple[Dict, ...]
 
-    def __init__(self, base_id: str, **kwds):
+    def __init__(
+        self, base_id: str, costume_core: Optional[CostumeCore] = None, **kwds
+    ):
         _Transformer.__init__(self, **kwds)
         self.__base_id = base_id
+        self.__costume_core = (
+            costume_core if costume_core is not None else CostumeCore()
+        )
         self.__collection_kwds = kwds
         self.__institution_kwds = kwds
 
     def transform(self, *, records_by_table, **kwds):
+        yield from self.__costume_core.property_definitions
+
         institution = self._transform_institution_from_arguments(
             **self.__institution_kwds
         )
@@ -54,85 +63,79 @@ class CostumeCoreAirtableTransformer(_Transformer):
         collection = self._transform_collection_from_arguments(**self.__collection_kwds)
         yield collection
 
-        term_records = records_by_table["Terms"]
-
-        features = self.__transform_feature_records(
-            feature_records=records_by_table["Features"], term_records=term_records
-        )
-        for feature in features:
-            if feature.paradicms_property_definition is None:
-                yield feature.custom_property_definition
+        # features = self.__transform_feature_records(
+        #     feature_records=records_by_table["Features"], term_records=term_records
+        # )
+        # for feature in features:
+        #     if feature.paradicms_property_definition is None:
+        #         yield feature.custom_property_definition
 
         yield from self.__transform_object_records(
             collection_uri=collection.uri,
-            features=features,
             institution_uri=institution.uri,
             name_records=records_by_table["Names"],
             object_records=records_by_table["Objects"],
-            term_records=term_records,
+            term_records=records_by_table["Terms"],
         )
 
-    def __transform_feature_records(
-        self, *, feature_records, term_records
-    ) -> Tuple[__Feature, ...]:
-        paradicms_property_definitions_by_uri = {
-            str(property_definition): property_definition
-            for property_definition in PropertyDefinitions.as_tuple()
-        }
-
-        term_records_by_term_id = {
-            term_record["fields"]["id"]: term_record for term_record in term_records
-        }
-
-        features = []
-        for feature_record in feature_records:
-            if feature_record["id"] in self.__IGNORE_FEATURE_RECORD_IDS:
-                continue
-
-            try:
-                id_ = feature_record["fields"]["id"]
-                label = feature_record["fields"]["Label"]
-                uri = feature_record["fields"]["URI"]
-            except KeyError as e:
-                self._logger.warning(
-                    "malformed feature record %s: missing %s", feature_record["id"], e
-                )
-                continue
-
-            feature_term_records = []
-            for term_id in feature_record["fields"].get("feature_values_ids", []):
-                feature_term_records.append(term_records_by_term_id[term_id])
-
-            features.append(
-                self.__Feature(
-                    custom_property_definition=PropertyDefinition(
-                        faceted=len(feature_term_records) > 0,
-                        label=label,
-                        uri=URIRef(uri),
-                    ),
-                    id=id_,
-                    label=label,
-                    paradicms_property_definition=paradicms_property_definitions_by_uri.get(
-                        uri
-                    ),
-                    record=feature_record,
-                    term_records=tuple(feature_term_records),
-                )
-            )
-        return tuple(features)
+    # def __transform_feature_records(
+    #     self, *, feature_records, term_records
+    # ) -> Tuple[__Feature, ...]:
+    #     paradicms_property_definitions_by_uri = {
+    #         str(property_definition): property_definition
+    #         for property_definition in PropertyDefinitions.as_tuple()
+    #     }
+    #
+    #     term_records_by_term_id = {
+    #         term_record["fields"]["id"]: term_record for term_record in term_records
+    #     }
+    #
+    #     features = []
+    #     for feature_record in feature_records:
+    #         if feature_record["id"] in self.__IGNORE_FEATURE_RECORD_IDS:
+    #             continue
+    #
+    #         try:
+    #             id_ = feature_record["fields"]["id"]
+    #             label = feature_record["fields"]["Label"]
+    #             uri = feature_record["fields"]["URI"]
+    #         except KeyError as e:
+    #             self._logger.warning(
+    #                 "malformed feature record %s: missing %s", feature_record["id"], e
+    #             )
+    #             continue
+    #
+    #         feature_term_records = []
+    #         for term_id in feature_record["fields"].get("feature_values_ids", []):
+    #             feature_term_records.append(term_records_by_term_id[term_id])
+    #
+    #         features.append(
+    #             self.__Feature(
+    #                 custom_property_definition=PropertyDefinition(
+    #                     faceted=len(feature_term_records) > 0,
+    #                     label=label,
+    #                     uri=URIRef(uri),
+    #                 ),
+    #                 id=id_,
+    #                 label=label,
+    #                 paradicms_property_definition=paradicms_property_definitions_by_uri.get(
+    #                     uri
+    #                 ),
+    #                 record=feature_record,
+    #                 term_records=tuple(feature_term_records),
+    #             )
+    #         )
+    #     return tuple(features)
 
     def __transform_object_records(
         self,
         *,
         collection_uri: URIRef,
-        features: Tuple[__Feature, ...],
         institution_uri: URIRef,
         name_records,
         object_records,
         term_records
     ):
-        features_by_label = {feature.label: feature for feature in features}
-
         name_records_by_id = {
             name_record["id"]: name_record for name_record in name_records
         }
@@ -153,7 +156,7 @@ class CostumeCoreAirtableTransformer(_Transformer):
             properties = []
             for field_key, field_value in object_record["fields"].items():
                 try:
-                    feature = features_by_label[field_key]
+                    predicate = self.__costume_core.predicates_by_label[field_key]
                 except KeyError:
                     if field_key in self.__IGNORE_OBJECT_RECORD_FIELD_KEYS:
                         continue
@@ -167,17 +170,11 @@ class CostumeCoreAirtableTransformer(_Transformer):
                         continue
 
                     self._logger.warning(
-                        "no such feature %s for object record %s",
+                        "no such Costume Core predicate %s for object record %s",
                         field_key,
                         object_record["id"],
                     )
                     continue
-
-                property_definition = (
-                    feature.paradicms_property_definition
-                    if feature.paradicms_property_definition is not None
-                    else feature.custom_property_definition
-                )
 
                 if isinstance(field_value, list):
                     field_values = field_value
@@ -196,33 +193,20 @@ class CostumeCoreAirtableTransformer(_Transformer):
                         if name_record is not None:
                             properties.append(
                                 Property(
-                                    property_definition,
+                                    URIRef(predicate.uri),
                                     name_record["fields"]["Full Name"],
                                 )
                             )
                         elif term_record is not None:
-                            if not any(
-                                feature_term_record["id"] == term_record["id"]
-                                for feature_term_record in feature.term_records
-                            ):
-                                self._logger.warning(
-                                    "term record (record id=%s term id=%s display name=%s) not in feature term records for feature %s",
-                                    term_record["id"],
-                                    term_record["fields"]["id"],
-                                    term_record["fields"]["display_name_en"],
-                                    feature.id,
-                                )
-
+                            term_id = term_record["fields"]["id"]
+                            term = self.__costume_core.terms_by_id[term_id]
                             properties.append(
-                                Property(
-                                    property_definition,
-                                    term_record["fields"]["display_name_en"],
-                                )
+                                Property(URIRef(predicate.uri), term.label)
                             )
                         else:
                             raise NotImplementedError
                     else:
-                        properties.append(Property(property_definition, field_value))
+                        properties.append(Property(URIRef(predicate.uri), field_value))
 
             yield Object(
                 institution_uri=institution_uri,
@@ -248,7 +232,8 @@ class CostumeCoreAirtableTransformer(_Transformer):
                 yield Image.create(
                     depicts_uri=object_uri,
                     exact_dimensions=ImageDimensions(
-                        height=thumbnail["height"], width=thumbnail["width"],
+                        height=thumbnail["height"],
+                        width=thumbnail["width"],
                     ),
                     institution_uri=institution_uri,
                     original_image_uri=original_image.uri,
