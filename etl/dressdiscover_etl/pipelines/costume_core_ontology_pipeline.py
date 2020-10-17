@@ -3,11 +3,9 @@ from typing import Optional
 from configargparse import ArgParser
 from paradicms_etl._loader import _Loader
 from paradicms_etl._pipeline import _Pipeline
+from paradicms_etl.extractors.airtable_extractor import AirtableExtractor
 from paradicms_etl.loaders.composite_loader import CompositeLoader
 
-from dressdiscover_etl.extractors.costume_core_ontology_extractor import (
-    CostumeCoreOntologyExtractor,
-)
 from dressdiscover_etl.loaders.costume_core_ontology_py_loader import (
     CostumeCoreOntologyPyLoader,
 )
@@ -46,8 +44,18 @@ class CostumeCoreOntologyPipeline(_Pipeline):
 
         _Pipeline.__init__(
             self,
-            extractor=CostumeCoreOntologyExtractor(
-                api_key=airtable_api_key, pipeline_id=self.ID, **kwds
+            extractor=AirtableExtractor(
+                api_key=airtable_api_key,
+                base_id="appfEYYWWn3CqSAxW",
+                pipeline_id=self.ID,
+                tables=(
+                    "feature_values",
+                    "features",
+                    "feature_sets",
+                    "images",
+                    "rights_licenses",
+                ),
+                **kwds
             ),
             id=self.ID,
             loader=loader,
