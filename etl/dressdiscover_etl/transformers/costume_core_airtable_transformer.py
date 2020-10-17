@@ -107,9 +107,7 @@ class CostumeCoreAirtableTransformer(_Transformer):
                 self.__Feature(
                     custom_property_definition=PropertyDefinition(
                         faceted=len(feature_term_records) > 0,
-                        key=id_,
-                        label_singular=label,
-                        label_plural=label,
+                        label=label,
                         uri=URIRef(uri),
                     ),
                     id=id_,
@@ -198,8 +196,8 @@ class CostumeCoreAirtableTransformer(_Transformer):
                         if name_record is not None:
                             properties.append(
                                 Property(
-                                    key=property_definition.key,
-                                    value=name_record["fields"]["Full Name"],
+                                    property_definition,
+                                    name_record["fields"]["Full Name"],
                                 )
                             )
                         elif term_record is not None:
@@ -217,16 +215,14 @@ class CostumeCoreAirtableTransformer(_Transformer):
 
                             properties.append(
                                 Property(
-                                    key=property_definition.key,
-                                    value=term_record["fields"]["display_name_en"],
+                                    property_definition,
+                                    term_record["fields"]["display_name_en"],
                                 )
                             )
                         else:
                             raise NotImplementedError
                     else:
-                        properties.append(
-                            Property(key=property_definition.key, value=field_value)
-                        )
+                        properties.append(Property(property_definition, field_value))
 
             yield Object(
                 institution_uri=institution_uri,
@@ -242,19 +238,19 @@ class CostumeCoreAirtableTransformer(_Transformer):
     ):
         for object_image in object_images:
             original_image = Image.create(
+                depicts_uri=object_uri,
                 institution_uri=institution_uri,
-                object_uri=object_uri,
                 uri=URIRef(object_image["url"]),
             )
             yield original_image
 
             for thumbnail in object_image["thumbnails"].values():
                 yield Image.create(
+                    depicts_uri=object_uri,
                     exact_dimensions=ImageDimensions(
                         height=thumbnail["height"], width=thumbnail["width"],
                     ),
                     institution_uri=institution_uri,
-                    object_uri=object_uri,
                     original_image_uri=original_image.uri,
                     uri=URIRef(thumbnail["url"]),
                 )
