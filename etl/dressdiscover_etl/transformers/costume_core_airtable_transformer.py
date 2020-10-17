@@ -1,4 +1,4 @@
-from typing import Dict, NamedTuple, Optional, Tuple
+from typing import Optional
 
 from paradicms_etl._transformer import _Transformer
 from paradicms_etl.extractors.airtable_extractor import AirtableExtractor
@@ -6,8 +6,6 @@ from paradicms_etl.models.image import Image
 from paradicms_etl.models.image_dimensions import ImageDimensions
 from paradicms_etl.models.object import Object
 from paradicms_etl.models.property import Property
-from paradicms_etl.models.property_definition import PropertyDefinition
-from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.models.rights import Rights
 from rdflib import URIRef
 
