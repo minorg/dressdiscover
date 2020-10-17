@@ -1,3 +1,5 @@
+/config/*.cfg
+!/config/tcmuseum.cfg
 /data/
 *.pyc
 /venv/
