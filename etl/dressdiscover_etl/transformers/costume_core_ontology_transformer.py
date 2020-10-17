@@ -39,8 +39,6 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 uri = fields["URI"]
             except KeyError:
                 continue
-            if not uri.startswith(str(CC)):
-                continue
             id = fields["id"].lstrip()
             try:
                 predicate_terms = tuple(terms_by_features.pop(id))
@@ -175,7 +173,8 @@ class CostumeCoreOntologyTransformer(_Transformer):
 
         terms_by_features_left = terms_by_features.copy()
         predicates = self.__parse_predicates(
-            feature_records=feature_records, terms_by_features=terms_by_features_left,
+            feature_records=feature_records,
+            terms_by_features=terms_by_features_left,
         )
         yield from predicates
 
