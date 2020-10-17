@@ -1,5 +1,3 @@
-import csv
-from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 from urllib.parse import quote
 
@@ -250,10 +248,10 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 if collection_uri in yielded_collection_uris:
                     continue
 
-                feature_record = feature_records_by_id[predicate.id]
+                # feature_record = feature_records_by_id[predicate.id]
                 collection = Collection(
                     institution_uri=institution.uri,
-                    title=predicate.display_name_en,
+                    title=predicate.label,
                     uri=collection_uri,
                 )
                 yield collection
@@ -282,7 +280,7 @@ class CostumeCoreOntologyTransformer(_Transformer):
                 )
                 if term.description
                 else None,
-                title=term.display_name_en,
+                title=term.label,
                 uri=URIRef(term.uri),
             )
             yield object_

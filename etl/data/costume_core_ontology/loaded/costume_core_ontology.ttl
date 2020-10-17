@@ -253,7 +253,7 @@ cc:hasTechnique a owl:ObjectProperty ;
 Do not include a description of where the technique is in evidence on the garment: that should be a part of the narrative description."""@en ;
     rdfs:range [ a owl:Class ;
             owl:oneOf ( cc:CC00074 cc:CC00075 cc:CC00076 cc:CC00077 cc:CC00078 cc:CC00080 cc:CC00082 cc:CC00083 cc:CC00084 cc:CC00085 cc:CC00086 cc:CC00087 cc:CC00088 cc:CC00089 cc:CC00090 cc:CC00092 cc:CC00093 cc:CC00094 cc:CC00095 cc:CC00096 cc:CC00097 cc:CC00098 cc:CC00100 cc:CC00101 cc:CC00103 cc:CC00116 cc:CC00127 cc:CC00170 cc:CC00173 cc:CC00254 cc:CC00257 cc:CC00325 cc:CC00393 cc:CC00514 cc:CC00597 ) ] ;
-    rdfs:subPropertyOf <http://purl.org/vra/hasTechnique> .
+    rdfs:subPropertyOf vra:hasTechnique .
 
 cc:hemCircumferenceIn a owl:ObjectProperty ;
     rdfs:label "Hem Circumference"@en ;

@@ -237,7 +237,7 @@ hasTechnique = CostumeCorePredicate(
     description_text_en="Each process involved in making the object. \n\nDo not include a description of where the technique is in evidence on the garment: that should be a part of the narrative description.",
     display_name_en="Technique",
     id="hasTechnique",
-    sub_property_of_uri="http://purl.org/vra/hasTechnique\x0b",
+    sub_property_of_uri="http://purl.org/vra/hasTechnique",
     terms=None,
 )
 hemCircumferenceIn = CostumeCorePredicate(
