@@ -47,7 +47,7 @@ class CostumeCore:
                 uri=URIRef(costume_core_predicate.uri),
             )
             for costume_core_predicate in COSTUME_CORE_PREDICATES
-            if costume_core_predicate.uri.startswith(str(CC))
+            # if costume_core_predicate.uri.startswith(str(CC))
         )
 
     @property
