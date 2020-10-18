@@ -14,11 +14,11 @@ from paradicms_etl.models.object import Object
 from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.pipelines._composite_pipeline import _CompositePipeline
 
-from dressdiscover_etl.pipelines.costume_core_airtable_pipeline import (
-    CostumeCoreAirtablePipeline,
-)
 from dressdiscover_etl.pipelines.costume_core_ontology_pipeline import (
     CostumeCoreOntologyPipeline,
+)
+from dressdiscover_etl.pipelines.costume_core_template_airtable_pipeline import (
+    CostumeCoreTemplateAirtablePipeline,
 )
 from dressdiscover_etl.pipelines.iastate_amd_354_pipeline import IastateAmd354Pipeline
 from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
@@ -68,16 +68,8 @@ class DressdiscoverPipeline(_CompositePipeline):
                     ontology_version="0.0.0",
                     **kwds,
                 ),
-                CostumeCoreAirtablePipeline(
+                CostumeCoreTemplateAirtablePipeline(
                     api_key=costume_core_template_airtable_api_key,
-                    base_id="appgU92SdGTwPIVNg",
-                    collection_title="Costume Core Template Airtable",
-                    collection_uri="https://airtable.com/tblUeStXG6w5MMGlF",
-                    data_dir_path=data_dir_path,
-                    pipeline_id="costume-core-template-airtable",
-                    institution_name="Costume Core",
-                    institution_uri="http://www.ardenkirkland.com/costumecore/version-0-4/",
-                    institution_rights="Copyright Arden Kirkland. All rights reserved.",
                     loader=loader,
                     **kwds,
                 ),

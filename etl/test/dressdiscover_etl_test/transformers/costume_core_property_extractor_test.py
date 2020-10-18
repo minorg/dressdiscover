@@ -17,7 +17,7 @@ def test_extract():
         return
 
     for description in descriptions:
-        properties = sut.extract_costume_core_properties(description)
+        properties = sut.extract_properties(description)
         assert properties is not None
         assert len(properties)
         # print(properties)

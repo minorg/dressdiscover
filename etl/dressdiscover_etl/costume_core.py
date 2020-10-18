@@ -21,6 +21,8 @@ class CostumeCore:
             predicates = COSTUME_CORE_PREDICATES
         self.__predicates = predicates
 
+        self.__predicates_by_id = {predicate.id: predicate for predicate in predicates}
+
         self.__predicates_by_label = {
             predicate.label: predicate for predicate in predicates
         }
@@ -53,6 +55,10 @@ class CostumeCore:
     @property
     def predicates(self) -> Tuple[CostumeCorePredicate, ...]:
         return self.__predicates
+
+    @property
+    def predicates_by_id(self) -> Dict[str, CostumeCorePredicate]:
+        return self.__predicates_by_id
 
     @property
     def predicates_by_label(self) -> Dict[str, CostumeCorePredicate]:
