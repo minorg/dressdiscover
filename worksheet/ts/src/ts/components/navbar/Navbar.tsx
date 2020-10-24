@@ -95,6 +95,11 @@ class Navbar extends React.Component<Props> {
                 Worksheets
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink tag="a" href={Hrefs.gettingStarted}>
+                Getting Started Guide
+              </NavLink>
+            </NavItem>
             {/* {authenticatedNavItems} */}
           </Nav>
           {currentUserJsx}

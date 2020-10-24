@@ -1,30 +1,24 @@
 import {Frame} from "~/components/frame/Frame";
-import {Headline} from "~/components/frame/Headline";
 import {ActiveNavbarItem} from "~/components/navbar/ActiveNavbarItem";
 import * as React from "react";
 import {Col, Container, Row} from "reactstrap";
 import Card from "reactstrap/lib/Card";
 import CardBody from "reactstrap/lib/CardBody";
 
-export class About extends React.Component {
+export class Home extends React.Component {
   render() {
     return (
       <Frame activeNavItem={ActiveNavbarItem.Home} id="credits">
         <Container fluid>
           <Row>
-            <Col md="12">
-              <Headline>About</Headline>
-            </Col>
-          </Row>
-          <Row />
-          <Row>
-            <Col sm={{size: 8, offset: 2}}>
+            <Col sm={{size: 12}} style={{padding: 0}}>
               <Card>
                 <CardBody>
                   <Container fluid>
                     <p>
-                      <b>DressDiscover</b> is a suite of web applications for
-                      digital collections of historic clothing.
+                      <b>DressDiscover Worksheet</b> is a web application for
+                      describing historic clothing artifacts using visual
+                      workflows.
                     </p>
                     <p>
                       Historic clothing is the first type of material culture to
@@ -89,7 +83,6 @@ export class About extends React.Component {
                       costume collection at Smith College helped to collect
                       openly-licensed images for this prototype.
                     </p>
-                    <br />
                     <h4>Audience</h4>
                     <b>Non-experts</b>:
                     <ul>
@@ -130,7 +123,6 @@ export class About extends React.Component {
                         textbooks
                       </li>
                     </ul>
-                    <br />
                     <h4>Research Questions</h4>
                     <ul>
                       <li>
