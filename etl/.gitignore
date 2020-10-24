@@ -1,3 +1,15 @@
-/data/
+/config/*.cfg
+!/config/tcmuseum.cfg
+/data/ardensandbox/
+/data/costume-core-template-airtable/
+/data/costume_core_ontology/extracted/
+/data/dressdiscover/
+/data/hctc/
+/data/historicdress/
+/data/iastate_amd_354/
+/data/schcc/
+/data/tcmuseum/
+/data/tfc/
+/data/vccc/
 *.pyc
 /venv/

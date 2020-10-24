@@ -47,6 +47,7 @@ class CostumeCoreOntologyPipeline(_Pipeline):
             extractor=AirtableExtractor(
                 api_key=airtable_api_key,
                 base_id="appfEYYWWn3CqSAxW",
+                pipeline_id=self.ID,
                 tables=(
                     "feature_values",
                     "features",
@@ -54,7 +55,6 @@ class CostumeCoreOntologyPipeline(_Pipeline):
                     "images",
                     "rights_licenses",
                 ),
-                pipeline_id=self.ID,
                 **kwds
             ),
             id=self.ID,

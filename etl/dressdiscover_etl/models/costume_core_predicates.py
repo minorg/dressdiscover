@@ -1,5 +1,13 @@
 from .costume_core_predicate import CostumeCorePredicate
 
+alternative = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/alternative",
+    description_text_en="Any additional titles by which the item is known, other than the preferred title, including nicknames or titles in other languages.",
+    display_name_en="Alternative Title",
+    id="alternative",
+    sub_property_of_uri=None,
+    terms=None,
+)
 cataloguerWithDate = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/cataloguerWithDate",
     description_text_en="Full names of all catalogers, with the date in parentheses, in the format YYYY-MM-DD.\n\nWhen additions are made to the catalog record, additional names and dates should be added and existing entries should not be deleted.",
@@ -112,11 +120,51 @@ costumeComponents = CostumeCorePredicate(
     sub_property_of_uri=None,
     terms=None,
 )
+creator = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/creator",
+    description_text_en="Full name of each known designer, maker, manufacturer, etc. \n\nUse the display form with first name first, not last name first.",
+    display_name_en="Creator",
+    id="creator",
+    sub_property_of_uri=None,
+    terms=None,
+)
+culturalContext = CostumeCorePredicate(
+    uri="http://purl.org/vra/culturalContext",
+    description_text_en="The name(s) of the culture, people, or nationality from which the work originated or was used.\n",
+    display_name_en="Culture",
+    id="culturalContext",
+    sub_property_of_uri=None,
+    terms=None,
+)
+date = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/date",
+    description_text_en='If known, the year in which the item was created. Otherwise, a range of years that it could possibly have been created, from the earliest to latest. A more precise date can be entered if known, as YYYY-MM or YYYY-MM-DD. Uncertainty can be indicated in parentheses after the date or range of dates (for example, "(circa)").\n\nFollow ISO 8601 standards for initial numbers and follow with additional display terms.',
+    display_name_en="Date",
+    id="date",
+    sub_property_of_uri=None,
+    terms=None,
+)
+description = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/description",
+    description_text_en='Use the details from each component section of the data entry process to construct the full description for display. \n\nStart with one sentence that sums up the work type(s), colors, and important features. \n\nFollow with a description of materials and notable techniques, separated by commas. \n\nThe next sentences list each component with an ID number or letter in parentheses, ex. "bodice (a)", with structural details separated by commas (in order from the top down, outside in). This is the place to describe where particular materials or techniques are located on the garment.\n\nCopy from Description Autofill if available (as values) and edit as needed.',
+    display_name_en="Description",
+    id="description",
+    sub_property_of_uri=None,
+    terms=None,
+)
 dimensionsOther = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/dimensionsOther",
     description_text_en="Any other measurements that are notable on this garment, in inches, as decimals to the nearest quarter inch. Describe what the measurement is of, in parentheses, after the measurement.",
     display_name_en="Measurements Other",
     id="dimensionsOther",
+    sub_property_of_uri=None,
+    terms=None,
+)
+donator = CostumeCorePredicate(
+    uri="http://purl.org/vra/donator",
+    description_text_en='Full name(s) of all donors. To protect the privacy of some private donors, they may request that this read simply "Anonymous" with no specifics. Instead, the specifics can be entered under "private information."',
+    display_name_en="Donor",
+    id="donator",
     sub_property_of_uri=None,
     terms=None,
 )
@@ -128,11 +176,27 @@ dressType = CostumeCorePredicate(
     sub_property_of_uri=None,
     terms=None,
 )
+endDate = CostumeCorePredicate(
+    uri="http://purl.org/vra/endDate",
+    description_text_en="The latest the garment could have been made, in the format YYYY or YYYY-MM or YYYY-MM-DD. Follow ISO 8601 standards.",
+    display_name_en="Date Latest",
+    id="endDate",
+    sub_property_of_uri=None,
+    terms=None,
+)
 exhibitions = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/exhibitions",
     description_text_en="A list of all exhibitions that included this object,  including the title or name of each exhibition, its location, and other pertinent information.",
     display_name_en="Exhibitions",
     id="exhibitions",
+    sub_property_of_uri=None,
+    terms=None,
+)
+extent = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/extent",
+    description_text_en="Use each separate measurement recorded in the data entry process to construct the full list of measurements for display.\n\nList all measurements of the item, separated by commas. Measurements should be in inches, to the nearest .25 inch. Describe the part being measured in parentheses.",
+    display_name_en="Measurements Display",
+    id="extent",
     sub_property_of_uri=None,
     terms=None,
 )
@@ -160,12 +224,20 @@ gender = CostumeCorePredicate(
     sub_property_of_uri=None,
     terms=None,
 )
+hasInscription = CostumeCorePredicate(
+    uri="http://purl.org/vra/hasInscription",
+    description_text_en="The exact text, in quotes, from each label within the object, followed by a phrase describing where the label is located on the object.",
+    display_name_en="Label",
+    id="hasInscription",
+    sub_property_of_uri=None,
+    terms=None,
+)
 hasTechnique = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/hasTechnique",
     description_text_en="Each process involved in making the object. \n\nDo not include a description of where the technique is in evidence on the garment: that should be a part of the narrative description.",
     display_name_en="Technique",
     id="hasTechnique",
-    sub_property_of_uri="http://purl.org/vra/hasTechnique\x0b",
+    sub_property_of_uri="http://purl.org/vra/hasTechnique",
     terms=None,
 )
 hemCircumferenceIn = CostumeCorePredicate(
@@ -189,6 +261,22 @@ icomType = CostumeCorePredicate(
     description_text_en="The second and third level classes from the ICOM Vocabulary.",
     display_name_en="ICOM Type",
     id="icomType",
+    sub_property_of_uri=None,
+    terms=None,
+)
+identifier = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/identifier",
+    description_text_en="A unique ID number for the item. This will often be formatted like VC1992124 (VC=repository, 1992 = year, 124 = serial number).\n\nNo spaces or uncommon characters.",
+    display_name_en="Identifier",
+    id="identifier",
+    sub_property_of_uri=None,
+    terms=None,
+)
+isReferencedBy = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/isReferencedBy",
+    description_text_en="References about this object, or about similar objects in texts or online, as either a full bibliographic citation (in MLA format) or a URL.",
+    display_name_en="References",
+    id="isReferencedBy",
     sub_property_of_uri=None,
     terms=None,
 )
@@ -264,6 +352,14 @@ pattern = CostumeCorePredicate(
     sub_property_of_uri=None,
     terms=None,
 )
+placeOfRepository = CostumeCorePredicate(
+    uri="http://purl.org/vra/placeOfRepository",
+    description_text_en="The name of the collection the garment belongs to, institutional or private. Include the address of a public institution, if appropriate. \n\nTo protect the privacy of some private collectors, they may request that this read simply 'Private Collection' with no specifics. Instead, the specifics can be entered under 'private information.'",
+    display_name_en="Holding Institution",
+    id="placeOfRepository",
+    sub_property_of_uri=None,
+    terms=None,
+)
 privateInformation = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/privateInformation",
     description_text_en="Any information that doesn't fit elsewhere, and isn't suited for public view (for example private stories or communication with the donor).",
@@ -280,12 +376,28 @@ publicInformation = CostumeCorePredicate(
     sub_property_of_uri=None,
     terms=None,
 )
+relation = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/relation",
+    description_text_en="Enter the identifier for any related items. For clothing artifacts this will be an ID# like VC1992124. For other relations, such as exhibitions, the identifier may take a different form, such as the title. See the identifier element in the item itself to check.",
+    display_name_en="Relation",
+    id="relation",
+    sub_property_of_uri=None,
+    terms=None,
+)
 rights = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/rights",
     description_text_en="A standardized rights statement. In most cases, clothing artifacts are not protected by copyright, but may be represented in images that are under copyright.",
     display_name_en="Rights",
     id="rights",
     sub_property_of_uri="http://purl.org/dc/terms/rights",
+    terms=None,
+)
+rightsHolder = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/rightsHolder",
+    description_text_en="A rights statement including what is covered (images or object itself), person or organization owning or managing rights, a copyright symbol and date if appropriate, and additional contact information. ",
+    display_name_en="Rights Holder",
+    id="rightsHolder",
+    sub_property_of_uri=None,
     terms=None,
 )
 size = CostumeCorePredicate(
@@ -328,11 +440,35 @@ socioEconomicClass = CostumeCorePredicate(
     sub_property_of_uri=None,
     terms=None,
 )
+spatial = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/spatial",
+    description_text_en="Where the item was originally made, if known; with all levels such as city, county, state, country, each as a separate entry.",
+    display_name_en="Region",
+    id="spatial",
+    sub_property_of_uri=None,
+    terms=None,
+)
+startDate = CostumeCorePredicate(
+    uri="http://purl.org/vra/startDate",
+    description_text_en="The earliest the garment could have been made, in the format YYYY or YYYY-MM or YYYY-MM-DD. Follow ISO 8601 standards.",
+    display_name_en="Date Earliest",
+    id="startDate",
+    sub_property_of_uri=None,
+    terms=None,
+)
 storageLocation = CostumeCorePredicate(
     uri="https://w3id.org/costumeCore/ontology/storageLocation",
     description_text_en='Where the garment has been put away in storage, for example by shelf section, ex. "C4"',
     display_name_en="Storage Location",
     id="storageLocation",
+    sub_property_of_uri=None,
+    terms=None,
+)
+subject = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/subject",
+    description_text_en='All costume artifacts should have the subject "Costume" or "Clothing and Dress." ',
+    display_name_en="Subject",
+    id="subject",
     sub_property_of_uri=None,
     terms=None,
 )
@@ -349,6 +485,14 @@ textileMaterials = CostumeCorePredicate(
     description_text_en="Each term for materials produced from component fibers, distinguished from the fibers, trimmings, or other materials.",
     display_name_en="Textile Materials",
     id="textileMaterials",
+    sub_property_of_uri=None,
+    terms=None,
+)
+title = CostumeCorePredicate(
+    uri="http://purl.org/dc/terms/title",
+    description_text_en="For costume artifacts that have not been titled by the original maker, this should be a descriptive phrase with about 3 important details, usually color, function, work type, or a notable detail.\n\nIn title case, less than 100 characters.",
+    display_name_en="Title",
+    id="title",
     sub_property_of_uri=None,
     terms=None,
 )
@@ -417,6 +561,7 @@ wornBy = CostumeCorePredicate(
     terms=None,
 )
 COSTUME_CORE_PREDICATES = (
+    alternative,
     cataloguerWithDate,
     cbLengthIn,
     cfLengthIn,
@@ -431,16 +576,26 @@ COSTUME_CORE_PREDICATES = (
     conditionDescription,
     costOriginal,
     costumeComponents,
+    creator,
+    culturalContext,
+    date,
+    description,
     dimensionsOther,
+    donator,
     dressType,
+    endDate,
     exhibitions,
+    extent,
     fiber,
     function,
     gender,
+    hasInscription,
     hasTechnique,
     hemCircumferenceIn,
     hipsIn,
     icomType,
+    identifier,
+    isReferencedBy,
     length,
     lifeStages,
     liturgicalType,
@@ -450,17 +605,24 @@ COSTUME_CORE_PREDICATES = (
     otherMaterials,
     pantsType,
     pattern,
+    placeOfRepository,
     privateInformation,
     publicInformation,
+    relation,
     rights,
+    rightsHolder,
     size,
     skirtType,
     sleeveLength,
     sleeveType,
     socioEconomicClass,
+    spatial,
+    startDate,
     storageLocation,
+    subject,
     temporal,
     textileMaterials,
+    title,
     treatment,
     trimming,
     type,
