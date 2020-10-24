@@ -1,6 +1,15 @@
 import * as React from "react";
 import {Layout} from "components/Layout";
-import {Grid, Link} from "@material-ui/core";
+import {
+  Grid,
+  Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
+import {Hrefs} from "lib/Hrefs";
+import AppsIcon from "@material-ui/icons/Apps";
 
 const IndexPage: React.FunctionComponent = () => (
   <Layout>
@@ -8,18 +17,29 @@ const IndexPage: React.FunctionComponent = () => (
       <Grid item>
         <strong>DressDiscover</strong> is a suite of web applications for
         digital collections of historic clothing:
-        <ul>
-          <li>
-            <Link href="https://worksheet.dressdiscover.org">
-              <strong>Worksheet</strong>
-            </Link>
-          </li>
-          <li>
-            <Link href="https://union.dressdiscover.org">
-              <strong>Union catalog</strong>
-            </Link>
-          </li>
-        </ul>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <AppsIcon />
+            </ListItemIcon>
+            <ListItemText>
+              <Link href={Hrefs.union}>
+                <strong>Union catalog</strong> of digital collections
+              </Link>
+            </ListItemText>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <AppsIcon />
+            </ListItemIcon>
+            <ListItemText>
+              <Link href={Hrefs.worksheet}>
+                <strong>Worksheet</strong> web application for historic clothing
+                artifacts using visual workflows
+              </Link>
+            </ListItemText>
+          </ListItem>
+        </List>
       </Grid>
     </Grid>
   </Layout>

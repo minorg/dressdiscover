@@ -10,6 +10,7 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import {Hrefs} from "lib/Hrefs";
 
 const useStyles = makeStyles((theme) => ({
   brand: {
@@ -49,6 +50,12 @@ export const Layout: React.FunctionComponent<{
               <Typography variant="h6" className={classes.brand}>
                 DressDiscover
               </Typography>
+              <Link className={classes.navLink} href={Hrefs.union}>
+                Union catalog
+              </Link>
+              <Link className={classes.navLink} href={Hrefs.worksheet}>
+                Worksheet
+              </Link>
             </Toolbar>
           </AppBar>
         </Grid>
@@ -63,9 +70,9 @@ export const Layout: React.FunctionComponent<{
         <Grid item>
           <footer>
             <p className={classes.footerParagraph}>
-              <Link href="mailto:info@dressdiscover.org">Contact</Link>
+              <Link href={Hrefs.contact}>Contact</Link>
               &nbsp;|&nbsp;
-              <Link href="https://github.com/minorg/dressdiscover">GitHub</Link>
+              <Link href={Hrefs.gitHub}>GitHub</Link>
             </p>
           </footer>
         </Grid>
