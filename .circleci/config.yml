@@ -6,18 +6,18 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: worksheet-dependency-cache-v1-{{ checksum "worksheet/ts/package.json" }}
+          key: worksheet-dependency-cache-v1-{{ checksum "worksheet/package.json" }}
       - run:
           name: Install worksheet dependencies
           command: |
-            cd worksheet/ts
+            cd worksheet
             npm install
       - save_cache:
-          key: worksheet-dependency-cache-v1-{{ checksum "worksheet/ts/package.json" }}
+          key: worksheet-dependency-cache-v1-{{ checksum "worksheet/package.json" }}
           paths:
-            - worksheet/ts/node_modules
+            - worksheet/node_modules
       - run:
           name: Build worksheet
           command: |
-            cd worksheet/ts
+            cd worksheet
             npm run build
