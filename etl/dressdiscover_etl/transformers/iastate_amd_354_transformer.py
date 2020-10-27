@@ -16,9 +16,7 @@ from paradicms_etl.utils import strip_csv_row
 from rdflib import URIRef
 
 from dressdiscover_etl.models import costume_core_predicates, costume_core_terms
-from dressdiscover_etl.transformers.costume_core_property_definitions import (
-    COSTUME_CORE_PROPERTY_DEFINITIONS,
-)
+from dressdiscover_etl.costume_core import CostumeCore
 
 
 class IastateAmd354Transformer(_Transformer):
@@ -87,7 +85,7 @@ class IastateAmd354Transformer(_Transformer):
 
     def transform(self, *, file_path: Path):
         yield from PropertyDefinitions.as_tuple()
-        yield from COSTUME_CORE_PROPERTY_DEFINITIONS
+        yield from CostumeCore().property_definitions
         yield self.__TEXTBOOK_CHAPTER_PROPERTY_DEFINITION
 
         yield self.__INSTITUTION

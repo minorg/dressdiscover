@@ -73,7 +73,6 @@ class DressdiscoverPipeline(_CompositePipeline):
                     loader=loader,
                     **kwds,
                 ),
-                IastateAmd354Pipeline(data_dir_path=data_dir_path, **kwds),
                 VcccPipeline(
                     data_dir_path=data_dir_path,
                     loader=loader,
@@ -87,8 +86,7 @@ class DressdiscoverPipeline(_CompositePipeline):
     @classmethod
     def add_arguments(cls, arg_parser: ArgParser):
         _CompositePipeline.add_arguments(arg_parser)
-        arg_parser.add_argument("--aws-access-key-id")
-        arg_parser.add_argument("--aws-secret-access-key")
+        _CompositePipeline._add_aws_credentials_arguments(arg_parser)
         arg_parser.add_argument(
             "--costume-core-ontology-airtable-api-key", required=True
         )
