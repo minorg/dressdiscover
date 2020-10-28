@@ -134,6 +134,10 @@ class IastateAmd354Transformer(_Transformer):
 
         object_properties = []
 
+        object_properties.append(
+            Property(PropertyDefinitions.DESCRIPTION.uri, image_description)
+        )
+
         # DC/VRA/custom string properties
         for key, property_uri in (
             ("Century", PropertyDefinitions.DATE.uri),
