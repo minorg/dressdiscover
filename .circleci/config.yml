@@ -3,6 +3,9 @@ jobs:
   build:
     docker:
       - image: circleci/node:12
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
     steps:
       - checkout
       - restore_cache:
