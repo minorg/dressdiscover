@@ -66,7 +66,7 @@ class CostumeCorePropertyExtractorCsvFileLoader(_Loader):
                     )
                     continue
 
-                for noun in self.__extractor.extract_nouns_from_text(description):
+                for noun in self.__extractor.extract_candidates_from_text(description):
                     extracted_properties = (
                         self.__extractor.extract_properties_from_noun(noun)
                     )

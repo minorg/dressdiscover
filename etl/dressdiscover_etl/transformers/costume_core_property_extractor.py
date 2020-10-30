@@ -34,23 +34,23 @@ class CostumeCorePropertyExtractor:
             terms_by_label[noun_chunk.lemma_.lower()] = term
         self.__terms_by_label = terms_by_label
 
-    def extract_nouns_from_text(self, text: str) -> Tuple[str, ...]:
+    def extract_candidates_from_text(self, text: str) -> Tuple[str, ...]:
         sentence = self.__spacy(text)
-        nouns = set()
+        candidates = set()
         for noun_chunk in sentence.noun_chunks:
-            nouns.add(noun_chunk.text.lower())
-            nouns.add(noun_chunk.lemma_.lower())
+            candidates.add(noun_chunk.text.lower())
+            candidates.add(noun_chunk.lemma_.lower())
         for token in sentence:
             if token.pos_ != "NOUN":
                 continue
-            nouns.add(token.text.lower())
-            nouns.add(token.lemma_.lower())
-        return tuple(nouns)
+            candidates.add(token.text.lower())
+            candidates.add(token.lemma_.lower())
+        return tuple(candidates)
 
-    def extract_properties_from_noun(self, noun: str) -> Tuple[Property, ...]:
-        term = self.__terms_by_label.get(noun)
+    def extract_properties_from_candidate(self, candidate: str) -> Tuple[Property, ...]:
+        term = self.__terms_by_label.get(candidate)
         if term is None:
-            self.__logger.debug("unrecognized noun: %s", noun)
+            self.__logger.debug("unrecognized candidate: %s", candidate)
             return ()
         if term.features is None:
             return ()
@@ -62,14 +62,16 @@ class CostumeCorePropertyExtractor:
             properties.append(Property(URIRef(predicate.uri), term.label))
         return tuple(properties)
 
-    def extract_properties_from_nouns(
-        self, nouns: Tuple[str, ...]
+    def extract_properties_from_candidates(
+        self, candidates: Tuple[str, ...]
     ) -> Tuple[Property, ...]:
         properties = set()
-        for noun in nouns:
-            for property_ in self.extract_properties_from_noun(noun):
+        for candidate in candidates:
+            for property_ in self.extract_properties_from_candidate(candidate):
                 properties.add(property_)
         return tuple(properties)
 
     def extract_properties_from_text(self, text: str) -> Tuple[Property, ...]:
-        return self.extract_properties_from_nouns(self.extract_nouns_from_text(text))
+        return self.extract_properties_from_candidates(
+            self.extract_candidates_from_text(text)
+        )
