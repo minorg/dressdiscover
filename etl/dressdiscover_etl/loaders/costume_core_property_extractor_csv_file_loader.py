@@ -30,7 +30,7 @@ class CostumeCorePropertyExtractorCsvFileLoader(_Loader):
                 fieldnames=(
                     "object_uri",
                     "object_description",
-                    "extracted_noun",
+                    "extracted_candidate",
                     "predicate",
                     "value",
                 ),
@@ -66,16 +66,18 @@ class CostumeCorePropertyExtractorCsvFileLoader(_Loader):
                     )
                     continue
 
-                for noun in self.__extractor.extract_nouns_from_text(description):
+                for candidate in self.__extractor.extract_candidates_from_text(
+                    description
+                ):
                     extracted_properties = (
-                        self.__extractor.extract_properties_from_noun(noun)
+                        self.__extractor.extract_properties_from_candidate(candidate)
                     )
                     if not extracted_properties:
                         csv_writer.writerow(
                             {
                                 "object_description": description,
                                 "object_uri": str(object_.uri),
-                                "extracted_noun": noun,
+                                "extracted_candidate": candidate,
                             }
                         )
                         continue
@@ -84,7 +86,7 @@ class CostumeCorePropertyExtractorCsvFileLoader(_Loader):
                             {
                                 "object_description": description,
                                 "object_uri": str(object_.uri),
-                                "extracted_noun": noun,
+                                "extracted_candidate": candidate,
                                 "predicate": str(
                                     extracted_property.property_definition_uri
                                 ),
