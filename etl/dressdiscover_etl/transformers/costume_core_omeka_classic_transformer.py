@@ -3,23 +3,34 @@ from typing import Tuple
 from paradicms_etl.models.property import Property
 from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.transformers.omeka_classic_transformer import OmekaClassicTransformer
+from rdflib import URIRef
 
+from dressdiscover_etl.costume_core import CostumeCore
 from dressdiscover_etl.models import costume_core_predicates
-from dressdiscover_etl.models.costume_core_terms_by_features import (
-    COSTUME_CORE_TERMS_BY_FEATURES,
-)
-from dressdiscover_etl.transformers.costume_core_property_definitions import (
-    COSTUME_CORE_PROPERTY_DEFINITIONS,
-)
 
 
 class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
-    __UNKNOWN_ITM_KEYS = set()
     __UNKNOWN_CC_TERMS = {}
+    __UNKNOWN_ITM_KEYS = set()
+
+    def __init__(self, **kwds):
+        OmekaClassicTransformer.__init__(self, **kwds)
+        self.__costume_core = CostumeCore()
 
     def transform(self, **kwds):
-        yield from COSTUME_CORE_PROPERTY_DEFINITIONS
+        yield from self.__costume_core.property_definitions
         yield from OmekaClassicTransformer.transform(self, **kwds)
+        for (
+            costume_core_predicate_id,
+            costume_core_terms,
+        ) in self.__UNKNOWN_CC_TERMS.items():
+            self._logger.warn(
+                "unknown Costume Core terms for predicate %s: %s",
+                costume_core_predicate_id,
+                costume_core_terms,
+            )
+        for key in self.__UNKNOWN_ITM_KEYS:
+            self._logger.warn("unknown Item Type Metadata element name: %s", key)
 
     def _transform_item_type_metadata(self, element_text_tree) -> Tuple[Property, ...]:
         # "Item Type Metadata" is a catch-all element set for all user-defined elements.
@@ -39,7 +50,7 @@ class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
             ("Technique", PropertyDefinitions.TECHNIQUE),
         ):
             for value in itm_element_text_tree.pop(key, []):
-                properties.append(Property(key=property_definition.key, value=value))
+                properties.append(Property(property_definition.uri, value))
 
         for key, predicate in (
             ("Classification", costume_core_predicates.classification),
@@ -63,7 +74,7 @@ class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
             ("Structure Waist", costume_core_predicates.waistline),
             ("Work Type", costume_core_predicates.workType),
         ):
-            terms = COSTUME_CORE_TERMS_BY_FEATURES.get(predicate.id, [])
+            terms = self.__costume_core.terms_by_predicate_id.get(predicate.id, [])
             # if not terms:
             #     self._logger.warning("no terms for Costume Core predicate %s", predicate.id)
             for value in itm_element_text_tree.pop(key, []):
@@ -80,8 +91,7 @@ class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
                     if value not in unknown_predicate_terms:
                         # print(predicate.id + ',' + value)
                         unknown_predicate_terms.add(value)
-                properties.append(Property(predicate.id, value))
-                # model.resource.add(URIRef(predicate.uri), Literal(value))
+                properties.append(Property(URIRef(predicate.uri), value))
 
         for key in (
             "CSV File",
