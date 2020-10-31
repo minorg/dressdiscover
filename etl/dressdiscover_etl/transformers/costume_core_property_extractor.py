@@ -3,6 +3,7 @@ from typing import Optional, Tuple
 
 from paradicms_etl.models.property import Property
 from rdflib import URIRef
+import textacy.extract
 
 from dressdiscover_etl.costume_core import CostumeCore
 
@@ -45,6 +46,11 @@ class CostumeCorePropertyExtractor:
                 continue
             candidates.add(token.text.lower())
             candidates.add(token.lemma_.lower())
+        for n in (2, 3):
+            for ngram in textacy.extract.ngrams(
+                sentence, n, filter_nums=True, filter_punct=True, filter_stops=True
+            ):
+                candidates.add(repr(ngram).lower())
         return tuple(candidates)
 
     def extract_properties_from_candidate(self, candidate: str) -> Tuple[Property, ...]:
