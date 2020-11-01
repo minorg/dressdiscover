@@ -14,13 +14,6 @@ from paradicms_etl.models.object import Object
 from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.pipelines._composite_pipeline import _CompositePipeline
 
-from dressdiscover_etl.pipelines.costume_core_ontology_pipeline import (
-    CostumeCoreOntologyPipeline,
-)
-from dressdiscover_etl.pipelines.costume_core_template_airtable_pipeline import (
-    CostumeCoreTemplateAirtablePipeline,
-)
-from dressdiscover_etl.pipelines.iastate_amd_354_pipeline import IastateAmd354Pipeline
 from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
 
 
@@ -29,8 +22,8 @@ class DressdiscoverPipeline(_CompositePipeline):
 
     def __init__(
         self,
-        costume_core_ontology_airtable_api_key: str,
-        costume_core_template_airtable_api_key: str,
+        # costume_core_ontology_airtable_api_key: str,
+        # costume_core_template_airtable_api_key: str,
         data_dir_path: Path,
         vccc_omeka_api_key: str,
         load_data_only: Optional[bool] = None,
@@ -61,18 +54,18 @@ class DressdiscoverPipeline(_CompositePipeline):
             id=self.__ID,
             loader=loader,
             pipelines=(
-                CostumeCoreOntologyPipeline(
-                    airtable_api_key=costume_core_ontology_airtable_api_key,
-                    data_dir_path=data_dir_path,
-                    loader=loader,
-                    ontology_version="0.0.0",
-                    **kwds,
-                ),
-                CostumeCoreTemplateAirtablePipeline(
-                    api_key=costume_core_template_airtable_api_key,
-                    loader=loader,
-                    **kwds,
-                ),
+                # CostumeCoreOntologyPipeline(
+                #     airtable_api_key=costume_core_ontology_airtable_api_key,
+                #     data_dir_path=data_dir_path,
+                #     loader=loader,
+                #     ontology_version="0.0.0",
+                #     **kwds,
+                # ),
+                # CostumeCoreTemplateAirtablePipeline(
+                #     api_key=costume_core_template_airtable_api_key,
+                #     loader=loader,
+                #     **kwds,
+                # ),
                 VcccPipeline(
                     data_dir_path=data_dir_path,
                     loader=loader,
@@ -87,12 +80,12 @@ class DressdiscoverPipeline(_CompositePipeline):
     def add_arguments(cls, arg_parser: ArgParser):
         _CompositePipeline.add_arguments(arg_parser)
         _CompositePipeline._add_aws_credentials_arguments(arg_parser)
-        arg_parser.add_argument(
-            "--costume-core-ontology-airtable-api-key", required=True
-        )
-        arg_parser.add_argument(
-            "--costume-core-template-airtable-api-key", required=True
-        )
+        # arg_parser.add_argument(
+        #     "--costume-core-ontology-airtable-api-key", required=True
+        # )
+        # arg_parser.add_argument(
+        #     "--costume-core-template-airtable-api-key", required=True
+        # )
         arg_parser.add_argument(
             "--load-data-only",
             action="store_true",
