@@ -45,6 +45,7 @@ class DressdiscoverPipeline(_CompositePipeline):
                 image_archiver=S3ImageArchiver(
                     s3_bucket_name="dressdiscover-images", **kwds
                 ),
+                sleep_s_after_image_download=0.5,
                 pipeline_id=self.__ID,
                 **kwds,
             )
