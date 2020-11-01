@@ -14,6 +14,7 @@ from paradicms_etl.models.object import Object
 from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.pipelines._composite_pipeline import _CompositePipeline
 
+from dressdiscover_etl.pipelines.schcc_pipeline import SchccPipeline
 from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
 
 
@@ -67,6 +68,7 @@ class DressdiscoverPipeline(_CompositePipeline):
                 #     loader=loader,
                 #     **kwds,
                 # ),
+                SchccPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
                 VcccPipeline(
                     data_dir_path=data_dir_path,
                     loader=loader,
