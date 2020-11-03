@@ -19,8 +19,8 @@ from dressdiscover_etl.pipelines.uc_daap_vac_pipeline import UcDaapVacPipeline
 from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
 
 
-class DressdiscoverPipeline(_CompositePipeline):
-    __ID = "dressdiscover"
+class UnionPipeline(_CompositePipeline):
+    __ID = "union"
 
     def __init__(
         self,
@@ -119,4 +119,4 @@ class DressdiscoverPipeline(_CompositePipeline):
 
 
 if __name__ == "__main__":
-    DressdiscoverPipeline.main()
+    UnionPipeline.main()

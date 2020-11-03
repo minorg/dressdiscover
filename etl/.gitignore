@@ -3,7 +3,6 @@
 /data/ardensandbox/
 /data/costume-core-template-airtable/
 /data/costume_core_ontology/extracted/
-/data/dressdiscover/
 /data/hctc/
 /data/historicdress/
 /data/iastate_amd_354/
@@ -11,6 +10,7 @@
 /data/tcmuseum/
 /data/tfc/
 /data/uc_daap_vac/
+/data/union/
 /data/vccc/
 *.pyc
 /venv/
