@@ -10,6 +10,7 @@
 /data/schcc/
 /data/tcmuseum/
 /data/tfc/
+/data/uc_daap_vac/
 /data/vccc/
 *.pyc
 /venv/
