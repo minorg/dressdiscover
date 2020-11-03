@@ -16,6 +16,8 @@ class UcDaapVacTransformer(LunaTransformer):
                     text="Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License",
                     uri="http://creativecommons.org/licenses/by-nc-nd/4.0/",
                 ),
-                statement=RightsValue(text="Copyright University of Cincinatti."),
+                statement=RightsValue(
+                    text="Copyright University of Cincinnati Libraries"
+                ),
             ),
         )

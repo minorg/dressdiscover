@@ -1,6 +1,7 @@
 from paradicms_etl._pipeline import _Pipeline
 from paradicms_etl.extractors.luna_extractor import LunaExtractor
-from paradicms_etl.transformers.luna_transformer import LunaTransformer
+
+from dressdiscover_etl.transformers.uc_daap_vac_transformer import UcDaapVacTransformer
 
 
 class UcDaapVacPipeline(_Pipeline):
@@ -23,7 +24,7 @@ class UcDaapVacPipeline(_Pipeline):
                 },
                 **kwds
             ),
-            transformer=LunaTransformer(pipeline_id=self.ID, **kwds),
+            transformer=UcDaapVacTransformer(pipeline_id=self.ID, **kwds),
             id=self.ID,
             **kwds
         )

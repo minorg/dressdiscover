@@ -15,6 +15,7 @@ from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.pipelines._composite_pipeline import _CompositePipeline
 
 from dressdiscover_etl.pipelines.schcc_pipeline import SchccPipeline
+from dressdiscover_etl.pipelines.uc_daap_vac_pipeline import UcDaapVacPipeline
 from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
 
 
@@ -32,7 +33,7 @@ class DressdiscoverPipeline(_CompositePipeline):
     ):
         if load_data_only:
             loader = GuiDataLoader(
-                loaded_data_dir_path=data_dir_path / "data",
+                loaded_data_dir_path=data_dir_path / self.__ID / "loaded" / "data",
                 pipeline_id=self.__ID,
                 **kwds,
             )
@@ -69,6 +70,7 @@ class DressdiscoverPipeline(_CompositePipeline):
                 #     **kwds,
                 # ),
                 SchccPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
+                UcDaapVacPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
                 VcccPipeline(
                     data_dir_path=data_dir_path,
                     loader=loader,
