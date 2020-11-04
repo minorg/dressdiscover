@@ -12,7 +12,7 @@ from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.models.rights import Rights
 from paradicms_etl.models.rights_value import RightsValue
-from paradicms_etl.utils import strip_csv_row
+from paradicms_etl.utils.csv_utils import strip_csv_row
 from rdflib import URIRef
 
 from dressdiscover_etl.models import costume_core_predicates, costume_core_terms

@@ -1,6 +1,6 @@
 import csv
 from pathlib import Path
-from typing import Dict, Generator, List, Optional
+from typing import Dict, Generator, Optional
 
 from paradicms_etl._transformer import _Transformer
 from paradicms_etl.models.collection import Collection
@@ -11,13 +11,12 @@ from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.models.property_definitions import PropertyDefinitions
 from paradicms_etl.models.rights import Rights
 from paradicms_etl.models.rights_value import RightsValue
-from paradicms_etl.utils import strip_csv_row
+from paradicms_etl.utils.csv_utils import strip_csv_row
 from rdflib import URIRef
 
 from dressdiscover_etl.costume_core import CostumeCore
 from dressdiscover_etl.models import costume_core_predicates
 from dressdiscover_etl.models.costume_core_predicate import CostumeCorePredicate
-from dressdiscover_etl.models.costume_core_term import CostumeCoreTerm
 
 
 class SchccTransformer(_Transformer):
