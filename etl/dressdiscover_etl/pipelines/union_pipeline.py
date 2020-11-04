@@ -8,6 +8,7 @@ from paradicms_etl.loaders.gui.gui_data_loader import GuiDataLoader
 from paradicms_etl.loaders.gui.gui_loader import GuiLoader
 from paradicms_etl.loaders.gui.s3_gui_deployer import S3GuiDeployer
 from paradicms_etl.models.collection import Collection
+from paradicms_etl.models.gui_metadata import GuiMetadata
 from paradicms_etl.models.image import Image
 from paradicms_etl.models.institution import Institution
 from paradicms_etl.models.object import Object
@@ -112,6 +113,15 @@ class UnionPipeline(_CompositePipeline):
                         "filtering out %s model", model.__class__.__name__
                     )
                     excluded_model_class_names.add(model.__class__.__name__)
+
+        self.loader.load(
+            models=(
+                GuiMetadata(
+                    document_title="DressDiscover Union",
+                    navbar_title="DressDiscover Union",
+                ),
+            )
+        )
 
         for pipeline in self._pipelines:
             self.loader.load(models=filter_models(pipeline.extract_transform(**kwds)))
