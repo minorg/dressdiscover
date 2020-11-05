@@ -14,6 +14,9 @@ from paradicms_etl.models.institution import Institution
 from paradicms_etl.models.object import Object
 from paradicms_etl.models.property_definition import PropertyDefinition
 from paradicms_etl.pipelines._composite_pipeline import _CompositePipeline
+from paradicms_etl.pipelines.past_perfect_online_pipeline import (
+    PastPerfectOnlinePipeline,
+)
 
 from dressdiscover_etl.pipelines.schcc_pipeline import SchccPipeline
 from dressdiscover_etl.pipelines.uc_daap_vac_pipeline import UcDaapVacPipeline
@@ -71,6 +74,15 @@ class UnionPipeline(_CompositePipeline):
                 #     **kwds,
                 # ),
                 SchccPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
+                PastPerfectOnlinePipeline(
+                    collection_title="Textiles and Clothing Museum",
+                    collection_uri="https://www.aeshm.hs.iastate.edu/tc-museum/",
+                    institution_name="Iowa State University",
+                    institution_rights="Copyright Iowa State University. All rights reserved.",
+                    institution_uri="https://iastate.edu/",
+                    object_uri_prefix="https://www.aeshm.hs.iastate.edu/tc-museum/object/",
+                    subdomain="tcmuseum",
+                ),
                 UcDaapVacPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
                 VcccPipeline(
                     data_dir_path=data_dir_path,
