@@ -1,3 +1,4 @@
+import dataclasses
 from typing import Collection, Optional
 
 from rdflib import Graph
@@ -31,3 +32,7 @@ class VcccTransformer(CostumeCoreOmekaClassicTransformer):
         return CostumeCoreOmekaClassicTransformer._transform_collection(
             self, omeka_collection=omeka_collection, **kwds
         )
+
+    def _transform_file(self, **kwds):
+        images = CostumeCoreOmekaClassicTransformer._transform_file(self, **kwds)
+        return tuple(dataclasses.replace(image, copyable=False) for image in images)
