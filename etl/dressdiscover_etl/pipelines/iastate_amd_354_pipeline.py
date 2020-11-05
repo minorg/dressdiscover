@@ -15,18 +15,16 @@ from dressdiscover_etl.transformers.iastate_amd_354_transformer import (
 class IastateAmd354Pipeline(_Pipeline):
     ID = "iastate_amd_354"
 
-    def __init__(self, *, data_dir_path: Path, **kwds):
+    def __init__(self, **kwds):
         _Pipeline.__init__(
             self,
             id=self.ID,
             extractor=ExistingFileExtractor(
-                data_dir_path=data_dir_path,
                 file_name="AMD 354 Image database.csv",
                 pipeline_id=self.ID,
                 **kwds,
             ),
             loader=GuiLoader(
-                data_dir_path=data_dir_path,
                 gui="bootstrap-collection",
                 deployer=S3GuiDeployer(
                     s3_bucket_name="iastate-amd354.dressdiscover.org", **kwds
