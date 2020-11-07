@@ -18,6 +18,7 @@ from paradicms_etl.pipelines.past_perfect_online_pipeline import (
     PastPerfectOnlinePipeline,
 )
 
+from dressdiscover_etl.pipelines.penn_museum_pipeline import PennMuseumPipeline
 from dressdiscover_etl.pipelines.schcc_pipeline import SchccPipeline
 from dressdiscover_etl.pipelines.uc_daap_vac_pipeline import UcDaapVacPipeline
 from dressdiscover_etl.pipelines.vccc_pipeline import VcccPipeline
@@ -61,11 +62,18 @@ class UnionPipeline(_CompositePipeline):
             id=self.__ID,
             loader=loader,
             pipelines=(
-                SchccPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
                 PastPerfectOnlinePipeline(
                     collection_title="Textiles and Clothing Museum",
                     collection_uri="https://www.aeshm.hs.iastate.edu/tc-museum/",
                     data_dir_path=data_dir_path,
+                    institution_image_uri=(
+                        data_dir_path
+                        / "tcmuseum"
+                        / "extracted"
+                        / "brandelements-wordmark-with-modifier.png"
+                    )
+                    .absolute()
+                    .as_uri(),
                     institution_name="Iowa State University",
                     institution_rights="Copyright Iowa State University. All rights reserved.",
                     institution_uri="https://iastate.edu/",
@@ -73,6 +81,8 @@ class UnionPipeline(_CompositePipeline):
                     subdomain="tcmuseum",
                     **kwds,
                 ),
+                PennMuseumPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
+                SchccPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
                 UcDaapVacPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
                 VcccPipeline(
                     data_dir_path=data_dir_path,
