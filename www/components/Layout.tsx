@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   brand: {
     marginRight: theme.spacing(4),
   },
+  brandColor: {
+    color: theme.palette.common.white,
+  },
   card: {
     marginLeft: theme.spacing(4),
     marginRight: theme.spacing(4),
@@ -48,8 +51,13 @@ export const Layout: React.FunctionComponent<{
           <AppBar position="static">
             <Toolbar>
               <Typography variant="h6" className={classes.brand}>
-                DressDiscover
+                <Link className={classes.brandColor} href={Hrefs.home}>
+                  DressDiscover
+                </Link>
               </Typography>
+              <Link className={classes.navLink} href={Hrefs.collections}>
+                Collections
+              </Link>
               <Link className={classes.navLink} href={Hrefs.union}>
                 Union catalog
               </Link>
