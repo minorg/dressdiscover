@@ -44,7 +44,7 @@ class UnionPipeline(_CompositePipeline):
         else:
             loader = GuiLoader(
                 data_dir_path=data_dir_path,
-                gui="union",
+                gui="material-ui-union",
                 deployer=S3GuiDeployer(
                     s3_bucket_name="union.dressdiscover.org", **kwds
                 ),
@@ -61,27 +61,17 @@ class UnionPipeline(_CompositePipeline):
             id=self.__ID,
             loader=loader,
             pipelines=(
-                # CostumeCoreOntologyPipeline(
-                #     airtable_api_key=costume_core_ontology_airtable_api_key,
-                #     data_dir_path=data_dir_path,
-                #     loader=loader,
-                #     ontology_version="0.0.0",
-                #     **kwds,
-                # ),
-                # CostumeCoreTemplateAirtablePipeline(
-                #     api_key=costume_core_template_airtable_api_key,
-                #     loader=loader,
-                #     **kwds,
-                # ),
                 SchccPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
                 PastPerfectOnlinePipeline(
                     collection_title="Textiles and Clothing Museum",
                     collection_uri="https://www.aeshm.hs.iastate.edu/tc-museum/",
+                    data_dir_path=data_dir_path,
                     institution_name="Iowa State University",
                     institution_rights="Copyright Iowa State University. All rights reserved.",
                     institution_uri="https://iastate.edu/",
                     object_uri_prefix="https://www.aeshm.hs.iastate.edu/tc-museum/object/",
                     subdomain="tcmuseum",
+                    **kwds,
                 ),
                 UcDaapVacPipeline(data_dir_path=data_dir_path, loader=loader, **kwds),
                 VcccPipeline(

@@ -43,7 +43,7 @@ class CostumeCoreOntologyPipeline(_Pipeline):
                         format="xml", pipeline_id=self.ID, **kwds
                     ),
                     GuiLoader(
-                        gui="union",
+                        gui="material-ui-union",
                         deployer=S3GuiDeployer(
                             s3_bucket_name="costumecoreontology.dressdiscover.org",
                             **kwds,
