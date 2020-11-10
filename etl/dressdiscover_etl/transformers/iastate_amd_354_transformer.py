@@ -1,4 +1,5 @@
 import csv
+from collections import Counter
 from pathlib import Path
 from typing import Dict, Optional
 
@@ -40,6 +41,10 @@ class IastateAmd354Transformer(_Transformer):
     }
 
     __LICENSES = {
+        "CC BY 4.0": RightsValue(
+            text="CC BY 4.0",
+            uri="https://creativecommons.org/licenses/by/4.0/",
+        ),
         "CC BY-NC-SA 4.0": RightsValue(
             text="CC BY-NC-SA 4.0",
             uri="https://creativecommons.org/licenses/by-nc-sa/4.0/",
@@ -62,6 +67,9 @@ class IastateAmd354Transformer(_Transformer):
     }
 
     __RIGHTS_STATEMENTS = {
+        "CC BY 4.0": RightsValue(
+            text="In Copyright", uri="http://rightsstatements.org/vocab/InC/1.0/"
+        ),
         "CC BY-NC-SA 4.0": RightsValue(
             text="In Copyright", uri="http://rightsstatements.org/vocab/InC/1.0/"
         ),
@@ -127,6 +135,7 @@ class IastateAmd354Transformer(_Transformer):
         image_description = csv_row.pop("Image Description")
         image_license = csv_row.pop("Image License")
         image_source = csv_row.pop("Image Source")
+        image_title = csv_row.pop("Image Title")
         image_url = csv_row.pop("Image URL")
         object_source = csv_row.pop("Object Source")
         if object_source == "Same":
@@ -134,9 +143,10 @@ class IastateAmd354Transformer(_Transformer):
 
         object_properties = []
 
-        object_properties.append(
-            Property(PropertyDefinitions.DESCRIPTION.uri, image_description)
-        )
+        # object_properties.append(
+        #     Property(PropertyDefinitions.DESCRIPTION.uri, image_description)
+        # )
+        object_properties.append(Property(PropertyDefinitions.TITLE.uri, image_title))
 
         # DC/VRA/custom string properties
         for key, property_uri in (
@@ -167,13 +177,17 @@ class IastateAmd354Transformer(_Transformer):
 
         # CC components
         component_i = 1
+        costume_component_counts = Counter()
         while True:
             try:
                 value = csv_row.pop(f"Costume Component {component_i}")
             except KeyError:
                 break
             object_properties.append(
-                Property(URIRef(costume_core_predicates.costumeComponents.uri), value)
+                Property(
+                    URIRef(costume_core_predicates.costumeComponents.uri),
+                    f"{value} {component_i}",
+                )
             )
             component_i += 1
 
@@ -198,7 +212,7 @@ class IastateAmd354Transformer(_Transformer):
                 )
 
         object_ = Object(
-            abstract=image_description,
+            # abstract=image_description,
             collection_uris=(self.__COLLECTION.uri,),
             institution_uri=self.__INSTITUTION.uri,
             properties=tuple(object_properties),
@@ -207,7 +221,7 @@ class IastateAmd354Transformer(_Transformer):
                 license=self.__LICENSES[image_license],
                 statement=self.__RIGHTS_STATEMENTS[image_license],
             ),
-            title=f"Image {image_number}",
+            title=image_title,
             uri=URIRef(csv_row.pop("Object URL")),
         )
         yield object_
