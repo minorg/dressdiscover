@@ -63,11 +63,22 @@ class PennMuseumTransformer(_Transformer):
                             f"http://www.penn.museum/about-collections/curatorial-sections/{'-'.join(part.lower() for part in curatorial_section.split(' '))}-section"
                         ),
                     )
-                    yield collection
+                    new_collection = True
+                else:
+                    new_collection = False
 
-                yield from self.__transform_csv_row(
+                for model in self.__transform_csv_row(
                     collection=collection, csv_row=csv_row, institution=institution
-                )
+                ):
+                    if isinstance(model, Object):
+                        if new_collection:
+                            # Ensure the collection is referenced before yielding it
+                            collections_by_curatorial_section[
+                                curatorial_section
+                            ] = collection
+                            yield collection
+
+                    yield model
 
     def __transform_csv_row(
         self,
