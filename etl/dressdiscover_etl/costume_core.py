@@ -1,6 +1,7 @@
 from typing import Dict, Optional, Tuple
 
 from paradicms_etl.models.property_definition import PropertyDefinition
+from paradicms_etl.models.property_definitions import PropertyDefinitions
 from rdflib import URIRef
 
 from dressdiscover_etl.models.costume_core_predicate import CostumeCorePredicate
@@ -42,6 +43,11 @@ class CostumeCore:
                     )
         self.__terms_by_predicate_id = terms_by_predicate_id
 
+        paradicms_property_definition_uris = {
+            str(property_definition.uri)
+            for property_definition in PropertyDefinitions.as_tuple()
+        }
+        # Exclude properties already defined by paradicms
         self.__property_definitions = tuple(
             PropertyDefinition(
                 faceted=costume_core_predicate.id in terms_by_predicate_id,
@@ -49,7 +55,7 @@ class CostumeCore:
                 uri=URIRef(costume_core_predicate.uri),
             )
             for costume_core_predicate in COSTUME_CORE_PREDICATES
-            # if costume_core_predicate.uri.startswith(str(CC))
+            if costume_core_predicate.uri not in paradicms_property_definition_uris
         )
 
     @property
