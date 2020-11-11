@@ -38,7 +38,7 @@ class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
         if not itm_element_text_tree:
             return ()
 
-        properties = []
+        properties = set()
 
         for key, property_definition in (
             ("Category", PropertyDefinitions.SUBJECT),
@@ -50,7 +50,7 @@ class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
             ("Technique", PropertyDefinitions.TECHNIQUE),
         ):
             for value in itm_element_text_tree.pop(key, []):
-                properties.append(Property(property_definition.uri, value))
+                properties.add(Property(property_definition.uri, value))
 
         for key, predicate in (
             ("Classification", costume_core_predicates.classification),
@@ -91,7 +91,7 @@ class CostumeCoreOmekaClassicTransformer(OmekaClassicTransformer):
                     if value not in unknown_predicate_terms:
                         # print(predicate.id + ',' + value)
                         unknown_predicate_terms.add(value)
-                properties.append(Property(URIRef(predicate.uri), value))
+                properties.add(Property(URIRef(predicate.uri), value))
 
         for key in (
             "CSV File",

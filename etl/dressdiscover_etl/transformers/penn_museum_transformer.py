@@ -110,13 +110,13 @@ class PennMuseumTransformer(_Transformer):
         if relevant_object_name is None:
             return
 
-        properties = []
+        properties = set()
         if description:
-            properties.append(Property(PropertyDefinitions.DESCRIPTION, description))
-        properties.append(Property(PropertyDefinitions.TITLE, object_name))
+            properties.add(Property(PropertyDefinitions.DESCRIPTION, description))
+        properties.add(Property(PropertyDefinitions.TITLE, object_name))
 
         for key, property_definition in (
-            ("accession_credit_line", PropertyDefinitions.PROVENANCE),
+            ("accession_credit_line", PropertyDefinitions.CONTRIBUTOR),
             ("creator", PropertyDefinitions.CREATOR),
             ("culture", PropertyDefinitions.CULTURAL_CONTEXT),
             ("culture_area", PropertyDefinitions.SPATIAL),
@@ -130,7 +130,7 @@ class PennMuseumTransformer(_Transformer):
             ("technique", PropertyDefinitions.TECHNIQUE),
         ):
             for value in pop_multiple_values(key):
-                properties.append(Property(property_definition, value))
+                properties.add(Property(property_definition, value))
 
         yield Object(
             abstract=description,
