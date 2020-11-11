@@ -17,6 +17,7 @@ from paradicms_etl.pipelines._composite_pipeline import _CompositePipeline
 from paradicms_etl.pipelines.past_perfect_online_pipeline import (
     PastPerfectOnlinePipeline,
 )
+from paradicms_etl.transformers.validation_transformer import ValidationTransformer
 
 from dressdiscover_etl.pipelines.penn_museum_pipeline import PennMuseumPipeline
 from dressdiscover_etl.pipelines.schcc_pipeline import SchccPipeline
@@ -114,6 +115,10 @@ class UnionPipeline(_CompositePipeline):
     def extract_transform_load(self, **kwds):
         excluded_model_class_names = set()
 
+        def extract_transform():
+            for pipeline in self._pipelines:
+                yield from pipeline.extract_transform(**kwds)
+
         def filter_models(models: Generator[_Model, None, None]):
             for model in models:
                 if isinstance(
@@ -135,8 +140,12 @@ class UnionPipeline(_CompositePipeline):
             )
         )
 
-        for pipeline in self._pipelines:
-            self.loader.load(models=filter_models(pipeline.extract_transform(**kwds)))
+        self.loader.load(
+            models=ValidationTransformer(pipeline_id=self.id).transform(
+                filter_models(extract_transform())
+            )
+        )
+
         self.loader.flush()
 
 
