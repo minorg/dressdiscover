@@ -4,7 +4,10 @@ from configargparse import ArgParser
 from paradicms_etl._loader import _Loader
 from paradicms_etl._pipeline import _Pipeline
 from paradicms_etl.extractors.airtable_extractor import AirtableExtractor
+from paradicms_etl.image_archivers.s3_image_archiver import S3ImageArchiver
 from paradicms_etl.loaders.composite_loader import CompositeLoader
+from paradicms_etl.loaders.gui.gui_loader import GuiLoader
+from paradicms_etl.loaders.gui.s3_gui_deployer import S3GuiDeployer
 
 from dressdiscover_etl.loaders.costume_core_ontology_py_loader import (
     CostumeCoreOntologyPyLoader,
@@ -23,7 +26,7 @@ class CostumeCoreOntologyPipeline(_Pipeline):
     def __init__(
         self,
         *,
-        airtable_api_key: str,
+        api_key: str,
         ontology_version: str,
         loader: Optional[_Loader] = None,
         **kwds
@@ -39,13 +42,25 @@ class CostumeCoreOntologyPipeline(_Pipeline):
                     CostumeCoreOntologyRdfFileLoader(
                         format="xml", pipeline_id=self.ID, **kwds
                     ),
+                    GuiLoader(
+                        gui="material-ui-union",
+                        deployer=S3GuiDeployer(
+                            s3_bucket_name="costumecoreontology.dressdiscover.org",
+                            **kwds,
+                        ),
+                        image_archiver=S3ImageArchiver(
+                            s3_bucket_name="dressdiscover-images", **kwds
+                        ),
+                        pipeline_id=self.ID,
+                        **kwds,
+                    ),
                 ),
             )
 
         _Pipeline.__init__(
             self,
             extractor=AirtableExtractor(
-                api_key=airtable_api_key,
+                api_key=api_key,
                 base_id="appfEYYWWn3CqSAxW",
                 pipeline_id=self.ID,
                 tables=(
@@ -55,20 +70,21 @@ class CostumeCoreOntologyPipeline(_Pipeline):
                     "images",
                     "rights_licenses",
                 ),
-                **kwds
+                **kwds,
             ),
             id=self.ID,
             loader=loader,
             transformer=CostumeCoreOntologyTransformer(
                 ontology_version=ontology_version, pipeline_id=self.ID, **kwds
             ),
-            **kwds
+            **kwds,
         )
 
     @classmethod
     def add_arguments(cls, arg_parser: ArgParser):
         _Pipeline.add_arguments(arg_parser)
-        arg_parser.add_argument("--airtable-api-key", required=True)
+        _Pipeline._add_aws_credentials_arguments(arg_parser)
+        arg_parser.add_argument("--api-key", required=True)
         arg_parser.add_argument("--ontology-version", required=True)
 
 

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import NamedTuple, Optional, Tuple
 
+from dataclasses_json import LetterCase, dataclass_json
 from paradicms_etl._model import _Model
 from rdflib import BNode, Graph, Literal, RDF, RDFS, URIRef
 from rdflib.namespace import DCTERMS, OWL
@@ -10,6 +11,7 @@ from dressdiscover_etl.models.costume_core_description import CostumeCoreDescrip
 from dressdiscover_etl.models.quote_repr_string import quote_repr_string
 
 
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass(frozen=True)
 class CostumeCoreTerm(_Model):
     description: CostumeCoreDescription

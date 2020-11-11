@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from paradicms_etl._model import _Model
+from paradicms_etl.models._named_model import _NamedModel
 from rdflib import Graph, Literal, OWL, URIRef
 from rdflib.namespace import DCTERMS, RDF, RDFS
 from rdflib.resource import Resource
@@ -9,7 +9,7 @@ from dressdiscover_etl.namespace import CC
 
 
 @dataclass(frozen=True)
-class CostumeCoreOntology(_Model):
+class CostumeCoreOntology(_NamedModel):
     version: str
 
     def to_rdf(self, *, graph: Graph, **kwds) -> Resource:
